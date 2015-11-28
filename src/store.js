@@ -20,19 +20,24 @@ app.controller('storeController', function($scope, $http) {
 
     mouseUp($event) {
       this.dragging = false;
-      console.log($event);
+      console.log('ng mouseup')
     }
 
     mouseDown($event) {
       this.dragging = true;
-      console.log('mouseDown')
+      console.log('ng mousdown')
     }
 
     mouseMove($event) {
       if (this.dragging) {
-        console.log("Dragging map")
+        this.offset = {
+          'x': this.offset.x -= this.move.x - $event.clientX,
+          'y': this.offset.y -= this.move.y - $event.clientY,
+        }
         this.draw();
       }
+      this.move = {'x': $event.clientX, 'y': $event.clientY}
+      console.log('ng mousemove')
     }
 
     draw(){
@@ -61,9 +66,9 @@ app.controller('storeController', function($scope, $http) {
                 this.context.lineTo(target.x + this.offset.x,
                                target.y + this.offset.y);
                 this.context.stroke();
-              } else {
-                console.log('Bad link: ' + link);
-              }
+              } //else {
+                //console.log('Bad link: ' + link);
+              //}
             }
           }
         }
