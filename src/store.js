@@ -20,7 +20,7 @@ app.controller('storeController', function($scope, $http) {
 
     mouseUp($event) {
       this.dragging = false;
-      console.log('MouseUp');
+      console.log($event);
     }
 
     mouseDown($event) {
@@ -41,12 +41,43 @@ app.controller('storeController', function($scope, $http) {
 
       var systems = this.data.systems;
 
+      //Draw each system connection line
+      this.context.strokeStyle = "gray";
+      for (var sysName in systems) {
+        if (systems.hasOwnProperty(sysName)) {
+          let system = systems[sysName];
+          for (var linkName in system.links) {
+            if (system.links.hasOwnProperty(linkName)) {
+              let link = system.links[linkName];
+              //FIXME: This should be normalized - only one copy of a link
+              // should exist.
+              if (link in systems) {
+                let target = systems[link];
+                this.context.beginPath();
+                //Not sure if its faster to do a new context for each line or not-
+                //further research is needed
+                this.context.moveTo(system.x + this.offset.x,
+                               system.y + this.offset.y);
+                this.context.lineTo(target.x + this.offset.x,
+                               target.y + this.offset.y);
+                this.context.stroke();
+              } else {
+                console.log('Bad link: ' + link);
+              }
+            }
+          }
+        }
+      }
+
+
       for (let sysName in systems) {
         if (systems.hasOwnProperty(sysName)) {
           let system = systems[sysName];
 
           // Select color based on government
-          this.drawCircle(system.x, system.y, this.SYSTEM_RADIUS, 'White')
+          this.drawCircle(system.x + this.offset.x,
+                          system.y + this.offset.y,
+                          this.SYSTEM_RADIUS, 'White');
         }
       }
     }
@@ -66,7 +97,8 @@ app.controller('storeController', function($scope, $http) {
        .then(function(res){
           $scope.map = new MapView(res.data,
                                {'x': 0, 'y': 0},
-                               $('#mapcanvas')[0].getContext('2d'));
+                               $('#mapcanvas')[0].getContext('2d',
+                                  { antialias: true}));
           console.log('Downloaded the map')
           $scope.map.draw();
         });
