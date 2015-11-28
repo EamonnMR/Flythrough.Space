@@ -15,6 +15,7 @@ app.controller('storeController', function($scope, $http) {
       this.data = data;
       this.context = drawContext;
       this.dragging = false;
+      this.SYSTEM_RADIUS = 4;
     }
 
     mouseUp($event) {
@@ -37,7 +38,29 @@ app.controller('storeController', function($scope, $http) {
     draw(){
       this.context.fillStyle = "Black";
       this.context.fillRect(0, 0, 851, 600);
+
+      var systems = this.data.systems;
+
+      for (let sysName in systems) {
+        if (systems.hasOwnProperty(sysName)) {
+          let system = systems[sysName];
+
+          // Select color based on government
+          this.drawCircle(system.x, system.y, this.SYSTEM_RADIUS, 'White')
+        }
+      }
     }
+
+    drawCircle(x, y, radius, color) {
+      var saveStroke = this.context.strokeStyle;
+      this.context.beginPath();
+      this.context.arc(x, y, radius, 0, 2 * Math.PI, false);
+      this.context.strokeStyle = color;
+      this.context.fill();
+      this.context.stroke();
+      this.context.strokeStyle = saveStroke;
+    };
+
   };
   $http.get('data/systems.json')
        .then(function(res){
