@@ -118,4 +118,27 @@ app.controller('storeController', function($scope, $http) {
           console.log('Downloaded the map')
           $scope.map.draw();
         });
+
+  function setupGameplayRender () {
+    console.log($('#gameCanvas')[0])
+    var engine = new BABYLON.Engine($('#gameCanvas')[0], true);
+
+    function createScene () {
+      var scene = new BABYLON.Scene(engine);
+
+      scene.clearColor = new BABYLON.Color3(0, 0, 0);
+
+      var camera = new BABYLON.FreeCamera(
+          "camera1", new BABYLON.Vector3(0, 5, -10), scene);
+      return scene;
+    }
+
+    var scene = createScene();
+
+    engine.runRenderLoop(function () {
+      scene.render();
+    });
+  }
+
+  setupGameplayRender();
 });
