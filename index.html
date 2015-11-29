@@ -15,6 +15,9 @@
   <!-- Angularjs -->
   <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 
+  <!-- Jquerey -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
   <!-- Achernar -->
   <script src= "js/store.js"></script>
 </head>
@@ -45,7 +48,14 @@
     <div ng-show="view_state === 'map'">
       <h1><em>Achernar: Map View</em></h1>
       <div>
-        <button type="button" class="btn btn-default" ng-click=enterState('menu')>
+        <canvas id="mapcanvas" height="600" width="851"
+                ng-mousedown="map.mouseDown($event)"
+                ng-mouseup="map.mouseUp($event)"
+                ng-mousemove="map.mouseMove($event)"></canvas>
+      </div>
+      <div>
+        <button type="button" class="btn btn-default"
+                ng-click=enterState('menu')>
           <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Back
         </button>
       </div>
