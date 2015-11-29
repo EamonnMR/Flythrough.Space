@@ -129,12 +129,69 @@ app.controller('storeController', function($scope, $http) {
       }
       this.toRemove = false;
     }
+
+    remove () {
+      this.toRemove = true;
+    }
+  }
+
+  class EntityManager {
+    constructor (systems, entities) {
+      if (entities) {
+        this.entities = entities;
+      } else {
+        this.entities = {};
+        this.maxId = 0;
+      }
+
+      this.systems = systems;
+    }
+
+    get (id) {
+      if (id in this.entities) {
+        return this.entities[id];
+      } else {
+        return null;
+      }
+    }
+
+    insert (entity) {
+      this.maxId ++;
+      this.entities[this.maxId] = entity;
+      return this.maxId;
+    }
+
+    update () {
+      for (let system of systems) {
+        system.update(this);
+      }
+      for (let id in this.entities) {
+        if (this.entities.hasOwnProperty(id)) {
+          if (this.get(id).toRemove) {
+            for (let system of systems) {
+              system.processDeletion(this, this.get(id));
+            }
+            delete this.entities[id];
+          }
+        }
+      }
+    }
+  }
+
+  function planetFactory (position, size, scene) {
+    let sphere = BABYLON.Mesh.CreateSphere("sphere", 16, size, scene);
+    sphere.position.x = position.x;
+    sphere.position.y = position.y;
+    sphere.position.z = position.z;
+    return new Entity({
+      'position': {'x': position.x, 'y': position.y},
+      'model': sphere
+    })
   }
 
   function setupGameplayRender () {
-    console.log($('#gameCanvas')[0])
     var engine = new BABYLON.Engine($('#gameCanvas')[0], true);
-
+    var entMan = new EntityManager([]);
     function createScene () {
       var scene = new BABYLON.Scene(engine);
 
@@ -142,6 +199,13 @@ app.controller('storeController', function($scope, $http) {
 
       var camera = new BABYLON.FreeCamera(
           "camera1", new BABYLON.Vector3(0, 5, -10), scene);
+
+
+      var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
+      light.intensity = .5;
+
+      entMan.insert(planetFactory({'x':0, 'y':1, 'z': -2}, 2, scene));
+
       return scene;
     }
 
@@ -149,6 +213,7 @@ app.controller('storeController', function($scope, $http) {
 
     engine.runRenderLoop(function () {
       scene.render();
+      entMan.update();
     });
   }
 
