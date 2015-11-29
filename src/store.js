@@ -85,6 +85,16 @@ app.controller('storeController', function($scope, $http) {
                           this.SYSTEM_RADIUS, 'White');
         }
       }
+
+      this.context.fillStyle = 'White';
+      for (let sysName in systems) {
+        if (systems.hasOwnProperty(sysName)) {
+          let system = systems[sysName];
+          this.context.fillText(sysName, system.x + this.offset.x + 4,
+                                         system.y + this.offset.y + 3);
+        }
+      }
+
     }
 
     drawCircle(x, y, radius, color) {
