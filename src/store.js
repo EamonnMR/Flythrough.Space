@@ -119,6 +119,18 @@ app.controller('storeController', function($scope, $http) {
           $scope.map.draw();
         });
 
+  class Entity {
+    constructor (components) {
+      if (components) {
+        this.comp = components;
+      }
+      else {
+        this.comp = {};
+      }
+      this.toRemove = false;
+    }
+  }
+
   function setupGameplayRender () {
     console.log($('#gameCanvas')[0])
     var engine = new BABYLON.Engine($('#gameCanvas')[0], true);
