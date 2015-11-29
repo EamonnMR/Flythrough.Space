@@ -74,15 +74,16 @@ app.controller('storeController', function($scope, $http) {
         }
       }
 
-
       for (let sysName in systems) {
         if (systems.hasOwnProperty(sysName)) {
           let system = systems[sysName];
-
           // Select color based on government
           this.drawCircle(system.x + this.offset.x,
                           system.y + this.offset.y,
-                          this.SYSTEM_RADIUS, 'White');
+                          this.SYSTEM_RADIUS,
+                          'govt' in system ?
+                            this.data.govts[system.govt].color
+                            : 'Gray');
         }
       }
 
