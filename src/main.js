@@ -119,22 +119,6 @@ app.controller('storeController', function($scope, $http) {
           $scope.map.draw();
         });
 
-  class Entity {
-    constructor (components) {
-      if (components) {
-        this.comp = components;
-      }
-      else {
-        this.comp = {};
-      }
-      this.toRemove = false;
-    }
-
-    remove () {
-      this.toRemove = true;
-    }
-  }
-
   class EntityManager {
     constructor (systems, entities) {
       if (entities) {
@@ -158,6 +142,7 @@ app.controller('storeController', function($scope, $http) {
     insert (entity) {
       this.maxId ++;
       this.entities[this.maxId] = entity;
+      entity.id = id;
       return this.maxId;
     }
 
@@ -167,7 +152,7 @@ app.controller('storeController', function($scope, $http) {
       }
       for (let id in this.entities) {
         if (this.entities.hasOwnProperty(id)) {
-          if (this.get(id).toRemove) {
+          if (this.get(id).remove) {
             for (let system of systems) {
               system.processDeletion(this, this.get(id));
             }
@@ -183,10 +168,10 @@ app.controller('storeController', function($scope, $http) {
     sphere.position.x = position.x;
     sphere.position.y = position.y;
     sphere.position.z = position.z;
-    return new Entity({
+    return {
       'position': {'x': position.x, 'y': position.y},
       'model': sphere
-    })
+    };
   }
 
   function setupGameplayRender () {
