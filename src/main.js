@@ -147,21 +147,22 @@ app.controller('storeController', function($scope, $http) {
     }
 
     update () {
-      for (let system of systems) {
+      for (let system of this.systems) {
         system.update(this);
       }
-      for (var id in this.entities) {
-        if (this.entities.hasOwnProperty(id)) {
-          if (this.get(id).remove) {
-            for (let system of systems) {
-              system.processDeletion(this, this.get(id));
-            }
-            delete this.entities[id];
-          }
-        }
-      }
+      // for (var id in this.entities) {
+      //   if (this.entities.hasOwnProperty(id)) {
+      //     if (this.get(id).remove) {
+      //       for (let system of systems) {
+      //         system.processDeletion(this, this.get(id));
+      //       }
+      //       delete this.entities[id];
+      //     }
+      //   }
+      // }
     }
   }
+
   function playerShipFactory(position, scene) {
     let sphere = BABYLON.Mesh.CreateSphere("sphere", 16, 3, scene);
     sphere.position.x = position.x;
@@ -172,7 +173,8 @@ app.controller('storeController', function($scope, $http) {
       'position': {'x': position.x, 'y': position.y},
       'camera': new BABYLON.FreeCamera(
           "camera1", new BABYLON.Vector3(position.x, position.y, -10), scene),
-      'model': sphere
+      'model': sphere,
+      'input': true
     }
   }
 
@@ -187,9 +189,43 @@ app.controller('storeController', function($scope, $http) {
     };
   }
 
+  let cameraFollowSystem = {
+    'update': function (entMan) {
+      for (let id in entMan.entities) {
+        if (entMan.entities.hasOwnProperty(id)) {
+          let entity = entMan.entities[id];
+          if ('position' in entity && 'camera' in entity) {
+            entity.camera.position.x = entity.position.x;
+            entity.camera.position.y = entity.position.y;
+            entity.model.position.x = entity.position.x;
+            entity.model.position.y = entity.position.y;
+          }
+        }
+      }
+    },
+    // 'processDeletion': function( entity ){}
+  }
+
+  let inputSystem = {
+    'update': function (entMan) {
+      for (let id in entMan.entities) {
+        if (entMan.entities.hasOwnProperty(id)) {
+          let entity = entMan.entities[id];
+          if ('input' in entity && 'position' in entity) {
+            if (inputStates.forward) {
+              entity.position.y += .01;
+            }
+          }
+        }
+      }
+    },
+    // 'processDeletion': function( entity ){}
+  };
+
+
   function setupGameplayRender () {
     var engine = new BABYLON.Engine($('#gameCanvas')[0], true);
-    var entMan = new EntityManager([]);
+    var entMan = new EntityManager([inputSystem, cameraFollowSystem, ]);
     function createScene () {
       var scene = new BABYLON.Scene(engine);
 
@@ -213,6 +249,51 @@ app.controller('storeController', function($scope, $http) {
       entMan.update();
     });
   }
+
+  var inputStates = {
+    'forward': false,
+    'left': false,
+    'right': false,
+    'shoot': false
+  };
+
+  function handleKeyDown ( event ){
+    switch(event.keyCode){
+      case 38:
+        inputStates.forward = true;
+        break;
+      case 37:
+        inputStates.left = true;
+        break;
+      case 39:
+        inputStates.right = true;
+        break;
+      case 17:
+        inputStates.shoot = true;
+        break;
+    }
+  };
+
+  function handleKeyUp ( event ){
+    switch(event.keyCode){
+      case 38:
+        inputStates.forward = false;
+        break;
+      case 37:
+        inputStates.left = false;
+        break;
+      case 39:
+        inputStates.right = false;
+        break;
+      case 17:
+        inputStates.shoot = false;
+        break;
+    }
+  };
+
+  $(document).keydown( handleKeyDown );
+  $(document).keyup( handleKeyUp );
+
 
   setupGameplayRender();
 });
