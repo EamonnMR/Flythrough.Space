@@ -142,7 +142,7 @@ app.controller('storeController', function($scope, $http) {
     insert (entity) {
       this.maxId ++;
       this.entities[this.maxId] = entity;
-      entity.id = id;
+      entity.id = this.maxId;
       return this.maxId;
     }
 
@@ -150,7 +150,7 @@ app.controller('storeController', function($scope, $http) {
       for (let system of systems) {
         system.update(this);
       }
-      for (let id in this.entities) {
+      for (var id in this.entities) {
         if (this.entities.hasOwnProperty(id)) {
           if (this.get(id).remove) {
             for (let system of systems) {
@@ -160,6 +160,19 @@ app.controller('storeController', function($scope, $http) {
           }
         }
       }
+    }
+  }
+  function playerShipFactory(position, scene) {
+    let sphere = BABYLON.Mesh.CreateSphere("sphere", 16, 3, scene);
+    sphere.position.x = position.x;
+    sphere.position.y = position.y;
+    sphere.position.z = position.z;
+    return {
+
+      'position': {'x': position.x, 'y': position.y},
+      'camera': new BABYLON.FreeCamera(
+          "camera1", new BABYLON.Vector3(position.x, position.y, -10), scene),
+      'model': sphere
     }
   }
 
@@ -182,14 +195,13 @@ app.controller('storeController', function($scope, $http) {
 
       scene.clearColor = new BABYLON.Color3(0, 0, 0);
 
-      var camera = new BABYLON.FreeCamera(
-          "camera1", new BABYLON.Vector3(0, 5, -10), scene);
-
 
       var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
       light.intensity = .5;
 
-      entMan.insert(planetFactory({'x':0, 'y':1, 'z': -2}, 2, scene));
+      entMan.insert(planetFactory({'x':0, 'y':1, 'z': 0}, 2, scene));
+
+      entMan.insert(playerShipFactory({'x': 0, 'y':-1, 'z': -2}, scene));
 
       return scene;
     }
