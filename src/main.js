@@ -216,8 +216,42 @@ app.controller('mainController', function($scope, $http) {
     for (let id of deleteList) {
       delete entMan.entities[id];
     }
+  };
 
-  }
+  function velocitySystem( object){
+    let dt = .05; //How do we get delta time from the engine?
+    for (let id in entMan.entities) {
+      if (entMan.entities.hasOwnProperty(id)) {
+        let entity = entMan.entities[id];
+        if ('velocity' in entity
+            && 'position' in entity) {
+          	object.position.x += object.velocity.x * dt;
+          	object.position.y += object.velocity.y * dt;
+        }
+      }
+    }
+  };
+
+  function speedLimitSystem(entMan) {
+    for (let id in entMan.entities) {
+      if (entMan.entities.hasOwnProperty(id)) {
+        let entity = entMan.entities[id];
+        if ('velocity' in entity
+            && 'position' in entity
+            && 'maxSpeed') {
+        	let dir = Math.atan2(entity.velocity.x, entity.velocity.y);
+        	if(
+              Math.sqrt( Math.pow(entity.velocity.x, 2)
+              + Math.pow(entity.velocity.x) )
+              > entity.maxSpeed ){
+        		entity.velocity = Math.cos(dir) * entity.maxSpeed;
+        		entity.velocity = Math.sin(dir) * entity.maxSpeed;
+        	}
+        }
+      }
+    }
+  };
+
 
   function setupGameplayRender () {
     var engine = new BABYLON.Engine($('#gameCanvas')[0], true);
