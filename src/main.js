@@ -1,7 +1,5 @@
-var app = angular.module('storeApp', []);
-app.controller('storeController', function($scope, $http) {
-  $scope.firstName = "John";
-  $scope.lastName = "Doe";
+var app = angular.module('mainApp', []);
+app.controller('mainController', function($scope, $http) {
   $scope.view_state = "menu"
   $scope.enterState = (state) => {
     $scope.view_state = state;
