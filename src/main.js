@@ -148,18 +148,8 @@ app.controller('storeController', function($scope, $http) {
 
     update () {
       for (let system of this.systems) {
-        system.update(this);
+        system(this);
       }
-      // for (var id in this.entities) {
-      //   if (this.entities.hasOwnProperty(id)) {
-      //     if (this.get(id).remove) {
-      //       for (let system of systems) {
-      //         system.processDeletion(this, this.get(id));
-      //       }
-      //       delete this.entities[id];
-      //     }
-      //   }
-      // }
     }
   }
 
@@ -189,39 +179,47 @@ app.controller('storeController', function($scope, $http) {
     };
   }
 
-  let cameraFollowSystem = {
-    'update': function (entMan) {
-      for (let id in entMan.entities) {
-        if (entMan.entities.hasOwnProperty(id)) {
-          let entity = entMan.entities[id];
-          if ('position' in entity && 'camera' in entity) {
-            entity.camera.position.x = entity.position.x;
-            entity.camera.position.y = entity.position.y;
-            entity.model.position.x = entity.position.x;
-            entity.model.position.y = entity.position.y;
-          }
+  function cameraFollowSystem (entMan) {
+    for (let id in entMan.entities) {
+      if (entMan.entities.hasOwnProperty(id)) {
+        let entity = entMan.entities[id];
+        if ('position' in entity && 'camera' in entity) {
+          entity.camera.position.x = entity.position.x;
+          entity.camera.position.y = entity.position.y;
+          entity.model.position.x = entity.position.x;
+          entity.model.position.y = entity.position.y;
         }
       }
-    },
-    // 'processDeletion': function( entity ){}
-  }
-
-  let inputSystem = {
-    'update': function (entMan) {
-      for (let id in entMan.entities) {
-        if (entMan.entities.hasOwnProperty(id)) {
-          let entity = entMan.entities[id];
-          if ('input' in entity && 'position' in entity) {
-            if (inputStates.forward) {
-              entity.position.y += .01;
-            }
-          }
-        }
-      }
-    },
-    // 'processDeletion': function( entity ){}
+    }
   };
 
+  function inputSystem (entMan) {
+    for (let id in entMan.entities) {
+      if (entMan.entities.hasOwnProperty(id)) {
+        let entity = entMan.entities[id];
+        if ('input' in entity && 'position' in entity) {
+          if (inputStates.forward) {
+            entity.position.y += .01;
+          }
+        }
+      }
+    }
+  };
+
+  function deletionSystem (entMan) {
+    let deleteList = [];
+    for (let id in entMan.entities) {
+      if (entMan.entities.hasOwnProperty(id)) {
+        if ('remove' in entMan.get(id)) {
+          deleteList.push(id)
+        }
+      }
+    }
+    for (let id of deleteList) {
+      delete entMan.entities[id];
+    }
+
+  }
 
   function setupGameplayRender () {
     var engine = new BABYLON.Engine($('#gameCanvas')[0], true);
