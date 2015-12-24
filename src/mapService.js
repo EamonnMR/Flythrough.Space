@@ -1,6 +1,6 @@
 angular
 .module('mainApp')
-.service('serviceName', function() {
+.service('mapService', function() {
   class MapView {
     constructor(data, location, drawContext) {
       this.offset = location;
@@ -102,7 +102,7 @@ angular
       this.context.strokeStyle = saveStroke;
     };
   };
-  
+
   return {
     MapView: MapView
   };
