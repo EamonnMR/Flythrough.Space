@@ -19,10 +19,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
   <!-- Achernar -->
-  <script src= "js/store.js"></script>
+  <script src= "js/main.js"></script>
+
+  <!-- Babalonjs (not to be confused with babel) -->
+  <script src="http://cdn.babylonjs.com/2-2/babylon.max.js"></script>
 </head>
 <body>
-  <div ng-app="storeApp" ng-controller="storeController">
+  <div ng-app="mainApp" ng-controller="mainController">
     <div ng-show="view_state === 'loading'">
       <!-- Insert custom loading bar here -->
       <h1>Loading Achernar...</h1>
@@ -33,7 +36,9 @@
         Please select the view you want to see below.)</p>
       <a>Planet (landing)</a><br>
       <a>Store</a><br>
-      <a>Gameplay</a><br>
+      <button type="button" class="btn btn-default" ng-click=enterState('gameplay')>
+        <span class="glyphicon glyphicon-plane" aria-hidden="true"></span>Gameplay
+      </button><br>
 
       <button type="button" class="btn btn-default" ng-click=enterState('map')>
         <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Map
@@ -52,6 +57,19 @@
                 ng-mousedown="map.mouseDown($event)"
                 ng-mouseup="map.mouseUp($event)"
                 ng-mousemove="map.mouseMove($event)"></canvas>
+      </div>
+      <div>
+        <button type="button" class="btn btn-default"
+                ng-click=enterState('menu')>
+          <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Back
+        </button>
+      </div>
+    </div>
+
+    <div ng-show="view_state === 'gameplay'">
+      <h1><em>Achernar: Gameplay View</em></h1>
+      <div>
+        <canvas id="gameCanvas" height="600" width="851"></canvas>
       </div>
       <div>
         <button type="button" class="btn btn-default"
