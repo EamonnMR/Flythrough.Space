@@ -1,6 +1,8 @@
 angular
 .module('mainApp')
-.service('gameplayService', ['physicsService', function(physicsService) {
+.service('gameplayService', ['$rootScope', 'physicsService', function($rootScope, physicsService) {
+
+  var stateChangeFunc = (newState) => {console.log('placeholder state change func')}; // Placeholder
 
   class EntityManager {
     constructor (systems, entities) {
@@ -155,6 +157,7 @@ angular
   };
 
   function handleKeyUp ( event ){
+    console.log(event.keyCode)
     switch(event.keyCode){
       case 38:
         inputStates.forward = false;
@@ -168,6 +171,9 @@ angular
       case 17:
         inputStates.shoot = false;
         break;
+      case 27: // escape
+        stateChangeFunc('menu');
+        break;
     }
   };
 
@@ -175,6 +181,10 @@ angular
   $(document).keyup( handleKeyUp );
 
   return {
-    setupGameplayRender: setupGameplayRender
+    setupGameplayRender: setupGameplayRender,
+    registerStateChangeFunction: (stateChange) => {
+      stateChangeFunc = stateChange;
+      console.log('setnew state vchange func')
+    }
   }
 }])

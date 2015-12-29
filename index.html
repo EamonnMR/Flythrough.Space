@@ -69,18 +69,9 @@
       </div>
     </div>
 
-    <div ng-show="view_state === 'gameplay'">
-      <h1><em>Achernar: Gameplay View</em></h1>
-      <div>
-        <canvas id="gameCanvas" height="600" width="851"></canvas>
-      </div>
-      <div>
-        <button type="button" class="btn btn-default"
-                ng-click=enterState('menu')>
-          <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Back
-        </button>
-      </div>
-    </div>
+    <canvas id="gameCanvas"
+            ng-show="view_state === 'gameplay'"
+            style="height:100%;width:100%">
   </div>
 </body>
 </html>
