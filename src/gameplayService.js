@@ -155,6 +155,11 @@ angular
 
     var scene = createScene();
 
+    window.addEventListener("resize", function () {
+      engine.resize();
+    });
+
+
     engine.runRenderLoop(function () {
       scene.render();
       entMan.update();
