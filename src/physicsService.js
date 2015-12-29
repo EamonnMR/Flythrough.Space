@@ -4,30 +4,35 @@ angular
 
 const deltaTime = 0.05; //Engine uses a fixed interval I believe.
 
-function accelerate(velocity, direction, magnitude){
+return {
+
+accelerate: function(velocity, direction, magnitude){
 	velocity.x += Math.cos( direction ) * magnitude;
 	velocity.y += Math.sin( direction ) * magnitude;
-};
+},
 
-function velocitySystem(object){
+rotate: function(entity, delta) {
+	entity.direction = (entity.direction + delta) % (Math.PI * 2);
+},
+
+velocitySystem: function(entMan){
   for (let id in entMan.entities) {
     if (entMan.entities.hasOwnProperty(id)) {
       let entity = entMan.entities[id];
       if ('velocity' in entity
           && 'position' in entity) {
-          object.position.x += object.velocity.x * deltaTime;
-          object.position.y += object.velocity.y * deltaTime;
+          entity.position.x += entity.velocity.x * deltaTime;
+          entity.position.y += entity.velocity.y * deltaTime;
       }
     }
   }
-};
+},
 
-function speedLimitSystem(entMan) {
+speedLimitSystem: function(entMan) {
   for (let id in entMan.entities) {
     if (entMan.entities.hasOwnProperty(id)) {
       let entity = entMan.entities[id];
       if ('velocity' in entity
-          && 'position' in entity
           && 'maxSpeed') {
         let dir = Math.atan2(entity.velocity.x, entity.velocity.y);
         if(
@@ -40,6 +45,8 @@ function speedLimitSystem(entMan) {
       }
     }
   }
+}
+
 };
 
 })

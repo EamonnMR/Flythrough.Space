@@ -39,17 +39,17 @@ angular
   }
 
   function playerShipFactory(position, scene) {
-    let sphere = BABYLON.Mesh.CreateSphere("sphere", 16, 3, scene);
-    sphere.position.x = position.x;
-    sphere.position.y = position.y;
-    sphere.position.z = position.z;
+    let sphere = BABYLON.Mesh.CreateCylinder("cylinder", 3, 3, 3, 6, 1, scene, false);
+
     return {
 
       'position': {'x': position.x, 'y': position.y},
       'camera': new BABYLON.FreeCamera(
           "camera1", new BABYLON.Vector3(position.x, position.y, -10), scene),
       'model': sphere,
-      'input': true
+      'input': true,
+      'direction': 0,
+      'velocity': {'x': 0, 'y': 0}
     }
   }
 
@@ -85,6 +85,9 @@ angular
             entity.model.position.x = entity.position.x;
             entity.model.position.y = entity.position.y;
           }
+          if ('direction' in entity) {
+            entity.model.rotation.z = entity.direction;
+          }
         }
       }
     }
@@ -94,9 +97,17 @@ angular
     for (let id in entMan.entities) {
       if (entMan.entities.hasOwnProperty(id)) {
         let entity = entMan.entities[id];
-        if ('input' in entity && 'position' in entity) {
+        if ('input' in entity && 'velocity' in entity) {
           if (inputStates.forward) {
-            entity.position.y += .01;
+            physicsService.accelerate(entity.velocity, entity.direction, 0.05)
+          }
+        }
+        if ('input' in entity && 'direction' in entity) {
+          if (inputStates.left) {
+            physicsService.rotate(entity, 0.05);
+          }
+          if (inputStates.right) {
+            physicsService.rotate(entity, -0.05);
           }
         }
       }
@@ -121,6 +132,8 @@ angular
     var engine = new BABYLON.Engine(gameCanvas, true);
     var entMan = new EntityManager([
       inputSystem,
+      physicsService.velocitySystem,
+      physicsService.speedLimitSystem,
       modelPositionSystem,
       cameraFollowSystem,
     ]);
@@ -173,7 +186,6 @@ angular
   };
 
   function handleKeyUp ( event ){
-    console.log(event.keyCode)
     switch(event.keyCode){
       case 38:
         inputStates.forward = false;
@@ -200,7 +212,6 @@ angular
     setupGameplayRender: setupGameplayRender,
     registerStateChangeFunction: (stateChange) => {
       stateChangeFunc = stateChange;
-      console.log('setnew state vchange func')
     }
   }
 }])
