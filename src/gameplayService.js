@@ -71,8 +71,20 @@ angular
         if ('position' in entity && 'camera' in entity) {
           entity.camera.position.x = entity.position.x;
           entity.camera.position.y = entity.position.y;
-          entity.model.position.x = entity.position.x;
-          entity.model.position.y = entity.position.y;
+        }
+      }
+    }
+  };
+
+  function modelPositionSystem (entMan) {
+    for (let id in entMan.entities) {
+      if (entMan.entities.hasOwnProperty(id)) {
+        let entity = entMan.entities[id];
+        if ('model' in entity) {
+          if ('position' in entity) {
+            entity.model.position.x = entity.position.x;
+            entity.model.position.y = entity.position.y;
+          }
         }
       }
     }
@@ -107,7 +119,11 @@ angular
 
   function setupGameplayRender (gameCanvas) {
     var engine = new BABYLON.Engine(gameCanvas, true);
-    var entMan = new EntityManager([inputSystem, cameraFollowSystem, ]);
+    var entMan = new EntityManager([
+      inputSystem,
+      modelPositionSystem,
+      cameraFollowSystem,
+    ]);
     function createScene () {
       var scene = new BABYLON.Scene(engine);
 
