@@ -110,6 +110,9 @@ angular
             physicsService.rotate(entity, -0.05);
           }
         }
+        if ('input' in entity && 'weapons' in entity && inputStates.shoot) {
+          weaponsService.tryShoot(entMan, entity);
+        }
       }
     }
   };
