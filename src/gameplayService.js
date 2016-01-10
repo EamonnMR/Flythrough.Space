@@ -38,18 +38,15 @@ angular
     }
   }
 
-  function playerShipFactory(position, scene) {
-    let sphere = BABYLON.Mesh.CreateCylinder("cylinder", 3, 3, 3, 6, 1, scene, false);
-
+  function playerShipFactory(position, scene, mesh, camera) {
     return {
-
       'position': {'x': position.x, 'y': position.y},
-      'camera': new BABYLON.FreeCamera(
-          "camera1", new BABYLON.Vector3(position.x, position.y, -10), scene),
-      'model': sphere,
+      'camera': camera,
+      'model': mesh,
       'input': true,
       'direction': 0,
-      'velocity': {'x': 0, 'y': 0}
+      'velocity': {'x': 0, 'y': 0},
+      'direction_delta': 0
     }
   }
 
@@ -86,7 +83,7 @@ angular
             entity.model.position.y = entity.position.y;
           }
           if ('direction' in entity) {
-            entity.model.rotation.z = entity.direction;
+            entity.model.rotate(BABYLON.Axis.Y, entity.direction_delta, BABYLON.Space.LOCAL)
           }
         }
       }
@@ -105,9 +102,14 @@ angular
         if ('input' in entity && 'direction' in entity) {
           if (inputStates.left) {
             physicsService.rotate(entity, 0.05);
+            entity.direction_delta = -0.05;
           }
-          if (inputStates.right) {
+          else if (inputStates.right) {
             physicsService.rotate(entity, -0.05);
+            entity.direction_delta = 0.05;
+          }
+          else {
+            entity.direction_delta = 0;
           }
         }
         if ('input' in entity && 'weapons' in entity && inputStates.shoot) {
@@ -151,7 +153,18 @@ angular
 
       entMan.insert(planetFactory({'x':0, 'y':1, 'z': 0}, 2, scene));
 
-      entMan.insert(playerShipFactory({'x': 0, 'y':-1, 'z': -2}, scene));
+      let camera = new BABYLON.FreeCamera(
+          "camera1", new BABYLON.Vector3(0, -1, -10), scene)
+
+      BABYLON.SceneLoader.ImportMesh("", "assets/","star_cruiser_1.babylon",
+                                     scene, function(newMesh){
+        console.log(newMesh);
+        console.log(newMesh[0])
+        console.log(newMesh[0].position)
+        newMesh[0].rotate(BABYLON.Axis.Y, -Math.PI/2, BABYLON.Space.LOCAL)
+        entMan.insert(playerShipFactory({'x': 0, 'y':-1, 'z': -2}, scene,
+                                        newMesh[0], camera));
+      });
 
       return scene;
     }
