@@ -50,14 +50,13 @@ angular
     }
   }
 
-  function planetFactory (position, size, scene) {
-    let sphere = BABYLON.Mesh.CreateSphere("sphere", 16, size, scene);
-    sphere.position.x = position.x;
-    sphere.position.y = position.y;
-    sphere.position.z = position.z;
+  function planetFactory (position, size, sprite) {
+    sprite.position.x = position.x;
+    sprite.position.y = position.y;
+    sprite.position.z = position.z;
     return {
       'position': {'x': position.x, 'y': position.y},
-      'model': sphere
+      'model': sprite
     };
   }
 
@@ -151,7 +150,10 @@ angular
       var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
       light.intensity = .5;
 
-      entMan.insert(planetFactory({'x':0, 'y':1, 'z': 0}, 2, scene));
+      var spriteManagerPlanet = new BABYLON.SpriteManager(
+          "planetMgr", "assets/renderwahn_planets/A00.png", 10, 122, scene);
+      var planetSprite = new BABYLON.Sprite("planet", spriteManagerPlanet);
+      entMan.insert(planetFactory({'x':0, 'y':1, 'z': 10}, 2, planetSprite));
 
       let camera = new BABYLON.FreeCamera(
           "camera1", new BABYLON.Vector3(0, -1, -10), scene)
