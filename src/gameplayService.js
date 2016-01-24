@@ -155,6 +155,9 @@ angular
       var planetSprite = new BABYLON.Sprite("planet", spriteManagerPlanet);
       entMan.insert(planetFactory({'x':0, 'y':1, 'z': 10}, 2, planetSprite));
 
+      var spriteManagerBuller = new BABYLON.SpriteManager(
+          "bulletMgr", "assets/redblast.png", 100,108, scene);
+
       let camera = new BABYLON.FreeCamera(
           "camera1", new BABYLON.Vector3(0, -1, -10), scene)
 
