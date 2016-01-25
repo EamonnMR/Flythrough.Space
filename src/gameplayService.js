@@ -1,6 +1,6 @@
 angular
 .module('mainApp')
-.service('gameplayService', ['$rootScope', 'physicsService', function($rootScope, physicsService) {
+.service('gameplayService', ['$rootScope', 'physicsService', 'weaponService', function($rootScope, physicsService) {
 
   var stateChangeFunc = (newState) => {console.log('placeholder state change func')}; // Placeholder
 
