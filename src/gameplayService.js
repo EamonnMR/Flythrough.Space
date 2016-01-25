@@ -1,6 +1,6 @@
 angular
 .module('mainApp')
-.service('gameplayService', ['$rootScope', 'physicsService', 'weaponService', function($rootScope, physicsService) {
+.service('gameplayService', ['$rootScope', 'physicsService', 'weaponService', function($rootScope, physicsService, weaponService) {
 
   var stateChangeFunc = (newState) => {console.log('placeholder state change func')}; // Placeholder
 
@@ -38,9 +38,10 @@ angular
     }
   }
 
-  function playerShipFactory(position, scene, mesh, camera) {
+  function playerShipFactory(position, scene, mesh, camera, weapons) {
     return {
       'position': {'x': position.x, 'y': position.y},
+      'weapons': weapons,
       'camera': camera,
       'model': mesh,
       'input': true,
@@ -112,7 +113,10 @@ angular
           }
         }
         if ('input' in entity && 'weapons' in entity && inputStates.shoot) {
-          weaponsService.tryShoot(entMan, entity);
+          entity.weapons.tryShoot('primary');
+        }
+        if (inputStates.shoot) {
+          console.log('shoot input state = true');
         }
       }
     }
@@ -155,8 +159,10 @@ angular
       var planetSprite = new BABYLON.Sprite("planet", spriteManagerPlanet);
       entMan.insert(planetFactory({'x':0, 'y':1, 'z': 10}, 2, planetSprite));
 
-      var spriteManagerBuller = new BABYLON.SpriteManager(
+      var spriteManagerBullet = new BABYLON.SpriteManager(
           "bulletMgr", "assets/redblast.png", 100,108, scene);
+
+      let playerWeapon = new weaponService.Weapon(100, spriteManagerBullet)
 
       let camera = new BABYLON.FreeCamera(
           "camera1", new BABYLON.Vector3(0, -1, -10), scene)
@@ -168,7 +174,7 @@ angular
         console.log(newMesh[0].position)
         newMesh[0].rotate(BABYLON.Axis.Y, -Math.PI/2, BABYLON.Space.LOCAL)
         entMan.insert(playerShipFactory({'x': 0, 'y':-1, 'z': -2}, scene,
-                                        newMesh[0], camera));
+                                        newMesh[0], camera, playerWeapon));
       });
 
       return scene;
