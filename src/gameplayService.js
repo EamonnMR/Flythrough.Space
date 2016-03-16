@@ -84,6 +84,7 @@ angular
           }
           if ('direction' in entity) {
             entity.model.rotate(BABYLON.Axis.Y, entity.direction_delta, BABYLON.Space.LOCAL)
+            entity.direction_delta = 0;
           }
         }
       }
@@ -113,7 +114,7 @@ angular
           }
         }
         if ('input' in entity && 'weapons' in entity && inputStates.shoot) {
-          entity.weapons.tryShoot('primary');
+          entity.weapons.tryShoot(entMan, entity);
         }
         if (inputStates.shoot) {
           console.log('shoot input state = true');
@@ -160,9 +161,9 @@ angular
       entMan.insert(planetFactory({'x':0, 'y':1, 'z': 10}, 2, planetSprite));
 
       var spriteManagerBullet = new BABYLON.SpriteManager(
-          "bulletMgr", "assets/redblast.png", 100,108, scene);
+          "bulletMgr", "assets/redblast.png", 1000,108, scene);
 
-      let playerWeapon = new weaponService.Weapon(100, spriteManagerBullet)
+      let playerWeapon = new weaponService.Weapon(500, spriteManagerBullet)
 
       let camera = new BABYLON.FreeCamera(
           "camera1", new BABYLON.Vector3(0, -1, -10), scene)
