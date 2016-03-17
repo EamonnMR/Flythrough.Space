@@ -46,7 +46,7 @@ angular
       }
     }
 
-    update(entMan, time) {
+    update(entMan) {
       if (this.timer > 0){
         this.timer -= entMan.delta_time;
       }
