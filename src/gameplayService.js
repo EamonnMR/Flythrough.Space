@@ -107,7 +107,7 @@ angular
         let entity = entMan.entities[id];
         if ('input' in entity && 'velocity' in entity) {
           if (inputStates.forward) {
-            physicsService.accelerate(entity.velocity, entity.direction, 0.05)
+            physicsService.accelerate(entity.velocity, entity.direction, 0.0005)
           }
         }
         if ('input' in entity && 'direction' in entity) {

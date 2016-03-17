@@ -2,8 +2,6 @@ angular
 .module('mainApp')
 .service('weaponService', function() {
 
-  const deltaTime = 0.05; //Engine uses a fixed interval I believe.
-
   function weaponService (entMan) {
     for (let id in entMan.entities) {
       if (entMan.entities.hasOwnProperty(id)) {
@@ -35,7 +33,7 @@ angular
       this.timer = 0;
       this.period = period;
       this.sprite = sprite
-      this.speed = 1
+      this.speed = 0.001
     }
 
     tryShoot(entMan, entity) {
@@ -50,7 +48,7 @@ angular
 
     update(entMan, time) {
       if (this.timer > 0){
-        this.timer -= time;
+        this.timer -= entMan.delta_time;
       }
       if (this.timer <= 0) {
 

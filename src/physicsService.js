@@ -2,8 +2,6 @@ angular
 .module('mainApp')
 .service('physicsService', function() {
 
-const deltaTime = 0.05; //Engine uses a fixed interval I believe.
-
 return {
 
 accelerate: function(velocity, direction, magnitude){
@@ -21,8 +19,8 @@ velocitySystem: function(entMan){
       let entity = entMan.entities[id];
       if ('velocity' in entity
           && 'position' in entity) {
-          entity.position.x += entity.velocity.x * deltaTime;
-          entity.position.y += entity.velocity.y * deltaTime;
+          entity.position.x += entity.velocity.x * entMan.delta_time;
+          entity.position.y += entity.velocity.y * entMan.delta_time;
       }
     }
   }
