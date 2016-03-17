@@ -13,6 +13,7 @@ angular
         this.maxId = 0;
       }
 
+      this.delta_time = 0;
       this.systems = systems;
     }
 
@@ -32,6 +33,15 @@ angular
     }
 
     update () {
+
+      let time = Date.now();
+
+      if ( this.last_time ){
+        this.delta_time = time - this.last_time;
+      }
+
+      this.last_time = time;
+
       for (let system of this.systems) {
         system(this);
       }
