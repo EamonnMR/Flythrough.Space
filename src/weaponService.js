@@ -13,17 +13,17 @@ angular
     }
   };
 
-  function bulletFactory(position, sprite, direction, speed) {
+  function bulletFactory(position, sprite, direction, speed, initialVelocity) {
       sprite.position.x = position.x;
       sprite.position.y = position.y;
-      sprite.position.z = 5;
+      sprite.position.z = 0;
       // TODO: Rotate the sprites to face 'direction' - is this possible?
       return {
         'position': {'x': position.x, 'y': position.y},
         'model': sprite,
         'velocity': {
-          'x': Math.cos( direction ) * speed,
-        	'y': Math.sin( direction ) * speed
+          'x': (Math.cos( direction ) * speed) + initialVelocity.x,
+        	'y': (Math.sin( direction ) * speed) + initialVelocity.y
         }
       };
   };
@@ -42,7 +42,8 @@ angular
         entMan.insert(bulletFactory(entity.position,
                                     new BABYLON.Sprite("bullet", this.sprite),
                                     entity.direction,
-                                    this.speed))
+                                    this.speed,
+                                    entity.velocity || {'x': 0, 'y': 0}))
       }
     }
 
