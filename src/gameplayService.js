@@ -127,14 +127,9 @@ angular
           else {
             entity.direction_delta = 0;
           }
-          console.log(entMan.delta_time)
-          console.log(entity.direction)
         }
         if ('input' in entity && 'weapons' in entity && inputStates.shoot) {
           entity.weapons.tryShoot(entMan, entity);
-        }
-        if (inputStates.shoot) {
-          console.log('shoot input state = true');
         }
       }
     }
@@ -192,9 +187,6 @@ angular
 
       BABYLON.SceneLoader.ImportMesh("", "assets/","star_cruiser_1.babylon",
                                      scene, function(newMesh){
-        console.log(newMesh);
-        console.log(newMesh[0])
-        console.log(newMesh[0].position)
         newMesh[0].rotate(BABYLON.Axis.Y, -Math.PI/2, BABYLON.Space.LOCAL)
         entMan.insert(playerShipFactory({'x': 0, 'y':-1, 'z': -2}, scene,
                                         newMesh[0], camera, playerWeapon,
