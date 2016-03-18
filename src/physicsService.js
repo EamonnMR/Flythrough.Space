@@ -11,6 +11,9 @@ accelerate: function(velocity, direction, magnitude){
 
 rotate: function(entity, delta) {
 	entity.direction = (entity.direction + delta) % (Math.PI * 2);
+	if ( entity.direction < 0 ){
+		entity.direction += Math.PI * 2
+	}
 },
 
 velocitySystem: function(entMan){

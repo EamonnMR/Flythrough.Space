@@ -48,7 +48,7 @@ angular
     }
   }
 
-  function playerShipFactory(position, scene, mesh, camera, weapons) {
+  function playerShipFactory(position, scene, mesh, camera, weapons, data) {
     return {
       'position': {'x': position.x, 'y': position.y},
       'weapons': weapons,
@@ -57,7 +57,8 @@ angular
       'input': true,
       'direction': 0,
       'velocity': {'x': 0, 'y': 0},
-      'direction_delta': 0
+      'direction_delta': 0,
+      'data': data
     }
   }
 
@@ -107,21 +108,27 @@ angular
         let entity = entMan.entities[id];
         if ('input' in entity && 'velocity' in entity) {
           if (inputStates.forward) {
-            physicsService.accelerate(entity.velocity, entity.direction, 0.0005)
+            physicsService.accelerate(entity.velocity,
+                                      entity.direction,
+                                      entity.data.accel * entMan.delta_time)
           }
         }
         if ('input' in entity && 'direction' in entity) {
+          let angle = entity.data.rotation * entMan.delta_time;
+
           if (inputStates.left) {
-            physicsService.rotate(entity, 0.05);
-            entity.direction_delta = -0.05;
+            physicsService.rotate(entity, angle);
+            entity.direction_delta = -1 * angle;
           }
           else if (inputStates.right) {
-            physicsService.rotate(entity, -0.05);
-            entity.direction_delta = 0.05;
+            physicsService.rotate(entity, -1 * angle );
+            entity.direction_delta = angle;
           }
           else {
             entity.direction_delta = 0;
           }
+          console.log(entMan.delta_time)
+          console.log(entity.direction)
         }
         if ('input' in entity && 'weapons' in entity && inputStates.shoot) {
           entity.weapons.tryShoot(entMan, entity);
@@ -178,6 +185,11 @@ angular
       let camera = new BABYLON.FreeCamera(
           "camera1", new BABYLON.Vector3(0, -1, -10), scene)
 
+      let playerData = {
+        'accel': 0.00005,
+        'rotation': 0.005
+      }
+
       BABYLON.SceneLoader.ImportMesh("", "assets/","star_cruiser_1.babylon",
                                      scene, function(newMesh){
         console.log(newMesh);
@@ -185,7 +197,8 @@ angular
         console.log(newMesh[0].position)
         newMesh[0].rotate(BABYLON.Axis.Y, -Math.PI/2, BABYLON.Space.LOCAL)
         entMan.insert(playerShipFactory({'x': 0, 'y':-1, 'z': -2}, scene,
-                                        newMesh[0], camera, playerWeapon));
+                                        newMesh[0], camera, playerWeapon,
+                                        playerData));
       });
 
       return scene;
