@@ -1,6 +1,4 @@
-angular
-.module('mainApp')
-.service('ecsService', function(){
+angular.module('mainApp').service('ecsService', function(){
   class EntityManager {
     constructor (systems, entities) {
       if (entities) {
