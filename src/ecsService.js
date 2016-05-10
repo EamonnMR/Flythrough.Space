@@ -45,8 +45,22 @@ angular
     }
   };
 
+  function deletionSystem (entMan) {
+    let deleteList = [];
+    for (let id in entMan.entities) {
+      if (entMan.entities.hasOwnProperty(id)) {
+        if ('remove' in entMan.get(id)) {
+          deleteList.push(id)
+        }
+      }
+    }
+    for (let id of deleteList) {
+      delete entMan.entities[id];
+    }
+  };
+
   return {
     EntityManager: EntityManager,
-
+    deletionSystem: deletionSystem
   };
 });

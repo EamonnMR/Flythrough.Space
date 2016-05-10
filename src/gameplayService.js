@@ -98,20 +98,6 @@ angular
     }
   };
 
-  function deletionSystem (entMan) {
-    let deleteList = [];
-    for (let id in entMan.entities) {
-      if (entMan.entities.hasOwnProperty(id)) {
-        if ('remove' in entMan.get(id)) {
-          deleteList.push(id)
-        }
-      }
-    }
-    for (let id of deleteList) {
-      delete entMan.entities[id];
-    }
-  };
-
   function setupGameplayRender (gameCanvas) {
     var engine = new BABYLON.Engine(gameCanvas, true);
     var entMan = new ecsService.EntityManager([
