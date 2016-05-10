@@ -5,67 +5,15 @@ angular
                              'weaponService',
                              'ecsService',
                              'inputService',
+                             'entitiesService',
                              function($rootScope,
                                       physicsService,
                                       weaponService,
                                       ecsService,
-                                      inputService) {
+                                      inputService,
+                                      entitiesService) {
 
   var stateChangeFunc = (newState) => {console.log('placeholder state change func')}; // Placeholder
-
-  function playerShipFactory(position, scene, mesh, camera, weapons, data) {
-    return {
-      'position': {'x': position.x, 'y': position.y},
-      'weapons': weapons,
-      'camera': camera,
-      'model': mesh,
-      'input': true,
-      'direction': 0,
-      'velocity': {'x': 0, 'y': 0},
-      'direction_delta': 0,
-      'data': data
-    }
-  }
-
-  function planetFactory (position, size, sprite) {
-    sprite.position.x = position.x;
-    sprite.position.y = position.y;
-    sprite.position.z = position.z;
-    return {
-      'position': {'x': position.x, 'y': position.y},
-      'model': sprite
-    };
-  }
-
-  function cameraFollowSystem (entMan) {
-    for (let id in entMan.entities) {
-      if (entMan.entities.hasOwnProperty(id)) {
-        let entity = entMan.entities[id];
-        if ('position' in entity && 'camera' in entity) {
-          entity.camera.position.x = entity.position.x;
-          entity.camera.position.y = entity.position.y;
-        }
-      }
-    }
-  };
-
-  function modelPositionSystem (entMan) {
-    for (let id in entMan.entities) {
-      if (entMan.entities.hasOwnProperty(id)) {
-        let entity = entMan.entities[id];
-        if ('model' in entity) {
-          if ('position' in entity) {
-            entity.model.position.x = entity.position.x;
-            entity.model.position.y = entity.position.y;
-          }
-          if ('direction' in entity) {
-            entity.model.rotate(BABYLON.Axis.Y, entity.direction_delta, BABYLON.Space.LOCAL)
-            entity.direction_delta = 0;
-          }
-        }
-      }
-    }
-  };
 
   function setupGameplayRender (gameCanvas) {
     var engine = new BABYLON.Engine(gameCanvas, true);
@@ -73,9 +21,10 @@ angular
       inputService.inputSystem,
       physicsService.velocitySystem,
       physicsService.speedLimitSystem,
-      modelPositionSystem,
-      cameraFollowSystem,
+      entitiesService.modelPositionSystem,
+      entitiesService.cameraFollowSystem,
     ]);
+
     function createScene () {
       var scene = new BABYLON.Scene(engine);
 
@@ -88,7 +37,8 @@ angular
       var spriteManagerPlanet = new BABYLON.SpriteManager(
           "planetMgr", "assets/renderwahn_planets/A00.png", 10, 122, scene);
       var planetSprite = new BABYLON.Sprite("planet", spriteManagerPlanet);
-      entMan.insert(planetFactory({'x':0, 'y':1, 'z': 10}, 2, planetSprite));
+      entMan.insert(entitiesService.planetFactory({'x':0, 'y':1, 'z': 10}, 2,
+                                                   planetSprite));
 
       var spriteManagerBullet = new BABYLON.SpriteManager(
           "bulletMgr", "assets/redblast.png", 1000,108, scene);
@@ -106,7 +56,8 @@ angular
       BABYLON.SceneLoader.ImportMesh("", "assets/","star_cruiser_1.babylon",
                                      scene, function(newMesh){
         newMesh[0].rotate(BABYLON.Axis.Y, -Math.PI/2, BABYLON.Space.LOCAL)
-        entMan.insert(playerShipFactory({'x': 0, 'y':-1, 'z': -2}, scene,
+        entMan.insert(entitiesService.playerShipFactory(
+                                        {'x': 0, 'y':-1, 'z': -2}, scene,
                                         newMesh[0], camera, playerWeapon,
                                         playerData));
       });
