@@ -1,52 +1,15 @@
 angular
 .module('mainApp')
-.service('gameplayService', ['$rootScope', 'physicsService', 'weaponService', function($rootScope, physicsService, weaponService) {
+.service('gameplayService', ['$rootScope',
+                             'physicsService',
+                             'weaponService',
+                             'ecsService',
+                             function($rootScope,
+                                      physicsService,
+                                      weaponService,
+                                      ecsService) {
 
   var stateChangeFunc = (newState) => {console.log('placeholder state change func')}; // Placeholder
-
-  class EntityManager {
-    constructor (systems, entities) {
-      if (entities) {
-        this.entities = entities;
-      } else {
-        this.entities = {};
-        this.maxId = 0;
-      }
-
-      this.delta_time = 0;
-      this.systems = systems;
-    }
-
-    get (id) {
-      if (id in this.entities) {
-        return this.entities[id];
-      } else {
-        return null;
-      }
-    }
-
-    insert (entity) {
-      this.maxId ++;
-      this.entities[this.maxId] = entity;
-      entity.id = this.maxId;
-      return this.maxId;
-    }
-
-    update () {
-
-      let time = Date.now();
-
-      if ( this.last_time ){
-        this.delta_time = time - this.last_time;
-      }
-
-      this.last_time = time;
-
-      for (let system of this.systems) {
-        system(this);
-      }
-    }
-  }
 
   function playerShipFactory(position, scene, mesh, camera, weapons, data) {
     return {
@@ -151,7 +114,7 @@ angular
 
   function setupGameplayRender (gameCanvas) {
     var engine = new BABYLON.Engine(gameCanvas, true);
-    var entMan = new EntityManager([
+    var entMan = new ecsService.EntityManager([
       inputSystem,
       physicsService.velocitySystem,
       physicsService.speedLimitSystem,
