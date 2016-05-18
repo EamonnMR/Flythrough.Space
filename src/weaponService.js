@@ -1,6 +1,6 @@
 angular
 .module('mainApp')
-.service('weaponService', function() {
+.service('weaponService', ['physicsService', function() {
 
   function weaponService (entMan) {
     for (let id in entMan.entities) {
@@ -17,14 +17,13 @@ angular
       sprite.position.x = position.x;
       sprite.position.y = position.y;
       sprite.position.z = 0;
+      let velocity = {'x': initialVelocity.x, 'y': initialVelocity.y};
+      physicsService.accelerate(velocity, direction, speed);
       // TODO: Rotate the sprites to face 'direction' - is this possible?
       return {
         'position': {'x': position.x, 'y': position.y},
         'model': sprite,
-        'velocity': {
-          'x': (Math.cos( direction ) * speed) + initialVelocity.x,
-        	'y': (Math.sin( direction ) * speed) + initialVelocity.y
-        }
+        'velocity': velocity
       };
   };
 
@@ -60,4 +59,4 @@ angular
   return {
     'Weapon': Weapon
   };
-});
+}]);
