@@ -1,6 +1,6 @@
 angular
 .module('mainApp')
-.service('weaponService', ['physicsService', function() {
+.service('weaponService', ['physicsService', function(physicsService) {
 
   function weaponService (entMan) {
     for (let id in entMan.entities) {
