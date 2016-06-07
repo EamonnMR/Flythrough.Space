@@ -14,8 +14,23 @@ angular
       }
     }
   };
+  
+  function decaySystem (entMan) {
+    for (let id in entMan.entities) {
+      if (entMan.entities.hasOwnProperty(id)) {
+        let entity = entMan.entities[id];
+        if ( 'age' in entity && 'max_age' in entity ) {
+          entity.age += entMan.delta_time;
+          if ( entity.age > entity.max_age ) {
+            entity.remove = true;
+          }
+        }
+      }
+    }
+  };
 
-  function bulletFactory(position, sprite, direction, speed, initialVelocity) {
+  function bulletFactory(position, sprite, direction, speed, initialVelocity,
+                         max_age) {
       sprite.position.x = position.x;
       sprite.position.y = position.y;
       sprite.position.z = 0;
@@ -25,7 +40,9 @@ angular
       return {
         'position': {'x': position.x, 'y': position.y},
         'model': sprite,
-        'velocity': velocity
+        'velocity': velocity,
+        'max_age': max_age,
+        'age': 0.0
       };
   };
 
@@ -44,7 +61,8 @@ angular
                                     new BABYLON.Sprite("bullet", this.sprite),
                                     entity.direction,
                                     this.speed,
-                                    entity.velocity || {'x': 0, 'y': 0}))
+                                    entity.velocity || {'x': 0, 'y': 0},
+                                    5000))
       }
     }
 
@@ -60,6 +78,7 @@ angular
 
   return {
     'Weapon': Weapon,
-    'weaponSystem': weaponSystem
+    'weaponSystem': weaponSystem,
+    'decaySystem': decaySystem
   };
 }]);
