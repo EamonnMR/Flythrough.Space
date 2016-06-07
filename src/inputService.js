@@ -29,7 +29,9 @@ angular.module('mainApp').service('inputService', ['physicsService',
           }
         }
         if ('input' in entity && 'weapons' in entity && inputStates.shoot) {
-          entity.weapons.tryShoot(entMan, entity);
+          for (let weapon of entity.weapons){
+            weapon.tryShoot(entMan, entity);
+          }
         }
       }
     }

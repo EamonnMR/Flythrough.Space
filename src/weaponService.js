@@ -2,12 +2,14 @@ angular
 .module('mainApp')
 .service('weaponService', ['physicsService', function(physicsService) {
 
-  function weaponService (entMan) {
+  function weaponSystem (entMan) {
     for (let id in entMan.entities) {
       if (entMan.entities.hasOwnProperty(id)) {
         let entity = entMan.entities[id];
         if ('weapons' in entity) {
-          weapons.update()
+          for (let weapon of entity.weapons) {
+            weapon.update(entMan);
+          }
         }
       }
     }
@@ -36,7 +38,7 @@ angular
     }
 
     tryShoot(entMan, entity) {
-      if(this.timer >= 0) {
+      if(this.timer <= 0) {
         this.timer += this.period;
         entMan.insert(bulletFactory(entity.position,
                                     new BABYLON.Sprite("bullet", this.sprite),
@@ -57,6 +59,7 @@ angular
   }
 
   return {
-    'Weapon': Weapon
+    'Weapon': Weapon,
+    'weaponSystem': weaponSystem
   };
 }]);

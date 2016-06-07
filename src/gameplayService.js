@@ -23,6 +23,7 @@ angular
       physicsService.speedLimitSystem,
       entitiesService.modelPositionSystem,
       entitiesService.cameraFollowSystem,
+      weaponService.weaponSystem
     ]);
 
     function createScene () {
@@ -43,7 +44,7 @@ angular
       var spriteManagerBullet = new BABYLON.SpriteManager(
           "bulletMgr", "assets/redblast.png", 1000,64, scene);
 
-      let playerWeapon = new weaponService.Weapon(500, spriteManagerBullet)
+      let playerWeapon = [new weaponService.Weapon(500, spriteManagerBullet)]
 
       let camera = new BABYLON.FreeCamera(
           "camera1", new BABYLON.Vector3(0, -1, -10), scene)
