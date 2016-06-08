@@ -44,7 +44,7 @@ angular
                                                    planetSprite));
 
       var spriteManagerBullet = new BABYLON.SpriteManager(
-          "bulletMgr", "assets/redblast.png", 1000,64, scene);
+          "bulletMgr", "assets/redblast.png", 1000,16, scene);
 
       let playerWeapon = [new weaponService.Weapon(500, spriteManagerBullet)]
 

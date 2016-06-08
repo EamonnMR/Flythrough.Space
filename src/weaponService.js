@@ -34,6 +34,8 @@ angular
       sprite.position.x = position.x;
       sprite.position.y = position.y;
       sprite.position.z = 0;
+      sprite.angle = direction;
+      sprite.size = 0.5;
       let velocity = {'x': initialVelocity.x, 'y': initialVelocity.y};
       physicsService.accelerate(velocity, direction, speed);
       // TODO: Rotate the sprites to face 'direction' - is this possible?
