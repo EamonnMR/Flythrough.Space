@@ -53,6 +53,10 @@ angular.module('mainApp').service('ecsService', function(){
       }
     }
     for (let id of deleteList) {
+      let entity = entMan.entities[id];
+      if ('model' in entity){
+        entity.model.dispose();
+      }
       delete entMan.entities[id];
     }
   };
