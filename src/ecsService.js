@@ -27,6 +27,39 @@ angular.module('mainApp').service('ecsService', function(){
       return this.maxId;
     }
 
+    get_with ( components ){
+      /*
+       * This allows you to get a set of ents
+       * that a system works on.
+       */
+      let filtered_ents = [];
+
+      for (let id in Object.keys(this.entities)) {
+        
+        let ent = this.entities[id];
+        let add = true;
+
+        if (ent) {        
+
+          for ( let component of components ){
+            if (! (component in ent) ){
+              add = false;
+              break;
+            }
+          }
+        } else {
+          console.log('Null ent id' + id);
+          add = false;
+        }
+        if ( add ){
+          filtered_ents.push( ent );
+        }
+      
+      }
+
+      return filtered_ents;
+    }
+
     update () {
 
       let time = Date.now();

@@ -17,15 +17,9 @@ rotate: function(entity, delta) {
 },
 
 velocitySystem: function(entMan){
-  for (let id in entMan.entities) {
-    if (entMan.entities.hasOwnProperty(id)) {
-      let entity = entMan.entities[id];
-      if ('velocity' in entity
-          && 'position' in entity) {
-          entity.position.x += entity.velocity.x * entMan.delta_time;
-          entity.position.y += entity.velocity.y * entMan.delta_time;
-      }
-    }
+  for (let [ id, ent ] in entMan.get_with(['velocity', 'position'])) {
+    ent.position.x += ent.velocity.x * entMan.delta_time;
+    ent.position.y += ent.velocity.y * entMan.delta_time;
   }
 },
 
