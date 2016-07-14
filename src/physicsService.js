@@ -17,7 +17,7 @@ rotate: function(entity, delta) {
 },
 
 velocitySystem: function(entMan){
-  for (let [ id, ent ] in entMan.get_with(['velocity', 'position'])) {
+  for (let ent of entMan.get_with(['velocity', 'position'])) {
     ent.position.x += ent.velocity.x * entMan.delta_time;
     ent.position.y += ent.velocity.y * entMan.delta_time;
   }

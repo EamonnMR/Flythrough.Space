@@ -34,13 +34,12 @@ angular.module('mainApp').service('ecsService', function(){
        */
       let filtered_ents = [];
 
-      for (let id in Object.keys(this.entities)) {
+      for (let id of Object.keys(this.entities)) {
         
         let ent = this.entities[id];
         let add = true;
 
-        if (ent) {        
-
+        if (ent) {
           for ( let component of components ){
             if (! (component in ent) ){
               add = false;
@@ -48,7 +47,6 @@ angular.module('mainApp').service('ecsService', function(){
             }
           }
         } else {
-          console.log('Null ent id' + id);
           add = false;
         }
         if ( add ){
