@@ -24,20 +24,14 @@ velocitySystem: function(entMan){
 },
 
 speedLimitSystem: function(entMan) {
-  for (let id in entMan.entities) {
-    if (entMan.entities.hasOwnProperty(id)) {
-      let entity = entMan.entities[id];
-      if ('velocity' in entity
-          && 'maxSpeed') {
-        let dir = Math.atan2(entity.velocity.x, entity.velocity.y);
-        if(
-            Math.sqrt( Math.pow(entity.velocity.x, 2)
-            + Math.pow(entity.velocity.x) )
-            > entity.maxSpeed ){
-          entity.velocity = Math.cos(dir) * entity.maxSpeed;
-          entity.velocity = Math.sin(dir) * entity.maxSpeed;
-        }
-      }
+  for (let ent of entMan.get_with(['velocity', 'maxSpeed'])) {
+    let dir = Math.atan2(entity.velocity.x, entity.velocity.y);
+    if(
+        Math.sqrt( Math.pow(entity.velocity.x, 2)
+        + Math.pow(entity.velocity.x) )
+        > entity.maxSpeed ){
+      entity.velocity = Math.cos(dir) * entity.maxSpeed;
+      entity.velocity = Math.sin(dir) * entity.maxSpeed; 
     }
   }
 }
