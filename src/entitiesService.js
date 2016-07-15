@@ -25,31 +25,23 @@ angular.module('mainApp').service('entitiesService', function(){
   }
 
   function cameraFollowSystem (entMan) {
-    for (let id in entMan.entities) {
-      if (entMan.entities.hasOwnProperty(id)) {
-        let entity = entMan.entities[id];
-        if ('position' in entity && 'camera' in entity) {
-          entity.camera.position.x = entity.position.x;
-          entity.camera.position.y = entity.position.y;
-        }
-      }
+    for (let entity of entMan.get_with(['position', 'camera'])) {
+      entity.camera.position.x = entity.position.x;
+      entity.camera.position.y = entity.position.y;
     }
   };
 
   function modelPositionSystem (entMan) {
-    for (let id in entMan.entities) {
-      if (entMan.entities.hasOwnProperty(id)) {
-        let entity = entMan.entities[id];
-        if ('model' in entity) {
-          if ('position' in entity) {
-            entity.model.position.x = entity.position.x;
-            entity.model.position.y = entity.position.y;
-          }
-          if ('direction' in entity) {
-            entity.model.rotate(BABYLON.Axis.Y, entity.direction_delta, BABYLON.Space.LOCAL)
-            entity.direction_delta = 0;
-          }
-        }
+
+    for (let entity of entMan.get_with(['model'])) {
+      if ('position' in entity) {
+        entity.model.position.x = entity.position.x;
+        entity.model.position.y = entity.position.y;
+      }
+      if ('direction' in entity) {
+        entity.model.rotate(
+            BABYLON.Axis.Y, entity.direction_delta, BABYLON.Space.LOCAL);
+        entity.direction_delta = 0;
       }
     }
   };

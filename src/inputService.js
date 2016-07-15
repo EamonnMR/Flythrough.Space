@@ -3,35 +3,32 @@ angular.module('mainApp').service('inputService', ['physicsService',
 
 
   function inputSystem (entMan) {
-    for (let id in entMan.entities) {
-      if (entMan.entities.hasOwnProperty(id)) {
-        let entity = entMan.entities[id];
-        if ('input' in entity && 'velocity' in entity) {
-          if (inputStates.forward) {
-            physicsService.accelerate(entity.velocity,
-                                      entity.direction,
-                                      entity.data.accel * entMan.delta_time)
-          }
+    for (let entity of entMan.get_with(['input'])) {
+      if ('velocity' in entity) {
+        if (inputStates.forward) {
+          physicsService.accelerate(entity.velocity,
+                                    entity.direction,
+                                    entity.data.accel * entMan.delta_time)
         }
-        if ('input' in entity && 'direction' in entity) {
-          let angle = entity.data.rotation * entMan.delta_time;
+      }
+      if ('direction' in entity) {
+        let angle = entity.data.rotation * entMan.delta_time;
 
-          if (inputStates.left) {
-            physicsService.rotate(entity, angle);
-            entity.direction_delta = -1 * angle;
-          }
-          else if (inputStates.right) {
-            physicsService.rotate(entity, -1 * angle );
-            entity.direction_delta = angle;
-          }
-          else {
-            entity.direction_delta = 0;
-          }
+        if (inputStates.left) {
+          physicsService.rotate(entity, angle);
+          entity.direction_delta = -1 * angle;
         }
-        if ('input' in entity && 'weapons' in entity && inputStates.shoot) {
-          for (let weapon of entity.weapons){
-            weapon.tryShoot(entMan, entity);
-          }
+        else if (inputStates.right) {
+          physicsService.rotate(entity, -1 * angle );
+          entity.direction_delta = angle;
+        }
+        else {
+          entity.direction_delta = 0;
+        }
+      }
+      if ('weapons' in entity && inputStates.shoot) {
+        for (let weapon of entity.weapons){
+          weapon.tryShoot(entMan, entity);
         }
       }
     }

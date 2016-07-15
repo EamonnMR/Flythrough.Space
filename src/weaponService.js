@@ -3,27 +3,21 @@ angular
 .service('weaponService', ['physicsService', function(physicsService) {
 
   function weaponSystem (entMan) {
-    for (let id in entMan.entities) {
-      if (entMan.entities.hasOwnProperty(id)) {
-        let entity = entMan.entities[id];
-        if ('weapons' in entity) {
-          for (let weapon of entity.weapons) {
-            weapon.update(entMan);
-          }
+    for (let entity of entMan.get_with(['weapons'])) {
+      if ('weapons' in entity) {
+        for (let weapon of entity.weapons) {
+          weapon.update(entMan);
         }
       }
     }
   };
   
   function decaySystem (entMan) {
-    for (let id in entMan.entities) {
-      if (entMan.entities.hasOwnProperty(id)) {
-        let entity = entMan.entities[id];
-        if ( 'age' in entity && 'max_age' in entity ) {
-          entity.age += entMan.delta_time;
-          if ( entity.age > entity.max_age ) {
-            entity.remove = true;
-          }
+    for (let entity of entMan.get_with(['age', 'maxage'])) {
+      if ( 'age' in entity && 'max_age' in entity ) {
+        entity.age += entMan.delta_time;
+        if ( entity.age > entity.max_age ) {
+          entity.remove = true;
         }
       }
     }
@@ -38,7 +32,6 @@ angular
       sprite.size = 0.5;
       let velocity = {'x': initialVelocity.x, 'y': initialVelocity.y};
       physicsService.accelerate(velocity, direction, speed);
-      // TODO: Rotate the sprites to face 'direction' - is this possible?
       return {
         'position': {'x': position.x, 'y': position.y},
         'model': sprite,
