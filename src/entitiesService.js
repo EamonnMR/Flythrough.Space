@@ -1,5 +1,7 @@
 angular.module('mainApp').service('entitiesService', function(){
 
+  // Making deep copies of args - good idea - right?
+
   function playerShipFactory(position, scene, mesh, camera, weapons, data) {
     return {
       'position': {'x': position.x, 'y': position.y},
@@ -22,6 +24,19 @@ angular.module('mainApp').service('entitiesService', function(){
       'position': {'x': position.x, 'y': position.y},
       'model': sprite
     };
+  }
+
+  function asteroidFactory (position, velocity, sprite) {
+    sprite.position.x = position.x;
+    sprite.position.y = position.y;
+    sprite.position.z = 0;
+    return {
+      'position': {'x': position.x, 'y': position.y },
+      'velocity': {'x': velocity.x, 'y': velocity.y },
+      'model': sprite,
+      'health': 10,
+      'collider': {'radius': 10}
+    }
   }
 
   function cameraFollowSystem (entMan) {
@@ -49,6 +64,7 @@ angular.module('mainApp').service('entitiesService', function(){
   return {
     playerShipFactory : playerShipFactory,
     planetFactory : planetFactory,
+    asteroidFactory: asteroidFactory,
     cameraFollowSystem : cameraFollowSystem,
     modelPositionSystem : modelPositionSystem
   }

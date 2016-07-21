@@ -40,11 +40,21 @@ angular
       var spriteManagerPlanet = new BABYLON.SpriteManager(
           "planetMgr", "assets/renderwahn_planets/A00.png", 10, 122, scene);
       var planetSprite = new BABYLON.Sprite("planet", spriteManagerPlanet);
+
+      var spriteManagerAsteroid = new BABYLON.SpriteManager(
+          "roidMgr", "assets/asteroid.png", 1000, 269, scene);
+
+      let asteroidSprite = new BABYLON.Sprite("roid", spriteManagerAsteroid);
+      
       entMan.insert(entitiesService.planetFactory({'x':0, 'y':1, 'z': 10}, 2,
                                                    planetSprite));
 
+      entMan.insert(entitiesService.asteroidFactory({x: 3, y: 3}, 
+            {x: -0.00008, y: -0.00008}, asteroidSprite));
+
       var spriteManagerBullet = new BABYLON.SpriteManager(
           "bulletMgr", "assets/redblast.png", 1000,16, scene);
+      
 
       let playerWeapon = [new weaponService.Weapon(500, spriteManagerBullet)]
 

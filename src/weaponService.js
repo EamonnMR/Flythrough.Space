@@ -37,7 +37,8 @@ angular
         'model': sprite,
         'velocity': velocity,
         'max_age': max_age,
-        'age': 0.0
+        'age': 0.0,
+        'collider': {'radius': 1}
       };
   };
 
