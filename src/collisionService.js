@@ -1,6 +1,6 @@
 angular
 .module('mainApp')
-.service('physicsService', function() {
+.service('collisionService', function() {
 
 function distance(l_pos, r_pos){
   return Math.sqrt(

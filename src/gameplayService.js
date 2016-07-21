@@ -6,12 +6,14 @@ angular
                              'ecsService',
                              'inputService',
                              'entitiesService',
+                             'collisionService',
                              function($rootScope,
                                       physicsService,
                                       weaponService,
                                       ecsService,
                                       inputService,
-                                      entitiesService) {
+                                      entitiesService,
+                                      collisionService) {
 
   var stateChangeFunc = (newState) => {console.log('placeholder state change func')}; // Placeholder
 
