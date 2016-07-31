@@ -2,44 +2,40 @@ angular
 .module('mainApp')
 .service('physicsService', function() {
 
-const deltaTime = 0.05; //Engine uses a fixed interval I believe.
+return {
 
-function accelerate(velocity, direction, magnitude){
+accelerate: function(velocity, direction, magnitude){
 	velocity.x += Math.cos( direction ) * magnitude;
 	velocity.y += Math.sin( direction ) * magnitude;
-};
+},
 
-function velocitySystem(object){
-  for (let id in entMan.entities) {
-    if (entMan.entities.hasOwnProperty(id)) {
-      let entity = entMan.entities[id];
-      if ('velocity' in entity
-          && 'position' in entity) {
-          object.position.x += object.velocity.x * deltaTime;
-          object.position.y += object.velocity.y * deltaTime;
-      }
+rotate: function(entity, delta) {
+	entity.direction = (entity.direction + delta) % (Math.PI * 2);
+	if ( entity.direction < 0 ){
+		entity.direction += Math.PI * 2
+	}
+},
+
+velocitySystem: function(entMan){
+  for (let ent of entMan.get_with(['velocity', 'position'])) {
+    ent.position.x += ent.velocity.x * entMan.delta_time;
+    ent.position.y += ent.velocity.y * entMan.delta_time;
+  }
+},
+
+speedLimitSystem: function(entMan) {
+  for (let ent of entMan.get_with(['velocity', 'maxSpeed'])) {
+    let dir = Math.atan2(entity.velocity.x, entity.velocity.y);
+    if(
+        Math.sqrt( Math.pow(entity.velocity.x, 2)
+        + Math.pow(entity.velocity.x) )
+        > entity.maxSpeed ){
+      entity.velocity = Math.cos(dir) * entity.maxSpeed;
+      entity.velocity = Math.sin(dir) * entity.maxSpeed; 
     }
   }
-};
+}
 
-function speedLimitSystem(entMan) {
-  for (let id in entMan.entities) {
-    if (entMan.entities.hasOwnProperty(id)) {
-      let entity = entMan.entities[id];
-      if ('velocity' in entity
-          && 'position' in entity
-          && 'maxSpeed') {
-        let dir = Math.atan2(entity.velocity.x, entity.velocity.y);
-        if(
-            Math.sqrt( Math.pow(entity.velocity.x, 2)
-            + Math.pow(entity.velocity.x) )
-            > entity.maxSpeed ){
-          entity.velocity = Math.cos(dir) * entity.maxSpeed;
-          entity.velocity = Math.sin(dir) * entity.maxSpeed;
-        }
-      }
-    }
-  }
 };
 
 })

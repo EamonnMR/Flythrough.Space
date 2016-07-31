@@ -14,7 +14,11 @@ app.controller('mainController', [
   $scope.view_state = "menu"
   $scope.enterState = (state) => {
     $scope.view_state = state;
+    console.log('state change');
+    $scope.$apply() // This raises an error but won't work without it.
   };
+
+  gameplayService.registerStateChangeFunction($scope.enterState);
 
   $http.get('data/systems.json')
        .then(function(res){
