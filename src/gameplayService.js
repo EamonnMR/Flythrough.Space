@@ -25,9 +25,10 @@ angular
       physicsService.speedLimitSystem,
       entitiesService.modelPositionSystem,
       entitiesService.cameraFollowSystem,
-      ecsService.deletionSystem,
       weaponService.weaponSystem,
-      weaponService.decaySystem
+      weaponService.decaySystem,
+      collisionService.collisionDetectionSystem,
+      ecsService.deletionSystem
     ]);
 
     function createScene () {
