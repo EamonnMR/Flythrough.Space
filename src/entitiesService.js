@@ -35,7 +35,7 @@ angular.module('mainApp').service('entitiesService', function(){
       'velocity': {'x': velocity.x, 'y': velocity.y },
       'model': sprite,
       'health': 10,
-      'collider': {'radius': 10}
+      'collider': {'radius': 5}
     }
   }
 

@@ -16,8 +16,8 @@ return {
     while (colliders.length > 1) {
       let current = colliders.pop();
       for (let other of colliders) {
-        if ( distance(current.position, other.position) <
-             current.collider.radius + other.collider.radius) {
+        let dist = distance(current.position, other.position);
+        if ( dist < current.collider.radius + other.collider.radius) {
           // Do something with the collision 
           console.log('Colliding: ' + current.id + ', ' + other.id);
         }
