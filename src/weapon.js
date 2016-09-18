@@ -1,4 +1,4 @@
-import physics
+import * as physics from "physics";
 
 export function weaponSystem (entMan) {
   for (let entity of entMan.get_with(['weapons'])) {
@@ -71,10 +71,3 @@ export class Weapon {
  }
 };
 
-10
-return {
-    'Weapon': Weapon,
-    'weaponSystem': weaponSystem,
-    'decaySystem': decaySystem
-  };
-}]);

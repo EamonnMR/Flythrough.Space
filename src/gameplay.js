@@ -5,7 +5,7 @@ import * as input from "input";
 import * as entities from "entities";
 import * as collision from "collision";
 
-export setupGameplayRender (gameCanvas) {
+export function setupGameplayRender (gameCanvas) {
    engine = new BABYLON.Engine(gameCanvas, true);
   var entMan = new ecsService.EntityManager([
     inputService.inputSystem,
@@ -82,5 +82,5 @@ export setupGameplayRender (gameCanvas) {
   });
 };
 
-$( setupGameplayRender( $('#gamecanvas') );
+$( setupGameplayRender( $('#gamecanvas') ));
 
