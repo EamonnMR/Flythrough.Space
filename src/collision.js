@@ -13,7 +13,6 @@ export function collisionDetectionSystem(entMan){
       let dist = distance(current.position, other.position);
       if ( dist < current.collider.radius + other.collider.radius) {
         // Do something with the collision 
-        console.log('Colliding: ' + current.id + ', ' + other.id);
       }
     }
   }

@@ -6,8 +6,6 @@ import * as entities from "entities";
 import * as collision from "collision";
 
 export function setupGameplayRender (gameCanvas) {
-  console.log( gameCanvas );
-  
   let engine = new BABYLON.Engine(gameCanvas, true);
   let entMan = new ecs.EntityManager([
     input.inputSystem,
