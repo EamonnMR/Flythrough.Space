@@ -6,21 +6,23 @@ import * as entities from "entities";
 import * as collision from "collision";
 
 export function setupGameplayRender (gameCanvas) {
-   engine = new BABYLON.Engine(gameCanvas, true);
-  var entMan = new ecsService.EntityManager([
-    inputService.inputSystem,
-    physicsService.velocitySystem,
-    physicsService.speedLimitSystem,
-    entitiesService.modelPositionSystem,
-    entitiesService.cameraFollowSystem,
-    weaponService.weaponSystem,
-    weaponService.decaySystem,
-    collisionService.collisionDetectionSystem,
-    ecsService.deletionSystem
+  console.log( gameCanvas );
+  
+  let engine = new BABYLON.Engine(gameCanvas, true);
+  let entMan = new ecs.EntityManager([
+    input.inputSystem,
+    physics.velocitySystem,
+    physics.speedLimitSystem,
+    entities.modelPositionSystem,
+    entities.cameraFollowSystem,
+    weapon.weaponSystem,
+    weapon.decaySystem,
+    collision.collisionDetectionSystem,
+    ecs.deletionSystem
   ]);
 
   function createScene () {
-    var scene = new BABYLON.Scene(engine);
+    let scene = new BABYLON.Scene(engine);
     scene.clearColor = new BABYLON.Color3(0, 0, 0);
 
 
@@ -36,16 +38,16 @@ export function setupGameplayRender (gameCanvas) {
 
     let asteroidSprite = new BABYLON.Sprite("roid", spriteManagerAsteroid);
 
-    entMan.insert(entitiesService.planetFactory({'x':0, 'y':1, 'z': 10}, 2,
+    entMan.insert(entities.planetFactory({'x':0, 'y':1, 'z': 10}, 2,
                                                    planetSprite));
-    entMan.insert(entitiesService.asteroidFactory({x: 3, y: 3}, 
+    entMan.insert(entities.asteroidFactory({x: 3, y: 3}, 
           {x: -0.00008, y: -0.00008}, asteroidSprite));
 
     let spriteManagerBullet = new BABYLON.SpriteManager(
         "bulletMgr", "assets/redblast.png", 1000,16, scene);
       
 
-    let playerWeapon = [new weaponService.Weapon(500, spriteManagerBullet)]
+    let playerWeapon = [new weapon.Weapon(500, spriteManagerBullet)]
 
     let camera = new BABYLON.FreeCamera(
         "camera1", new BABYLON.Vector3(0, -1, -10), scene)
@@ -58,7 +60,7 @@ export function setupGameplayRender (gameCanvas) {
     BABYLON.SceneLoader.ImportMesh("", "assets/","star_cruiser_1.babylon",
                                      scene, function(newMesh){
       newMesh[0].rotate(BABYLON.Axis.Y, -Math.PI/2, BABYLON.Space.LOCAL)
-      entMan.insert(entitiesService.playerShipFactory(
+      entMan.insert(entities.playerShipFactory(
                                       {'x': 0, 'y':-1, 'z': -2}, scene,
                                       newMesh[0], camera, playerWeapon,
                                       playerData));
@@ -73,7 +75,7 @@ export function setupGameplayRender (gameCanvas) {
     engine.resize();
   });
 
-  inputService.bindInputFunctions();
+  input.bindInputFunctions();
 
 
   engine.runRenderLoop(function () {
@@ -82,5 +84,5 @@ export function setupGameplayRender (gameCanvas) {
   });
 };
 
-$( setupGameplayRender( $('#gamecanvas') ));
+$( setupGameplayRender( $('#gameCanvas')[0] ));
 

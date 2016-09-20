@@ -2,7 +2,7 @@ export function inputSystem (entMan) {
   for (let entity of entMan.get_with(['input'])) {
     if ('velocity' in entity) {
       if (inputStates.forward) {
-        physicsService.accelerate(entity.velocity,
+        physics.accelerate(entity.velocity,
                                   entity.direction,
                                   entity.data.accel * entMan.delta_time)
       }
@@ -10,11 +10,11 @@ export function inputSystem (entMan) {
     if ('direction' in entity) {
       let angle = entity.data.rotation * entMan.delta_time;
       if (inputStates.left) {
-        physicsService.rotate(entity, angle);
+        physics.rotate(entity, angle);
         entity.direction_delta = -1 * angle;
       }
       else if (inputStates.right) {
-        physicsService.rotate(entity, -1 * angle );
+        physics.rotate(entity, -1 * angle );
         entity.direction_delta = angle;
       }
       else {
