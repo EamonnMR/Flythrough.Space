@@ -36,7 +36,7 @@ function bulletFactory(position, sprite, direction, speed, initialVelocity,
     'velocity': velocity,
     'max_age': max_age,
     'age': 0.0,
-    'collider': {'radius': 1}
+    'collider': {'radius': .3}
   };
 };
 

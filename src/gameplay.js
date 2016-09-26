@@ -24,7 +24,9 @@ export function setupGameplayRender (gameCanvas) {
     scene.clearColor = new BABYLON.Color3(0, 0, 0);
 
 
-    let light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
+    let light = new BABYLON.HemisphericLight("light1", 
+                                             new BABYLON.Vector3(0, 1, 0),
+                                             scene);
     light.intensity = .5;
 
     let spriteManagerPlanet = new BABYLON.SpriteManager(
@@ -63,6 +65,20 @@ export function setupGameplayRender (gameCanvas) {
                                       newMesh[0], camera, playerWeapon,
                                       playerData));
     });
+
+    //var hud_canvas = new BABYLON.ScreenSpaceCanvas2D(scene, {
+    //  id: "ScreenCanvas",
+    //    // size: new BABYLON.Size(300, 100),
+    //    // backgroundFill: "#4040408F",
+    //    // backgroundRoundRadius: 50,
+    //    children: [
+    //      new BABYLON.Text2D("Hello World!", {
+    //        id: "text",
+    //        marginAlignment: "h: center, v:center",
+    //        fontName: "20pt Courier",
+    //      })
+    //   ]
+    //});
 
     return scene;
   }

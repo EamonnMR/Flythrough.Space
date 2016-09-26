@@ -12,7 +12,9 @@ export function collisionDetectionSystem(entMan){
     for (let other of colliders) {
       let dist = distance(current.position, other.position);
       if ( dist < current.collider.radius + other.collider.radius) {
-        // Do something with the collision 
+        current.remove = true;
+        other.remove = true;
+
       }
     }
   }
