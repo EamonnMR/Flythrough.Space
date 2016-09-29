@@ -1,7 +1,7 @@
 export function shot_handler(shot, object){
-  //if ( 'damage' in shot ){
-  //  damage_handler(shot, object);
-  //}
+  if ( 'damage' in shot ){
+    damage_handler(shot, object);
+  }
 
   if ('remove_on_contact' in shot){
     // An expiring projectile has hit a target - remove it
@@ -20,6 +20,6 @@ export function damage_handler(damager, damaged){
 
     // If an entity's hitpoints are gone, destroy it
     if (damaged.hitpoints >= 0){
-      damaged.remove = True;
+      damaged.remove = true;
   }
 }
