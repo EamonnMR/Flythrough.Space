@@ -14,10 +14,10 @@ export function collisionDetectionSystem(entMan){
     for (let other of colliders) {
       let dist = distance(current.position, other.position);
       if ( dist < current.collider.radius + other.collider.radius) {
-        if ( 'shot' in current ) {
+        if ( 'shot' in current && 'hittable' in other ) {
           damage.shot_handler( current, other );
         }
-        if ('shot' in other){
+        if ('shot' in other && 'hittable' in current){
           damage.shot_handler(other, current);
         }
       }

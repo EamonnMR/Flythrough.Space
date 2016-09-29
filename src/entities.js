@@ -33,7 +33,8 @@ export function asteroidFactory (position, velocity, sprite) {
     'velocity': {'x': velocity.x, 'y': velocity.y },
     'model': sprite,
     'hitpoints': 10,
-    'collider': {'radius': .5}
+    'collider': {'radius': .5},
+    'hittable': true
   };
 };
 
