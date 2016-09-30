@@ -1,3 +1,5 @@
+let game_ctrl = null;
+
 export function inputSystem (entMan) {
   for (let entity of entMan.get_with(['input'])) {
     if ('velocity' in entity) {
@@ -68,13 +70,15 @@ function handleKeyUp ( event ){
       inputStates.shoot = false;
       break;
     case 27: // escape
-      stateChangeFunc('menu');
+      game_ctrl.toggle_pause();
       break;
   }
 };
 
-export function bindInputFunctions(){
+export function bindInputFunctions(new_game_ctrl){
   $(document).keydown( handleKeyDown );
   $(document).keyup( handleKeyUp );
+
+  game_ctrl = new_game_ctrl;
 };
 

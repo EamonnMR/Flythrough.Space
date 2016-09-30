@@ -63,11 +63,28 @@ export class EntityManager {
     }
 
     this.last_time = time;
-
-    for (let system of this.systems) {
-      system(this);
+    
+    if ( !this.paused) {
+      for (let system of this.systems) {
+        system(this);
+      }
     }
   }
+
+  clear () {
+    let old_ents = this.entities;
+    this.entities = {};
+    return old_ents;
+  }
+
+  pause () {
+    this.paused = true;
+  }
+
+  unpause () {
+    this.paused = false;
+  }
+
 };
 
 export function deletionSystem (entMan) {

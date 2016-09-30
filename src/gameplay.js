@@ -19,6 +19,16 @@ export function setupGameplayRender (gameCanvas) {
     ecs.deletionSystem
   ]);
 
+  input.bindInputFunctions({
+    'toggle_pause': function(){
+      if ( entMan.paused ){
+        entMan.unpause();
+      } else {
+        entMan.pause();
+      } 
+    }
+  });
+
   function createScene () {
     let scene = new BABYLON.Scene(engine);
     scene.clearColor = new BABYLON.Color3(0, 0, 0);
@@ -88,8 +98,6 @@ export function setupGameplayRender (gameCanvas) {
   window.addEventListener("resize", function () {
     engine.resize();
   });
-
-  input.bindInputFunctions();
 
 
   engine.runRenderLoop(function () {
