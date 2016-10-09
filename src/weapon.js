@@ -32,11 +32,14 @@ function bulletFactory(position, sprite, direction, speed, initialVelocity,
   physics.accelerate(velocity, direction, speed);
   return {
     'position': {'x': position.x, 'y': position.y},
+    'shot': true,
     'model': sprite,
     'velocity': velocity,
     'max_age': max_age,
     'age': 0.0,
-    'collider': {'radius': 1}
+    'collider': {'radius': .3},
+    'damage': 1,
+    'remove_on_contact': true
   };
 };
 

@@ -63,11 +63,32 @@ export class EntityManager {
     }
 
     this.last_time = time;
-
-    for (let system of this.systems) {
-      system(this);
+    
+    if ( !this.paused) {
+      for (let system of this.systems) {
+        system(this);
+      }
     }
   }
+
+  clear () {
+    for (let id of Object.keys(this.entities)) {
+      delete_model(this.entities[id]);
+    }
+    let old_ents = this.entities;
+    this.entities = {};
+    this.maxId = 0;
+    return old_ents;
+  }
+
+  pause () {
+    this.paused = true;
+  }
+
+  unpause () {
+    this.paused = false;
+  }
+
 };
 
 export function deletionSystem (entMan) {
@@ -81,10 +102,14 @@ export function deletionSystem (entMan) {
   }
   for (let id of deleteList) {
     let entity = entMan.entities[id];
-    if ('model' in entity){
-      entity.model.dispose();
-    }
+    delete_model(entity);
     delete entMan.entities[id];
+  }
+};
+
+function delete_model (entity) {
+  if ('model' in entity){
+    entity.model.dispose();
   }
 };
 
