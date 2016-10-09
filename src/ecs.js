@@ -72,8 +72,12 @@ export class EntityManager {
   }
 
   clear () {
+    for (let id of Object.keys(this.entities)) {
+      delete_model(this.entities[id]);
+    }
     let old_ents = this.entities;
     this.entities = {};
+    this.maxId = 0;
     return old_ents;
   }
 
@@ -98,10 +102,14 @@ export function deletionSystem (entMan) {
   }
   for (let id of deleteList) {
     let entity = entMan.entities[id];
-    if ('model' in entity){
-      entity.model.dispose();
-    }
+    delete_model(entity);
     delete entMan.entities[id];
+  }
+};
+
+function delete_model (entity) {
+  if ('model' in entity){
+    entity.model.dispose();
   }
 };
 

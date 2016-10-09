@@ -19,33 +19,35 @@ export function setupGameplayRender (gameCanvas) {
     ecs.deletionSystem
   ]);
 
+
+  let scene = new BABYLON.Scene(engine);
+  scene.clearColor = new BABYLON.Color3(0, 0, 0);
+
+  let camera = new BABYLON.FreeCamera(
+        "camera1", new BABYLON.Vector3(0, -1, -10), scene)
+  setup_world(scene, camera, entMan);
+
+  window.addEventListener("resize", function () {
+    engine.resize();
+  });
+
   input.bindInputFunctions({
     'toggle_pause': function(){
       if ( entMan.paused ){
         entMan.unpause();
       } else {
         entMan.pause();
-      } 
+      }
+      entMan.clear();
+      setup_world(scene, camera, entMan); 
+    },
+
+    'reset_game': function() {
+      entMan.clear();
+      setup_world(scene, camera, entMan);
     }
+
   });
-
-  function createScene () {
-    let scene = new BABYLON.Scene(engine);
-    scene.clearColor = new BABYLON.Color3(0, 0, 0);
-
-    let camera = new BABYLON.FreeCamera(
-        "camera1", new BABYLON.Vector3(0, -1, -10), scene)
-    setup_world(scene, camera, entMan);
-
-    return scene;
-  }
-
-  let scene = createScene();
-
-  window.addEventListener("resize", function () {
-    engine.resize();
-  });
-
 
   engine.runRenderLoop(function () {
     scene.render();

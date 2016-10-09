@@ -72,6 +72,9 @@ function handleKeyUp ( event ){
     case 27: // escape
       game_ctrl.toggle_pause();
       break;
+    case 82: // 'r'
+      game_ctrl.reset_game();
+      break;
   }
 };
 
