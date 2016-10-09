@@ -38,8 +38,6 @@ export function setupGameplayRender (gameCanvas) {
       } else {
         entMan.pause();
       }
-      entMan.clear();
-      setup_world(scene, camera, entMan); 
     },
 
     'reset_game': function() {
