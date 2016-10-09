@@ -153,5 +153,9 @@ function create_hud( scene ){
   });
 };
 
-$( setupGameplayRender( $('#gameCanvas')[0] ));
+$(() => {
+  $.getJSON('/data/systems.json', function( systems ) {
+    setupGameplayRender( $('#gameCanvas')[0], systems );
+  });
+});
 
