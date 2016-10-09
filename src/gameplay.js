@@ -25,7 +25,7 @@ export function setupGameplayRender (gameCanvas) {
 
   let camera = new BABYLON.FreeCamera(
         "camera1", new BABYLON.Vector3(0, -1, -10), scene)
-  setup_world(scene, camera, entMan);
+  let world_models = setup_world(scene, camera, entMan);
 
   window.addEventListener("resize", function () {
     engine.resize();
@@ -44,7 +44,10 @@ export function setupGameplayRender (gameCanvas) {
 
     'reset_game': function() {
       entMan.clear();
-      setup_world(scene, camera, entMan);
+      for (let world_model of world_models){
+        world_model.dispose();
+      }
+      world_models = setup_world(scene, camera, entMan);
     }
 
   });
@@ -104,17 +107,21 @@ export function setup_world(scene, camera, entMan) {
     ));
   });
 
-  enter_system(scene, entMan, planets, lights, ents);
+  return enter_system(scene, entMan, planets, lights, ents);
 };
 
 
 export function enter_system(scene, entMan, planets, lights, ents) {
+  let world_models = []
+
   for (let light of lights) {
     let new_light = new BABYLON.HemisphericLight(light.name,
         new BABYLON.Vector3(light.pos.x, light.pos.y, light.pos.z),
         scene
     );
     new_light.intensity = light.intensity;
+
+    world_models.push(new_light);
   }
 
   for (let ent of ents) {
@@ -125,6 +132,7 @@ export function enter_system(scene, entMan, planets, lights, ents) {
     entMan.insert( planet );
   }
 
+  return world_models;
 };
 
 
