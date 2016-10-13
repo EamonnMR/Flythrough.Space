@@ -18,13 +18,14 @@ export class MapView {
       children:[
         new BABYLON.Text2D('Map goes here', {
           id: 'map_text',
-          fontName: '20pT Courier'
+          fontName: '20pt Courier'
         })
       ]
     });
 
-
-    this.map_image.position = [this.offset.x, this.offset.y];
+    this.map_sub = null;
+    this.draw_position();
+    //this.map_image.position = [this.offset.x, this.offset.y];
     this.move = {x: 0, y: 0};
     this.dragging = false;
 
@@ -39,11 +40,13 @@ export class MapView {
     game_canvas.mousemove( (event) => {
       if ( this.dragging ) {
         this.offset.x -= this.move.x - event.pageX;
-        this.offset.y -= this.move.y - event.pageY;
+        this.offset.y += this.move.y - event.pageY;
       }
 
       this.move = {x: event.pageX, y: event.pageY};
-      this.map_image.position = [this.offset.x, this.offset.y];
+      this.map_image.x = this.offset.x;
+      this.map_image.y = this.offset.y;
+      this.draw_position();
     });
   }
 
@@ -52,5 +55,20 @@ export class MapView {
     game_canvas.unbind('mouseup');
     game_canvas.unbind('mousemove');
     this.canvas.dispose();
+  }
+
+  draw_position(){
+    if (this.map_sub){
+      this.map_sub.dispose();
+    }
+    this.map_sub = new BABYLON.Text2D('' + this.offset.x + ',' + this.offset.y,
+      {
+        id: 'map_subtitle',
+        x: 0,
+        y: 20,
+        fontName: '20pt Courier',
+        parent: this.canvas
+      }
+    );
   }
 }
