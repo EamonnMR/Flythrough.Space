@@ -4,9 +4,11 @@ import * as ecs from "ecs";
 import * as input from "input";
 import * as entities from "entities";
 import * as collision from "collision";
+import * as map from "map";
 
-export function setupGameplayRender (gameCanvas) {
-  let engine = new BABYLON.Engine(gameCanvas, true);
+
+export function setupGameplayRender (gameCanvas, mapdata) {
+  let engine = new BABYLON.Engine(gameCanvas[0], true);
   let entMan = new ecs.EntityManager([
     input.inputSystem,
     physics.velocitySystem,
@@ -31,15 +33,20 @@ export function setupGameplayRender (gameCanvas) {
     engine.resize();
   });
 
+  let map_view = null; // Only populated while game is paused
+
   input.bindInputFunctions({
     'toggle_pause': function(){
       if ( entMan.paused ){
         entMan.unpause();
+        map_view.dispose(gameCanvas);
+        map_view = null;
       } else {
         entMan.pause();
+        map_view = new map.MapView(mapdata, 
+          {x: 0, y: 0}, scene, {x: 400, y: 400},
+          gameCanvas);
       }
-      entMan.clear();
-      setup_world(scene, camera, entMan); 
     },
 
     'reset_game': function() {
@@ -153,5 +160,9 @@ function create_hud( scene ){
   });
 };
 
-$( setupGameplayRender( $('#gameCanvas')[0] ));
+$(() => {
+  $.getJSON('/data/systems.json', function( systems ) {
+    setupGameplayRender( $('#gameCanvas'), systems );
+  });
+});
 
