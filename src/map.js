@@ -1,6 +1,8 @@
 export class MapView {
   constructor(data, position, scene, size, game_canvas){
     this.data = data;
+
+    this.scale_factor = 1;
     
     this.offset = position = {x: size.x / 2, y: size.y / 2}
 
@@ -15,14 +17,30 @@ export class MapView {
       id: 'map_image',
       x: this.offset.x,
       y: this.offset.y,
-      children:[
-        new BABYLON.Text2D('Map goes here', {
-          id: 'map_text',
-          fontName: '20pt Courier'
-        })
-      ]
     });
 
+
+    let circle_size = 10;
+    for ( let system of Object.keys(data.systems)) {
+      let system_dat = data.systems[system];
+      new BABYLON.Text2D( system, {
+        parent: this.map_image,
+        id: system + '_label',
+        x: (circle_size + system_dat.x) * this.scale_factor,
+        y: (circle_size + system_dat.y) * this.scale_factor * -1,
+        fontName: '15pt Courier'
+      });
+
+      new BABYLON.Ellipse2D({
+        parent: this.map_image,
+        id: system + '_circle',
+        x: system_dat.x * this.scale_factor,
+        y: -1 * system_dat.y * this.scale_factor,
+        width: circle_size,
+        height: circle_size,
+        fill: BABYLON.Canvas2D.GetSolidColorBrushFromHex("#FFFFFFFF")
+      });
+    }
     this.map_sub = null;
     this.draw_position();
     //this.map_image.position = [this.offset.x, this.offset.y];
