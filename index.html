@@ -1,65 +1,18 @@
-<DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html>
+    <canvas id="gameCanvas" style="height:100%;width:100%">
+    <!-- jQuerey - still needed for capturing input and dom stuff -->
+    <script src="lib/jquery-3.0.0.js"></script>
+    <!-- Babalonjs (not to be confused with babel) 
+      TODO: Use CDN in web version, local in offline versions-->
+    <!-- <script src="http://cdn.babylonjs.com/2-2/babylon.max.js"></script> -->
+    <script src="lib/babylon.max.js"></script>
 
-  <!-- Bootstrap -->
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
-
-  <!-- Latest compiled and minified JavaScript -->
-  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script> -->
-
-  <!-- Angularjs -->
-  <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-
-  <!-- Jquerey -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-  <!-- Achernar -->
-  <script src= "js/store.js"></script>
-</head>
-<body>
-  <div ng-app="storeApp" ng-controller="storeController">
-    <div ng-show="view_state === 'loading'">
-      <!-- Insert custom loading bar here -->
-      <h1>Loading Achernar...</h1>
-    </div>
-    <div ng-show="view_state === 'menu'">
-      <h1><em>Achernar: Main Menu</em></h1>
-      <p>(Right now all this does is test the different views I'm working on.
-        Please select the view you want to see below.)</p>
-      <a>Planet (landing)</a><br>
-      <a>Store</a><br>
-      <a>Gameplay</a><br>
-
-      <button type="button" class="btn btn-default" ng-click=enterState('map')>
-        <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Map
-      </button><br>
-      <a>Spaceport Bar</a><br>
-
-      <p><em>2015
-        <a href="http://eamonnmr.com" target="_blank">Eamonn McHugh-Roohr</a>
-      </em></p>
-    </div>
-
-    <div ng-show="view_state === 'map'">
-      <h1><em>Achernar: Map View</em></h1>
-      <div>
-        <canvas id="mapcanvas" height="600" width="851"
-                ng-mousedown="map.mouseDown($event)"
-                ng-mouseup="map.mouseUp($event)"
-                ng-mousemove="map.mouseMove($event)"></canvas>
-      </div>
-      <div>
-        <button type="button" class="btn btn-default"
-                ng-click=enterState('menu')>
-          <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Back
-        </button>
-      </div>
-    </div>
-  </div>
-</body>
-</html>
+    <script src="js/map.js"></script>
+    <script src="js/damage.js"></script>
+    <script src="js/physics.js"></script>
+    <script src="js/weapon.js"></script>
+    <script src="js/ecs.js"></script>
+    <script src="js/input.js"></script>
+    <script src="js/entities.js"></script>
+    <script src="js/collision.js"></script>
+    <script src="js/gameplay.js"></script>
