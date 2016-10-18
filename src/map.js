@@ -19,6 +19,14 @@ export class MapView {
       y: this.offset.y,
     });
 
+    this.map_image.pointerEventObservable.add(
+      (d, s) => {
+        let target = d.relatedTarget.id;
+        if (target.indexOf('_circle') > 0){
+          console.log("Clicked: " + target);
+        }
+      }, BABYLON.PrimitivePointerInfo.PointerUp);
+
 
     let circle_size = 10;
     for ( let system of Object.keys(data.systems)) {
@@ -43,7 +51,6 @@ export class MapView {
     }
     this.map_sub = null;
     this.draw_position();
-    //this.map_image.position = [this.offset.x, this.offset.y];
     this.move = {x: 0, y: 0};
     this.dragging = false;
 
