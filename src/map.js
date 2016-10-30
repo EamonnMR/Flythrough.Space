@@ -1,14 +1,17 @@
 export class MapView {
-  constructor(data, position, scene, size, game_canvas){
+  constructor(data, position, scene, game_canvas){
+
     this.data = data;
 
     this.scale_factor = 1;
-    
-    this.offset = position = {x: size.x / 2, y: size.y / 2}
+
+    this.diff = {x: game_canvas.width() / 2, y: game_canvas.height() / 2};
+
+    this.offset = { x: position.x + this.diff.x, y: position.y + this.diff.y };
 
     this.canvas = new BABYLON.ScreenSpaceCanvas2D(scene, {
       id: "map_canvas",
-      size: new BABYLON.Size(size.x, size.y),
+      size: new BABYLON.Size(game_canvas.width(), game_canvas.height()),
       backgroundFill: "#4040408F"
     });
     
@@ -25,7 +28,8 @@ export class MapView {
         if (target.indexOf('_circle') > 0){
           console.log("Clicked: " + target);
         }
-      }, BABYLON.PrimitivePointerInfo.PointerUp);
+      }, BABYLON.PrimitivePointerInfo.PointerUp
+    );
 
 
     let circle_size = 10;
@@ -38,6 +42,28 @@ export class MapView {
         y: (circle_size + system_dat.y) * this.scale_factor * -1,
         fontName: '15pt Courier'
       });
+      
+      let sys_loc_vec = new BABYLON.Vector2(system_dat.x * this.scale_factor,
+                                        -1 * system_dat.y * this.scale_factor)
+
+      for (let other_system_id of system_dat.links ){
+        if (other_system_id in data.systems) {
+          let other_system = data.systems[other_system_id];
+        
+          new BABYLON.Lines2D(
+              [sys_loc_vec,
+              new BABYLON.Vector2(other_system.x * this.scale_factor,
+                                  -1 * other_system.y * this.scale_factor)],
+              {
+                parent: this.map_image,
+                id: system + '->' + other_system_id
+              }
+          );
+        } else {
+          console.log('bad link: ' + system + ' -> ' + other_system_id);
+        }
+      }
+
 
       new BABYLON.Ellipse2D({
         parent: this.map_image,
@@ -47,6 +73,7 @@ export class MapView {
         width: circle_size,
         height: circle_size,
         fill: BABYLON.Canvas2D.GetSolidColorBrushFromHex("#FFFFFFFF")
+
       });
     }
     this.map_sub = null;
@@ -80,12 +107,17 @@ export class MapView {
     game_canvas.unbind('mouseup');
     game_canvas.unbind('mousemove');
     this.canvas.dispose();
+    return {
+      x: this.offset.x - this.diff.x,
+      y: this.offset.y - this.diff.y
+    }
   }
 
   draw_position(){
     if (this.map_sub){
       this.map_sub.dispose();
     }
+    /*
     this.map_sub = new BABYLON.Text2D('' + this.offset.x + ',' + this.offset.y,
       {
         id: 'map_subtitle',
@@ -95,5 +127,6 @@ export class MapView {
         parent: this.canvas
       }
     );
+    */
   }
 }
