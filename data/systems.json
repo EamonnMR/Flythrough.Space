@@ -2,39 +2,39 @@
 "govts" : {
 	"pax":{
 		"name":"Schengen Federation",
-		"color":"Orange"
+		"color":"#FFA500FF"
 	},
 	"direc":{
 		"name":"Casamance Directorate",
-		"color":"MediumBlue"
+		"color":"#0000CDFF"
 	},
 	"pen":{
 		"name":"Itaskan Republic",
-		"color":"Yellow"
+		"color":"#FFFF00FF"
 	},
 	"orion":{
 		"name":"Willkanuta",
-		"color":"mediumpurple"
+		"color":"#9370D8FF"
 	},
 	"orasos":{
 		"name":"Caudron Pirate Cartell",
-		"color":"IndianRed"
+		"color":"#CD5C5CFF"
 	},
 	"hex":{
 		"name":"League",
-		"color":"Green"
+		"color":"#008000FF"
 	},
 	"drone":{
 		"name":"Northern Empire",
-		"color":"Red"
+		"color":"#FF0000FF"
 	},
 	"fifth":{
 		"name":"5th Fleet",
-		"color":"Brown"
+		"color":"#A52A2AFF"
 	},
 	"xic":{
 		"name":"XIC Mining",
-		"color":"Pink"
+		"color":"#FFC0CBFF"
 	}
 },
 

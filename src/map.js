@@ -31,8 +31,27 @@ export class MapView {
       }, BABYLON.PrimitivePointerInfo.PointerUp
     );
 
+    // Set up color fills for map drawing
+    let govt_colors = {};
+
+    console.log (data.govts);
+
+    for (let name of Object.keys(data.govts)){
+      govt_colors[ name ] = BABYLON.Canvas2D.GetSolidColorBrushFromHex(
+        data.govts[ name ].color
+      );
+    }
+
+    console.log (govt_colors);
+
+
+    let nogov_color = BABYLON.Canvas2D.GetSolidColorBrushFromHex(
+      '#A9A9A9FF'
+    );
+
 
     let circle_size = 10;
+
     for ( let system of Object.keys(data.systems)) {
       let system_dat = data.systems[system];
       new BABYLON.Text2D( system, {
@@ -72,8 +91,7 @@ export class MapView {
         y: -1 * system_dat.y * this.scale_factor,
         width: circle_size,
         height: circle_size,
-        fill: BABYLON.Canvas2D.GetSolidColorBrushFromHex("#FFFFFFFF")
-
+        fill: 'govt' in system_dat ? govt_colors[system_dat.govt] : nogov_color
       });
     }
     this.map_sub = null;
