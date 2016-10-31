@@ -166,7 +166,7 @@ function create_hud( scene ){
 };
 
 $(() => {
-  $.getJSON('/data/systems.json', function( systems ) {
+  $.getJSON('data/systems.json', function( systems ) {
     setupGameplayRender( $('#gameCanvas'), systems );
   });
 });
