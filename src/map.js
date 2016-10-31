@@ -42,13 +42,8 @@ export class MapView {
       );
     }
 
-    console.log (govt_colors);
 
-
-    let nogov_color = BABYLON.Canvas2D.GetSolidColorBrushFromHex(
-      '#A9A9A9FF'
-    );
-
+    let nogov_color = BABYLON.Canvas2D.GetSolidColorBrushFromHex('#A9A9A9FF');
 
     let circle_size = 10;
 
@@ -59,7 +54,7 @@ export class MapView {
         id: system + '_label',
         x: (circle_size + system_dat.x) * this.scale_factor,
         y: (circle_size + system_dat.y) * this.scale_factor * -1,
-        fontName: '15pt Courier'
+        fontName: '13pt Courier'
       });
       
       let sys_loc_vec = new BABYLON.Vector2(system_dat.x * this.scale_factor,
@@ -68,14 +63,18 @@ export class MapView {
       for (let other_system_id of system_dat.links ){
         if (other_system_id in data.systems) {
           let other_system = data.systems[other_system_id];
-        
+          
+          let vectors = [
+            sys_loc_vec,
+            new BABYLON.Vector2(other_system.x * this.scale_factor,
+                                -1 * other_system.y * this.scale_factor)
+          ]
+
           new BABYLON.Lines2D(
-              [sys_loc_vec,
-              new BABYLON.Vector2(other_system.x * this.scale_factor,
-                                  -1 * other_system.y * this.scale_factor)],
-              {
+              vectors, {
                 parent: this.map_image,
-                id: system + '->' + other_system_id
+                id: system + '->' + other_system_id,
+                fill: nogov_color
               }
           );
         } else {
@@ -87,8 +86,8 @@ export class MapView {
       new BABYLON.Ellipse2D({
         parent: this.map_image,
         id: system + '_circle',
-        x: system_dat.x * this.scale_factor,
-        y: -1 * system_dat.y * this.scale_factor,
+        x: (system_dat.x - circle_size / 2) * this.scale_factor,
+        y: (-1 * system_dat.y - (circle_size / 2)) * this.scale_factor,
         width: circle_size,
         height: circle_size,
         fill: 'govt' in system_dat ? govt_colors[system_dat.govt] : nogov_color
