@@ -29,11 +29,17 @@ export function setupGameplayRender (gameCanvas, mapdata) {
         "camera1", new BABYLON.Vector3(0, -1, -10), scene)
   let world_models = setup_world(scene, camera, entMan);
 
+  let map_view = null; // Only populated while game is paused
+
   window.addEventListener("resize", function () {
     engine.resize();
+    if (map_view){
+      // TODO: Refactor these
+      let position = map_view.dispose(gameCanvas);
+      map_view = new map.MapView(mapdata, position, scene, gameCanvas);
+    }
   });
 
-  let map_view = null; // Only populated while game is paused
 
   input.bindInputFunctions({
     'toggle_pause': function(){
@@ -43,9 +49,7 @@ export function setupGameplayRender (gameCanvas, mapdata) {
         map_view = null;
       } else {
         entMan.pause();
-        map_view = new map.MapView(mapdata, 
-          {x: 0, y: 0}, scene, {x: 400, y: 400},
-          gameCanvas);
+        map_view = new map.MapView(mapdata, {x: 0, y: 0}, scene, gameCanvas);
       }
     },
 
@@ -104,6 +108,7 @@ export function setup_world(scene, camera, entMan) {
         "bulletMgr", "assets/redblast.png", 1000,16, scene); 
 
     let playerData = {
+
       'accel': 0.00005,
       'rotation': 0.005
     }
@@ -161,7 +166,7 @@ function create_hud( scene ){
 };
 
 $(() => {
-  $.getJSON('/data/systems.json', function( systems ) {
+  $.getJSON('data/systems.json', function( systems ) {
     setupGameplayRender( $('#gameCanvas'), systems );
   });
 });
