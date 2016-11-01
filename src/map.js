@@ -29,12 +29,11 @@ export class MapView {
           console.log("Clicked: " + target);
         }
       }, BABYLON.PrimitivePointerInfo.PointerUp
+
     );
 
     // Set up color fills for map drawing
     let govt_colors = {};
-
-    console.log (data.govts);
 
     for (let name of Object.keys(data.govts)){
       govt_colors[ name ] = BABYLON.Canvas2D.GetSolidColorBrushFromHex(
