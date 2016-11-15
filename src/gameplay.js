@@ -36,7 +36,7 @@ export function setupGameplayRender (gameCanvas, mapdata) {
     if (map_view){
       // TODO: Refactor these
       let position = map_view.dispose(gameCanvas);
-      map_view = new map.MapView(mapdata, position, scene, gameCanvas);
+      map_view = new map.MapView(mapdata, position, scene, gameCanvas );
     }
   });
 

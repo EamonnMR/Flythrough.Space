@@ -1,6 +1,7 @@
 export class MapView {
   constructor(data, position, scene, game_canvas){
-
+    let current_sys = 'Casamance';
+    console.log( data, position, scene, game_canvas );
     this.data = data;
 
     this.scale_factor = 1;
@@ -22,11 +23,28 @@ export class MapView {
       y: this.offset.y,
     });
 
+    let current = this.data.systems[current_sys];
+
+    let selection = current_sys;
+
+		let selection_img = new BABYLON.Ellipse2D({
+      parent: this.map_image,
+      id: 'selection',
+      x: ( current.x - 10) * this.scale_factor,
+      y: (-1 * current.y - 10) *  this.scale_factor,
+      width: 20,
+      height: 20,
+      fill: BABYLON.Canvas2D.GetSolidColorBrushFromHex('#00FFFFFF') 
+    });
+    
+    selection_img.zOrder = 1;
+
     this.map_image.pointerEventObservable.add(
       (d, s) => {
         let target = d.relatedTarget.id;
         if (target.indexOf('_circle') > 0){
           console.log("Clicked: " + target);
+          // TODO: Get new sys; move selection circle
         }
       }, BABYLON.PrimitivePointerInfo.PointerUp
 
@@ -116,6 +134,7 @@ export class MapView {
       this.map_image.y = this.offset.y;
       this.draw_position();
     });
+
   }
 
   dispose(game_canvas){
