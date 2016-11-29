@@ -37,7 +37,7 @@ export class MapView {
       fill: BABYLON.Canvas2D.GetSolidColorBrushFromHex('#00FFFFFF') 
     });
     
-    selection_img.zOrder = 1;
+    selection_img.zOrder = .9;
 
     this.map_image.pointerEventObservable.add(
       (d, s) => {
@@ -66,13 +66,15 @@ export class MapView {
 
     for ( let system of Object.keys(data.systems)) {
       let system_dat = data.systems[system];
-      new BABYLON.Text2D( system, {
+      let sys_text = new BABYLON.Text2D( system, {
         parent: this.map_image,
         id: system + '_label',
         x: (circle_size + system_dat.x) * this.scale_factor,
         y: (circle_size + system_dat.y) * this.scale_factor * -1,
         fontName: '13pt Courier'
       });
+
+      sys_text.zOrder = .7;
       
       let sys_loc_vec = new BABYLON.Vector2(system_dat.x * this.scale_factor,
                                         -1 * system_dat.y * this.scale_factor)
@@ -87,20 +89,22 @@ export class MapView {
                                 -1 * other_system.y * this.scale_factor)
           ]
 
-          new BABYLON.Lines2D(
+          let sys_line = new BABYLON.Lines2D(
               vectors, {
                 parent: this.map_image,
                 id: system + '->' + other_system_id,
                 fill: nogov_color
               }
           );
+
+          sys_line.zOrder = .6;
         } else {
           console.log('bad link: ' + system + ' -> ' + other_system_id);
         }
       }
 
 
-      new BABYLON.Ellipse2D({
+      let sys_circle = new BABYLON.Ellipse2D({
         parent: this.map_image,
         id: system + '_circle',
         x: (system_dat.x - circle_size / 2) * this.scale_factor,
@@ -109,6 +113,8 @@ export class MapView {
         height: circle_size,
         fill: 'govt' in system_dat ? govt_colors[system_dat.govt] : nogov_color
       });
+
+      sys_circle.zOrder = .5;
     }
     this.map_sub = null;
     this.draw_position();
