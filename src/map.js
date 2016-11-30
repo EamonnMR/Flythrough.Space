@@ -25,9 +25,9 @@ export class MapView {
 
     let current = this.data.systems[current_sys];
 
-    let selection = current_sys;
+    this.selection = current_sys;
 
-		let selection_img = new BABYLON.Ellipse2D({
+		this.selection_img = new BABYLON.Ellipse2D({
       parent: this.map_image,
       id: 'selection',
       x: ( current.x - 10) * this.scale_factor,
@@ -37,14 +37,14 @@ export class MapView {
       fill: BABYLON.Canvas2D.GetSolidColorBrushFromHex('#00FFFFFF') 
     });
     
-    selection_img.zOrder = .9;
+    this.selection_img.zOrder = .9;
 
     this.map_image.pointerEventObservable.add(
       (d, s) => {
         let target = d.relatedTarget.id;
         if (target.indexOf('_circle') > 0){
           console.log("Clicked: " + target);
-          // TODO: Get new sys; move selection circle
+          this.move_selection(target.replace('_circle', ''))
         }
       }, BABYLON.PrimitivePointerInfo.PointerUp
 
@@ -150,8 +150,17 @@ export class MapView {
     this.canvas.dispose();
     return {
       x: this.offset.x - this.diff.x,
-      y: this.offset.y - this.diff.y
+      y: this.offset.y - this.diff.y,
+      selection: this.selection
     }
+  }
+
+  move_selection( system_name ){
+    this.selection = system_name;
+    console.log( this.selection );
+    let sel_system = this.data.systems[system_name];
+    this.selection_img.x = (sel_system.x - 10) * this.scale_factor;
+    this.selection_img.y = (-1 * sel_system.y - 10) *  this.scale_factor;
   }
 
   draw_position(){
