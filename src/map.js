@@ -1,6 +1,5 @@
 export class MapView {
-  constructor(data, position, scene, game_canvas){
-    let current_sys = 'Casamance';
+  constructor(data, position, scene, game_canvas, selected_system){
     console.log( data, position, scene, game_canvas );
     this.data = data;
 
@@ -23,9 +22,9 @@ export class MapView {
       y: this.offset.y,
     });
 
-    let current = this.data.systems[current_sys];
+    let current = this.data.systems[selected_system];
 
-    this.selection = current_sys;
+    this.selection = selected_system;
 
 		this.selection_img = new BABYLON.Ellipse2D({
       parent: this.map_image,
@@ -149,10 +148,12 @@ export class MapView {
     game_canvas.unbind('mousemove');
     this.canvas.dispose();
     return {
-      x: this.offset.x - this.diff.x,
-      y: this.offset.y - this.diff.y,
+      position: {
+        x: this.offset.x - this.diff.x,
+        y: this.offset.y - this.diff.y,
+      },
       selection: this.selection
-    }
+    };
   }
 
   move_selection( system_name ){

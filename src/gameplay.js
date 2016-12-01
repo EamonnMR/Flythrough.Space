@@ -31,12 +31,19 @@ export function setupGameplayRender (gameCanvas, mapdata) {
 
   let map_view = null; // Only populated while game is paused
 
+  let map_pos = {x: 0, y: 0};
+
+  let current_system = "Casamance";
+
+  let selected_system = current_system;
+
   window.addEventListener("resize", function () {
     engine.resize();
     if (map_view){
       // TODO: Refactor these
-      let position = map_view.dispose(gameCanvas);
-      map_view = new map.MapView(mapdata, position, scene, gameCanvas );
+      let disposed = map_view.dispose(gameCanvas);
+      map_view = new map.MapView(mapdata, disposed.position,
+                                 scene, gameCanvas, disposed.selection );
     }
   });
 
@@ -45,11 +52,14 @@ export function setupGameplayRender (gameCanvas, mapdata) {
     'toggle_pause': function(){
       if ( entMan.paused ){
         entMan.unpause();
-        map_view.dispose(gameCanvas);
+        let disposed = map_view.dispose(gameCanvas);
         map_view = null;
+        selected_system = disposed.selection;
+        map_pos = disposed.position;
       } else {
         entMan.pause();
-        map_view = new map.MapView(mapdata, {x: 0, y: 0}, scene, gameCanvas);
+        map_view = new map.MapView(mapdata, map_pos, scene,
+                                   gameCanvas, selected_system);
       }
     },
 
