@@ -7,7 +7,7 @@ import * as collision from "collision";
 import * as map from "map";
 
 
-export function setupGameplayRender (gameCanvas, mapdata) {
+export function setupGameplayRender (gameCanvas, mapdata, current_system) {
   let engine = new BABYLON.Engine(gameCanvas[0], true);
   let entMan = new ecs.EntityManager([
     input.inputSystem,
@@ -33,17 +33,14 @@ export function setupGameplayRender (gameCanvas, mapdata) {
 
   let map_pos = {x: 0, y: 0};
 
-  let current_system = "Casamance";
-
   let selected_system = current_system;
 
   window.addEventListener("resize", function () {
     engine.resize();
     if (map_view){
-      // TODO: Refactor these
-      let disposed = map_view.dispose(gameCanvas);
-      map_view = new map.MapView(mapdata, disposed.position,
-                                 scene, gameCanvas, disposed.selection );
+      let {position, selection} = map_view.dispose(gameCanvas);
+      map_view = new map.MapView(mapdata, position,
+                                 scene, gameCanvas, selection );
     }
   });
 
@@ -52,6 +49,7 @@ export function setupGameplayRender (gameCanvas, mapdata) {
     'toggle_pause': function(){
       if ( entMan.paused ){
         entMan.unpause();
+        // TODO: Refactor w/ destructuring
         let disposed = map_view.dispose(gameCanvas);
         map_view = null;
         selected_system = disposed.selection;
@@ -177,7 +175,7 @@ function create_hud( scene ){
 
 $(() => {
   $.getJSON('data/systems.json', function( systems ) {
-    setupGameplayRender( $('#gameCanvas'), systems );
+    setupGameplayRender( $('#gameCanvas'), systems, 'Casamance' );
   });
 });
 
