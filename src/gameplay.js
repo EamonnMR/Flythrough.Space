@@ -5,6 +5,7 @@ import * as input from "input";
 import * as entities from "entities";
 import * as collision from "collision";
 import * as map from "map";
+import * as system from "system";
 
 
 export function setupGameplayRender (gameCanvas, mapdata, current_system) {
@@ -27,7 +28,7 @@ export function setupGameplayRender (gameCanvas, mapdata, current_system) {
 
   let camera = new BABYLON.FreeCamera(
         "camera1", new BABYLON.Vector3(0, -1, -10), scene)
-  let world_models = setup_world(scene, camera, entMan);
+  let world_models = system.setup_system(scene, camera, entMan);
 
   let map_view = null; // Only populated while game is paused
 
@@ -66,7 +67,7 @@ export function setupGameplayRender (gameCanvas, mapdata, current_system) {
       for (let world_model of world_models){
         world_model.dispose();
       }
-      world_models = setup_world(scene, camera, entMan);
+      world_models = system.setup_system(scene, camera, entMan);
     }
 
   });
@@ -75,84 +76,6 @@ export function setupGameplayRender (gameCanvas, mapdata, current_system) {
     scene.render();
     entMan.update();
   });
-};
-
-
-export function setup_world(scene, camera, entMan) {
-  let lights = [
-    {
-      'name': 'sun',
-      'pos': {x: 0, y: 1, z: 0},
-      'intensity': .5
-    }
-  ]
-
-  let spriteManagerAsteroid = new BABYLON.SpriteManager(
-      "roidMgr", "assets/asteroid.png", 1000, 269, scene);
-
-  let asteroidSprite = new BABYLON.Sprite("roid", spriteManagerAsteroid);
- 
-  let ents = [
-    entities.asteroidFactory({x: 3, y: 3}, 
-                             {x: -0.00008, y: -0.00008},
-                             asteroidSprite)
-
-  ]
-
-
-  let spriteManagerPlanet = new BABYLON.SpriteManager(
-      "planetMgr", "assets/renderwahn_planets/A00.png", 10, 122, scene);
-  let planetSprite = new BABYLON.Sprite("planet", spriteManagerPlanet);
-
-
-  let planets = [
-    entities.planetFactory({x:0, y:1, z: 10}, 2, planetSprite)
-  ]
-
-  BABYLON.SceneLoader.ImportMesh("", "assets/","star_cruiser_1.babylon", 
-      scene, function(newMesh){
-
-    let spriteManagerBullet = new BABYLON.SpriteManager(
-        "bulletMgr", "assets/redblast.png", 1000,16, scene); 
-
-    let playerData = {
-
-      'accel': 0.00005,
-      'rotation': 0.005
-    }
-    let playerWeapon = [new weapon.Weapon(500, spriteManagerBullet)]
-    newMesh[0].rotate(BABYLON.Axis.Y, -Math.PI/2, BABYLON.Space.LOCAL)
-    entMan.insert(entities.playerShipFactory(
-      {x: 0, y:-1, z: -2}, scene, newMesh[0], camera, playerWeapon, playerData
-    ));
-  });
-
-  return enter_system(scene, entMan, planets, lights, ents);
-};
-
-
-export function enter_system(scene, entMan, planets, lights, ents) {
-  let world_models = []
-
-  for (let light of lights) {
-    let new_light = new BABYLON.HemisphericLight(light.name,
-        new BABYLON.Vector3(light.pos.x, light.pos.y, light.pos.z),
-        scene
-    );
-    new_light.intensity = light.intensity;
-
-    world_models.push(new_light);
-  }
-
-  for (let ent of ents) {
-    entMan.insert( ent );
-  }
-
-  for (let planet of planets) {
-    entMan.insert( planet );
-  }
-
-  return world_models;
 };
 
 
