@@ -1,5 +1,8 @@
-export function setup_system(scene, camera, entMan){
+export function setup_system(scene, camera, entMan, system, system_dat){
   // Sets up the models for a system
+
+  console.log(system);
+  console.log(system_dat);
 
   let lights = [
     {

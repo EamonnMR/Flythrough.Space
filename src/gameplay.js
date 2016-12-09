@@ -28,7 +28,9 @@ export function setupGameplayRender (gameCanvas, mapdata, current_system) {
 
   let camera = new BABYLON.FreeCamera(
         "camera1", new BABYLON.Vector3(0, -1, -10), scene)
-  let world_models = system.setup_system(scene, camera, entMan);
+  let world_models = system.setup_system(scene, camera, entMan,
+                                         current_system,
+                                         mapdata.systems[current_system]);
 
   let map_view = null; // Only populated while game is paused
 
@@ -67,7 +69,22 @@ export function setupGameplayRender (gameCanvas, mapdata, current_system) {
       for (let world_model of world_models){
         world_model.dispose();
       }
-      world_models = system.setup_system(scene, camera, entMan);
+      world_models = system.setup_system(scene, camera, entMan,
+                                         current_system, 
+                                         mapdata.systems[current_system]);
+    },
+
+    'hyper_jump': function() {
+
+      current_system = selected_system;
+
+      entMan.clear();
+      for (let world_model of world_models){
+        world_model.dispose();
+      }
+      world_models = system.setup_system(scene, camera, entMan,
+                                         current_system,
+                                         mapdata.systems[current_system]);
     }
 
   });
