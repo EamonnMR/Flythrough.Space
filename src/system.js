@@ -1,8 +1,5 @@
-export function setup_system(scene, camera, entMan, system, system_dat){
+export function setup_system(scene, camera, entMan, system, system_dat, spobs){
   // Sets up the models for a system
-
-  console.log(system);
-  console.log(system_dat);
 
   let lights = [
     {
@@ -24,15 +21,23 @@ export function setup_system(scene, camera, entMan, system, system_dat){
 
   ]
 
-
+  // TODO: Don't handle planet sprites like this
   let spriteManagerPlanet = new BABYLON.SpriteManager(
       "planetMgr", "assets/renderwahn_planets/A00.png", 10, 122, scene);
-  let planetSprite = new BABYLON.Sprite("planet", spriteManagerPlanet);
 
 
-  let planets = [
-    entities.planetFactory({x:0, y:1, z: 10}, 2, planetSprite)
-  ]
+  let planets = [];
+  if ('spobs' in system_dat) {
+    for (let spob_name of system_dat.spobs){
+      let spob_dat = spobs[spob_name];
+      let planetSprite = new BABYLON.Sprite("planet", spriteManagerPlanet);
+      let planet = entities.planetFactory({
+        x:spob_dat.x,
+        y:spob_dat.y,
+        z: 0}, 2, planetSprite);
+      planets.push( planet );
+    }
+  }
 
   BABYLON.SceneLoader.ImportMesh("", "assets/","star_cruiser_1.babylon",
       scene, function(newMesh){
@@ -72,6 +77,7 @@ function enter_system(scene, entMan, planets, lights, ents) {
   for (let ent of ents) {
     entMan.insert( ent );
   }
+
 
   for (let planet of planets) {
     entMan.insert( planet );

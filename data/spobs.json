@@ -472,7 +472,6 @@
 		"govt":"pen",
 		"x":295,
 		"y":-125,
-		"govt":"pen",
 		"text":"The population center of the Albacore system. Mariposa's small size (and large oceans) lead to its population density quickly overwhelming its resources early in its history, and lead to much movement off-world. In the years since, it has been a priority of the planet's government to repair the damage done to its environment before the invention of fusion power.",
 		"tech":{
 			"generic":2,
@@ -591,7 +590,7 @@
 		"govt":"pen",
 		"x":-38,
 		"y":49,
-		"text":"Populated since at least 200, Gillespie was a very target of colonies, so the lanscape is a patchwork of different visions of extraplanetary colonization. It has been called the 'mother of itaskan spaceflight' since if it wasn't so close to Itaskana, they might have never developed starship technology.",
+		"text":"Populated since at least 200, Gillespie was a very target of colonies, so the lanscape is a patchwork of different visions of extraplanetary colonization. It has been called the 'mother of itaskan spaceflight' since if it wasn't so close to Itaskana, they might have never developed starship technology."
 	},
 	"Buttonwood":{
 		"sType":"rwI01",
