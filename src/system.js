@@ -29,15 +29,19 @@ export function setup_system(scene, camera, entMan, system, system_dat, spobs){
   let planets = [];
   if ('spobs' in system_dat) {
     for (let spob_name of system_dat.spobs){
+      console.log('spob: ' + spob_name);
       let spob_dat = spobs[spob_name];
+      console.log(spob_dat);
       let planetSprite = new BABYLON.Sprite("planet", spriteManagerPlanet);
       let planet = entities.planetFactory({
-        x:spob_dat.x,
-        y:spob_dat.y,
+        x: spob_dat.x / 10.0,  //TODO: What scale do we use? AU?
+        y: spob_dat.y / 10.0,
         z: 0}, 2, planetSprite);
       planets.push( planet );
     }
   }
+
+  console.log( planets);
 
   BABYLON.SceneLoader.ImportMesh("", "assets/","star_cruiser_1.babylon",
       scene, function(newMesh){

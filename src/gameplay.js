@@ -78,7 +78,7 @@ export function setupGameplayRender (gameCanvas, mapdata,
     },
 
     'hyper_jump': function() {
-
+      console.log("HJ from" + current_system + " to " + selected_system);
       current_system = selected_system;
 
       entMan.clear();
