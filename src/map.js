@@ -1,6 +1,6 @@
 export class MapView {
-  constructor(data, position, scene, game_canvas){
-
+  constructor(data, position, scene, game_canvas, selected_system){
+    console.log( data, position, scene, game_canvas );
     this.data = data;
 
     this.scale_factor = 1;
@@ -22,19 +22,35 @@ export class MapView {
       y: this.offset.y,
     });
 
+    let current = this.data.systems[selected_system];
+
+    this.selection = selected_system;
+
+		this.selection_img = new BABYLON.Ellipse2D({
+      parent: this.map_image,
+      id: 'selection',
+      x: ( current.x - 10) * this.scale_factor,
+      y: (-1 * current.y - 10) *  this.scale_factor,
+      width: 20,
+      height: 20,
+      fill: BABYLON.Canvas2D.GetSolidColorBrushFromHex('#00FFFFFF') 
+    });
+    
+    this.selection_img.zOrder = .9;
+
     this.map_image.pointerEventObservable.add(
       (d, s) => {
         let target = d.relatedTarget.id;
         if (target.indexOf('_circle') > 0){
           console.log("Clicked: " + target);
+          this.move_selection(target.replace('_circle', ''))
         }
       }, BABYLON.PrimitivePointerInfo.PointerUp
+
     );
 
     // Set up color fills for map drawing
     let govt_colors = {};
-
-    console.log (data.govts);
 
     for (let name of Object.keys(data.govts)){
       govt_colors[ name ] = BABYLON.Canvas2D.GetSolidColorBrushFromHex(
@@ -42,25 +58,22 @@ export class MapView {
       );
     }
 
-    console.log (govt_colors);
 
-
-    let nogov_color = BABYLON.Canvas2D.GetSolidColorBrushFromHex(
-      '#A9A9A9FF'
-    );
-
+    let nogov_color = BABYLON.Canvas2D.GetSolidColorBrushFromHex('#A9A9A9FF');
 
     let circle_size = 10;
 
     for ( let system of Object.keys(data.systems)) {
       let system_dat = data.systems[system];
-      new BABYLON.Text2D( system, {
+      let sys_text = new BABYLON.Text2D( system, {
         parent: this.map_image,
         id: system + '_label',
         x: (circle_size + system_dat.x) * this.scale_factor,
         y: (circle_size + system_dat.y) * this.scale_factor * -1,
-        fontName: '15pt Courier'
+        fontName: '13pt Courier'
       });
+
+      sys_text.zOrder = .7;
       
       let sys_loc_vec = new BABYLON.Vector2(system_dat.x * this.scale_factor,
                                         -1 * system_dat.y * this.scale_factor)
@@ -68,31 +81,39 @@ export class MapView {
       for (let other_system_id of system_dat.links ){
         if (other_system_id in data.systems) {
           let other_system = data.systems[other_system_id];
-        
-          new BABYLON.Lines2D(
-              [sys_loc_vec,
-              new BABYLON.Vector2(other_system.x * this.scale_factor,
-                                  -1 * other_system.y * this.scale_factor)],
-              {
+          
+          let vectors = [
+            sys_loc_vec,
+            new BABYLON.Vector2(other_system.x * this.scale_factor,
+                                -1 * other_system.y * this.scale_factor)
+          ]
+
+          let sys_line = new BABYLON.Lines2D(
+              vectors, {
                 parent: this.map_image,
-                id: system + '->' + other_system_id
+                id: system + '->' + other_system_id,
+                fill: nogov_color
               }
           );
+
+          sys_line.zOrder = .6;
         } else {
           console.log('bad link: ' + system + ' -> ' + other_system_id);
         }
       }
 
 
-      new BABYLON.Ellipse2D({
+      let sys_circle = new BABYLON.Ellipse2D({
         parent: this.map_image,
         id: system + '_circle',
-        x: system_dat.x * this.scale_factor,
-        y: -1 * system_dat.y * this.scale_factor,
+        x: (system_dat.x - circle_size / 2) * this.scale_factor,
+        y: (-1 * system_dat.y - (circle_size / 2)) * this.scale_factor,
         width: circle_size,
         height: circle_size,
         fill: 'govt' in system_dat ? govt_colors[system_dat.govt] : nogov_color
       });
+
+      sys_circle.zOrder = .5;
     }
     this.map_sub = null;
     this.draw_position();
@@ -118,6 +139,7 @@ export class MapView {
       this.map_image.y = this.offset.y;
       this.draw_position();
     });
+
   }
 
   dispose(game_canvas){
@@ -126,9 +148,20 @@ export class MapView {
     game_canvas.unbind('mousemove');
     this.canvas.dispose();
     return {
-      x: this.offset.x - this.diff.x,
-      y: this.offset.y - this.diff.y
-    }
+      position: {
+        x: this.offset.x - this.diff.x,
+        y: this.offset.y - this.diff.y,
+      },
+      selection: this.selection
+    };
+  }
+
+  move_selection( system_name ){
+    this.selection = system_name;
+    console.log( this.selection );
+    let sel_system = this.data.systems[system_name];
+    this.selection_img.x = (sel_system.x - 10) * this.scale_factor;
+    this.selection_img.y = (-1 * sel_system.y - 10) *  this.scale_factor;
   }
 
   draw_position(){
