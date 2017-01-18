@@ -1,4 +1,6 @@
-import * as gameplay from "gameplay";
+import * as main from "main";
+
+// TODO: Implement a proper loading scheme
 
 $(() => {
   let systems, spobs;
@@ -13,8 +15,7 @@ $(() => {
     })
   ).then( () => {
     if (systems && spobs) {
-      console.log('reached inner callback');
-      gameplay.setupGameplayRender(
+      main.init(
         $('#gameCanvas'), systems, spobs, 'Casamance'
       );
     }
