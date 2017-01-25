@@ -43,7 +43,7 @@ export function setup_system(scene, camera, entMan, system, system_dat, spobs){
 
   console.log( planets);
 
-  BABYLON.SceneLoader.ImportMesh("", "assets/","star_cruiser_1.babylon",
+  BABYLON.SceneLoader.ImportMesh("", "assets/","pointer.babylon",
       scene, function(newMesh){
 
     let spriteManagerBullet = new BABYLON.SpriteManager(
@@ -55,7 +55,7 @@ export function setup_system(scene, camera, entMan, system, system_dat, spobs){
       'rotation': 0.005
     }
     let playerWeapon = [new weapon.Weapon(500, spriteManagerBullet)]
-    newMesh[0].rotate(BABYLON.Axis.Y, -Math.PI/2, BABYLON.Space.LOCAL)
+    // newMesh[0].rotate(BABYLON.Axis.Y, -Math.PI/2, BABYLON.Space.LOCAL)
     entMan.insert(entities.playerShipFactory(
       {x: 0, y:-1, z: -2}, scene, newMesh[0], camera, playerWeapon, playerData
     ));
