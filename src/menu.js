@@ -1,15 +1,10 @@
-// TODO: Import some sort of state superclass?
-// Maybe if we ever switch to TypeScript
+import * as states from "states"
 
-export class MainMenuView{
+export class MainMenuView extends states.ViewState {
   constructor(scene, dom_canvas){ // TODO: Load list of save games?
-    this.mgr = null;
+    super()
     this.scene = scene;
     this.dom_canvas = dom_canvas;
-  }
-
-  update(){
-    // If anything needed to be animated, put it here.
   }
 
   resize(){

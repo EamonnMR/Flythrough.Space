@@ -1,6 +1,12 @@
 // import * as gameplay from "gameplay";
 // import * as map from "map";
 import * as menu from "menu";
+
+
+/* StateManager - FSM for game states
+ * see states.js for more info on the state class.
+ * If we ever move to typescript, we can enforce this.
+ */
 class StateManager{
   // TODO: Player state needs to persist through this
   constructor(state_hash, initial_state){
