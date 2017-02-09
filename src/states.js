@@ -4,7 +4,7 @@
 
 export class ViewState{
   constructor(){
-    this.mgr = null;
+    this.parent = null;
   }
 
   update(){
@@ -27,3 +27,39 @@ export class ViewState{
     // Cleanup
   }
 }
+
+
+/* StateManager - FSM for game states
+ * see states.js for more info on the state class.
+ * If we ever move to typescript, we can enforce this.
+ */
+export class StateManager{
+  // TODO: Player state needs to persist through this
+  constructor(state_hash, initial_state){
+    this.states = state_hash;
+    this.current_state = state_hash[initial_state];
+    // Is this a poorly hatched scheme?
+    this.each_do((state) => { state.parent = this; });
+  }
+
+  each_do(func){  // Still waiting on a saner way to do this
+    for (let name of Object.keys(this.states)){
+      func(this.states[name], name);
+    }
+  }
+
+  update(){
+    this.each_do((state) => { state.update() });
+  }
+
+  resize(){ // TODO: Figure out what we can provide for this
+    this.each_do((state) => { state.resize() });
+  }
+
+  enter_state(new_state){
+    this.current_state.exit();
+    this.current_state = this.states[new_state];
+    this.current_state.enter();
+  }
+}
+
