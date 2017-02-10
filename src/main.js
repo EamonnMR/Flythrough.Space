@@ -1,4 +1,5 @@
-// import * as gameplay from "gameplay";
+import * as gameplay from "gameplay";
+import * as player from "player";
 // import * as map from "map";
 import * as menu from "menu";
 import * as states from "states";
@@ -14,11 +15,15 @@ export function init(gameCanvas, mapdata, spobs, player_data){
             "camera1", new BABYLON.Vector3(0, -1, -10), scene)
 
   // start initial state
+  
+  player_data = new player.PlayerSave();
+
   let stateMgr = new states.StateManager({
-    //'gameplay': new GameplayState(engine, mapdata, spobs, player_data);
+    'gameplay': new gameplay.GameplayState(
+        scene, camera, mapdata, spobs, player_data),
     //'map': new map.MapView();
     'menu': new menu.MainMenuView(scene, gameCanvas)
-  });
+  }, 'gameplay');
  
   // Handle resizes
 

@@ -40,6 +40,7 @@ export class StateManager{
     this.current_state = state_hash[initial_state];
     // Is this a poorly hatched scheme?
     this.each_do((state) => { state.parent = this; });
+    this.current_state.enter();
   }
 
   each_do(func){  // Still waiting on a saner way to do this

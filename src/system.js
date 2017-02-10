@@ -1,6 +1,6 @@
 export function setup_system(scene, camera, entMan, system, system_dat, spobs){
   // Sets up the models for a system
-
+  console.log(system_dat);
   let lights = [
     {
       'name': 'sun',
