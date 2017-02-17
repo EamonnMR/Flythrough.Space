@@ -1,6 +1,6 @@
 import * as gameplay from "gameplay";
 import * as player from "player";
-// import * as map from "map";
+import * as map from "map";
 import * as menu from "menu";
 import * as states from "states";
 
@@ -21,7 +21,9 @@ export function init(gameCanvas, mapdata, spobs, player_data){
   let stateMgr = new states.StateManager({
     'gameplay': new gameplay.GameplayState(
         scene, camera, mapdata, spobs, player_data),
-    //'map': new map.MapView();
+    'map': new map.MapView(
+        mapdata, {x: 0, y: 0}, scene, gameCanvas, player_data),
+
     'menu': new menu.MainMenuView(scene, gameCanvas)
   }, 'gameplay');
  

@@ -43,7 +43,6 @@ export class GameplayState extends states.ViewState {
   enter(){
     console.log('entered gameplay state');
 		this.create_world_models(this.player_data.current_system);
-    // entMan.unpause();
 
     input.bindInputFunctions({
       'toggle_pause': () => {
@@ -55,9 +54,11 @@ export class GameplayState extends states.ViewState {
           // selected_system = disposed.selection;
           // map_pos = disposed.position;
         } else {
-         this.entMan.pause();
-          //map_view = new map.MapView(mapdata, map_pos, scene,
-          //                           gameCanvas, selected_system);
+          // Note that different exits do different things to the state,
+          // so we don't actually put the functionality into the exit() function,
+          // we put it before the enter() call.
+          this.entMan.pause();
+          this.parent.enter_state('map');
         }
       },
 
