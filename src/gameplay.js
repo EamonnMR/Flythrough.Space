@@ -5,169 +5,111 @@ import * as input from "input";
 import * as entities from "entities";
 import * as collision from "collision";
 import * as map from "map";
+import * as system from "system";
+import * as states from "states";
 
 
-export function setupGameplayRender (gameCanvas, mapdata) {
-  let engine = new BABYLON.Engine(gameCanvas[0], true);
-  let entMan = new ecs.EntityManager([
-    input.inputSystem,
-    physics.velocitySystem,
-    physics.speedLimitSystem,
-    entities.modelPositionSystem,
-    entities.cameraFollowSystem,
-    weapon.weaponSystem,
-    weapon.decaySystem,
-    collision.collisionDetectionSystem,
-    ecs.deletionSystem
-  ]);
+export class GameplayState extends states.ViewState {
 
+  constructor(scene, camera, mapdata, spobs, player_data) {
+    super();
+    this.mapdata = mapdata;
+    this.spobs = spobs;
 
-  let scene = new BABYLON.Scene(engine);
-  scene.clearColor = new BABYLON.Color3(0, 0, 0);
+    this.scene = scene;
+    this.camera = camera;
 
-  let camera = new BABYLON.FreeCamera(
-        "camera1", new BABYLON.Vector3(0, -1, -10), scene)
-  let world_models = setup_world(scene, camera, entMan);
+    this.player_data = player_data;
 
-  let map_view = null; // Only populated while game is paused
-
-  window.addEventListener("resize", function () {
-    engine.resize();
-    if (map_view){
-      // TODO: Refactor these
-      let position = map_view.dispose(gameCanvas);
-      map_view = new map.MapView(mapdata, position, scene, gameCanvas);
-    }
-  });
-
-
-  input.bindInputFunctions({
-    'toggle_pause': function(){
-      if ( entMan.paused ){
-        entMan.unpause();
-        map_view.dispose(gameCanvas);
-        map_view = null;
-      } else {
-        entMan.pause();
-        map_view = new map.MapView(mapdata, {x: 0, y: 0}, scene, gameCanvas);
-      }
-    },
-
-    'reset_game': function() {
-      entMan.clear();
-      for (let world_model of world_models){
-        world_model.dispose();
-      }
-      world_models = setup_world(scene, camera, entMan);
-    }
-
-  });
-
-  engine.runRenderLoop(function () {
-    scene.render();
-    entMan.update();
-  });
-};
-
-
-export function setup_world(scene, camera, entMan) {
-  let lights = [
-    {
-      'name': 'sun',
-      'pos': {x: 0, y: 1, z: 0},
-      'intensity': .5
-    }
-  ]
-
-  let spriteManagerAsteroid = new BABYLON.SpriteManager(
-      "roidMgr", "assets/asteroid.png", 1000, 269, scene);
-
-  let asteroidSprite = new BABYLON.Sprite("roid", spriteManagerAsteroid);
- 
-  let ents = [
-    entities.asteroidFactory({x: 3, y: 3}, 
-                             {x: -0.00008, y: -0.00008},
-                             asteroidSprite)
-
-  ]
-
-
-  let spriteManagerPlanet = new BABYLON.SpriteManager(
-      "planetMgr", "assets/renderwahn_planets/A00.png", 10, 122, scene);
-  let planetSprite = new BABYLON.Sprite("planet", spriteManagerPlanet);
-
-
-  let planets = [
-    entities.planetFactory({x:0, y:1, z: 10}, 2, planetSprite)
-  ]
-
-  BABYLON.SceneLoader.ImportMesh("", "assets/","star_cruiser_1.babylon", 
-      scene, function(newMesh){
-
-    let spriteManagerBullet = new BABYLON.SpriteManager(
-        "bulletMgr", "assets/redblast.png", 1000,16, scene); 
-
-    let playerData = {
-
-      'accel': 0.00005,
-      'rotation': 0.005
-    }
-    let playerWeapon = [new weapon.Weapon(500, spriteManagerBullet)]
-    newMesh[0].rotate(BABYLON.Axis.Y, -Math.PI/2, BABYLON.Space.LOCAL)
-    entMan.insert(entities.playerShipFactory(
-      {x: 0, y:-1, z: -2}, scene, newMesh[0], camera, playerWeapon, playerData
-    ));
-  });
-
-  return enter_system(scene, entMan, planets, lights, ents);
-};
-
-
-export function enter_system(scene, entMan, planets, lights, ents) {
-  let world_models = []
-
-  for (let light of lights) {
-    let new_light = new BABYLON.HemisphericLight(light.name,
-        new BABYLON.Vector3(light.pos.x, light.pos.y, light.pos.z),
-        scene
-    );
-    new_light.intensity = light.intensity;
-
-    world_models.push(new_light);
+    this.entMan = new ecs.EntityManager([
+      input.inputSystem,
+      physics.velocitySystem,
+      physics.speedLimitSystem,
+      entities.modelPositionSystem,
+      entities.cameraFollowSystem,
+      weapon.weaponSystem,
+      weapon.decaySystem,
+      collision.collisionDetectionSystem,
+      ecs.deletionSystem
+    ]);
+    this.empty = true;
+    this.world_models = [];
   }
 
-  for (let ent of ents) {
-    entMan.insert( ent );
+  update(){
+    this.entMan.update();
   }
 
-  for (let planet of planets) {
-    entMan.insert( planet );
+  enter(){
+    console.log('entered gameplay state');
+    if (this.empty){
+      this.setup_world();
+    }
+    this.entMan.unpause();
+    input.bindInputFunctions({
+      'toggle_pause': () => {
+
+        console.log('toggle_pause')
+        // Note that different exits do different things to the state,
+        // so we don't actually put the functionality into the exit() function,
+        // we put it before the enter() call.
+        this.entMan.pause();
+        this.parent.enter_state('map');
+      },
+
+      'reset_game': () => {
+        this.clear_world();
+        this.setup_world();  
+      },
+
+      'hyper_jump': () => {
+        console.log("HJ from" + current_system + " to " + selected_system);
+			  if ( this.player_data.selected_system
+            != this.player_data.selected_system
+        ) {
+      	  this.player_data.current_system = this.player_data.selected_system;
+			  } else {
+          console.log( "Tried to HJ to bad system");
+          return;
+        }
+        this.clear_world();
+        this.setup_world();
+      } 
+
+    });
   }
 
-  return world_models;
-};
+  create_world_models( system_name ){
+    this.world_models = system.setup_system(
+  		this.scene,
+			this.camera,
+			this.entMan,
+   		system_name,
+			this.mapdata.systems[ system_name ],
+   		this.spobs
+  	);
+  }
 
+	dispose_world_models(){
+		for (let world_model of this.world_models){
+       world_model.dispose();
+    }
 
-function create_hud( scene ){
-   var hud_canvas = new BABYLON.ScreenSpaceCanvas2D(scene, {
-     id: "ScreenCanvas",
-     size: new BABYLON.Size(300, 100),
-     backgroundFill: "#4040408F",
-     backgroundRoundRadius: 50,
-     children: [
-       new BABYLON.Text2D("Hello World!", {
-         id: "text",
-         marginAlignment: "h: center, v:center",
-         fontName: "20pt Courier",
-       })
+		this.world_models = [];
+  }
 
-     ]
-  });
-};
+  exit(){
+    input.unbindInputFunctions();
+  }
 
-$(() => {
-  $.getJSON('data/systems.json', function( systems ) {
-    setupGameplayRender( $('#gameCanvas'), systems );
-  });
-});
+  clear_world(){
+    this.entMan.clear();
+    this.dispose_world_models();
+    this.empty = true;
+  }
 
+  setup_world(){
+    this.create_world_models(this.player_data.current_system);
+    this.empty = false;
+  }
+}
