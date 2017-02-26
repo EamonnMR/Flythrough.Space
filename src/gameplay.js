@@ -6,114 +6,110 @@ import * as entities from "entities";
 import * as collision from "collision";
 import * as map from "map";
 import * as system from "system";
+import * as states from "states";
 
 
-export function setupGameplayRender (gameCanvas, mapdata, 
-                                     spobs, current_system) {
-  let engine = new BABYLON.Engine(gameCanvas[0], true);
-  let entMan = new ecs.EntityManager([
-    input.inputSystem,
-    physics.velocitySystem,
-    physics.speedLimitSystem,
-    entities.modelPositionSystem,
-    entities.cameraFollowSystem,
-    weapon.weaponSystem,
-    weapon.decaySystem,
-    collision.collisionDetectionSystem,
-    ecs.deletionSystem
-  ]);
+export class GameplayState extends states.ViewState {
 
+  constructor(scene, camera, mapdata, spobs, player_data) {
+    super();
+    this.mapdata = mapdata;
+    this.spobs = spobs;
 
-  let scene = new BABYLON.Scene(engine);
-  scene.clearColor = new BABYLON.Color3(0, 0, 0);
+    this.scene = scene;
+    this.camera = camera;
 
-  let camera = new BABYLON.FreeCamera(
-        "camera1", new BABYLON.Vector3(0, -1, -10), scene)
-  let world_models = system.setup_system(scene, camera, entMan,
-                                         current_system,
-                                         mapdata.systems[current_system],
-                                         spobs);
+    this.player_data = player_data;
 
-  let map_view = null; // Only populated while game is paused
+    this.entMan = new ecs.EntityManager([
+      input.inputSystem,
+      physics.velocitySystem,
+      physics.speedLimitSystem,
+      entities.modelPositionSystem,
+      entities.cameraFollowSystem,
+      weapon.weaponSystem,
+      weapon.decaySystem,
+      collision.collisionDetectionSystem,
+      ecs.deletionSystem
+    ]);
+    this.empty = true;
+    this.world_models = [];
+  }
 
-  let map_pos = {x: 0, y: 0};
+  update(){
+    this.entMan.update();
+  }
 
-  let selected_system = current_system;
-
-  window.addEventListener("resize", function () {
-    engine.resize();
-    if (map_view){
-      let {position, selection} = map_view.dispose(gameCanvas);
-      map_view = new map.MapView(mapdata, position,
-                                 scene, gameCanvas, selection );
+  enter(){
+    console.log('entered gameplay state');
+    if (this.empty){
+      this.setup_world();
     }
-  });
+    this.entMan.unpause();
+    input.bindInputFunctions({
+      'toggle_pause': () => {
 
+        console.log('toggle_pause')
+        // Note that different exits do different things to the state,
+        // so we don't actually put the functionality into the exit() function,
+        // we put it before the enter() call.
+        this.entMan.pause();
+        this.parent.enter_state('map');
+      },
 
-  input.bindInputFunctions({
-    'toggle_pause': function(){
-      if ( entMan.paused ){
-        entMan.unpause();
-        // TODO: Refactor w/ destructuring
-        let disposed = map_view.dispose(gameCanvas);
-        map_view = null;
-        selected_system = disposed.selection;
-        map_pos = disposed.position;
-      } else {
-        entMan.pause();
-        map_view = new map.MapView(mapdata, map_pos, scene,
-                                   gameCanvas, selected_system);
-      }
-    },
+      'reset_game': () => {
+        this.clear_world();
+        this.setup_world();  
+      },
 
-    'reset_game': function() {
-      entMan.clear();
-      for (let world_model of world_models){
-        world_model.dispose();
-      }
-      world_models = system.setup_system(scene, camera, entMan,
-                                         current_system, 
-                                         mapdata.systems[current_system],
-                                         spobs);
-    },
+      'hyper_jump': () => {
+        console.log("HJ from" + current_system + " to " + selected_system);
+			  if ( this.player_data.selected_system
+            != this.player_data.selected_system
+        ) {
+      	  this.player_data.current_system = this.player_data.selected_system;
+			  } else {
+          console.log( "Tried to HJ to bad system");
+          return;
+        }
+        this.clear_world();
+        this.setup_world();
+      } 
 
-    'hyper_jump': function() {
-      console.log("HJ from" + current_system + " to " + selected_system);
-      current_system = selected_system;
+    });
+  }
 
-      entMan.clear();
-      for (let world_model of world_models){
-        world_model.dispose();
-      }
-      world_models = system.setup_system(scene, camera, entMan,
-                                         current_system,
-                                         mapdata.systems[current_system],
-                                         spobs);
+  create_world_models( system_name ){
+    this.world_models = system.setup_system(
+  		this.scene,
+			this.camera,
+			this.entMan,
+   		system_name,
+			this.mapdata.systems[ system_name ],
+   		this.spobs
+  	);
+  }
+
+	dispose_world_models(){
+		for (let world_model of this.world_models){
+       world_model.dispose();
     }
 
-  });
+		this.world_models = [];
+  }
 
-  engine.runRenderLoop(function () {
-    scene.render();
-    entMan.update();
-  });
-};
+  exit(){
+    input.unbindInputFunctions();
+  }
 
+  clear_world(){
+    this.entMan.clear();
+    this.dispose_world_models();
+    this.empty = true;
+  }
 
-function create_hud( scene ){
-   var hud_canvas = new BABYLON.ScreenSpaceCanvas2D(scene, {
-     id: "ScreenCanvas",
-     size: new BABYLON.Size(300, 100),
-     backgroundFill: "#4040408F",
-     backgroundRoundRadius: 50,
-     children: [
-       new BABYLON.Text2D("Hello World!", {
-         id: "text",
-         marginAlignment: "h: center, v:center",
-         fontName: "20pt Courier",
-       })
-
-     ]
-  });
-};
-
+  setup_world(){
+    this.create_world_models(this.player_data.current_system);
+    this.empty = false;
+  }
+}

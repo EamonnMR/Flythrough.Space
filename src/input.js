@@ -1,5 +1,9 @@
 let game_ctrl = null;
 
+let debounce_esc = false;
+
+// TODO: GameCtrl should be a class.
+
 export function inputSystem (entMan) {
   for (let entity of entMan.get_with(['input'])) {
     if ('velocity' in entity) {
@@ -70,7 +74,15 @@ function handleKeyUp ( event ){
       inputStates.shoot = false;
       break;
     case 27: // escape
-      game_ctrl.toggle_pause();
+      if(!debounce_esc){
+        console.log('escape');
+        debounce_esc = true;
+        setTimeout(() => {
+          debounce_esc = false;
+          console.log('debounce');
+        }, 5000);
+        game_ctrl.toggle_pause();
+      }
       break;
     case 82: // 'r'
       game_ctrl.reset_game();
@@ -88,3 +100,13 @@ export function bindInputFunctions(new_game_ctrl){
   game_ctrl = new_game_ctrl;
 };
 
+// TODO: Make this a superclass that other gamectrls inherit from.
+let no_op_game_ctrl = {
+  toggle_pause: () => {},
+  reset_game: () => {},
+  hyper_jump: () => {},
+}
+
+export function unbindInputFunctions(){
+  game_ctrl = no_op_game_ctrl;
+}
