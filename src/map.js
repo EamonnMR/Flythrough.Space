@@ -1,4 +1,5 @@
 import * as states from "states";
+import * as input from "input";
 
 export class MapView extends states.ViewState{
   constructor(data, position, scene, game_canvas, player){
@@ -19,6 +20,15 @@ export class MapView extends states.ViewState{
     this.selection = this.player.selected_system;
   }
   enter(){
+    console.log(input);
+    input.bindInputFunctions({
+      toggle_pause: () => {
+        'exit map'
+        this.parent.enter_state('gameplay');
+      },
+      reset_game: () => {},
+      hyper_jump: () => {}
+    }) 
     this.canvas = new BABYLON.ScreenSpaceCanvas2D(this.scene, {
       id: "map_canvas",
       size: new BABYLON.Size(
@@ -151,6 +161,7 @@ export class MapView extends states.ViewState{
   }
 
   exit(){
+    input.unbindInputFunctions();
     this.game_canvas.unbind('mousedown');
     this.game_canvas.unbind('mouseup');
     this.game_canvas.unbind('mousemove');

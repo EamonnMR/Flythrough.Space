@@ -32,7 +32,7 @@ export class GameplayState extends states.ViewState {
       collision.collisionDetectionSystem,
       ecs.deletionSystem
     ]);
-
+    this.empty = true;
     this.world_models = [];
   }
 
@@ -42,31 +42,25 @@ export class GameplayState extends states.ViewState {
 
   enter(){
     console.log('entered gameplay state');
-		this.create_world_models(this.player_data.current_system);
-
+    if (this.empty){
+      this.setup_world();
+    }
+    this.entMan.unpause();
     input.bindInputFunctions({
       'toggle_pause': () => {
-        if ( this.entMan.paused ){
-          this.entMan.unpause();
-          // TODO: Refactor w/ destructuring
-          // let disposed = map_view.dispose(gameCanvas);
-          // map_view = null;
-          // selected_system = disposed.selection;
-          // map_pos = disposed.position;
-        } else {
-          // Note that different exits do different things to the state,
-          // so we don't actually put the functionality into the exit() function,
-          // we put it before the enter() call.
-          this.entMan.pause();
-          this.parent.enter_state('map');
-        }
+
+        console.log('toggle_pause')
+        // Note that different exits do different things to the state,
+        // so we don't actually put the functionality into the exit() function,
+        // we put it before the enter() call.
+        this.entMan.pause();
+        this.parent.enter_state('map');
       },
 
       'reset_game': () => {
-         this.entMan.clear();
-         this.dispose_world_models();
-         this.create_world_models(this.player_data.current_system);
-       },
+        this.clear_world();
+        this.setup_world();  
+      },
 
       'hyper_jump': () => {
         console.log("HJ from" + current_system + " to " + selected_system);
@@ -78,10 +72,8 @@ export class GameplayState extends states.ViewState {
           console.log( "Tried to HJ to bad system");
           return;
         }
-
-        this.entMan.clear();
-				this.dispose_world_models();
-				this.create_world_models(this.player_data.current_system);
+        this.clear_world();
+        this.setup_world();
       } 
 
     });
@@ -104,5 +96,20 @@ export class GameplayState extends states.ViewState {
     }
 
 		this.world_models = [];
+  }
+
+  exit(){
+    input.unbindInputFunctions();
+  }
+
+  clear_world(){
+    this.entMan.clear();
+    this.dispose_world_models();
+    this.empty = true;
+  }
+
+  setup_world(){
+    this.create_world_models(this.player_data.current_system);
+    this.empty = false;
   }
 }
