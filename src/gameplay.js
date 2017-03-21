@@ -47,7 +47,7 @@ export class GameplayState extends states.ViewState {
     }
     this.entMan.unpause();
     input.bindInputFunctions({
-      'toggle_pause': () => {
+      toggle_pause: () => {
 
         console.log('toggle_pause')
         // Note that different exits do different things to the state,
@@ -57,12 +57,12 @@ export class GameplayState extends states.ViewState {
         this.parent.enter_state('map');
       },
 
-      'reset_game': () => {
+      reset_game: () => {
         this.clear_world();
         this.setup_world();  
       },
 
-      'hyper_jump': () => {
+      hyper_jump: () => {
         console.log("HJ from" + current_system + " to " + selected_system);
 			  if ( this.player_data.selected_system
             != this.player_data.selected_system
@@ -74,8 +74,14 @@ export class GameplayState extends states.ViewState {
         }
         this.clear_world();
         this.setup_world();
-      } 
+      },
 
+      try_land: () => {
+        console.log('Tried to land')
+        // TODO: Check if there are available planets to land on
+        this.clear_world();
+        this.parent.enter_state('landing');
+      }
     });
   }
 
