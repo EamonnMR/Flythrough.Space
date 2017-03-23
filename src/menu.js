@@ -5,6 +5,7 @@ export class MainMenuView extends states.ViewState {
     super()
     this.scene = scene;
     this.dom_canvas = dom_canvas;
+    this.widgets = {};
   }
 
   resize(){
@@ -38,6 +39,10 @@ export class MainMenuView extends states.ViewState {
       }, BABYLON.PrimitivePointerInfo.PointerUp
 
     );
+
+     for (let id of Object.keys(this.widgets)){
+       this.widgets[id].setup(this.group);
+     }
   }
 
   exit(){
@@ -47,7 +52,20 @@ export class MainMenuView extends states.ViewState {
 	}
 
   respond_to_click(target_id){
-    // Override this with whatever you want your menu to do.
-    // TODO: Add widget system
+    if( target_id in this.widgets ){
+      this.widgets[target_id].clicked();
+    }
+  }
+}
+
+class Widget{
+  setup(group){
+    // Each time you enter this menu state, this will be called on your widget
+    // Remember to set the parent of whatever you create to 'group' if you want
+    // it to be clickable.
+  }
+
+  clicked(){
+    // Do something because the widget was clicked.
   }
 }
