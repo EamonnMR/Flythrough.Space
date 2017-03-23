@@ -14,6 +14,11 @@ export class MainMenuView extends states.ViewState {
   }
 
   enter(){
+    // You should probably call this in your enter function
+    this.setup_2d_canvas();
+  }
+
+  setup_2d_canvas(){
     this.canvas = new BABYLON.ScreenSpaceCanvas2D(this.scene, {
       id: "menu_canvas",
       size: new BABYLON.Size(this.dom_canvas.width(),
@@ -29,16 +34,20 @@ export class MainMenuView extends states.ViewState {
 	  this.group.pointerEventObservable.add(
       (d, s) => {
         let target = d.relatedTarget.id;
-        // TODO: Do stuff with the click
+        this.respond_to_click(target);
       }, BABYLON.PrimitivePointerInfo.PointerUp
 
     );
   }
 
   exit(){
-    this.canvas.dispose();
-    // TODO: Do we need to unbind anything else or is removing the canvas
-    // sufficient?
+    if(this.canvas){
+      this.canvas.dispose();
+    }
 	}
 
+  respond_to_click(target_id){
+    // Override this with whatever you want your menu to do.
+    // TODO: Add widget system
+  }
 }

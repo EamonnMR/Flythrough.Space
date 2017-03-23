@@ -1,7 +1,6 @@
 import * as gameplay from "gameplay";
 import * as player from "player";
 import * as map from "map";
-import * as menu from "menu";
 import * as states from "states";
 import * as landing from "landing";
 
@@ -25,8 +24,7 @@ export function init(gameCanvas, mapdata, spobs, player_data){
     'map': new map.MapView(
         mapdata, {x: 0, y: 0}, scene, gameCanvas, player_data),
 
-    'menu': new menu.MainMenuView(scene, gameCanvas),
-    'landing': new landing.LandingMainView(spobs, scene, gameCanvas),
+    'landing': new landing.LandingMainView(scene, gameCanvas),
   }, 'gameplay');
  
   // Handle resizes
