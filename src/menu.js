@@ -40,9 +40,9 @@ export class MainMenuView extends states.ViewState {
 
     );
 
-     for (let id of Object.keys(this.widgets)){
-       this.widgets[id].setup(this.group);
-     }
+    for (let id of Object.keys(this.widgets)){
+      this.widgets[id].setup(this.group);
+    }
   }
 
   exit(){
@@ -58,7 +58,7 @@ export class MainMenuView extends states.ViewState {
   }
 }
 
-class Widget{
+export class Widget{
   setup(group){
     // Each time you enter this menu state, this will be called on your widget
     // Remember to set the parent of whatever you create to 'group' if you want
@@ -67,5 +67,31 @@ class Widget{
 
   clicked(){
     // Do something because the widget was clicked.
+  }
+}
+
+export class TextButton extends Widget{
+  constructor(text, on_click, x, y, id){
+    super();
+    this.text = text;
+    this.on_click = on_click;
+    this.x = x;
+    this.y = y;
+    this.id = id;
+    this.img = null;
+  }
+
+  setup(group){
+    new BABYLON.Text2D(this.text, {
+      id: this.id,
+      x: this.x,
+      y: this.y,
+      fontName: '20pt Courier',
+      parent: group
+    });
+  }
+
+  clicked(){
+    this.on_click();
   }
 }
