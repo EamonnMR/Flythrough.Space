@@ -6,6 +6,7 @@ export class MainMenuView extends states.ViewState {
     this.scene = scene;
     this.dom_canvas = dom_canvas;
     this.widgets = {};
+    this.canvas = null;
   }
 
   resize(){
