@@ -1,3 +1,4 @@
 /js
 ngrok
 *.swp
+node_modules/*
