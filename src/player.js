@@ -6,5 +6,6 @@ export class PlayerSave {
     this.map_pos = {x: 0, y: 0};
     this.selected_system = "Casamance";
     this.current_system = "Casamance";
+    this.current_spob = null;
   }
 }

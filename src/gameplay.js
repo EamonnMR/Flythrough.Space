@@ -41,7 +41,6 @@ export class GameplayState extends states.ViewState {
   }
 
   enter(){
-    console.log('entered gameplay state');
     if (this.empty){
       this.setup_world();
     }
@@ -49,7 +48,6 @@ export class GameplayState extends states.ViewState {
     input.bindInputFunctions({
       toggle_pause: () => {
 
-        console.log('toggle_pause')
         // Note that different exits do different things to the state,
         // so we don't actually put the functionality into the exit() function,
         // we put it before the enter() call.
@@ -77,10 +75,14 @@ export class GameplayState extends states.ViewState {
       },
 
       try_land: () => {
-        console.log('Tried to land')
-        // TODO: Check if there are available planets to land on
-        this.clear_world();
-        this.parent.enter_state('landing');
+        let sys_spobs = this.entMan.get_with(['spob_name']);
+        if (sys_spobs[0]){
+          this.player_data.current_spob = sys_spobs[0].spob_name;
+          this.clear_world();
+          this.parent.enter_state('landing');
+        } else {
+          // TODO: Alert the player that they can't land because there are no spobs
+        }
       }
     });
   }

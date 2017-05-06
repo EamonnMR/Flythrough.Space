@@ -20,11 +20,11 @@ export function init(gameCanvas, mapdata, spobs, player_data){
 
   let stateMgr = new states.StateManager({
     'gameplay': new gameplay.GameplayState(
-        scene, camera, mapdata, spobs, player_data),
+        scene, camera, mapdata, spobs, player_data, mapdata),
     'map': new map.MapView(
         mapdata, {x: 0, y: 0}, scene, gameCanvas, player_data),
 
-    'landing': new landing.LandingMainView(scene, gameCanvas),
+    'landing': new landing.LandingMainView(scene, gameCanvas, spobs, player_data),
   }, 'gameplay');
  
   // Handle resizes
