@@ -61,17 +61,16 @@ export class GameplayState extends states.ViewState {
       },
 
       hyper_jump: () => {
-        console.log("HJ from" + current_system + " to " + selected_system);
-			  if ( this.player_data.selected_system
+			  if ( this.player_data.current_system
             != this.player_data.selected_system
         ) {
-      	  this.player_data.current_system = this.player_data.selected_system;
+      	  this.player_data.current_system = 
+                this.player_data.selected_system;
+          this.clear_world();
+          this.setup_world();
 			  } else {
           console.log( "Tried to HJ to bad system");
-          return;
         }
-        this.clear_world();
-        this.setup_world();
       },
 
       try_land: () => {
