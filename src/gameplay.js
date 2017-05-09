@@ -75,8 +75,9 @@ export class GameplayState extends states.ViewState {
 
       try_land: () => {
         let sys_spobs = this.entMan.get_with(['spob_name']);
-        if (sys_spobs[0]){
-          this.player_data.current_spob = sys_spobs[0].spob_name;
+        let landable = this.find_closest_landable_to_player(sys_spobs);
+        if (landable){
+          this.player_data.current_spob = landable.spob_name;
           this.clear_world();
           this.parent.enter_state('landing');
         } else {
@@ -118,5 +119,24 @@ export class GameplayState extends states.ViewState {
   setup_world(){
     this.create_world_models(this.player_data.current_system);
     this.empty = false;
+  }
+
+  get_player_ent(){
+    return this.entMan.get_with(['input'])[0];
+  }
+
+  find_closest_landable_to_player(spobs){
+    let min_distance = null;
+    let player = this.get_player_ent();
+    let choice = null;
+    for(let spob of spobs){
+      let distance = collision.distance(
+          spob.position, player.position);
+      if (!min_distance || min_distance > distance){
+        min_distance = distance;
+        choice = spob;
+      }
+    }
+    return choice;
   }
 }
