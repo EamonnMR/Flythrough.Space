@@ -141,15 +141,15 @@ export class Image extends Widget{
   constructor(texture, x, y){
     super();
     this.texture = texture;
-    this.position = BABYLON.Vector2(x, y);
+    this.x = x; this.y = y;
     this.sprite = null;
   }
 
   setup(group){
      this.sprite = new BABYLON.Sprite2D(this.texture,
      {
-       parent: group, id: "hero_img", position: this.position,
-       spriteSize: new BABYLON.Size(612, 285),
+       parent: group, id: 'hero', x: this.x, y: this.y,
+       align_to_pixel: true
      });
   }
 };
