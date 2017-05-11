@@ -41,15 +41,13 @@ export class GameplayState extends states.ViewState {
   }
 
   enter(){
-    console.log('entered gameplay state');
     if (this.empty){
       this.setup_world();
     }
     this.entMan.unpause();
     input.bindInputFunctions({
-      'toggle_pause': () => {
+      toggle_pause: () => {
 
-        console.log('toggle_pause')
         // Note that different exits do different things to the state,
         // so we don't actually put the functionality into the exit() function,
         // we put it before the enter() call.
@@ -57,25 +55,35 @@ export class GameplayState extends states.ViewState {
         this.parent.enter_state('map');
       },
 
-      'reset_game': () => {
+      reset_game: () => {
         this.clear_world();
         this.setup_world();  
       },
 
-      'hyper_jump': () => {
-        console.log("HJ from" + current_system + " to " + selected_system);
-			  if ( this.player_data.selected_system
+      hyper_jump: () => {
+			  if ( this.player_data.current_system
             != this.player_data.selected_system
         ) {
-      	  this.player_data.current_system = this.player_data.selected_system;
+      	  this.player_data.current_system = 
+                this.player_data.selected_system;
+          this.clear_world();
+          this.setup_world();
 			  } else {
           console.log( "Tried to HJ to bad system");
-          return;
         }
-        this.clear_world();
-        this.setup_world();
-      } 
+      },
 
+      try_land: () => {
+        let sys_spobs = this.entMan.get_with(['spob_name']);
+        let landable = this.find_closest_landable_to_player(sys_spobs);
+        if (landable){
+          this.player_data.current_spob = landable.spob_name;
+          this.clear_world();
+          this.parent.enter_state('landing');
+        } else {
+          // TODO: Alert the player that they can't land because there are no spobs
+        }
+      }
     });
   }
 
@@ -111,5 +119,24 @@ export class GameplayState extends states.ViewState {
   setup_world(){
     this.create_world_models(this.player_data.current_system);
     this.empty = false;
+  }
+
+  get_player_ent(){
+    return this.entMan.get_with(['input'])[0];
+  }
+
+  find_closest_landable_to_player(spobs){
+    let min_distance = null;
+    let player = this.get_player_ent();
+    let choice = null;
+    for(let spob of spobs){
+      let distance = collision.distance(
+          spob.position, player.position);
+      if (!min_distance || min_distance > distance){
+        min_distance = distance;
+        choice = spob;
+      }
+    }
+    return choice;
   }
 }

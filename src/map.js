@@ -170,7 +170,7 @@ export class MapView extends states.ViewState{
       x: this.offset.x - this.diff.x,
       y: this.offset.y - this.diff.y,
     };
-    this.player.selection = this.selection
+    this.player.selected_system = this.selection
   }
 
   move_selection( system_name ){

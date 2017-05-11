@@ -54,7 +54,10 @@ export class StateManager{
   }
 
   resize(){ // TODO: Figure out what we can provide for this
-    this.each_do((state) => { state.resize() });
+    // TODO: Do we want to cache anything on a resize? If not,
+    // we should not bother resizing all states, just tue current one.
+    // this.each_do((state) => { state.resize() });
+    this.current_state.resize();
   }
 
   enter_state(new_state){

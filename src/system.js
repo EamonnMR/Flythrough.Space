@@ -36,12 +36,10 @@ export function setup_system(scene, camera, entMan, system, system_dat, spobs){
       let planet = entities.planetFactory({
         x: spob_dat.x / 10.0,  //TODO: What scale do we use? AU?
         y: spob_dat.y / 10.0,
-        z: 0}, 2, planetSprite);
+        z: 0}, 2, planetSprite, spob_name);
       planets.push( planet );
     }
   }
-
-  console.log( planets);
 
   BABYLON.SceneLoader.ImportMesh("", "assets/","star_cruiser_1.babylon",
       scene, function(newMesh){

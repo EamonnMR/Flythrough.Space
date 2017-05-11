@@ -13,13 +13,15 @@ export function playerShipFactory(position, scene, mesh, camera, weapons, data) 
 };
 
 
-export function planetFactory (position, size, sprite) {
+export function planetFactory (position, size,
+    sprite, name) {
   sprite.position.x = position.x;
   sprite.position.y = position.y;
   sprite.position.z = position.z;
   return {
     'position': {'x': position.x, 'y': position.y},
-    'model': sprite
+    'model': sprite,
+    'spob_name': name 
   };
 };
 

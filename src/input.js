@@ -90,6 +90,8 @@ function handleKeyUp ( event ){
     case 74: // 'j'
       game_ctrl.hyper_jump();
       break;
+    case 76: // 'l'
+      game_ctrl.try_land();
   }
 };
 
@@ -105,6 +107,7 @@ let no_op_game_ctrl = {
   toggle_pause: () => {},
   reset_game: () => {},
   hyper_jump: () => {},
+  try_land: () => {},
 }
 
 export function unbindInputFunctions(){
