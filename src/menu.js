@@ -32,15 +32,17 @@ export class MainMenuView extends states.ViewState {
       parent: this.canvas,
       id: 'menu_group' 
     });
-		
+	  console.log("pre pointer event observable");	
 	  this.group.pointerEventObservable.add(
       (d, s) => {
+        console.log('clicked: ');
+        console.log(d.relatedTarget.id);
         let target = d.relatedTarget.id;
         this.respond_to_click(target);
       }, BABYLON.PrimitivePointerInfo.PointerUp
 
     );
-
+    console.log("Pre widgets")
     for (let id of Object.keys(this.widgets)){
       this.widgets[id].setup(this.group);
     }
@@ -114,7 +116,6 @@ export class TextBox extends Widget{
     this.text_size = 18;
     this.text_width = Math.round(this.text_size * .888888888) // TODO: Figure out
     this.get_width_func = get_width_func
-    console.log(this);
   }
 
   setup(group){
@@ -135,10 +136,25 @@ export class TextBox extends Widget{
   }
 } 
 
-export function line_break(text, max_line_width){
 
-  console.log(max_line_width);
-  console.log(text.length);
+export class Image extends Widget{
+  constructor(texture, x, y){
+    super();
+    this.texture = texture;
+    this.position = BABYLON.Vector2(x, y);
+    this.sprite = null;
+  }
+
+  setup(group){
+     this.sprite = new BABYLON.Sprite2D(this.texture,
+     {
+       parent: group, id: "hero_img", position: this.position,
+       spriteSize: new BABYLON.Size(612, 285),
+     });
+  }
+};
+
+export function line_break(text, max_line_width){
   let words = text.split(" ");
   let lines = [];
   let line = "";

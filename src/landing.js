@@ -5,6 +5,7 @@ export class LandingMainView extends menu.MainMenuView {
     super(scene, dom_canvas);
     this.spobs = spobs;
     this.player_data = player_data;
+    this.scene = scene;
   }
   enter(){
     console.log(this.player_data.current_spob);
@@ -21,15 +22,29 @@ export class LandingMainView extends menu.MainMenuView {
           'leave ' + this.player_data.current_spob,
         () => {
           this.parent.enter_state('gameplay');
-        }, 0, 0, 'leave_btn'),
+        }, 0, this.dom_canvas.height() - 25, 'leave_btn'),
     };
+    
+    // TODO: Load this from the spob type (default) then
+    // custom specified image
+    widgets['hero'] = new menu.Image(this.get_spob_img(), 0,
+        this.dom_canvas.height() );
 
     if (this.spob.text){
-      console.log(this.dom_canvas.width());
       widgets['desc'] = new menu.TextBox(this.spob.text,
-         0,this.dom_canvas.height() - 18, 'desc',
+         0,this.dom_canvas.height() - (18 + 285), 'desc',
          () => {return this.dom_canvas.width()} );
     }
     return widgets;
+  }
+
+  get_spob_img(){
+    
+    let landing_texture = "assets/misc_pd/Doha.png";
+
+    // TODO: Verify args here
+    return new BABYLON.Texture(
+        landing_texture, this.scene, true,
+      false, BABYLON.Texture.NEAREST_SAMPLINGMODE);
   }
 };
