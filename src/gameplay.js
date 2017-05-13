@@ -43,6 +43,9 @@ export class GameplayState extends states.ViewState {
 
   update(){
     this.entMan.update();
+    if (this.hud){
+      this.hud.update();
+    }
   }
 
   enter(){
