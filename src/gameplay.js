@@ -7,11 +7,13 @@ import * as collision from "collision";
 import * as map from "map";
 import * as system from "system";
 import * as states from "states";
+import * as hud from "hud";
 
 
 export class GameplayState extends states.ViewState {
 
-  constructor(scene, camera, mapdata, spobs, player_data) {
+  constructor(scene, camera, mapdata, spobs, player_data,
+      dom_canvas) {
     super();
     this.mapdata = mapdata;
     this.spobs = spobs;
@@ -20,6 +22,7 @@ export class GameplayState extends states.ViewState {
     this.camera = camera;
 
     this.player_data = player_data;
+    this.dom_canvas = dom_canvas;
 
     this.entMan = new ecs.EntityManager([
       input.inputSystem,
@@ -30,6 +33,8 @@ export class GameplayState extends states.ViewState {
       weapon.weaponSystem,
       weapon.decaySystem,
       collision.collisionDetectionSystem,
+      hud.selectionFollowSystem,
+      hud.radarFollowSystem,
       ecs.deletionSystem
     ]);
     this.empty = true;
@@ -113,11 +118,14 @@ export class GameplayState extends states.ViewState {
   clear_world(){
     this.entMan.clear();
     this.dispose_world_models();
+    this.hud.dispose();
+    this.hud = null;
     this.empty = true;
   }
 
   setup_world(){
     this.create_world_models(this.player_data.current_system);
+    this.hud = new hud.HUD(this.scene, this.dom_canvas, this.entMan);
     this.empty = false;
   }
 

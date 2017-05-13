@@ -20,7 +20,7 @@ export function init(gameCanvas, mapdata, spobs, player_data){
 
   let stateMgr = new states.StateManager({
     'gameplay': new gameplay.GameplayState(
-        scene, camera, mapdata, spobs, player_data, mapdata),
+        scene, camera, mapdata, spobs, player_data, gameCanvas),
     'map': new map.MapView(
         mapdata, {x: 0, y: 0}, scene, gameCanvas, player_data),
 
