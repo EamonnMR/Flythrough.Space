@@ -102,7 +102,8 @@ export class GameplayState extends states.ViewState {
 			this.entMan,
    		system_name,
 			this.mapdata.systems[ system_name ],
-   		this.spobs
+   		this.spobs,
+      this.hud
   	);
   }
 
@@ -127,8 +128,8 @@ export class GameplayState extends states.ViewState {
   }
 
   setup_world(){
-    this.create_world_models(this.player_data.current_system);
     this.hud = new hud.HUD(this.scene, this.dom_canvas, this.entMan);
+    this.create_world_models(this.player_data.current_system);
     this.empty = false;
   }
 

@@ -1,4 +1,10 @@
-export function setup_system(scene, camera, entMan, system, system_dat, spobs){
+/* This is sort of the last corner where the code is still being left totally
+ * messy. A bunch of this needs to be broken out into loader code, and the
+ * rest might be small enogh to move back to GameplaySystem
+ */
+
+export function setup_system(scene, camera, entMan, system,
+    system_dat, spobs, hud){
   // Sets up the models for a system
   console.log(system_dat);
   let lights = [
@@ -36,7 +42,7 @@ export function setup_system(scene, camera, entMan, system, system_dat, spobs){
       let planet = entities.planetFactory({
         x: spob_dat.x / 10.0,  //TODO: What scale do we use? AU?
         y: spob_dat.y / 10.0,
-        z: 0}, 2, planetSprite, spob_name);
+        z: 0}, 2, planetSprite, spob_name, hud);
       planets.push( planet );
     }
   }
@@ -55,7 +61,7 @@ export function setup_system(scene, camera, entMan, system, system_dat, spobs){
     let playerWeapon = [new weapon.Weapon(500, spriteManagerBullet)]
     newMesh[0].rotate(BABYLON.Axis.Y, -Math.PI/2, BABYLON.Space.LOCAL)
     entMan.insert(entities.playerShipFactory(
-      {x: 0, y:-1, z: -2}, scene, newMesh[0], camera, playerWeapon, playerData
+      {x: 0, y:-1, z: -2}, scene, newMesh[0], camera, playerWeapon, playerData, hud
     ));
   });
 
