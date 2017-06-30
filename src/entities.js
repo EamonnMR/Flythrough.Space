@@ -1,4 +1,12 @@
-export function playerShipFactory(position, scene, mesh, camera, weapons, data) {
+export function radar_pip_factory(id, hud){
+  return new BABYLON.Ellipse2D({
+    parent: hud.canvas, id: 'pip_for' + name,
+    width: 5, height: 5, x: 0, y: 0,
+    fill: BABYLON.Canvas2D.GetSolidColorBrushFromHex('#5000FFFF')
+  });
+}
+
+export function playerShipFactory(position, scene, mesh, camera, weapons, data, hud) {
   return {
     'position': {'x': position.x, 'y': position.y},
     'weapons': weapons,
@@ -8,20 +16,23 @@ export function playerShipFactory(position, scene, mesh, camera, weapons, data) 
     'direction': 0,
     'velocity': {'x': 0, 'y': 0},
     'direction_delta': 0,
-    'data': data
+    'data': data,
+    'radar_pip': radar_pip_factory(player, hud)
   };
 };
 
-
 export function planetFactory (position, size,
-    sprite, name) {
+    sprite, name, hud) {
+  // Deep copy the position
   sprite.position.x = position.x;
   sprite.position.y = position.y;
   sprite.position.z = position.z;
+  
   return {
     'position': {'x': position.x, 'y': position.y},
     'model': sprite,
-    'spob_name': name 
+    'spob_name': name,
+    'radar_pip': radar_pip_factory('pip_for_' + name, hud)
   };
 };
 

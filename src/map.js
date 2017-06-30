@@ -68,15 +68,22 @@ export class MapView extends states.ViewState{
 
     // Set up color fills for map drawing
     let govt_colors = {};
+    let govt_dark_colors = {};
 
     for (let name of Object.keys(this.data.govts)){
       govt_colors[ name ] = BABYLON.Canvas2D.GetSolidColorBrushFromHex(
         this.data.govts[ name ].color
       );
+      govt_dark_colors[ name ] = BABYLON.Canvas2D.GetSolidColorBrushFromHex(
+        this.data.govts[ name ].dark_color
+      );
     }
 
+    let nogov_color = BABYLON.Canvas2D.GetSolidColorBrushFromHex('#AFAFAFFF');
+    let nogov_dark = BABYLON.Canvas2D.GetSolidColorBrushFromHex('#A9A9A9FF');
 
-    let nogov_color = BABYLON.Canvas2D.GetSolidColorBrushFromHex('#A9A9A9FF');
+    console.log(nogov_color);
+    console.log(nogov_dark);
 
     let circle_size = 10;
 
@@ -119,6 +126,15 @@ export class MapView extends states.ViewState{
         }
       }
 
+      // Determine the color of the circle based on government, if its empty
+      let color = null;
+      let is_light = 'spobs' in system_dat;
+      
+      if( "govt" in system_dat ){
+        color = is_light ? govt_colors[system_dat.govt] : govt_dark_colors[system_dat.govt];
+      } else {
+        color = is_light ? nogov_color : nogov_dark;
+      }
 
       let sys_circle = new BABYLON.Ellipse2D({
         parent: this.map_image,
@@ -127,7 +143,7 @@ export class MapView extends states.ViewState{
         y: (-1 * system_dat.y - (circle_size / 2)) * this.scale_factor,
         width: circle_size,
         height: circle_size,
-        fill:'govt' in system_dat ? govt_colors[system_dat.govt] : nogov_color
+        fill: color
       });
 
       sys_circle.zOrder = .5;
