@@ -25,7 +25,7 @@ export class MainMenuView extends states.ViewState {
       id: "menu_canvas",
       size: new BABYLON.Size(this.dom_canvas.width(),
                              this.dom_canvas.height()),
-      backgroundFill: "#4040408F"
+      backgroundFill: "#0000000F"
     });
 
 		this.group = new BABYLON.Group2D({
@@ -148,7 +148,8 @@ export class Image extends Widget{
   setup(group){
      this.sprite = new BABYLON.Sprite2D(this.texture,
      {
-       parent: group, id: 'hero', x: this.x, y: this.y,
+       parent: group, id: 'hero',// x: this.x, y: this.y, z:1,
+       spriteSize: new BABYLON.Size(64, 64),
        align_to_pixel: true
      });
   }
