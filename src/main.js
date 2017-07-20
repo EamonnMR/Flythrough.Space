@@ -4,11 +4,10 @@ import * as map from "map";
 import * as states from "states";
 import * as landing from "landing";
 
-export function init(gameCanvas, mapdata, spobs, player_data){
+export function init(gameCanvas, scene, engine,
+    mapdata, spobs, models, images){
   /* Main entry point for the app (after loading). Binds events and such. */
-  let engine = new BABYLON.Engine( gameCanvas[0], true);
 
-  let scene = new BABYLON.Scene(engine);
   scene.clearColor = new BABYLON.Color3(0, 0, 0);
 
   let camera = new BABYLON.FreeCamera(
@@ -16,7 +15,7 @@ export function init(gameCanvas, mapdata, spobs, player_data){
 
   // start initial state
   
-  player_data = new player.PlayerSave();
+  let player_data = new player.PlayerSave();
 
   let stateMgr = new states.StateManager({
     'gameplay': new gameplay.GameplayState(
