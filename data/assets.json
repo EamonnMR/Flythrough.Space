@@ -1,2 +1,15 @@
 {
+  "dir": "assets/",
+  "meshes": {
+    "cruiser": "star_cruiser_1.babylon"
+  },
+  "sprites": {
+    "redblast": "redblast.png",
+    "redplanet": "renderwahn_planets/A00.png",
+    "asteroid": "asteroid.png"
+  },
+  "data": {
+    "systems": "systems.js",
+    "spobs": "spobs.js"
+  }
 }
