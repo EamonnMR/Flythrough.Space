@@ -23,12 +23,14 @@ function load_assets( source_json, scene, finish_callback ){
   }
 
   let manager = new BABYLON.AssetsManager(scene);
-  /*
+  
   for (let key in source_json.meshes) {
     let model_task = manager.addMeshTask(key + '_task',
         "", "assets/",  source_json.meshes[key]);
     model_task.onSuccess = (task) => {
-      models[key] = task.loadedMeshes[0]
+      let mesh = task.loadedMeshes[0]; // TODO: Multimesh files
+      mesh.visibility = 0; // Clone this later
+      models[key] = mesh;
     }
 
     model_task.onError = (task) => {
@@ -37,7 +39,7 @@ function load_assets( source_json, scene, finish_callback ){
     }
 
   }
-  */
+  
 
   //for (let key in source_json.data){
   //  let data_task = manager.addTextTask(key + '_task',
