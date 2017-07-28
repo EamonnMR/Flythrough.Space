@@ -12,12 +12,11 @@ import * as hud from "hud";
 
 export class GameplayState extends states.ViewState {
 
-  constructor(scene, camera, mapdata, spobs, player_data,
+  constructor(scene, camera, data, player_data,
       dom_canvas) {
     super();
-    this.mapdata = mapdata;
-    this.spobs = spobs;
 
+    this.data = data;
     this.scene = scene;
     this.camera = camera;
 
@@ -101,8 +100,8 @@ export class GameplayState extends states.ViewState {
 			this.camera,
 			this.entMan,
    		system_name,
-			this.mapdata.systems[ system_name ],
-   		this.spobs,
+			this.data.systems[ system_name ],
+   		this.data.spobs,
       this.hud
   	);
   }
