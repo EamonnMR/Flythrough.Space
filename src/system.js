@@ -3,9 +3,9 @@
  * rest might be small enogh to move back to GameplaySystem
  */
 
-export function setup_system(scene, camera, entMan, system,
-    system_dat, spobs, hud){
+export function setup_system(scene, camera, entMan, system, hud, data){
   // Sets up the models for a system
+  let system_dat = data.systems[system];
   console.log(system_dat);
   let lights = [
     {
@@ -36,7 +36,7 @@ export function setup_system(scene, camera, entMan, system,
   if ('spobs' in system_dat) {
     for (let spob_name of system_dat.spobs){
       console.log('spob: ' + spob_name);
-      let spob_dat = spobs[spob_name];
+      let spob_dat = data.spobs[spob_name];
       console.log(spob_dat);
       let planetSprite = new BABYLON.Sprite("planet", spriteManagerPlanet);
       let planet = entities.planetFactory({

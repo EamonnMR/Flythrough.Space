@@ -100,9 +100,8 @@ export class GameplayState extends states.ViewState {
 			this.camera,
 			this.entMan,
    		system_name,
-			this.data.systems[ system_name ],
-   		this.data.spobs,
-      this.hud
+      this.hud,
+      this.data
   	);
   }
 
