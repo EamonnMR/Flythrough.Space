@@ -8,7 +8,7 @@ export class Data {
     this.govts = null;
   }
 
-  get_model(name){
+  get_mesh(name){
     // Remember, these will come in at 0 visibility. Make sure
     // to set visibility only after you set position
     return this.models[name].clone();

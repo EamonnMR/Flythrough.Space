@@ -46,24 +46,23 @@ export function setup_system(scene, camera, entMan, system, hud, data){
       planets.push( planet );
     }
   }
+  
+  let spriteManagerBullet = new BABYLON.SpriteManager(
+      "bulletMgr", "assets/redblast.png", 1000,16, scene);
 
-  BABYLON.SceneLoader.ImportMesh("", "assets/","star_cruiser_1.babylon",
-      scene, function(newMesh){
+  let playerData = {
 
-    let spriteManagerBullet = new BABYLON.SpriteManager(
-        "bulletMgr", "assets/redblast.png", 1000,16, scene);
+    'accel': 0.00005,
+    'rotation': 0.005
+  }
+  let playerWeapon = [new weapon.Weapon(500, spriteManagerBullet)]
 
-    let playerData = {
-
-      'accel': 0.00005,
-      'rotation': 0.005
-    }
-    let playerWeapon = [new weapon.Weapon(500, spriteManagerBullet)]
-    newMesh[0].rotate(BABYLON.Axis.Y, -Math.PI/2, BABYLON.Space.LOCAL)
-    entMan.insert(entities.playerShipFactory(
-      {x: 0, y:-1, z: -2}, scene, newMesh[0], camera, playerWeapon, playerData, hud
-    ));
-  });
+  let mesh = data.get_mesh('cruiser');
+  mesh.rotate(BABYLON.Axis.Y, -Math.PI/2, BABYLON.Space.LOCAL)
+  mesh.visibility = 1
+  entMan.insert(entities.playerShipFactory(
+    {x: 0, y:-1, z: -2}, scene, mesh, camera, playerWeapon, playerData, hud
+  ));
 
   return enter_system(scene, entMan, planets, lights, ents);
 };
