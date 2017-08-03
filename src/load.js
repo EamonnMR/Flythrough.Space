@@ -18,8 +18,7 @@ export class Data {
 function load_assets( source_json, scene, data, finish_callback ){
 
   function text_loaded( task, key ){
-    console.log(key);
-    console.log(task);
+    
   }
 
   function asset_error( task, key ){
@@ -47,13 +46,13 @@ function load_assets( source_json, scene, data, finish_callback ){
   }
   
 
-  //for (let key in source_json.data){
-  //  let data_task = manager.addTextTask(key + '_task',
-  //    "", "data/", source_json.data[key]);
-  //  data_task.onSuccess = (task) => {
-  //    data_loaded(task, key);
-  //  }
-  //}
+  for (let key in source_json.data){
+    let data_task = manager.addTextFileTask(key + '_task',
+      "data/" +  source_json.data[key]);
+    data_task.onSuccess = (task) => {
+      data[key] = JSON.parse(task.text);
+    }
+  }
 
   manager.onFinish = () => {
     finish_callback();
@@ -66,20 +65,8 @@ export function load_all(engine, scene, done){
   let data_mgr = new Data();
   $.getJSON('data/assets.json', (data) => {
     load_assets(data, scene, data_mgr, () => {
-      // TODO: Replace this with AssetManager text loads
-      $.when(
-        $.getJSON('data/systems.json', ( data ) =>  {
-          data_mgr.systems = data.systems;
-          data_mgr.govts = data.govts;
-          console.log(data);
-        }),
-        $.getJSON('data/spobs.json', ( data ) => {
-          data_mgr.spobs = data;
-          console.log(data);
-        })
-      ).then( () => {
-        done(data_mgr);
-      });
+      console.log(data_mgr)
+      done(data_mgr);
     });
   });
 }

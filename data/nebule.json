@@ -1,0 +1,15 @@
+{
+  "orasosnebula":{
+    "label":"Orasos Nebula",
+    "img"  :"img/Nasa/NGC_5315.jpg",
+    "x"    : 1375,
+    "y"    : 1500
+  },
+  "reacherNebula":{
+    "label":"Reacher Dust Field",
+    "img":"img/Nasa/ReacherNebula.png",
+    "x":832,
+    "y":930
+  }
+}
+

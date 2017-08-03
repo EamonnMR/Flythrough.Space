@@ -9,7 +9,9 @@
     "asteroid": "asteroid.png"
   },
   "data": {
-    "systems": "systems.js",
-    "spobs": "spobs.js"
+    "systems": "systems.json",
+    "spobs": "spobs.json",
+    "govts": "govts.json",
+    "nebule": "nebule.json"
   }
 }
