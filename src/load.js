@@ -17,16 +17,6 @@ export class Data {
 
 function load_assets( source_json, scene, data, finish_callback ){
 
-  function text_loaded( task, key ){
-    
-  }
-
-  function asset_error( task, key ){
-    console.log('Error: ');
-    console.log(task);
-    console.log(key);
-  }
-
   let manager = new BABYLON.AssetsManager(scene);
   
   for (let key in source_json.meshes) {
@@ -54,9 +44,7 @@ function load_assets( source_json, scene, data, finish_callback ){
     }
   }
 
-  manager.onFinish = () => {
-    finish_callback();
-  }
+  manager.onFinish = finish_callback;
 
   manager.load();
 }
