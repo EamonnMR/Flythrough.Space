@@ -1,9 +1,15 @@
 /* This is sort of the last corner where the code is still being left totally
  * messy. A bunch of this needs to be broken out into loader code, and the
  * rest might be small enogh to move back to GameplaySystem
+ *
+ * Returns an array of models which 'belong' to the system rather than any
+ * ents and need to be cleaned up on system exit.
  */
 
 export function setup_system(scene, camera, entMan, system, hud, data){
+
+  console.log(data);
+
   // Sets up the models for a system
   let system_dat = data.systems[system];
   console.log(system_dat);
@@ -15,10 +21,7 @@ export function setup_system(scene, camera, entMan, system, hud, data){
     }
   ]
 
-  let spriteManagerAsteroid = new BABYLON.SpriteManager(
-      "roidMgr", "assets/asteroid.png", 1000, 269, scene);
-
-  let asteroidSprite = new BABYLON.Sprite("roid", spriteManagerAsteroid);
+  let asteroidSprite = new BABYLON.Sprite("roid", data.sprites['asteroid']);
 
   let ents = [
     entities.asteroidFactory({x: 3, y: 3},
@@ -27,18 +30,13 @@ export function setup_system(scene, camera, entMan, system, hud, data){
 
   ]
 
-  // TODO: Don't handle planet sprites like this
-  let spriteManagerPlanet = new BABYLON.SpriteManager(
-      "planetMgr", "assets/renderwahn_planets/A00.png", 10, 122, scene);
-
-
   let planets = [];
   if ('spobs' in system_dat) {
     for (let spob_name of system_dat.spobs){
       console.log('spob: ' + spob_name);
       let spob_dat = data.spobs[spob_name];
       console.log(spob_dat);
-      let planetSprite = new BABYLON.Sprite("planet", spriteManagerPlanet);
+      let planetSprite = new BABYLON.Sprite("planet", data.sprites['redplanet']);
       let planet = entities.planetFactory({
         x: spob_dat.x / 10.0,  //TODO: What scale do we use? AU?
         y: spob_dat.y / 10.0,
@@ -46,16 +44,13 @@ export function setup_system(scene, camera, entMan, system, hud, data){
       planets.push( planet );
     }
   }
-  
-  let spriteManagerBullet = new BABYLON.SpriteManager(
-      "bulletMgr", "assets/redblast.png", 1000,16, scene);
 
   let playerData = {
 
     'accel': 0.00005,
     'rotation': 0.005
   }
-  let playerWeapon = [new weapon.Weapon(500, spriteManagerBullet)]
+  let playerWeapon = [new weapon.Weapon(500, data.sprites['redblast'])]
 
   let mesh = data.get_mesh('cruiser');
   mesh.rotate(BABYLON.Axis.Y, -Math.PI/2, BABYLON.Space.LOCAL)

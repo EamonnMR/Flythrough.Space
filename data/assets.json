@@ -4,9 +4,21 @@
     "cruiser": "star_cruiser_1.babylon"
   },
   "sprites": {
-    "redblast": "redblast.png",
-    "redplanet": "renderwahn_planets/A00.png",
-    "asteroid": "asteroid.png"
+    "redblast": {
+      "img": "assets/redblast.png",
+      "count": 1000,
+      "size": 16 
+    },
+    "redplanet": {
+      "img": "assets/renderwahn_planets/A00.png",
+      "count": 10,
+      "size": 122 
+    },
+    "asteroid": {
+      "img": "assets/asteroid.png",
+      "count": 10,
+      "size": 296 
+    }
   },
   "data": {
     "systems": "systems.json",

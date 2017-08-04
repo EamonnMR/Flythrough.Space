@@ -6,6 +6,7 @@ export class Data {
     this.spobs = null;
     this.systems = null;
     this.govts = null;
+    this.sprites = {}
   }
 
   get_mesh(name){
@@ -43,6 +44,13 @@ function load_assets( source_json, scene, data, finish_callback ){
       data[key] = JSON.parse(task.text);
     }
   }
+
+  for (let key in source_json.sprites){
+    let datum = source_json.sprites[key]
+    data.sprites[key] = new BABYLON.SpriteManager(key + "_sprmgr",
+        datum.img, datum.count, datum.size, scene);
+  }
+
 
   manager.onFinish = finish_callback;
 
