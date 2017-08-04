@@ -7,6 +7,10 @@ export function radar_pip_factory(id, hud){
 }
 
 export function playerShipFactory(position, scene, mesh, camera, weapons, data, hud) {
+
+  mesh.rotate(BABYLON.Axis.Y, -Math.PI/2, BABYLON.Space.LOCAL);
+  mesh.visibility = 1; 
+
   return {
     'position': {'x': position.x, 'y': position.y},
     'weapons': weapons,

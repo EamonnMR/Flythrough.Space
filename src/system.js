@@ -7,12 +7,9 @@
  */
 
 export function setup_system(scene, camera, entMan, system, hud, data){
-
-  console.log(data);
-
   // Sets up the models for a system
   let system_dat = data.systems[system];
-  console.log(system_dat);
+
   let lights = [
     {
       'name': 'sun',
@@ -20,6 +17,10 @@ export function setup_system(scene, camera, entMan, system, hud, data){
       'intensity': .5
     }
   ]
+  
+  if (system_dat.lights){
+    lights = system_dat.lights;
+  }
 
   let asteroidSprite = new BABYLON.Sprite("roid", data.sprites['asteroid']);
 
@@ -33,9 +34,7 @@ export function setup_system(scene, camera, entMan, system, hud, data){
   let planets = [];
   if ('spobs' in system_dat) {
     for (let spob_name of system_dat.spobs){
-      console.log('spob: ' + spob_name);
       let spob_dat = data.spobs[spob_name];
-      console.log(spob_dat);
       let planetSprite = new BABYLON.Sprite("planet", data.sprites['redplanet']);
       let planet = entities.planetFactory({
         x: spob_dat.x / 10.0,  //TODO: What scale do we use? AU?
@@ -53,12 +52,9 @@ export function setup_system(scene, camera, entMan, system, hud, data){
   let playerWeapon = [new weapon.Weapon(500, data.sprites['redblast'])]
 
   let mesh = data.get_mesh('cruiser');
-  mesh.rotate(BABYLON.Axis.Y, -Math.PI/2, BABYLON.Space.LOCAL)
-  mesh.visibility = 1
   entMan.insert(entities.playerShipFactory(
     {x: 0, y:-1, z: -2}, scene, mesh, camera, playerWeapon, playerData, hud
   ));
-
   return enter_system(scene, entMan, planets, lights, ents);
 };
 
@@ -67,13 +63,7 @@ function enter_system(scene, entMan, planets, lights, ents) {
   let world_models = []
 
   for (let light of lights) {
-    let new_light = new BABYLON.HemisphericLight(light.name,
-        new BABYLON.Vector3(light.pos.x, light.pos.y, light.pos.z),
-        scene
-    );
-    new_light.intensity = light.intensity;
-
-    world_models.push(new_light);
+    world_models.push(lightFactory(light, scene));
   }
 
   for (let ent of ents) {
@@ -84,7 +74,16 @@ function enter_system(scene, entMan, planets, lights, ents) {
   for (let planet of planets) {
     entMan.insert( planet );
   }
-
   return world_models;
 };
 
+function lightFactory(data, scene){
+  let light = new BABYLON.HemisphericLight(data.name,
+      new BABYLON.Vector3(data.pos.x, data.pos.y, data.pos.z),
+      scene
+  );
+
+  light.intensity = data.intensity;
+  
+  return light;
+}
