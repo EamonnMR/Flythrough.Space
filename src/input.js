@@ -10,11 +10,11 @@ export function inputSystem (entMan) {
       if (inputStates.forward) {
         physics.accelerate(entity.velocity,
                                   entity.direction,
-                                  entity.data.accel * entMan.delta_time)
+                                  entity.accel * entMan.delta_time)
       }
     }
     if ('direction' in entity) {
-      let angle = entity.data.rotation * entMan.delta_time;
+      let angle = entity.rotation * entMan.delta_time;
       if (inputStates.left) {
         physics.rotate(entity, angle);
         entity.direction_delta = -1 * angle;

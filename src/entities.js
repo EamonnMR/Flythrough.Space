@@ -6,23 +6,24 @@ export function radar_pip_factory(id, hud){
   });
 }
 
-export function playerShipFactory(position, scene, mesh, camera, weapons, data, hud) {
+export function playerShipFactory(prototype, position, scene, mesh, camera, weapons, hud) {
 
   mesh.rotate(BABYLON.Axis.Y, -Math.PI/2, BABYLON.Space.LOCAL);
   mesh.visibility = 1; 
 
-  return {
-    'position': {'x': position.x, 'y': position.y},
-    'weapons': weapons,
-    'camera': camera,
-    'model': mesh,
-    'input': true,
-    'direction': 0,
-    'velocity': {'x': 0, 'y': 0},
-    'direction_delta': 0,
-    'data': data,
-    'radar_pip': radar_pip_factory(player, hud)
-  };
+  let ship = Object.create(prototype);
+
+  ship.position = position;
+  ship.weapons = weapons;
+  ship.camera = camera;
+  ship.model = mesh;
+  ship.input = true;
+  ship.direction = 0;
+  ship.velocity = {x: 0, y: 0};
+  ship.direction_delta = 0;
+  ship.radar_pip = radar_pip_factory(player, hud);
+
+  return ship;
 };
 
 export function planetFactory (position, size,

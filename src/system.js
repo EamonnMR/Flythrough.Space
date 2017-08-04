@@ -53,7 +53,7 @@ export function setup_system(scene, camera, entMan, system, hud, data){
 
   let mesh = data.get_mesh('cruiser');
   entMan.insert(entities.playerShipFactory(
-    {x: 0, y:-1, z: -2}, scene, mesh, camera, playerWeapon, playerData, hud
+    playerData, {x: 0, y:-1, z: -2}, scene, mesh, camera, playerWeapon, hud
   ));
   return enter_system(scene, entMan, planets, lights, ents);
 };
