@@ -24,6 +24,10 @@
     "systems": "systems.json",
     "spobs": "spobs.json",
     "govts": "govts.json",
-    "nebule": "nebule.json"
+    "nebule": "nebule.json",
+    "outfits": "outfits.json",
+    "ships": "ships.json",
+    "spobtypes": "spobtypes.json",
+    "weapons": "weapons.json"
   }
 }
