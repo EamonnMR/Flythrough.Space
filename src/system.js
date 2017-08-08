@@ -44,17 +44,13 @@ export function setup_system(scene, camera, entMan, system, hud, data){
     }
   }
 
-  let playerData = {
-
-    'accel': 0.00005,
-    'rotation': 0.005
-  }
   let playerWeapon = [new weapon.Weapon(500, data.sprites['redblast'])]
 
-  let mesh = data.get_mesh('cruiser');
   entMan.insert(entities.playerShipFactory(
-    playerData, {x: 0, y:-1, z: -2}, scene, mesh, camera, playerWeapon, hud
+        data, "shuttle", {x: 0, y:-1, z: -2},
+        camera, playerWeapon, hud
   ));
+
   return enter_system(scene, entMan, planets, lights, ents);
 };
 
