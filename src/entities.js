@@ -14,6 +14,7 @@ export function playerShipFactory(data, type, position, camera, weapons, hud) {
   ship.camera = camera;
   ship.input = true;
 
+  ship.radar_pip = radar_pip_factory(player, hud);
   return ship;
 };
 
@@ -28,7 +29,6 @@ export function shipFactory(data, type, position){
   ship.direction = 0;
   ship.velocity = {x: 0, y: 0};
   ship.direction_delta = 0;
-  ship.radar_pip = radar_pip_factory(player, hud);
 
   return ship;
 }
