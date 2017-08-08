@@ -36,10 +36,7 @@ export function setup_system(scene, camera, entMan, system, hud, data){
     for (let spob_name of system_dat.spobs){
       let spob_dat = data.spobs[spob_name];
       let planetSprite = data.get_sprite("redplanet");
-      let planet = entities.planetFactory({
-        x: spob_dat.x / 10.0,  //TODO: What scale do we use? AU?
-        y: spob_dat.y / 10.0,
-        z: 0}, 2, planetSprite, spob_name, hud);
+      let planet = entities.planetFactory(data, spob_name, hud)
       planets.push( planet );
     }
   }

@@ -33,19 +33,16 @@ export function shipFactory(data, type, position){
   return ship;
 }
 
-export function planetFactory (position, size,
-    sprite, name, hud) {
-  // Deep copy the position
-  sprite.position.x = position.x;
-  sprite.position.y = position.y;
-  sprite.position.z = position.z;
+export function planetFactory (data, name, hud){
+  console.log(data);
+  let planet = Object.create(data.spobs[name]);
   
-  return {
-    'position': {'x': position.x, 'y': position.y},
-    'model': sprite,
-    'spob_name': name,
-    'radar_pip': radar_pip_factory('pip_for_' + name, hud)
-  };
+  planet.position = {x: planet.x, y: planet.y};
+  planet.model = data.get_sprite(data.spobtypes[planet.sType].sprite);
+  planet.spob_name = name;
+  planet.radar_pip = radar_pip_factory('pip_for_' + name, hud);
+  
+  return planet;
 };
 
 

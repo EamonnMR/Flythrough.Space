@@ -1,511 +1,511 @@
 {
 	"onyxEarthlikeA":{
-		"img":"img/onyx/Onyx/CleanStellars/A.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/A.png",
 		"scape":"img/Other/resurrection_river.png",
 		"name":"Terran Type world"
 	},
 	"onyxEarthlikeB":{
-		"img":"img/onyx/Onyx/CleanStellars/B.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/B.png",
 		"scape":"img/Other/Shinjuku_smog_cityscape.png",
 		"name":"Terran Type world"
 	},
 	"onyxEarthlikeC":{
-		"img":"img/onyx/Onyx/CleanStellars/C.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/C.png",
 		"scape":"img/Other/Koliba_sunrise.png",
 		"name":"Terran Type world"
 	},
 	"onyxEarthlikeD":{
-		"img":"img/onyx/Onyx/CleanStellars/D.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/D.png",
 		"scape":"img/Other/Palani_Hills.png",
 		"name":"Terran Type world"
 	},
 	"onyxEarthlikeE":{
-		"img":"img/onyx/Onyx/CleanStellars/E.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/E.png",
 		"scape":"img/Other/Niue_Coastline.png",
 		"name":"Terran Type world"
 	},
 	"onyxEarthlikeF":{
-		"img":"img/onyx/Onyx/CleanStellars/F.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/F.png",
 		"scape":"img/Other/Nilgiri_Hills.png",
 		"name":"Terran Type world"
 	},
 	"onyxEarthlikeG":{
-		"img":"img/onyx/Onyx/CleanStellars/G.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/G.png",
 		"scape":"img/other/Sunrise_over_north_beach.png",
 		"name":"Terran Type world"
 	},
 	"onyxEarthlikeH":{
-		"img":"img/onyx/Onyx/CleanStellars/H.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/H.png",
 		"scape":"img/other/Taranaki_hills.png",
 		"name":"Terran Type world"
 	},
 	"onyxEarthlikeI":{
-		"img":"img/onyx/Onyx/CleanStellars/I.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/I.png",
 		"scape":"img/other/Banasuran_Hills.png",
 		"name":"Terran Type world"
 	},
 	"onyxDesertJ":{
-		"img":"img/onyx/Onyx/CleanStellars/J.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/J.png",
 		"scape":"img/other/Tunisia_Metaloui.png",
 		"name":"Desert World"
 	},
 	"onyxDesertK":{
-		"img":"img/onyx/Onyx/CleanStellars/K.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/K.png",
 		"scape":"img/other/Libya_5210.png",
 		"name":"Desert World"
 	},
 	"onyxDesertL":{
-		"img":"img/onyx/Onyx/CleanStellars/L.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/L.png",
 		"scape":"img/other/Death_Valley.png",
 		"name":"Desert World"
 	},
 	"onyxIceM":{
-		"img":"img/onyx/Onyx/CleanStellars/M.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/M.png",
 		"scape":"img/Other/Andes.png",
 		"name":"Ice World"
 	},
 	"onyxIceN":{
-		"img":"img/onyx/Onyx/CleanStellars/N.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/N.png",
 		"scape":"img/Nasa/antartic.png",
 		"name":"Ice World"
 	},
 	"onyxDesertO":{
-		"img":"img/onyx/Onyx/CleanStellars/O.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/O.png",
 		"scape":"img/Other/Badlands_in_South_Dakota.png",
 		"name":"Desert World"
 	},
 	"onyxDesertP":{
-		"img":"img/onyx/Onyx/CleanStellars/P.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/P.png",
 		"scape":"img/JAP/cloudsinthedesert.png",
 		"name":"Desert World"
 	},
 	"onyxRedQ":{
-		"img":"img/onyx/Onyx/CleanStellars/Q.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/Q.png",
 		"scape":"img/Other/Gliese_667.png",
 		"name":"Red World"
 	},
 	"onyxGreenR":{
-		"img":"img/onyx/Onyx/CleanStellars/R.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/R.png",
 		"scape":"img/farcodev/raw/109.png",
 		"name":"Green World"
 	},
 	"onyxBlueS":{
-		"img":"img/onyx/Onyx/CleanStellars/S.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/S.png",
 		"scape":"img/other/Kachemak_Bay.png",
 		"name":"Blue World"
 	},
 	"onyxRedT":{
-		"img":"img/onyx/Onyx/CleanStellars/T.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/T.png",
 		"scape":"img/Nasa/Concept_Mars_colony.png",
 		"name":"Red World"
 	},
 	"onyxRedU":{
-		"img":"img/onyx/Onyx/CleanStellars/U.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/U.png",
 		"scape":"img/Other/Doha.png",
 		"name":"Red Urban World"
 	},
 	"onyxLunarV":{
-		"img":"img/onyx/Onyx/CleanStellars/V.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/V.png",
 		"scape":"img/Nasa/Moon_colony_with_rover.png",
 		"name":"Lunar World"
 	},
 	"onyxLunarW":{
-		"img":"img/onyx/Onyx/CleanStellars/W.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/W.png",
 		"scape":"img/Ecrivain/level_moon.png",
 		"name":"Lunar World"
 	},
 	"onyxM1Lunar":{
-		"img":"img/onyx/Onyx/CleanStellars/Moon1.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/Moon1.png",
 		"scape":"img/Other/Pluto.png",
 		"name":"Small Lunar World"
 	},
 	"onyxM3Earthlike":{
-		"img":"img/onyx/Onyx/CleanStellars/Moon3.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/Moon3.png",
 		"scape":"img/Other/View_from_Rajgad.png",
 		"name":"Small Terran World"
 	},
 	"onyxM4Earthlike":{
-		"img":"img/onyx/Onyx/CleanStellars/Moon4.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/Moon4.png",
 		"scape":"img/Other/Maiella.png",
 		"name":"Small Terran World"
 	},
 	"onyxM5Earthlike":{
-		"img":"img/onyx/Onyx/CleanStellars/Moon5.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/Moon5.png",
 		"scape":"img/farcodev/raw/912.png",
 		"name":"Small Terran World"
 	},
 	"onyxM6Earthlike":{
-		"img":"img/onyx/Onyx/CleanStellars/Moon6.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/Moon6.png",
 		"scape":"img/farcodev/raw/906.png",
 		"name":"Small Terran World"
 	},
 	"onyxM7Desert":{
-		"img":"img/onyx/Onyx/CleanStellars/Moon7.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/Moon7.png",
 		"scape":"img/farcodev/raw/108.png",
 		"name":"Small Desert World"
 	},
 	"onyxM8Red":{
-		"img":"img/onyx/Onyx/CleanStellars/Moon8.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/Moon8.png",
 		"scape":"img/farcodev/raw/903.png",
 		"name":"Small Red World"
 	},
 	"onyxM9Desert":{
-		"img":"img/onyx/Onyx/CleanStellars/Moon9.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/Moon9.png",
 		"scape":"img/farcodev/raw/102.png",
 		"name":"Small Desert World"
 	},
 	"onyxRings":{
-		"img":"img/onyx/Onyx/CleanStellars/rings.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/rings.png",
 		"scape":"img/farcodev/raw/404.png",
 		"name":"Small Ringed World with moons"
 	},
 	"oeStation":{
-		"img":"img/onyx/Onyx/CleanStellars/olstation.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/olstation.png",
 		"scape":"img/onyx/Onyx/Edited/mil.bmp",
 		"name":"Old Empire Outpost"
 	},
 	"medStation":{
-		"img":"img/onyx/Onyx/CleanStellars/medstation.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/medstation.png",
 		"scape":"img/onyx/Onyx/Edited/med.bmp",
 		"name":"Medical Station"
 	},
 	"oneRingStation":{
-		"img":"img/onyx/Onyx/CleanStellars/onering.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/onering.png",
 		"scape":"img/onyx/Onyx/Edited/single.bmp",
 		"name":"Small Habitat Station"
 	},
 	"twoRingStation":{
-		"img":"img/onyx/Onyx/CleanStellars/tworing.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/tworing.png",
 		"scape":"img/onyx/Onyx/Edited/double.bmp",
 		"name":"Medium Habitat Station"
 	},
 	"fourRingStation":{
-		"img":"img/onyx/Onyx/CleanStellars/fouring.png",
+		"sprite":"img/onyx/Onyx/CleanStellars/fouring.png",
 		"scape":"img/onyx/Onyx/Edited/triple.bmp",
 		"name":"Large Habitat Station"
 	},
 	"gnPlanet1Lunar":{
-		"img":"img/GrandNoviceGraphics/cleanstellars/1.png",
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/1.png",
 		"scape":"img/farcodev/raw/915.png",
 		"name":"Lunar World"
 	},
 	"gnPlanet2Lunar":{
-		"img":"img/GrandNoviceGraphics/cleanstellars/2.png",
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/2.png",
 		"scape":"img/farcodev/raw/115.png",
 		"name":"Lunar World"
 	},
 	"gnPlanet3Lunar":{
-		"img":"img/GrandNoviceGraphics/cleanstellars/3.png",
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/3.png",
 		"scape":"img/farcodev/raw/114.png",
 		"name":"Lunar World"
 	},
 	"gnPlanet4Blue":{
-		"img":"img/GrandNoviceGraphics/cleanstellars/4.png",
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/4.png",
 		"scape":"img/farcodev/raw/414.png",
 		"name":"Barren Blue World"
 	},
 	"gnPlanet5Red":{
-		"img":"img/GrandNoviceGraphics/cleanstellars/5.png",
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/5.png",
 		"scape":"img/farcodev/raw/403.png",
 		"name":"Barren Red World"
 	},
 	"gnPlanet6Rock":{
-		"img":"img/GrandNoviceGraphics/cleanstellars/6.png",
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/6.png",
 		"scape":"img/farcodev/raw/908.png",
 		"name":"Canyon World"
 	},
 	"gnPlanet7Pink":{
-		"img":"img/GrandNoviceGraphics/cleanstellars/7.png",
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/7.png",
 		"scape":"img/farcodev/raw/113.png",
 		"name":"Pink World"
 	},
 	"gnPlanet8Earthlike":{
-		"img":"img/GrandNoviceGraphics/cleanstellars/8.png",
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/8.png",
 		"scape":"img/farcodev/raw/408.png",
 		"name":"Pink World"
 	},
 	"gnPlanet9Earthlike":{
-		"img":"img/GrandNoviceGraphics/cleanstellars/9.png",
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/9.png",
 		"scape":"img/farcodev/raw/111.png",
 		"name":"Terran World"
 	},
 	"gnPlanet10Green":{
-		"img":"img/GrandNoviceGraphics/cleanstellars/10.png",
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/10.png",
 		"scape":"img/farcodev/raw/112.png",
 		"name":"Green World"
 	},
 	"gnPlanet11Maroon":{
-		"img":"img/GrandNoviceGraphics/cleanstellars/11.png",
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/11.png",
 		"scape":"img/Ecrivain/fog_dwell_peaks.png",
 		"name":"Maroon World"
 	},
 	"gnPlanet12Marsh":{
-		"img":"img/GrandNoviceGraphics/cleanstellars/12.png",
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/12.png",
 		"scape":"img/JAP/sunsetintheswamp.png",
 		"name":"Marsh World"
 	},
 	"gnPlanet13Purple":{
-		"img":"img/GrandNoviceGraphics/cleanstellars/13.png",
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/13.png",
 		"scape":"img/farcodev/raw/910.png",
 		"name":"Purple World"
 	},
 	"gnPlanet14Lunar":{
-		"img":"img/GrandNoviceGraphics/cleanstellars/14.png",
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/14.png",
 		"scape":"img/farcodev/raw/914.png",
 		"name":"Lunar World"
 	},
 	"gnPlanet15Earthlike":{
-		"img":"img/GrandNoviceGraphics/cleanstellars/15.png",
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/15.png",
 		"scape":"img/farcodev/raw/905.png",
 		"name":"Terran World"
 	},
 	"gnPlanet16Lunar":{
-		"img":"img/GrandNoviceGraphics/cleanstellars/stationplanet.png",
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/stationplanet.png",
 		"scape":"img/farcodev/raw/415.png",
 		"name":"Lunar World"
 	},
 	"gnStation1":{
-		"img":"img/GrandNoviceGraphics/cleanstellars/station1.png",
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/station1.png",
 		"scape":"img/GrandNoviceGraphics/landscapes/stationland.png",
 		"name":"Red Station"
 	},
 	"gnStation2":{
-		"img":"img/GrandNoviceGraphics/cleanstellars/station2.png",
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/station2.png",
 		"scape":"img/GrandNoviceGraphics/landscapes/station1land.png",
 		"name":"Panel Station"
 	},
 	"gnStation3":{
-		"img":"img/GrandNoviceGraphics/cleanstellars/station3.png",
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/station3.png",
 		"scape":"img/GrandNoviceGraphics/landscapes/station2land.png",
 		"name":"Onion Station"
 	},
 	"anonplan":{
-		"img":"img/anon/planet.png",
+		"sprite":"img/anon/planet.png",
 		"scape":"img/farcodev/raw/110.png",
 		"name":"Peach World"
 	},
 	"sgDrye":{
-		"img":"img/SpiralGraphics/Drye.png",
+		"sprite":"img/SpiralGraphics/Drye.png",
 		"scape":"img/Other/Crepuscular2.png",
 		"name":"Gas Giant"
 	},
 	"sgHighWinds":{
-		"img":"img/SpiralGraphics/HighWinds.png",
+		"sprite":"img/SpiralGraphics/HighWinds.png",
 		"scape":"img/Other/Above_the_Clouds.png",
 		"name":"Gas Giant"
 	},
 	"sgSmall":{
-		"img":"img/SpiralGraphics/SmallGas.png",
+		"sprite":"img/SpiralGraphics/SmallGas.png",
 		"scape":"img/Other/Shining_through_Clouds.png",
 		"name":"Gas Giant"
 	},
 	"Deimostype":{
-		"img":"img/Nasa/Deimos.png",
+		"sprite":"img/Nasa/Deimos.png",
 		"scape":"img/farcodev/raw/415.png",
 		"name":"Colony Ship"
 	},
 	"Phobostype":{
-		"img":"img/Nasa/Phobos.png",
+		"sprite":"img/Nasa/Phobos.png",
 		"scape":"img/Nasa/Lunar_base.png",
 		"name":"Research Lab"
 	},
 	"aresShipStation":{
-		"img":"img/NathanLamont/Ares.png",
+		"sprite":"img/NathanLamont/Ares.png",
 		"scape":"img/NathanLamont/Ares_scape.png",
 		"name":"Anchient Station"
 	},
 	"aresSmallStation":{
-		"img":"img/NathanLamont/StationMinor.png",
+		"sprite":"img/NathanLamont/StationMinor.png",
 		"scape":"img/NathanLamont/StationMinor_scape.png",
 		"name":"Small Stardock"
 	},
 	"aresMedStation":{
-		"img":"img/NathanLamont/Habitat.png",
+		"sprite":"img/NathanLamont/Habitat.png",
 		"scape":"img/NathanLamont/Habitat_scape.png",
 		"name":"Medium Stardock"
 	},
 	"aresLargeStation":{
-		"img":"img/NathanLamont/BunkerStation.png",
+		"sprite":"img/NathanLamont/BunkerStation.png",
 		"scape":"img/NathanLamont/BunkerStation_scape.png",
 		"name":"Large Stardock"
 	},
 	"aresShipyard":{
-		"img":"img/NathanLamont/OrbitalShipyard.png",
+		"sprite":"img/NathanLamont/OrbitalShipyard.png",
 		"scape":"img/NathanLamont/OrbitalShipyard_scape.png",
 		"name":"Shipyard Station"
 	},
 	"aresRings":{
-		"img":"img/NathanLamont/PowerStation.png",
+		"sprite":"img/NathanLamont/PowerStation.png",
 		"scape":"img/NathanLamont/PowerStation_scape.png",
 		"name":"Utility Station"
 	},
 	"aresDish":{
-		"img":"img/NathanLamont/RelayDish.png",
+		"sprite":"img/NathanLamont/RelayDish.png",
 		"scape":"img/NathanLamont/RelayDish_scape.png",
 		"name":"Communication Station"
 	},
 	"aresBouy":{
-		"img":"img/NathanLamont/Buoy.png",
+		"sprite":"img/NathanLamont/Buoy.png",
 		"scape":"img/krill777/jpeg.png",
 		"name":"Listening Post"
 	},
 	"aresOrange":{
-	"img":"img/NathanLamont/JumpGateInhibitor.png",
+	"sprite":"img/NathanLamont/JumpGateInhibitor.png",
 		"scape":"img/krill777/jpeg.png",
 		"name":"City Station"
 	},
 	"aresRedPlanet":{
-	"img":"img/NathanLamont/9.png",
+	"sprite":"img/NathanLamont/9.png",
 		"scape":"img/krill777/jpeg.png",
 		"name":"Iron and Calcium"
 	},
 	"aresYellowPlanet":{
-		"img":"img/NathanLamont/16.png",
+		"sprite":"img/NathanLamont/16.png",
 		"scape":"img/krill777/jpeg.png",
 		"name":"Sulpheric Surface"
 	},
 	"avGaruda":{
-		"img":"img/AVDezign/GarudaS.gif",
+		"sprite":"img/AVDezign/GarudaS.gif",
 		"scape":"img/AVDezign/Garuda.jpg",
 		"name":"Itaskan Station"
 	},
 	"avGukumatz":{
-		"img":"img/AVDezign/GukumatzS.gif",
+		"sprite":"img/AVDezign/GukumatzS.gif",
 		"scape":"img/AVDezign/Gukumatz.jpg",
 		"name":"Pinion Station"
 	},
 	"avHeimdall":{
-		"img":"img/AVDezign/HeimdallS.gif",
+		"sprite":"img/AVDezign/HeimdallS.gif",
 		"scape":"img/AVDezign/Heimdall.jpg",
 		"name":"Small Ring Station"
 	},
 	"avHuangti":{
-		"img":"img/AVDezign/HuangtiS.gif",
+		"sprite":"img/AVDezign/HuangtiS.gif",
 		"scape":"img/AVDezign/Huangti.jpg",
 		"name":"Small Ring Station With Sphere"
 	},
 	"avJabru":{
-		"img":"img/AVDezign/JabruS.gif",
+		"sprite":"img/AVDezign/JabruS.gif",
 		"scape":"img/AVDezign/Jabru.jpg",
 		"name":"XIC Mining Outpost"
 	},
 	"avJuno":{
-		"img":"img/AVDezign/JunoS.gif",
+		"sprite":"img/AVDezign/JunoS.gif",
 		"scape":"img/AVDezign/Juno.jpg",
 		"name":"Large Itaskan Station"
 	},
 	"avKuju":{
-		"img":"img/AVDezign/KujuS.gif",
+		"sprite":"img/AVDezign/KujuS.gif",
 		"scape":"img/AVDezign/Kuju.jpg",
 		"name":"Sunburst Station"
 	},
 	"avQeskinaqu":{
-		"img":"img/AVDezign/QeskinaquS.gif",
+		"sprite":"img/AVDezign/QeskinaquS.gif",
 		"scape":"img/AVDezign/Qeskinaqu.jpg",
 		"name":"Radial Station"
 	},
 	"avTule":{
-		"img":"img/AVDezign/TuleS.gif",
+		"sprite":"img/AVDezign/TuleS.gif",
 		"scape":"img/AVDezign/Tule.jpg",
 		"name":"Shuriken Station"
 	},
 	"avUsins":{
-		"img":"img/AVDezign/UsinsS.gif",
+		"sprite":"img/AVDezign/UsinsS.gif",
 		"scape":"img/AVDezign/Usins.jpg",
 		"name":"Isolation Station"
 	},
 	"avWusquus":{
-		"img":"img/AVDezign/WusquusS.gif",
+		"sprite":"img/AVDezign/WusquusS.gif",
 		"scape":"img/AVDezign/Wusquus.jpg",
 		"name":"Small Itaskan Station"
 	},
 	"rwA00":{
-		"img":"img/Renderwahn/A00.png",
+		"sprite":"img/Renderwahn/A00.png",
 		"scape":"img/Other/Pilved.png",
 		"name":"Red World"
 	},
 	"rwA01":{
-		"img":"img/Renderwahn/A01.png",
+		"sprite":"img/Renderwahn/A01.png",
 		"scape":"img/farcodev/raw/402.png",
 		"name":"Orange World"
 	},
 	"rwD00":{
-		"img":"img/Renderwahn/D00.png",
+		"sprite":"img/Renderwahn/D00.png",
 		"scape":"img/Other/Kraftwerk.png",
 		"name":"Florine Moon"
 	},
 	"rwG00":{
-		"img":"img/Renderwahn/G00.png",
+		"sprite":"img/Renderwahn/G00.png",
 		"scape":"img/Other/Thunder.png",
 		"name":"Swamp World"
 	},
 	"rwG01":{
-		"img":"img/Renderwahn/G01.png",
+		"sprite":"img/Renderwahn/G01.png",
 		"scape":"img/Other/Fish.png",
 		"name":"Cracked Crust"
 	},
 	"rwH00":{
-		"img":"img/Renderwahn/H00.png",
+		"sprite":"img/Renderwahn/H00.png",
 		"scape":"img/Other/Terragen_render02_edit.png",
 		"name":"Yellow Atmosphere"
 	},
 	"rwH01":{
-		"img":"img/Renderwahn/H01.png",
+		"sprite":"img/Renderwahn/H01.png",
 		"scape":"img/Other/Astfeld.png",
 		"name":"Silica Particulate Desert"
 	},
 	"rwH02":{
-		"img":"img/Renderwahn/H02.png",
+		"sprite":"img/Renderwahn/H02.png",
 		"scape":"img/JAP/wizardtower.png",
 		"name":"Chemically Active World"
 	},
 	"rwI00":{
-		"img":"img/Renderwahn/I00.png",
+		"sprite":"img/Renderwahn/I00.png",
 		"scape":"img/farcodev/raw/904.png",
 		"name":"Methane Atmosphere"
 	},
 	"rwI01":{
-		"img":"img/Renderwahn/I01.png",
+		"sprite":"img/Renderwahn/I01.png",
 		"scape":"img/farcodev/raw/913.png",
 		"name":"Purple World"
 	},
 	"rwJ01":{
-		"img":"img/Renderwahn/J01.png",
+		"sprite":"img/Renderwahn/J01.png",
 		"scape":"img/Other/Desert.png",
 		"name":"Ammonia Atmosphere"
 	},
 	"rwJ02":{
-		"img":"img/Renderwahn/J02.png",
+		"sprite":"img/Renderwahn/J02.png",
 		"scape":"img/farcodev/raw/409.png",
 		"name":"Diverse Surface"
 	},
 	"rwL00":{
-		"img":"img/Renderwahn/L00.png",
+		"sprite":"img/Renderwahn/L00.png",
 		"scape":"img/farcodev/raw/ice.png",
 		"name":"Liquid Methane"
 	},
 	"rwM02":{
-		"img":"img/Renderwahn/M02.png",
+		"sprite":"img/Renderwahn/M02.png",
 		"scape":"img/Other/Fogyellowstone.png",
 		"name":"Chlorine Atmosphere"
 	},
 	"rwM05":{
-		"img":"img/Renderwahn/M05.png",
+		"sprite":"img/Renderwahn/M05.png",
 		"scape":"img/farcodev/raw/411.png",
 		"name":"Liquid Methane"
 	},
 	"rwM06":{
-		"img":"img/Renderwahn/M06.png",
+		"sprite":"img/Renderwahn/M06.png",
 		"scape":"img/krill777/jpeg.png",
 		"name":"Energetic Biome"
 	},
 	"rwP00":{
-		"img":"img/Renderwahn/P00.png",
+		"sprite":"img/Renderwahn/P00.png",
 		"scape":"img/JAP/coldmountain.png",
 		"name":"Frozen Methane"
 	},
 	"rwP01":{
-		"img":"img/Renderwahn/P01.png",
+		"sprite":"img/Renderwahn/P01.png",
 		"scape":"img/farcodev/raw/polar.png",
 		"name":"Frozen Oxygen"
 	}
