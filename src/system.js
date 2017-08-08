@@ -22,7 +22,7 @@ export function setup_system(scene, camera, entMan, system, hud, data){
     lights = system_dat.lights;
   }
 
-  let asteroidSprite = new BABYLON.Sprite("roid", data.sprites['asteroid']);
+  let asteroidSprite = data.get_sprite("asteroid");
 
   let ents = [
     entities.asteroidFactory({x: 3, y: 3},
@@ -35,7 +35,7 @@ export function setup_system(scene, camera, entMan, system, hud, data){
   if ('spobs' in system_dat) {
     for (let spob_name of system_dat.spobs){
       let spob_dat = data.spobs[spob_name];
-      let planetSprite = new BABYLON.Sprite("planet", data.sprites['redplanet']);
+      let planetSprite = data.get_sprite("redplanet");
       let planet = entities.planetFactory({
         x: spob_dat.x / 10.0,  //TODO: What scale do we use? AU?
         y: spob_dat.y / 10.0,

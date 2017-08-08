@@ -18,6 +18,14 @@ export class Data {
     }
     return model.clone();
   }
+
+  get_sprite(name){
+    let sprname = "redplanet";
+    if (name in this.sprites){
+      sprname = name;
+    }
+    return new BABYLON.Sprite(name, this.sprites[sprname]);
+  }
 }
 
 function load_assets( source_json, scene, data, finish_callback ){
