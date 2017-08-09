@@ -1,10 +1,10 @@
 {
   "plasma50w":{
-    "sprite": "gngblastr",
+    "sprite": "redblast",
     "launchtype":"fixed",
     "shotype": "dumbproj",
     "miss": 0.1,
-    "cooldown": 1000,
+    "cooldown": 500,
     "shielddmg": 20,
     "hulldmg": 10,
     "lifetime":5000,

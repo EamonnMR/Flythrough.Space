@@ -6,7 +6,7 @@
     "longName"   : "Shuttlecraft",
     "fullName"   : "Jump capable shuttlecraft type 407",
     "desc"       : "Though shuttlecraft are usually used to ferry goods between ships, or save larger ships from needing to entering atmosphere, some shuttlecraft are equipped with jump drives and used as extremely cheap merchant ships. The model manufactured now has been frozen since its development by the shipwrights of Accra.",
-    "weapons"    : {},
+    "weapons"    : ["plasma50w"],
     "outfits"    : {"autocannon":1},
     "rotation"  : 0.005,
     "accel"      : 0.00005,

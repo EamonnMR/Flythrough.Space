@@ -6,11 +6,10 @@ export function radar_pip_factory(id, hud){
   });
 }
 
-export function playerShipFactory(data, type, position, camera, weapons, hud) {
+export function playerShipFactory(data, type, position, camera, hud) {
 
   let ship = shipFactory(data, type, position);
 
-  ship.weapons = weapons;
   ship.camera = camera;
   ship.input = true;
 
@@ -30,11 +29,13 @@ export function shipFactory(data, type, position){
   ship.velocity = {x: 0, y: 0};
   ship.direction_delta = 0;
 
+  console.log(ship);
+  ship.weapons = ship.weapons.map((name) => data.get_weapon(name));
+  console.log(ship);
   return ship;
-}
+};
 
 export function planetFactory (data, name, hud){
-  console.log(data);
   let planet = Object.create(data.spobs[name]);
   
   planet.position = {x: planet.x, y: planet.y};
@@ -70,6 +71,8 @@ export function cameraFollowSystem (entMan) {
 export function modelPositionSystem (entMan) {
   for (let entity of entMan.get_with(['model'])) {
     if ('position' in entity) {
+      // Would it be possible to get it such that
+      // entity.position === entity.model.position?
       entity.model.position.x = entity.position.x;
       entity.model.position.y = entity.position.y;
     }

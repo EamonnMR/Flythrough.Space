@@ -1,3 +1,5 @@
+import * as weapon from "weapon";
+
 export class Data {
   constructor (){
     this.models = {};
@@ -25,6 +27,14 @@ export class Data {
       sprname = name;
     }
     return new BABYLON.Sprite(name, this.sprites[sprname]);
+  }
+
+  get_weapon(name){
+    // TODO: Rewrite the weapon code to not use a class (?)
+    let data = this.weapons[name];
+    let sprite = this.sprites[data.sprite];
+    let period = data.cooldown;
+    return new weapon.Weapon(period, sprite);
   }
 }
 
