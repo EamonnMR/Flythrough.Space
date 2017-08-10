@@ -21,8 +21,7 @@ export function decaySystem (entMan) {
   }
 };
 
-function bulletFactory(position, sprite, direction, speed, initialVelocity,
-                       max_age) {
+function bulletFactory(position, sprite, direction, speed, initialVelocity, proto) {
   sprite.position.x = position.x;
   sprite.position.y = position.y;
   sprite.position.z = 0;
@@ -30,25 +29,29 @@ function bulletFactory(position, sprite, direction, speed, initialVelocity,
   sprite.size = 0.5;
   let velocity = {'x': initialVelocity.x, 'y': initialVelocity.y};
   physics.accelerate(velocity, direction, speed);
-  return {
-    'position': {'x': position.x, 'y': position.y},
-    'shot': true,
-    'model': sprite,
-    'velocity': velocity,
-    'max_age': max_age,
-    'age': 0.0,
-    'collider': {'radius': .3},
-    'damage': 1,
-    'remove_on_contact': true
-  };
+
+  let shot = Object.create(proto);
+
+  shot.position = {x: position.x, y: position.y}; // TODO: es6 clone?
+  shot.model = sprite;
+  shot.velocity = velocity;
+  shot.age = 0.0;
+  shot.shot = true; // Could we also derive from an ur-shot object?
+  if (!("remove_on_contact" in shot)){
+    shot.remove_on_contact = true;
+  }
+
+  return shot;
+
 };
 
 export class Weapon {
-  constructor(period, sprite){
+  constructor(period, sprite, projectile, velocity){
     this.timer = 0;
     this.period = period;
-    this.sprite = sprite
-    this.speed = 0.001
+    this.sprite = sprite;
+    this.speed = 0.001;
+    this.projectile = projectile;
   }
 
   tryShoot(entMan, entity) {
@@ -60,7 +63,7 @@ export class Weapon {
                     entity.direction,
                     this.speed,
                     entity.velocity || {'x': 0, 'y': 0},
-                    5000))
+                    this.projectile))
     }
   }
 
@@ -68,9 +71,6 @@ export class Weapon {
     if (this.timer > 0){
       this.timer -= entMan.delta_time;
     }
-    //if (this.timer <= 0) {
-    //  this.timer = 0
-    //}
  }
 };
 

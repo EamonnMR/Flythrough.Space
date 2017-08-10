@@ -33,8 +33,8 @@ export class Data {
     // TODO: Rewrite the weapon code to not use a class (?)
     let data = this.weapons[name];
     let sprite = this.sprites[data.sprite];
-    let period = data.cooldown;
-    return new weapon.Weapon(period, sprite);
+    return new weapon.Weapon(data.cooldown, sprite,
+        data.proj, data.velocity);
   }
 }
 

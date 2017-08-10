@@ -7,8 +7,14 @@
     "cooldown": 500,
     "shielddmg": 20,
     "hulldmg": 10,
-    "lifetime":5000,
-    "velocity":0.1
+    "max_age":5000,
+    "velocity":5000,
+    "proj": {
+      "damage": 1,
+      "shield_damage": 2,
+      "max_age": 5000,
+      "collider": {"radius": 0.3}
+    }
   },
   
   "plasma200w":{
@@ -19,7 +25,7 @@
     "cooldown": 1500,
     "shielddmg": 60,
     "hulldmg": 30,
-    "lifetime":8000,
+    "max_age":8000,
     "velocity":0.08
   },
   
@@ -34,7 +40,7 @@
     "burstcooldown":10000,
     "shielddmg":1,
     "hulldmg":5,
-    "lifetime":100000,
+    "max_age":100000,
     "useammo":"autocannonammo"
   },
 
@@ -51,7 +57,7 @@
     "hull":100,
     "miss":0,
     "velocity":0,
-    "lifetime":1100,
+    "max_age":1100,
     "impactExplo":"exploMed",
     "useammo":"dumbfiremissile"
   },
@@ -84,7 +90,7 @@
     "velocity":0.35,
     "miss":0.3,
     "cooldown":25,
-    "lifetime":700,
+    "max_age":700,
     "burstsize":20,
     "burstcooldown":10000,
     "shielddmg":10,
@@ -103,7 +109,7 @@
     "burstcooldown":10000,
     "shielddmg":0,
     "hulldmg":25,
-    "lifetime":100000,
+    "max_age":100000,
     "ueammo":"antigunammo"
   }
 }
