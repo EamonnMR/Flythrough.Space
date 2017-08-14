@@ -1,0 +1,78 @@
+{
+  "water":{
+    "name" : "Water",
+    "price": 20
+  },
+  "grain":{
+    "name" : "Grain",
+    "price": 40
+  },
+  "pure":{
+    "name" : "Pure Elements",
+    "price": 80
+  },
+  "alloy":{
+    "name" : "Alloys",
+    "price": 160
+  },
+  "agra":{
+    "name" : "Agracultural Goods",
+    "price": 30
+  },
+  
+  "roto":{
+    "name": "Rotovators",
+    "price":100
+  },
+  "dut":{
+    "name":"Duterium",
+    "price":40
+  },
+  
+  "xerum":{
+    "name":"Red Mecrury",
+    "price":40
+  },
+  
+  "dark":{
+    "name":"Dark Steel",
+    "price":80
+  },
+  "scrith":{
+    "name":"Scrith",
+    "price":100
+  },
+  "compu":{
+    "name":"Computronium",
+    "price":"50"
+  },
+
+  "ethyl": {
+    "name" : "Ethyl Alcohol",
+    "price": 25
+  },
+  "spice":{
+    "name": "Spice Melange",
+    "price": 1000
+  },
+  "uacbarrels":{
+    "name" : "Volatile Barrels",
+    "price" : 100
+  },
+  "gas":{
+    "name":"Vespine Gas",
+    "price":200
+  },
+  "ezo":{
+    "name":"Ezo",
+    "price":300
+  },
+  "powerconv":{
+    "name":"Power Converters",
+    "price":20
+  },
+  "plas":{
+    "name":"Plasma Injectors",
+    "price":100
+  }
+}

@@ -1,0 +1,512 @@
+{
+	"onyxEarthlikeA":{
+		"sprite":"img/onyx/Onyx/CleanStellars/A.png",
+		"scape":"img/Other/resurrection_river.png",
+		"name":"Terran Type world"
+	},
+	"onyxEarthlikeB":{
+		"sprite":"img/onyx/Onyx/CleanStellars/B.png",
+		"scape":"img/Other/Shinjuku_smog_cityscape.png",
+		"name":"Terran Type world"
+	},
+	"onyxEarthlikeC":{
+		"sprite":"img/onyx/Onyx/CleanStellars/C.png",
+		"scape":"img/Other/Koliba_sunrise.png",
+		"name":"Terran Type world"
+	},
+	"onyxEarthlikeD":{
+		"sprite":"img/onyx/Onyx/CleanStellars/D.png",
+		"scape":"img/Other/Palani_Hills.png",
+		"name":"Terran Type world"
+	},
+	"onyxEarthlikeE":{
+		"sprite":"img/onyx/Onyx/CleanStellars/E.png",
+		"scape":"img/Other/Niue_Coastline.png",
+		"name":"Terran Type world"
+	},
+	"onyxEarthlikeF":{
+		"sprite":"img/onyx/Onyx/CleanStellars/F.png",
+		"scape":"img/Other/Nilgiri_Hills.png",
+		"name":"Terran Type world"
+	},
+	"onyxEarthlikeG":{
+		"sprite":"img/onyx/Onyx/CleanStellars/G.png",
+		"scape":"img/other/Sunrise_over_north_beach.png",
+		"name":"Terran Type world"
+	},
+	"onyxEarthlikeH":{
+		"sprite":"img/onyx/Onyx/CleanStellars/H.png",
+		"scape":"img/other/Taranaki_hills.png",
+		"name":"Terran Type world"
+	},
+	"onyxEarthlikeI":{
+		"sprite":"img/onyx/Onyx/CleanStellars/I.png",
+		"scape":"img/other/Banasuran_Hills.png",
+		"name":"Terran Type world"
+	},
+	"onyxDesertJ":{
+		"sprite":"img/onyx/Onyx/CleanStellars/J.png",
+		"scape":"img/other/Tunisia_Metaloui.png",
+		"name":"Desert World"
+	},
+	"onyxDesertK":{
+		"sprite":"img/onyx/Onyx/CleanStellars/K.png",
+		"scape":"img/other/Libya_5210.png",
+		"name":"Desert World"
+	},
+	"onyxDesertL":{
+		"sprite":"img/onyx/Onyx/CleanStellars/L.png",
+		"scape":"img/other/Death_Valley.png",
+		"name":"Desert World"
+	},
+	"onyxIceM":{
+		"sprite":"img/onyx/Onyx/CleanStellars/M.png",
+		"scape":"img/Other/Andes.png",
+		"name":"Ice World"
+	},
+	"onyxIceN":{
+		"sprite":"img/onyx/Onyx/CleanStellars/N.png",
+		"scape":"img/Nasa/antartic.png",
+		"name":"Ice World"
+	},
+	"onyxDesertO":{
+		"sprite":"img/onyx/Onyx/CleanStellars/O.png",
+		"scape":"img/Other/Badlands_in_South_Dakota.png",
+		"name":"Desert World"
+	},
+	"onyxDesertP":{
+		"sprite":"img/onyx/Onyx/CleanStellars/P.png",
+		"scape":"img/JAP/cloudsinthedesert.png",
+		"name":"Desert World"
+	},
+	"onyxRedQ":{
+		"sprite":"img/onyx/Onyx/CleanStellars/Q.png",
+		"scape":"img/Other/Gliese_667.png",
+		"name":"Red World"
+	},
+	"onyxGreenR":{
+		"sprite":"img/onyx/Onyx/CleanStellars/R.png",
+		"scape":"img/farcodev/raw/109.png",
+		"name":"Green World"
+	},
+	"onyxBlueS":{
+		"sprite":"img/onyx/Onyx/CleanStellars/S.png",
+		"scape":"img/other/Kachemak_Bay.png",
+		"name":"Blue World"
+	},
+	"onyxRedT":{
+		"sprite":"img/onyx/Onyx/CleanStellars/T.png",
+		"scape":"img/Nasa/Concept_Mars_colony.png",
+		"name":"Red World"
+	},
+	"onyxRedU":{
+		"sprite":"img/onyx/Onyx/CleanStellars/U.png",
+		"scape":"img/Other/Doha.png",
+		"name":"Red Urban World"
+	},
+	"onyxLunarV":{
+		"sprite":"img/onyx/Onyx/CleanStellars/V.png",
+		"scape":"img/Nasa/Moon_colony_with_rover.png",
+		"name":"Lunar World"
+	},
+	"onyxLunarW":{
+		"sprite":"img/onyx/Onyx/CleanStellars/W.png",
+		"scape":"img/Ecrivain/level_moon.png",
+		"name":"Lunar World"
+	},
+	"onyxM1Lunar":{
+		"sprite":"img/onyx/Onyx/CleanStellars/Moon1.png",
+		"scape":"img/Other/Pluto.png",
+		"name":"Small Lunar World"
+	},
+	"onyxM3Earthlike":{
+		"sprite":"img/onyx/Onyx/CleanStellars/Moon3.png",
+		"scape":"img/Other/View_from_Rajgad.png",
+		"name":"Small Terran World"
+	},
+	"onyxM4Earthlike":{
+		"sprite":"img/onyx/Onyx/CleanStellars/Moon4.png",
+		"scape":"img/Other/Maiella.png",
+		"name":"Small Terran World"
+	},
+	"onyxM5Earthlike":{
+		"sprite":"img/onyx/Onyx/CleanStellars/Moon5.png",
+		"scape":"img/farcodev/raw/912.png",
+		"name":"Small Terran World"
+	},
+	"onyxM6Earthlike":{
+		"sprite":"img/onyx/Onyx/CleanStellars/Moon6.png",
+		"scape":"img/farcodev/raw/906.png",
+		"name":"Small Terran World"
+	},
+	"onyxM7Desert":{
+		"sprite":"img/onyx/Onyx/CleanStellars/Moon7.png",
+		"scape":"img/farcodev/raw/108.png",
+		"name":"Small Desert World"
+	},
+	"onyxM8Red":{
+		"sprite":"img/onyx/Onyx/CleanStellars/Moon8.png",
+		"scape":"img/farcodev/raw/903.png",
+		"name":"Small Red World"
+	},
+	"onyxM9Desert":{
+		"sprite":"img/onyx/Onyx/CleanStellars/Moon9.png",
+		"scape":"img/farcodev/raw/102.png",
+		"name":"Small Desert World"
+	},
+	"onyxRings":{
+		"sprite":"img/onyx/Onyx/CleanStellars/rings.png",
+		"scape":"img/farcodev/raw/404.png",
+		"name":"Small Ringed World with moons"
+	},
+	"oeStation":{
+		"sprite":"img/onyx/Onyx/CleanStellars/olstation.png",
+		"scape":"img/onyx/Onyx/Edited/mil.bmp",
+		"name":"Old Empire Outpost"
+	},
+	"medStation":{
+		"sprite":"img/onyx/Onyx/CleanStellars/medstation.png",
+		"scape":"img/onyx/Onyx/Edited/med.bmp",
+		"name":"Medical Station"
+	},
+	"oneRingStation":{
+		"sprite":"img/onyx/Onyx/CleanStellars/onering.png",
+		"scape":"img/onyx/Onyx/Edited/single.bmp",
+		"name":"Small Habitat Station"
+	},
+	"twoRingStation":{
+		"sprite":"img/onyx/Onyx/CleanStellars/tworing.png",
+		"scape":"img/onyx/Onyx/Edited/double.bmp",
+		"name":"Medium Habitat Station"
+	},
+	"fourRingStation":{
+		"sprite":"img/onyx/Onyx/CleanStellars/fouring.png",
+		"scape":"img/onyx/Onyx/Edited/triple.bmp",
+		"name":"Large Habitat Station"
+	},
+	"gnPlanet1Lunar":{
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/1.png",
+		"scape":"img/farcodev/raw/915.png",
+		"name":"Lunar World"
+	},
+	"gnPlanet2Lunar":{
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/2.png",
+		"scape":"img/farcodev/raw/115.png",
+		"name":"Lunar World"
+	},
+	"gnPlanet3Lunar":{
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/3.png",
+		"scape":"img/farcodev/raw/114.png",
+		"name":"Lunar World"
+	},
+	"gnPlanet4Blue":{
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/4.png",
+		"scape":"img/farcodev/raw/414.png",
+		"name":"Barren Blue World"
+	},
+	"gnPlanet5Red":{
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/5.png",
+		"scape":"img/farcodev/raw/403.png",
+		"name":"Barren Red World"
+	},
+	"gnPlanet6Rock":{
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/6.png",
+		"scape":"img/farcodev/raw/908.png",
+		"name":"Canyon World"
+	},
+	"gnPlanet7Pink":{
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/7.png",
+		"scape":"img/farcodev/raw/113.png",
+		"name":"Pink World"
+	},
+	"gnPlanet8Earthlike":{
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/8.png",
+		"scape":"img/farcodev/raw/408.png",
+		"name":"Pink World"
+	},
+	"gnPlanet9Earthlike":{
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/9.png",
+		"scape":"img/farcodev/raw/111.png",
+		"name":"Terran World"
+	},
+	"gnPlanet10Green":{
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/10.png",
+		"scape":"img/farcodev/raw/112.png",
+		"name":"Green World"
+	},
+	"gnPlanet11Maroon":{
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/11.png",
+		"scape":"img/Ecrivain/fog_dwell_peaks.png",
+		"name":"Maroon World"
+	},
+	"gnPlanet12Marsh":{
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/12.png",
+		"scape":"img/JAP/sunsetintheswamp.png",
+		"name":"Marsh World"
+	},
+	"gnPlanet13Purple":{
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/13.png",
+		"scape":"img/farcodev/raw/910.png",
+		"name":"Purple World"
+	},
+	"gnPlanet14Lunar":{
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/14.png",
+		"scape":"img/farcodev/raw/914.png",
+		"name":"Lunar World"
+	},
+	"gnPlanet15Earthlike":{
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/15.png",
+		"scape":"img/farcodev/raw/905.png",
+		"name":"Terran World"
+	},
+	"gnPlanet16Lunar":{
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/stationplanet.png",
+		"scape":"img/farcodev/raw/415.png",
+		"name":"Lunar World"
+	},
+	"gnStation1":{
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/station1.png",
+		"scape":"img/GrandNoviceGraphics/landscapes/stationland.png",
+		"name":"Red Station"
+	},
+	"gnStation2":{
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/station2.png",
+		"scape":"img/GrandNoviceGraphics/landscapes/station1land.png",
+		"name":"Panel Station"
+	},
+	"gnStation3":{
+		"sprite":"img/GrandNoviceGraphics/cleanstellars/station3.png",
+		"scape":"img/GrandNoviceGraphics/landscapes/station2land.png",
+		"name":"Onion Station"
+	},
+	"anonplan":{
+		"sprite":"img/anon/planet.png",
+		"scape":"img/farcodev/raw/110.png",
+		"name":"Peach World"
+	},
+	"sgDrye":{
+		"sprite":"img/SpiralGraphics/Drye.png",
+		"scape":"img/Other/Crepuscular2.png",
+		"name":"Gas Giant"
+	},
+	"sgHighWinds":{
+		"sprite":"img/SpiralGraphics/HighWinds.png",
+		"scape":"img/Other/Above_the_Clouds.png",
+		"name":"Gas Giant"
+	},
+	"sgSmall":{
+		"sprite":"img/SpiralGraphics/SmallGas.png",
+		"scape":"img/Other/Shining_through_Clouds.png",
+		"name":"Gas Giant"
+	},
+	"Deimostype":{
+		"sprite":"img/Nasa/Deimos.png",
+		"scape":"img/farcodev/raw/415.png",
+		"name":"Colony Ship"
+	},
+	"Phobostype":{
+		"sprite":"img/Nasa/Phobos.png",
+		"scape":"img/Nasa/Lunar_base.png",
+		"name":"Research Lab"
+	},
+	"aresShipStation":{
+		"sprite":"img/NathanLamont/Ares.png",
+		"scape":"img/NathanLamont/Ares_scape.png",
+		"name":"Anchient Station"
+	},
+	"aresSmallStation":{
+		"sprite":"img/NathanLamont/StationMinor.png",
+		"scape":"img/NathanLamont/StationMinor_scape.png",
+		"name":"Small Stardock"
+	},
+	"aresMedStation":{
+		"sprite":"img/NathanLamont/Habitat.png",
+		"scape":"img/NathanLamont/Habitat_scape.png",
+		"name":"Medium Stardock"
+	},
+	"aresLargeStation":{
+		"sprite":"img/NathanLamont/BunkerStation.png",
+		"scape":"img/NathanLamont/BunkerStation_scape.png",
+		"name":"Large Stardock"
+	},
+	"aresShipyard":{
+		"sprite":"img/NathanLamont/OrbitalShipyard.png",
+		"scape":"img/NathanLamont/OrbitalShipyard_scape.png",
+		"name":"Shipyard Station"
+	},
+	"aresRings":{
+		"sprite":"img/NathanLamont/PowerStation.png",
+		"scape":"img/NathanLamont/PowerStation_scape.png",
+		"name":"Utility Station"
+	},
+	"aresDish":{
+		"sprite":"img/NathanLamont/RelayDish.png",
+		"scape":"img/NathanLamont/RelayDish_scape.png",
+		"name":"Communication Station"
+	},
+	"aresBouy":{
+		"sprite":"img/NathanLamont/Buoy.png",
+		"scape":"img/krill777/jpeg.png",
+		"name":"Listening Post"
+	},
+	"aresOrange":{
+	"sprite":"img/NathanLamont/JumpGateInhibitor.png",
+		"scape":"img/krill777/jpeg.png",
+		"name":"City Station"
+	},
+	"aresRedPlanet":{
+	"sprite":"img/NathanLamont/9.png",
+		"scape":"img/krill777/jpeg.png",
+		"name":"Iron and Calcium"
+	},
+	"aresYellowPlanet":{
+		"sprite":"img/NathanLamont/16.png",
+		"scape":"img/krill777/jpeg.png",
+		"name":"Sulpheric Surface"
+	},
+	"avGaruda":{
+		"sprite":"img/AVDezign/GarudaS.gif",
+		"scape":"img/AVDezign/Garuda.jpg",
+		"name":"Itaskan Station"
+	},
+	"avGukumatz":{
+		"sprite":"img/AVDezign/GukumatzS.gif",
+		"scape":"img/AVDezign/Gukumatz.jpg",
+		"name":"Pinion Station"
+	},
+	"avHeimdall":{
+		"sprite":"img/AVDezign/HeimdallS.gif",
+		"scape":"img/AVDezign/Heimdall.jpg",
+		"name":"Small Ring Station"
+	},
+	"avHuangti":{
+		"sprite":"img/AVDezign/HuangtiS.gif",
+		"scape":"img/AVDezign/Huangti.jpg",
+		"name":"Small Ring Station With Sphere"
+	},
+	"avJabru":{
+		"sprite":"img/AVDezign/JabruS.gif",
+		"scape":"img/AVDezign/Jabru.jpg",
+		"name":"XIC Mining Outpost"
+	},
+	"avJuno":{
+		"sprite":"img/AVDezign/JunoS.gif",
+		"scape":"img/AVDezign/Juno.jpg",
+		"name":"Large Itaskan Station"
+	},
+	"avKuju":{
+		"sprite":"img/AVDezign/KujuS.gif",
+		"scape":"img/AVDezign/Kuju.jpg",
+		"name":"Sunburst Station"
+	},
+	"avQeskinaqu":{
+		"sprite":"img/AVDezign/QeskinaquS.gif",
+		"scape":"img/AVDezign/Qeskinaqu.jpg",
+		"name":"Radial Station"
+	},
+	"avTule":{
+		"sprite":"img/AVDezign/TuleS.gif",
+		"scape":"img/AVDezign/Tule.jpg",
+		"name":"Shuriken Station"
+	},
+	"avUsins":{
+		"sprite":"img/AVDezign/UsinsS.gif",
+		"scape":"img/AVDezign/Usins.jpg",
+		"name":"Isolation Station"
+	},
+	"avWusquus":{
+		"sprite":"img/AVDezign/WusquusS.gif",
+		"scape":"img/AVDezign/Wusquus.jpg",
+		"name":"Small Itaskan Station"
+	},
+	"rwA00":{
+		"sprite":"img/Renderwahn/A00.png",
+		"scape":"img/Other/Pilved.png",
+		"name":"Red World"
+	},
+	"rwA01":{
+		"sprite":"img/Renderwahn/A01.png",
+		"scape":"img/farcodev/raw/402.png",
+		"name":"Orange World"
+	},
+	"rwD00":{
+		"sprite":"img/Renderwahn/D00.png",
+		"scape":"img/Other/Kraftwerk.png",
+		"name":"Florine Moon"
+	},
+	"rwG00":{
+		"sprite":"img/Renderwahn/G00.png",
+		"scape":"img/Other/Thunder.png",
+		"name":"Swamp World"
+	},
+	"rwG01":{
+		"sprite":"img/Renderwahn/G01.png",
+		"scape":"img/Other/Fish.png",
+		"name":"Cracked Crust"
+	},
+	"rwH00":{
+		"sprite":"img/Renderwahn/H00.png",
+		"scape":"img/Other/Terragen_render02_edit.png",
+		"name":"Yellow Atmosphere"
+	},
+	"rwH01":{
+		"sprite":"img/Renderwahn/H01.png",
+		"scape":"img/Other/Astfeld.png",
+		"name":"Silica Particulate Desert"
+	},
+	"rwH02":{
+		"sprite":"img/Renderwahn/H02.png",
+		"scape":"img/JAP/wizardtower.png",
+		"name":"Chemically Active World"
+	},
+	"rwI00":{
+		"sprite":"img/Renderwahn/I00.png",
+		"scape":"img/farcodev/raw/904.png",
+		"name":"Methane Atmosphere"
+	},
+	"rwI01":{
+		"sprite":"img/Renderwahn/I01.png",
+		"scape":"img/farcodev/raw/913.png",
+		"name":"Purple World"
+	},
+	"rwJ01":{
+		"sprite":"img/Renderwahn/J01.png",
+		"scape":"img/Other/Desert.png",
+		"name":"Ammonia Atmosphere"
+	},
+	"rwJ02":{
+		"sprite":"img/Renderwahn/J02.png",
+		"scape":"img/farcodev/raw/409.png",
+		"name":"Diverse Surface"
+	},
+	"rwL00":{
+		"sprite":"img/Renderwahn/L00.png",
+		"scape":"img/farcodev/raw/ice.png",
+		"name":"Liquid Methane"
+	},
+	"rwM02":{
+		"sprite":"img/Renderwahn/M02.png",
+		"scape":"img/Other/Fogyellowstone.png",
+		"name":"Chlorine Atmosphere"
+	},
+	"rwM05":{
+		"sprite":"img/Renderwahn/M05.png",
+		"scape":"img/farcodev/raw/411.png",
+		"name":"Liquid Methane"
+	},
+	"rwM06":{
+		"sprite":"img/Renderwahn/M06.png",
+		"scape":"img/krill777/jpeg.png",
+		"name":"Energetic Biome"
+	},
+	"rwP00":{
+		"sprite":"img/Renderwahn/P00.png",
+		"scape":"img/JAP/coldmountain.png",
+		"name":"Frozen Methane"
+	},
+	"rwP01":{
+		"sprite":"img/Renderwahn/P01.png",
+		"scape":"img/farcodev/raw/polar.png",
+		"name":"Frozen Oxygen"
+	}
+}

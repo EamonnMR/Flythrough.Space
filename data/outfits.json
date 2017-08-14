@@ -1,0 +1,205 @@
+{
+  "nocargoexp":{
+    "name"           : "Optimal Cargo Space",
+    "icon"           : "img/onyx/Onyx/Ofts/20.png",
+    "space"          : 0,
+    "desc"           : "This ship is already optomized for cargo room; no more space can be converted to cargo capacity.",
+    "price"          : 0,
+    "exclass"        : "nocargoexp",
+    "locked"         : true
+  },
+  "nospaceexp":{
+    "name"           : "Optimal Upgrade Space",
+    "icon"           : "img/onyx/Onyx/Ofts/20.png",
+    "space"          : 0,
+    "desc"           : "This ship is already optomized for upgrade space; no more cargo room can be converted to free space.",
+    "price"          : 0,
+    "exclass"        : "nospaceexp",
+    "locked"         : true
+  },
+  "plasma50": {
+    "name"           : "Plasma Cannon 50kj",
+    "icon"           : "img/onyx/Onyx/Ofts/27.png",
+    "space"          : -5,
+    "desc"           : "This energy weapon dates back to at least before the sector was settled, and perhaps even earlier. Versions of it have been seen on many worlds, but it was standardized and mass produced by the Empire. It propels a high-energy shaped plasma burst at the target, maximizing damage and using very little energy. However it quickly dissipates and its damage potential diminishes over time. It is best used at close range.",
+    "price"          : 500,
+    "oftWeapon"      : "plasma50w",
+    "tech"           : {"oe_wep":1}
+  },
+  "plasmatur200":{
+    "name"           : "Plasma Turret 200kj",
+    "icon"           : "img/onyx/Onyx/Edited/27.png",
+    "space"          : -25,
+    "desc"           : "Approxmiately four times as powerful as the standard cannon, the type 400 200kj plasma turret is mounted on most larger civilian ships, as its military use has been eclipsed by more powerful and efficient cannons.",
+    "price"          : 2500,
+    "oftWeapon"      : "plasma200w",
+    "tech"           : {"oe_wep":2}
+  },
+  "goldarmor":{
+    "name"           : "Nanotech armor",
+    "icon"           : "img/onyx/Onyx/Ofts/43.png",
+    "space"          : -1,
+    "desc"           : "Arguably the most advanced armor available, it is used extensively by the 7th fleet, as evedenced by the gleaming gold color of their hulls. Though not the absolute most protection pound-for-pound, it is unique in its ability to self-repair damage over time.",
+    "price"          : 6000,
+    "hullRegen"      : 10,
+    "tech"           : {"itaskan_wep":2}
+  },
+  "wlknarmor":{
+    "name"           : "Crystal armor",
+    "icon"           : "img/onyx/Onyx/Ofts/43.png",
+    "space"          : -1,
+    "desc"           : "The toughest armor in he universe, this is a layer of hard cystal. While most effective on the wide flat hull sides of WLKN ships, it can be applied to any ship ",
+    "price"          : 6000,
+    "tech"           : {"wlkn":1}
+  },
+  "autocannon":{
+    "name"           : "20mm Autocannon",
+    "icon"           : "img/GrandNoviceGraphics/outfits/gat.bmp",
+    "space"          : -3,
+    "desc"           : "An elegant weapon, from a less civilized age, the 20mm autocannon is a close combat weapon due mainly to its inaccuracy. It fires high-explosive, armor piercing shells at high velocities, propelled through eight barrels. It is often used as a cheap close-in weapon, after plasma cannons have been used to strip away shields, as it is more efficient at penitrating armor (having been perfected long before energy shields ever where.",
+    "price"          : 500,
+    "exclass"        : "autocannon",
+    "oftWeapon"      : "autocannonW",
+    "tech"           : {"oe_wep":1}
+  },
+  "autocannonammo":{
+    "name"           : "20mm Shells",
+    "icon"           : "img/GrandNoviceGraphics/outfits/gatAmmo.bmp",
+    "space"          : -0.01,
+    "desc"           : "Autocannon shells are compact containers for an explosive warhead and propellant. The propellant is ignited inside the barrel by electromagnetic induction outside it, leaving behind no case to eject (or make the ammo heavier.)",
+    "price"          : 10,
+    "require"        : "autocannon",
+    "tech"           : {"oe_wep":1}
+  },
+  "ejectorrack":{
+    "name"           : "Missile Ejector Rack",
+    "icon"           : "img/onyx/Onyx/Ofts/12.png",
+    "space"          : -0.1,
+    "desc"           : "Ejector rack and pylon for basic missiles, various types of which are sold throughout the sector, mounted standard on Emperial fighters since 400. The mount is simple enough to have changed little in the interviening years, though the missiles have become more powerful and sophisticated.",
+    "price"          : 1000,
+    "exclass"        : "ejectorrack",
+    "oftWeapon"      : "ejectorrackW",
+    "tech"           : {"oe_wep":2}
+  },
+  "dumbfiremissile":{
+    "name"           : "Dumb fire missile",
+    "icon"           : "img/onyx/Onyx/Ofts/13.png",
+    "space"          : -1,
+    "desc"           : "Attaches to a standard ejector missile rack, and totally unguided. A simple missile design used to give small ships that extra punch.",
+    "price"          : 100,
+    "require"        : "ejectorrack",
+    "tech"           : {"oe_wep":1}
+  },
+  "guidedmissile":{
+    "name"           : "Dumb fire missile",
+    "icon"           : "img/onyx/Onyx/Ofts/13.png",
+    "space"          : 1,
+    "desc"           : "Similar to more common dumb fire missiles, but slightly more complex to produce. It locks onto a target with its own internal insturments, and needs no input from the ship once fired. However, due to space constraints, it has less damage potential then the dumb fire version.",
+    "price"          : 200,
+    "require"        : "ejectorrack",
+    "ammotype"       : "erguided",
+    "tech"           : "oewep2"
+  },
+  "dragnetaf":{
+    "name"           : "Dragnet Antifighter",
+    "icon"           : "img/GrandNoviceGraphics/outfits/tractor.bmp",
+    "space"          : -6,
+    "desc"           : "The \"Dragnet\" point defense solution is used almost exclusively by pirates. It consists of a light tractor beam, able only to do non-lethal damage to hulls (but stronger against shields). Pirate warshis can then steal the fighters captured by the turrets. As a point defense weapon, however, it has one critical flaw-it cannot destroy incoming projectiles, and isn't even configured to fire on them-it would simply pull them towards the ship.",
+    "price"          : 25000,
+    "oftWeapon"      : "dragnetpdW",
+    "tech"           : {"pirate":3}
+  },
+  "dragnettur":{
+    "name"           : "Dragnet Turret",
+    "icon"           : "img/GrandNoviceGraphics/outfits/greenbeams.bmp",
+    "space"          : -12,
+    "desc"           : "A very tight tractor beam that damages the ship its targeting, doing serious but not total hull damage. It is a favorite tight-in weapon of pirates to use before boarding a ship to disable a ship's weapon and drive systems.",
+    "price"          : 25000,
+    "oftWeapon"      : "dragnetW",
+    "tech"           :  {"pirate":2}
+  },
+  "turners":{
+    "name"           : "Supplimental Thrusters",
+    "icon"           : "img/GrandNoviceGraphics/outfits/thruster.bmp",
+    "space"          : -1,
+    "desc"           : "Additional thrusters increase a ship's rotation speed. Effectiveness is proportional to the ship's length and inversely proportional to ship mass and moment of inertia.",
+    "price"          : 10000,
+    "turnSpeed"      : 0.1,
+    "tech"           :  {"generic":3}
+  },
+  "jammer":{
+    "name"           : "Missile Jammer",
+    "icon"           : "img/GrandNoviceGraphics/outfits/abductor.bmp",
+    "space"          : -1,
+    "desc"           : "A powerful radio dish that confuses incoming missiles by flooding the area with radiation.",
+    "price"          : 30000,
+    "tech"           : {"generic":3}
+  },
+  "cargoupg":{
+    "name"           : "Cargo Upgrade",
+    "icon"           : "img/onyx/Onyx/Edited/20c.png",
+    "space"          : -12,
+    "cargo"          : 10,
+    "desc"           : "Weapons space can be retooled into cargo space, but with a slight (20%) loss.",
+    "price"          : 15000,
+    "require"        : "!nocargoexp",
+    "tech"           : {"generic":2}
+  },
+  "spaceupg":{
+    "name"           : "Space Upgrade",
+    "icon"           : "img/onyx/Onyx/Edited/20s.png",
+    "cargo"          : -12,
+    "space"          : 10,
+    "desc"           : "Cargo space can be retooled into weapons and outfit space, but with a slight (20%) loss.",
+    "price"          : 15000,
+    "require"        : "!nospaceexp",
+    "tech"           : {"generic":2}
+  },
+  "antigun":{
+    "name"           : "Antimatter Autocannon",
+    "icon"           : "img/GrandNoviceGraphics/outfits/gatanti.png",
+    "space"          : -8,
+    "desc"           : "The propulsion for this cannon is generated entirely by forcefields, because it is critical that the ammunition never actually touch the barrel. When the projectiles strike a ship's hull, they annhilate it, carving a hole and melting the surrounding plating with intense radiation. Unfortunately, the weapon is useless against shields because its velocity and weight aren't high enough to make a dent (prescisely why sheilds are used to protect the barrel!)",
+    "price"          : 100000,
+    "oftWeapon"      : "antiW",
+    "exclass"        : "antigun",
+    "tech"           : {"antimatter":2}
+  },
+  "antigunammo":{
+    "name"           : "0.01mm AM Shells",
+    "icon"           : "img/GrandNoviceGraphics/outfits/gatantiAmmo.png",
+    "space"          : -0.02,
+    "desc"           : "The shells fired by antimatter autocannons are generally formed out of antilead (for density and stability). The ammo is stored in shielded shell casings which also store enough power to propel the projectile and are discareded out the end of the barrel like sabots.",
+    "price"          : 10,
+    "require"        : "antigun",
+    "tech"           : {"antimatter":1}
+  },
+  "fuelpod":{
+    "name"           : "Fuel Pod",
+    "icon"           : "img/onyx/Onyx/Ofts/8.png",
+    "space"          : -2,
+    "desc"           : "A fuel tank that can carry enough fuel for another jump. Excellent for ships using weapons that draw from the main power supply?",
+    "price"          : 3000,
+    "fuelSpace"      : 100,
+    "tech"           :{"generic":1}
+  },
+  "fighterbay":{
+    "name"           : "Fighter Launch Bay",
+    "icon"           : "img/onyx/Onyx/Ofts/35.png",
+    "space"          : -20,
+    "desc"           : "The key component of this upgrade is an enormous airlock for launching ships, and an area large enough to house them. Areas to store and service the ships are added seperately, and additional launch bays can be added to facilitate faster launching.",
+    "price"          : 10000,
+    "fighterbay"     : true,
+    "fightercooldown": 1,
+    "tech"           : {"generic":2}
+  },
+  "degengun":{
+    "name"           : "0.0001mm Degenerate Matter Cannon",
+    "icon"           : "img/GrandNoviceGraphics/outfits/gatdegen.png",
+    "space"          : -6,
+    "desc"           : "Degenerate matter projectiles are favored for various reasons-especially that they can be formed out of space dust. The Original intention was to fire a super-dense projectile in an effort to penitrate shields, forcing the shield to concentrate its energy in a very small area to defeat the projectile, which is damaging to them. It is also able to hold massive amounts of heat for its volume, and releases irradiating nutrons and alpha particles as it dissipates. The drawback is that coalescion fields (similar to the ones employed by plasma guns) cannot contain the degenerate matter for long, so the cannon's range is severely limited.",
+    "price"          : 100000,
+    "oftWeapon"      : "degenW",
+    "tech"           : {"itaskan_wep":1}
+  }
+}

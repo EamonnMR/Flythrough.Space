@@ -21,7 +21,7 @@ export function velocitySystem(entMan){
 
 
 export function speedLimitSystem(entMan) {
-  for (let ent of entMan.get_with(['velocity', 'maxSpeed'])) {
+  for (let entity of entMan.get_with(['velocity', 'maxSpeed'])) {
     let dir = Math.atan2(entity.velocity.x, entity.velocity.y);
     if(
         Math.sqrt( Math.pow(entity.velocity.x, 2)

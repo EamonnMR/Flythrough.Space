@@ -4,27 +4,27 @@ import * as map from "map";
 import * as states from "states";
 import * as landing from "landing";
 
-export function init(gameCanvas, mapdata, spobs, player_data){
+function init(gameCanvas, scene, engine, data){
   /* Main entry point for the app (after loading). Binds events and such. */
-  let engine = new BABYLON.Engine( gameCanvas[0], true);
 
-  let scene = new BABYLON.Scene(engine);
   scene.clearColor = new BABYLON.Color3(0, 0, 0);
 
+
+
   let camera = new BABYLON.FreeCamera(
-            "camera1", new BABYLON.Vector3(0, -1, -10), scene)
+            "camera1", new BABYLON.Vector3(0, -1, -10), scene);
 
   // start initial state
   
-  player_data = new player.PlayerSave();
+  let player_data = new player.PlayerSave();
 
   let stateMgr = new states.StateManager({
     'gameplay': new gameplay.GameplayState(
-        scene, camera, mapdata, spobs, player_data, gameCanvas),
+        scene, camera, data, player_data, gameCanvas),
     'map': new map.MapView(
-        mapdata, {x: 0, y: 0}, scene, gameCanvas, player_data),
+        data, {x: 0, y: 0}, scene, gameCanvas, player_data),
 
-    'landing': new landing.LandingMainView(scene, gameCanvas, spobs, player_data),
+    'landing': new landing.LandingMainView(scene, gameCanvas, data.spobs, player_data),
   }, 'gameplay');
  
   // Handle resizes
@@ -40,3 +40,14 @@ export function init(gameCanvas, mapdata, spobs, player_data){
     stateMgr.update();
   });
 };
+
+$(() => {
+  let systems, spobs, models, images;
+  let game_canvas = $('#gameCanvas'); 
+  let engine = new BABYLON.Engine( game_canvas[0], true);
+  let scene = new BABYLON.Scene(engine);
+
+  load.load_all(engine, scene, (data) => {
+    init(game_canvas, scene, engine, data);
+  });
+});
