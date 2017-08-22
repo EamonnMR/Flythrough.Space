@@ -1,69 +1,97 @@
-import * as collision from "collision";
+import * as util from "util";
 import * as physics from "physics";
+
+let arc = Math.PI * 2;
+let TURN_THRESHOLD = 0.01;
 
 export function ai_system(entMan){
   for (let entity of entMan.get_with(['ai'])) {
     let ai = entity.ai;
     if (ai.state === 'violent'){
       if ('target' in ai){
-        engage(entity, entMan);
+        let target = entMan.get(2); // The Asteroid
+        if(target){
+          engage(entity, target, entMan.delta_time);
+        } else {
+          console.log("Target gone");
+          delete ai.target;
+          // TODO: Find new target
+          ai.state = 'passive';
+        }
       }
     }
   }
 };
 
-function point_at(to, from){
-  let angle = Math.atan2(to.y - from.y, to.x - from.x);
+function point_at(to, startangle, from){
+  let dx = to.x - from.x;
+  let dy = to.y - from.y;
   
-  if(angle > arc){
-    playerAngle -= arc;
+  // console.log(("dx " + dx) + ", dy " + dy);
+  let cw = (Math.atan2(dy, dx) - startangle);
+  let ccw = arc;
+  //let ccw = (Math.atan2(dy, dx) - startangle);
+  if (cw > 0){
+    ccw = arc - cw;
+  } else {
+    ccw = arc + cw;
   }
-  if(angle < -arc){
-    playerAngle += arc;
+  // console.log("cw:  " + cw);
+  // console.log("ccw: " + ccw);
+  
+  if(Math.abs(cw) < Math.abs(ccw)){
+    return -1 * cw;
+  } else {
+    return -1 * ccw;
   }
-
-  return angle;
+  
 }
 
-function engage(entity, entMan){
-  let arc = Math.pi * 2;
-  let cos;
-  let sin;
-  
-  let target = entMan.get(entity.ai.target)
+function engage(entity, target, delta_time){
 
-  if(!target){
-    return  // Somehow inducate that we should change state
-  }
-
-  let distance = collision.distance(this.position, target.position);
+  let distance = util.distance(entity.position, target.position);
   
-  // Get the ideal facing
-  let goal_angle = physics.rotate(point_at(target.position, entity.position), -1 * entity.direction);
+  // Get the ideal facing, subtract out current angle
+  let goal_turn = point_at(target.position, entity.direction, entity.position);
+  //if (goal_angle < 0){
+  //  goal_angle += arc;
+  //}
   // If angle is outside a certain margin, rotate the ship to face the target
   // Maybe pull this out into a "AI tries to face in a direction" system?
-  
-  angle = entity.rotation * entMan.delta_time // How far we _can_ turn this frame
+  let final_turn = 0;
+  let possible_turn = (entity.rotation * delta_time); // How far we _can_ turn this frame
 
-  if(goal_angle > .01){
-    physics.rotate(entity, angle);
-    entity.direction_delta = -1 * angle;
-  }
-  if(goal_angle < -.01){
-    physics.rotate(entity, -1 * angle);
-    entity.direction_delta = angle;
-  }
-
-  var dir = Math.atan2(this.vy, this.vx);
-  if(playerDistance > 50 &&  (playerAngle < .25 || playerAngle > -.25)){
-      physics.accelerate(entity.velocity, entity.direction,
-         entity.accel * entMan.delta_time); 
-  } else {
-    if(playerDistance > 40 &&  (playerAngle < .2 || playerAngle > -.2)){
-      for (let weapon of entity.weapons){
-        weapon.tryShoot(entMan, entity);
-      }
+  if(goal_turn > 0){
+    if(goal_turn > possible_turn){
+      final_turn = possible_turn;
+    } else {
+      final_turn = goal_turn;
+    }
+  } else if (goal_turn < 0){
+    if(Math.abs(goal_turn) > possible_turn){
+      final_turn = possible_turn * -1;
+    } else {
+      final_turn = goal_turn;
     }
   }
+  entity.ai.angle = (final_turn) / Math.PI;
+  
+  // Do rotation 
+  //if(Math.abs(final_turn) > TURN_THRESHOLD){
+    physics.rotate(entity, -1 * final_turn );
+    entity.direction_delta = final_turn;
+  //}
+
+  // Acclerate or shoot
+  //if(distance > 50 &&  (angle < .25 || angle > -.25)){
+  //    physics.accelerate(entity.velocity, entity.direction,
+  //       entity.accel * delta_time); 
+  //} //else {
+  //  if(distance > 40 &&  (angle < .2 || angle > -.2)){
+   //   for (let weapon of entity.weapons){
+  //      weapon.tryShoot(entMan, entity);
+  //    }
+  //  }
+  //}
   
 };

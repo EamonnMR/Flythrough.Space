@@ -31,6 +31,12 @@ export function setup_system(scene, camera, entMan, system, hud, data){
 
   ]
 
+  let player = entities.playerShipFactory(
+        data, "shuttle", {x: 0, y:-1, z: -2}, camera, hud)
+  entMan.insert(player);
+
+  let roid_id = entMan.insert(ents[0]);
+
   let planets = [];
   if ('spobs' in system_dat) {
     for (let spob_name of system_dat.spobs){
@@ -41,9 +47,8 @@ export function setup_system(scene, camera, entMan, system, hud, data){
     }
   }
 
-  entMan.insert(entities.playerShipFactory(
-        data, "shuttle", {x: 0, y:-1, z: -2}, camera, hud
-  ));
+  player.ai = {state: 'violent', target: roid_id};
+
 
   return enter_system(scene, entMan, planets, lights, ents);
 };
@@ -56,9 +61,9 @@ function enter_system(scene, entMan, planets, lights, ents) {
     world_models.push(lightFactory(light, scene));
   }
 
-  for (let ent of ents) {
-    entMan.insert( ent );
-  }
+  //for (let ent of ents) {
+  //  entMan.insert( ent );
+  //}
 
 
   for (let planet of planets) {

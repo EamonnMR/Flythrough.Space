@@ -8,6 +8,7 @@ import * as map from "map";
 import * as system from "system";
 import * as states from "states";
 import * as hud from "hud";
+import * as ai from "ai";
 
 
 export class GameplayState extends states.ViewState {
@@ -25,6 +26,7 @@ export class GameplayState extends states.ViewState {
 
     this.entMan = new ecs.EntityManager([
       input.inputSystem,
+      ai.ai_system,
       physics.velocitySystem,
       physics.speedLimitSystem,
       entities.modelPositionSystem,
@@ -140,7 +142,7 @@ export class GameplayState extends states.ViewState {
     let player = this.get_player_ent();
     let choice = null;
     for(let spob of spobs){
-      let distance = collision.distance(
+      let distance = util.distance(
           spob.position, player.position);
       if (!min_distance || min_distance > distance){
         min_distance = distance;

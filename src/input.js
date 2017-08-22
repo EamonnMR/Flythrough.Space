@@ -23,9 +23,9 @@ export function inputSystem (entMan) {
         physics.rotate(entity, -1 * angle );
         entity.direction_delta = angle;
       }
-      else {
-        entity.direction_delta = 0;
-      }
+//      else {
+//        entity.direction_delta = 0;
+//      }
     }
     if ('weapons' in entity && inputStates.shoot) {
       for (let weapon of entity.weapons){
