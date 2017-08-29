@@ -2,7 +2,10 @@ import * as util from "util";
 import * as physics from "physics";
 
 let arc = Math.PI * 2;
-let TURN_THRESHOLD = 0.01;
+
+let ENGAGE_DISTANCE = 50;
+let ENGAGE_ANGLE = .25;
+let ACCEL_DISTANCE = 1;
 
 export function ai_system(entMan){
   for (let entity of entMan.get_with(['ai'])) {
@@ -11,7 +14,7 @@ export function ai_system(entMan){
       if ('target' in ai){
         let target = entMan.get(2); // The Asteroid
         if(target){
-          engage(entity, target, entMan.delta_time);
+          engage(entity, target, entMan.delta_time, entMan);
         } else {
           console.log("Target gone");
           delete ai.target;
@@ -47,15 +50,12 @@ function point_at(to, startangle, from){
   
 }
 
-function engage(entity, target, delta_time){
+function engage(entity, target, delta_time, entMan){
 
   let distance = util.distance(entity.position, target.position);
   
   // Get the ideal facing, subtract out current angle
   let goal_turn = point_at(target.position, entity.direction, entity.position);
-  //if (goal_angle < 0){
-  //  goal_angle += arc;
-  //}
   // If angle is outside a certain margin, rotate the ship to face the target
   // Maybe pull this out into a "AI tries to face in a direction" system?
   let final_turn = 0;
@@ -74,24 +74,25 @@ function engage(entity, target, delta_time){
       final_turn = goal_turn;
     }
   }
-  entity.ai.angle = (final_turn) / Math.PI;
+  entity.ai.angle = distance;
   
   // Do rotation 
-  //if(Math.abs(final_turn) > TURN_THRESHOLD){
-    physics.rotate(entity, -1 * final_turn );
-    entity.direction_delta = final_turn;
-  //}
+  physics.rotate(entity, -1 * final_turn );
+  entity.direction_delta = final_turn;
 
-  // Acclerate or shoot
-  //if(distance > 50 &&  (angle < .25 || angle > -.25)){
-  //    physics.accelerate(entity.velocity, entity.direction,
-  //       entity.accel * delta_time); 
-  //} //else {
-  //  if(distance > 40 &&  (angle < .2 || angle > -.2)){
-   //   for (let weapon of entity.weapons){
-  //      weapon.tryShoot(entMan, entity);
-  //    }
-  //  }
+  // Acclerate
+  if(distance > ACCEL_DISTANCE){
+    physics.accelerate(entity.velocity, entity.direction,
+       entity.accel * delta_time); 
+  } //else {
+  //  physics.decelerate(entity.velocity)
   //}
+  if(entity.directon < ENGAGE_ANGLE || entity.direction > -1 * ENGAGE_ANGLE){
+    if(distance < ENGAGE_DISTANCE){
+      for (let weapon of entity.weapons){
+        weapon.tryShoot(entMan, entity);
+      }
+    }
+  }
   
 };
