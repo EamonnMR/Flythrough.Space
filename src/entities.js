@@ -1,9 +1,16 @@
-export function radar_pip_factory(id, hud){
+export function radar_pip_factory(hud, color='#5000FFFF'){
   return new BABYLON.Ellipse2D({
     parent: hud.canvas, id: 'pip_for' + name,
     width: 5, height: 5, x: 0, y: 0,
-    fill: BABYLON.Canvas2D.GetSolidColorBrushFromHex('#5000FFFF')
+    fill: BABYLON.Canvas2D.GetSolidColorBrushFromHex(color)
   });
+}
+
+export function npcShipFactory(data, type, position, hud, ai){
+  let ship = shipFactory(data, type, position);
+  ship.ai = ai;
+  ship.radar_pip = radar_pip_factory(hud, '#FF0000FF');
+  return ship;
 }
 
 export function playerShipFactory(data, type, position, camera, hud) {
@@ -13,7 +20,7 @@ export function playerShipFactory(data, type, position, camera, hud) {
   ship.camera = camera;
   ship.input = true;
 
-  ship.radar_pip = radar_pip_factory(player, hud);
+  ship.radar_pip = radar_pip_factory(hud, '#00FF00FF');
   return ship;
 };
 
@@ -29,9 +36,7 @@ export function shipFactory(data, type, position){
   ship.velocity = {x: 0, y: 0};
   ship.direction_delta = 0;
 
-  console.log(ship);
   ship.weapons = ship.weapons.map((name) => data.get_weapon(name));
-  console.log(ship);
   return ship;
 };
 
@@ -41,23 +46,25 @@ export function planetFactory (data, name, hud){
   planet.position = {x: planet.x, y: planet.y};
   planet.model = data.get_sprite(data.spobtypes[planet.sType].sprite);
   planet.spob_name = name;
-  planet.radar_pip = radar_pip_factory('pip_for_' + name, hud);
+  planet.radar_pip = radar_pip_factory(hud);
   
   return planet;
 };
 
 
-export function asteroidFactory (position, velocity, sprite) {
+export function asteroidFactory (position, velocity, sprite, hud) {
   sprite.position.x = position.x;
   sprite.position.y = position.y;
-  sprite.position.z = 0;
+  sprite.position.z = position.z;
   return {
+    'team-asteroids': true,
     'position': {'x': position.x, 'y': position.y },
-    'velocity': {'x': velocity.x, 'y': velocity.y },
+    'velocity': velocity,
     'model': sprite,
     'hitpoints': 10,
     'collider': {'radius': .5},
-    'hittable': true
+    'hittable': true,
+    'radar_pip': radar_pip_factory(hud, '#FF00FFFF')
   };
 };
 

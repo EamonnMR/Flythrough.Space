@@ -6,8 +6,21 @@
  * ents and need to be cleaned up on system exit.
  */
 
+let SHIP_Z = -2;
+
+function random_position(z=SHIP_Z){
+  let distance = Math.random() * 100;
+  let angle = Math.random() * 2 * Math.PI;
+  /*
+  return {
+    x: Math.cos(angle) * distance,
+    y: Math.sin(angle) * distance,
+    z: z
+  }*/
+  return {x:-3,y:-3,z:z};
+};
+
 export function setup_system(scene, camera, entMan, system, hud, data){
-  // Sets up the models for a system
   let system_dat = data.systems[system];
 
   let lights = [
@@ -25,19 +38,21 @@ export function setup_system(scene, camera, entMan, system, hud, data){
   let asteroidSprite = data.get_sprite("asteroid");
 
   let ents = [
-    entities.asteroidFactory({x: 3, y: 3},
+    entities.asteroidFactory(random_position(0),
                              {x: -0.00008, y: -0.00008},
-                             asteroidSprite)
+                             asteroidSprite, hud),
+    entities.npcShipFactory(data, "shuttle",
+                            random_position(), hud,
+                            {state: 'asteroid_hate'}), 
+    entities.playerShipFactory( data, "shuttle", 
+        {x: 0, y:-1, z: SHIP_Z}, camera, hud)
+  ];
 
-  ]
+  // TODO: NPCs should actually be made by an NPC Spawner entity that jumps NPC ships in at random times.
 
-  let player = entities.playerShipFactory(
-        data, "shuttle", {x: 0, y:-1, z: -2}, camera, hud)
-  entMan.insert(player);
-
-  let roid_id = entMan.insert(ents[0]);
 
   let planets = [];
+  // TODO: Why keep planets list seperate?
   if ('spobs' in system_dat) {
     for (let spob_name of system_dat.spobs){
       let spob_dat = data.spobs[spob_name];
@@ -46,9 +61,6 @@ export function setup_system(scene, camera, entMan, system, hud, data){
       planets.push( planet );
     }
   }
-
-  player.ai = {state: 'violent', target: roid_id};
-
 
   return enter_system(scene, entMan, planets, lights, ents);
 };
@@ -61,14 +73,15 @@ function enter_system(scene, entMan, planets, lights, ents) {
     world_models.push(lightFactory(light, scene));
   }
 
-  //for (let ent of ents) {
-  //  entMan.insert( ent );
-  //}
+  for (let ent of ents) {
+    entMan.insert( ent );
+  }
 
 
   for (let planet of planets) {
     entMan.insert( planet );
   }
+
   return world_models;
 };
 

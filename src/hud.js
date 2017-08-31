@@ -54,8 +54,8 @@ export class HUD{
     let player = possible_player[0];
     let planet = this.entMan.get_with(['radar_pip'])[0];
     if (planet){
-    this.status_text[0].text = 'player rotation ' + player.direction / Math.PI;
-    this.status_text[1].text = 'AI angle: ' + player.ai.angle;
+    this.status_text[0].text = "";
+    this.status_text[1].text = "";
     }
 
 
