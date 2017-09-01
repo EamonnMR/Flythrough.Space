@@ -12,7 +12,7 @@ export function ai_system(entMan){
     let ai = entity.ai;
     if (ai.state === 'violent'){
       if ('target' in ai){
-        let target = entMan.get(2); // The Asteroid
+        let target = entMan.get(ai.target);
         if(target){
           engage(entity, target, entMan.delta_time, entMan);
         } else {
@@ -22,9 +22,42 @@ export function ai_system(entMan){
           ai.state = 'passive';
         }
       }
+    } else if (ai.state == 'asteroid_hate'){
+      let target = find_closest_target(entity.position, entMan, ['team-asteroids']);
+      if(target){
+        console.log(("Found an asteroid " + target.id) + " doing violence");
+        ai.target = target.id;
+        ai.state = 'violent';
+      } else {
+        console.log("No more asteroids to hate");
+        ai.state = 'passive';
+      }
     }
   }
 };
+
+function find_closest_target(position, entMan, criteria){
+  let possible_targets = entMan.get_with(criteria); // TODO: Add position to this list  
+  if (possible_targets.length > 0){
+    return possible_targets.sort((a, b) => {
+      // Comparison function goes by distance from 'position'
+      da = Math.sqrt(Math.pow(a.position.x - position.x, 2) + 
+          Math.pow(a.position.y - position.y, 2));
+      db = Math.sqrt(Math.pow(b.position.x - position.x, 2) + 
+          Math.pow(b.position.y - position.y, 2));
+      if(da < db){
+        return 1;
+      } else if (da > db){
+        return -1;
+      } else {
+        return 0;
+      }
+    })[0];
+  } else {
+    return null;
+  }
+}
+    
 
 function point_at(to, startangle, from){
   let dx = to.x - from.x;

@@ -11,13 +11,13 @@ let SHIP_Z = -2;
 function random_position(z=SHIP_Z){
   let distance = Math.random() * 100;
   let angle = Math.random() * 2 * Math.PI;
-  /*
+  
   return {
     x: Math.cos(angle) * distance,
     y: Math.sin(angle) * distance,
     z: z
-  }*/
-  return {x:-3,y:-3,z:z};
+  }
+  // return {x:-3,y:-3,z:z};
 };
 
 export function setup_system(scene, camera, entMan, system, hud, data){
@@ -39,7 +39,7 @@ export function setup_system(scene, camera, entMan, system, hud, data){
 
   let ents = [
     entities.asteroidFactory(random_position(0),
-                             {x: -0.00008, y: -0.00008},
+                             {x: -0.000008, y: -0.000008},
                              asteroidSprite, hud),
     entities.npcShipFactory(data, "shuttle",
                             random_position(), hud,
