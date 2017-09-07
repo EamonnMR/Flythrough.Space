@@ -1,5 +1,7 @@
 export class EntityManager {
-  constructor (systems, entities) {
+  constructor (player_data, data, systems, entities) {
+    this.data = data;
+    this.player_data = player_data;
     if (entities) {
       this.entities = entities;
     } else {
@@ -65,6 +67,7 @@ export class EntityManager {
     this.last_time = time;
     
     if ( !this.paused) {
+      console.log(this);
       for (let system of this.systems) {
         system(this);
       }

@@ -3,6 +3,10 @@ import * as physics from "physics";
 
 let arc = Math.PI * 2;
 
+
+// For a more interesting game, these should probably be ship properties.
+// Might not be crazy to calculate them based on the ship's stats and allow
+// for an override in the data
 let ENGAGE_DISTANCE = 50;
 let ENGAGE_ANGLE = .25;
 let ACCEL_DISTANCE = 1;
@@ -25,18 +29,47 @@ export function ai_system(entMan){
     } else if (ai.state == 'asteroid_hate'){
       let target = find_closest_target(entity.position, entMan, ['team-asteroids']);
       if(target){
-        console.log(("Found an asteroid " + target.id) + " doing violence");
-        ai.target = target.id;
-        ai.state = 'violent';
+        set_target(ai, target);
       } else {
         console.log("No more asteroids to hate");
         ai.state = 'passive';
       }
+    } else if (ai.state == 'passive') {
+      // This is sort of the hub behavior - select a new thing to do
+      if ('aggro' in ai){
+        // Aggro is a list of entities that have pissed this entity off
+        // Go through the aggro list till it finds one that is alive
+      }
+      if ('govt' in entity){
+        let govt = entMan.data.govt[entity.govt];
+
+        // if player_data.govts.reputation == bad or neautral if govt.
+        // attack by default, attack the player. Else:
+        
+        for(let foe of list_closest_targets(entity.position, entMan, 'govt')){
+          if (foe.govt !== entity.govt){
+            if (foe.govt in govt.foes || govt.attack_default){
+              set_target(entity.ai, foe);
+            }
+          }
+        }
+      }
+
+      // Do normal passive things such as fly to planets
+      
     }
   }
 };
 
-function find_closest_target(position, entMan, criteria){
+function set_target(ai_component, target_entity){
+  console.log("target aquired: " + target_entity.id);
+  ai_component.target = target_entity.id;
+  ai_component.state = 'violent';
+}
+
+
+
+function list_closest_targets(position, entMan, criteria){
   let possible_targets = entMan.get_with(criteria); // TODO: Add position to this list  
   if (possible_targets.length > 0){
     return possible_targets.sort((a, b) => {
@@ -52,7 +85,16 @@ function find_closest_target(position, entMan, criteria){
       } else {
         return 0;
       }
-    })[0];
+    })
+  } else {
+    return null;
+  }
+}
+
+function find_closest_target(position, entMan, criteria){
+  let possible_list = list_closest_targets(position, entMan, criteria);
+  if(possible_list){
+    return possible_list[0];
   } else {
     return null;
   }

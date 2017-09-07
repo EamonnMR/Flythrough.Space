@@ -24,7 +24,7 @@ export class GameplayState extends states.ViewState {
     this.player_data = player_data;
     this.dom_canvas = dom_canvas;
 
-    this.entMan = new ecs.EntityManager([
+    this.entMan = new ecs.EntityManager(player_data, data, [
       input.inputSystem,
       ai.ai_system,
       physics.velocitySystem,
