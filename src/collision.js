@@ -9,10 +9,14 @@ export function collisionDetectionSystem(entMan){
     for (let other of colliders) {
       let dist = util.distance(current.position, other.position);
       if ( dist < current.collider.radius + other.collider.radius) {
-        if ( 'shot' in current && 'hittable' in other ) {
+        if ( 'shot' in current
+            && 'hittable' in other
+            && !gov_test(current, other)) {
           damage.shot_handler( current, other );
         }
-        if ('shot' in other && 'hittable' in current){
+        if ('shot' in other
+            && 'hittable' in current
+            && !gov_test(other, current)){
           damage.shot_handler(other, current);
         }
       }
@@ -20,3 +24,7 @@ export function collisionDetectionSystem(entMan){
   }
 };
 
+function gov_test(shot, entity){
+  console.log(shot); console.log(entity)
+  return 'ignoregov' in shot && 'govt' in entity && shot.ignoregov === entity.govt;
+}

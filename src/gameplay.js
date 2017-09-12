@@ -131,7 +131,6 @@ export class GameplayState extends states.ViewState {
     this.hud = new hud.HUD(this.scene, this.dom_canvas, this.entMan);
     this.create_world_models(this.player_data.current_system);
     this.empty = false;
-    console.log('Done with setup world');
   }
 
   get_player_ent(){

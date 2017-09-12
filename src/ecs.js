@@ -67,7 +67,6 @@ export class EntityManager {
     this.last_time = time;
     
     if ( !this.paused) {
-      console.log(this);
       for (let system of this.systems) {
         system(this);
       }

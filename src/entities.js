@@ -6,10 +6,11 @@ export function radar_pip_factory(hud, color='#5000FFFF'){
   });
 }
 
-export function npcShipFactory(data, type, position, hud, ai){
+export function npcShipFactory(data, type, position, hud, ai, govt){
   let ship = shipFactory(data, type, position);
   ship.ai = ai;
   ship.radar_pip = radar_pip_factory(hud, '#FF0000FF');
+  ship.govt = govt;
   return ship;
 }
 
@@ -21,6 +22,7 @@ export function playerShipFactory(data, type, position, camera, hud) {
   ship.input = true;
 
   ship.radar_pip = radar_pip_factory(hud, '#00FF00FF');
+  delete ship.hittable; // Noclip on
   return ship;
 };
 
@@ -37,6 +39,9 @@ export function shipFactory(data, type, position){
   ship.direction_delta = 0;
 
   ship.weapons = ship.weapons.map((name) => data.get_weapon(name));
+  ship.hittable = true;
+  ship.hitpoints = 1;
+  ship.collider = {radius: .5};
   return ship;
 };
 

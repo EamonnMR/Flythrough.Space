@@ -41,9 +41,19 @@ export function setup_system(scene, camera, entMan, system, hud, data){
     entities.asteroidFactory(random_position(0),
                              {x: -0.000008, y: -0.000008},
                              asteroidSprite, hud),
+    //entities.npcShipFactory(data, "shuttle",
+    //                        random_position(), hud,
+    //                        {state: 'passive'},
+    //                        'direc'
+    //                        ), 
+    //entities.npcShipFactory(data, "shuttle",
+    //                        random_position(), hud,
+    //                        {state: 'passive'},
+    //                        'orion'), 
     entities.npcShipFactory(data, "shuttle",
                             random_position(), hud,
-                            {state: 'asteroid_hate'}), 
+                            {state: 'asteroid_hate'},
+                            'orasos'), 
     entities.playerShipFactory( data, "shuttle", 
         {x: 0, y:-1, z: SHIP_Z}, camera, hud)
   ];

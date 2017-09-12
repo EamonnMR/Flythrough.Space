@@ -41,14 +41,16 @@ export function ai_system(entMan){
         // Go through the aggro list till it finds one that is alive
       }
       if ('govt' in entity){
-        let govt = entMan.data.govt[entity.govt];
+        let govt = entMan.data.govts[entity.govt];
 
         // if player_data.govts.reputation == bad or neautral if govt.
         // attack by default, attack the player. Else:
         
-        for(let foe of list_closest_targets(entity.position, entMan, 'govt')){
+        for(let foe of list_closest_targets(entity.position, entMan, ['govt', 'hittable'])){
           if (foe.govt !== entity.govt){
-            if (foe.govt in govt.foes || govt.attack_default){
+            console.log("govts are different - check if foe");
+            if (govt.attack_default || ('foes' in govt && govt.foes.includes(foe.govt))){
+              console.log("Found target of foe govt: " + foe.govt + ", attacking!");
               set_target(entity.ai, foe);
             }
           }
@@ -74,9 +76,9 @@ function list_closest_targets(position, entMan, criteria){
   if (possible_targets.length > 0){
     return possible_targets.sort((a, b) => {
       // Comparison function goes by distance from 'position'
-      da = Math.sqrt(Math.pow(a.position.x - position.x, 2) + 
+      let da = Math.sqrt(Math.pow(a.position.x - position.x, 2) + 
           Math.pow(a.position.y - position.y, 2));
-      db = Math.sqrt(Math.pow(b.position.x - position.x, 2) + 
+      let db = Math.sqrt(Math.pow(b.position.x - position.x, 2) + 
           Math.pow(b.position.y - position.y, 2));
       if(da < db){
         return 1;
@@ -87,7 +89,7 @@ function list_closest_targets(position, entMan, criteria){
       }
     })
   } else {
-    return null;
+    return [];
   }
 }
 
