@@ -25,6 +25,5 @@ export function collisionDetectionSystem(entMan){
 };
 
 function gov_test(shot, entity){
-  console.log(shot); console.log(entity)
   return 'ignoregov' in shot && 'govt' in entity && shot.ignoregov === entity.govt;
 }

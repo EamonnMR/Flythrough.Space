@@ -52,7 +52,7 @@ export class Weapon {
     this.timer = 0;
     this.period = period;
     this.sprite = sprite;
-    this.speed = 0.001;
+    this.speed = velocity;
     this.projectile = projectile;
   }
 
