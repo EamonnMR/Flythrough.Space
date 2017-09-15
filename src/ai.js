@@ -52,19 +52,35 @@ export function ai_system(entMan){
           }
         }
         
-        for(let foe of list_closest_targets(entity.position, entMan, ['govt', 'hittable'])){
-          if (foe.govt !== entity.govt){
-            console.log("govts are different - check if foe");
-            if (govt.attack_default || ('foes' in govt && govt.foes.includes(foe.govt))){
-              console.log("Found target of foe govt: " + foe.govt + ", attacking!");
-              set_target(entity.ai, foe);
-              return;
+        for(let foe of list_closest_targets(entity.position, entMan, ['hittable'])){
+          if('govt' in foe){ 
+            if (foe.govt !== entity.govt){
+              console.log("govts are different - check if foe");
+              if (govt.attack_default || ('foes' in govt && govt.foes.includes(foe.govt))){
+                console.log("Found target of foe govt: " + foe.govt + ", attacking!");
+                set_target(ai, foe);
+                return;
+              }
             }
-          }
+          } else if ('player_aligned' in foe && 
+            (govt.attack_default || 
+              (entity.govt in entMan.player_data.govts &&
+                 entMan.player_data.govts[entty.govt].reputation < 0
+              )
+            )
+          ){
+            console.log("Found player-aligned target, attacking!");
+            set_target(ai, foe);
+            return;
+          } 
+        }
+
+        if ("attacks_asteroids" in govt){
+          ai.state = 'asteroid_hate';
         }
       }
 
-      // Do normal passive things such as fly to planets
+      // Do neautral passive things such as fly to planets or leave the system
       
     }
   }

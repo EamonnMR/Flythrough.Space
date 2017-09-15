@@ -44,7 +44,7 @@ export function setup_system(scene, camera, entMan, system, hud, data){
     entities.npcShipFactory(data, "shuttle",
                             random_position(), hud,
                             {state: 'passive'},
-                            'orasos'
+                            'direc'
                             ), 
     entities.npcShipFactory(data, "shuttle",
                             random_position(), hud,
