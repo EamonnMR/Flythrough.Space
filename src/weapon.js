@@ -21,7 +21,7 @@ export function decaySystem (entMan) {
   }
 };
 
-function bulletFactory(position, sprite, direction, speed, initialVelocity, proto, ignore_gov) {
+function bulletFactory(position, sprite, direction, speed, initialVelocity, proto, ignore_gov, ignore_player) {
   sprite.position.x = position.x;
   sprite.position.y = position.y;
   sprite.position.z = 0;
@@ -37,7 +37,12 @@ function bulletFactory(position, sprite, direction, speed, initialVelocity, prot
   shot.velocity = velocity;
   shot.age = 0.0;
 
-  shot.ignoregov = ignore_gov;
+  if(ignore_gov != null){
+    shot.ignoregov = ignore_gov;
+  }
+  if(ignore_player != null){
+    shot.ignore_player = ignore_player;
+  }
   shot.shot = true; // Could we also derive from an ur-shot object?
   if (!("remove_on_contact" in shot)){
     shot.remove_on_contact = true;
@@ -66,7 +71,8 @@ export class Weapon {
                     this.speed,
                     entity.velocity || {'x': 0, 'y': 0},
                     this.projectile,
-                    'govt' in entity ? entity.govt : null))
+                    'govt' in entity ? entity.govt : null,
+                    'player_aligned' in entity))
     }
   }
 

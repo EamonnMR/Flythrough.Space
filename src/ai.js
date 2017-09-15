@@ -22,8 +22,7 @@ export function ai_system(entMan){
         } else {
           console.log("Target gone");
           delete ai.target;
-          // TODO: Find new target
-          ai.state = 'passive';
+          ai.state = "passive";
         }
       }
     } else if (ai.state == 'asteroid_hate'){
@@ -42,9 +41,16 @@ export function ai_system(entMan){
       }
       if ('govt' in entity){
         let govt = entMan.data.govts[entity.govt];
-
-        // if player_data.govts.reputation == bad or neautral if govt.
-        // attack by default, attack the player. Else:
+        // TODO: Really this should look at the closest hittable target
+        // and integrate the player / govt logic together
+        if (govt.attack_default || (entity.govt in entMan.player_data.govts
+            && entMan.player_data.govts[entty.govt].reputation < 0)){
+          let target = find_closest_target(entity.position, entMan, ['hittable', 'player_aligned']); 
+          if(target){
+            set_target(ai, target);
+            return;
+          }
+        }
         
         for(let foe of list_closest_targets(entity.position, entMan, ['govt', 'hittable'])){
           if (foe.govt !== entity.govt){
@@ -52,6 +58,7 @@ export function ai_system(entMan){
             if (govt.attack_default || ('foes' in govt && govt.foes.includes(foe.govt))){
               console.log("Found target of foe govt: " + foe.govt + ", attacking!");
               set_target(entity.ai, foe);
+              return;
             }
           }
         }

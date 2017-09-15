@@ -44,12 +44,12 @@ export function setup_system(scene, camera, entMan, system, hud, data){
     entities.npcShipFactory(data, "shuttle",
                             random_position(), hud,
                             {state: 'passive'},
-                            'direc'
+                            'orasos'
                             ), 
     entities.npcShipFactory(data, "shuttle",
                             random_position(), hud,
                             {state: 'passive'},
-                            'orion'), 
+                            'orasos'), 
     entities.npcShipFactory(data, "shuttle",
                             random_position(), hud,
                             {state: 'asteroid_hate'},

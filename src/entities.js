@@ -20,9 +20,10 @@ export function playerShipFactory(data, type, position, camera, hud) {
 
   ship.camera = camera;
   ship.input = true;
+  ship.player = true; // Is this a hack?
+  ship.player_aligned = true; // Fake gov for player and minions
 
   ship.radar_pip = radar_pip_factory(hud, '#00FF00FF');
-  delete ship.hittable; // Noclip on
   return ship;
 };
 
