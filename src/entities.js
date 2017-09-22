@@ -1,3 +1,5 @@
+let SHIP_Z = -2;
+
 export function radar_pip_factory(hud, color='#5000FFFF'){
   return new BABYLON.Ellipse2D({
     parent: hud.canvas, id: 'pip_for' + name,
@@ -95,5 +97,70 @@ export function modelPositionSystem (entMan) {
       entity.direction_delta = 0;
     }
   }
+};
+
+export function npcSpawnerFactory(data, system, typeset, hud) {
+  console.log(system);
+  return {
+    spawner: true,
+    spawns_npc: true,
+    min: system.avg_ships || 1,
+    govt: system.govt || null,
+    types: typeset,
+    hud: hud //FIXME: Filthy no good very bad hack
+      // some way of getting radar pips without passing
+      // HUD around needs to exist, but not today.
+  }
+}
+
+export function npcSpawnerSystem(entMan) {
+  for (let spawner of entMan.get_with(['spawner', 'spawns_npc'])){
+    if(count_npcs(entMan) < spawner.min){
+      // TODO: Set timer to make this feel more natural
+			// TODO: Spawn ships in with a warp transition for coolness
+
+		  	
+		  let npc = npcShipFactory(
+                                entMan.data,
+                                random_type(spawner.types),
+                                random_position(),
+                                spawner.hud,
+                                {state: 'passive'},
+                                spawner.govt
+      );
+      console.log(npc);
+      entMan.insert(npc);
+		}
+  }
+}
+
+function count_npcs(entMan){
+  // Counts the number of NPC ships in the system
+  // If there's a bug with the spawner, it may be that
+  // the method for counting has become inaccurate.
+  // For example, right now we're just counting the number
+  // of entities with an "ai" attribute.
+
+	// To account for player fleets, etc might not be crazy to have a
+  // 'native' flag that indicates that a ship was made by a spawner
+  // and isn't part of a mission, etc
+  return entMan.get_with(['ai']).length;
+}
+
+function random_position(z=SHIP_Z){
+  let distance = Math.random() * 100;
+  let angle = Math.random() * 2 * Math.PI;
+
+  return {
+    x: Math.cos(angle) * distance,
+    y: Math.sin(angle) * distance,
+    z: z
+  };
+};
+
+function random_type(typeset){
+  // A fun StackOverflow post for sure:
+  // https://stackoverflow.com/questions/5915096/get-random-item-from-javascript-array	
+  return typeset[Math.floor(Math.random() * typeset.length)];
 };
 

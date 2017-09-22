@@ -6,19 +6,6 @@
  * ents and need to be cleaned up on system exit.
  */
 
-let SHIP_Z = -2;
-
-function random_position(z=SHIP_Z){
-  let distance = Math.random() * 100;
-  let angle = Math.random() * 2 * Math.PI;
-  
-  return {
-    x: Math.cos(angle) * distance,
-    y: Math.sin(angle) * distance,
-    z: z
-  }
-  // return {x:-3,y:-3,z:z};
-};
 
 export function setup_system(scene, camera, entMan, system, hud, data){
   let system_dat = data.systems[system];
@@ -35,28 +22,16 @@ export function setup_system(scene, camera, entMan, system, hud, data){
     lights = system_dat.lights;
   }
 
-  let asteroidSprite = data.get_sprite("asteroid");
 
   let ents = [
-    entities.asteroidFactory(random_position(0),
-                             {x: -0.000008, y: -0.000008},
-                             asteroidSprite, hud),
-    entities.npcShipFactory(data, "shuttle",
-                            random_position(), hud,
-                            {state: 'passive'},
-                            'direc'
-                            ), 
-    entities.npcShipFactory(data, "shuttle",
-                            random_position(), hud,
-                            {state: 'passive'},
-                            'orasos'), 
-    entities.npcShipFactory(data, "shuttle",
-                            random_position(), hud,
-                            {state: 'asteroid_hate'},
-                            'orasos'), 
     entities.playerShipFactory( data, "shuttle", 
-        {x: 0, y:-1, z: SHIP_Z}, camera, hud)
+        {x: 0, y:-1, z: -2}, camera, hud),
   ];
+  if( system_dat.govt ){
+    ents.push(
+      entities.npcSpawnerFactory( data, system_dat, ['shuttle'], hud)
+    );
+  }
 
   // TODO: NPCs should actually be made by an NPC Spawner entity that jumps NPC ships in at random times.
 
