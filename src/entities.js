@@ -1,9 +1,19 @@
-export function radar_pip_factory(id, hud){
+let SHIP_Z = -2;
+
+export function radar_pip_factory(hud, color='#5000FFFF'){
   return new BABYLON.Ellipse2D({
     parent: hud.canvas, id: 'pip_for' + name,
     width: 5, height: 5, x: 0, y: 0,
-    fill: BABYLON.Canvas2D.GetSolidColorBrushFromHex('#5000FFFF')
+    fill: BABYLON.Canvas2D.GetSolidColorBrushFromHex(color)
   });
+}
+
+export function npcShipFactory(data, type, position, hud, ai, govt){
+  let ship = shipFactory(data, type, position);
+  ship.ai = ai;
+  ship.radar_pip = radar_pip_factory(hud, '#FF0000FF');
+  ship.govt = govt;
+  return ship;
 }
 
 export function playerShipFactory(data, type, position, camera, hud) {
@@ -12,8 +22,10 @@ export function playerShipFactory(data, type, position, camera, hud) {
 
   ship.camera = camera;
   ship.input = true;
+  ship.player = true; // Is this a hack?
+  ship.player_aligned = true; // Fake gov for player and minions
 
-  ship.radar_pip = radar_pip_factory(player, hud);
+  ship.radar_pip = radar_pip_factory(hud, '#00FF00FF');
   return ship;
 };
 
@@ -29,9 +41,10 @@ export function shipFactory(data, type, position){
   ship.velocity = {x: 0, y: 0};
   ship.direction_delta = 0;
 
-  console.log(ship);
   ship.weapons = ship.weapons.map((name) => data.get_weapon(name));
-  console.log(ship);
+  ship.hittable = true;
+  ship.hitpoints = 1;
+  ship.collider = {radius: .5};
   return ship;
 };
 
@@ -41,23 +54,25 @@ export function planetFactory (data, name, hud){
   planet.position = {x: planet.x, y: planet.y};
   planet.model = data.get_sprite(data.spobtypes[planet.sType].sprite);
   planet.spob_name = name;
-  planet.radar_pip = radar_pip_factory('pip_for_' + name, hud);
+  planet.radar_pip = radar_pip_factory(hud);
   
   return planet;
 };
 
 
-export function asteroidFactory (position, velocity, sprite) {
+export function asteroidFactory (position, velocity, sprite, hud) {
   sprite.position.x = position.x;
   sprite.position.y = position.y;
-  sprite.position.z = 0;
+  sprite.position.z = position.z;
   return {
+    'team-asteroids': true,
     'position': {'x': position.x, 'y': position.y },
-    'velocity': {'x': velocity.x, 'y': velocity.y },
+    'velocity': velocity,
     'model': sprite,
     'hitpoints': 10,
     'collider': {'radius': .5},
-    'hittable': true
+    'hittable': true,
+    'radar_pip': radar_pip_factory(hud, '#FF00FFFF')
   };
 };
 
@@ -82,5 +97,70 @@ export function modelPositionSystem (entMan) {
       entity.direction_delta = 0;
     }
   }
+};
+
+export function npcSpawnerFactory(data, system, typeset, hud) {
+  console.log(system);
+  return {
+    spawner: true,
+    spawns_npc: true,
+    min: system.avg_ships || 1,
+    govt: system.govt || null,
+    types: typeset,
+    hud: hud //FIXME: Filthy no good very bad hack
+      // some way of getting radar pips without passing
+      // HUD around needs to exist, but not today.
+  }
+}
+
+export function npcSpawnerSystem(entMan) {
+  for (let spawner of entMan.get_with(['spawner', 'spawns_npc'])){
+    if(count_npcs(entMan) < spawner.min){
+      // TODO: Set timer to make this feel more natural
+			// TODO: Spawn ships in with a warp transition for coolness
+
+		  	
+		  let npc = npcShipFactory(
+                                entMan.data,
+                                random_type(spawner.types),
+                                random_position(),
+                                spawner.hud,
+                                {state: 'passive'},
+                                spawner.govt
+      );
+      console.log(npc);
+      entMan.insert(npc);
+		}
+  }
+}
+
+function count_npcs(entMan){
+  // Counts the number of NPC ships in the system
+  // If there's a bug with the spawner, it may be that
+  // the method for counting has become inaccurate.
+  // For example, right now we're just counting the number
+  // of entities with an "ai" attribute.
+
+	// To account for player fleets, etc might not be crazy to have a
+  // 'native' flag that indicates that a ship was made by a spawner
+  // and isn't part of a mission, etc
+  return entMan.get_with(['ai']).length;
+}
+
+function random_position(z=SHIP_Z){
+  let distance = Math.random() * 100;
+  let angle = Math.random() * 2 * Math.PI;
+
+  return {
+    x: Math.cos(angle) * distance,
+    y: Math.sin(angle) * distance,
+    z: z
+  };
+};
+
+function random_type(typeset){
+  // A fun StackOverflow post for sure:
+  // https://stackoverflow.com/questions/5915096/get-random-item-from-javascript-array	
+  return typeset[Math.floor(Math.random() * typeset.length)];
 };
 

@@ -8,7 +8,7 @@
     "shielddmg": 20,
     "hulldmg": 10,
     "max_age":5000,
-    "velocity":5000,
+    "velocity": 0.001,
     "proj": {
       "damage": 1,
       "shield_damage": 2,

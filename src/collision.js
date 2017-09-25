@@ -1,23 +1,18 @@
 import * as damage from "damage";
+import * as util from "util";
 
-export function distance(l_pos, r_pos){
-  return Math.sqrt(
-    Math.pow(l_pos.x - r_pos.x, 2)
-    + Math.pow(l_pos.y - r_pos.y, 2)
-  );
-};
 
 export function collisionDetectionSystem(entMan){
   let colliders = entMan.get_with(['collider', 'position'])
   while (colliders.length > 1) {
     let current = colliders.pop();
     for (let other of colliders) {
-      let dist = distance(current.position, other.position);
+      let dist = util.distance(current.position, other.position);
       if ( dist < current.collider.radius + other.collider.radius) {
-        if ( 'shot' in current && 'hittable' in other ) {
-          damage.shot_handler( current, other );
+        if ( filter_collisions(current, other)){
+          damage.shot_handler(current, other );
         }
-        if ('shot' in other && 'hittable' in current){
+        if ( filter_collisions(other, current)){
           damage.shot_handler(other, current);
         }
       }
@@ -25,3 +20,16 @@ export function collisionDetectionSystem(entMan){
   }
 };
 
+function filter_collisions(shot, entity){
+  return ('shot' in shot && 'hittable' in entity
+    && !gov_test(shot, entity)
+    && !player_agent_test(shot, entity));
+}
+
+function gov_test(shot, entity){
+  return 'ignoregov' in shot && 'govt' in entity && shot.ignoregov === entity.govt;
+}
+
+function player_agent_test(shot, entity){
+  return 'ignore_player' in shot && 'player_aligned' in entity;
+}

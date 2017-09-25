@@ -52,14 +52,10 @@ export class HUD{
   update(){
     let possible_player = this.entMan.get_with(['input']);
     let player = possible_player[0];
-    if (player){
-      let position = player.position;
-      this.status_text[0].text = 'position: x: ' + position.x.toString() + ', y: ' + position.y.toString();
-    }
-
     let planet = this.entMan.get_with(['radar_pip'])[0];
     if (planet){
-    this.status_text[1].text = 'Pip count: ' + radar_ct.toString();
+    this.status_text[0].text = "";
+    this.status_text[1].text = "";
     }
 
 

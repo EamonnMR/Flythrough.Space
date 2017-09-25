@@ -1,5 +1,7 @@
 export class EntityManager {
-  constructor (systems, entities) {
+  constructor (player_data, data, systems, entities) {
+    this.data = data;
+    this.player_data = player_data;
     if (entities) {
       this.entities = entities;
     } else {
@@ -108,8 +110,12 @@ export function deletionSystem (entMan) {
 };
 
 function delete_model (entity) {
-  if ('model' in entity){
-    entity.model.dispose();
+  let MODEL_ATTR = ['model', 'radar_pip'];
+
+  for(let attribute of MODEL_ATTR ){
+    if(attribute in entity){
+      entity[attribute].dispose();
+    }
   }
 };
 

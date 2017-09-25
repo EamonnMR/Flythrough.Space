@@ -8,6 +8,7 @@ import * as map from "map";
 import * as system from "system";
 import * as states from "states";
 import * as hud from "hud";
+import * as ai from "ai";
 
 
 export class GameplayState extends states.ViewState {
@@ -23,10 +24,12 @@ export class GameplayState extends states.ViewState {
     this.player_data = player_data;
     this.dom_canvas = dom_canvas;
 
-    this.entMan = new ecs.EntityManager([
+    this.entMan = new ecs.EntityManager(player_data, data, [
+      entities.npcSpawnerSystem,
       input.inputSystem,
-      physics.velocitySystem,
+      ai.ai_system,
       physics.speedLimitSystem,
+      physics.velocitySystem,
       entities.modelPositionSystem,
       entities.cameraFollowSystem,
       weapon.weaponSystem,
@@ -140,7 +143,7 @@ export class GameplayState extends states.ViewState {
     let player = this.get_player_ent();
     let choice = null;
     for(let spob of spobs){
-      let distance = collision.distance(
+      let distance = util.distance(
           spob.position, player.position);
       if (!min_distance || min_distance > distance){
         min_distance = distance;

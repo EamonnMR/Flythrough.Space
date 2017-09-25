@@ -7,5 +7,9 @@ export class PlayerSave {
     this.selected_system = "Casamance";
     this.current_system = "Casamance";
     this.current_spob = null;
+
+    this.govts = {
+      orasos: {reputation: -1}
+    }
   }
 }

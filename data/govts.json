@@ -1,47 +1,69 @@
 {
-    "pax":{
-      "name":"Schengen Federation",
-      "color":"#FFA500FF",
-      "dark_color": "#F59A00A0"
-    },
-    "direc":{
-      "name":"Casamance Directorate",
-      "color":"#0000CDFF",
-      "dark_color":"#0000C3FF"
-    },
-    "pen":{
-      "name":"Itaskan Republic",
-      "color":"#F5F500FF",
-      "dark_color":"#EAEA00FF"
-    },
-    "orion":{
-      "name":"Willkanuta",
-      "color":"#9370D8FF",
-      "dark_color":"#8D6AD2FF"
-    },
-    "orasos":{
-      "name":"Caudron Pirate Cartell",
-      "color":"#CD5C5CFF",
-      "dark_color":"#C35656FF"
-    },
-    "hex":{
-      "name":"League",
-      "color":"#008000FF",
-      "dark_color":"#007100FF"
-    },
-    "drone":{
-      "name":"Northern Empire",
-      "color":"#FF0000FF",
-      "dark_color":"#F00000FF"
-    },
-    "fifth":{
-      "name":"5th Fleet",
-      "color":"#A52A2AFF",
-      "dark_color":"#712020FF"
-    },
-    "xic":{
-      "name":"XIC Mining",
-      "color":"#F5B5C1FF",
-      "dark_color":"#F0B0BBFF"
-    }
+  "pax":{
+    "name":"Schengen Federation",
+    "color":"#FFA500FF",
+    "dark_color": "#F59A00A0",
+    "foes": [
+      "hex",
+      "fifth",
+      "drone" 
+    ]
+  },
+  "direc":{
+    "name":"Casamance Directorate",
+    "color":"#0000CDFF",
+    "dark_color":"#0000C3FF",
+    "foes": [
+      "orion",
+      "orasos",
+      "hex"
+    ]
+  },
+  "pen":{
+    "name":"Itaskan Republic",
+    "color":"#F5F500FF",
+    "dark_color":"#EAEA00FF",
+    "foes": [
+      "drone",
+      "orion"
+    ]
+  },
+  "orion":{
+    "name":"Willkanuta",
+    "color":"#9370D8FF",
+    "dark_color":"#8D6AD2FF",
+    "foes": [
+      "hex",
+      "pen",
+      "direc"
+    ]
+  },
+  "orasos":{
+    "name":"Caudron Pirate Cartell",
+    "color":"#CD5C5CFF",
+    "dark_color":"#C35656FF",
+    "attack_default": true
+  },
+  "hex":{
+    "name":"League",
+    "color":"#008000FF",
+    "dark_color":"#007100FF"
+  },
+  "drone":{
+    "name":"Northern Empire",
+    "color":"#FF0000FF",
+    "dark_color":"#F00000FF"
+  },
+  "fifth":{
+    "name":"5th Fleet",
+    "color":"#A52A2AFF",
+    "dark_color":"#712020FF",
+    "attack_default": true
+  },
+  "xic":{
+    "name":"XIC Mining",
+    "color":"#F5B5C1FF",
+    "dark_color":"#F0B0BBFF",
+    "attack_asteroids": true
+  }
 }

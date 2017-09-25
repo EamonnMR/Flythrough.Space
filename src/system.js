@@ -6,8 +6,8 @@
  * ents and need to be cleaned up on system exit.
  */
 
+
 export function setup_system(scene, camera, entMan, system, hud, data){
-  // Sets up the models for a system
   let system_dat = data.systems[system];
 
   let lights = [
@@ -22,16 +22,22 @@ export function setup_system(scene, camera, entMan, system, hud, data){
     lights = system_dat.lights;
   }
 
-  let asteroidSprite = data.get_sprite("asteroid");
 
   let ents = [
-    entities.asteroidFactory({x: 3, y: 3},
-                             {x: -0.00008, y: -0.00008},
-                             asteroidSprite)
+    entities.playerShipFactory( data, "shuttle", 
+        {x: 0, y:-1, z: -2}, camera, hud),
+  ];
+  if( system_dat.govt ){
+    ents.push(
+      entities.npcSpawnerFactory( data, system_dat, ['shuttle'], hud)
+    );
+  }
 
-  ]
+  // TODO: NPCs should actually be made by an NPC Spawner entity that jumps NPC ships in at random times.
+
 
   let planets = [];
+  // TODO: Why keep planets list seperate?
   if ('spobs' in system_dat) {
     for (let spob_name of system_dat.spobs){
       let spob_dat = data.spobs[spob_name];
@@ -40,10 +46,6 @@ export function setup_system(scene, camera, entMan, system, hud, data){
       planets.push( planet );
     }
   }
-
-  entMan.insert(entities.playerShipFactory(
-        data, "shuttle", {x: 0, y:-1, z: -2}, camera, hud
-  ));
 
   return enter_system(scene, entMan, planets, lights, ents);
 };
@@ -64,6 +66,7 @@ function enter_system(scene, entMan, planets, lights, ents) {
   for (let planet of planets) {
     entMan.insert( planet );
   }
+
   return world_models;
 };
 

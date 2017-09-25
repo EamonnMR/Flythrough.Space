@@ -10,7 +10,7 @@
     "outfits"    : {"autocannon":1},
     "rotation"  : 0.005,
     "accel"      : 0.00005,
-    "maxSpeed"   : 7,
+    "maxSpeed"   : 0.005,
     "space"      : 10,
     "cargo"      : 10,
     "price"      : 1000,
