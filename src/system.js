@@ -41,7 +41,6 @@ export function setup_system(scene, camera, entMan, system, hud, data){
   if ('spobs' in system_dat) {
     for (let spob_name of system_dat.spobs){
       let spob_dat = data.spobs[spob_name];
-      let planetSprite = data.get_sprite("redplanet");
       let planet = entities.planetFactory(data, spob_name, hud)
       planets.push( planet );
     }
