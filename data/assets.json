@@ -1,7 +1,7 @@
 {
   "dir": "assets/",
   "meshes": {
-    "cruiser": "star_cruiser_1.babylon"
+    "oe_fi": "empfi.babylon"
   },
   "sprites": {
     "redblast": {

@@ -33,7 +33,7 @@ export function shipFactory(data, type, position){
   let ship = Object.create(data.ships[type]);
 
   ship.model = data.get_mesh(ship.mesh);
-  ship.model.rotate(BABYLON.Axis.Y, -Math.PI/2, BABYLON.Space.LOCAL);
+  //ship.model.rotate(BABYLON.Axis.Y, -Math.PI/2, BABYLON.Space.LOCAL);
   ship.model.visibility = 1;
 
   ship.position = position;
@@ -93,7 +93,7 @@ export function modelPositionSystem (entMan) {
     }
     if ('direction' in entity) {
       entity.model.rotate(
-          BABYLON.Axis.Y, entity.direction_delta, BABYLON.Space.LOCAL);
+          BABYLON.Axis.Z, -1 * entity.direction_delta, BABYLON.Space.LOCAL);
       entity.direction_delta = 0;
     }
   }

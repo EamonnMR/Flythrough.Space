@@ -1,7 +1,7 @@
 {
   "shuttle" : {
     "icon"       : "img/onyx/Onyx/thumb/shuttle.bmp",
-    "mesh"      : "cruiser",
+    "mesh"      : "oe_fi",
     "shortName"  : "Shuttle",
     "longName"   : "Shuttlecraft",
     "fullName"   : "Jump capable shuttlecraft type 407",
