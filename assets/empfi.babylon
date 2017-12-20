@@ -1,10 +1,10 @@
-{"producer":{"name":"Blender","version":"2.77 (sub 0)","exporter_version":"5.4.2","file":"empfi_final.babylon"},
+{"producer":{"name":"Blender","version":"2.77 (sub 0)","exporter_version":"5.4.2","file":"empfi.babylon"},
 "autoClear":true,"clearColor":[0.0509,0.0509,0.0509],"ambientColor":[0,0,0],"gravity":[0,-9.81,0],
-"materials":[{"name":"empfi_final.Cube","id":"empfi_final.Cube","ambient":[0,0,0],"diffuse":[0.8,0.8,0.8],"specular":[1,1,1],"emissive":[0,0,0],"specularPower":64,"alpha":1,"backFaceCulling":true,"checkReadyOnlyOnce":false,"maxSimultaneousLights":4, 
+"materials":[{"name":"empfi.Cube","id":"empfi.Cube","ambient":[0,0,0],"diffuse":[0.8,0.8,0.8],"specular":[1,1,1],"emissive":[0,0,0],"specularPower":64,"alpha":1,"backFaceCulling":true,"checkReadyOnlyOnce":false,"maxSimultaneousLights":4, 
 "diffuseTexture":{"name":"empfi.png","level":1,"hasAlpha":0,"coordinatesMode":0,"uOffset":0,"vOffset":0,"uScale":1,"vScale":1,"uAng":0,"vAng":0,"wAng":0,"wrapU":0,"wrapV":0,"coordinatesIndex":0}}],
 "multiMaterials":[],
 "skeletons":[],
-"meshes":[{"name":"Cube","id":"Cube","materialId":"empfi_final.Cube","billboardMode":0,"position":[0,0,0],"rotation":[0,0,0],"scaling":[1,1,1],"isVisible":true,"freezeWorldMatrix":false,"isEnabled":true,"checkCollisions":false,"receiveShadows":false,"tags":""
+"meshes":[{"name":"Cube","id":"Cube","materialId":"empfi.Cube","billboardMode":0,"position":[0,0,0],"rotation":[0,0,0],"scaling":[0.1,0.1,0.1],"isVisible":true,"freezeWorldMatrix":false,"isEnabled":true,"checkCollisions":false,"receiveShadows":false,"tags":""
 ,"positions":[-1.0422,0.5435,0.4021,-0.6854,0.4754,0.3033,-1.5145,0,0.5202,-0.1854,0,-0.3796,-2.7,0.0934,-0.3796,-2.7,0,-0.3796,-2.7071,0.3496,-0.2002,-2.8213,0.1562,-0.1684,-2.7071,0.0934,-0.2002,-2.5629,0.846,0.3602,-2.1719,0.846,0.2207,-2.4672,0.7241,0.3872,0.4601,0.5293,0.0149,1.1056,0.5281,0.065,0.4601,0.5922,0.1032,3.2868,0.4249,0.3254,3.6338,0.374,0.3254
 ,3.8394,0,0.3254,-0.1854,0.1883,-0.3796,-2.7,0.3576,-0.3552,0.4601,0.5871,0.3438,1.1056,0.5281,0.3254,1,0,0.2496,-2.9592,0.1815,0.0762,-3.0273,0.6011,0.138,-3.1546,0.1992,0.1231,3.8158,0.374,0.1637,3.7471,0.2959,0.3254,3.6338,0.374,0.3254,-0.6853,1.6482,0.1415,0.0298,3.0827,0.3727,0.4102,3.0827,0.3727,1.6162,0.5281,-0.0256,2.6498,0.5281,0.1288
 ,1.9648,0.5281,0.1192,-2.6826,0.6562,0.4422,-2.8327,0.6562,0.1897,-2.7827,0.6562,0.1415,-2.4103,0.6562,0.3981,-2.693,0.6297,0.4476,-2.6826,0.6562,0.4422,-2.7118,0,0.3846,-2.7358,0.1992,0.3919,-2.3066,0.5798,0.47,-2.8309,0.6345,0.0777,-2.7071,0.5934,-0.2002,-2.7,0.6229,-0.1991,-2.7,0.7832,-0.0431,-2.7827,0.6562,0.1415,-2.7,0.7489,0.2975,-2.4672,0.7241,0.3872
