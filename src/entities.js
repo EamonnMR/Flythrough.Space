@@ -1,11 +1,13 @@
 let SHIP_Z = -2;
 
 export function radar_pip_factory(hud, color='#5000FFFF'){
+  /*
   return new BABYLON.Ellipse2D({
     parent: hud.canvas, id: 'pip_for' + name,
     width: 5, height: 5, x: 0, y: 0,
     fill: BABYLON.Canvas2D.GetSolidColorBrushFromHex(color)
   });
+  */
 }
 
 export function npcShipFactory(data, type, position, hud, ai, govt){

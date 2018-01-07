@@ -35,8 +35,8 @@ export class GameplayState extends states.ViewState {
       weapon.weaponSystem,
       weapon.decaySystem,
       collision.collisionDetectionSystem,
-      hud.selectionFollowSystem,
-      hud.radarFollowSystem,
+      // hud.selectionFollowSystem,
+      // hud.radarFollowSystem,
       ecs.deletionSystem
     ]);
     this.empty = true;
