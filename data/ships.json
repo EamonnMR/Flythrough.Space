@@ -14,7 +14,9 @@
     "space"      : 10,
     "cargo"      : 10,
     "price"      : 1000,
-    "tech"       : {"generic":2}
+    "tech"       : {"generic":2},
+    "max_hp"      : 1,
+    "max_shields" : 1
   },
   "civlightfi"  :{
     "icon"       : "img/onyx/Onyx/thumb/strike.bmp",

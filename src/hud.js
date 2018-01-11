@@ -26,15 +26,19 @@ export class HUD{
     this.adt = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 
     this.entMan = entMan; // TODO: Should we just pass this?
-    let status_lines = 2;
-    let status_size = 18;
 
     this.status_text = [
-      new BABYLON.GUI.TextBlock()
+      new BABYLON.GUI.TextBlock(),
     ]
     this.status_text[0].color = "White";
-    this.status_text[0].text = "Testing 123";
+    this.status_text[0].text = "Testing: 1234";
+    this.get_corner_box();
+  }
 
+  get_corner_box(){
+    /* Mostly a nuts-and-bolts function to create
+     * a HUD element in the bottom left
+     */
     this.textbox = new BABYLON.GUI.Rectangle();
     this.textbox.width = 0.1;
 		this.textbox.height = "80px";
@@ -42,43 +46,22 @@ export class HUD{
 		this.textbox.color = "Gray";
 		this.textbox.thickness = 4;
 		this.textbox.background = "Black";
-    this.textbox.addControl(this.status_text[0]);
+
+    for(let line of status_text){
+      this.textbox.addControl(line);
+    }
+
     this.adt.addControl(this.textbox);    
     this.textbox.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
     this.textbox.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
 
-
-    //for (let y = 0; x > dom_canvas.height() - ((18 + 2) * status_lines; y += 1)){
-    //  let status_line = new BABYLON.GUI.TextBlock();
-    //  status_line.txt =  
-    //};
-    /*
-    this.status_text = [
-      new BABYLON.Text2D("Bla", {
-        id: 'hud_status_text1',
-        fontName: '18pt Courier',
-        parent: this.canvas
-      }),
-      
-      new BABYLON.Text2D("blank", {
-        id: 'hud_status_text2',
-        fontName: '18pt Courier',
-        parent: this.canvas,
-        y: 20
-      })
-    ];
-    */
   }
-
   update(){
     let possible_player = this.entMan.get_with(['input']);
     let player = possible_player[0];
     if (false){
       this.status_text[0].text = "";
-      this.status_text[1].text = "";
     }
-
-
   }
 
   dispose(){

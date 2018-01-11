@@ -1,3 +1,11 @@
+/* The root of everything here is 'assets.json'.
+ * It lists asset files/data for special assets - 
+ * the ones created explicitly in the Data constructor.
+ * For 'data' assets, you've got the 'data' block in
+ * assets.json. You link a json file there and it's stuck
+ * directly into the data object under the key in "data".
+ */
+
 import * as weapon from "weapon";
 
 export class Data {
@@ -14,7 +22,7 @@ export class Data {
   get_mesh(name){
     // Remember, these will come in at 0 visibility. Make sure
     // to set visibility only after you set position
-    let model = this.models['cruiser']; // Debug model
+    let model = null;  // TODO: Put a cube in here
     if (name in this.models){
       model = this.models[name];
     }

@@ -35,7 +35,6 @@ export function shipFactory(data, type, position){
   let ship = Object.create(data.ships[type]);
 
   ship.model = data.get_mesh(ship.mesh);
-  //ship.model.rotate(BABYLON.Axis.Y, -Math.PI/2, BABYLON.Space.LOCAL);
   ship.model.visibility = 1;
 
   ship.position = position;
@@ -45,7 +44,8 @@ export function shipFactory(data, type, position){
 
   ship.weapons = ship.weapons.map((name) => data.get_weapon(name));
   ship.hittable = true;
-  ship.hitpoints = 1;
+  ship.hitpoints = ship.max_hp;
+  ship.shields = ship.max_shields;
   ship.collider = {radius: .5};
   return ship;
 };
