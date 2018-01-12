@@ -84,14 +84,22 @@ export class GameplayState extends states.ViewState {
       },
 
       try_land: () => {
-        let sys_spobs = this.entMan.get_with(['spob_name']);
-        let landable = this.find_closest_landable_to_player(sys_spobs);
-        if (landable){
-          this.player_data.current_spob = landable.spob_name;
-          this.clear_world();
-          this.parent.enter_state('landing');
-        } else {
-          // TODO: Alert the player that they can't land because there are no spobs
+        if (this.player_data.selected_spob == null){
+          let sys_spobs = this.entMan.get_with(['spob_name']);
+          let landable = this.find_closest_landable_to_player(sys_spobs);
+          if (landable){
+            this.player_data.selected_spob = landable.spob_name;
+          }
+        }
+        else {
+          if(this.spob_is_landable(this.player_data.selected_spob)){
+
+            this.clear_world();
+            this.player_data.selected_spob = null;
+            this.parent.enter_state('landing');
+          } else {
+            console.log("Player tried to land somewhere wrong");
+          }
         }
       }
     });
@@ -129,7 +137,12 @@ export class GameplayState extends states.ViewState {
   }
 
   setup_world(){
-    this.hud = new hud.HUD(this.scene, this.dom_canvas, this.entMan);
+    this.hud = new hud.HUD(
+        this.scene,
+        this.dom_canvas,
+        this.entMan,
+        this.player_data
+    );
     this.create_world_models(this.player_data.current_system);
     this.empty = false;
   }

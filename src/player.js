@@ -5,6 +5,7 @@ export class PlayerSave {
     // TODO: Load this from some sort of backing store / DB / etc
     this.map_pos = {x: 0, y: 0};
     this.selected_system = "Casamance";
+    this.selected_spob = null;
     this.current_system = "Casamance";
     this.current_spob = null;
 
