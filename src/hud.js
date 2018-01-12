@@ -17,6 +17,7 @@ export function radarFollowSystem(entMan){
 };
 
 export function selectionFollowSystem(entMan){
+
 };
 
 export class HUD{
@@ -32,23 +33,32 @@ export class HUD{
     this.nav_box = this.get_nav_box();
   }
 
+  get_box_generic(width, height){
+    /* Defines the style for HUD boxes */
+    let box = new BABYLON.GUI.Rectangle();
+    box.height = height;
+    box.width = width;
+    box.alpha = .5;
+    box.background = "Black";
+    box.color = "Gray";
+    box.corner_radius = 5;
+
+    return box;
+  }
+
   get_nav_box(){
     /* Mostly a nuts-and-bolts function to create
      * a HUD element in the bottom left
      */
-    this.textbox = new BABYLON.GUI.Rectangle();
-    this.textbox.width = 0.3;
-		this.textbox.height = "120px";
-		this.textbox.cornerRadius = 5;
-		this.textbox.color = "Gray";
-		this.textbox.thickness = 4;
-		this.textbox.background = "Black";
+    let box = this.get_box_generic("200px", "60px");
 
-    this.textbox.addControl(this.nav_text);
+    box.addControl(this.nav_text);
+    this.nav_text.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT
 
-    this.adt.addControl(this.textbox);    
-    this.textbox.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-    this.textbox.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+    this.adt.addControl(box);    
+    box.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+    box.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+    return box
 
   }
 
@@ -65,7 +75,7 @@ export class HUD{
     let planet_line = "In-System: ";
     let jump_line = "Galactic: ";
     if (this.player_data.selected_spob){
-      planet_line += this.player_data.current_spob;
+      planet_line += this.player_data.selected_spob;
     }
     if (this.player_data.selected_system){
       jump_line += this.player_data.selected_system;

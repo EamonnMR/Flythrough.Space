@@ -82,11 +82,15 @@ export class GameplayState extends states.ViewState {
           console.log( "Tried to HJ to bad system");
         }
       },
-
+      /*
+      clear_nav: () => {
+        this.player_data.selected_spob = null;
+      },
+      */
       try_land: () => {
+        let sys_spobs = this.entMan.get_with(['spob_name']);
+        let landable = this.find_closest_landable_to_player(sys_spobs);
         if (this.player_data.selected_spob == null){
-          let sys_spobs = this.entMan.get_with(['spob_name']);
-          let landable = this.find_closest_landable_to_player(sys_spobs);
           if (landable){
             this.player_data.selected_spob = landable.spob_name;
           }
