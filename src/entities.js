@@ -1,19 +1,9 @@
 let SHIP_Z = -2;
 
-export function radar_pip_factory(hud, color='#5000FFFF'){
-  /*
-  return new BABYLON.Ellipse2D({
-    parent: hud.canvas, id: 'pip_for' + name,
-    width: 5, height: 5, x: 0, y: 0,
-    fill: BABYLON.Canvas2D.GetSolidColorBrushFromHex(color)
-  });
-  */
-}
-
 export function npcShipFactory(data, type, position, hud, ai, govt){
   let ship = shipFactory(data, type, position);
   ship.ai = ai;
-  ship.radar_pip = radar_pip_factory(hud, '#FF0000FF');
+  ship.radar_pip = hud.get_radar_pip(4, '#FF0000FF');
   ship.govt = govt;
   return ship;
 }
@@ -27,7 +17,7 @@ export function playerShipFactory(data, type, position, camera, hud) {
   ship.player = true; // Is this a hack?
   ship.player_aligned = true; // Fake gov for player and minions
 
-  ship.radar_pip = radar_pip_factory(hud, '#00FF00FF');
+  ship.radar_pip = hud.get_radar_pip(4, '#00FF00FF');
   return ship;
 };
 
@@ -56,7 +46,7 @@ export function planetFactory (data, name, hud){
   planet.position = {x: planet.x, y: planet.y};
   planet.model = data.get_sprite(data.spobtypes[planet.sType].sprite);
   planet.spob_name = name;
-  planet.radar_pip = radar_pip_factory(hud);
+  planet.radar_pip = hud.get_radar_pip(15, "Yellow");
   
   return planet;
 };
@@ -74,7 +64,7 @@ export function asteroidFactory (position, velocity, sprite, hud) {
     'hitpoints': 10,
     'collider': {'radius': .5},
     'hittable': true,
-    'radar_pip': radar_pip_factory(hud, '#FF00FFFF')
+    'radar_pip': hud.get_radar_pip(5, '#FF00FFFF')
   };
 };
 
