@@ -11,7 +11,7 @@ const Z_SELECTION_DOT = 5;
 const Z_SYSTEXT = 6;
 const Z_OVERLAY = 7;
 
-const MAP_MAX_SIZE = "5000px";  // TODO: Calculate this from coordinates
+const MAP_MAX_SIZE = "500px";  // TODO: Calculate this from coordinates
 
 const TEXT_OFFSET = 10;
 const CIRCLE_SIZE = "9px";
@@ -37,7 +37,7 @@ export class MapView extends states.ViewState{
     this.selection = this.player.selected_system;
   }
   enter(){
-    console.log(input);
+    console.log("Entering map state")
     input.bindInputFunctions({
       toggle_pause: () => {
         'exit map'
@@ -57,6 +57,7 @@ export class MapView extends states.ViewState{
     
     let current = this.data.systems[this.selection];
 
+    // TODO: Create "current system dot" and selection circle
     /*
 		this.selection_img = new BABYLON.Ellipse2D({
       parent: this.map_image,
@@ -102,17 +103,17 @@ export class MapView extends states.ViewState{
 
     let circle_size = 10;
 
-    for ( let system of Object.keys(this.data.systems)) {
-      let system_dat = this.data.systems[system];
+    for ( let system_name of Object.keys(this.data.systems)) {
+      let system_dat = this.data.systems[system_name];
       let system_block = new BABYLON.GUI.Rectangle();
       system_block.height = "300px";
       system_block.width = "300px";
-      system_block.alpha = 0;
+      system_block.alpha = 1;
       system_block.zIndex = Z_SYSGROUP;
 
       let sys_text = new BABYLON.GUI.TextBlock();
       sys_text.color = "White";
-      sys_text.text = system_dat.name;
+      sys_text.text = system_name;
       sys_text.alpha = 1;
 
       system_block.addControl(sys_text);
@@ -162,12 +163,18 @@ export class MapView extends states.ViewState{
       sys_circle.height = CIRCLE_SIZE;
       sys_circle.width = CIRCLE_SIZE;
       sys_circle.background = CIRCLE_BACKGROUND; 
-      sys_circle.color = color;
+      //sys_circle.color = color;
+      sys_circle.color = "Red";
       sys_circle.thickness = CIRCLE_THICKNESS;
       sys_circle.zIndex = Z_SYSCIRCLE;
       sys_circle.alpha = 1;
 
       system_block.addControl(sys_circle);
+      
+      this.map_image.addControl(system_block);
+      
+      system_block.top = system_dat.y;
+      system_block.left = system_dat.x;
 
     }
     this.map_sub = null;
@@ -198,6 +205,8 @@ export class MapView extends states.ViewState{
       this.draw_position();
       */
     //});
+
+    console.log("Finished entering map");
 
   }
 
