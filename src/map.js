@@ -11,12 +11,12 @@ const Z_SELECTION_DOT = 5;
 const Z_SYSTEXT = 6;
 const Z_OVERLAY = 7;
 
-const MAP_MAX_SIZE = "500px";  // TODO: Calculate this from coordinates
+const MAP_MAX_SIZE = "100%";  // TODO: Calculate this from coordinates
 
-const TEXT_OFFSET = 10;
-const CIRCLE_SIZE = "9px";
+const TEXT_OFFSET = 13;
+const CIRCLE_SIZE = "15px";
 const CIRCLE_BACKGROUND = "Black";
-const CIRCLE_THICKNESS = "2px";
+const CIRCLE_THICKNESS = 2;
 
 export class MapView extends states.ViewState{
   constructor(data, position, game_canvas, player){
@@ -105,19 +105,15 @@ export class MapView extends states.ViewState{
 
     for ( let system_name of Object.keys(this.data.systems)) {
       let system_dat = this.data.systems[system_name];
-      let system_block = new BABYLON.GUI.Rectangle();
-      system_block.height = "300px";
-      system_block.width = "300px";
-      system_block.alpha = 1;
-      system_block.zIndex = Z_SYSGROUP;
 
       let sys_text = new BABYLON.GUI.TextBlock();
       sys_text.color = "White";
       sys_text.text = system_name;
       sys_text.alpha = 1;
 
-      system_block.addControl(sys_text);
-      sys_text.y_offset = TEXT_OFFSET;
+      this.map_image.addControl(sys_text);
+      sys_text.left = system_dat.x
+      sys_text.top = TEXT_OFFSET + system_dat.y;
       sys_text.zIndex = Z_SYSTEXT;
       
       //let sys_loc_vec = new BABYLON.Vector2(system_dat.x * this.scale_factor,
@@ -163,19 +159,15 @@ export class MapView extends states.ViewState{
       sys_circle.height = CIRCLE_SIZE;
       sys_circle.width = CIRCLE_SIZE;
       sys_circle.background = CIRCLE_BACKGROUND; 
-      //sys_circle.color = color;
-      sys_circle.color = "Red";
+      sys_circle.color = color;
+      //sys_circle.color = "Red";
       sys_circle.thickness = CIRCLE_THICKNESS;
       sys_circle.zIndex = Z_SYSCIRCLE;
       sys_circle.alpha = 1;
+      sys_circle.left = system_dat.x;
+      sys_circle.top = system_dat.y;
 
-      system_block.addControl(sys_circle);
-      
-      this.map_image.addControl(system_block);
-      
-      system_block.top = system_dat.y;
-      system_block.left = system_dat.x;
-
+      this.map_image.addControl(sys_circle);
     }
     this.map_sub = null;
     this.draw_position();
