@@ -3,9 +3,8 @@ import * as input from "input";
 
 // Z indices:
 
-const Z_SPACELANES = 1;
+const Z_SPACELANE = 1;
 const Z_SELECTED_SPACELANE = 2;
-const Z_SYSGROUP = 3;
 const Z_SYSCIRCLE = 4;
 const Z_SELECTION_DOT = 5;
 const Z_SYSTEXT = 6;
@@ -13,10 +12,14 @@ const Z_OVERLAY = 7;
 
 const MAP_MAX_SIZE = "100%";  // TODO: Calculate this from coordinates
 
-const TEXT_OFFSET = 13;
-const CIRCLE_SIZE = "15px";
+const TEXT_OFFSET = 16;
+
+const CIRCLE_SIZE_INT = 15
+const CIRCLE_SIZE = CIRCLE_SIZE_INT + "px";
 const CIRCLE_BACKGROUND = "Black";
 const CIRCLE_THICKNESS = 2;
+
+const SPACELANE_COLOR = "Gray";
 
 export class MapView extends states.ViewState{
   constructor(data, position, game_canvas, player){
@@ -110,40 +113,38 @@ export class MapView extends states.ViewState{
       sys_text.color = "White";
       sys_text.text = system_name;
       sys_text.alpha = 1;
+      sys_text.left = system_dat.x - (CIRCLE_SIZE_INT / 2);
+      sys_text.top = TEXT_OFFSET + system_dat.y - (CIRCLE_SIZE_INT / 2);
+      sys_text.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+      sys_text.textVerticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+
 
       this.map_image.addControl(sys_text);
-      sys_text.left = system_dat.x
-      sys_text.top = TEXT_OFFSET + system_dat.y;
+      sys_text.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
       sys_text.zIndex = Z_SYSTEXT;
       
       //let sys_loc_vec = new BABYLON.Vector2(system_dat.x * this.scale_factor,
       //                                  -1 * system_dat.y * this.scale_factor)
       // TODO: This really should be made less redundant
-      /*
+      
       for (let other_system_id of system_dat.links ){
         if (other_system_id in this.data.systems) {
           let other_system = this.data.systems[other_system_id];
+          // TODO: Add a line
+          let spacelane = new BABYLON.GUI.Line();
+          spacelane.color = SPACELANE_COLOR;
+          spacelane.x1 = system_dat.x;
+          spacelane.y1 = system_dat.y;
+          spacelane.x2 = other_system.x;
+          spacelane.y2 = other_system.y;
+          spacelane.zOrder = Z_SPACELANE;
+
+          this.map_image.addControl(spacelane);
           
-          let vectors = [
-            sys_loc_vec,
-            new BABYLON.Vector2(other_system.x * this.scale_factor,
-                                -1 * other_system.y * this.scale_factor)
-          ]
-
-          let sys_line = new BABYLON.Lines2D(
-              vectors, {
-                parent: this.map_image,
-                id: system + '->' + other_system_id,
-                fill: nogov_color
-              }
-          );
-
-          sys_line.zOrder = .6;
         } else {
-          console.log('bad link: ' + system + ' -> ' + other_system_id);
+          console.log('bad link: ' + system_name + ' -> ' + other_system_id);
         }
       }
-      */
 
       // Determine the color of the circle based on government, if its empty
       let color = null;
@@ -160,12 +161,13 @@ export class MapView extends states.ViewState{
       sys_circle.width = CIRCLE_SIZE;
       sys_circle.background = CIRCLE_BACKGROUND; 
       sys_circle.color = color;
-      //sys_circle.color = "Red";
       sys_circle.thickness = CIRCLE_THICKNESS;
       sys_circle.zIndex = Z_SYSCIRCLE;
       sys_circle.alpha = 1;
-      sys_circle.left = system_dat.x;
-      sys_circle.top = system_dat.y;
+      sys_circle.left = system_dat.x - (CIRCLE_SIZE_INT / 2);
+      sys_circle.top = system_dat.y - (CIRCLE_SIZE_INT / 2);
+      sys_circle.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+      sys_circle.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
 
       this.map_image.addControl(sys_circle);
     }
