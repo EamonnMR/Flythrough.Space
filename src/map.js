@@ -5,8 +5,9 @@ import * as input from "input";
 
 const Z_SPACELANE = 1;
 const Z_SELECTED_SPACELANE = 2;
+const Z_SEL_CIRCLE = 3;
 const Z_SYSCIRCLE = 4;
-const Z_SELECTION_DOT = 5;
+const Z_SELECTIONDOT = 5;
 const Z_SYSTEXT = 6;
 const Z_OVERLAY = 7;
 
@@ -15,9 +16,12 @@ const MAP_MAX_SIZE = "100%";  // TODO: Calculate this from coordinates
 const TEXT_OFFSET = 16;
 
 const CIRCLE_SIZE_INT = 15
-const CIRCLE_SIZE = CIRCLE_SIZE_INT + "px";
 const CIRCLE_BACKGROUND = "Black";
 const CIRCLE_THICKNESS = 2;
+
+const SELECTED_SPACELANE_THICKNESS = 2;
+
+const SELECTED_CIRCLE_SIZE = CIRCLE_SIZE_INT + 2 + "px";
 
 const SPACELANE_COLOR = "Gray";
 
@@ -30,13 +34,10 @@ export class MapView extends states.ViewState{
     this.scale_factor = 1;
     //this.diff = {x: game_canvas.width() / 2, y: game_canvas.height() / 2};
 
-    /* this.offset = { x: position.x + this.diff.x,
-                    y: position.y + this.diff.y };
+    this.offset = { x: position.x,
+                    y: position.y};
     this.game_canvas = game_canvas;
 
-    this.canvas = null;
-    this.map_image = null;
-    */
     this.selection = this.player.selected_system;
   }
   enter(){
@@ -155,24 +156,18 @@ export class MapView extends states.ViewState{
       } else {
         color = is_light ? nogov_color : nogov_dark;
       }
-      
-      let sys_circle = new BABYLON.GUI.Ellipse();
-      sys_circle.height = CIRCLE_SIZE;
-      sys_circle.width = CIRCLE_SIZE;
-      sys_circle.background = CIRCLE_BACKGROUND; 
-      sys_circle.color = color;
-      sys_circle.thickness = CIRCLE_THICKNESS;
-      sys_circle.zIndex = Z_SYSCIRCLE;
-      sys_circle.alpha = 1;
-      sys_circle.left = system_dat.x - (CIRCLE_SIZE_INT / 2);
-      sys_circle.top = system_dat.y - (CIRCLE_SIZE_INT / 2);
-      sys_circle.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
-      sys_circle.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
 
+      let sys_circle = this.get_circle(
+          system_dat.x,
+          system_dat.y,
+          CIRCLE_SIZE_INT,
+          color,
+          CIRCLE_THICKNESS,
+          Z_SYSCIRCLE,
+      )
       this.map_image.addControl(sys_circle);
     }
     this.map_sub = null;
-    this.draw_position();
     this.move = {x: 0, y: 0};
     this.dragging = false;
 
@@ -219,34 +214,31 @@ export class MapView extends states.ViewState{
     this.player.selected_system = this.selection
   }
 
-  move_selection( system_name ){
-    /*
-    // TODO: We could probably replace some of the enter code
-    // with a call to this
+  update_selection( system_name ){
+    
     this.selection = system_name;
     console.log( this.selection );
     let sel_system = this.data.systems[system_name];
-    this.selection_img.x = (sel_system.x - 10) * this.scale_factor;
-    this.selection_img.y = (-1 * sel_system.y - 10) *  this.scale_factor;
-    */
+    this.selection_circle.x = sel_system.x;
+    this.selection_circle.y = sel_system.y;
   }
 
-  draw_position(){
-    /*
-    if (this.map_sub){
-      this.map_sub.dispose();
-    }
-    */
-    /*
-    this.map_sub = new BABYLON.Text2D('' + this.offset.x + ',' + this.offset.y,
-      {
-        id: 'map_subtitle',
-        x: 0,
-        y: 20,
-        fontName: '20pt Courier',
-        parent: this.canvas
-      }
-    );
-    */
+  get_circle(x, y, size, color, thickness, z_index){
+    /* Generic function for the kind of circles you want
+     * to use on the map. */ 
+    let circle = new BABYLON.GUI.Ellipse();
+    circle.height = size + "px";
+    circle.width = size + "px";
+    circle.background = CIRCLE_BACKGROUND; 
+    circle.color = color;
+    circle.thickness = thickness;
+    circle.zIndex = z_index;
+    circle.alpha = 1;
+    circle.left = x - (size/ 2);
+    circle.top = y - (size / 2);
+    circle.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+    circle.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+    return circle;
   }
+
 }
