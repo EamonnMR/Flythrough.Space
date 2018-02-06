@@ -7,7 +7,7 @@ const Z_SPACELANE = 1;
 const Z_SELECTED_SPACELANE = 2;
 const Z_SEL_CIRCLE = 3;
 const Z_SYSCIRCLE = 4;
-const Z_SELECTIONDOT = 5;
+const Z_IN_DOT = 5;
 const Z_SYSTEXT = 6;
 const Z_OVERLAY = 7;
 
@@ -18,12 +18,18 @@ const TEXT_OFFSET = 16;
 const CIRCLE_SIZE_INT = 15
 const CIRCLE_BACKGROUND = "Black";
 const CIRCLE_THICKNESS = 2;
+const IN_SYS_CIRCLE_SIZE = CIRCLE_SIZE_INT - 6;
+const IN_SYS_COLOR = "Blue";
+const SELECTION_COLOR = "Green";
+
+
 
 const SELECTED_SPACELANE_THICKNESS = 2;
-
-const SELECTED_CIRCLE_SIZE = CIRCLE_SIZE_INT + 2 + "px";
-
+const SELECTED_CIRCLE_SIZE = CIRCLE_SIZE_INT + 2;
 const SPACELANE_COLOR = "Gray";
+
+const nogov_color = '#AFAFAFFF';
+const nogov_dark = '#A9A9A9FF';
 
 export class MapView extends states.ViewState{
   constructor(data, position, game_canvas, player){
@@ -51,6 +57,8 @@ export class MapView extends states.ViewState{
       hyper_jump: () => {}
     })
 
+    let current = this.data.systems[this.selection];
+
     this.adt = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("Map");
 
     this.map_image = new BABYLON.GUI.Rectangle();
@@ -63,35 +71,7 @@ export class MapView extends states.ViewState{
     //  console.log("CLICKED ON THE MAP");
     //});
     
-    let current = this.data.systems[this.selection];
-
-    // TODO: Create "current system dot" and selection circle
-    /*
-		this.selection_img = new BABYLON.Ellipse2D({
-      parent: this.map_image,
-      id: 'selection',
-      x: ( current.x - 10) * this.scale_factor,
-      y: (-1 * current.y - 10) *  this.scale_factor,
-      width: 20,
-      height: 20,
-      fill: BABYLON.Canvas2D.GetSolidColorBrushFromHex('#00FFFFFF') 
-    });
-    */
-   
-    /*
-     * TODO: This can be moved to the individual clickable
-     * system circles I think 
-    this.map_image.pointerEventObservable.add(
-      (d, s) => {
-        let target = d.relatedTarget.id;
-        if (target.indexOf('_circle') > 0){
-          console.log("Clicked: " + target);
-          this.move_selection(target.replace('_circle', ''))
-        }
-      }, BABYLON.PrimitivePointerInfo.PointerUp
-
-    );
-    */
+    this.make_in_system_dot();
 
     // Set up color fills for map drawing
     let govt_colors = {};
@@ -103,11 +83,6 @@ export class MapView extends states.ViewState{
       govt_dark_colors[ name ] = this.data.govts[ name ].dark_color;
     }
 
-    let nogov_color = '#AFAFAFFF';
-    let nogov_dark = '#A9A9A9FF';
-
-    console.log(nogov_color);
-    console.log(nogov_dark);
 
     let circle_size = 10;
 
@@ -170,7 +145,6 @@ export class MapView extends states.ViewState{
           Z_SYSCIRCLE,
       )
       sys_circle.onPointerDownObservable.add(() => {
-        console.log("BLA");
         this.update_selection(system_name);
       });
       this.map_image.addControl(sys_circle);
@@ -249,4 +223,20 @@ export class MapView extends states.ViewState{
     return circle;
   }
 
+  make_in_system_dot(){
+    // Expects this.data and this.map_image
+
+
+    let in_system = this.data.systems[this.player.current_system];
+    console.log(Object.keys(this.data.systems));
+    console.log(this.player);
+    let in_system_dot = this.get_circle(
+        in_system.x, in_system.y,
+        IN_SYS_CIRCLE_SIZE,
+        IN_SYS_COLOR, CIRCLE_THICKNESS,
+        Z_IN_DOT,
+    );
+
+    this.map_image.addControl(in_system_dot);
+  }
 }
