@@ -58,6 +58,10 @@ export class MapView extends states.ViewState{
     this.map_image.width = MAP_MAX_SIZE;
 
     this.adt.addControl(this.map_image);
+
+    //this.map_image.onPointerOutObservable.add( () => {
+    //  console.log("CLICKED ON THE MAP");
+    //});
     
     let current = this.data.systems[this.selection];
 
@@ -165,6 +169,10 @@ export class MapView extends states.ViewState{
           CIRCLE_THICKNESS,
           Z_SYSCIRCLE,
       )
+      sys_circle.onPointerDownObservable.add(() => {
+        console.log("BLA");
+        this.update_selection(system_name);
+      });
       this.map_image.addControl(sys_circle);
     }
     this.map_sub = null;
@@ -217,10 +225,10 @@ export class MapView extends states.ViewState{
   update_selection( system_name ){
     
     this.selection = system_name;
-    console.log( this.selection );
-    let sel_system = this.data.systems[system_name];
-    this.selection_circle.x = sel_system.x;
-    this.selection_circle.y = sel_system.y;
+    console.log( "Selected: " + this.selection );
+    // let sel_system = this.data.systems[system_name];
+    // this.selection_circle.x = sel_system.x;
+    // this.selection_circle.y = sel_system.y;
   }
 
   get_circle(x, y, size, color, thickness, z_index){
