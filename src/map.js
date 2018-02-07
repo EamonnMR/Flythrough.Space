@@ -20,16 +20,15 @@ const CIRCLE_BACKGROUND = "Black";
 const CIRCLE_THICKNESS = 2;
 const IN_SYS_CIRCLE_SIZE = CIRCLE_SIZE_INT - 6;
 const IN_SYS_COLOR = "Blue";
-const SELECTION_COLOR = "Green";
 
-
+const SELECTION_COLOR = "#00FF00";
+const SELECTED_CIRCLE_SIZE = CIRCLE_SIZE_INT + 4;
 
 const SELECTED_SPACELANE_THICKNESS = 2;
-const SELECTED_CIRCLE_SIZE = CIRCLE_SIZE_INT + 2;
 const SPACELANE_COLOR = "Gray";
 
-const nogov_color = '#AFAFAFFF';
-const nogov_dark = '#A9A9A9FF';
+const nogov_color = '#AFAFAF';
+const nogov_dark = '#A9A9A9';
 
 export class MapView extends states.ViewState{
   constructor(data, position, game_canvas, player){
@@ -44,8 +43,9 @@ export class MapView extends states.ViewState{
                     y: position.y};
     this.game_canvas = game_canvas;
 
-    this.selection = this.player.selected_system;
+    this.selection = null;
   }
+
   enter(){
     console.log("Entering map state")
     input.bindInputFunctions({
@@ -62,17 +62,16 @@ export class MapView extends states.ViewState{
     this.adt = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("Map");
 
     this.map_image = new BABYLON.GUI.Rectangle();
+
+
     this.map_image.height = MAP_MAX_SIZE;
     this.map_image.width = MAP_MAX_SIZE;
 
     this.adt.addControl(this.map_image);
-
-    //this.map_image.onPointerOutObservable.add( () => {
-    //  console.log("CLICKED ON THE MAP");
-    //});
     
     this.make_in_system_dot();
 
+    this.make_selection_circle();
     // Set up color fills for map drawing
     let govt_colors = {};
     let govt_dark_colors = {};
@@ -83,15 +82,14 @@ export class MapView extends states.ViewState{
       govt_dark_colors[ name ] = this.data.govts[ name ].dark_color;
     }
 
-
-    let circle_size = 10;
-
+    let sys_counter = 0;
     for ( let system_name of Object.keys(this.data.systems)) {
       let system_dat = this.data.systems[system_name];
 
       let sys_text = new BABYLON.GUI.TextBlock();
       sys_text.color = "White";
-      sys_text.text = system_name;
+      sys_text.text = system_name + "(" + sys_counter + ")";
+      sys_counter ++;
       sys_text.alpha = 1;
       sys_text.left = system_dat.x - (CIRCLE_SIZE_INT / 2);
       sys_text.top = TEXT_OFFSET + system_dat.y - (CIRCLE_SIZE_INT / 2);
@@ -103,9 +101,6 @@ export class MapView extends states.ViewState{
       sys_text.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
       sys_text.zIndex = Z_SYSTEXT;
       
-      //let sys_loc_vec = new BABYLON.Vector2(system_dat.x * this.scale_factor,
-      //                                  -1 * system_dat.y * this.scale_factor)
-      // TODO: This really should be made less redundant
       
       for (let other_system_id of system_dat.links ){
         if (other_system_id in this.data.systems) {
@@ -144,65 +139,36 @@ export class MapView extends states.ViewState{
           CIRCLE_THICKNESS,
           Z_SYSCIRCLE,
       )
-      sys_circle.onPointerDownObservable.add(() => {
+      sys_circle.onPointerDownObservable.add((event) => {
+        console.log(event);
         this.update_selection(system_name);
       });
       this.map_image.addControl(sys_circle);
     }
     this.map_sub = null;
-    this.move = {x: 0, y: 0};
-    this.dragging = false;
 
-    /*
-    this.game_canvas.mousedown(() => {
-      this.dragging = true;
-    });
-
-    this.game_canvas.mouseup(() => {
-      this.dragging = false;
-    });
-    */
-    //this.game_canvas.mousemove( (event) => {
-      /*
-      if ( this.dragging ) {
-        this.offset.x -= this.move.x - event.pageX;
-        this.offset.y += this.move.y - event.pageY;
-        this.draw_position();  // TODO: Does this fix laggyness?
-      }
-
-      this.move = {x: event.pageX, y: event.pageY};
-      this.map_image.x = this.offset.x;
-      this.map_image.y = this.offset.y;
-      this.draw_position();
-      */
-    //});
-
+    this.setup_dragging();
     console.log("Finished entering map");
 
   }
 
   exit(){
     input.unbindInputFunctions();
-    /*
-    this.game_canvas.unbind('mousedown');
-    this.game_canvas.unbind('mouseup');
-    this.game_canvas.unbind('mousemove');
-    this.canvas.dispose();
-    this.player.map_pos = {
-      x: this.offset.x - this.diff.x,
-      y: this.offset.y - this.diff.y,
-    };
-    */
     this.player.selected_system = this.selection
   }
 
   update_selection( system_name ){
-    
     this.selection = system_name;
     console.log( "Selected: " + this.selection );
-    // let sel_system = this.data.systems[system_name];
-    // this.selection_circle.x = sel_system.x;
-    // this.selection_circle.y = sel_system.y;
+    let sel_system = this.data.systems[system_name];
+    this.selection_circle.left = sel_system.x - (SELECTED_CIRCLE_SIZE / 2);
+    this.selection_circle.top = sel_system.y - (SELECTED_CIRCLE_SIZE / 2);
+    this.selection_circle.alpha = 1;
+  }
+
+  clear_selection(){
+    this.selection = null;
+    this.selection_circle.alpha = 0;
   }
 
   get_circle(x, y, size, color, thickness, z_index){
@@ -225,8 +191,6 @@ export class MapView extends states.ViewState{
 
   make_in_system_dot(){
     // Expects this.data and this.map_image
-
-
     let in_system = this.data.systems[this.player.current_system];
     console.log(Object.keys(this.data.systems));
     console.log(this.player);
@@ -238,5 +202,48 @@ export class MapView extends states.ViewState{
     );
 
     this.map_image.addControl(in_system_dot);
+  }
+
+  make_selection_circle(){
+    let sel_system = this.data.systems[this.selection];
+    this.selection_circle = this.get_circle(
+       0, 0,
+       SELECTED_CIRCLE_SIZE,
+       SELECTION_COLOR,
+       CIRCLE_THICKNESS,
+       Z_SEL_CIRCLE,
+    );
+
+    this.map_image.addControl(this.selection_circle);
+
+    this.update_selection(this.player.selected_system);
+  }
+
+  setup_dragging(){
+    this.dragging = false;
+
+    this.map_image.onPointerDownObservable.add( (coordinates) => {
+      this.dragging = true;
+      this.mouse_pos = coordinates;
+    });
+
+    this.map_image.onPointerUpObservable.add( (coordinates) => {
+      this.dragging = false;
+      this.mouse_pos.x = coordinates.x;
+      this.mouse_pos.y = coordinates.y;
+    });
+    
+    this.map_image.onPointerMoveObservable.add( (coordinates) => {
+    
+      if ( this.dragging ) {
+        console.log("Drag");
+        console.log( coordinates.x - this.mouse_pos.x);
+        console.log( coordinates.y - this.mouse_pos.y);
+        this.offset = {x: coordinates.x - this.mouse_pos.x,
+          y: coordinates.y - this.mouse_pos.y};
+        this.map_image.left = this.offset.x;
+        this.map_image.top = this.offset.y;
+      }
+    });
   }
 }
