@@ -68,6 +68,8 @@ export class MapView extends states.ViewState{
     this.map_image.width = MAP_MAX_SIZE;
 
     this.adt.addControl(this.map_image);
+
+    this.create_spacelanes();
     
     this.make_in_system_dot();
 
@@ -102,24 +104,6 @@ export class MapView extends states.ViewState{
       sys_text.zIndex = Z_SYSTEXT;
       
       
-      for (let other_system_id of system_dat.links ){
-        if (other_system_id in this.data.systems) {
-          let other_system = this.data.systems[other_system_id];
-          // TODO: Add a line
-          let spacelane = new BABYLON.GUI.Line();
-          spacelane.color = SPACELANE_COLOR;
-          spacelane.x1 = system_dat.x;
-          spacelane.y1 = system_dat.y;
-          spacelane.x2 = other_system.x;
-          spacelane.y2 = other_system.y;
-          spacelane.zOrder = Z_SPACELANE;
-
-          this.map_image.addControl(spacelane);
-          
-        } else {
-          console.log('bad link: ' + system_name + ' -> ' + other_system_id);
-        }
-      }
 
       // Determine the color of the circle based on government, if its empty
       let color = null;
@@ -219,6 +203,56 @@ export class MapView extends states.ViewState{
     this.update_selection(this.player.selected_system);
   }
 
+  create_spacelanes(){
+    let already_done = []; // Any system which already has its lines drawn should have no further lines drawn
+    this.spacelanes = []; // These will be moved later, so we need a pointer to them
+    for ( let system_name of Object.keys(this.data.systems)) {
+      let system_dat = this.data.systems[system_name];
+      for (let other_system_id of system_dat.links ){
+        if (!(other_system_id in this.data.systems)) {
+          console.log('bad link: ' + system_name + ' -> ' + other_system_id);
+        } else if (!(other_system_id in already_done)){
+          let other_system = this.data.systems[other_system_id];
+          // TODO: Add a line
+          let spacelane = new BABYLON.GUI.Line();
+          spacelane.color = SPACELANE_COLOR;
+          spacelane.zOrder = Z_SPACELANE;
+
+          // Here I'm hanging data off of the object
+          // These aren't standard members
+          // in this.move_spacelanes we use the base and the
+          // offset to determine the real position
+          // because when you move the parent object the lines
+          // are still in screen space >:(
+          spacelane.base_x1 = system_dat.x;
+          spacelane.base_y1 = system_dat.y;
+          spacelane.base_x2 = other_system.x;
+          spacelane.base_y2 = other_system.y;
+
+          spacelane.x1 = system_dat.x;
+          spacelane.y1 = system_dat.y;
+          spacelane.x2 = other_system.x;
+          spacelane.y2 = other_system.y;
+          
+          this.spacelanes.push(spacelane);
+          this.map_image.addControl(spacelane);
+        }
+      }
+      already_done.push(system_name); // TODO: Normalize the data
+      // Two way links are gross
+
+    }
+  }
+
+  move_spacelanes(){
+    for(let line of this.spacelanes){
+      line.x1 = line.base_x1 + this.offset.x;
+      line.y1 = line.base_y1 + this.offset.y;
+      line.x2 = line.base_x2 + this.offset.x;
+      line.y2 = line.base_y2 + this.offset.y;
+    }
+  }
+
   setup_dragging(){
     this.dragging = false;
 
@@ -236,13 +270,11 @@ export class MapView extends states.ViewState{
     this.map_image.onPointerMoveObservable.add( (coordinates) => {
     
       if ( this.dragging ) {
-        console.log("Drag");
-        console.log( coordinates.x - this.mouse_pos.x);
-        console.log( coordinates.y - this.mouse_pos.y);
         this.offset = {x: coordinates.x - this.mouse_pos.x,
           y: coordinates.y - this.mouse_pos.y};
         this.map_image.left = this.offset.x;
         this.map_image.top = this.offset.y;
+        this.move_spacelanes();
       }
     });
   }
