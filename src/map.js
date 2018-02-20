@@ -263,8 +263,6 @@ export class MapView extends states.ViewState{
 
     this.map_image.onPointerUpObservable.add( (coordinates) => {
       this.dragging = false;
-      this.mouse_pos.x = coordinates.x;
-      this.mouse_pos.y = coordinates.y;
     });
     
     this.map_image.onPointerMoveObservable.add( (coordinates) => {
