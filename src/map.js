@@ -11,7 +11,7 @@ const Z_IN_DOT = 5;
 const Z_SYSTEXT = 6;
 const Z_OVERLAY = 7;
 
-const MAP_MAX_SIZE = "100%";  // TODO: Calculate this from coordinates
+const MAP_MAX_SIZE = "1000px";  // TODO: Calculate this from coordinates
 
 const TEXT_OFFSET = 16;
 
@@ -59,7 +59,10 @@ export class MapView extends states.ViewState{
 
     let current = this.data.systems[this.selection];
 
-    this.adt = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("Map");
+    this.plane = BABYLON.Mesh.CreatePlane("plane", 16);
+    this.plane.position.z = -2;
+
+    this.adt = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(this.plane);
 
     this.map_image = new BABYLON.GUI.Rectangle();
 
@@ -139,6 +142,7 @@ export class MapView extends states.ViewState{
   exit(){
     input.unbindInputFunctions();
     this.player.selected_system = this.selection
+    this.plane.dispose();
   }
 
   update_selection( system_name ){
@@ -256,24 +260,33 @@ export class MapView extends states.ViewState{
   setup_dragging(){
     this.dragging = false;
 
-    this.map_image.onPointerDownObservable.add( (coordinates) => {
+    this.game_canvas.mousedown( (event) => {
+      let coordinates = this.parse_event(event);  
+      console.log("Hello Input");
       this.dragging = true;
       this.mouse_pos = coordinates;
     });
 
-    this.map_image.onPointerUpObservable.add( (coordinates) => {
+    this.game_canvas.mouseup( (event) => {
       this.dragging = false;
     });
     
-    this.map_image.onPointerMoveObservable.add( (coordinates) => {
-    
+    this.game_canvas.mousemove( (event) => {
+      let coordinates = this.parse_event(event);  
       if ( this.dragging ) {
-        this.offset = {x: coordinates.x - this.mouse_pos.x,
-          y: coordinates.y - this.mouse_pos.y};
-        this.map_image.left = this.offset.x;
-        this.map_image.top = this.offset.y;
-        this.move_spacelanes();
+        this.offset.x +=  coordinates.x - this.mouse_pos.x;
+        this.offset.y +=  coordinates.y - this.mouse_pos.y;
+        this.plane.position.x = this.offset.x / 100;
+        this.plane.position.y = this.offset.y / -100;
+        //this.move_spacelanes();
       }
     });
+  }
+
+  parse_event(event){
+    return {
+      x: event.pageX,
+      y: event.pageY,
+    }
   }
 }
