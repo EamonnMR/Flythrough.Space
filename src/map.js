@@ -276,6 +276,8 @@ export class MapView extends states.ViewState{
       if ( this.dragging ) {
         this.offset.x +=  coordinates.x - this.mouse_pos.x;
         this.offset.y +=  coordinates.y - this.mouse_pos.y;
+        this.mouse_pos.x = coordinates.x;
+        this.mouse_pos.y = coordinates.y;
         this.plane.position.x = this.offset.x / 100;
         this.plane.position.y = this.offset.y / -100;
         //this.move_spacelanes();
