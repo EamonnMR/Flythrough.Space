@@ -271,7 +271,6 @@ export class MapView extends states.ViewState{
 
     this.game_canvas.mousedown( (event) => {
       let coordinates = this.parse_event(event);  
-      console.log("Hello Input");
       this.dragging = true;
       this.mouse_pos = coordinates;
     });
@@ -285,6 +284,8 @@ export class MapView extends states.ViewState{
       if ( this.dragging ) {
         this.offset.x +=  coordinates.x - this.mouse_pos.x;
         this.offset.y +=  coordinates.y - this.mouse_pos.y;
+        this.mouse_pos.x = coordinates.x;
+        this.mouse_pos.y = coordinates.y;
         this.move_spacelanes();
         this.move_scrollables();
       }
