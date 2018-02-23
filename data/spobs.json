@@ -38,7 +38,7 @@
 		"text" :"Although the Cartwright system has been populated for all of recorded history, it was not on this planet, since its harsh environment makes living difficult. Though there are signifigant metal deposits here, it is difficult to extract.",
 		"x":100,
 		"y":300,
-		"govt":"pax",
+		"govt":"direc",
 		"comodities":{
 			"carbon":"low",
 			"roto":"high",
@@ -51,7 +51,7 @@
 		"text":"Population center of the Cartwright system, the massive Zachit station is home to millions. Though it can generate its own power, it has long since replaced its agracultural segments with living space, favoring imports. As a result, traders favor the station as well.",
 		"x":-100,
 		"y":-348,
-		"govt":"pax",
+		"govt":"direc",
 		"comodities":{
 			"water":"high",
 			"grain":"high",
@@ -60,12 +60,12 @@
 		"tech":{
 			"generic":1,
 			"accra":1,
-			"schen":1
+			"direc":1
 		}
 	},
 	"Miranu":{
 		"sType":"onyxM4Earthlike",
-		"govt":"pax",
+		"govt":"direc",
 		"text":"In the far corner of the Cartwright system orbits Miranu, a small world that is jealously guarded by the Zachit government as a premere vacation destination. Trips to it where largely kept secret from the public until 495 when the fact that the tiny planet that everyone could see was actually being landed on. It was the first step for the inhabitants of this system to the stars.",
 		"x":200,
 		"y":480
@@ -75,7 +75,7 @@
 		"text" : "Cook's stark, reddish atmosphere is highly toxic due to its exotic composition of various heavy metals. However, beneth this harsh surface is a treasure trove of valuable minerals for export.",
 		"x": 75,
 		"y": 150,
-		"govt":"pax",
+		"govt":"direc",
 		"comodities":{
 			"dark":"low",
 			"powerconv":"high"
@@ -83,14 +83,14 @@
 	},
 	"Dafydd":{
 		"sType": "aresSmallStation",
-		"govt":"pax",
-		"text" : "This station is jointly owned by all members of the Schengen federation, and administered by its navy. It supports the various mining intrests on the inhospitable surface of Cook from orbit.",
+		"govt":"direc",
+		"text" : "This station is jointly owned by member planets of the Directorate, and administered by its navy. It supports the various mining intrests on the inhospitable surface of Cook from orbit.",
 		"comodities":{
 			"carbon":"high"
 		},
 		"tech":{
 			"generic":1,
-			"schen":1
+			"direc":1
 		},
 		"x": -150,
 		"y": -75
@@ -103,15 +103,15 @@
 	},
 	"Thrace":{
 		"sType": "onyxRedU",
-		"govt":"pax",
-		"text": "A heavly populated (some would say overpopulated) world at the heart of the Schengen federation. What federal rule there is nominally takes place here, with representatives converging yearly to decide matters of interplanetary importance. However, the planet is largely populated with the poor, as it is an inhospitable world. Factories here churn out goods that are seen throughout the sector, and you can bet that someone was underpaid to make them.",
+		"govt":"direc",
+		"text": "A heavly populated (some would say overpopulated) world. Ostensably a major voting member of the directorate, with representatives converging yearly to decide matters of interplanetary importance. However, the planet is largely populated with the poor, as its climate is less than ideal. The real seat of power in this system is the station orbiting the planet, where the wealthy of Thrace live in luxury. Factories here churn out goods that are seen throughout the sector, and you can bet that someone was underpaid to make them.",
 		"x" :24,
 		"y" :-45,
 		"tech":{
 			"oe_wep":3,
 			"fu":1,
 			"generic":1,
-			"schen":1,
+			"direc":1,
 			"kps":1
 		},
 		"comodities":{
@@ -123,7 +123,7 @@
 	"Argive":{
 		"sType":"oneRingStation",
 		"govt":"direc",
-		"text":"Some call this station the &quot;real&quot; capital of the federation, for this is where the wealthy of Thrace spend most of their time. It's been equipped with state of the art facilities and functions like a giant apartment building, or hotel.",
+		"text":"Some call this station the &quot;real&quot; capital of Thrace, for this is where the wealthy of Thrace spend most of their time. It's been equipped with state of the art facilities and functions like a giant apartment building, or hotel. Many scandalous documentaries about wealth inequality have been recorded within its hallowed halls.",
 		"x":10,
 		"y":30
 	},
@@ -163,13 +163,13 @@
 	},
 	"Kennerud":{
 		"sType":"onyxEarthlikeB",
-		"text":"A major industrial world, Kennerud has been slowly optomized over hundreds of years to turn out weapons and reactors, first for the empire, and now, as a member of the Schengen Federation, for pure profit. The planet is, in effect, run by KPS (Kennerud Power Systems) the universe's leading manufacturer of next-gen plasma weapons.",
+		"text":"A major industrial world, Kennerud has been slowly optomized over hundreds of years to turn out weapons and reactors, first for the empire, and now, as a member of the Directorate , for pure profit. The planet is, in effect, run by KPS (Kennerud Power Systems) the universe's leading manufacturer of next-gen plasma weapons.",
 		"tech":{
 			"accra":1,
 			"oe_wep":3,
 			"generic":3,
 			"kps":3,
-			"schen":3,
+			"direc":3,
 			"oe_ship":3
 		},
 		"comodities":{
@@ -220,13 +220,13 @@
 	
 	"Bjarne":{
 		"sType":"onyxEarthlikeE",
-		"govt":"pax",
-		"text":"Vast oceans dominate Bjarne's landscape, and industrial activity dominates the surface. Bjarne one of the most enterprise focused worlds in the federation.",
+		"govt":"direc",
+		"text":"Vast oceans dominate Bjarne's landscape, and industrial activity dominates the surface. Bjarne one of the most enterprise focused worlds in the Directorate.",
 		"tech":{
 			"khanda":2,
 			"oe_wep":2,
 			"oe_ship":1,
-			"schen":1
+			"direc":1
 		},
 		"comodities":{
 			"water":"low",
@@ -240,7 +240,7 @@
 	},
 	"Adriaan":{
 		"sType":"onyxEarthlikeC",
-		"govt":"pax",
+		"govt":"direc",
 		"text":"A pleasat, if slightly cold climate. The inhabitents of this planet formed a culture centered around various forms of comitties, using them to decide everything from what types of goods to produce to who to send to represent them on Thrace.",
 		"tech":{
 			"generic":1,
@@ -630,7 +630,7 @@
 	},
 	"Coldwater":{
 		"sType":"onyxIceN",
-		"govt":"pax",
+		"govt":"direc",
 		"x":0,
 		"y":0,
 		"comodities":{
@@ -638,6 +638,6 @@
 			"grain":"med",
 			"alloy":"med"
 		},
-		"text":"On the tense border between the Casamance Directorate and the Eastern League, coldwater's chilly landscape is listed as the most likley planet to be invaded in Schengen space. It's rumored that there are large fortresses cut into the glaciers, but the navy is quiet on the subject."
+		"text":"On the tense border between the Casamance Directorate and the Eastern League, coldwater's chilly landscape is listed as the most likley planet to be invaded in Casamance space. It's rumored that there are large fortresses cut into the glaciers, but the navy is quiet on the subject."
 	}
 }

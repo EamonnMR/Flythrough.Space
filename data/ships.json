@@ -558,41 +558,6 @@
     "price"      : 6000000,
     "tech"       : {"lg_ship":4}
   },
-  "schengenfi":{
-    "icon"       : "img/NathanLamont/ojFighter_icon.png",
-    "sprite"     : "nlfighter",
-    "shortName"  : "Schengen Fighter",
-    "longName"   : "Schengen Fighter",
-    "fullName"   : "Schengen Starfighter",
-    "desc"       : "One of the smallest and cheapest fighters in the galaxy, this has very little to recommend as a personal ship, but is to be feared when fought in swarms.",
-    "weapons"    : {},
-    "outfits"    : {"plasma50":2},
-    "rotation"  : 0.01,
-    "accel"      : 0.001,
-    "maxSpeed"   : 9,
-    "space"      : 100,
-    "cargo"      : 20,
-    "price"      : 10000,
-    "tech"       : {"schen":1}
-  },
-  "schenfrig" :{
-    "icon"       :"img/NathanLamont/Liner_icon.png",
-    "sprite"     :"goldbrick",
-    "shortName"  :"Schengen Frigate",
-    "longName"   :"Schengen Frigate",
-    "fullName"   :"Schengen Frigate",
-    "desc"       :"Built, like the Schengen fighter, with a large fuel scoop, the Schengen Frigate is unusual among ships of its size. It is heavly armed with mass drivers that do take advantage of its considerable power generation capacity.",
-    "weapons"    : {},
-    "outfits"    : {},
-    "rotation"  : 0.008,
-    "accel"      : 0.000008,
-    "maxSpeed"   : 6,
-    "space"      : 80,
-    "cargo"      : 70,
-    "price"      : 900000,
-    "tech"       : {"schen":3}
-  },
-  
   "ffempfi"   :{
     "icon"       : "img/onyx/Onyx/thumb/bfi.bmp",
     "sprite"     : "onxoefi",

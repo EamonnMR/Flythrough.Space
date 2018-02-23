@@ -1,14 +1,4 @@
 {
-  "pax":{
-    "name":"Schengen Federation",
-    "color":"#FFA500FF",
-    "dark_color": "#F59A00A0",
-    "foes": [
-      "hex",
-      "fifth",
-      "drone" 
-    ]
-  },
   "direc":{
     "name":"Casamance Directorate",
     "color":"#0000CDFF",
