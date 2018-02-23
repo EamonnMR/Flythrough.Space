@@ -11,7 +11,7 @@ const Z_IN_DOT = 5;
 const Z_SYSTEXT = 6;
 const Z_OVERLAY = 7;
 
-const MAP_MAX_SIZE = "1000px";  // TODO: Calculate this from coordinates
+const MAP_MAX_SIZE = "100%";  // TODO: Calculate this from coordinates
 
 const TEXT_OFFSET = 16;
 
@@ -41,6 +41,7 @@ export class MapView extends states.ViewState{
 
     this.offset = { x: position.x,
                     y: position.y};
+    this.scrollables = [];
     this.game_canvas = game_canvas;
 
     this.selection = null;
@@ -59,10 +60,7 @@ export class MapView extends states.ViewState{
 
     let current = this.data.systems[this.selection];
 
-    this.plane = BABYLON.Mesh.CreatePlane("plane", 16);
-    this.plane.position.z = -2;
-
-    this.adt = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(this.plane);
+    this.adt =  BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 
     this.map_image = new BABYLON.GUI.Rectangle();
 
@@ -87,19 +85,21 @@ export class MapView extends states.ViewState{
       govt_dark_colors[ name ] = this.data.govts[ name ].dark_color;
     }
 
-    let sys_counter = 0;
     for ( let system_name of Object.keys(this.data.systems)) {
       let system_dat = this.data.systems[system_name];
 
       let sys_text = new BABYLON.GUI.TextBlock();
       sys_text.color = "White";
-      sys_text.text = system_name + "(" + sys_counter + ")";
-      sys_counter ++;
+      sys_text.text = system_name;
       sys_text.alpha = 1;
+      sys_text.base_left = system_dat.x - (CIRCLE_SIZE_INT / 2);
+      sys_text.base_top = TEXT_OFFSET + system_dat.y - (CIRCLE_SIZE_INT / 2);
       sys_text.left = system_dat.x - (CIRCLE_SIZE_INT / 2);
       sys_text.top = TEXT_OFFSET + system_dat.y - (CIRCLE_SIZE_INT / 2);
       sys_text.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
       sys_text.textVerticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+
+      this.scrollables.push(sys_text);
 
 
       this.map_image.addControl(sys_text);
@@ -139,18 +139,14 @@ export class MapView extends states.ViewState{
 
   }
 
-  exit(){
-    input.unbindInputFunctions();
-    this.player.selected_system = this.selection
-    this.plane.dispose();
-  }
-
   update_selection( system_name ){
     this.selection = system_name;
     console.log( "Selected: " + this.selection );
     let sel_system = this.data.systems[system_name];
-    this.selection_circle.left = sel_system.x - (SELECTED_CIRCLE_SIZE / 2);
-    this.selection_circle.top = sel_system.y - (SELECTED_CIRCLE_SIZE / 2);
+    this.selection_circle.base_left = sel_system.x - (SELECTED_CIRCLE_SIZE / 2);
+    this.selection_circle.base_top = sel_system.y - (SELECTED_CIRCLE_SIZE / 2);
+    this.selection_circle.left = this.offset.x + sel_system.x - (SELECTED_CIRCLE_SIZE / 2);
+    this.selection_circle.base_top = this.offset.y + sel_system.y - (SELECTED_CIRCLE_SIZE / 2);
     this.selection_circle.alpha = 1;
   }
 
@@ -163,6 +159,7 @@ export class MapView extends states.ViewState{
     /* Generic function for the kind of circles you want
      * to use on the map. */ 
     let circle = new BABYLON.GUI.Ellipse();
+    circle.base_size = size;
     circle.height = size + "px";
     circle.width = size + "px";
     circle.background = CIRCLE_BACKGROUND; 
@@ -172,8 +169,13 @@ export class MapView extends states.ViewState{
     circle.alpha = 1;
     circle.left = x - (size/ 2);
     circle.top = y - (size / 2);
+    circle.base_left = x - (size / 2); 
+    circle.base_top = y - (size / 2);
     circle.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
     circle.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+    
+    this.scrollables.push(circle);
+
     return circle;
   }
 
@@ -257,6 +259,13 @@ export class MapView extends states.ViewState{
     }
   }
 
+  move_scrollables(){
+    for (let circle of this.scrollables){
+      circle.left = circle.base_left + this.offset.x;
+      circle.top = circle.base_top + this.offset.y;
+    }
+  }
+
   setup_dragging(){
     this.dragging = false;
 
@@ -276,11 +285,8 @@ export class MapView extends states.ViewState{
       if ( this.dragging ) {
         this.offset.x +=  coordinates.x - this.mouse_pos.x;
         this.offset.y +=  coordinates.y - this.mouse_pos.y;
-        this.mouse_pos.x = coordinates.x;
-        this.mouse_pos.y = coordinates.y;
-        this.plane.position.x = this.offset.x / 100;
-        this.plane.position.y = this.offset.y / -100;
-        //this.move_spacelanes();
+        this.move_spacelanes();
+        this.move_scrollables();
       }
     });
   }
@@ -291,4 +297,15 @@ export class MapView extends states.ViewState{
       y: event.pageY,
     }
   }
+
+  exit(){
+    input.unbindInputFunctions();
+    this.player.selected_system = this.selection
+    this.adt.removeControl(this.map_image);
+    this.map_image.dispose();
+    this.game_canvas.unbind("mousedown");
+    this.game_canvas.unbind("mouseup");
+    this.game_canvas.unbind("mousemove");
+  }
+
 }
