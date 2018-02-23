@@ -44,7 +44,7 @@ export class MapView extends states.ViewState{
     this.scrollables = [];
     this.game_canvas = game_canvas;
 
-    this.selection = null;
+    this.selection = player.selected_system;
   }
 
   enter(){
@@ -126,10 +126,18 @@ export class MapView extends states.ViewState{
           CIRCLE_THICKNESS,
           Z_SYSCIRCLE,
       )
+      /*
+       * This ought to work. What's more, it should be nicer
+       * than brute forcing all of the circles.
+       * 
+       * But try, comment this out - it won't work. Or, rather
+       * it will work on the first four or so systems you
+       * assign a listener to and nothing else.
       sys_circle.onPointerDownObservable.add((event) => {
         console.log(event);
         this.update_selection(system_name);
       });
+      */
       this.map_image.addControl(sys_circle);
     }
     this.map_sub = null;
@@ -143,11 +151,17 @@ export class MapView extends states.ViewState{
     this.selection = system_name;
     console.log( "Selected: " + this.selection );
     let sel_system = this.data.systems[system_name];
-    this.selection_circle.base_left = sel_system.x - (SELECTED_CIRCLE_SIZE / 2);
-    this.selection_circle.base_top = sel_system.y - (SELECTED_CIRCLE_SIZE / 2);
-    this.selection_circle.left = this.offset.x + sel_system.x - (SELECTED_CIRCLE_SIZE / 2);
-    this.selection_circle.base_top = this.offset.y + sel_system.y - (SELECTED_CIRCLE_SIZE / 2);
-    this.selection_circle.alpha = 1;
+    if(sel_system !== undefined){
+      this.selection_circle.base_left = sel_system.x - (SELECTED_CIRCLE_SIZE / 2);
+      this.selection_circle.base_top = sel_system.y - (SELECTED_CIRCLE_SIZE / 2);
+      this.selection_circle.left = this.offset.x + sel_system.x - (SELECTED_CIRCLE_SIZE / 2);
+      this.selection_circle.top = this.offset.y + sel_system.y - (SELECTED_CIRCLE_SIZE / 2);
+      this.selection_circle.alpha = 1;
+    } else {
+      console.log(system_name);
+      console.log("not found - invalid selection")
+      this.selection_circle.alpha = 0;
+    }
   }
 
   clear_selection(){
@@ -197,7 +211,7 @@ export class MapView extends states.ViewState{
   make_selection_circle(){
     let sel_system = this.data.systems[this.selection];
     this.selection_circle = this.get_circle(
-       0, 0,
+       sel_system.y, sel_system.x,
        SELECTED_CIRCLE_SIZE,
        SELECTION_COLOR,
        CIRCLE_THICKNESS,
@@ -206,7 +220,7 @@ export class MapView extends states.ViewState{
 
     this.map_image.addControl(this.selection_circle);
 
-    this.update_selection(this.player.selected_system);
+    this.update_selection(this.selection);
   }
 
   create_spacelanes(){
