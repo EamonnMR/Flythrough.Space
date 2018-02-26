@@ -25,7 +25,7 @@ function init(gameCanvas, scene, engine, data){
         data, {x: 0, y: 0}, gameCanvas, player_data),
 
     'landing': new landing.LandingMainView(scene, gameCanvas, data.spobs, player_data),
-  }, 'map');
+  }, 'gameplay');
  
   // Handle resizes
 
