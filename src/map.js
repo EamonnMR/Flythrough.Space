@@ -291,6 +291,26 @@ export class MapView extends states.ViewState{
 
     this.game_canvas.mouseup( (event) => {
       this.dragging = false;
+      let coordinates = this.parse_event(event);  
+      // Original map code
+      // TODO: Replace this with the above nice code...
+      // if it can be made to, like, work.
+			for ( let system_name of Object.keys(this.data.systems)) {
+				let system_dat = this.data.systems[system_name];
+				//Ugly brute force clicking-on-system check
+				//Treats the map circles as squares
+				if(
+						Math.abs(
+							coordinates.x - this.offset.x - system_dat.x)
+							< CIRCLE_SIZE_INT
+						&& Math.abs(
+							coordinates.y - this.offset.y - system_dat.y)
+							< CIRCLE_SIZE_INT
+				){
+					this.update_selection(system_name);
+          break;
+				}
+			}
     });
     
     this.game_canvas.mousemove( (event) => {
@@ -323,4 +343,4 @@ export class MapView extends states.ViewState{
     this.game_canvas.unbind("mousemove");
   }
 
-}
+};
