@@ -99,6 +99,7 @@ export class GameplayState extends states.ViewState {
           if(this.spob_is_landable(this.player_data.selected_spob)){
 
             this.clear_world();
+            this.player_data.current_spob = this.player_data.selected_spob;
             this.player_data.selected_spob = null;
             this.parent.enter_state('landing');
           } else {
@@ -155,6 +156,10 @@ export class GameplayState extends states.ViewState {
     return this.entMan.get_with(['input'])[0];
   }
 
+  spob_is_landable(spob){
+    return true;
+  }
+
   find_closest_landable_to_player(spobs){
     let min_distance = null;
     let player = this.get_player_ent();
@@ -162,7 +167,8 @@ export class GameplayState extends states.ViewState {
     for(let spob of spobs){
       let distance = util.distance(
           spob.position, player.position);
-      if (!min_distance || min_distance > distance){
+      if (!min_distance || min_distance > distance
+          && this.spob_is_landable(spob)){
         min_distance = distance;
         choice = spob;
       }

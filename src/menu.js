@@ -1,101 +1,73 @@
 import * as states from "states"
 
-export class MainMenuView extends states.ViewState {
-  constructor(scene, dom_canvas){ // TODO: Load list of save games?
-    super()
-    this.scene = scene;
-    this.dom_canvas = dom_canvas;
-    this.widgets = {};
-    this.canvas = null;
-  }
-
-  resize(){
-    // Not much to preserve here, so we just re-init the whole state
-    this.exit();
-    this.enter();
-  }
-
-  enter(){
-    // You should probably call this in your enter function
-    this.setup_2d_canvas();
-  }
-
-  setup_2d_canvas(){
-    this.canvas = new BABYLON.ScreenSpaceCanvas2D(this.scene, {
-      id: "menu_canvas",
-      size: new BABYLON.Size(this.dom_canvas.width(),
-                             this.dom_canvas.height()),
-      backgroundFill: "#0000000F"
-    });
-
-		this.group = new BABYLON.Group2D({
-      parent: this.canvas,
-      id: 'menu_group' 
-    });
-	  console.log("pre pointer event observable");	
-	  this.group.pointerEventObservable.add(
-      (d, s) => {
-        console.log('clicked: ');
-        console.log(d.relatedTarget.id);
-        let target = d.relatedTarget.id;
-        this.respond_to_click(target);
-      }, BABYLON.PrimitivePointerInfo.PointerUp
-
-    );
-    console.log("Pre widgets")
-    for (let id of Object.keys(this.widgets)){
-      this.widgets[id].setup(this.group);
+export class BaseMenuView extends states.ViewState {
+  setup_menu(widgets){
+    this.adt = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
+    this.controls = [];
+    for (let widget of widgets){
+      let control = widget.setup();
+      this.adt.addControl(control);
+      this.controls.push(control);
     }
   }
 
   exit(){
-    if(this.canvas){
-      this.canvas.dispose();
-    }
-	}
-
-  respond_to_click(target_id){
-    if( target_id in this.widgets ){
-      this.widgets[target_id].clicked();
+    for(let control of this.controls){
+      this.adt.removeControl(control);
     }
   }
 }
 
-export class Widget{
-  setup(group){
-    // Each time you enter this menu state, this will be called on your widget
-    // Remember to set the parent of whatever you create to 'group' if you want
-    // it to be clickable.
-  }
 
-  clicked(){
-    // Do something because the widget was clicked.
+export class Widget{
+  setup(){
+    // Each time you enter this menu state, this will be called on your widget.
+		// The parent is the ADT or container that you will attach the widget to (if applicable)
+    // It should return a control, which will be added to the
+    // parent container.
+  }
+  
+  setup_control(control){
+    /* This assumes that you've set the following params:
+     * Alignment x
+     * alignment y
+     * left
+     * top
+       And applies those to the given control.
+       */
+
+    control.horizontalAlignment = this.alignment_x;
+    control.verticalAlignment = this.alignment_y;
+    control.top = this.top;
+    control.left = this.left;
+    control.offset_x = this.offset_x;
   }
 }
 
 export class TextButton extends Widget{
-  constructor(text, on_click, x, y, id){
+  constructor(text, callback, alignment_x, alignment_y, left, top){
     super();
     this.text = text;
-    this.on_click = on_click;
-    this.x = x;
-    this.y = y;
-    this.id = id;
-    this.img = null;
+		this.alignment_x = alignment_x,
+		this.alignment_y = alignment_y,
+		this.left = left;
+		this.top = top;
+    this.callback = callback;
   }
 
-  setup(group){
-    new BABYLON.Text2D(this.text, {
-      id: this.id,
-      x: this.x,
-      y: this.y,
-      fontName: '20pt Courier',
-      parent: group
-    });
-  }
-
-  clicked(){
-    this.on_click();
+  setup(){
+    let control = BABYLON.GUI.Button.CreateSimpleButton(
+        "button-"+ this.text,
+        this.text);
+    this.setup_control(control);
+    control.onPointerUpObservable.add(this.callback);
+    control.color = "White";
+    control.background = "Red";
+    control.height = "10%";
+    control.width = "25%";
+    control.paddingLeft = "5%";
+    control.paddingBottom = "8%";
+    return control;
   }
 }
 
@@ -106,52 +78,50 @@ export class TextBox extends Widget{
    * if word == '\n':
    * Start new line (repeat)
    */
-  constructor(text, x, y, id, get_width_func){
+  constructor(text, alignment_x, alignment_y, left, top) {
     super();
     this.text = text;
-    this.x = x;
-    this.y = y;
-    this.id = id;
-    this.img = null;
-    this.text_size = 18;
-    this.text_width = Math.round(this.text_size * .888888888) // TODO: Figure out
-    this.get_width_func = get_width_func
+    this.alignment_x = alignment_x;
+    this.alignment_y = alignment_y;
+    this.left = left;
+    this.top = top;
   }
 
-  setup(group){
-    let line_number = 0
-    for (let line of line_break(
-          this.text, Math.round(this.get_width_func() / this.text_width))){
-      
-      new BABYLON.Text2D(line, {
-        id: this.id + line.toString(),
-        x: this.x,
-        y: this.y - ((this.text_size + 2) * line_number),
-        fontName: this.text_size.toString() + 'pt Courier',
-        parent: group
-      });
-
-      line_number += 1;
-    }
+  setup(){
+    let control = new BABYLON.GUI.TextBlock();
+    control.color = "White";
+    control.text = this.text;
+    control.textWrapping = true;
+    control.width = "60%";
+    control.height = "40%";
+    control.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+    this.setup_control(control);
+    return control;
   }
 } 
 
 
 export class Image extends Widget{
-  constructor(texture, x, y){
+  constructor(image, alignment_x, alignment_y, left, top){
     super();
-    this.texture = texture;
-    this.x = x; this.y = y;
-    this.sprite = null;
+    this.alignment_x = alignment_x;
+    this.alignment_y = alignment_y;
+    this.left = left;
+    this.top = top;
+    this.image = image;
+    
   }
 
-  setup(group){
-     this.sprite = new BABYLON.Sprite2D(this.texture,
-     {
-       parent: group, id: 'hero',// x: this.x, y: this.y, z:1,
-       spriteSize: new BABYLON.Size(64, 64),
-       align_to_pixel: true
-     });
+  setup(){
+    let control = new BABYLON.GUI.Image();
+    this.setup_control(control);
+    control.source = this.image;
+    // TODO: break this out into a "hero image" class in landing?
+    control.width = "60%";
+    control.height = "40%";
+    control.stretch = BABYLON.GUI.Image.STRETCH_NONE;
+
+    return control;
   }
 };
 

@@ -18,13 +18,14 @@ function init(gameCanvas, scene, engine, data){
   
   let player_data = new player.PlayerSave();
 
+  console.log(landing.LandingMenu);
   let stateMgr = new states.StateManager({
     'gameplay': new gameplay.GameplayState(
         scene, camera, data, player_data, gameCanvas),
     'map': new map.MapView(
         data, {x: 0, y: 0}, gameCanvas, player_data),
 
-    'landing': new landing.LandingMainView(scene, gameCanvas, data.spobs, player_data),
+    'landing': new landing.LandingMenu(data.spobs, player_data),
   }, 'gameplay');
  
   // Handle resizes
@@ -51,3 +52,5 @@ $(() => {
     init(game_canvas, scene, engine, data);
   });
 });
+import * as menu from "menu";
+

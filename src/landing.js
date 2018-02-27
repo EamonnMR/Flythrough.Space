@@ -1,49 +1,47 @@
 import * as menu from "menu";
 
-export class LandingMainView extends menu.MainMenuView {
-  constructor(scene, dom_canvas, spobs, player_data){
-    super(scene, dom_canvas);
+export class LandingMenu extends menu.BaseMenuView {
+  constructor(spobs, player_data){
+    super();
     this.spobs = spobs;
     this.player_data = player_data;
-    this.scene = scene;
   }
   enter(){
-    console.log(this.player_data.current_spob);
+    console.log(this.player_data);
     console.log(this.spobs[this.player_data.current_spob]);
     this.spob = this.spobs[this.player_data.current_spob];
     console.log(this.spob);
-    this.widgets = this.get_widgets_for_planet();
-    this.setup_2d_canvas();
+    this.setup_menu(this.get_widgets_for_planet());
   }
 
   get_widgets_for_planet(){
-    let widgets = {};
-    // TODO: Make landing image actually work
-    // TODO: Load this from the spob type (default) then
-    // custom specified image
-    // widgets['hero'] = new menu.Image(this.get_spob_img(),0,0);
+    let widgets = [];
+
+    // TODO: Load from planet then planet type--?
+    widgets.push(new menu.Image("assets/misc_pd/Doha.png",
+          BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_CENTER,
+          BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
+        0,0));
 
     if (this.spob.text){
-      widgets['desc'] = new menu.TextBox(this.spob.text,
-         0,this.dom_canvas.height() - (18 + 285), 'desc',
-         () => {return this.dom_canvas.width()} );
+      widgets.push(new menu.TextBox(
+          this.spob.text,
+          BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_CENTER,
+          BABYLON.GUI.Control.VERTICAL_ALIGNMENT_CENTER,
+          0,0)
+      )
     }
 
-    widgets['leave_btn'] =  new menu.TextButton(
+    widgets.push(new menu.TextButton(
           'leave ' + this.player_data.current_spob,
-        () => {
-          this.parent.enter_state('gameplay');
-        }, 0, 0, 'leave_btn');
+          () => {
+            this.parent.enter_state('gameplay');
+          }, 
+          BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
+          BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,
+          0, 0
+      )
+    );
     return widgets;
-  }
-
-  get_spob_img(){
-    
-    let landing_texture = "assets/misc_pd/Doha.png";
-
-    // TODO: Verify args here
-    return new BABYLON.Texture(
-        landing_texture, this.scene, true,
-      false, BABYLON.Texture.NEAREST_SAMPLINGMODE);
   }
 };
