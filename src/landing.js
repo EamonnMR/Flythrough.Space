@@ -18,13 +18,13 @@ export class LandingMenu extends menu.BaseMenuView {
     let widgets = [];
 
     // TODO: Load from planet then planet type--?
-    widgets.push(new menu.Image("assets/misc_pd/Doha.png",
+    widgets.push(new HeroImage("assets/misc_pd/Doha.png",
           BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_CENTER,
           BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
         0,0));
 
     if (this.spob.text){
-      widgets.push(new menu.TextBox(
+      widgets.push(new HeroText(
           this.spob.text,
           BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_CENTER,
           BABYLON.GUI.Control.VERTICAL_ALIGNMENT_CENTER,
@@ -32,7 +32,7 @@ export class LandingMenu extends menu.BaseMenuView {
       )
     }
 
-    widgets.push(new menu.TextButton(
+    widgets.push(new LandingMenuBigButton(
           'leave ' + this.player_data.current_spob,
           () => {
             this.parent.enter_state('gameplay');
@@ -45,3 +45,38 @@ export class LandingMenu extends menu.BaseMenuView {
     return widgets;
   }
 };
+
+class HeroImage extends menu.Image {
+  setup(){
+    let control = super.setup();
+    control.width = "60%";
+    control.height = "40%";
+    return control;
+  }
+};
+
+class HeroText extends menu.TextBox {
+  setup(){
+    let control = super.setup();
+    control.textWrapping = true;
+    control.color = "White";
+    control.width = "60%";
+    control.height = "60%";
+    control.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+    return control;
+  }
+};
+
+class LandingMenuBigButton extends menu.TextButton {
+  setup(){
+    let control = super.setup();
+    control.color = "White";
+    control.background = "Red";
+    control.height = "15%";
+    control.width = "19%";
+    control.paddingLeft = "3%";
+    control.paddingBottom = "8%";
+    return control;
+  }
+};
+
