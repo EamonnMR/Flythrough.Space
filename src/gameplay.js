@@ -101,6 +101,12 @@ export class GameplayState extends states.ViewState {
             this.clear_world();
             this.player_data.current_spob = this.player_data.selected_spob;
             this.player_data.selected_spob = null;
+            let spob_dat = this.data.spobs[this.player_data.current_spob];
+            let position = this.player_data.initial_position;
+
+            position.x = spob_dat.x;
+            position.y = spob_dat.y;
+            this.player_data.initial_position.x 
             this.parent.enter_state('landing');
           } else {
             console.log("Player tried to land somewhere wrong");
@@ -117,7 +123,8 @@ export class GameplayState extends states.ViewState {
 			this.entMan,
    		system_name,
       this.hud,
-      this.data
+      this.data,
+      this.player_data,
   	);
   }
 

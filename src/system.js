@@ -7,7 +7,7 @@
  */
 
 
-export function setup_system(scene, camera, entMan, system, hud, data){
+export function setup_system(scene, camera, entMan, system, hud, data, player_data){
   let system_dat = data.systems[system];
 
   let lights = [
@@ -24,8 +24,15 @@ export function setup_system(scene, camera, entMan, system, hud, data){
 
 
   let ents = [
-    entities.playerShipFactory( data, "shuttle", 
-        {x: 0, y:-1, z: -2}, camera, hud),
+    entities.playerShipFactory( data,
+        player_data.ship_type, 
+        {
+          x: player_data.initial_position.x,
+          y: player_data.initial_position.y
+        },
+        camera,
+        hud
+    ),
   ];
   if( system_dat.govt ){
     ents.push(

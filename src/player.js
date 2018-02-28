@@ -8,6 +8,8 @@ export class PlayerSave {
     this.selected_spob = null;
     this.current_system = "Reese";
     this.current_spob = null;
+    this.initial_position = {x: 0, y: 0};
+    this.ship_type = "shuttle";
 
     this.govts = {
       orasos: {reputation: -1}
