@@ -5,7 +5,7 @@
 		"y"    : 140,
 		"govt" : "direc",
 		"text": "The birthplace of the modern FTL drive, and capital of the Old Empire. It was these shipyards that built the first wave of ships that crossed the Aleutian sector, and is still a hub for ship construction. After the empire's collapse, most of the government fled, leaving the shipwrights in charge. They ultimately formed Accra Drive Systems, a successful manufacturer of modern starships.",
-		"comodities":{
+		"trade":{
 			"alloy":"high",
 			"grain":"high",
 			"dut":"high",
@@ -39,7 +39,7 @@
 		"x":100,
 		"y":300,
 		"govt":"direc",
-		"comodities":{
+		"trade":{
 			"carbon":"low",
 			"roto":"high",
 			"dark":"high",
@@ -52,7 +52,7 @@
 		"x":-100,
 		"y":-348,
 		"govt":"direc",
-		"comodities":{
+		"trade":{
 			"water":"high",
 			"grain":"high",
 			"ethyl":"high"
@@ -76,7 +76,7 @@
 		"x": 75,
 		"y": 150,
 		"govt":"direc",
-		"comodities":{
+		"trade":{
 			"dark":"low",
 			"powerconv":"high"
 		}
@@ -85,7 +85,7 @@
 		"sType": "aresSmallStation",
 		"govt":"direc",
 		"text" : "This station is jointly owned by member planets of the Directorate, and administered by its navy. It supports the various mining intrests on the inhospitable surface of Cook from orbit.",
-		"comodities":{
+		"trade":{
 			"carbon":"high"
 		},
 		"tech":{
@@ -114,7 +114,7 @@
 			"direc":1,
 			"kps":1
 		},
-		"comodities":{
+		"trade":{
 			"ethyl":"med",
 			"alloy":"low",
 			"grain":"high"
@@ -172,7 +172,7 @@
 			"direc":3,
 			"oe_ship":3
 		},
-		"comodities":{
+		"trade":{
 			"grain":"med",
 			"alloy":"high",
 			"plas":"low",
@@ -193,7 +193,7 @@
 	"Phobos":{
 		"sType":"Phobostype",
 		"text":"It looks like there might have been a colony on the surface of this planet at some point, but not recently. Scans indicate that several displacer-tech accidents happened here. Judging by the scarring on the walls, somebody with a rocket launcher shot the place up pretty well. You decide not to go any deeper, in case they're still around.",
-		"comodities":{
+		"trade":{
 			"uacbarrels":"low"
 		},
 		"x":0,
@@ -228,7 +228,7 @@
 			"oe_ship":1,
 			"direc":1
 		},
-		"comodities":{
+		"trade":{
 			"water":"low",
 			"alloy":"med",
 			"roto":"low",
@@ -248,7 +248,7 @@
 			"oe_wep":2,
 			"oe_ship":1
 		},
-		"comodities":{
+		"trade":{
 			"water":"low",
 			"alloy":"med",
 			"ethyl":"high",
@@ -264,7 +264,7 @@
 		"tech":{
 			"generic":1
 		},
-		"comodities":{
+		"trade":{
 			"ethyl":"med",
 			"plas":"low",
 			"roto":"low"
@@ -282,7 +282,7 @@
 			"generic":1,
 			"accra":2
 		},
-		"comodities":{
+		"trade":{
 			"plas":"high",
 			"water":"med",
 			"dut":"med"
@@ -296,7 +296,7 @@
 		"text":"In a remote corner of the Casamance Directorite floats Turkana, an agracultural paradise. Praised as one of the best terraformed worlds in Casamance space, it is covered in farms and dotted with agracultural plants. Many of the powerful famlies here can trace back to Emperial officers who chose this planet as a place of retirement.",
 		"x":0,
 		"y":0,
-		"comodities":{
+		"trade":{
 			"agra":"high",
 			"grain":"low",
 			"roto":"high",
@@ -356,7 +356,7 @@
 		"y":123,
 		"govt":"direc",
 		"text":"Despite its appearance, Ubuntu is actually a very habitable planet once you get used to the environment. It specializes in manufacturing computer components, and providing support.",
-		"comodities":{
+		"trade":{
 			"compu":"low",
 			"pure":"high",
 			"powerconv":"med"
@@ -380,7 +380,7 @@
 			"generic":3,
 			"accra":1
 		},
-		"comodities":{
+		"trade":{
 			"alloy":"high",
 			"dark":"high",
 			"xerum":"high",
@@ -425,7 +425,7 @@
 			"generic":3,
 			"wlkn":3
 		},
-		"comodities":{
+		"trade":{
 			"water":"high",
 			"grain":"high",
 			"pure":"high",
@@ -478,7 +478,7 @@
 			"itaskan_wep":2,
 			"itaskan_ship":1
 		},
-		"comodities":{
+		"trade":{
 			"water":"low",
 			"grain":"high",
 			"pure":"med",
@@ -490,7 +490,7 @@
 		"x":184,
 		"y":203,
 		"text":"This unremarkable moon has only one feature of interplanetary intrest-it is one of the few known sources of 'Xerum', also known as red mercury",
-		"comodities":{
+		"trade":{
 			"xerum":"low"
 		}
 	},
@@ -541,7 +541,7 @@
 		"x":0,
 		"y":0,
 		"text":"With no biosphere, Angeles was an ideal testbed for airtight colony technology. It was a smashing success and its population now numbers in the tens of billions.",
-		"comodities":{
+		"trade":{
 			"water":"high",
 			"grain":"high",
 			"pure":"low",
@@ -561,7 +561,7 @@
 		"x":-10,
 		"y":20,
 		"text":"The methane atmosphere makes the planet unattractive except for mining operations.",
-		"comodities":{
+		"trade":{
 			"alloy":"low",
 			"pure":"med",
 			"gas":"low",
@@ -599,7 +599,7 @@
 		"x":300,
 		"y":-30,
 		"text":"Over the last five hundred years, inhabitants have been moving from Itaskana to Buttonwood, due to radiation in Itaskana's seriously ionized atmosphere. It was home to the ''Buttonwood Accords'' where bans on environmentally destructive practices where put into effect throughout Itaskan space, settling what many called the 'last generational fude in Itaskan space'",
-		"comodities":{
+		"trade":{
 			"compu":"high",
 			"water":"high",
 			"grain":"high",
@@ -622,7 +622,7 @@
 		"x":300,
 		"y":450,
 		"text":"A middling planet in most respects, Sinchenko is the cultural heart of the peninsula, hosting epic concerts that draw crowds of millions on a regular basis.",
-		"comodities":{
+		"trade":{
 			"ethyl":"high",
 			"spice":"high",
 			"uacbarrels":"med"
@@ -633,7 +633,7 @@
 		"govt":"direc",
 		"x":0,
 		"y":0,
-		"comodities":{
+		"trade":{
 			"water":"low",
 			"grain":"med",
 			"alloy":"med"
