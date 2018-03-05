@@ -3,6 +3,7 @@ import * as player from "player";
 import * as map from "map";
 import * as states from "states";
 import * as landing from "landing";
+import * as trade from "trade";
 
 function init(gameCanvas, scene, engine, data){
   /* Main entry point for the app (after loading). Binds events and such. */
@@ -26,7 +27,7 @@ function init(gameCanvas, scene, engine, data){
         data, {x: 0, y: 0}, gameCanvas, player_data),
 
     'landing': new landing.LandingMenu(data.spobs, player_data),
-    'trade': new landing.TradeMenu(data.spobs, player_data),
+    'trade': new trade.TradeMenu(data.spobs, player_data),
   }, 'gameplay');
  
   // Handle resizes

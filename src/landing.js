@@ -181,7 +181,7 @@ class HeroText extends menu.TextBox {
   }
 };
 
-class LandingMenuBigButton extends menu.TextButton {
+export class LandingMenuBigButton extends menu.TextButton {
 
   setup(){
     let control = super.setup();
