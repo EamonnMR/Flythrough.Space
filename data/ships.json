@@ -5,18 +5,19 @@
     "shortName"  : "Shuttle",
     "longName"   : "Shuttlecraft",
     "fullName"   : "Jump capable shuttlecraft type 407",
-    "desc"       : "Though shuttlecraft are usually used to ferry goods between ships, or save larger ships from needing to entering atmosphere, some shuttlecraft are equipped with jump drives and used as extremely cheap merchant ships. The model manufactured now has been frozen since its development by the shipwrights of Accra.",
+    "desc"       : "Though shuttlecraft are usually used to ferry goods between ships, or save larger ships from needing to enter atmosphere, some shuttlecraft are equipped with jump drives and used as extremely cheap merchant ships. The model manufactured now has been frozen since its development by the shipwrights of Accra in the year 407. You can get parts for it basically anywhere and it is considered very reliable. Just don't try and take it into combat - or try to takeoff with more than 10 tons in the cargo bay.",
     "weapons"    : ["plasma50w"],
     "outfits"    : {"autocannon":1},
-    "rotation"  : 0.005,
+    "rotation"   : 0.005,
     "accel"      : 0.00005,
     "maxSpeed"   : 0.005,
     "space"      : 10,
     "cargo"      : 10,
     "price"      : 1000,
     "tech"       : {"generic":2},
-    "max_hp"      : 1,
-    "max_shields" : 1
+    "max_hp"     : 1,
+    "max_shields": 1,
+    "max_fuel"   : 3
   },
   "civlightfi"  :{
     "icon"       : "img/onyx/Onyx/thumb/strike.bmp",

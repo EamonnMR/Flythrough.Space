@@ -46,7 +46,7 @@ export class HUD{
 
 
   get_nav_box(){
-    let box = this.get_box_generic("200px", "60px");
+    let box = this.get_box_generic("200px", "80px");
 
     box.addControl(this.nav_text);
     this.nav_text.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT
@@ -80,13 +80,14 @@ export class HUD{
     let player = possible_player[0];
     let planet_line = "In-System: ";
     let jump_line = "Galactic: ";
+    let fuel_line = "Fuel (jumps): " + this.player_data.fuel;
     if (this.player_data.selected_spob){
       planet_line += this.player_data.selected_spob;
     }
     if (this.player_data.selected_system){
       jump_line += this.player_data.selected_system;
     }
-    this.nav_text.text = [planet_line, jump_line, " "].join("\n")
+    this.nav_text.text = [planet_line, jump_line, fuel_line, ""].join("\n")
   }
 
   dispose(){

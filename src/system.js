@@ -31,7 +31,8 @@ export function setup_system(scene, camera, entMan, system, hud, data, player_da
           y: player_data.initial_position.y
         },
         camera,
-        hud
+        hud,
+        player_data
     ),
   ];
   if( system_dat.govt ){

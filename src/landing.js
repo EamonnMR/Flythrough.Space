@@ -85,6 +85,7 @@ export class LandingMenu extends menu.BaseMenuView {
       widgets.push(new LandingMenuBigButton(
         'Refuel',
         () => {
+          this.player_data.fuel = 3 // TODO: Get player ship type!
           console.log("refuel")
         },
         RIGHT,

@@ -8,7 +8,7 @@ export function npcShipFactory(data, type, position, hud, ai, govt){
   return ship;
 }
 
-export function playerShipFactory(data, type, position, camera, hud) {
+export function playerShipFactory(data, type, position, camera, hud, player) {
 
   let ship = shipFactory(data, type, position);
 
@@ -18,6 +18,7 @@ export function playerShipFactory(data, type, position, camera, hud) {
   ship.player_aligned = true; // Fake gov for player and minions
 
   ship.radar_pip = hud.get_radar_pip(4, '#00FF00FF');
+  ship.fuel = player.fuel;
   return ship;
 };
 
@@ -37,6 +38,7 @@ export function shipFactory(data, type, position){
   ship.hitpoints = ship.max_hp;
   ship.shields = ship.max_shields;
   ship.collider = {radius: .5};
+  ship.fuel = ship.max_fuel;
   return ship;
 };
 

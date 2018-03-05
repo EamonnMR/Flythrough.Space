@@ -74,10 +74,16 @@ export class GameplayState extends states.ViewState {
 			  if ( this.player_data.current_system
             != this.player_data.selected_system
         ) {
-      	  this.player_data.current_system = 
-                this.player_data.selected_system;
-          this.clear_world();
-          this.setup_world();
+          if (this.player_data.fuel >= 1){ 
+            this.player_data.current_system = 
+                  this.player_data.selected_system;
+            this.clear_world();
+            // TODO: Violate all laws of the universe, travel faster than light between high-mass objects
+            this.player_data.fuel -= 1;
+            this.setup_world();
+          } else {
+            console.log("Tried to hyperjump with insufficient fuel");
+          }
 			  } else {
           console.log( "Tried to HJ to bad system");
         }

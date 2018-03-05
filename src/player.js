@@ -10,9 +10,26 @@ export class PlayerSave {
     this.current_spob = null;
     this.initial_position = {x: 0, y: 0};
     this.ship_type = "shuttle";
+    this.fuel = 3; // They start out with a full tank of gas (for a shuttle)
+
+    this.bulk_cargo = {};
+    this.mission_cargo = {};
 
     this.govts = {
+      // TODO: Default rep?
       orasos: {reputation: -1}
     }
   }
+
+  total_cargo(){
+    // Total cargo space used up on the player's ship
+    let total = 0;
+    [this.bulk_cargo, this.mission_cargo].forEach( (cargo_type) =>{
+      Object.keys(cargo_type).forEach( (key) => {
+        total += cargo_type[key];
+      })
+    });
+    return total;
+  }
+
 }
