@@ -3,17 +3,16 @@ import * as states from "states"
 export class BaseMenuView extends states.ViewState {
   setup_menu(widgets){
     this.adt = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
-    this.controls = [];
+    this.widgets = widgets;
     for (let widget of widgets){
-      let control = widget.setup();
+      let control = widget.get_control();
       this.adt.addControl(control);
-      this.controls.push(control);
     }
   }
 
   exit(){
-    for(let control of this.controls){
-      this.adt.removeControl(control);
+    for(let widget of this.widgets){
+      widget.hide(this);
     }
   }
 }
@@ -22,9 +21,8 @@ export class BaseMenuView extends states.ViewState {
 export class Widget{
   setup(){
     // Each time you enter this menu state, this will be called on your widget.
-		// The parent is the ADT or container that you will attach the widget to (if applicable)
     // It should return a control, which will be added to the
-    // parent container.
+    // parent container and saved into the control.
   }
   
   setup_control(control){
@@ -42,6 +40,27 @@ export class Widget{
     control.left = this.left;
     control.offset_x = this.offset_x;
   }
+
+  get_control(){
+    // Wraps "setup" and saves the control so that the 
+    // widget can update it later.
+    this.control = this.setup();
+    return this.control;
+  }
+
+  update(parent){
+    // For setting up binding
+  }
+
+  // Convenience functions
+  show(parent){
+    parent.adt.addControl(this.control);
+  }
+
+  hide(parent){
+    parent.adt.removeControl(this.control);
+  }
+
 }
 
 export class TextButton extends Widget{
@@ -98,7 +117,6 @@ export class Image extends Widget{
     this.left = left;
     this.top = top;
     this.image = image;
-    
   }
 
   setup(){
