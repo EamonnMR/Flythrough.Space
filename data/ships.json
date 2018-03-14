@@ -326,7 +326,6 @@
     "sprite"     : "onxgoldcru",
     "shortName"  : "Fermi",
     "longName"   : "Itaskan \"Fermi\" Corvette",
-    "longName"   : "Itaskan Cruiser",
     "desc"       : "The backbone of the seventh fleet, the Fermi corvette is a formidable battleship. In addition to the fighters that it carries, some of the best in the galaxy, it is armed with heavy weapons and enough armor to, in a pinch, wade into a fight. Its gleaming nanosteel hull is a familiar sight in Itaskan space, but they're rare outside of it, as they keep to themselves.",
     "weapons"    : {},
     "rotation"  : 0.01,
@@ -384,7 +383,6 @@
     "price"      : 25000,
     "tech"       : {"league": 2}
   },
-,
   "league_corvette":{
     "shortName"  : "League Corvette",
     "longName"   : "League Kalvari Corvette",

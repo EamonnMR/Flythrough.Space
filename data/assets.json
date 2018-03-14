@@ -25,7 +25,7 @@
     "spobs": "spobs.json",
     "govts": "govts.json",
     "nebule": "nebule.json",
-    "outfits": "outfits.json",
+    "upgrades": "upgrades.json",
     "ships": "ships.json",
     "spobtypes": "spobtypes.json",
     "weapons": "weapons.json"
