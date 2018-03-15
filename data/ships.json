@@ -1,6 +1,6 @@
 {
   "shuttle" : {
-    "mesh"      : "oe_fi",
+    "mesh"       : "shuttle",
     "shortName"  : "Shuttle",
     "longName"   : "Shuttlecraft",
     "fullName"   : "Jump capable shuttlecraft type 407",

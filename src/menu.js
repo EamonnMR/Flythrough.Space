@@ -8,11 +8,18 @@ export class BaseMenuView extends states.ViewState {
       let control = widget.get_control();
       this.adt.addControl(control);
     }
+    this.update_widgets();
   }
 
   exit(){
     for(let widget of this.widgets){
       widget.hide(this);
+    }
+  }
+
+  update_widgets(){
+    for(let widget of this.widgets){
+      widget.update(this);
     }
   }
 }
@@ -66,6 +73,7 @@ export class Widget{
 export class TextButton extends Widget{
   constructor(text, callback, alignment_x, alignment_y, left, top){
     super();
+    // TODO: Subclass text probably
     this.text = text;
 		this.alignment_x = alignment_x,
 		this.alignment_y = alignment_y,

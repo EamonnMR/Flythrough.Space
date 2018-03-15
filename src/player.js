@@ -1,8 +1,9 @@
 /* Player State - this is what's shared between game states. */
 
 export class PlayerSave {
-  constructor() {
+  constructor(ships, upgrades) {
     // TODO: Load this from some sort of backing store / DB / etc
+    this.money = 1000;
     this.map_pos = {x: 0, y: 0};
     this.selected_system = "Cartwright";
     this.selected_spob = null;
@@ -19,6 +20,7 @@ export class PlayerSave {
       // TODO: Default rep?
       orasos: {reputation: -1}
     }
+    this.ship_dat = ships[this.ship_type]; 
   }
 
   total_cargo(){
@@ -30,6 +32,10 @@ export class PlayerSave {
       })
     });
     return total;
+  }
+
+  max_cargo(){
+    return this.ship_dat.cargo;
   }
 
 }

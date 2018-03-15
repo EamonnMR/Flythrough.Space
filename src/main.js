@@ -17,7 +17,7 @@ function init(gameCanvas, scene, engine, data){
 
   // start initial state
   
-  let player_data = new player.PlayerSave();
+  let player_data = new player.PlayerSave(data.ships, data.upgrades);
 
   console.log(landing.LandingMenu);
   let stateMgr = new states.StateManager({
@@ -27,7 +27,7 @@ function init(gameCanvas, scene, engine, data){
         data, {x: 0, y: 0}, gameCanvas, player_data),
 
     'landing': new landing.LandingMenu(data.spobs, player_data),
-    'trade': new trade.TradeMenu(data.spobs, player_data),
+    'trade': new trade.TradeMenu(data.spobs, player_data, data.comodities),
   }, 'gameplay');
  
   // Handle resizes
