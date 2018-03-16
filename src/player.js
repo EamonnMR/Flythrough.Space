@@ -38,4 +38,15 @@ export class PlayerSave {
     return this.ship_dat.cargo;
   }
 
+  max_fuel(){
+    return this.ship_dat.max_fuel;
+  }
+
+  can_refuel(){
+    return this.fuel < this.max_fuel();
+  }
+
+  refuel(){
+    this.fuel = this.max_fuel();
+  }
 }

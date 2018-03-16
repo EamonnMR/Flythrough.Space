@@ -81,11 +81,11 @@ export class LandingMenu extends menu.BaseMenuView {
    
     /* Righthand buttons */
     const RIGHT = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-    if (this.spob.govt){  // If a planet is civilized at all, they can refuel you
+    if (this.spob.govt && this.player_data.can_refuel()){  // If a planet is civilized at all, they can refuel you
       let refuel_button = new LandingMenuBigButton(
         'Refuel',
         () => {
-          this.player_data.fuel = 3 // TODO: Get player ship type!
+          this.player_data.refuel() // TODO: Get player ship type!
           console.log("refuel")
           refuel_button.hide(this);
         },

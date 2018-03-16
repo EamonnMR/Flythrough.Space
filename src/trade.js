@@ -106,8 +106,8 @@ class CargoIndicator extends menu.TextBox{
     let control = super.setup();
     control.zOrder = -1;
     control.color = "White";
-    control.width = "10%";
-    control.height = "30%";
+    control.width = "20%";
+    control.height = "10%";
     return control;
   }
 
