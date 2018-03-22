@@ -27,7 +27,7 @@ function init(gameCanvas, scene, engine, data){
         data, {x: 0, y: 0}, gameCanvas, player_data),
 
     'landing': new landing.LandingMenu(data.spobs, player_data),
-    'trade': new trade.TradeMenu(data.spobs, player_data, data.comodities),
+    'trade': new trade.TradeMenu(data.spobs, player_data, data.trade),
   }, 'gameplay');
  
   // Handle resizes

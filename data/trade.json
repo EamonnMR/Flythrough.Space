@@ -74,5 +74,17 @@
   "plas":{
     "name":"Plasma Injectors",
     "price":100
+  },
+  "metal":{
+    "name": "Refined Metal",
+    "price": 70
+  },
+  "ore":{
+    "name": "Ore",
+    "price": 50
+  },
+  "ice9":{
+    "name": "Ice Nine",
+    "price": 250
   }
 }

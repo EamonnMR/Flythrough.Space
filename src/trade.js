@@ -55,29 +55,48 @@ export class TradeMenu extends menu.BaseMenuView {
   get_trade_widgets(){ 
     let widgets = []
     let running_offset_total = 0;
- /*   Object.keys(this.spob.trade).forEach( (key )  => {
-      widgets.push(
-        new CommodityLabel();
-      );
-      widgets.push(
-        new BuyButton();
-      );
-      widgets.push(
-        new SellButton();
-      );
-      widgets.push(
-        new CargoIndicator();
-      );
+    Object.keys(this.spob.trade).forEach( (key )  => {
+      if (key in this.trade_data){
+        running_offset_total += 10;
+        widgets.push(
+          new CommodityLabel(this.trade_data[key].name,
+            "" + ( (running_offset_total + 10)) + "%")
+        );
+   /*     widgets.push(
+          new BuyButton();
+        );
+        widgets.push(
+          new SellButton();
+        );
+   */
+      } else {
+        console.log("Invalid trade good: " + key);
+      }
     });
-*/
+
     widgets.push(new CargoIndicator(this.player_data));
 
     return widgets;
   }
 };
 
-/*
+
 class CommodityLabel extends menu.TextBox{
+  constructor(name, top){
+    super(name, 
+      BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
+      BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
+      "5%", top);
+    console.log("Label top: " + top);
+  }
+
+  setup(){
+    let control = super.setup();
+    control.color = "White";
+    control.width = "20%";
+    control.height = "10%";
+    return control;
+  }
 };
 
 // These should register the components with the parent (menu)
@@ -85,7 +104,7 @@ class CommodityLabel extends menu.TextBox{
 // back to them and can update the clickability.
 //
 // Maybe just do that through these classes? I'm sort of undecided
-
+/*
 class BuyButton extends menu.Button{
 };
 
@@ -95,7 +114,7 @@ class SellButton extends menu.Button{
 
 class CargoIndicator extends menu.TextBox{
   constructor(player){
-    super("Hello!", 
+    super(" ", 
         BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
         BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
         "0%", "0%",)

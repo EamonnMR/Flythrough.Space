@@ -29,6 +29,7 @@
     "upgrades": "upgrades.json",
     "ships": "ships.json",
     "spobtypes": "spobtypes.json",
-    "weapons": "weapons.json"
+    "weapons": "weapons.json",
+    "trade": "trade.json"
   }
 }

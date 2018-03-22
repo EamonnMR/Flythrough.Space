@@ -40,10 +40,11 @@
 		"y":300,
 		"govt":"direc",
 		"trade":{
-			"carbon":"low",
 			"roto":"high",
 			"dark":"high",
-			"gas":"med"
+			"gas":"med",
+      "metal":"med",
+      "ore":"low"
 		}
 	},
 	"Zachit":{
