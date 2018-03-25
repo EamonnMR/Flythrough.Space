@@ -34,6 +34,14 @@ export class PlayerSave {
     return total;
   }
 
+  bulk_cargo_of_type(type){
+    if(type in this.bulk_cargo){
+      return this.bulk_cargo[type];
+    } else {
+      return 0;
+    }
+  }
+
   max_cargo(){
     return this.ship_dat.cargo;
   }
@@ -44,6 +52,14 @@ export class PlayerSave {
 
   can_refuel(){
     return this.fuel < this.max_fuel();
+  }
+
+  can_add_cargo(amount){
+    return this.max_cargo() >= this.total_cargo() + amount;
+  }
+
+  can_sell_cargo(type, amount){
+    return this.bulk_cargo_of_type(type) >= amount;
   }
 
   refuel(){

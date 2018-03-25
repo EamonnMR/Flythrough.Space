@@ -8,6 +8,15 @@ const PRICE_FACTORS = {
   low: .5,
 };
 
+// Columns for displaying trade stuff
+const LABEL_LEFT = "5%"; // Center-aligned
+const QUANTITY_LEFT = "21%"; 
+const FACTOR_LEFT = "";
+const PRICE_LEFT = "";
+const BUY_LEFT = "30%";
+const SELL_LEFT = "40%";
+
+
 export class TradeMenu extends menu.BaseMenuView {
   constructor( spobs, player_data, trade_data ){
     super();
@@ -23,20 +32,28 @@ export class TradeMenu extends menu.BaseMenuView {
 
   get_local_price(commodity){
     return this.trade_data[commodity].price * PRICE_FACTORS[
-      this.spob.trade[comodity]
+      this.spob.trade[commodity]
     ];
   }
 
-  buy(comodity, amount){
-    this.player_data.money -= this.get_local_price(commodity) * amount;
-    this.player_data.bulk_cargo[comodity] += amount;
-    // TODO: Handle undefined case
-    // todo; enforce bounds
-    this.update_widgets();
+  buy(item, amount){
+    if(this.player_data.can_add_cargo(amount)){
+      this.player_data.money -= this.get_local_price(item) * amount;
+      if (item in this.player_data.bulk_cargo){
+        this.player_data.bulk_cargo[item] += amount;
+      } else {
+        this.player_data.bulk_cargo[item] = amount;
+      }
+      this.update_widgets();
+    }
   }
 
-  sell(comodity, amount){
-    // TODO
+  sell(item, amount){
+    if(this.player_data.can_sell_cargo(item, amount)){
+      this.player_data.money += this.get_local_price(item) * amount;
+      this.player_data.bulk_cargo[item] -= amount;
+      this.update_widgets();
+    }
   }
 
   get_misc_widgets(){
@@ -57,37 +74,42 @@ export class TradeMenu extends menu.BaseMenuView {
     let running_offset_total = 0;
     Object.keys(this.spob.trade).forEach( (key )  => {
       if (key in this.trade_data){
-        running_offset_total += 10;
+        running_offset_total += 5;
+        let offset = "" + running_offset_total + "%";
         widgets.push(
-          new CommodityLabel(this.trade_data[key].name,
-            "" + ( (running_offset_total + 10)) + "%")
-        );
-   /*     widgets.push(
-          new BuyButton();
+          new CommodityLabel(this.trade_data[key].name, offset)
         );
         widgets.push(
-          new SellButton();
+          new QuantityLabel(key, offset)
         );
-   */
+        widgets.push(
+          new CargoButton("buy", BUY_LEFT, offset, () => {
+              this.buy(key, 1);
+            }
+          )
+        );
+        widgets.push(
+          new CargoButton("sell", SELL_LEFT, offset, () => {
+            this.sell(key, 1);
+          })
+        );
       } else {
         console.log("Invalid trade good: " + key);
       }
     });
 
-    widgets.push(new CargoIndicator(this.player_data));
+    widgets.push(new CargoIndicator());
 
     return widgets;
   }
 };
-
 
 class CommodityLabel extends menu.TextBox{
   constructor(name, top){
     super(name, 
       BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
       BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
-      "5%", top);
-    console.log("Label top: " + top);
+      LABEL_LEFT, top);
   }
 
   setup(){
@@ -99,26 +121,57 @@ class CommodityLabel extends menu.TextBox{
   }
 };
 
-// These should register the components with the parent (menu)
-// object when they are created so that the parent has a pointer
-// back to them and can update the clickability.
-//
-// Maybe just do that through these classes? I'm sort of undecided
-/*
-class BuyButton extends menu.Button{
-};
+class QuantityLabel extends menu.TextBox {
+  constructor(comodity, top){
+    super(" ", 
+        BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
+        BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
+        QUANTITY_LEFT, top
+    );
+    this.comodity = comodity;
+  }
 
-class SellButton extends menu.Button{
-};
-*/
+  setup(){
+    let control = super.setup();
+    control.color = "White";
+    control.width = "10%";
+    control.height = "10%";
+    return control;
+  }
+  
+  update( parent ){
+    this.control.text = "" + parent.player_data.bulk_cargo_of_type(
+        this.comodity
+    );
+  }
 
-class CargoIndicator extends menu.TextBox{
+}
+class CargoButton extends menu.TextButton {
+  constructor(text, left, top, callback) {
+    super(text, callback,
+        BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
+        BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_TOP,
+        left, top);
+  }
+
+  setup(){
+    let control = super.setup();
+    control.alig
+    control.color = "White";
+    control.background = "red";
+    control.height = "7%";
+    control.width = "6%";
+    control.cornerRadius = 3;
+    control.paddingTop = "3%";
+    return control;
+  }
+}
+class CargoIndicator extends menu.TextBox {
   constructor(player){
     super(" ", 
         BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
         BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
         "0%", "0%",)
-    this.player = player;
   }
 
   setup(){
@@ -132,7 +185,8 @@ class CargoIndicator extends menu.TextBox{
 
   update( parent ){
     this.control.text = "Cargo Space "
-      + this.player.total_cargo()
-      + "/" + this.player.max_cargo() + " Kg"; 
+      + parent.player_data.total_cargo()
+      + "/" + parent.player_data.max_cargo() + " Kg"; 
   }
 };
+

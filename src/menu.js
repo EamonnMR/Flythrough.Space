@@ -20,6 +20,7 @@ export class BaseMenuView extends states.ViewState {
   update_widgets(){
     for(let widget of this.widgets){
       widget.update(this);
+      console.log(widget);
     }
   }
 }

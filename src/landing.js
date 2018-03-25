@@ -195,8 +195,6 @@ export class LandingMenuBigButton extends menu.TextButton {
     control.paddingBottom = "8%";
     control.paddingTop = "0";
     control.cornerRadius = 3;
-    console.log(this);
-    console.log(control);
     return control;
   }
 };
