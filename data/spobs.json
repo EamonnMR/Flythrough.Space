@@ -163,6 +163,7 @@
 		"y":0
 	},
 	"Kennerud":{
+    "govt": "direc",
 		"sType":"onyxEarthlikeB",
 		"text":"A major industrial world, Kennerud has been slowly optomized over hundreds of years to turn out weapons and reactors, first for the empire, and now, as a member of the Directorate , for pure profit. The planet is, in effect, run by KPS (Kennerud Power Systems) the universe's leading manufacturer of next-gen plasma weapons.",
 		"tech":{
