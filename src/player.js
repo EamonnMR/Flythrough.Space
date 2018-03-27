@@ -61,6 +61,10 @@ export class PlayerSave {
   can_sell_cargo(type, amount){
     return this.bulk_cargo_of_type(type) >= amount;
   }
+  
+  can_spend_money(amount){
+    return this.money >= amount;
+  }
 
   refuel(){
     this.fuel = this.max_fuel();

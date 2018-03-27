@@ -10,11 +10,11 @@ const PRICE_FACTORS = {
 
 // Columns for displaying trade stuff
 const LABEL_LEFT = "5%"; // Center-aligned
-const QUANTITY_LEFT = "21%"; 
-const FACTOR_LEFT = "";
-const PRICE_LEFT = "";
-const BUY_LEFT = "30%";
-const SELL_LEFT = "40%";
+const QUANTITY_LEFT = "30%"; 
+const FACTOR_LEFT = "20%";
+const PRICE_LEFT = "25%";
+const BUY_LEFT = "40%";
+const SELL_LEFT = "50%";
 
 
 export class TradeMenu extends menu.BaseMenuView {
@@ -37,8 +37,10 @@ export class TradeMenu extends menu.BaseMenuView {
   }
 
   buy(item, amount){
-    if(this.player_data.can_add_cargo(amount)){
-      this.player_data.money -= this.get_local_price(item) * amount;
+    let money =  this.get_local_price(item) * amount;
+    if(this.player_data.can_add_cargo(amount) &&
+        this.player_data.can_spend_money(money)){
+      this.player_data.money -= money;
       if (item in this.player_data.bulk_cargo){
         this.player_data.bulk_cargo[item] += amount;
       } else {
@@ -77,10 +79,16 @@ export class TradeMenu extends menu.BaseMenuView {
         running_offset_total += 5;
         let offset = "" + running_offset_total + "%";
         widgets.push(
-          new CommodityLabel(this.trade_data[key].name, offset)
+          new CommodityLabel(this.trade_data[key].name, "15%", LABEL_LEFT, offset)
         );
         widgets.push(
           new QuantityLabel(key, offset)
+        );
+        widgets.push(
+          new CommodityLabel(this.spob.trade[key], "5%", FACTOR_LEFT, offset)
+        );
+        widgets.push(
+          new CommodityLabel("" + this.get_local_price(key),"5%", PRICE_LEFT, offset)
         );
         widgets.push(
           new CargoButton("buy", BUY_LEFT, offset, () => {
@@ -99,23 +107,27 @@ export class TradeMenu extends menu.BaseMenuView {
     });
 
     widgets.push(new CargoIndicator());
+    widgets.push(new MoneyIndicator());
 
     return widgets;
   }
 };
 
 class CommodityLabel extends menu.TextBox{
-  constructor(name, top){
+  constructor(name, width, left, top){
     super(name, 
       BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
       BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
-      LABEL_LEFT, top);
+      left, top);
+
+    this.width = width;
+
   }
 
   setup(){
     let control = super.setup();
     control.color = "White";
-    control.width = "20%";
+    control.width = this.width;
     control.height = "10%";
     return control;
   }
@@ -167,7 +179,7 @@ class CargoButton extends menu.TextButton {
   }
 }
 class CargoIndicator extends menu.TextBox {
-  constructor(player){
+  constructor(){
     super(" ", 
         BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
         BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
@@ -190,3 +202,24 @@ class CargoIndicator extends menu.TextBox {
   }
 };
 
+class MoneyIndicator extends menu.TextBox {
+  constructor(){
+    super(" ", 
+        BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
+        BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
+        "30%", "0%",)
+  }
+
+  setup(){
+    let control = super.setup();
+    control.zOrder = -1;
+    control.color = "White";
+    control.width = "10%";
+    control.height = "10%";
+    return control;
+  }
+
+  update( parent ){
+    this.control.text = "" + parent.player_data.money + " Coins";
+  }
+};
