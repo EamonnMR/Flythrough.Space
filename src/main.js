@@ -28,6 +28,7 @@ function init(gameCanvas, scene, engine, data){
 
     'landing': new landing.LandingMenu(data.spobs, player_data),
     'trade': new trade.TradeMenu(data.spobs, player_data, data.trade),
+    'shipyard': new shipyard.ShipyardMenu(data.spobs, player_data, data.ships, data.upgrades),
   }, 'gameplay');
  
   // Handle resizes

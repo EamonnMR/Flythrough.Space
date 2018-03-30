@@ -17,7 +17,7 @@ const BUY_LEFT = "40%";
 const SELL_LEFT = "50%";
 
 
-export class TradeMenu extends menu.BaseMenuView {
+export class TradeMenu extends landing.BaseLandingMenuView {
   constructor( spobs, player_data, trade_data ){
     super();
     this.spobs = spobs;

@@ -95,11 +95,11 @@ export class LandingMenu extends menu.BaseMenuView {
       widgets.push(refuel_button);
     }
 
-    if (this.spobs.shipyard){
+    if (this.spob.shipyard){
       widgets.push(new LandingMenuBigButton(
         'Shipyard',
         () => {
-          //this.parent.enter_state('shipyard');
+          this.parent.enter_state('shipyard');
         },
         RIGHT,
         BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,
@@ -199,3 +199,18 @@ export class LandingMenuBigButton extends menu.TextButton {
   }
 };
 
+export class BaseLandingMenuView extends menu.BaseMenuView {
+  get_misc_widgets(){
+    return  [
+      new LandingMenuBigButton(
+        "Return",
+        () => {
+          this.parent.enter_state('landing');
+        },
+        BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT,
+        BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,
+        "0%","0%"
+      )
+    ]
+  }
+}
