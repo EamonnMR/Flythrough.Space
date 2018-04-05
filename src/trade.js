@@ -57,20 +57,6 @@ export class TradeMenu extends landing.BaseLandingMenuView {
       this.update_widgets();
     }
   }
-
-  get_misc_widgets(){
-    return  [
-      new landing.LandingMenuBigButton(
-        "Return",
-        () => {
-          this.parent.enter_state('landing');
-        },
-        BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT,
-        BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,
-        "0%","0%"
-      )
-    ]
-  }
   get_trade_widgets(){ 
     let widgets = []
     let running_offset_total = 0;

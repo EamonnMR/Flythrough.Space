@@ -7,6 +7,7 @@ export class ShipyardMenu extends landing.BaseLandingMenuView {
     this.player_data = player_data;
     this.ships = ships;
     this.upgrades = upgrades;
+    this.selected_ship = null;
   }
 
   enter(){
@@ -25,7 +26,21 @@ export class ShipyardMenu extends landing.BaseLandingMenuView {
   }
 
   get_ship_list_widgets(){
-    return [];
+    let offset = 10;
+    let widgets = [];
+    Object.keys(this.get_available_ships).forEach((key) => {
+      running_offset += LIST_SPACING;
+      ship_widgets.push(
+        new ShipTab(key, this.ships[key].price, offset, () =>
+          {this.select_ship(key);}
+        )
+      )
+    });
+    return widgets;
   }
 
+  get_available_ships(){
+    // TODO: Filter ships by tech and tech of spob
+    return this.ships;
+  }
 }
