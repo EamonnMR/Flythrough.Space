@@ -201,5 +201,28 @@
     "price"          : 100000,
     "oftWeapon"      : "degenW",
     "tech"           : {"itaskan_wep":1}
+  },
+  "quarkgun":{
+    "name"           : "One Mole Quarkgun",
+    "space"          : -10,
+    "price"          : 10000,
+    "oftWeapon"      : "quark_weapon",
+    "tech":          : {"wsc": 1},
+    "desc":          : "Using a stabilized payload of like-colored quarks, the projectile from this weapon is attached to the target by gluons, which singshot it with devastating force. If it manages to make contact with a target's hull, the now free quarks will play havoc with its atomic structure, causing unpredictable (but always devastating) damage. A curious side effect of the strong-force \"guidance\" is that the further away the target is when the projectile is launched, the more damage it will do."
+  },
+  "vampgun":{
+    "name": "Wave Siphon",
+    "oftWeapon":     : "vampire_gun",
+    "tech":          : {"wsc": 2},
+    "price":         : 100000,
+    "desc":          : "Faced with the problem of shields, and not to be outdone, the WSC have deployed a dedicated anti-shield weapon across its fleet. It requires getting to knife fight range, but the reward is that for every kilowatt of shields drained from a target, the Siphon can recharge the ship's shields by .8kw, an impressive ratio. It is, of course, totally ineffectual against armor."
+  },
+  "wsc_armor":{
+    "name"           : "Monoparticulate Plate",
+    "tech"           : {"wsc": 2},
+    "price"          : 10000,
+    "desc":          : "Formed as a single nucleaon, each (assuredly macro-scopic) plate of this armor is held together by the same force that holds protons and neutrons together. The toughest armor in the known galaxy. Has a tendancy to get blown clean off rather than fracture. Though when it does fracture, it tends to take everything nearby with it.",
+    "armor"          : 1000
+    "explodamage"    : 1000
   }
 }
