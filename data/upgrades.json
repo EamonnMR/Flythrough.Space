@@ -222,7 +222,15 @@
     "tech"           : {"wsc": 2},
     "price"          : 10000,
     "desc":          : "Formed as a single nucleaon, each (assuredly macro-scopic) plate of this armor is held together by the same force that holds protons and neutrons together. The toughest armor in the known galaxy. Has a tendancy to get blown clean off rather than fracture. Though when it does fracture, it tends to take everything nearby with it.",
-    "armor"          : 1000
+    "armor"          : 1000,
     "explodamage"    : 1000
+  },
+  "cas_blink":{
+    "name"           : "Casamance Microdrive",
+    "tech"           : {"cas": 6},
+    "price"          : 10000,
+    "space"          : 5,
+    "blink"          : 1
+    "desc"           : "Groundbreaking research has unlocked the secret of in-system jumps for dogfighting"
   }
 }
