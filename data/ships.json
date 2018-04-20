@@ -1,9 +1,9 @@
 {
   "shuttle" : {
     "mesh"       : "shuttle",
-    "shortName"  : "Shuttle",
-    "longName"   : "Shuttlecraft",
-    "fullName"   : "Jump capable shuttlecraft type 407",
+    "short_name"  : "Shuttle",
+    "long_name"   : "Shuttlecraft",
+    "full_name"   : "Jump capable shuttlecraft type 407",
     "desc"       : "Though shuttlecraft are usually used to ferry goods between ships, or save larger ships from needing to enter atmosphere, some shuttlecraft are equipped with jump drives and used as extremely cheap merchant ships. The model manufactured now has been frozen since its development by the shipwrights of Accra in the year 407. You can get parts for it basically anywhere and it is considered very reliable. Just don't try and take it into combat - or try to takeoff with more than 10 tons in the cargo bay.",
     "weapons"    : ["plasma50w"],
     "upgrades"    : {"autocannon":1},
@@ -19,9 +19,9 @@
     "max_fuel"   : 3
   },
   "civ_heavy_fighter":{
-    "shortName"  : "Heavy Fighter",
-    "longName"   : "Heavy Civilian Fighter",
-    "fullName"   : "Khanda Heavy Fighter",
+    "short_name"  : "Heavy Fighter",
+    "long_name"   : "Heavy Civilian Fighter",
+    "full_name"   : "Khanda Heavy Fighter",
     "desc"       : "One of the few starfighters actually suitable for a trader pilot, the Heavy Fighter has decent cargo room and expansion space, and fuel scoops, originally designed to support its pair of lasers, but able to extend its range as a cargo trader as well. Also a favorite among bounty hunters, and (as some might mention) pirates.",
     "weapons"    : {},
     "upgrades"    : {},
@@ -34,9 +34,9 @@
     "tech"       : {"khanda":1}
   },
   "courier"  :{
-    "shortName"  : "Courier",
-    "longName"   : "Accra Courier",
-    "fullName"   : "Accra Starworks Courier",
+    "short_name"  : "Courier",
+    "long_name"   : "Accra Courier",
+    "full_name"   : "Accra Starworks Courier",
     "desc"       : "This is actually the smallest vessel offered by Accra Starworks, and a very popular one for up and coming traders. While it has ample cargo bays, it does not sacrifice too much performance, allowing captains to get out of trouble if need be.",
     "weapons"    : {},
     "upgrades"    : {},
@@ -49,9 +49,9 @@
     "tech"       : {"accra":1}
   },
   "argosy":{
-    "shortName"  : "Argosy",
-    "longName"   : "Khanda Argosy",
-    "fullName"   : "Khanda Lothal-type Argosy",
+    "short_name"  : "Argosy",
+    "long_name"   : "Khanda Argosy",
+    "full_name"   : "Khanda Lothal-type Argosy",
     "desc"       : "Designed to run dangerous cargo routes, the Argosy is a mix power and trade efficiency. One interesting point",
     "weapons"    : {},
     "upgrades"    : {},
@@ -64,9 +64,9 @@
     "tech"       : {"khanda":3}
   },
   "bulk":{
-    "shortName"  : "Bulk Freighter",
-    "longName"   : "Bulk Freighter",
-    "fullName"   : "Accra Starworks Bulk Freighter",
+    "short_name"  : "Bulk Freighter",
+    "long_name"   : "Bulk Freighter",
+    "full_name"   : "Accra Starworks Bulk Freighter",
     "desc"       : "Designed for safe cargo routes, or to fly under escort, the Bulk Freighter is a gigantic cousin of the shuttle. Often cited as a case of Accra selling out, it is the favorite of peaceful traders who enjoy well polieced routes, and of pirates who enjoy easy prey.",
     "weapons"    : {},
     "upgrades"    : {},
@@ -79,9 +79,9 @@
     "tech"       : {"accra":2}
   },
   "oxana":{
-    "shortName"  : "Oxana",
-    "longName"   : "Meklin Oxana",
-    "fullName"   : "Meklin Design Bureau Oxana class Freighter",
+    "short_name"  : "Oxana",
+    "long_name"   : "Meklin Oxana",
+    "full_name"   : "Meklin Design Bureau Oxana class Freighter",
     "desc"       : "One of the better cargo ships in the universe, it sports a battery of engines and a decent protection suite. It is Meklin's best selling offering, though rumors abound that it is sold at a loss to hide profits from the League. It has a huge cargo bay, but also enough room for some armament.",
     "weapons"    : {},
     "upgrades"    : {},
@@ -94,9 +94,9 @@
     "tech"       : {"melkin":3}
   },
   "vera":{
-    "shortName"  : "Vera",
-    "longName"   : "Meklin Vera",
-    "fullName"   : "Meklin Design Bureau Vera class Escort Frigate",
+    "short_name"  : "Vera",
+    "long_name"   : "Meklin Vera",
+    "full_name"   : "Meklin Design Bureau Vera class Escort Frigate",
     "desc"       : "You could say that the Vera is a compromise between raw power and elegance, but that would be selling the Melkin design bearu short. One of the best ships on the civilian market, traders and mercinaries alike salivate over the prospect of flying one of these monsters.",
     "weapons"    : {},
     "upgrades"    : {},
@@ -109,9 +109,9 @@
     "tech"       : {"melkin":4}
   },
   "pertinax":{
-    "shortName"  : "Pertinax",
-    "longName"   : "Caudron Pertinax",
-    "fullName"   : "Caudron Staryards Pertinax Heavy Frigate",
+    "short_name"  : "Pertinax",
+    "long_name"   : "Caudron Pertinax",
+    "full_name"   : "Caudron Staryards Pertinax Heavy Frigate",
     "desc"       : "Built off of Melkin's famous Vera class, the Pertinax is specialized for piracy, packing dragnet turrets and ion cannons. Probably the most feared pirate ship in the galaxy.",
     "weapons"    : {},
     "upgrades"    : {},
@@ -124,9 +124,9 @@
     "tech"       : {"caudron":5}
   },
   "cetacea":{
-    "shortName"  : "Cetacea",
-    "longName"   : "Accra Cetacea",
-    "fullName"   : "Accra Starworks Cetacea Freighter",
+    "short_name"  : "Cetacea",
+    "long_name"   : "Accra Cetacea",
+    "full_name"   : "Accra Starworks Cetacea Freighter",
     "desc"       : "The largest Freighter currently on the market, the Catacea is a wonder of engieneering. Several exotic metals and alloys are required to prevent it from being ripped apart not only when accelerating, but under its own gravity.",
     "weapons"    : {},
     "upgrades"    : {},
@@ -139,9 +139,9 @@
     "tech"       : {"accra":4}
   },
   "civ_corvette":{
-    "shortName"  : "Corvette",
-    "longName"   : "Kalvari Corvette",
-    "fullName"   : "Khanda Kalvari-type corvette",
+    "short_name"  : "Corvette",
+    "long_name"   : "Kalvari Corvette",
+    "full_name"   : "Khanda Kalvari-type corvette",
     "desc"       : "The Corvette's power-to-weight ratio is its greatest strength-it is built fight aggressively. It can avoid being swarmed by fighters while still packing enough punch to take on larger ships.",
     "weapons"    : {},
     "upgrades"    : {},
@@ -155,9 +155,9 @@
   },
   
   "cas_corvette":{
-    "shortName"  : "Cas. Corv.",
-    "longName"   : "Casamance Navy Corvette",
-    "fullName"   : "Accra Starworks Type 991 Ausf. B Main Battle Starship",
+    "short_name"  : "Cas. Corv.",
+    "long_name"   : "Casamance Navy Corvette",
+    "full_name"   : "Accra Starworks Type 991 Ausf. B Main Battle Starship",
     "desc"       : "Based on an experimental design from the closing years of the empire, this is the Casamance Directorate's most common fighting starship. It serves many roles, from patrol to attack, all reasonably well. ",
     "weapons"    : {},
     "upgrades"    : {},
@@ -171,9 +171,9 @@
   },
 
   "cas_oe_fighter"   :{
-    "shortName"  : "Cas. Fighter",
-    "longName"   : "Casamance Fighter",
-    "fullName"   : "Casamance Starfighter Type 950 Ausf B",
+    "short_name"  : "Cas. Fighter",
+    "long_name"   : "Casamance Fighter",
+    "full_name"   : "Casamance Starfighter Type 950 Ausf B",
     "desc"       : "Basically, this is a repainted Old Empire Type 950, barely improved with more modern weapons. It is a point of pride in the Casamance Directorate to still run these ships, and what they lack in power is made up for in numbers. And the build quality of Accra Starworks is certainly better than the dodgy backwater shipyards that crank out the more common variant.",
     "weapons"    : {},
     "upgrades"    : {"ejectorrack":4,
@@ -189,9 +189,9 @@
   },
 
    "cas_frigate"  :{
-    "shortName"  : "Cas. Frig",
-    "longName"   : "Casamance Frigate",
-    "fullName"   : "Accrs Starworks Type 1123 Ausf. R Frigate",
+    "short_name"  : "Cas. Frig",
+    "long_name"   : "Casamance Frigate",
+    "full_name"   : "Accrs Starworks Type 1123 Ausf. R Frigate",
     "desc"       : "",
     "weapons"    : {},
     "upgrades"    : {"plasmatur200":2},
@@ -205,9 +205,9 @@
   },
  
   "cas_carrier":{
-    "shortName"  : "Cas. Car",
-    "longName"   : "Casamance Carrier",
-    "fullName"   : "Accra Starworks Type 1125 Ausf. B Battleship",
+    "short_name"  : "Cas. Car",
+    "long_name"   : "Casamance Carrier",
+    "full_name"   : "Accra Starworks Type 1125 Ausf. B Battleship",
     "desc"       : "Accra produces one true warship, and this is it. Modeled after the Type 930, the 1125 is larger, slower, and able to carry more fighters into battle.",
     "weapons"    : {},
     "upgrades"    : {},
@@ -221,9 +221,9 @@
   },
 
   "oe_fighter"   :{
-    "shortName"  : "OE Fighter",
-    "longName"   : "Old Empire Fighter",
-    "fullName"   : "Emperial Starfighter Type 950",
+    "short_name"  : "OE Fighter",
+    "long_name"   : "Old Empire Fighter",
+    "full_name"   : "Emperial Starfighter Type 950",
     "desc"       : "Nearly Identical to the ships that swamred across the sector a generation ago, this is the starfighter version of the Emperial Fighter. The \"Starfighter\" desegnation is to make it clear that this ship is capable of FTL travel-not always the rule for ships its size. In its day, its linear aerospike engines (now a common sight) where a revelation. Its large wings offer a gentle landing for novice pilots, but don't be fooled-this no trainer. It's built to be as much an aircraft as it is a spacecraft. Ubiquitous, they are now manufactured (or repaired and resold) on most worlds.",
     "weapons"    : {},
     "upgrades"    : {"ejectorrack":4,
@@ -239,9 +239,9 @@
   },
   
   "oe_frig"  :{
-    "shortName"  : "OE Frigate",
-    "longName"   : "Old Empire Frigate",
-    "fullName"   : "Emperial Frigate Type 925",
+    "short_name"  : "OE Frigate",
+    "long_name"   : "Old Empire Frigate",
+    "full_name"   : "Emperial Frigate Type 925",
     "desc"       : "This tall craft has been in service from generations, and was once a cutting edge warship. It is now available in many variants to the public, though this is the Type 925 version, with its original armament of plasma cannons and complament of fighters. Though its shields are somewhat lacking compared with modern ships, its hull is thick and its cargo bay-once used to carry shuttles full of soldiers into battle against rebellious worlds-more than capable of cargo runs of today.",
     "weapons"    : {},
     "upgrades"    : {"plasmatur200":2},
@@ -255,9 +255,9 @@
   },
   
   "oe_cru"  :{
-    "shortName"  : "OE Battlecruiser",
-    "longName"   : "Old Empire Battlecruiser",
-    "fullName"   : "Emperial Heavy Battleship Type 930",
+    "short_name"  : "OE Battlecruiser",
+    "long_name"   : "Old Empire Battlecruiser",
+    "full_name"   : "Emperial Heavy Battleship Type 930",
     "desc"       : "Once the most feared ship class in the galaxy, the Emperial Battlecruiser is still a sight to behold. It can carry an entire wing of Emperial Fighters, as well as its broadside battery of plasma weaponry. It was even large enough to be equipped with a nucelear generator enabling it to operate on long missions without returnign to port.",
     "weapons"    : {},
     "upgrades"    : {},
@@ -273,9 +273,9 @@
   "xic_drillship":{
     "icon"       : "img/onyx/Onyx/thumb/pheonix.bmp",
     "sprite"     : "onxpheonix",
-    "shortName"  : "XIC Drillship",
-    "longName"   : "XIC Drillship",
-    "fullName"   : "XIC Drillship Cruiser",
+    "short_name"  : "XIC Drillship",
+    "long_name"   : "XIC Drillship",
+    "full_name"   : "XIC Drillship Cruiser",
     "desc"       : "This ship goes on long missions for XIC, carrying wings of mining ships that actually do the mining. It has through-and-through engines, essentially similar to those of an OE fighter but simpler with an eye towards power generation rather than speed. Its internal docking ring protects fighters from harsher bouts with microasteroids.",
     "weapons"    : {},
     "upgrades"    : {},
@@ -290,9 +290,9 @@
   "xic_prospector":{
     "icon"       : "img/Meowx/xicfi_icon.png",
     "sprite"     : "meowx_xic_fi",
-    "shortName"  : "XIC Prospector",
-    "longName"   : "XIC Asteroid Prospector",
-    "fullName"   : "XIC Asteroid Prospector",
+    "short_name"  : "XIC Prospector",
+    "long_name"   : "XIC Asteroid Prospector",
+    "full_name"   : "XIC Asteroid Prospector",
     "desc"       : "These ships fly out to mine asteroids, and ostensably aren't meant for combat. However, those who try to make a play for mining rights to an asteroid that XIC has its eye on may lead to an unfortunate accident",
     "weapons"    : {},
     "upgrades"    : {},
@@ -307,9 +307,9 @@
   "itaska_bomber":{
     "icon"       : "img/onyx/Onyx/thumb/goldf2.bmp",
     "sprite"     : "onxgoldbomber",
-    "shortName"  : "Bigfoot",
-    "longName"   : "Itaskan \"Bigfoot\" Bomber",
-    "fullName"   : "Itaskan Bomber",
+    "short_name"  : "Bigfoot",
+    "long_name"   : "Itaskan \"Bigfoot\" Bomber",
+    "full_name"   : "Itaskan Bomber",
     "desc"       : "This long range starfighter has a giant sloped front hull, giving it an edge in the armor department. It carries long range weapons and relies on its speed to dictate the terms of a fight.",
     "weapons"    : {},
     "upgrades"    : {"goldarmor":2},
@@ -324,8 +324,8 @@
   "itaska_corvette":{
     "icon"       : "img/onyx/Onyx/thumb/goldcruis.bmp",
     "sprite"     : "onxgoldcru",
-    "shortName"  : "Fermi",
-    "longName"   : "Itaskan \"Fermi\" Corvette",
+    "short_name"  : "Fermi",
+    "long_name"   : "Itaskan \"Fermi\" Corvette",
     "desc"       : "The backbone of the seventh fleet, the Fermi corvette is a formidable battleship. In addition to the fighters that it carries, some of the best in the galaxy, it is armed with heavy weapons and enough armor to, in a pinch, wade into a fight. Its gleaming nanosteel hull is a familiar sight in Itaskan space, but they're rare outside of it, as they keep to themselves.",
     "weapons"    : {},
     "rotation"  : 0.01,
@@ -338,9 +338,9 @@
     "tech"       : {"pen": 4}
   },
   "itaska_battleship":{
-    "shortName"  : "Franklin",
-    "longName"   : "Itaskan Battleship",
-    "fullName"   : "Itaskan Battleship, Franklin Class",
+    "short_name"  : "Franklin",
+    "long_name"   : "Itaskan Battleship",
+    "full_name"   : "Itaskan Battleship, Franklin Class",
     "desc"       : "The enormous Battleship is the last resort of the seventh fleet. Its rarity only adds to its renown, with rumors about its power and size abound. What is known for sure is that it isn't seen launching fighters, but rather charges into battle with distressing speed, shredding enemey ships to pieces. Its name, \"Franklin\" refers to a hero in Itaskan mythology, a mighty mortal who through his trickery managed to steal electricity from the gods.",
     "weapons"    : {},
     "upgrades"    : {"goldarmor" : 10},
@@ -354,9 +354,9 @@
   },
 
   "league_sparrow":{
-    "shortName"  : "League Fighter",
-    "longName"   : "Mod. Sparrow Fighter",
-    "fullName"   : "FuHao Type 1200 League Sparrow Starfighter",
+    "short_name"  : "League Fighter",
+    "long_name"   : "Mod. Sparrow Fighter",
+    "full_name"   : "FuHao Type 1200 League Sparrow Starfighter",
     "desc"       : "A smaller and more nimble version of the retired Sparrow, manufactured specifically for the Leauge navy. Variants of this ship make up the entire Leauge fighter corps. It is the main contribution of the FuHao the League technical sharing agreement.",
     "weapons"    : {},
     "upgrades"    : {},
@@ -369,9 +369,9 @@
     "tech"       : {"league":1}
   },
   "league_heavy_fighter":{
-    "shortName"  : "Heavy Fighter",
-    "longName"   : "Heavy Civilian Fighter",
-    "fullName"   : "Khanda Heavy Fighter (league mod)",
+    "short_name"  : "Heavy Fighter",
+    "long_name"   : "Heavy Civilian Fighter",
+    "full_name"   : "Khanda Heavy Fighter (league mod)",
     "desc"       : "",
     "weapons"    : {},
     "upgrades"    : {},
@@ -384,9 +384,9 @@
     "tech"       : {"league": 2}
   },
   "league_corvette":{
-    "shortName"  : "League Corvette",
-    "longName"   : "League Kalvari Corvette",
-    "fullName"   : "Khanda Mod. Kalvari-type corvette (Leauge Variant)",
+    "short_name"  : "League Corvette",
+    "long_name"   : "League Kalvari Corvette",
+    "full_name"   : "Khanda Mod. Kalvari-type corvette (Leauge Variant)",
     "desc"       : "This is the league upgrade of the Kalvari, a small but fast and powerful starship. It is flexable, used for both away missions and dangerous missions behind enemey lines.",
     "weapons"    : {},
     "upgrades"   : {},
@@ -400,9 +400,9 @@
   },
 
   "league_argosy":{
-    "shortName"  : "League Argosy",
-    "longName"   : "League Argosy",
-    "fullName"   : "Khanda Mod. Lothal-type Argosy",
+    "short_name"  : "League Argosy",
+    "long_name"   : "League Argosy",
+    "full_name"   : "Khanda Mod. Lothal-type Argosy",
     "desc"       : "Upgunned, this argosy is closer to a battleship than a cargo ship",
     "weapons"    : {},
     "upgrades"    : {},
@@ -416,9 +416,9 @@
   },
 
   "league_warship":{
-    "shortName"  : "League Carrier",
-    "longName"   : "League Carrier",
-    "fullName"   : "Meklin Design Bureau Oxana class cargo ship (League Carrier Variant)",
+    "short_name"  : "League Carrier",
+    "long_name"   : "League Carrier",
+    "full_name"   : "Meklin Design Bureau Oxana class cargo ship (League Carrier Variant)",
     "desc"       : "A masterpiece of economy, the Oxana class is normally manufactured as a high-end cargo ship. However its enormous internal volume lends itself more so then other haulers of similar size to conversion into a carrier. This variant's internal cargo hold has been replaced by a stack of flight decks, and it is stocked with fighters and corvettes. Its armor has been thickened as well.",
     "weapons"    : {},
     "upgrades"    : {},
@@ -431,9 +431,9 @@
     "tech"       : {"league":5}
   },
   "ff_oe_fighter"   :{
-    "shortName"  : "FF Fighter",
-    "longName"   : "Fifth Fleet Fighter",
-    "fullName"   : "Emperial Starfighter Type 950/89",
+    "short_name"  : "FF Fighter",
+    "long_name"   : "Fifth Fleet Fighter",
+    "full_name"   : "Emperial Starfighter Type 950/89",
     "desc"       : "The fifth fleet's T950 variant is nearly identical to the one still manufactured across the old empire, as it is based on a late prototype, armed with then-new antimatter weapons. It retains many benifits of the '50 including its speed, though It cannot match the raw power of a NE Type 1153, or the speed of a League sparrow.",
     "weapons"    : {},
     "upgrades"    : {"antigun":1,
@@ -449,9 +449,9 @@
   },
   
   "ff_oe_frig"  :{
-    "shortName"  : "FF Battleship",
-    "longName"   : "Fifth Fleet Battleship",
-    "fullName"   : "Emperial Light Battleship Type 925/50",
+    "short_name"  : "FF Battleship",
+    "long_name"   : "Fifth Fleet Battleship",
+    "full_name"   : "Emperial Light Battleship Type 925/50",
     "desc"       : "As with most fifth fleet technology, their variant of the battleship is based on prototypes developed near the end of the empire, not yet ready for full production. It has been modified for longer-range missions, originally intended to strike at the heart of Willkanuta space but now used to execute raids on the League and NE.",
     "weapons"    : {},
     "upgrades"    : {"plasmatur200":2},
@@ -465,9 +465,9 @@
   },
   
   "ff_oe_cru"  :{
-    "shortName"  : "FF Battlecruiser",
-    "longName"   : "Fifth Fleet Battlecruiser",
-    "fullName"   : "Emperial Heavy Battleship Type 930/89",
+    "short_name"  : "FF Battlecruiser",
+    "long_name"   : "Fifth Fleet Battlecruiser",
+    "full_name"   : "Emperial Heavy Battleship Type 930/89",
     "desc"       : "This is the obvious upgrade of the 930 Battlecruiser, carrying improved fighters and weapons. Enormous amounts of resources are expended on these ships, and they are jealously protected...",
     "weapons"    : {},
     "upgrades"    : {},
@@ -480,9 +480,9 @@
     "tech"       : {"V":3}
   },
   "ff_oe_corvette":{
-    "shortName"  : "FF Corv.",
-    "longName"   : "Fifth Fleet Corvette",
-    "fullName"   : "Emperial Corvette Type 991",
+    "short_name"  : "FF Corv.",
+    "long_name"   : "Fifth Fleet Corvette",
+    "full_name"   : "Emperial Corvette Type 991",
     "desc"       : "An innovative design that came too late to be immortalized by the devotion of hundreds of factories, the 991 corvette was arguably the first such ship, with the long operational range of a scout fighter and some of a battleship's punch. It is often seen providing support for wings of fighters.",
     "weapons"    : {},
     "upgrades"    : {},
@@ -495,9 +495,9 @@
     "tech"       : {"V":4}
   },
    "ne_heavyfi"      :{
-    "shortName"  : "NE Thunder",
-    "longName"   : "NE Thunder fighter",
-    "fullName"   : "NE Heavy Starfighter Type 1153 Ausf C",
+    "short_name"  : "NE Thunder",
+    "long_name"   : "NE Thunder fighter",
+    "full_name"   : "NE Heavy Starfighter Type 1153 Ausf C",
     "desc"       : "The Thunder is the legendary staple fighter of the Northern Empire, known and respected across the sector. There is a direct and obvious line between the OE fighter and this ship, with similar intake ramscoops and essentially the same rocket engines, just scaled up. Many describe it as &quot; the OE fighter, perfected.&quot;",
     "weapons"    : {},
     "upgrades"    : {"antigun":2
@@ -511,9 +511,9 @@
     "tech"       :  {"ne":2}
   },
   "neVette":{
-    "shortName"  : "NE Nimbus.",
-    "longName"   : "NE Numbus Corvette",
-    "fullName"   : "NE Corvette Type 1160",
+    "short_name"  : "NE Nimbus.",
+    "long_name"   : "NE Numbus Corvette",
+    "full_name"   : "NE Corvette Type 1160",
     "desc"       : "Designed to work in concert with the generally lighter and more agile (both tactically and strategiclly) fleets of the Northern Empire, the Nimbus is a multi-role ship, making dangerous supply runs, bringing additional heat in firefights, and running back-water patrols. It is perhaps most notable as the main platform for lightning fighters.",
     "weapons"    : {},
     "upgrades"    : {},
@@ -528,9 +528,9 @@
   "nebattleship"      :{
     "icon"       : "img/onyx/Onyx/thumb/redfrigate.bmp",
     "sprite"     : "onxredcru",
-    "shortName"  : "NE Tiger",
-    "longName"   : "NE Tiger battleship",
-    "fullName"   : "NE Battleship Type 1200",
+    "short_name"  : "NE Tiger",
+    "long_name"   : "NE Tiger battleship",
+    "full_name"   : "NE Battleship Type 1200",
     "desc"       : "This exparamental warship is designed along the lines of a fighter rather than a standard corvette. Its self sufficiency is key to its success; they can operate totally independandly of the rest of the fleet, and support wings of deep-striking heavy fighters. Operating costs are also very low.",
     "weapons"    : {},
     "upgrades"    : {},
@@ -546,10 +546,10 @@
   "necruiser"  :{
     "icon"       : "img/Meowx/redcru_icon.png",
     "sprite"     : "meowx_red_cru",
-    "shortName"  : "NE Battlecruiser",
-    "longName"   : "NE Battlecruiser",
-    "fullName"   : "NE Type 1159 Heavy Battleship",
-    "desc"       : "The enormous NE battlecruiser was built to replace the aging fleet of type 930s, which where barely large enough to accomodate the new heavy fighters. Though heavy fighters and battleships can operate deep in enemey terratory for extended periods, the value of having a hope base and firebase has been long recognized. Unfortunately, the price tag on a NE battleship has scaled up with the size, and very few have been launched, which has drawn criticisim when it is compared to the widely deployed League carrier. The designers, however, maintain that this ship is in a tier of its own, and should not be compared to the vastly inferior League carrier. The Comissar of the emperial fleet herself commands one of these monsters.",
+    "short_name"  : "NE Battlecruiser",
+    "long_name"   : "NE Battlecruiser",
+    "full_name"   : "NE Type 1159 Heavy Battleship",
+    "desc"       : "The enormous NE battlecruiser was built to replace the aging fleet of type 930s, which where barely large enough to accomodate the new heavy fighters. Though heavy fighters and battleships can operate deep in enemey terratory for extended periods, the value of having a home base and firebase has been long recognized. Unfortunately, the price tag on a NE battleship has scaled up with the size, and very few have been launched, which has drawn criticisim when it is compared to the widely deployed League carrier. The designers, however, maintain that this ship is in a tier of its own, and should not be compared to the vastly inferior League ship. The Comissar of the emperial fleet herself commands one of these monsters.",
     "weapons"    : {},
     "upgrades"    : {},
     "rotation"  : 0.01,
@@ -562,9 +562,9 @@
   },
   
   "wlknfrigate":{
-    "shortName"  : "WSC Frigate",
-    "longName"   : "WSC Frigate",
-    "fullName"   : "Willakanuta Space Command F14 light frigate",
+    "short_name"  : "Hemlock",
+    "long_name"   : "WSC Hemlock light frigate",
+    "full_name"   : "Willakanuta Space Command F14 light frigate",
     "desc"       : "The Willakanuta argue that they do not risk personell in fighters-the smallest ship that they use for battle (and patrol) is the F14. It is one of the most commonly seen WSC ships, used for recon, patrol, and fleet support.",
     "weapons"    : {},
     "upgrades"    : {},
@@ -577,9 +577,9 @@
     "tech"       :  {"wlkn":4}
   },
   "wlkncarrier":{
-    "shortName"  : "WSC Carrier",
-    "longName"   : "WSC Carrier",
-    "fullName"   : "Willakanuta Space Command C20 Carrier",
+    "short_name"  : "Nightshade",
+    "long_name"   : "WSC Nightshade Carrier",
+    "full_name"   : "Willakanuta Space Command C20 Carrier",
     "desc"       : "Large and brutal, the C20's hull is composed of thousands of pounds of solid, molecularly interlocked crystal. The crystals are so large that damage to the hull is more likley to occour due to fracturing crystals at the joints than penitrating them. It's rumored that this design is what prompted the Empire to begin developing antimatter weapons, and that the North is still fighting the last war.",
     "weapons"    : {},
     "upgrades"    : {},
@@ -592,9 +592,9 @@
     "tech"       : {"wlkn":5}
   },
   "caudron_sparrow":{
-    "shortName"  : "Caudron Fighter",
-    "longName"   : "Mod. Sparrow Fighter",
-    "fullName"   : "FuHao Type 1200 League Sparrow Starfighter",
+    "short_name"  : "Caudron Fighter",
+    "long_name"   : "Mod. Sparrow Fighter",
+    "full_name"   : "FuHao Type 1200 League Sparrow Starfighter",
     "desc"       : "Somehow the caudron cartel got a hold of the equipment to make sparrows",
     "weapons"    : {},
     "upgrades"    : {},
@@ -607,9 +607,9 @@
     "tech"       : {"league":1}
   },
   "pirate_ahab":{
-    "shortName"  : "Ahab",
-    "longName"   : "Pirate Ahab",
-    "fullName"   : "Accra Starworks Cetacea Freighter (Pirate \"Abah\" variant",
+    "short_name"  : "Ahab",
+    "long_name"   : "Pirate Ahab",
+    "full_name"   : "Accra Starworks Cetacea Freighter (Pirate \"Abah\" variant",
     "desc"       : "One of these could probably cow many ships by size alone. A modified Cetacea chassis, the main thing it has in common with the ship that was originally launched is its enormousness. Pirates will try and upgun anything, but the Ahab probably takes the cake as far as \"most guns and armor stuffed onto a freighter.\"",
     "weapons"    : {},
     "upgrades"    : {},
@@ -622,9 +622,9 @@
     "tech"       : {"pirate":4}
   },
   "caudron_corvette":{
-    "shortName"  : "Corvette",
-    "longName"   : "Caudron Corvette",
-    "fullName"   : "Khanda Kalvari-type corvette (Caudron Upgrade)",
+    "short_name"  : "Corvette",
+    "long_name"   : "Caudron Corvette",
+    "full_name"   : "Khanda Kalvari-type corvette (Caudron Upgrade)",
     "desc"       : "The cartel's (supposedly liscensed) copy of the Kalvari is often the last thing seen by those who owe money to the Caudrons.",
     "weapons"    : {},
     "upgrades"    : {},
@@ -638,9 +638,9 @@
   },
   "patsy" : {
     "mesh"      : "oe_fi",
-    "shortName"  : "Patsy",
-    "longName"   : "Pirate Patsy",
-    "fullName"   : "Jump capable shuttlecraft type 407 (Pirate \"Patsy\" upgrade)",
+    "short_name"  : "Patsy",
+    "long_name"   : "Pirate Patsy",
+    "full_name"   : "Jump capable shuttlecraft type 407 (Pirate \"Patsy\" upgrade)",
     "desc"       : "Just because you can fly around in an upgunned shuttlecraft does not mean it's a very good idea", 
     "weapons"    : ["plasma50w"],
     "upgrades"    : {"autocannon":3},
@@ -656,9 +656,9 @@
     "max_fuel"   : 3
   },
   "pirate_sleeper"  :{
-    "shortName"  : "Sleeper",
-    "longName"   : "Pirate Sleeper",
-    "fullName"   : "Accra Starworks Courie (Pirate \"Sleeper\" variant",
+    "short_name"  : "Sleeper",
+    "long_name"   : "Pirate Sleeper",
+    "full_name"   : "Accra Starworks Courie (Pirate \"Sleeper\" variant",
     "desc"       : "Faster than it looks, tougher than it looks, and of course deadlier than it looks.",
     "weapons"    : {},
     "upgrades"    : {},
@@ -671,9 +671,9 @@
     "tech"       : {"pirate":2}
   },
   "triggerman":{
-    "shortName"  : "Triggerman",
-    "longName"   : "Pirate Triggerman",
-    "fullName"   : "Khanda Lothal-type Argosy (Pirate \"Triggerman\" upgrade)",
+    "short_name"  : "Triggerman",
+    "long_name"   : "Pirate Triggerman",
+    "full_name"   : "Khanda Lothal-type Argosy (Pirate \"Triggerman\" upgrade)",
     "desc"       : "Of course pirates would use a ship designed to fight pirates.", 
     "weapons"    : {},
     "upgrades"    : {},
