@@ -4,6 +4,7 @@ import * as map from "map";
 import * as states from "states";
 import * as landing from "landing";
 import * as trade from "trade";
+import * as shipyard from "shipyard";
 
 function init(gameCanvas, scene, engine, data){
   /* Main entry point for the app (after loading). Binds events and such. */
@@ -18,8 +19,7 @@ function init(gameCanvas, scene, engine, data){
   // start initial state
   
   let player_data = new player.PlayerSave(data.ships, data.upgrades);
-
-  console.log(landing.LandingMenu);
+  console.log(shipyard.ShipyardMenu);
   let stateMgr = new states.StateManager({
     'gameplay': new gameplay.GameplayState(
         scene, camera, data, player_data, gameCanvas),
@@ -29,7 +29,7 @@ function init(gameCanvas, scene, engine, data){
     'landing': new landing.LandingMenu(data.spobs, player_data),
     'trade': new trade.TradeMenu(data.spobs, player_data, data.trade),
     'shipyard': new shipyard.ShipyardMenu(data.spobs, player_data, data.ships, data.upgrades),
-  }, 'gameplay');
+  }, 'shipyard');
  
   // Handle resizes
 

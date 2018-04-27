@@ -8,7 +8,7 @@ export class PlayerSave {
     this.selected_system = "Casamance";
     this.selected_spob = null;
     this.current_system = "Casamance";
-    this.current_spob = null;
+    this.current_spob = "Alluvium Fleet Yards";
     this.initial_position = {x: 0, y: 0};
     this.ship_type = "shuttle";
     this.fuel = 3; // They start out with a full tank of gas (for a shuttle)
