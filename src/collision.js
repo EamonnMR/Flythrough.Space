@@ -1,5 +1,5 @@
-import * as damage from "damage";
-import * as util from "util";
+import { shot_handler } from "./damage.js";
+import { distance } from "./util.js";
 
 
 export function collisionDetectionSystem(entMan){
@@ -7,13 +7,13 @@ export function collisionDetectionSystem(entMan){
   while (colliders.length > 1) {
     let current = colliders.pop();
     for (let other of colliders) {
-      let dist = util.distance(current.position, other.position);
+      let dist = distance(current.position, other.position);
       if ( dist < current.collider.radius + other.collider.radius) {
         if ( filter_collisions(current, other)){
-          damage.shot_handler(current, other );
+          shot_handler(current, other );
         }
         if ( filter_collisions(other, current)){
-          damage.shot_handler(other, current);
+          shot_handler(other, current);
         }
       }
     }
@@ -33,3 +33,4 @@ function gov_test(shot, entity){
 function player_agent_test(shot, entity){
   return 'ignore_player' in shot && 'player_aligned' in entity;
 }
+

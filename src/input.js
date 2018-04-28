@@ -1,3 +1,5 @@
+import { accelerate, rotate } from "./physics.js";
+
 let game_ctrl = null;
 
 let debounce_esc = false;
@@ -8,7 +10,7 @@ export function inputSystem (entMan) {
   for (let entity of entMan.get_with(['input'])) {
     if ('velocity' in entity) {
       if (inputStates.forward) {
-        physics.accelerate(entity.velocity,
+        accelerate(entity.velocity,
                                   entity.direction,
                                   entity.accel * entMan.delta_time)
       }
@@ -16,11 +18,11 @@ export function inputSystem (entMan) {
     if ('direction' in entity) {
       let angle = entity.rotation * entMan.delta_time;
       if (inputStates.left) {
-        physics.rotate(entity, angle);
+        rotate(entity, angle);
         entity.direction_delta = -1 * angle;
       }
       else if (inputStates.right) {
-        physics.rotate(entity, -1 * angle );
+        rotate(entity, -1 * angle );
         entity.direction_delta = angle;
       }
 //      else {

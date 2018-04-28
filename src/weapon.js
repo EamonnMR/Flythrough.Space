@@ -1,4 +1,4 @@
-import * as physics from "physics";
+import { accelerate } from "./physics.js";
 
 export function weaponSystem (entMan) {
   for (let entity of entMan.get_with(['weapons'])) {
@@ -28,7 +28,7 @@ function bulletFactory(position, sprite, direction, speed, initialVelocity, prot
   sprite.angle = direction;
   sprite.size = 0.5;
   let velocity = {'x': initialVelocity.x, 'y': initialVelocity.y};
-  physics.accelerate(velocity, direction, speed);
+  accelerate(velocity, direction, speed);
 
   let shot = Object.create(proto);
 

@@ -1,5 +1,5 @@
-import * as landing from "landing";
-import * as menu from "menu";
+import { BaseLandingMenuView } from "./landing.js";
+import { TextBox, TextButton } from "./menu.js";
 
 const PRICE_FACTORS = {
   // TODO: Not in love with hardcoding this
@@ -17,7 +17,7 @@ const BUY_LEFT = "40%";
 const SELL_LEFT = "50%";
 
 
-export class TradeMenu extends landing.BaseLandingMenuView {
+export class TradeMenu extends BaseLandingMenuView {
   constructor( spobs, player_data, trade_data ){
     super();
     this.spobs = spobs;
@@ -99,7 +99,7 @@ export class TradeMenu extends landing.BaseLandingMenuView {
   }
 };
 
-class CommodityLabel extends menu.TextBox{
+class CommodityLabel extends TextBox {
   constructor(name, width, left, top){
     super(name, 
       BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
@@ -119,7 +119,7 @@ class CommodityLabel extends menu.TextBox{
   }
 };
 
-class QuantityLabel extends menu.TextBox {
+class QuantityLabel extends TextBox {
   constructor(comodity, top){
     super(" ", 
         BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
@@ -144,7 +144,7 @@ class QuantityLabel extends menu.TextBox {
   }
 
 }
-class CargoButton extends menu.TextButton {
+class CargoButton extends TextButton {
   constructor(text, left, top, callback) {
     super(text, callback,
         BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
@@ -164,7 +164,7 @@ class CargoButton extends menu.TextButton {
     return control;
   }
 }
-class CargoIndicator extends menu.TextBox {
+class CargoIndicator extends TextBox {
   constructor(){
     super(" ", 
         BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
@@ -188,7 +188,7 @@ class CargoIndicator extends menu.TextBox {
   }
 };
 
-class MoneyIndicator extends menu.TextBox {
+class MoneyIndicator extends TextBox {
   constructor(){
     super(" ", 
         BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
@@ -209,3 +209,4 @@ class MoneyIndicator extends menu.TextBox {
     this.control.text = "" + parent.player_data.money + " Coins";
   }
 };
+

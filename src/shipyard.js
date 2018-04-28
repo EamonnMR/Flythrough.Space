@@ -1,9 +1,9 @@
-import * as landing from "landing";
-import * as menu from "menu";
+import { BaseLandingMenuView } from "./landing.js";
+import { TextButton } from "./menu.js";
 
-LIST_SPACING = 8;
+const LIST_SPACING = 8;
 
-export class ShipyardMenu extends landing.BaseLandingMenuView {
+export class ShipyardMenu extends BaseLandingMenuView {
   constructor(spobs, player_data, ships, upgrades){
     super();
     this.spobs = spobs;
@@ -55,7 +55,7 @@ export class ShipyardMenu extends landing.BaseLandingMenuView {
   } 
 }
 /*
-class ShipTab extends landing.TextButton {
+class ShipTab extends TextButton {
   constructor(name, price, top, callback){
     super(name + price, callback,
         BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,

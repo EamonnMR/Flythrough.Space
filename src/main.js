@@ -1,10 +1,11 @@
-import * as gameplay from "gameplay";
-import * as player from "player";
-import * as map from "map";
-import * as states from "states";
-import * as landing from "landing";
-import * as trade from "trade";
-import * as shipyard from "shipyard";
+import { GamePlayState } from "./gameplay.js";
+import { PlayerSave } from  "./player.js";
+import { MapView } from "./map.js";
+import { StateManager } from "./states.js";
+import { LandingMenu } from  "./landing.js";
+import { TradeMenu } from  "./trade.js";
+import { ShipyardMenu} from "./shipyard.js";
+import { load_all } from "./load.js";
 
 function init(gameCanvas, scene, engine, data){
   /* Main entry point for the app (after loading). Binds events and such. */
@@ -18,17 +19,17 @@ function init(gameCanvas, scene, engine, data){
 
   // start initial state
   
-  let player_data = new player.PlayerSave(data.ships, data.upgrades);
-  console.log(shipyard.ShipyardMenu);
-  let stateMgr = new states.StateManager({
-    'gameplay': new gameplay.GameplayState(
+  let player_data = new PlayerSave(data.ships, data.upgrades);
+  console.log(ShipyardMenu);
+  let stateMgr = new StateManager({
+    'gameplay': new GamePlayState(
         scene, camera, data, player_data, gameCanvas),
-    'map': new map.MapView(
+    'map': new MapView(
         data, {x: 0, y: 0}, gameCanvas, player_data),
 
-    'landing': new landing.LandingMenu(data.spobs, player_data),
-    'trade': new trade.TradeMenu(data.spobs, player_data, data.trade),
-    'shipyard': new shipyard.ShipyardMenu(data.spobs, player_data, data.ships, data.upgrades),
+    'landing': new LandingMenu(data.spobs, player_data),
+    'trade': new TradeMenu(data.spobs, player_data, data.trade),
+    'shipyard': new ShipyardMenu(data.spobs, player_data, data.ships, data.upgrades),
   }, 'shipyard');
  
   // Handle resizes
@@ -51,9 +52,8 @@ $(() => {
   let engine = new BABYLON.Engine( game_canvas[0], true);
   let scene = new BABYLON.Scene(engine);
 
-  load.load_all(engine, scene, (data) => {
+  load_all(engine, scene, (data) => {
     init(game_canvas, scene, engine, data);
   });
 });
-import * as menu from "menu";
 

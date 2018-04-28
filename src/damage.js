@@ -23,3 +23,4 @@ export function damage_handler(damager, damaged){
       damaged.remove = true;
   }
 }
+

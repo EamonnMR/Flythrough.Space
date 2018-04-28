@@ -1,6 +1,6 @@
-import * as states from "states"
+import { ViewState } from "./states.js"
 
-export class BaseMenuView extends states.ViewState {
+export class BaseMenuView extends ViewState {
   setup_menu(widgets){
     this.adt = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
     this.widgets = widgets;

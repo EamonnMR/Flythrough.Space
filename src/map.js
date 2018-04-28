@@ -1,5 +1,5 @@
-import * as states from "states";
-import * as input from "input";
+import { ViewState } from "./states.js";
+import { bindInputFunctions, unbindInputFunctions } from "./input.js";
 
 // Z indices:
 
@@ -30,7 +30,7 @@ const SPACELANE_COLOR = "Gray";
 const nogov_color = '#AFAFAF';
 const nogov_dark = '#A9A9A9';
 
-export class MapView extends states.ViewState{
+export class MapView extends ViewState{
   constructor(data, position, game_canvas, player){
     super();
 
@@ -49,7 +49,7 @@ export class MapView extends states.ViewState{
 
   enter(){
     console.log("Entering map state")
-    input.bindInputFunctions({
+    bindInputFunctions({
       toggle_pause: () => {
         'exit map'
         this.parent.enter_state('gameplay');
@@ -284,6 +284,7 @@ export class MapView extends states.ViewState{
     this.dragging = false;
 
     this.game_canvas.mousedown( (event) => {
+      console.log("Mouse Up");
       let coordinates = this.parse_event(event);  
       this.dragging = true;
       this.mouse_pos = coordinates;
@@ -324,6 +325,8 @@ export class MapView extends states.ViewState{
         this.move_scrollables();
       }
     });
+
+    console.log(this.game_canvas);
   }
 
   parse_event(event){
@@ -334,7 +337,7 @@ export class MapView extends states.ViewState{
   }
 
   exit(){
-    input.unbindInputFunctions();
+    unbindInputFunctions();
     this.player.selected_system = this.selection
     this.adt.removeControl(this.map_image);
     this.map_image.dispose();

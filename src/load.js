@@ -6,7 +6,7 @@
  * directly into the data object under the key in "data".
  */
 
-import * as weapon from "weapon";
+import { Weapon } from "./weapon.js";
 
 export class Data {
   constructor (){
@@ -41,7 +41,7 @@ export class Data {
     // TODO: Rewrite the weapon code to not use a class (?)
     let data = this.weapons[name];
     let sprite = this.sprites[data.sprite];
-    return new weapon.Weapon(data.cooldown, sprite,
+    return new Weapon(data.cooldown, sprite,
         data.proj, data.velocity);
   }
 }

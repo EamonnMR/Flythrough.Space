@@ -6,6 +6,11 @@
  * ents and need to be cleaned up on system exit.
  */
 
+import {
+  playerShipFactory,
+  npcSpawnerFactory,
+  planetFactory
+} from "./entities.js"; 
 
 export function setup_system(scene, camera, entMan, system, hud, data, player_data){
   let system_dat = data.systems[system];
@@ -24,7 +29,7 @@ export function setup_system(scene, camera, entMan, system, hud, data, player_da
 
 
   let ents = [
-    entities.playerShipFactory( data,
+    playerShipFactory( data,
         player_data.ship_type, 
         {
           x: player_data.initial_position.x,
@@ -37,7 +42,7 @@ export function setup_system(scene, camera, entMan, system, hud, data, player_da
   ];
   if( system_dat.govt ){
     ents.push(
-      entities.npcSpawnerFactory( data, system_dat, ['shuttle'], hud)
+      npcSpawnerFactory( data, system_dat, ['shuttle'], hud)
     );
   }
 
@@ -49,7 +54,7 @@ export function setup_system(scene, camera, entMan, system, hud, data, player_da
   if ('spobs' in system_dat) {
     for (let spob_name of system_dat.spobs){
       let spob_dat = data.spobs[spob_name];
-      let planet = entities.planetFactory(data, spob_name, hud)
+      let planet = planetFactory(data, spob_name, hud)
       planets.push( planet );
     }
   }

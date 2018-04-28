@@ -1,6 +1,11 @@
-import * as menu from "menu";
+import {
+  BaseMenuView,
+  Image,
+  TextBox,
+  TextButton
+  } from "./menu.js";
 
-export class LandingMenu extends menu.BaseMenuView {
+export class LandingMenu extends BaseMenuView {
   constructor(spobs, player_data){
     super();
     this.spobs = spobs;
@@ -135,7 +140,7 @@ export class LandingMenu extends menu.BaseMenuView {
   }
 };
 
-export class TradeMenu extends menu.BaseMenuView {
+export class TradeMenu extends BaseMenuView {
   constructor( spobs, player_data ){
     super();
     this.spobs = spobs;
@@ -161,7 +166,7 @@ export class TradeMenu extends menu.BaseMenuView {
   }
 }
 
-class HeroImage extends menu.Image {
+class HeroImage extends Image {
   setup(){
     let control = super.setup();
     control.width = "60%";
@@ -170,7 +175,7 @@ class HeroImage extends menu.Image {
   }
 };
 
-class HeroText extends menu.TextBox {
+class HeroText extends TextBox {
   setup(){
     let control = super.setup();
     control.textWrapping = true;
@@ -182,7 +187,7 @@ class HeroText extends menu.TextBox {
   }
 };
 
-export class LandingMenuBigButton extends menu.TextButton {
+export class LandingMenuBigButton extends TextButton {
 
   setup(){
     let control = super.setup();
@@ -199,7 +204,7 @@ export class LandingMenuBigButton extends menu.TextButton {
   }
 };
 
-export class BaseLandingMenuView extends menu.BaseMenuView {
+export class BaseLandingMenuView extends BaseMenuView {
   get_misc_widgets(){
     return  [
       new LandingMenuBigButton(

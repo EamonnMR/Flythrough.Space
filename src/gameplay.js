@@ -1,17 +1,21 @@
-import * as physics from "physics";
-import * as weapon from "weapon";
-import * as ecs from "ecs";
-import * as input from "input";
-import * as entities from "entities";
-import * as collision from "collision";
-import * as map from "map";
-import * as system from "system";
-import * as states from "states";
-import * as hud from "hud";
-import * as ai from "ai";
+import { distance } from "./util.js";
+import { speedLimitSystem, velocitySystem} from "./physics.js";
+import { weaponSystem, decaySystem} from "./weapon.js";
+import { EntityManager, deletionSystem} from "./ecs.js";
+import { inputSystem, bindInputFunctions, unbindInputFunctions} from "./input.js";
+import {
+	npcSpawnerSystem,
+	modelPositionSystem,
+	cameraFollowSystem
+} from "./entities.js";
+import { collisionDetectionSystem } from "./collision.js";
+import { setup_system } from "./system.js";
+import { ViewState } from "./states.js";
+import { radarFollowSystem, HUD } from  "./hud.js";
+import { ai_system } from "./ai.js";
 
 
-export class GameplayState extends states.ViewState {
+export class GamePlayState extends ViewState {
 
   constructor(scene, camera, data, player_data,
       dom_canvas) {
@@ -24,20 +28,20 @@ export class GameplayState extends states.ViewState {
     this.player_data = player_data;
     this.dom_canvas = dom_canvas;
 
-    this.entMan = new ecs.EntityManager(player_data, data, [
-      entities.npcSpawnerSystem,
-      input.inputSystem,
-      ai.ai_system,
-      physics.speedLimitSystem,
-      physics.velocitySystem,
-      entities.modelPositionSystem,
-      entities.cameraFollowSystem,
-      weapon.weaponSystem,
-      weapon.decaySystem,
-      collision.collisionDetectionSystem,
+    this.entMan = new EntityManager(player_data, data, [
+      npcSpawnerSystem,
+      inputSystem,
+      ai_system,
+      speedLimitSystem,
+      velocitySystem,
+      modelPositionSystem,
+      cameraFollowSystem,
+      weaponSystem,
+      decaySystem,
+      collisionDetectionSystem,
       // hud.selectionFollowSystem,
-      hud.radarFollowSystem,
-      ecs.deletionSystem
+      radarFollowSystem,
+      deletionSystem
     ]);
     this.empty = true;
     this.world_models = [];
@@ -55,7 +59,7 @@ export class GameplayState extends states.ViewState {
       this.setup_world();
     }
     this.entMan.unpause();
-    input.bindInputFunctions({
+    bindInputFunctions({
       toggle_pause: () => {
 
         // Note that different exits do different things to the state,
@@ -123,7 +127,7 @@ export class GameplayState extends states.ViewState {
   }
 
   create_world_models( system_name ){
-    this.world_models = system.setup_system(
+    this.world_models = setup_system(
   		this.scene,
 			this.camera,
 			this.entMan,
@@ -143,7 +147,7 @@ export class GameplayState extends states.ViewState {
   }
 
   exit(){
-    input.unbindInputFunctions();
+    unbindInputFunctions();
   }
 
   clear_world(){
@@ -155,7 +159,7 @@ export class GameplayState extends states.ViewState {
   }
 
   setup_world(){
-    this.hud = new hud.HUD(
+    this.hud = new HUD(
         this.scene,
         this.dom_canvas,
         this.entMan,
@@ -178,11 +182,11 @@ export class GameplayState extends states.ViewState {
     let player = this.get_player_ent();
     let choice = null;
     for(let spob of spobs){
-      let distance = util.distance(
+      let dist = distance(
           spob.position, player.position);
-      if (!min_distance || min_distance > distance
+      if (!min_distance || min_distance > dist
           && this.spob_is_landable(spob)){
-        min_distance = distance;
+        min_distance = dist;
         choice = spob;
       }
     }
