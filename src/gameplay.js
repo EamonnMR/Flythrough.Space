@@ -17,8 +17,7 @@ import { ai_system } from "./ai.js";
 
 export class GamePlayState extends ViewState {
 
-  constructor(scene, camera, data, player_data,
-      dom_canvas) {
+  constructor(scene, camera, data, player_data) {
     super();
 
     this.data = data;
@@ -26,7 +25,6 @@ export class GamePlayState extends ViewState {
     this.camera = camera;
 
     this.player_data = player_data;
-    this.dom_canvas = dom_canvas;
 
     this.entMan = new EntityManager(player_data, data, [
       npcSpawnerSystem,
@@ -161,7 +159,6 @@ export class GamePlayState extends ViewState {
   setup_world(){
     this.hud = new HUD(
         this.scene,
-        this.dom_canvas,
         this.entMan,
         this.player_data
     );

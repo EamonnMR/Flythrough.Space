@@ -89,10 +89,16 @@ function load_assets( source_json, scene, data, finish_callback ){
 
 export function load_all(engine, scene, done){
   let data_mgr = new Data();
-  $.getJSON('data/assets.json', (data) => {
-    load_assets(data, scene, data_mgr, () => {
-      console.log(data_mgr)
-      done(data_mgr);
-    });
-  });
+  // If I was going to need this more than once, I'd make a "get json" function.
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', 'data/assets.json', true);
+  xhr.onload = () => {
+    if (xhr.status == 200){
+      load_assets(JSON.parse(xhr.responseText), scene, data_mgr, () => {
+        done(data_mgr);
+      });
+    }
+  };
+
+  xhr.send();
 }

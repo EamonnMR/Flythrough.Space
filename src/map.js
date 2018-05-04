@@ -48,15 +48,8 @@ export class MapView extends ViewState{
   }
 
   enter(){
+    this.dragging = false;
     console.log("Entering map state")
-    bindInputFunctions({
-      toggle_pause: () => {
-        'exit map'
-        this.parent.enter_state('gameplay');
-      },
-      reset_game: () => {},
-      hyper_jump: () => {}
-    })
 
     let current = this.data.systems[this.selection];
 
@@ -282,39 +275,47 @@ export class MapView extends ViewState{
 
   setup_dragging(){
     this.dragging = false;
-
-    this.game_canvas.mousedown( (event) => {
-      console.log("Mouse Up");
+    
+    bindInputFunctions({
+      toggle_pause: () => {
+        'exit map'
+        this.parent.enter_state('gameplay');
+      },
+      reset_game: () => {},
+      hyper_jump: () => {},
+    });
+    this.map_image.onPointerDownObservable.add( (event) => {
+      console.log("mouse down");
       let coordinates = this.parse_event(event);  
       this.dragging = true;
       this.mouse_pos = coordinates;
     });
-
-    this.game_canvas.mouseup( (event) => {
+    this.map_image.onPointerUpObservable.add( (event) => {
+      console.log("mouse up");
       this.dragging = false;
       let coordinates = this.parse_event(event);  
       // Original map code
       // TODO: Replace this with the above nice code...
       // if it can be made to, like, work.
-			for ( let system_name of Object.keys(this.data.systems)) {
-				let system_dat = this.data.systems[system_name];
-				//Ugly brute force clicking-on-system check
-				//Treats the map circles as squares
-				if(
-						Math.abs(
-							coordinates.x - this.offset.x - system_dat.x)
-							< CIRCLE_SIZE_INT
-						&& Math.abs(
-							coordinates.y - this.offset.y - system_dat.y)
-							< CIRCLE_SIZE_INT
-				){
-					this.update_selection(system_name);
+      for ( let system_name of Object.keys(this.data.systems)) {
+        let system_dat = this.data.systems[system_name];
+        //Ugly brute force clicking-on-system check
+        //Treats the map circles as squares
+        if(
+            Math.abs(
+              coordinates.x - this.offset.x - system_dat.x)
+              < CIRCLE_SIZE_INT
+            && Math.abs(
+              coordinates.y - this.offset.y - system_dat.y)
+              < CIRCLE_SIZE_INT
+        ){
+          this.update_selection(system_name);
           break;
-				}
-			}
+        }
+      }
     });
-    
-    this.game_canvas.mousemove( (event) => {
+    this.map_image.onPointerMoveObservable.add( (event) => {
+      console.log(this.dragging);
       let coordinates = this.parse_event(event);  
       if ( this.dragging ) {
         this.offset.x +=  coordinates.x - this.mouse_pos.x;
@@ -326,14 +327,15 @@ export class MapView extends ViewState{
       }
     });
 
-    console.log(this.game_canvas);
+    
   }
 
   parse_event(event){
-    return {
+    return event
+    /*return {
       x: event.pageX,
       y: event.pageY,
-    }
+    }*/
   }
 
   exit(){
@@ -341,9 +343,6 @@ export class MapView extends ViewState{
     this.player.selected_system = this.selection
     this.adt.removeControl(this.map_image);
     this.map_image.dispose();
-    this.game_canvas.unbind("mousedown");
-    this.game_canvas.unbind("mouseup");
-    this.game_canvas.unbind("mousemove");
   }
 
 };

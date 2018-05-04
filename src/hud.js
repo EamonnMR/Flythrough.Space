@@ -16,7 +16,7 @@ export function selectionFollowSystem(entMan){
 };
 
 export class HUD{
-  constructor(scene, dom_canvas, entMan, player_data){
+  constructor(scene, entMan, player_data){
     // TODO: Do I actually still need to plumb the scene through here?
     // Remove it if not
     this.adt = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
