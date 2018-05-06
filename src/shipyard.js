@@ -1,7 +1,7 @@
 import { BaseLandingMenuView } from "./landing.js";
 import { TextButton } from "./menu.js";
 
-const LIST_SPACING = 8;
+const LIST_SPACING = 7;
 
 export class ShipyardMenu extends BaseLandingMenuView {
   constructor(spobs, player_data, ships, upgrades){
@@ -10,7 +10,7 @@ export class ShipyardMenu extends BaseLandingMenuView {
     this.player_data = player_data;
     this.ships = ships;
     this.upgrades = upgrades;
-    this.selected_ship = null;
+    this.selected = null;
   }
   enter(){
     this.spob = this.spobs[this.player_data.current_spob];
@@ -26,22 +26,17 @@ export class ShipyardMenu extends BaseLandingMenuView {
     return [];
   }
   get_ship_list_widgets(){
-    let offset = 10;
+    let offset = 0;
     let widgets = [];
-    /*
     Object.keys(this.get_available_ships()).forEach((key) => {
       offset += LIST_SPACING;
-      console.log(this.ships[key].short_name);
-      console.log(this.ships[key].price);
-      console.log("" + offset + "%");
 
-      //widgets.push(
-      //  new ShipTab(this.ships[key].short_name, this.ships[key].price, "" + offset + "10", () =>
-      //    {this.select_ship(key);}
-      //  )
-      //);
+      widgets.push(
+        new ShipTab(this.ships[key].short_name, this.ships[key].price, "" + offset + "%", () =>
+          {this.select_ship(key);}
+        )
+      );
     });
-    */
     return widgets;
   }
   get_available_ships(){
@@ -54,20 +49,37 @@ export class ShipyardMenu extends BaseLandingMenuView {
    this.update_widgets();
   } 
 }
-/*
 class ShipTab extends TextButton {
-  constructor(name, price, top, callback){
-    super(name + price, callback,
+  constructor(item, name, price, top, callback){
+    this.item = item;
+    this.name = name;
+    this.price = price;
+    super(this.format_name(null), callback,
         BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
         BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
-        "5%", top);
+        "4%", top);
   }
   setup(){
     let control = super.setup();
     control.color = "White";
-    control.height = "12%";
-    control.cornetRadius = 1;
+    control.height = "6%";
+    control.cornerRadius = 1;
+    control.width = "40%";
     return control;
   }
+
+  update(parent){
+    this.control.text = 
+  }
+
+  format_name(parent){
+    let too_expensive = null;
+    let current_selection = null;
+    if(parent !== null){
+      too_expensive = player.can_buy_new_ship(this.price);
+    }
+    current_selection = parent.selection == this.item; 
+
+    if current_selection
 };
-*/
+

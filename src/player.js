@@ -69,4 +69,12 @@ export class PlayerSave {
   refuel(){
     this.fuel = this.max_fuel();
   }
+
+  ship_value(){
+    return this.ship_dat.price;
+  }
+
+  can_buy_new_ship(price){
+    return price <= this.money + this.ship_value();
+  }
 }
