@@ -26,6 +26,11 @@ export class ShipyardMenu extends BaseLandingMenuView {
     return [
       new StoreitemName(),
       new StoreitemDesc(),
+      new BuyButton(() => {
+        if (this.player_data.can_buy_new_ship(this.current_item().price)){
+          this.player_data.buy_ship(this.selected, this.current_item());
+        }
+      }),
     ];
   }
   get_ship_list_widgets(){
@@ -160,3 +165,29 @@ class StoreitemDesc extends TextBox {
   }
 };
 
+class BuyButton extends TextButton {
+  constructor(callback){
+    super("Buy", callback,
+      BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT,
+      BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
+      "-30%",
+      "5%",
+    )
+  }
+
+  setup(){
+    let control = super.setup();
+    control.height = "8%";
+    control.width = "10%";
+    control.cornerRadius = 3;
+    return control;
+  }
+
+  update(parent){
+    let color = "Gray";
+    if(parent.player_data.can_buy_new_ship(parent.current_item().price)){
+      color = "Green";
+    }
+    this.control.color = color;
+  }
+}

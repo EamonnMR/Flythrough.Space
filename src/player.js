@@ -3,7 +3,7 @@
 export class PlayerSave {
   constructor(ships, upgrades) {
     // TODO: Load this from some sort of backing store / DB / etc
-    this.money = 1000;
+    this.money = 1000000;
     this.map_pos = {x: 0, y: 0};
     this.selected_system = "Casamance";
     this.selected_spob = null;
@@ -76,5 +76,12 @@ export class PlayerSave {
 
   can_buy_new_ship(price){
     return price <= this.money + this.ship_value();
+  }
+
+  buy_ship(type, new_ship){
+    this.money += this.ship_value();
+    this.ship_type = type;
+    this.ship_dat = new_ship;
+    this.money -= new_ship.price;
   }
 }
