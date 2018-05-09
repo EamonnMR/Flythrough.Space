@@ -154,7 +154,6 @@ class CargoButton extends TextButton {
 
   setup(){
     let control = super.setup();
-    control.alig
     control.color = "White";
     control.background = "red";
     control.height = "7%";
