@@ -11,6 +11,7 @@ export class ShipyardMenu extends BaseLandingMenuView {
     this.ships = ships;
     this.upgrades = upgrades;
     this.selected = null;
+    this.scroll_offset = 0;
   }
   enter(){
     this.spob = this.spobs[this.player_data.current_spob];
@@ -35,28 +36,42 @@ export class ShipyardMenu extends BaseLandingMenuView {
   }
   get_ship_list_widgets(){
     let offset = 0;
-    let widgets = [];
+    let widgets = [
+      new ScrollUpButton( () => {
+        this.scroll(10);
+      }),
+      new ScrollDownButton( () => {
+        this.scroll(-10);
+      }),
+    ];
     Object.keys(this.get_available_ships()).forEach((key) => {
       offset += LIST_SPACING;
-
+      console.log(offset);
       widgets.push(
-        new ShipTab(this.ships[key], this.ships[key].short_name, this.ships[key].price, "" + offset + "%", () =>
-          {this.select_ship(key);}
-        )
+        new ShipTab(this.ships[key],
+                    this.ships[key].short_name,
+                    this.ships[key].price,
+                    offset, 
+                    () => {this.select_ship(key);}
+                   )
       );
     });
     return widgets;
   }
   get_available_ships(){
-    // TODO: Filter ships by tech and tech of spob
+    // TODO: Filter by tech
     return this.ships;
   }
 
   select_ship(ship){
-   console.log("Selected: " + ship);
    this.selected = ship;
    this.update_widgets();
   } 
+
+  scroll(amount){
+    this.scroll_offset += amount;
+    this.update_widgets();
+  }
 
   current_item(){
     if(this.selected == null){
@@ -66,15 +81,18 @@ export class ShipyardMenu extends BaseLandingMenuView {
     return this.ships[this.selected];
   }
 }
+
 class ShipTab extends TextButton {
   constructor(item, name, price, top, callback){
+    console.log(top);
     super(name + " - " + price, callback,
         BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
         BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
-        "4%", top);
+        "4%", "" + top + "%");
     this.item = item;
     this.name = name;
     this.price = price;
+    this.offset = top;
   }
   setup(){
     let control = super.setup();
@@ -88,6 +106,7 @@ class ShipTab extends TextButton {
 
   update(parent){
     this.control.text = this.format_name(parent); 
+    this.control.top = "" + (this.offset + parent.scroll_offset) + "%";
   }
 
   format_name(parent){
@@ -189,5 +208,44 @@ class BuyButton extends TextButton {
       color = "Green";
     }
     this.control.color = color;
+  }
+}
+
+class ScrollUpButton extends TextButton {
+  constructor(callback){
+    super("^", callback,
+      BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
+      BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
+      "2%",
+      "2%",
+    )
+  }
+
+  setup(){
+    let control = super.setup();
+    control.height = "3%";
+    control.width = "3%";
+    control.cornerRadius = 3;
+    return control;
+  }
+}
+
+// Broswer, forgive me
+class ScrollDownButton extends TextButton {
+  constructor(callback){
+    super("v", callback,
+      BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
+      BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,
+      "2%",
+      "-2%",
+    )
+  }
+
+  setup(){
+    let control = super.setup();
+    control.height = "3%";
+    control.width = "3%";
+    control.cornerRadius = 3;
+    return control;
   }
 }
