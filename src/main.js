@@ -20,7 +20,6 @@ function init(game_canvas, scene, engine, data){
   // start initial state
   
   let player_data = new PlayerSave(data.ships, data.upgrades);
-  console.log(ShipyardMenu);
   let stateMgr = new StateManager({
     'gameplay': new GamePlayState(
         scene, camera, data, player_data),
@@ -29,7 +28,7 @@ function init(game_canvas, scene, engine, data){
 
     'landing': new LandingMenu(data.spobs, player_data),
     'trade': new TradeMenu(data.spobs, player_data, data.trade),
-    'shipyard': new ShipyardMenu(data.spobs, player_data, data.ships, data.upgrades),
+    'shipyard': new ShipyardMenu(data.spobs, player_data, data.ships),
   }, 'shipyard');
  
   // Handle resizes

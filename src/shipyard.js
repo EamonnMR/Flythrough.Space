@@ -1,90 +1,35 @@
-import { BaseLandingMenuView } from "./landing.js";
-import { TextButton, TextBox, Image } from "./menu.js";
+import { StoreMenu } from "./store.js";
 
-const LIST_SPACING = 7;
+import { TextButton, TextBox, Image} from "./menu.js";
 
-export class ShipyardMenu extends BaseLandingMenuView {
-  constructor(spobs, player_data, ships, upgrades){
-    super();
-    this.spobs = spobs;
-    this.player_data = player_data;
-    this.ships = ships;
-    this.upgrades = upgrades;
-    this.selected = null;
-    this.scroll_offset = 0;
-  }
-  enter(){
-    this.spob = this.spobs[this.player_data.current_spob];
-    this.setup_menu(
-      this.get_detail_widgets().concat(
-        this.get_ship_list_widgets().concat(
-          this.get_misc_widgets()
-        )
-      )
-    );
-  }
-  get_detail_widgets(){
-    return [
-      new StoreitemName(),
-      new StoreitemDesc(),
-      new BuyButton(() => {
-        if (this.player_data.can_buy_new_ship(this.current_item().price)){
-          this.player_data.buy_ship(this.selected, this.current_item());
-        }
-      }),
-    ];
-  }
-  get_ship_list_widgets(){
-    let offset = 0;
-    let widgets = [
-      new ScrollUpButton( () => {
-        this.scroll(10);
-      }),
-      new ScrollDownButton( () => {
-        this.scroll(-10);
-      }),
-    ];
-    Object.keys(this.get_available_ships()).forEach((key) => {
-      offset += LIST_SPACING;
-      console.log(offset);
-      widgets.push(
-        new ShipTab(this.ships[key],
-                    this.ships[key].short_name,
-                    this.ships[key].price,
-                    offset, 
-                    () => {this.select_ship(key);}
-                   )
-      );
-    });
-    return widgets;
-  }
-  get_available_ships(){
-    // TODO: Filter by tech
-    return this.ships;
-  }
 
-  select_ship(ship){
-   this.selected = ship;
-   this.update_widgets();
-  } 
-
-  scroll(amount){
-    this.scroll_offset += amount;
-    this.update_widgets();
-  }
-
-  current_item(){
-    if(this.selected == null){
-      // If we don't have a selection, just select the first one
-      this.selected = Object.keys(this.get_available_ships())[0];
+export class ShipyardMenu extends StoreMenu {
+  do_buy(){
+    if (this.player_data.can_buy_new_ship(this.current_item().price)){
+      this.player_data.buy_ship(this.selected, this.current_item());
     }
-    return this.ships[this.selected];
+  }
+  get_available_items(){
+    // TODO: Filter by tech
+    return this.items;
+  }
+
+  can_purchase_item(item){
+    return this.player_data.can_buy_new_ship(item.price)
+  }
+
+  get_selection_tab_widget(key, item, offset){
+    return new ShipTab(item,
+      item.short_name,
+      item.price,
+      offset,
+      () => {this.select(key);}
+    )
   }
 }
 
 class ShipTab extends TextButton {
   constructor(item, name, price, top, callback){
-    console.log(top);
     super(name + " - " + price, callback,
         BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
         BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
@@ -125,127 +70,3 @@ class ShipTab extends TextButton {
   }
 };
 
-class StoreImage extends Image {
-  setup(){
-    let control = super.setup();
-    control.width = "40%";
-    control.height = "40%"; 
-    control.alignment_x = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-  }
-}
-
-class StoreitemName extends TextBox {
-  constructor(){
-    super(
-      " ",
-      BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT,
-      BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
-      "5%",
-      "5%",
-    );
-  }
-
-  setup(){
-    let control = super.setup();
-    control.color = "White";
-    control.width = "40%";
-    control.height = "10%";
-    return control;
-  }
-
-  update(parent){
-    this.control.text = parent.current_item().short_name;
-  }
-}
-
-class StoreitemDesc extends TextBox {
-  constructor(){
-    super(
-      " ",
-      BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT,
-      BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
-      "-10%",
-      "20%",
-    );
-  }
-
-  setup(){
-    let control = super.setup();
-    control.color = "White";
-    control.width = "40%";
-    control.height = "40%";
-    control.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
-    control.textWrapping = true;
-    return control;
-  }
-
-  update(parent){
-    this.control.text = parent.current_item().desc;
-  }
-};
-
-class BuyButton extends TextButton {
-  constructor(callback){
-    super("Buy", callback,
-      BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT,
-      BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
-      "-30%",
-      "5%",
-    )
-  }
-
-  setup(){
-    let control = super.setup();
-    control.height = "8%";
-    control.width = "10%";
-    control.cornerRadius = 3;
-    return control;
-  }
-
-  update(parent){
-    let color = "Gray";
-    if(parent.player_data.can_buy_new_ship(parent.current_item().price)){
-      color = "Green";
-    }
-    this.control.color = color;
-  }
-}
-
-class ScrollUpButton extends TextButton {
-  constructor(callback){
-    super("^", callback,
-      BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
-      BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
-      "2%",
-      "2%",
-    )
-  }
-
-  setup(){
-    let control = super.setup();
-    control.height = "3%";
-    control.width = "3%";
-    control.cornerRadius = 3;
-    return control;
-  }
-}
-
-// Broswer, forgive me
-class ScrollDownButton extends TextButton {
-  constructor(callback){
-    super("v", callback,
-      BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
-      BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,
-      "2%",
-      "-2%",
-    )
-  }
-
-  setup(){
-    let control = super.setup();
-    control.height = "3%";
-    control.width = "3%";
-    control.cornerRadius = 3;
-    return control;
-  }
-}
