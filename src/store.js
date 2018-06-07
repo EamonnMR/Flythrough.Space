@@ -3,7 +3,7 @@ import {
 } from "./landing.js";
 
 
-import { TextButton, TextBox, Image} from "./menu.js";
+import { TextButton, TextBox, Image, Widget} from "./menu.js";
 
 const LIST_SPACING = 7;
 
@@ -51,6 +51,16 @@ export class StoreMenu extends BaseLandingMenuView {
       new BuyButton(() => {
         do_buy();
       }),
+      new QuantBar(
+        "-20%", "-30%", 30, "Top Speed", (item) => {
+          return item.maxSpeed;
+        }
+      ),
+      new QuantBar(
+        "-20%", "-24%", 30, "Acceleration", (item) => {
+          return item.accel;
+        }
+      ),
     ];
   }
 
@@ -216,4 +226,81 @@ class ScrollDownButton extends TextButton {
   }
 }
 
+class QuantBar extends Widget {
+  /* Show some quantifyable quality of an item.
+   * Subclass and override "get_stat_of_interest(item)
+   * to use.
+   */
+  constructor(left, top, max_width, name, get_stat_func){
+    super();
+    this.parent = parent;
+    this.top = top;
+    this.left = left;
+    // TODO: Parameterize this
+    this.alignment_x = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+    this.alignment_y = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
+    this.offset_x = 0;
+    this.get_stat_func = get_stat_func;
+    this.max_width = max_width;
+    this.value_max = null;
+    this.name = name;
+  }
 
+  setup(){
+    let control = new BABYLON.GUI.Rectangle();
+    this.setup_control(control);
+    control.height = "5%";
+    control.width = "" + this.max_width + "%";
+    control.color = "white";
+
+
+    this.actual_width_bar = new BABYLON.GUI.Rectangle();
+    this.actual_width_bar.height = "80%";
+    this.actual_width_bar.width = "1%";
+    this.actual_width_bar.background = "Red";
+    this.actual_width_bar.color = "Red";
+    this.actual_width_bar.left = "-50%";
+    control.addControl(this.actual_width_bar);
+    this.actual_width_bar.HorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+
+    this.label = new BABYLON.GUI.TextBlock();
+    this.label.color = "White";
+    this.label.text = this.name;
+    return control;
+  }
+
+  get_max(parent){
+    let value_max = 0;
+    Object.keys(parent.items).forEach( (key) => {
+      let stat = this.get_stat_func( parent.items[key] );
+
+      if (stat > value_max){
+        value_max = stat;
+      }
+   });
+   return value_max;
+  }
+
+  format_label(value){
+    return name + ": " + value; 
+  }
+
+  update(parent){
+    // Because we're only passed the parent during updates, we need to get
+    // the value max on the first update
+    if(this.value_max === null){
+      this.value_max = this.get_max(parent);
+    }
+
+    let value = this.get_current_value(parent); 
+
+    // Hack - the actual width bar actually trails off to the left
+    // Not worth fighting with I think.
+    this.actual_width_bar.width = "" + (200 * (value / this.value_max)) + "%";
+    this.label.text = this.format_label(value);
+  }
+
+  get_current_value(parent){
+    return this.get_stat_func(parent.current_item());
+  }
+}
