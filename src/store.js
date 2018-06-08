@@ -259,9 +259,8 @@ class QuantBar extends Widget {
     this.actual_width_bar.width = "1%";
     this.actual_width_bar.background = "Red";
     this.actual_width_bar.color = "Red";
-    this.actual_width_bar.left = "-50%";
     control.addControl(this.actual_width_bar);
-    this.actual_width_bar.HorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+    this.actual_width_bar.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
 
     this.label = new BABYLON.GUI.TextBlock();
     this.label.color = "White";
@@ -294,9 +293,7 @@ class QuantBar extends Widget {
 
     let value = this.get_current_value(parent); 
 
-    // Hack - the actual width bar actually trails off to the left
-    // Not worth fighting with I think.
-    this.actual_width_bar.width = "" + (200 * (value / this.value_max)) + "%";
+    this.actual_width_bar.width = "" + (100 * (value / this.value_max)) + "%";
     this.label.text = this.format_label(value);
   }
 
