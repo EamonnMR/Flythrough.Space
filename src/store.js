@@ -6,6 +6,8 @@ import {
 import { TextButton, TextBox, Image, Widget} from "./menu.js";
 
 const LIST_SPACING = 7;
+const QUALITY_BAR_SPACING = 5;
+const QUALITY_BAR_FIRST = -30;
 
 export class StoreMenu extends BaseLandingMenuView {
   constructor(spobs, player_data, items){
@@ -44,24 +46,12 @@ export class StoreMenu extends BaseLandingMenuView {
      * if a purchase should go through.
      */
   }
-  get_detail_widgets(){
-    return [
-      new StoreitemName(),
-      new StoreitemDesc(),
-      new BuyButton(() => {
-        do_buy();
-      }),
-      new QuantBar(
-        "-20%", "-30%", 30, "Top Speed", (item) => {
-          return item.maxSpeed;
-        }
-      ),
-      new QuantBar(
-        "-20%", "-24%", 30, "Acceleration", (item) => {
-          return item.accel;
-        }
-      ),
-    ];
+
+  get_qualities(){
+    /*
+     * Return a set of {"label", "function"} objects that represents what quant
+     * bars you want this store to advertise its items with
+     */
   }
 
   select(item_id){
@@ -82,6 +72,28 @@ export class StoreMenu extends BaseLandingMenuView {
     return this.items[this.selected];
   }
 
+  get_detail_widgets(){
+    let detail_widgets = [
+      new StoreitemName(),
+      new StoreitemDesc(),
+      new BuyButton( () => { do_buy } )
+    ]
+    let quality_offset = QUALITY_BAR_FIRST;
+
+    for (let quality of this.get_qualities()){
+      detail_widgets.push(
+        new QuantBar(
+          "-15%", "" + quality_offset + "%", 30, quality.label, quality.function
+        )
+      )
+      detail_widgets.push(
+        new StoreQuantLabel(quality.label, "" + quality_offset + "%")
+      )
+      quality_offset += QUALITY_BAR_SPACING;
+    }
+    return detail_widgets;
+  }
+  
   get_list_widgets(){
     let offset = 0;
     let widgets = [
@@ -109,7 +121,7 @@ class StoreImage extends Image {
   }
 }
 
-class StoreitemName extends TextBox {
+export class StoreitemName extends TextBox {
   constructor(){
     super(
       " ",
@@ -133,7 +145,29 @@ class StoreitemName extends TextBox {
   }
 }
 
-class StoreitemDesc extends TextBox {
+export class StoreQuantLabel extends TextBox {
+  constructor(text, top){
+    console.log(top);
+    super(
+      text,
+      BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT,
+      BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,
+      "-30%",
+      top
+    )
+  }
+
+  setup(){
+    let control = super.setup();
+    control.color = "White";
+    control.width = "40%"
+    control.height = "8%"
+    return control;
+  }
+}
+
+
+export class StoreitemDesc extends TextBox {
   constructor(){
     super(
       " ",
@@ -160,7 +194,7 @@ class StoreitemDesc extends TextBox {
 };
 
 
-class BuyButton extends TextButton {
+export class BuyButton extends TextButton {
   constructor(callback){
     super("Buy", callback,
       BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT,
@@ -226,7 +260,7 @@ class ScrollDownButton extends TextButton {
   }
 }
 
-class QuantBar extends Widget {
+export class QuantBar extends Widget {
   /* Show some quantifyable quality of an item.
    * Subclass and override "get_stat_of_interest(item)
    * to use.

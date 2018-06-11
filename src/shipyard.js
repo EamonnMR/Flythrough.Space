@@ -1,4 +1,4 @@
-import { StoreMenu } from "./store.js";
+import { StoreMenu, StoreitemName, StoreitemDesc, BuyButton, QuantBar, StoreQuantLabel } from "./store.js";
 
 import { TextButton, TextBox, Image} from "./menu.js";
 
@@ -26,6 +26,19 @@ export class ShipyardMenu extends StoreMenu {
       () => {this.select(key);}
     )
   }
+
+  get_qualities(){
+    return [
+      {"label": "Top Speed", "function": (item) => {return item.maxSpeed;}},
+      {"label": "Acceleration", "function": (item) => {return item.accel;}},
+      // TODO: Verify
+      {"label": "Handling", "function": (item) => {return item.rotation}},
+      {"label": "Cargo", "function": (item) => {return item.cargo;}},
+      {"label": "Free Mass", "function": (item) => {return item.space;}}
+    ]
+  }
+
+
 }
 
 class ShipTab extends TextButton {
