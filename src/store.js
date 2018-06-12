@@ -7,7 +7,7 @@ import { TextButton, TextBox, Image, Widget} from "./menu.js";
 
 const LIST_SPACING = 7;
 const QUALITY_BAR_SPACING = 5;
-const QUALITY_BAR_FIRST = -30;
+const QUALITY_BAR_FIRST = -40;
 
 export class StoreMenu extends BaseLandingMenuView {
   constructor(spobs, player_data, items){

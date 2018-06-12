@@ -29,12 +29,15 @@ export class ShipyardMenu extends StoreMenu {
 
   get_qualities(){
     return [
+      {"label": "Price", "function": (item) => {return item.price;}},
       {"label": "Top Speed", "function": (item) => {return item.maxSpeed;}},
       {"label": "Acceleration", "function": (item) => {return item.accel;}},
-      // TODO: Verify
       {"label": "Handling", "function": (item) => {return item.rotation}},
       {"label": "Cargo", "function": (item) => {return item.cargo;}},
-      {"label": "Free Mass", "function": (item) => {return item.space;}}
+      {"label": "Space", "function": (item) => {return item.space;}},
+      {"label": "Hull", "function": (item) => {return item.max_hp;}},
+      {"label": "Shields", "function": (item) => {return item.max_shields;}},
+      {"label": "Fuel", "function": (item) => {return item.max_fuel;}},
     ]
   }
 
