@@ -73,6 +73,14 @@
     "oftWeapon"      : "ejectorrackW",
     "tech"           : {"oe_wep":2}
   },
+  "missile_turret": {
+    "name"           : "Turreted Missile Launcher",
+    "space"          : -1,
+    "desc"           : "On slower ships, swooping in and loosing a missile at the last second in the right direction isn't always practical, so to give larger ships some long range capability a turreted version was developed. For something that interacts with rocket fuel and targeting computers, this design is surprisingly rugged",
+    "price"          : 10000,
+    "oftWeapon"      : "missile_turret_w",
+    "tech"           : {"oe_wep":2}
+  },
   "dumbfiremissile":{
     "name"           : "Dumb fire missile",
     "icon"           : "img/onyx/Onyx/Ofts/13.png",
@@ -221,7 +229,7 @@
     "name"           : "Casamance Microdrive",
     "tech"           : {"cas": 6},
     "price"          : 10000,
-    "space"          : 5,
+    "space"          : -5,
     "blink"          : 1,
     "desc"           : "Groundbreaking research has unlocked the secret of in-system jumps for dogfighting"
   },
@@ -229,8 +237,25 @@
     "name"           : "Induction Beam",
     "tech"           : {"ne": 6},
     "price"          : 800,
-    "space"          : 6,
+    "space"          : -6,
     "oftWeapon"      : "ind_beam",
     "desc"           : "Your standard electrostatic discharge which overwhelms shields by cooking the generator. Simple, right? Wrong-a happy accident, it turns out that it can essentially turn the target's shields into a projector for the same sort of beam. With careful tuning, this lead to the capability of bouncing the beam off the initial target and on to further targets. This acts as a force multiplier, allowing a smaller number of fighters to face down more numerous foes."
+  },
+  "ion_cannon_50":{
+    "name":          : "Ion cannon, 50 Coulomb",
+    "tech":          : {"pirate": 2},
+    "price"          : 1200,
+    "space"          : -5,
+    "oftWeapon"      : "ion_50",
+    "desc"           : "Designed to disrupt a ship's critical systems, ion weapons are a favorite of discriminating pirates. A high risk/high reward play, an ion weapon won't take a foe out of the fight nearly as quickly as, say, hot plasma. It will, however, ionize the target ship, which will trash a ship's reactors, some engines and weapons, leaving them dead in the water-perfect prey for pirates."
+  },
+  "ion_cannon_200":{
+    "name"           : "Ion Cannon, 200 Coulomb",
+    "tech"           : {"pirate": 2},
+    "price"          : 4800,
+    "space"          : -22,
+    "oftWeapon"      : "ion_200",
+    "desc"           : "A turreted, large bore version of the ion cannon. Its operation is similar to a plasma cannon of similar description, but rather than superheating the plasma in the chamber, it's modified to ionize the plasmaas much as possible."
   }
-}
+}  
+
