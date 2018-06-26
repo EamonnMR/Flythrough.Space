@@ -200,7 +200,14 @@
     "desc"           : "Degenerate matter projectiles are favored for various reasons-especially that they can be formed out of space dust. The Original intention was to fire a super-dense projectile in an effort to penitrate shields, forcing the shield to concentrate its energy in a very small area to defeat the projectile, which is damaging to them. It is also able to hold massive amounts of heat for its volume, and releases irradiating nutrons and alpha particles as it dissipates. The drawback is that coalescion fields (similar to the ones employed by plasma guns) cannot contain the degenerate matter for long, so the cannon's range is severely limited.",
     "price"          : 100000,
     "oftWeapon"      : "degenW",
-    "tech"           : {"itaskan_wep":1}
+    "tech"           : {"itaskan":1}
+  },
+  "sling": {
+    "10mm Shield-exclusion sling",
+    "space"          : -10,
+    "desc"           : "Works much like a force shield, but in reverse. When charged, the generators force a projectile out of a narrow channel where it picks up enough speed to have a devastating impact by the end. Very effective at long range against slow ships, but won't be able to tag faster fighters since it's an unguided projectile.",
+    "price"          : 15000,
+    "oftWeapon"      : {"itaskan": 2}
   },
   "quarkgun":{
     "name"           : "One Mole Quarkgun",
@@ -256,6 +263,14 @@
     "space"          : -22,
     "oftWeapon"      : "ion_200",
     "desc"           : "A turreted, large bore version of the ion cannon. Its operation is similar to a plasma cannon of similar description, but rather than superheating the plasma in the chamber, it's modified to ionize the plasmaas much as possible."
+  },
+  "mining_laser":{
+    "name"           : "Mining Laser, 50gw",
+    "tech"           : {"xic": 2},
+    "price"          : {50000},
+    "space"          : -20,
+    "oftWeapon"      : "mining_laser_w",
+    "desc"           : "A core component of the XIC drillship is its powerful mining laser. It can be tuned specifilly to maximize energy delivery to the target asteroid. As always, excercise caution while mining operations are being conducted. Eye protection suggested."
   }
 }  
 
