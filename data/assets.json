@@ -5,7 +5,8 @@
     "shuttle": "shuttle.babylon",
     "heavy_fi": "khanda_heavy.babylon",
     "light_fi": "light_fighter.babylon",
-    "it_clipper": "itaskan_corvette.babylon"
+    "it_clipper": "itaskan_corvette.babylon",
+    "nightshade": "nightshade.babylon"
   },
   "sprites": {
     "redblast": {

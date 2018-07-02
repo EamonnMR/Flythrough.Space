@@ -3,7 +3,7 @@
 export class PlayerSave {
   constructor(ships, upgrades) {
     // TODO: Load this from some sort of backing store / DB / etc
-    this.money = 1000000;
+    this.money = 100000000;
     this.map_pos = {x: 0, y: 0};
     this.selected_system = "Casamance";
     this.selected_spob = null;
