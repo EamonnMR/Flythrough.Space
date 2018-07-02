@@ -4,7 +4,8 @@
     "oe_fi": "empfi.babylon",
     "shuttle": "shuttle.babylon",
     "heavy_fi": "khanda_heavy.babylon",
-    "light_fi": "light_fighter.babylon"
+    "light_fi": "light_fighter.babylon",
+    "it_clipper": "itaskan_corvette.babylon"
   },
   "sprites": {
     "redblast": {
