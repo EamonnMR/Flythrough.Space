@@ -76,7 +76,7 @@ export class StoreMenu extends BaseLandingMenuView {
     let detail_widgets = [
       new StoreitemName(),
       new StoreitemDesc(),
-      new BuyButton( () => { do_buy } )
+      new BuyButton( () => { this.do_buy() } )
     ]
     let quality_offset = QUALITY_BAR_FIRST;
 

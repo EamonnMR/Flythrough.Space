@@ -2,7 +2,8 @@
   "dir": "assets/",
   "meshes": {
     "oe_fi": "empfi.babylon",
-    "shuttle": "shuttle.babylon"
+    "shuttle": "shuttle.babylon",
+    "heavy_fi": "khanda_heavy.babylon"
   },
   "sprites": {
     "redblast": {

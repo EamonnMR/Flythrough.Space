@@ -32,7 +32,10 @@ export function shipFactory(data, type, position){
   ship.direction = 0;
   ship.velocity = {x: 0, y: 0};
   ship.direction_delta = 0;
-
+  // TODO: Properly derive weapon list from equip list
+  if( ship.weapons === undefined){
+    ship.weapons = [];
+  }
   ship.weapons = ship.weapons.map((name) => data.get_weapon(name));
   ship.hittable = true;
   ship.hitpoints = ship.max_hp;

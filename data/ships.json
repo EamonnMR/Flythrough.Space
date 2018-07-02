@@ -18,13 +18,12 @@
     "max_fuel"   : 3
   },
   "civ_heavy_fighter":{
-    "mesh"       : "oe_fi",
+    "mesh"       : "heavy_fi",
     "short_name"  : "Heavy Fighter",
     "long_name"   : "Heavy Civilian Fighter",
     "full_name"   : "Khanda Heavy Fighter",
     "desc"       : "One of the few starfighters actually suitable for a trader pilot, the Heavy Fighter has decent cargo room and expansion space, and fuel scoops, originally designed to support its pair of lasers, but able to extend its range as a cargo trader as well. Also a favorite among bounty hunters, and (as some might mention) pirates.",
     "upgrades"    : {"autocannon":2, "plasma50":2},
-    "upgrades"    : {},
     "rotation"  : 0.01,
     "accel"      : 0.0001,
     "maxSpeed"   : 10,
@@ -38,7 +37,7 @@
     "long_name"   : "Accra Courier",
     "full_name"   : "Accra Starworks Courier",
     "desc"       : "This is actually the smallest vessel offered by Accra Starworks, and a very popular one for up and coming traders. While it has ample cargo bays, it does not sacrifice too much performance, allowing captains to get out of trouble if need be.",
-    "weapons"    : ["plasmatur200": 1],
+    "weapons"    : [],
     "upgrades"    : {},
     "rotation"  : 0.008,
     "accel"      : 0.000013,
