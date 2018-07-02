@@ -3,7 +3,8 @@
   "meshes": {
     "oe_fi": "empfi.babylon",
     "shuttle": "shuttle.babylon",
-    "heavy_fi": "khanda_heavy.babylon"
+    "heavy_fi": "khanda_heavy.babylon",
+    "light_fi": "light_fighter.babylon"
   },
   "sprites": {
     "redblast": {
