@@ -195,6 +195,7 @@
     "short_name"  : "Cas. Car",
     "long_name"   : "Casamance Carrier",
     "full_name"   : "Accra Starworks Type 1125 Ausf. B Battleship",
+    "mesh": "oe_carrier",
     "desc"       : "Accra produces one true warship, and this is it. Modeled after the Type 930, the 1125 is larger, slower, and able to carry more fighters into battle.",
     "upgrades"    : {"plasmatur200": 3},
     "rotation"  : 0.0001,
