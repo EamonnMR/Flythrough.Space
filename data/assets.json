@@ -7,7 +7,10 @@
     "light_fi": "light_fighter.babylon",
     "it_clipper": "itaskan_corvette.babylon",
     "nightshade": "nightshade.babylon",
-    "oe_carrier": "oe_carrier.babylon"
+    "oe_carrier": "oe_carrier.babylon",
+    "it_mask": "itaskan_something.babylon",
+    "perigrine": "perigrine.babylon",
+    "hemlock": "hemlock.babylon"
   },
   "sprites": {
     "redblast": {
