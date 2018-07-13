@@ -10,7 +10,8 @@
     "oe_carrier": "oe_carrier.babylon",
     "it_mask": "itaskan_something.babylon",
     "perigrine": "perigrine.babylon",
-    "hemlock": "hemlock.babylon"
+    "hemlock": "hemlock.babylon",
+    "starhawk": "starhawk.babylon"
   },
   "sprites": {
     "redblast": {
