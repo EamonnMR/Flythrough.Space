@@ -23,20 +23,42 @@
     "space"          : -5,
     "desc"           : "This energy weapon dates back to at least before the sector was settled, and perhaps even earlier. Versions of it have been seen on many worlds, but it was standardized and mass produced by the Empire. It propels a high-energy shaped plasma burst at the target, maximizing damage and using very little energy. However it quickly dissipates and its damage potential diminishes over time. It is best used at close range.",
     "price"          : 500,
-    "oftWeapon"      : "plasma50w",
+    "weapon"      : {
+      "sprite": "plasma50",
+      "miss": 0.1,
+      "cooldown": 500,
+      "velocity": 0.001,
+      "proj": {
+        "damage": 1,
+        "shield_damage": 2,
+        "max_age": 5000,
+        "collider": {"radius": 0.3}
+      }
+    },
     "tech"           : {"oe_wep":1}
   },
-  "plasmatur200":{
+  "plasma200w":{
     "name"           : "Plasma Turret 200kj",
     "icon"           : "img/onyx/Onyx/Edited/27.png",
     "space"          : -25,
-    "desc"           : "Approxmiately four times as powerful as the standard cannon, the type 400 200kj plasma turret is mounted on most larger civilian ships, as its military use has been eclipsed by more powerful and efficient cannons.",
+    "desc"           : "Approxmiately four times as powerful as the standard cannon, the type 400 200kj plasma turret is mounted on most larger civilian ships, as its military use has been eclipsed by more powerful and efficient cannons. Still, if you haven't got a navy at your back, it does not hurt to be packing a 200.",
     "price"          : 2500,
-    "oftWeapon"      : "plasma200w",
+    "weapon"         : {
+      "sprite": "plasma200",
+      "miss": 0.05,
+      "cooldown": 1500,
+      "velocity":0.001,
+      "proj": {
+        "shielddmg": 60,
+        "hulldmg": 30,
+        "max_age":8000,
+        "collider": {"radius": 1.2}
+      }
+    },
     "tech"           : {"oe_wep":2}
   },
   "goldarmor":{
-    "name"           : "Nanotech armor",
+    "name"           : "Nanite Armor",
     "icon"           : "img/onyx/Onyx/Ofts/43.png",
     "space"          : -1,
     "desc"           : "Arguably the most advanced armor available, it is used extensively by the 7th fleet, as evedenced by the gleaming gold color of their hulls. Though not the absolute most protection pound-for-pound, it is unique in its ability to self-repair damage over time.",
@@ -48,15 +70,28 @@
     "name"           : "20mm Autocannon",
     "icon"           : "img/GrandNoviceGraphics/outfits/gat.bmp",
     "space"          : -3,
-    "desc"           : "An elegant weapon, from a less civilized age, the 20mm autocannon is a close combat weapon due mainly to its inaccuracy. It fires high-explosive, armor piercing shells at high velocities, propelled through eight barrels. It is often used as a cheap close-in weapon, after plasma cannons have been used to strip away shields, as it is more efficient at penitrating armor (having been perfected long before energy shields ever where.",
+    "desc"           : "An elegant weapon, from a less civilized age. the 20mm autocannon is a close combat weapon due mainly to its inaccuracy. It fires high-explosive, armor piercing shells at high velocities, propelled through eight barrels. It is often used as a cheap close-in weapon, after plasma cannons have been used to strip away shields, as it is more efficient at penitrating armor (having been perfected long before energy shields ever where.",
     "price"          : 500,
     "exclass"        : "autocannon",
-    "oftWeapon"      : "autocannonW",
+    "weapon"      : {
+      "sprite":"brass_shell",
+      "velocity":0.35,
+      "miss":0.5,
+      "cooldown":50,
+      "burstsize":20,
+      "burstcooldown":500,
+      "ammo":"autocannonammo",
+      "proj": {
+        "shielddmg":1,
+        "hulldmg":5,
+        "max_age":100000,
+        "collider": {"radius": 0.1}
+      }
+    },
     "tech"           : {"oe_wep":1}
   },
   "autocannonammo":{
     "name"           : "20mm Shells",
-    "icon"           : "img/GrandNoviceGraphics/outfits/gatAmmo.bmp",
     "space"          : -0.01,
     "desc"           : "Autocannon shells are compact containers for an explosive warhead and propellant. The propellant is ignited inside the barrel by electromagnetic induction outside it, leaving behind no case to eject (or make the ammo heavier.)",
     "price"          : 10,
