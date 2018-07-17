@@ -64,6 +64,7 @@ export class Weapon {
   tryShoot(entMan, entity) {
     if(this.timer <= 0) {
       this.timer += this.period;
+      debugger;
       entMan.insert(bulletFactory(
                     entity.position,
                     new BABYLON.Sprite("bullet", this.sprite),

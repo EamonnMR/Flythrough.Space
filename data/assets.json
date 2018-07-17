@@ -14,10 +14,45 @@
     "starhawk": "starhawk.babylon"
   },
   "sprites": {
-    "redblast": {
-      "img": "assets/redblast.png",
+    "plasma": {
+      "img": "assets/sprites/plasma.png",
       "count": 1000,
-      "size": 16 
+      "size":  32
+    },
+    "plasma_large": {
+      "img": "assets/sprites/plasma_large.png",
+      "count": 1000,
+      "size":  128
+    },
+    "ion": {
+      "img": "assets/sprites/ion.png",
+      "count": 1000,
+      "size":  32
+    },
+    "ion_large": {
+      "img": "assets/sprites/ion_large.png",
+      "count": 1000,
+      "size":  128
+    },
+    "antimatter": {
+      "img": "assets/sprites/antimatter.png",
+      "count": 1000,
+      "size":  32
+    },
+    "autocannon": {
+      "img": "assets/sprites/autocannon.png",
+      "count": 1000,
+      "size":  32
+    },
+    "degenerate_matter": {
+      "img": "assets/sprites/degenerate_matter.png",
+      "count": 1000,
+      "size":  32
+    },
+    "missile": {
+      "img": "assets/sprites/missile.png",
+      "count": 1000,
+      "size":  64
     },
     "redplanet": {
       "img": "assets/renderwahn_planets/A00.png",
@@ -38,7 +73,6 @@
     "upgrades": "upgrades.json",
     "ships": "ships.json",
     "spobtypes": "spobtypes.json",
-    "weapons": "weapons.json",
     "trade": "trade.json"
   }
 }

@@ -39,7 +39,6 @@
   },
   "plasma200w":{
     "name"           : "Plasma Turret 200kj",
-    "icon"           : "img/onyx/Onyx/Edited/27.png",
     "space"          : -25,
     "desc"           : "Approxmiately four times as powerful as the standard cannon, the type 400 200kj plasma turret is mounted on most larger civilian ships, as its military use has been eclipsed by more powerful and efficient cannons. Still, if you haven't got a navy at your back, it does not hurt to be packing a 200.",
     "price"          : 2500,
@@ -68,13 +67,12 @@
   },
   "autocannon":{
     "name"           : "20mm Autocannon",
-    "icon"           : "img/GrandNoviceGraphics/outfits/gat.bmp",
     "space"          : -3,
     "desc"           : "An elegant weapon, from a less civilized age. the 20mm autocannon is a close combat weapon due mainly to its inaccuracy. It fires high-explosive, armor piercing shells at high velocities, propelled through eight barrels. It is often used as a cheap close-in weapon, after plasma cannons have been used to strip away shields, as it is more efficient at penitrating armor (having been perfected long before energy shields ever where.",
     "price"          : 500,
     "exclass"        : "autocannon",
     "weapon"      : {
-      "sprite":"brass_shell",
+      "sprite":"autocannon",
       "velocity":0.35,
       "miss":0.5,
       "cooldown":50,
@@ -238,7 +236,7 @@
     "tech"           : {"itaskan":1}
   },
   "sling": {
-    "10mm Shield-exclusion sling",
+    "name"           : "10mm Shield-exclusion sling",
     "space"          : -10,
     "desc"           : "Works much like a force shield, but in reverse. When charged, the generators force a projectile out of a narrow channel where it picks up enough speed to have a devastating impact by the end. Very effective at long range against slow ships, but won't be able to tag faster fighters since it's an unguided projectile.",
     "price"          : 15000,
@@ -249,21 +247,21 @@
     "space"          : -10,
     "price"          : 10000,
     "oftWeapon"      : "quark_weapon",
-    "tech":          : {"wsc": 1},
-    "desc":          : "Using a stabilized payload of like-colored quarks, the projectile from this weapon is attached to the target by gluons, which singshot it with devastating force. If it manages to make contact with a target's hull, the now free quarks will play havoc with its atomic structure, causing unpredictable (but always devastating) damage. A curious side effect of the strong-force \"guidance\" is that the further away the target is when the projectile is launched, the more damage it will do."
+    "tech"          : {"wsc": 1},
+    "desc"          : "Using a stabilized payload of like-colored quarks, the projectile from this weapon is attached to the target by gluons, which singshot it with devastating force. If it manages to make contact with a target's hull, the now free quarks will play havoc with its atomic structure, causing unpredictable (but always devastating) damage. A curious side effect of the strong-force \"guidance\" is that the further away the target is when the projectile is launched, the more damage it will do."
   },
   "vampgun":{
     "name": "Wave Siphon",
-    "oftWeapon":     : "vampire_gun",
-    "tech":          : {"wsc": 2},
-    "price":         : 100000,
-    "desc":          : "Faced with the problem of shields, and not to be outdone, the WSC have deployed a dedicated anti-shield weapon across its fleet. It requires getting to knife fight range, but the reward is that for every kilowatt of shields drained from a target, the Siphon can recharge the ship's shields by .8kw, an impressive ratio. It is, of course, totally ineffectual against armor."
+    "oftWeapon"     : "vampire_gun",
+    "tech"          : {"wsc": 2},
+    "price"         : 100000,
+    "desc"          : "Faced with the problem of shields, and not to be outdone, the WSC have deployed a dedicated anti-shield weapon across its fleet. It requires getting to knife fight range, but the reward is that for every kilowatt of shields drained from a target, the Siphon can recharge the ship's shields by .8kw, an impressive ratio. It is, of course, totally ineffectual against armor."
   },
   "wsc_armor":{
     "name"           : "Monoparticulate Plate",
     "tech"           : {"wsc": 2},
     "price"          : 10000,
-    "desc":          : "Formed as a single nucleaon, each (assuredly macro-scopic) plate of this armor is held together by the same force that holds protons and neutrons together. The toughest armor in the known galaxy. Has a tendancy to get blown clean off rather than fracture. Though when it does fracture, it tends to take everything nearby with it.",
+    "desc"          : "Formed as a single nucleaon, each (assuredly macro-scopic) plate of this armor is held together by the same force that holds protons and neutrons together. The toughest armor in the known galaxy. Has a tendancy to get blown clean off rather than fracture. Though when it does fracture, it tends to take everything nearby with it.",
     "armor"          : 1000,
     "explodamage"    : 1000
   },
@@ -284,8 +282,8 @@
     "desc"           : "Your standard electrostatic discharge which overwhelms shields by cooking the generator. Simple, right? Wrong-a happy accident, it turns out that it can essentially turn the target's shields into a projector for the same sort of beam. With careful tuning, this lead to the capability of bouncing the beam off the initial target and on to further targets. This acts as a force multiplier, allowing a smaller number of fighters to face down more numerous foes."
   },
   "ion_cannon_50":{
-    "name":          : "Ion cannon, 50 Coulomb",
-    "tech":          : {"pirate": 2},
+    "name"          : "Ion cannon, 50 Coulomb",
+    "tech"          : {"pirate": 2},
     "price"          : 1200,
     "space"          : -5,
     "oftWeapon"      : "ion_50",
@@ -302,7 +300,7 @@
   "mining_laser":{
     "name"           : "Mining Laser, 50gw",
     "tech"           : {"xic": 2},
-    "price"          : {50000},
+    "price"          : 50000,
     "space"          : -20,
     "oftWeapon"      : "mining_laser_w",
     "desc"           : "A core component of the XIC drillship is its powerful mining laser. It can be tuned specifilly to maximize energy delivery to the target asteroid. As always, excercise caution while mining operations are being conducted. Eye protection suggested."

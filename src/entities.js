@@ -24,17 +24,19 @@ export function playerShipFactory(data, type, position, camera, hud, player) {
   return ship;
 };
 
-export function apply_attribute(ship, upgrade,  data){
+export function apply_upgrade(ship, upgrade,  data){
   for(let key of Object.keys(upgrade)){
     if(key === "weapon"){
-      weapon = upgrade.weapon;
-      ship.weapons.push( Weapon(
+      let weapon = upgrade.weapon;
+      ship.weapons.push( new Weapon(
         weapon.cooldown,
         data.get_sprite(weapon.sprite),
-        data.proj,
-        data.velocity
+        weapon.proj,
+        weapon.velocity
       ));
-    } else if (key === "price"){
+    } else if (key === "price" || key === "tech"){
+      // TODO: Should ships auto-include the price of upgrades?
+      // Would that make life easier or harder?
       continue;
     } else {
       let value = upgrade[key];
@@ -55,8 +57,8 @@ export function apply_attribute(ship, upgrade,  data){
 export function apply_upgrades(ship, upgrades, data){
   ship.weapons = [];
   for(let key of Object.keys(upgrades)){
-    for(let i = 0; i > upgrades[key]; i++){
-      apply_upgrade(ship, data.upgrades[key]);
+    for(let i = 0; i < upgrades[key]; i++){
+      apply_upgrade(ship, data.upgrades[key], data);
     }
   }
 }
