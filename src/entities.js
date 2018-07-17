@@ -1,3 +1,5 @@
+import { Weapon } from "./weapon.js";
+
 let SHIP_Z = -2;
 
 export function npcShipFactory(data, type, position, hud, ai, govt){
@@ -22,6 +24,43 @@ export function playerShipFactory(data, type, position, camera, hud, player) {
   return ship;
 };
 
+export function apply_attribute(ship, upgrade,  data){
+  for(let key of Object.keys(upgrade)){
+    if(key === "weapon"){
+      weapon = upgrade.weapon;
+      ship.weapons.push( Weapon(
+        weapon.cooldown,
+        data.get_sprite(weapon.sprite),
+        data.proj,
+        data.velocity
+      ));
+    } else if (key === "price"){
+      continue;
+    } else {
+      let value = upgrade[key];
+      let type = typeof(value);
+      if(type === "number"){
+        // Numbers modify the ship's default values
+        ship[key] = ship[key] + value;
+      } else if (type === "boolean" || type == "string"){
+        // We can't be too clever with string values, so just set these.
+        ship[key] = value;
+      } else {
+        console.log("Unsupported type " + type + " in key " + key + " of an upgrade");
+      }
+    }
+  }
+}
+
+export function apply_upgrades(ship, upgrades, data){
+  ship.weapons = [];
+  for(let key of Object.keys(upgrades)){
+    for(let i = 0; i > upgrades[key]; i++){
+      apply_upgrade(ship, data.upgrades[key]);
+    }
+  }
+}
+
 export function shipFactory(data, type, position){
   let ship = Object.create(data.ships[type]);
 
@@ -32,17 +71,12 @@ export function shipFactory(data, type, position){
   ship.direction = 0;
   ship.velocity = {x: 0, y: 0};
   ship.direction_delta = 0;
-  // TODO: Properly derive weapon list from equip list
-  //if( ship.weapons === undefined){
-  //  ship.weapons = [];
-  //}
-  //ship.weapons = ship.weapons.map((name) => data.get_weapon(name));
-  ship.weapons = [];
   ship.hittable = true;
   ship.hitpoints = ship.max_hp;
   ship.shields = ship.max_shields;
   ship.collider = {radius: .5};
   ship.fuel = ship.max_fuel;
+  apply_upgrades(ship, ship.upgrades, data);
   return ship;
 };
 

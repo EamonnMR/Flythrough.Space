@@ -6,7 +6,6 @@
  * directly into the data object under the key in "data".
  */
 
-import { Weapon } from "./weapon.js";
 
 export class Data {
   constructor (){
@@ -35,14 +34,6 @@ export class Data {
       sprname = name;
     }
     return new BABYLON.Sprite(name, this.sprites[sprname]);
-  }
-
-  get_weapon(name){
-    // TODO: Rewrite the weapon code to not use a class (?)
-    let data = this.weapons[name];
-    let sprite = this.sprites[data.sprite];
-    return new Weapon(data.cooldown, sprite,
-        data.proj, data.velocity);
   }
 }
 
