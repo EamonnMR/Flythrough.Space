@@ -28,12 +28,17 @@ export class Data {
     return model.clone();
   }
 
-  get_sprite(name){
+  get_sprite_mgr(name){
+    // TODO: Better default
     let sprname = "redplanet";
     if (name in this.sprites){
       sprname = name;
     }
-    return new BABYLON.Sprite(name, this.sprites[sprname]);
+    return this.sprites[sprname];
+  }
+  
+  get_sprite(name){
+    return new BABYLON.Sprite(name, this.get_sprite_mgr(name));
   }
 }
 

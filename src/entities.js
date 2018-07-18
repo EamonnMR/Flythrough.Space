@@ -24,13 +24,13 @@ export function playerShipFactory(data, type, position, camera, hud, player) {
   return ship;
 };
 
-export function apply_upgrade(ship, upgrade,  data){
+export function apply_upgrade(ship, upgrade, data){
   for(let key of Object.keys(upgrade)){
     if(key === "weapon"){
       let weapon = upgrade.weapon;
       ship.weapons.push( new Weapon(
         weapon.cooldown,
-        data.get_sprite(weapon.sprite),
+        data.get_sprite_mgr(weapon.sprite),
         weapon.proj,
         weapon.velocity
       ));

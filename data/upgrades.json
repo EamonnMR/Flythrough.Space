@@ -73,7 +73,7 @@
     "exclass"        : "autocannon",
     "weapon"      : {
       "sprite":"autocannon",
-      "velocity":0.35,
+      "velocity":0.035,
       "miss":0.5,
       "cooldown":50,
       "burstsize":20,
