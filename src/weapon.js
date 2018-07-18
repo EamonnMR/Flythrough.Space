@@ -26,7 +26,7 @@ function bulletFactory(position, sprite, direction, speed, initialVelocity, prot
   sprite.position.y = position.y;
   sprite.position.z = 0;
   sprite.angle = direction;
-  sprite.size = 0.5;
+  sprite.size = 0.115;
   let velocity = {'x': initialVelocity.x, 'y': initialVelocity.y};
   accelerate(velocity, direction, speed);
 
