@@ -54,6 +54,16 @@
       "count": 1000,
       "size":  64
     },
+    "sling": {
+      "img": "assets/sprites/sling.png",
+      "count": 1000,
+      "size":  64
+    },
+    "gluon": {
+      "img": "assets/sprites/gluon.png",
+      "count": 1000,
+      "size":  32
+    },
     "redplanet": {
       "img": "assets/renderwahn_planets/A00.png",
       "count": 10,
