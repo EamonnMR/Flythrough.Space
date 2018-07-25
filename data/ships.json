@@ -167,6 +167,7 @@
   "cas_oe_fighter"   :{
     "short_name"  : "Cas. Fighter",
     "long_name"   : "Casamance Fighter",
+    "mesh": "cas_fighter",
     "full_name"   : "Casamance Starfighter Type 950 Ausf B",
     "desc"       : "Basically, this is a repainted Old Empire Type 950, barely improved with more modern weapons. It is a point of pride in the Casamance Directorate to still run these ships, and what they lack in power is made up for in numbers. And the build quality of Accra Starworks is certainly better than the dodgy backwater shipyards that crank out the more common variant.",
     "upgrades"    : {"ejectorrack":4, "plasma50":2, "dumbfiremissile": 4},
@@ -198,7 +199,7 @@
     "short_name"  : "Cas. Car",
     "long_name"   : "Casamance Carrier",
     "full_name"   : "Accra Starworks Type 1125 Ausf. B Battleship",
-    "mesh": "oe_carrier",
+    "mesh": "cas_carrier",
     "desc"       : "Accra produces one true warship, and this is it. Modeled after the Type 930, the 1125 is larger, slower, and able to carry more fighters into battle.",
     "upgrades"    : {"plasma200": 3},
     "rotation"  : 0.0001,
