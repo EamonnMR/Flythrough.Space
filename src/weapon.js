@@ -64,15 +64,17 @@ export class Weapon {
   tryShoot(entMan, entity) {
     if(this.timer <= 0) {
       this.timer += this.period;
-      entMan.insert(bulletFactory(
-                    entity.position,
-                    new BABYLON.Sprite("bullet", this.sprite_mgr),
-                    entity.direction,
-                    this.speed,
-                    entity.velocity || {'x': 0, 'y': 0},
-                    this.projectile,
-                    'govt' in entity ? entity.govt : null,
-                    'player_aligned' in entity))
+      if (this.projectile){
+        entMan.insert(bulletFactory(
+                      entity.position,
+                      new BABYLON.Sprite("bullet", this.sprite_mgr),
+                      entity.direction,
+                      this.speed,
+                      entity.velocity || {'x': 0, 'y': 0},
+                      this.projectile,
+                      'govt' in entity ? entity.govt : null,
+                      'player_aligned' in entity))
+      }
     }
   }
 

@@ -92,6 +92,7 @@
   "vera":{
     "short_name"  : "Vera",
     "long_name"   : "Meklin Vera",
+    "mesh":   "vera",
     "full_name"   : "Meklin Design Bureau Vera class Escort Frigate",
     "desc"       : "You could say that the Vera is a compromise between raw power and elegance, but that would be selling the Melkin design bearu short. One of the best ships on the civilian market, traders and mercinaries alike salivate over the prospect of flying one of these monsters.",
     "upgrades"    : {"plasma200": 3, "ejectorrack": 4, "guidedmissile": 20},
@@ -106,6 +107,7 @@
   "pertinax":{
     "short_name"  : "Pertinax",
     "long_name"   : "Caudron Pertinax",
+    "mesh":   "vera",
     "full_name"   : "Caudron Staryards Pertinax Heavy Frigate",
     "desc"       : "Built off of Melkin's famous Vera class, the Pertinax is specialized for piracy, packing dragnet turrets and ion cannons. Probably the most feared pirate ship in the galaxy.",
     "upgrades"    : {"ion_cannon_200": 3, "dragnet": 2, "ejectorrack": 4, "guidedmissile":20},
