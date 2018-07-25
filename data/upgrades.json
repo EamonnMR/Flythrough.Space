@@ -10,7 +10,6 @@
   },
   "nospaceexp":{
     "name"           : "Optimal Upgrade Space",
-    "icon"           : "img/onyx/Onyx/Ofts/20.png",
     "space"          : 0,
     "desc"           : "This ship is already optomized for upgrade space; no more cargo room can be converted to free space.",
     "price"          : 0,
@@ -19,12 +18,11 @@
   },
   "plasma50": {
     "name"           : "Plasma Cannon 50kj",
-    "icon"           : "img/onyx/Onyx/Ofts/27.png",
     "space"          : -5,
     "desc"           : "This energy weapon dates back to at least before the sector was settled, and perhaps even earlier. Versions of it have been seen on many worlds, but it was standardized and mass produced by the Empire. It propels a high-energy shaped plasma burst at the target, maximizing damage and using very little energy. However it quickly dissipates and its damage potential diminishes over time. It is best used at close range.",
     "price"          : 500,
     "weapon"      : {
-      "sprite": "plasma50",
+      "sprite": "plasma",
       "miss": 0.1,
       "cooldown": 500,
       "velocity": 0.001,
