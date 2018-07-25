@@ -147,7 +147,6 @@ export class StoreitemName extends TextBox {
 
 export class StoreQuantLabel extends TextBox {
   constructor(text, top){
-    console.log(top);
     super(
       text,
       BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT,

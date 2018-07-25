@@ -34,7 +34,7 @@ export function apply_upgrade(ship, upgrade, data){
         weapon.proj,
         weapon.velocity
       ));
-    } else if (key === "price" || key === "tech"){
+    } else if (key === "price" || key === "tech" || key === "desc" || key === "name"){
       // TODO: Should ships auto-include the price of upgrades?
       // Would that make life easier or harder?
       continue;
@@ -58,7 +58,12 @@ export function apply_upgrades(ship, upgrades, data){
   ship.weapons = [];
   for(let key of Object.keys(upgrades)){
     for(let i = 0; i < upgrades[key]; i++){
-      apply_upgrade(ship, data.upgrades[key], data);
+      let upgrade = data.upgrades[key];
+      if(upgrade === undefined){
+        console.log("Invalid Upgrade: " + key);
+      } else {
+        apply_upgrade(ship, data.upgrades[key], data);
+      }
     }
   }
 }
@@ -134,7 +139,6 @@ export function modelPositionSystem (entMan) {
 };
 
 export function npcSpawnerFactory(data, system, typeset, hud) {
-  console.log(system);
   return {
     spawner: true,
     spawns_npc: true,
@@ -162,7 +166,6 @@ export function npcSpawnerSystem(entMan) {
                                 {state: 'passive'},
                                 spawner.govt
       );
-      console.log(npc);
       entMan.insert(npc);
 		}
   }

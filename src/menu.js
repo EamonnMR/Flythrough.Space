@@ -5,7 +5,6 @@ export class BaseMenuView extends ViewState {
     this.adt = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
     this.widgets = widgets;
     for (let widget of widgets){
-      console.log(widget);
       let control = widget.get_control();
       this.adt.addControl(control);
     }
