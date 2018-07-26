@@ -1,6 +1,19 @@
+import { accelerate, rotate } from "./physics.js";
+
+/* Some slightly gross stuff here - 
+ * Basically using the module as a singleton object to hold the current
+ * game_ctrl which ought to be a class but isn't, with member functions
+ * that allow different game states to respond to different key presses.
+ *
+ * Its abstracted in that the states bind to an action rather than a key
+ * code, but the key codes are hardcoded here. So, as I said, slightly
+ * gross. */
+
 let game_ctrl = null;
 
 let debounce_esc = false;
+
+let no_op = () => {};
 
 // TODO: GameCtrl should be a class.
 
@@ -8,7 +21,7 @@ export function inputSystem (entMan) {
   for (let entity of entMan.get_with(['input'])) {
     if ('velocity' in entity) {
       if (inputStates.forward) {
-        physics.accelerate(entity.velocity,
+        accelerate(entity.velocity,
                                   entity.direction,
                                   entity.accel * entMan.delta_time)
       }
@@ -16,11 +29,11 @@ export function inputSystem (entMan) {
     if ('direction' in entity) {
       let angle = entity.rotation * entMan.delta_time;
       if (inputStates.left) {
-        physics.rotate(entity, angle);
+        rotate(entity, angle);
         entity.direction_delta = -1 * angle;
       }
       else if (inputStates.right) {
-        physics.rotate(entity, -1 * angle );
+        rotate(entity, -1 * angle );
         entity.direction_delta = angle;
       }
 //      else {
@@ -96,19 +109,18 @@ function handleKeyUp ( event ){
 };
 
 export function bindInputFunctions(new_game_ctrl){
-  $(document).keydown( handleKeyDown );
-  $(document).keyup( handleKeyUp );
-
+  window.onkeydown = handleKeyDown;
+  window.onkeyup = handleKeyUp;
   game_ctrl = new_game_ctrl;
 };
 
 // TODO: Make this a superclass that other gamectrls inherit from.
 let no_op_game_ctrl = {
-  toggle_pause: () => {},
-  reset_game: () => {},
-  hyper_jump: () => {},
-  try_land: () => {},
-}
+  toggle_pause: no_op, 
+  reset_game: no_op,
+  hyper_jump: no_op,
+  try_land: no_op,
+};
 
 export function unbindInputFunctions(){
   game_ctrl = no_op_game_ctrl;

@@ -5,7 +5,7 @@
 		"y"    : 140,
 		"govt" : "direc",
 		"text": "The birthplace of the modern FTL drive, and capital of the Old Empire. It was these shipyards that built the first wave of ships that crossed the Aleutian sector, and is still a hub for ship construction. After the empire's collapse, most of the government fled, leaving the shipwrights in charge. They ultimately formed Accra Drive Systems, a successful manufacturer of modern starships.",
-		"comodities":{
+		"trade":{
 			"alloy":"high",
 			"grain":"high",
 			"dut":"high",
@@ -23,7 +23,8 @@
 			"accra":3,
 			"generic":3,
 			"casa":3
-		}
+		},
+    "shipyard": true
 },
 	
 	"Wajir":{
@@ -38,12 +39,13 @@
 		"text" :"Although the Cartwright system has been populated for all of recorded history, it was not on this planet, since its harsh environment makes living difficult. Though there are signifigant metal deposits here, it is difficult to extract.",
 		"x":100,
 		"y":300,
-		"govt":"pax",
-		"comodities":{
-			"carbon":"low",
+		"govt":"direc",
+		"trade":{
 			"roto":"high",
 			"dark":"high",
-			"gas":"med"
+			"gas":"med",
+      "metal":"med",
+      "ore":"low"
 		}
 	},
 	"Zachit":{
@@ -51,8 +53,8 @@
 		"text":"Population center of the Cartwright system, the massive Zachit station is home to millions. Though it can generate its own power, it has long since replaced its agracultural segments with living space, favoring imports. As a result, traders favor the station as well.",
 		"x":-100,
 		"y":-348,
-		"govt":"pax",
-		"comodities":{
+		"govt":"direc",
+		"trade":{
 			"water":"high",
 			"grain":"high",
 			"ethyl":"high"
@@ -60,12 +62,12 @@
 		"tech":{
 			"generic":1,
 			"accra":1,
-			"schen":1
+			"direc":1
 		}
 	},
 	"Miranu":{
 		"sType":"onyxM4Earthlike",
-		"govt":"pax",
+		"govt":"direc",
 		"text":"In the far corner of the Cartwright system orbits Miranu, a small world that is jealously guarded by the Zachit government as a premere vacation destination. Trips to it where largely kept secret from the public until 495 when the fact that the tiny planet that everyone could see was actually being landed on. It was the first step for the inhabitants of this system to the stars.",
 		"x":200,
 		"y":480
@@ -75,22 +77,22 @@
 		"text" : "Cook's stark, reddish atmosphere is highly toxic due to its exotic composition of various heavy metals. However, beneth this harsh surface is a treasure trove of valuable minerals for export.",
 		"x": 75,
 		"y": 150,
-		"govt":"pax",
-		"comodities":{
+		"govt":"direc",
+		"trade":{
 			"dark":"low",
 			"powerconv":"high"
 		}
 	},
 	"Dafydd":{
 		"sType": "aresSmallStation",
-		"govt":"pax",
-		"text" : "This station is jointly owned by all members of the Schengen federation, and administered by its navy. It supports the various mining intrests on the inhospitable surface of Cook from orbit.",
-		"comodities":{
+		"govt":"direc",
+		"text" : "This station is jointly owned by member planets of the Directorate, and administered by its navy. It supports the various mining intrests on the inhospitable surface of Cook from orbit.",
+		"trade":{
 			"carbon":"high"
 		},
 		"tech":{
 			"generic":1,
-			"schen":1
+			"direc":1
 		},
 		"x": -150,
 		"y": -75
@@ -103,18 +105,18 @@
 	},
 	"Thrace":{
 		"sType": "onyxRedU",
-		"govt":"pax",
-		"text": "A heavly populated (some would say overpopulated) world at the heart of the Schengen federation. What federal rule there is nominally takes place here, with representatives converging yearly to decide matters of interplanetary importance. However, the planet is largely populated with the poor, as it is an inhospitable world. Factories here churn out goods that are seen throughout the sector, and you can bet that someone was underpaid to make them.",
+		"govt":"direc",
+		"text": "A heavly populated (some would say overpopulated) world. Ostensably a major voting member of the directorate, with representatives converging yearly to decide matters of interplanetary importance. However, the planet is largely populated with the poor, as its climate is less than ideal. The real seat of power in this system is the station orbiting the planet, where the wealthy of Thrace live in luxury. Factories here churn out goods that are seen throughout the sector, and you can bet that someone was underpaid to make them.",
 		"x" :24,
 		"y" :-45,
 		"tech":{
 			"oe_wep":3,
 			"fu":1,
 			"generic":1,
-			"schen":1,
+			"direc":1,
 			"kps":1
 		},
-		"comodities":{
+		"trade":{
 			"ethyl":"med",
 			"alloy":"low",
 			"grain":"high"
@@ -123,7 +125,7 @@
 	"Argive":{
 		"sType":"oneRingStation",
 		"govt":"direc",
-		"text":"Some call this station the &quot;real&quot; capital of the federation, for this is where the wealthy of Thrace spend most of their time. It's been equipped with state of the art facilities and functions like a giant apartment building, or hotel.",
+		"text":"Some call this station the &quot;real&quot; capital of Thrace, for this is where the wealthy of Thrace spend most of their time. It's been equipped with state of the art facilities and functions like a giant apartment building, or hotel. Many scandalous documentaries about wealth inequality have been recorded within its hallowed halls.",
 		"x":10,
 		"y":30
 	},
@@ -162,17 +164,18 @@
 		"y":0
 	},
 	"Kennerud":{
+    "govt": "direc",
 		"sType":"onyxEarthlikeB",
-		"text":"A major industrial world, Kennerud has been slowly optomized over hundreds of years to turn out weapons and reactors, first for the empire, and now, as a member of the Schengen Federation, for pure profit. The planet is, in effect, run by KPS (Kennerud Power Systems) the universe's leading manufacturer of next-gen plasma weapons.",
+		"text":"A major industrial world, Kennerud has been slowly optomized over hundreds of years to turn out weapons and reactors, first for the empire, and now, as a member of the Directorate , for pure profit. The planet is, in effect, run by KPS (Kennerud Power Systems) the universe's leading manufacturer of next-gen plasma weapons.",
 		"tech":{
 			"accra":1,
 			"oe_wep":3,
 			"generic":3,
 			"kps":3,
-			"schen":3,
+			"direc":3,
 			"oe_ship":3
 		},
-		"comodities":{
+		"trade":{
 			"grain":"med",
 			"alloy":"high",
 			"plas":"low",
@@ -193,7 +196,7 @@
 	"Phobos":{
 		"sType":"Phobostype",
 		"text":"It looks like there might have been a colony on the surface of this planet at some point, but not recently. Scans indicate that several displacer-tech accidents happened here. Judging by the scarring on the walls, somebody with a rocket launcher shot the place up pretty well. You decide not to go any deeper, in case they're still around.",
-		"comodities":{
+		"trade":{
 			"uacbarrels":"low"
 		},
 		"x":0,
@@ -220,15 +223,15 @@
 	
 	"Bjarne":{
 		"sType":"onyxEarthlikeE",
-		"govt":"pax",
-		"text":"Vast oceans dominate Bjarne's landscape, and industrial activity dominates the surface. Bjarne one of the most enterprise focused worlds in the federation.",
+		"govt":"direc",
+		"text":"Vast oceans dominate Bjarne's landscape, and industrial activity dominates the surface. Bjarne one of the most enterprise focused worlds in the Directorate.",
 		"tech":{
 			"khanda":2,
 			"oe_wep":2,
 			"oe_ship":1,
-			"schen":1
+			"direc":1
 		},
-		"comodities":{
+		"trade":{
 			"water":"low",
 			"alloy":"med",
 			"roto":"low",
@@ -240,7 +243,7 @@
 	},
 	"Adriaan":{
 		"sType":"onyxEarthlikeC",
-		"govt":"pax",
+		"govt":"direc",
 		"text":"A pleasat, if slightly cold climate. The inhabitents of this planet formed a culture centered around various forms of comitties, using them to decide everything from what types of goods to produce to who to send to represent them on Thrace.",
 		"tech":{
 			"generic":1,
@@ -248,7 +251,7 @@
 			"oe_wep":2,
 			"oe_ship":1
 		},
-		"comodities":{
+		"trade":{
 			"water":"low",
 			"alloy":"med",
 			"ethyl":"high",
@@ -264,7 +267,7 @@
 		"tech":{
 			"generic":1
 		},
-		"comodities":{
+		"trade":{
 			"ethyl":"med",
 			"plas":"low",
 			"roto":"low"
@@ -282,7 +285,7 @@
 			"generic":1,
 			"accra":2
 		},
-		"comodities":{
+		"trade":{
 			"plas":"high",
 			"water":"med",
 			"dut":"med"
@@ -296,7 +299,7 @@
 		"text":"In a remote corner of the Casamance Directorite floats Turkana, an agracultural paradise. Praised as one of the best terraformed worlds in Casamance space, it is covered in farms and dotted with agracultural plants. Many of the powerful famlies here can trace back to Emperial officers who chose this planet as a place of retirement.",
 		"x":0,
 		"y":0,
-		"comodities":{
+		"trade":{
 			"agra":"high",
 			"grain":"low",
 			"roto":"high",
@@ -356,7 +359,7 @@
 		"y":123,
 		"govt":"direc",
 		"text":"Despite its appearance, Ubuntu is actually a very habitable planet once you get used to the environment. It specializes in manufacturing computer components, and providing support.",
-		"comodities":{
+		"trade":{
 			"compu":"low",
 			"pure":"high",
 			"powerconv":"med"
@@ -380,7 +383,7 @@
 			"generic":3,
 			"accra":1
 		},
-		"comodities":{
+		"trade":{
 			"alloy":"high",
 			"dark":"high",
 			"xerum":"high",
@@ -425,7 +428,7 @@
 			"generic":3,
 			"wlkn":3
 		},
-		"comodities":{
+		"trade":{
 			"water":"high",
 			"grain":"high",
 			"pure":"high",
@@ -478,7 +481,7 @@
 			"itaskan_wep":2,
 			"itaskan_ship":1
 		},
-		"comodities":{
+		"trade":{
 			"water":"low",
 			"grain":"high",
 			"pure":"med",
@@ -490,7 +493,7 @@
 		"x":184,
 		"y":203,
 		"text":"This unremarkable moon has only one feature of interplanetary intrest-it is one of the few known sources of 'Xerum', also known as red mercury",
-		"comodities":{
+		"trade":{
 			"xerum":"low"
 		}
 	},
@@ -541,7 +544,7 @@
 		"x":0,
 		"y":0,
 		"text":"With no biosphere, Angeles was an ideal testbed for airtight colony technology. It was a smashing success and its population now numbers in the tens of billions.",
-		"comodities":{
+		"trade":{
 			"water":"high",
 			"grain":"high",
 			"pure":"low",
@@ -561,7 +564,7 @@
 		"x":-10,
 		"y":20,
 		"text":"The methane atmosphere makes the planet unattractive except for mining operations.",
-		"comodities":{
+		"trade":{
 			"alloy":"low",
 			"pure":"med",
 			"gas":"low",
@@ -599,7 +602,7 @@
 		"x":300,
 		"y":-30,
 		"text":"Over the last five hundred years, inhabitants have been moving from Itaskana to Buttonwood, due to radiation in Itaskana's seriously ionized atmosphere. It was home to the ''Buttonwood Accords'' where bans on environmentally destructive practices where put into effect throughout Itaskan space, settling what many called the 'last generational fude in Itaskan space'",
-		"comodities":{
+		"trade":{
 			"compu":"high",
 			"water":"high",
 			"grain":"high",
@@ -622,7 +625,7 @@
 		"x":300,
 		"y":450,
 		"text":"A middling planet in most respects, Sinchenko is the cultural heart of the peninsula, hosting epic concerts that draw crowds of millions on a regular basis.",
-		"comodities":{
+		"trade":{
 			"ethyl":"high",
 			"spice":"high",
 			"uacbarrels":"med"
@@ -630,14 +633,14 @@
 	},
 	"Coldwater":{
 		"sType":"onyxIceN",
-		"govt":"pax",
+		"govt":"direc",
 		"x":0,
 		"y":0,
-		"comodities":{
+		"trade":{
 			"water":"low",
 			"grain":"med",
 			"alloy":"med"
 		},
-		"text":"On the tense border between the Casamance Directorate and the Eastern League, coldwater's chilly landscape is listed as the most likley planet to be invaded in Schengen space. It's rumored that there are large fortresses cut into the glaciers, but the navy is quiet on the subject."
+		"text":"On the tense border between the Casamance Directorate and the Eastern League, coldwater's chilly landscape is listed as the most likley planet to be invaded in Casamance space. It's rumored that there are large fortresses cut into the glaciers, but the navy is quiet on the subject."
 	}
 }

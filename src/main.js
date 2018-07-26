@@ -1,10 +1,13 @@
-import * as gameplay from "gameplay";
-import * as player from "player";
-import * as map from "map";
-import * as states from "states";
-import * as landing from "landing";
+import { GamePlayState } from "./gameplay.js";
+import { PlayerSave } from  "./player.js";
+import { MapView } from "./map.js";
+import { StateManager } from "./states.js";
+import { LandingMenu } from  "./landing.js";
+import { TradeMenu } from  "./trade.js";
+import { ShipyardMenu} from "./shipyard.js";
+import { load_all } from "./load.js";
 
-function init(gameCanvas, scene, engine, data){
+function init(game_canvas, scene, engine, data){
   /* Main entry point for the app (after loading). Binds events and such. */
 
   scene.clearColor = new BABYLON.Color3(0, 0, 0);
@@ -16,16 +19,17 @@ function init(gameCanvas, scene, engine, data){
 
   // start initial state
   
-  let player_data = new player.PlayerSave();
+  let player_data = new PlayerSave(data.ships, data.upgrades);
+  let stateMgr = new StateManager({
+    'gameplay': new GamePlayState(
+        scene, camera, data, player_data),
+    'map': new MapView(
+        data, {x: 0, y: 0}, game_canvas, player_data),
 
-  let stateMgr = new states.StateManager({
-    'gameplay': new gameplay.GameplayState(
-        scene, camera, data, player_data, gameCanvas),
-    'map': new map.MapView(
-        data, {x: 0, y: 0}, scene, gameCanvas, player_data),
-
-    'landing': new landing.LandingMainView(scene, gameCanvas, data.spobs, player_data),
-  }, 'gameplay');
+    'landing': new LandingMenu(data.spobs, player_data),
+    'trade': new TradeMenu(data.spobs, player_data, data.trade),
+    'shipyard': new ShipyardMenu(data.spobs, player_data, data.ships),
+  }, 'shipyard');
  
   // Handle resizes
 
@@ -41,13 +45,14 @@ function init(gameCanvas, scene, engine, data){
   });
 };
 
-$(() => {
+window.addEventListener('load', () => {
+  console.log("Welcome to flythrough.space");
   let systems, spobs, models, images;
-  let game_canvas = $('#gameCanvas'); 
-  let engine = new BABYLON.Engine( game_canvas[0], true);
+  let game_canvas = document.getElementById("gameCanvas"); 
+  let engine = new BABYLON.Engine( game_canvas, true);
   let scene = new BABYLON.Scene(engine);
 
-  load.load_all(engine, scene, (data) => {
+  load_all(engine, scene, (data) => {
     init(game_canvas, scene, engine, data);
   });
 });

@@ -1,13 +1,72 @@
 {
   "dir": "assets/",
   "meshes": {
-    "cruiser": "star_cruiser_1.babylon"
+    "oe_fi": "empfi.babylon",
+    "shuttle": "shuttle.babylon",
+    "heavy_fi": "khanda_heavy.babylon",
+    "light_fi": "light_fighter.babylon",
+    "it_clipper": "itaskan_corvette.babylon",
+    "nightshade": "nightshade.babylon",
+    "oe_carrier": "oe_carrier.babylon",
+    "it_mask": "itaskan_something.babylon",
+    "perigrine": "perigrine.babylon",
+    "hemlock": "hemlock.babylon",
+    "starhawk": "starhawk.babylon",
+    "vera": "vera.babylon",
+    "starhawk": "starhawk.babylon",
+    "cas_fighter": "casamance_fighter.babylon",
+    "cas_carrier": "casamance_carrier.babylon"
   },
   "sprites": {
-    "redblast": {
-      "img": "assets/redblast.png",
+    "plasma": {
+      "img": "assets/sprites/plasma.png",
       "count": 1000,
-      "size": 16 
+      "size":  32
+    },
+    "plasma_large": {
+      "img": "assets/sprites/plasma_large.png",
+      "count": 1000,
+      "size":  128
+    },
+    "ion": {
+      "img": "assets/sprites/ion.png",
+      "count": 1000,
+      "size":  32
+    },
+    "ion_large": {
+      "img": "assets/sprites/ion_large.png",
+      "count": 1000,
+      "size":  128
+    },
+    "antimatter": {
+      "img": "assets/sprites/antimatter.png",
+      "count": 1000,
+      "size":  32
+    },
+    "autocannon": {
+      "img": "assets/sprites/autocannon.png",
+      "count": 1000,
+      "size":  32
+    },
+    "degenerate_matter": {
+      "img": "assets/sprites/degenerate_matter.png",
+      "count": 1000,
+      "size":  32
+    },
+    "missile": {
+      "img": "assets/sprites/missile.png",
+      "count": 1000,
+      "size":  64
+    },
+    "sling": {
+      "img": "assets/sprites/sling.png",
+      "count": 1000,
+      "size":  64
+    },
+    "gluon": {
+      "img": "assets/sprites/gluon.png",
+      "count": 1000,
+      "size":  32
     },
     "redplanet": {
       "img": "assets/renderwahn_planets/A00.png",
@@ -25,9 +84,9 @@
     "spobs": "spobs.json",
     "govts": "govts.json",
     "nebule": "nebule.json",
-    "outfits": "outfits.json",
+    "upgrades": "upgrades.json",
     "ships": "ships.json",
     "spobtypes": "spobtypes.json",
-    "weapons": "weapons.json"
+    "trade": "trade.json"
   }
 }

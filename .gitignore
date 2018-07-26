@@ -3,3 +3,5 @@
 ngrok
 *.swp
 node_modules/*
+/assets/*.log
+

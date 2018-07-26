@@ -1,5 +1,5 @@
-import * as util from "util";
-import * as physics from "physics";
+import { distance } from "./util.js";
+import { rotate, accelerate, /*decelerate*/ } from "./physics.js";
 
 let arc = Math.PI * 2;
 
@@ -152,7 +152,7 @@ function point_at(to, startangle, from){
 
 function engage(entity, target, delta_time, entMan){
 
-  let distance = util.distance(entity.position, target.position);
+  let distance = distance(entity.position, target.position);
   
   // Get the ideal facing, subtract out current angle
   let goal_turn = point_at(target.position, entity.direction, entity.position);
@@ -177,15 +177,15 @@ function engage(entity, target, delta_time, entMan){
   entity.ai.angle = distance;
   
   // Do rotation 
-  physics.rotate(entity, -1 * final_turn );
+  rotate(entity, -1 * final_turn );
   entity.direction_delta = final_turn;
 
   // Acclerate
   if(distance > ACCEL_DISTANCE){
-    physics.accelerate(entity.velocity, entity.direction,
+    accelerate(entity.velocity, entity.direction,
        entity.accel * delta_time); 
   } //else {
-  //  physics.decelerate(entity.velocity)
+  //  decelerate(entity.velocity)
   //}
   if(entity.directon < ENGAGE_ANGLE || entity.direction > -1 * ENGAGE_ANGLE){
     if(distance < ENGAGE_DISTANCE){

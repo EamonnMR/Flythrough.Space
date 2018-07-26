@@ -1,15 +1,13 @@
-# Achernar: Space Captain Game
+# Flythrough.Space: A Space Captain Game
 
-Achernar is written in ES6. Most of it should run in modern browsers, but sadly one major feature that makes coding in this project bearable, the es6 module system (ie import, export) isn't supported by Chrome or Firefox. I haven't had the occasion to test it
-uncompiled in safari (it might work.) To install the tooling:
+Inspired by Escape Velocity and related titles, built on the Babylon engine and written in vanilla ES6. No installation required, just host the files and you're good.
 
-`npm install babel-cli babel-preset-es2015  babel-plugin-transform-es2015-modules-umd`
+It's a 2.5D EV clone! Where you fly through space.
 
-To compile:
-
-`babel src -d js`
+The goal here was to create something others could pick up and play with (as is tradition) so I've done my best to make a pretty open-ended system, even if the GUI got a bit off in the weeds.
 
 The code is all front-end so you can host it on your favorite server (Nginx, Apache, etc) or just run a simple local server:
 
 `python -m SimpleHTTPServer 8000`
+
 

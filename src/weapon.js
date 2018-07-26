@@ -1,4 +1,4 @@
-import * as physics from "physics";
+import { accelerate } from "./physics.js";
 
 export function weaponSystem (entMan) {
   for (let entity of entMan.get_with(['weapons'])) {
@@ -26,9 +26,9 @@ function bulletFactory(position, sprite, direction, speed, initialVelocity, prot
   sprite.position.y = position.y;
   sprite.position.z = 0;
   sprite.angle = direction;
-  sprite.size = 0.5;
+  sprite.size = 0.115;
   let velocity = {'x': initialVelocity.x, 'y': initialVelocity.y};
-  physics.accelerate(velocity, direction, speed);
+  accelerate(velocity, direction, speed);
 
   let shot = Object.create(proto);
 
@@ -53,10 +53,10 @@ function bulletFactory(position, sprite, direction, speed, initialVelocity, prot
 };
 
 export class Weapon {
-  constructor(period, sprite, projectile, velocity){
+  constructor(period, sprite_mgr, projectile, velocity){
     this.timer = 0;
     this.period = period;
-    this.sprite = sprite;
+    this.sprite_mgr = sprite_mgr;
     this.speed = velocity;
     this.projectile = projectile;
   }
@@ -64,15 +64,17 @@ export class Weapon {
   tryShoot(entMan, entity) {
     if(this.timer <= 0) {
       this.timer += this.period;
-      entMan.insert(bulletFactory(
-                    entity.position,
-                    new BABYLON.Sprite("bullet", this.sprite),
-                    entity.direction,
-                    this.speed,
-                    entity.velocity || {'x': 0, 'y': 0},
-                    this.projectile,
-                    'govt' in entity ? entity.govt : null,
-                    'player_aligned' in entity))
+      if (this.projectile){
+        entMan.insert(bulletFactory(
+                      entity.position,
+                      new BABYLON.Sprite("bullet", this.sprite_mgr),
+                      entity.direction,
+                      this.speed,
+                      entity.velocity || {'x': 0, 'y': 0},
+                      this.projectile,
+                      'govt' in entity ? entity.govt : null,
+                      'player_aligned' in entity))
+      }
     }
   }
 

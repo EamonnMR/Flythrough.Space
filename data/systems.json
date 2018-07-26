@@ -83,7 +83,7 @@
   "Bluthgelt":{
     "x":841,
     "y":965,
-    "govt":"pax",
+    "govt":"direc",
     "roidSet":"silicaFieldH",
     "spobs":[
       "Harcourt",
@@ -97,7 +97,7 @@
   "Stavros":{
     "x":955,
     "y":942,
-    "govt":"pax",
+    "govt":"direc",
     "links":[
       "Rainsford",
       "Pentecost",
@@ -133,7 +133,7 @@
   "Carvajal":{
     "x":989,
     "y":1088,
-    "govt":"pax",
+    "govt":"direc",
     "spobs":[
       "Kennerud"
     ],
@@ -147,7 +147,7 @@
   "Rimell":{
     "x":927,
     "y":1028,
-    "govt":"pax",
+    "govt":"direc",
     "links":[
       "Stavros",
       "Carvajal"
@@ -163,7 +163,7 @@
   "Reese":{
     "x":885,
     "y":859,
-    "govt":"pax",
+    "govt":"direc",
     "roidSet":"silicaFieldM",
     "spobs":[
       "Cook",
@@ -218,7 +218,7 @@
   "Rainsford":{
     "x":953,
     "y":888,
-    "govt":"pax",
+    "govt":"direc",
     "links":[
       "Stavros",
       "Wijngaarden"
@@ -227,7 +227,7 @@
   "Pentecost":{
     "x":1027,
     "y":963,
-    "govt":"pax",
+    "govt":"direc",
     "spobs":[
       "Thrace",
       "Argive"
@@ -241,7 +241,7 @@
   "Rossum":{
     "x":1089,
     "y":1027,
-    "govt":"pax",
+    "govt":"direc",
     "spobs":[
       "Coldwater"
     ],
@@ -255,7 +255,7 @@
   "Cartwright":{
     "x":1049,
     "y":886,
-    "govt":"pax",
+    "govt":"direc",
     "spobs":[
       "Dogover",
       "Zachit",
@@ -270,7 +270,7 @@
   "Wijngaarden":{
     "x":1000,
     "y":840,
-    "govt":"pax",
+    "govt":"direc",
     "spobs":[
       "Adriaan"
     ],
@@ -284,7 +284,7 @@
   "Steiner":{
     "x":938,
     "y":785,
-    "govt":"pax",
+    "govt":"direc",
     "roidSet":"silicaFieldL",
     "links":[
       ".136",
@@ -372,7 +372,7 @@
   "Wirth":{
     "x":1128,
     "y":968,
-    "govt":"pax",
+    "govt":"direc",
     "links":[
       "Rossum",
       "Holcomb",
@@ -597,7 +597,7 @@
   "Stroustrup":{
     "x":1138,
     "y":877,
-    "govt":"pax",
+    "govt":"direc",
     "spobs":[
       "Bjarne"
     ],

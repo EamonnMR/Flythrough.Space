@@ -1,22 +1,16 @@
-let SHIP_Z = -2;
+import { Weapon } from "./weapon.js";
 
-export function radar_pip_factory(hud, color='#5000FFFF'){
-  return new BABYLON.Ellipse2D({
-    parent: hud.canvas, id: 'pip_for' + name,
-    width: 5, height: 5, x: 0, y: 0,
-    fill: BABYLON.Canvas2D.GetSolidColorBrushFromHex(color)
-  });
-}
+let SHIP_Z = -2;
 
 export function npcShipFactory(data, type, position, hud, ai, govt){
   let ship = shipFactory(data, type, position);
   ship.ai = ai;
-  ship.radar_pip = radar_pip_factory(hud, '#FF0000FF');
+  ship.radar_pip = hud.get_radar_pip(4, '#FF0000FF');
   ship.govt = govt;
   return ship;
 }
 
-export function playerShipFactory(data, type, position, camera, hud) {
+export function playerShipFactory(data, type, position, camera, hud, player) {
 
   let ship = shipFactory(data, type, position);
 
@@ -25,26 +19,71 @@ export function playerShipFactory(data, type, position, camera, hud) {
   ship.player = true; // Is this a hack?
   ship.player_aligned = true; // Fake gov for player and minions
 
-  ship.radar_pip = radar_pip_factory(hud, '#00FF00FF');
+  ship.radar_pip = hud.get_radar_pip(4, '#00FF00FF');
+  ship.fuel = player.fuel;
   return ship;
 };
+
+export function apply_upgrade(ship, upgrade, data){
+  for(let key of Object.keys(upgrade)){
+    if(key === "weapon"){
+      let weapon = upgrade.weapon;
+      ship.weapons.push( new Weapon(
+        weapon.cooldown,
+        data.get_sprite_mgr(weapon.sprite),
+        weapon.proj,
+        weapon.velocity
+      ));
+    } else if (key === "price" || key === "tech" || key === "desc" || key === "name"){
+      // TODO: Should ships auto-include the price of upgrades?
+      // Would that make life easier or harder?
+      continue;
+    } else {
+      let value = upgrade[key];
+      let type = typeof(value);
+      if(type === "number"){
+        // Numbers modify the ship's default values
+        ship[key] = ship[key] + value;
+      } else if (type === "boolean" || type == "string"){
+        // We can't be too clever with string values, so just set these.
+        ship[key] = value;
+      } else {
+        console.log("Unsupported type " + type + " in key " + key + " of an upgrade");
+      }
+    }
+  }
+}
+
+export function apply_upgrades(ship, upgrades, data){
+  ship.weapons = [];
+  for(let key of Object.keys(upgrades)){
+    for(let i = 0; i < upgrades[key]; i++){
+      let upgrade = data.upgrades[key];
+      if(upgrade === undefined){
+        console.log("Invalid Upgrade: " + key);
+      } else {
+        apply_upgrade(ship, data.upgrades[key], data);
+      }
+    }
+  }
+}
 
 export function shipFactory(data, type, position){
   let ship = Object.create(data.ships[type]);
 
   ship.model = data.get_mesh(ship.mesh);
-  ship.model.rotate(BABYLON.Axis.Y, -Math.PI/2, BABYLON.Space.LOCAL);
   ship.model.visibility = 1;
 
   ship.position = position;
   ship.direction = 0;
   ship.velocity = {x: 0, y: 0};
   ship.direction_delta = 0;
-
-  ship.weapons = ship.weapons.map((name) => data.get_weapon(name));
   ship.hittable = true;
-  ship.hitpoints = 1;
+  ship.hitpoints = ship.max_hp;
+  ship.shields = ship.max_shields;
   ship.collider = {radius: .5};
+  ship.fuel = ship.max_fuel;
+  apply_upgrades(ship, ship.upgrades, data);
   return ship;
 };
 
@@ -54,7 +93,7 @@ export function planetFactory (data, name, hud){
   planet.position = {x: planet.x, y: planet.y};
   planet.model = data.get_sprite(data.spobtypes[planet.sType].sprite);
   planet.spob_name = name;
-  planet.radar_pip = radar_pip_factory(hud);
+  planet.radar_pip = hud.get_radar_pip(15, "Yellow");
   
   return planet;
 };
@@ -72,7 +111,7 @@ export function asteroidFactory (position, velocity, sprite, hud) {
     'hitpoints': 10,
     'collider': {'radius': .5},
     'hittable': true,
-    'radar_pip': radar_pip_factory(hud, '#FF00FFFF')
+    'radar_pip': hud.get_radar_pip(5, '#FF00FFFF')
   };
 };
 
@@ -93,14 +132,13 @@ export function modelPositionSystem (entMan) {
     }
     if ('direction' in entity) {
       entity.model.rotate(
-          BABYLON.Axis.Y, entity.direction_delta, BABYLON.Space.LOCAL);
+          BABYLON.Axis.Z, -1 * entity.direction_delta, BABYLON.Space.LOCAL);
       entity.direction_delta = 0;
     }
   }
 };
 
 export function npcSpawnerFactory(data, system, typeset, hud) {
-  console.log(system);
   return {
     spawner: true,
     spawns_npc: true,
@@ -128,7 +166,6 @@ export function npcSpawnerSystem(entMan) {
                                 {state: 'passive'},
                                 spawner.govt
       );
-      console.log(npc);
       entMan.insert(npc);
 		}
   }
