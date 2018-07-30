@@ -1,5 +1,7 @@
 /* Player State - this is what's shared between game states. */
 
+import { apply_upgrade } from "./util.js";
+
 export class PlayerSave {
   constructor(ships, upgrades) {
     // TODO: Load this from some sort of backing store / DB / etc
@@ -11,6 +13,7 @@ export class PlayerSave {
     this.current_spob = "Alluvium Fleet Yards";
     this.initial_position = {x: 0, y: 0};
     this.ship_type = "shuttle";
+    this.upgrades = {};
     this.fuel = 3; // They start out with a full tank of gas (for a shuttle)
 
     this.bulk_cargo = {};
@@ -20,7 +23,8 @@ export class PlayerSave {
       // TODO: Default rep?
       orasos: {reputation: -1}
     }
-    this.ship_dat = ships[this.ship_type]; 
+    this.ship_dat = Object.create(ships[this.ship_type]);
+    this.ship_dat.upgrades = this.upgrades;
   }
 
   total_cargo(){
@@ -81,7 +85,41 @@ export class PlayerSave {
   buy_ship(type, new_ship){
     this.money += this.ship_value();
     this.ship_type = type;
-    this.ship_dat = new_ship;
+    this.ship_dat = Object.create(new_ship);
     this.money -= new_ship.price;
+    this.upgrades = this.ship_dat.upgrades;
+  }
+
+  can_buy_upgrade(price, upgrade, quantity, data){
+    let ship_if_bought = Object.create(ship_dat);
+    
+    for(let i = 0; i < quantity; i++){
+      apply_upgrade(ship_if_bought, upgrade, data);
+    }
+
+    let money_left = this.money - quantity * upgrade.price;
+    
+    if(money_left < 0){
+      return false;
+    } else {
+      return this.validate_ship_state( ship_if_bought );
+    }
+  }
+  
+  validate_ship( new_ship_state ){
+    return ship.space >= 0 && ship.cargo <= this.total_cargo();
+  }
+
+  buy_upgrade(type, data, upgrade, quantity){
+    if((upgrade) in this.upgrades){
+      this.upgrades[upgrade] += quantity;
+      if(this.upgrades[upgrade] == 0){
+        delete this.upgrades[upgrade];
+      }
+    } else {
+      this.upgrades[upgrade] = quantity;
+    }
+
+    this.ship_dat.upgrades = this.upgrades;
   }
 }
