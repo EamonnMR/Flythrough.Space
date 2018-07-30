@@ -45,6 +45,16 @@ export class UpgradeMenu extends StoreMenu {
     return [
       {"label": "Price", "function": (item) => {return item.price;}},
       {"label": "Space", "function": (item) => {return -1 * item.space;}},
+      {"label": "Shield Damage", "function": (item) => {
+        if ( item.weapon && item.weapon.proj){
+          return item.weapon.proj.shield_damage;
+        }
+      }},
+      {"label": "Hull Damage", "function": (item) => {
+        if (item.weapon && item.weapon.proj){
+          return item.weapon.proj.damage;
+        }
+      }},
     ]
   }
 
