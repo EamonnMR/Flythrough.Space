@@ -24,7 +24,8 @@
 			"generic":3,
 			"casa":3
 		},
-    "shipyard": true
+    "shipyard": true,
+    "custom": true
 },
 	
 	"Wajir":{

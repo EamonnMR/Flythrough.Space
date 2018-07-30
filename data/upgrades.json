@@ -1,7 +1,6 @@
 {
   "nocargoexp":{
     "name"           : "Optimal Cargo Space",
-    "icon"           : "img/onyx/Onyx/Ofts/20.png",
     "space"          : 0,
     "desc"           : "This ship is already optomized for cargo room; no more space can be converted to cargo capacity.",
     "price"          : 0,
@@ -56,7 +55,6 @@
   },
   "goldarmor":{
     "name"           : "Nanite Armor",
-    "icon"           : "img/onyx/Onyx/Ofts/43.png",
     "space"          : -1,
     "desc"           : "Arguably the most advanced armor available, it is used extensively by the 7th fleet, as evedenced by the gleaming gold color of their hulls. Though not the absolute most protection pound-for-pound, it is unique in its ability to self-repair damage over time.",
     "price"          : 6000,
@@ -209,7 +207,6 @@
   },
   "antigunammo":{
     "name"           : "0.01mm AM Shells",
-    "icon"           : "img/GrandNoviceGraphics/outfits/gatantiAmmo.png",
     "space"          : -0.02,
     "desc"           : "The shells fired by antimatter autocannons are generally formed out of antilead (for density and stability). The ammo is stored in shielded shell casings which also store enough power to propel the projectile and are discareded out the end of the barrel like sabots.",
     "price"          : 10,
@@ -218,7 +215,6 @@
   },
   "fuelpod":{
     "name"           : "Fuel Pod",
-    "icon"           : "img/onyx/Onyx/Ofts/8.png",
     "space"          : -2,
     "desc"           : "A fuel tank that can carry enough fuel for another jump. Excellent for ships using weapons that draw from the main power supply?",
     "price"          : 3000,
@@ -236,7 +232,6 @@
   },
   "degengun":{
     "name"           : "0.0001mm Degenerate Matter Cannon",
-    "icon"           : "img/GrandNoviceGraphics/outfits/gatdegen.png",
     "space"          : -6,
     "desc"           : "Degenerate matter projectiles are favored for various reasons-especially that they can be formed out of space dust. The Original intention was to fire a super-dense projectile in an effort to penitrate shields, forcing the shield to concentrate its energy in a very small area to defeat the projectile, which is damaging to them. It is also able to hold massive amounts of heat for its volume, and releases irradiating nutrons and alpha particles as it dissipates. The drawback is that coalescion fields (similar to the ones employed by plasma guns) cannot contain the degenerate matter for long, so the cannon's range is severely limited.",
     "price"          : 100000,

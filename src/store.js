@@ -142,6 +142,9 @@ export class StoreitemName extends TextBox {
 
   update(parent){
     this.control.text = parent.current_item().short_name;
+    if (this.control.text === undefined){
+      this.control.text = parent.current_item().name;
+    }
   }
 }
 

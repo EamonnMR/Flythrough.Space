@@ -1,6 +1,6 @@
 /* Player State - this is what's shared between game states. */
 
-import { apply_upgrade } from "./util.js";
+import { apply_upgrade, apply_upgrades } from "./util.js";
 
 export class PlayerSave {
   constructor(ships, upgrades) {
@@ -91,7 +91,8 @@ export class PlayerSave {
   }
 
   can_buy_upgrade(price, upgrade, quantity, data){
-    let ship_if_bought = Object.create(ship_dat);
+    let ship_if_bought = Object.create(this.ship_dat);
+    apply_upgrades(ship_if_bought, this.upgrades, data);
     
     for(let i = 0; i < quantity; i++){
       apply_upgrade(ship_if_bought, upgrade, data);
@@ -102,15 +103,15 @@ export class PlayerSave {
     if(money_left < 0){
       return false;
     } else {
-      return this.validate_ship_state( ship_if_bought );
+      return this.validate_ship( ship_if_bought );
     }
   }
   
-  validate_ship( new_ship_state ){
+  validate_ship( ship ){
     return ship.space >= 0 && ship.cargo <= this.total_cargo();
   }
 
-  buy_upgrade(type, data, upgrade, quantity){
+  buy_upgrade(type, upgrade, quantity){
     if((upgrade) in this.upgrades){
       this.upgrades[upgrade] += quantity;
       if(this.upgrades[upgrade] == 0){

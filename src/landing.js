@@ -112,11 +112,11 @@ export class LandingMenu extends BaseMenuView {
       );
     }
  
-    if (this.spob.customize){
+    if (this.spob.custom){
       widgets.push(new LandingMenuBigButton(
         'Customize',
         () => {
-          //this.parent.enter_state('customize');
+          this.parent.enter_state('upgrades');
         },
         RIGHT,
         BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,

@@ -6,6 +6,7 @@ import { LandingMenu } from  "./landing.js";
 import { TradeMenu } from  "./trade.js";
 import { ShipyardMenu} from "./shipyard.js";
 import { load_all } from "./load.js";
+import { UpgradeMenu } from "./upgrade_store.js";
 
 function init(game_canvas, scene, engine, data){
   /* Main entry point for the app (after loading). Binds events and such. */
@@ -29,7 +30,8 @@ function init(game_canvas, scene, engine, data){
     'landing': new LandingMenu(data.spobs, player_data),
     'trade': new TradeMenu(data.spobs, player_data, data.trade),
     'shipyard': new ShipyardMenu(data.spobs, player_data, data.ships),
-  }, 'shipyard');
+    'upgrades': new UpgradeMenu(data.spobs, player_data, data.upgrades, data),
+  }, 'upgrades');
  
   // Handle resizes
 
