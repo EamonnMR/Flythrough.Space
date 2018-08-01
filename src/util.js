@@ -43,6 +43,7 @@ export function apply_upgrades(ship, upgrades, data){
     for(let i = 0; i < upgrades[key]; i++){
       let upgrade = data.upgrades[key];
       if(upgrade === undefined){
+      debugger;
         console.log("Invalid Upgrade: " + key);
       } else {
         apply_upgrade(ship, data.upgrades[key], data);

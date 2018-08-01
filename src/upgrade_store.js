@@ -19,6 +19,7 @@ export class UpgradeMenu extends StoreMenu {
   do_buy(){
     let item = this.current_item();
     if (this.can_purchase_item(item)){
+      console.log("bought the " + this.selected);
       this.player_data.buy_upgrade(this.selected, item, 1);
     }
   }
@@ -29,7 +30,7 @@ export class UpgradeMenu extends StoreMenu {
   }
 
   can_purchase_item(item){
-    this.player_data.can_buy_upgrade(item.price, 1, item, this.data)
+    return this.player_data.can_buy_upgrade(item.price, item, 1, this.data)
   }
 
   get_selection_tab_widget(key, item, offset){

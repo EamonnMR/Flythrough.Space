@@ -28,7 +28,7 @@ export function playerShipFactory(data, type, position, camera, hud, player) {
 
 
 export function shipFactory(data, type, position){
-  let ship = Object.create(data.ships[type]);
+  let ship = Object.create(type);
 
   ship.model = data.get_mesh(ship.mesh);
   ship.model.visibility = 1;
@@ -119,7 +119,7 @@ export function npcSpawnerSystem(entMan) {
 		  	
 		  let npc = npcShipFactory(
                                 entMan.data,
-                                random_type(spawner.types),
+                                random_type(spawner.types, entMan.data),
                                 random_position(),
                                 spawner.hud,
                                 {state: 'passive'},
@@ -154,9 +154,9 @@ function random_position(z=SHIP_Z){
   };
 };
 
-function random_type(typeset){
+function random_type(typeset, data){
   // A fun StackOverflow post for sure:
   // https://stackoverflow.com/questions/5915096/get-random-item-from-javascript-array	
-  return typeset[Math.floor(Math.random() * typeset.length)];
+  return data.ships[typeset[Math.floor(Math.random() * typeset.length)]];
 };
 

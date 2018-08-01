@@ -97,30 +97,27 @@ export class PlayerSave {
     for(let i = 0; i < quantity; i++){
       apply_upgrade(ship_if_bought, upgrade, data);
     }
-
-    let money_left = this.money - quantity * upgrade.price;
-    
-    if(money_left < 0){
-      return false;
-    } else {
-      return this.validate_ship( ship_if_bought );
-    }
+    return this.can_spend_money(upgrade.price * quantity)
+      && this.validate_ship( ship_if_bought );
   }
   
   validate_ship( ship ){
-    return ship.space >= 0 && ship.cargo <= this.total_cargo();
+    return ship.space >= 0 && ship.cargo >= this.total_cargo();
   }
 
   buy_upgrade(type, upgrade, quantity){
-    if((upgrade) in this.upgrades){
-      this.upgrades[upgrade] += quantity;
-      if(this.upgrades[upgrade] == 0){
-        delete this.upgrades[upgrade];
+    if(upgrade in this.upgrades){
+      this.upgrades[type] += quantity;
+      if(this.upgrades[type] == 0){
+        delete this.upgrades[type];
       }
     } else {
-      this.upgrades[upgrade] = quantity;
+      this.upgrades[type] = quantity;
     }
 
     this.ship_dat.upgrades = this.upgrades;
+    this.money -= upgrade.price * quantity;
   }
 }
+  
+
