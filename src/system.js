@@ -30,7 +30,7 @@ export function setup_system(scene, camera, entMan, system, hud, data, player_da
 
   let ents = [
     playerShipFactory( data,
-        player_data.ship_type, 
+        player_data.ship_dat, 
         {
           x: player_data.initial_position.x,
           y: player_data.initial_position.y

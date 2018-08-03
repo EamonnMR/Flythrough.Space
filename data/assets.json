@@ -15,7 +15,9 @@
     "vera": "vera.babylon",
     "starhawk": "starhawk.babylon",
     "cas_fighter": "casamance_fighter.babylon",
-    "cas_carrier": "casamance_carrier.babylon"
+    "cas_carrier": "casamance_carrier.babylon",
+    "cas_corv": "casamance_corv.babylon",
+    "oxana": "oxana.babylon"
   },
   "sprites": {
     "plasma": {
