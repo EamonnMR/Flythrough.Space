@@ -15,7 +15,8 @@ export function apply_upgrade(ship, upgrade, data){
         weapon.cooldown,
         data.get_sprite_mgr(weapon.sprite),
         weapon.proj,
-        weapon.velocity
+        weapon.velocity,
+        weapon.mesh,
       ));
     } else if (key === "price" || key === "tech" || key === "desc" || key === "name"){
       // TODO: Should ships auto-include the price of upgrades?
@@ -43,7 +44,6 @@ export function apply_upgrades(ship, upgrades, data){
     for(let i = 0; i < upgrades[key]; i++){
       let upgrade = data.upgrades[key];
       if(upgrade === undefined){
-      debugger;
         console.log("Invalid Upgrade: " + key);
       } else {
         apply_upgrade(ship, data.upgrades[key], data);

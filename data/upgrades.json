@@ -21,6 +21,7 @@
     "desc"           : "This energy weapon dates back to at least before the sector was settled, and perhaps even earlier. Versions of it have been seen on many worlds, but it was standardized and mass produced by the Empire. It propels a high-energy shaped plasma burst at the target, maximizing damage and using very little energy. However it quickly dissipates and its damage potential diminishes over time. It is best used at close range.",
     "price"          : 500,
     "weapon"      : {
+      "mesh":  "plasma_cannon",
       "sprite": "plasma",
       "miss": 0.1,
       "cooldown": 500,

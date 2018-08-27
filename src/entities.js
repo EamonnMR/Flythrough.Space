@@ -25,14 +25,27 @@ export function playerShipFactory(data, type, position, camera, hud, player) {
   return ship;
 };
 
+export function create_composite_model(ship, data){
+  // Create a ship's model out of the base mesh of the ship
+  // plus the meshes of any attached upgrades.
+  //
+  // Hurray for justifying the creation of this entire game!
+  ship.model = data.get_mesh(ship.mesh);
+  for(let weapon of ship.weapons){
+    if(weapon.mesh_name){
+      let weapon_mesh = data.get_mesh(weapon.mesh);
+      weapon.model = weapon_mesh;
+      weapon.model.visibility = 1;
+      // TODO: Some way of mapping mount points to specific weapons
+      debugger;
+    }
+  }
+  ship.model.visibility = 1;
+};
 
 
 export function shipFactory(data, type, position){
   let ship = Object.create(type);
-
-  ship.model = data.get_mesh(ship.mesh);
-  ship.model.visibility = 1;
-
   ship.position = position;
   ship.direction = 0;
   ship.velocity = {x: 0, y: 0};
@@ -43,8 +56,10 @@ export function shipFactory(data, type, position){
   ship.collider = {radius: .5};
   ship.fuel = ship.max_fuel;
   apply_upgrades(ship, ship.upgrades, data);
+  create_composite_model(ship, data);
   return ship;
 };
+
 
 export function planetFactory (data, name, hud){
   let planet = Object.create(data.spobs[name]);
