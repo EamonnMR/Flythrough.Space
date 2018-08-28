@@ -13,7 +13,7 @@ export class PlayerSave {
     this.current_spob = "Alluvium Fleet Yards";
     this.initial_position = {x: 0, y: 0};
     this.ship_type = "shuttle";
-    this.upgrades = {};
+    this.upgrades = {"plasma50": 1};
     this.fuel = 3; // They start out with a full tank of gas (for a shuttle)
 
     this.bulk_cargo = {};
@@ -106,7 +106,7 @@ export class PlayerSave {
   }
 
   buy_upgrade(type, upgrade, quantity){
-    if(upgrade in this.upgrades){
+    if(type in this.upgrades){
       this.upgrades[type] += quantity;
       if(this.upgrades[type] == 0){
         delete this.upgrades[type];
@@ -117,6 +117,7 @@ export class PlayerSave {
 
     this.ship_dat.upgrades = this.upgrades;
     this.money -= upgrade.price * quantity;
+    console.log(this);
   }
 }
   
