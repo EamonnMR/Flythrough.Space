@@ -53,13 +53,13 @@ function bulletFactory(position, sprite, direction, speed, initialVelocity, prot
 };
 
 export class Weapon {
-  constructor(period, sprite_mgr, projectile, velocity, mesh_name){
+  constructor(period, sprite_mgr, projectile, velocity, mesh){
     this.timer = 0;
     this.period = period;
     this.sprite_mgr = sprite_mgr;
     this.speed = velocity;
     this.projectile = projectile;
-    this.mesh_name = mesh_name;
+    this.mesh= mesh;
     this.model = null; // To be filled in elsewhere TODO: gross
   }
 

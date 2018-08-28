@@ -31,15 +31,47 @@ export function create_composite_model(ship, data){
   //
   // Hurray for justifying the creation of this entire game!
   ship.model = data.get_mesh(ship.mesh);
-  for(let weapon of ship.weapons){
-    if(weapon.mesh_name){
-      let weapon_mesh = data.get_mesh(weapon.mesh);
-      weapon.model = weapon_mesh;
-      weapon.model.visibility = 1;
-      // TODO: Some way of mapping mount points to specific weapons
-      debugger;
+  let mesh_count = 0;
+
+
+  if(ship.model.skeleton && ship.weapon_small){
+
+    // List weapon point bones
+
+    let bone_map = [];
+    ship.model.skeleton.bones.forEach((bone) => {
+      if(bone.name.startsWith("weapon_small_")){
+        bone_map.push(bone);
+      }
+    });
+
+    debugger;
+    let weapon_index = 0;
+    for(let weapon of ship.weapons){
+      if(weapon.mesh && weapon_index < ship.weapon_small){
+        let weapon_mesh = data.get_mesh(weapon.mesh);
+        weapon.model = weapon_mesh;
+        // TODO: This is kinda hacky and I'm not a huge fan of it
+        // There's got to be a saner way to do this (ie attachToBone)
+        // but thus far they've all had holdups.
+        
+        // Translate to the bone's offset
+        // Note that the Y and Z are transposed here.
+        // Otherwise it comes out wrong. Something something rotation.
+        let position = bone_map[weapon_index].getPosition(); 
+        weapon.model.translate(BABYLON.Axis.X, position.x, BABYLON.Space.LOCAL);
+        weapon.model.translate(BABYLON.Axis.Y, position.z, BABYLON.Space.LOCAL);
+        weapon.model.translate(BABYLON.Axis.Z, position.y, BABYLON.Space.LOCAL);
+
+        // Reparent to the mesh to follow
+        weapon.model.parent = ship.model;
+        weapon.model.visibility = 1;
+
+        weapon_index += 1;
+      }
     }
   }
+
   ship.model.visibility = 1;
 };
 
