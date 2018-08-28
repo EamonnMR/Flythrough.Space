@@ -57,6 +57,8 @@ function load_assets( source_json, scene, data, finish_callback ){
       let mesh = task.loadedMeshes[0]; // TODO: Multimesh files
       mesh.visibility = 0; // Make the clone visible when you're ready for it
       mesh.rotate(BABYLON.Axis.X, Math.PI / 2, BABYLON.Space.WORLD);
+      mesh.rotate(BABYLON.Axis.Y, Math.PI, BABYLON.Space.WORLD);
+      mesh.rotate(BABYLON.Axis.Z, Math.PI, BABYLON.Space.WORLD);
       mesh.bakeCurrentTransformIntoVertices()
       data.models[key] = mesh;
     }

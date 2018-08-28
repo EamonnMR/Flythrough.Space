@@ -45,7 +45,6 @@ export function create_composite_model(ship, data){
       }
     });
 
-    debugger;
     let weapon_index = 0;
     for(let weapon of ship.weapons){
       if(weapon.mesh && weapon_index < ship.weapon_small){
