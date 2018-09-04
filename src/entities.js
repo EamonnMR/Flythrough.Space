@@ -25,6 +25,16 @@ export function playerShipFactory(data, type, position, camera, hud, player) {
   return ship;
 };
 
+function get_bone_group(skeleton, prefix){
+  let bone_group = [];
+  skeleton.bones.forEach((bone) => {
+    if(bone.name.startsWith(prefix)){
+      bone_group.push(bone);
+    }
+  });
+
+  return bone_group;
+};
 export function create_composite_model(ship, data){
   // Create a ship's model out of the base mesh of the ship
   // plus the meshes of any attached upgrades.
@@ -34,39 +44,33 @@ export function create_composite_model(ship, data){
   let mesh_count = 0;
 
 
+
   if(ship.model.skeleton && ship.weapon_small){
+    let bone_map = get_bone_group(ship.model.skeleton, "weapon_small_");
+    if(bone_map.length > 0){
+      let weapon_index = 0;
+      for(let weapon of ship.weapons){
+        if(weapon.mesh && weapon_index < ship.weapon_small){
+          let weapon_mesh = data.get_mesh(weapon.mesh);
+          weapon.model = weapon_mesh;
+          // TODO: This is kinda hacky and I'm not a huge fan of it
+          // There's got to be a saner way to do this (ie attachToBone)
+          // but thus far they've all had holdups.
+          
+          // Translate to the bone's offset
+          // Note that the Y and Z are transposed here.
+          // Otherwise it comes out wrong. Something something rotation.
+          let position = bone_map[weapon_index].getPosition(); 
+          weapon.model.translate(BABYLON.Axis.X, position.x, BABYLON.Space.LOCAL);
+          weapon.model.translate(BABYLON.Axis.Y, position.z, BABYLON.Space.LOCAL);
+          weapon.model.translate(BABYLON.Axis.Z, position.y, BABYLON.Space.LOCAL);
 
-    // List weapon point bones
+          // Reparent to the mesh to follow
+          weapon.model.parent = ship.model;
+          weapon.model.visibility = 1;
 
-    let bone_map = [];
-    ship.model.skeleton.bones.forEach((bone) => {
-      if(bone.name.startsWith("weapon_small_")){
-        bone_map.push(bone);
-      }
-    });
-
-    let weapon_index = 0;
-    for(let weapon of ship.weapons){
-      if(weapon.mesh && weapon_index < ship.weapon_small){
-        let weapon_mesh = data.get_mesh(weapon.mesh);
-        weapon.model = weapon_mesh;
-        // TODO: This is kinda hacky and I'm not a huge fan of it
-        // There's got to be a saner way to do this (ie attachToBone)
-        // but thus far they've all had holdups.
-        
-        // Translate to the bone's offset
-        // Note that the Y and Z are transposed here.
-        // Otherwise it comes out wrong. Something something rotation.
-        let position = bone_map[weapon_index].getPosition(); 
-        weapon.model.translate(BABYLON.Axis.X, position.x, BABYLON.Space.LOCAL);
-        weapon.model.translate(BABYLON.Axis.Y, position.z, BABYLON.Space.LOCAL);
-        weapon.model.translate(BABYLON.Axis.Z, position.y, BABYLON.Space.LOCAL);
-
-        // Reparent to the mesh to follow
-        weapon.model.parent = ship.model;
-        weapon.model.visibility = 1;
-
-        weapon_index += 1;
+          weapon_index += 1;
+        }
       }
     }
   }
@@ -139,6 +143,16 @@ export function modelPositionSystem (entMan) {
       entity.model.rotate(
           BABYLON.Axis.Z, -1 * entity.direction_delta, BABYLON.Space.LOCAL);
       entity.direction_delta = 0;
+    }
+  }
+};
+
+export function turretPointSystem (entMan) {
+  for(let entity of entMan.get_with(['model'])) {
+    if(entity.model.skeleton){
+      for(let bone of get_bone_group(entity.model.skeleton, "turret")){
+        bone.rotate(BABYLON.Axis.Z, Math.PI * (new Date().getSeconds() / 10), BABYLON.Space.LOCAL);
+      }
     }
   }
 };

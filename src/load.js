@@ -60,6 +60,15 @@ function load_assets( source_json, scene, data, finish_callback ){
       mesh.rotate(BABYLON.Axis.Y, Math.PI, BABYLON.Space.WORLD);
       mesh.rotate(BABYLON.Axis.Z, Math.PI, BABYLON.Space.WORLD);
       mesh.bakeCurrentTransformIntoVertices()
+      //if(mesh.skeleton){
+      //  for(let bone of skeleton.bones){
+      //    debugger;
+      //    bone.rotate(BABYLON.Axis.X, Math.PI / 2, BABYLON.Space.WORLD);
+      //    bone.rotate(BABYLON.Axis.Y, Math.PI, BABYLON.Space.WORLD);
+      //    bone.rotate(BABYLON.Axis.Z, Math.PI, BABYLON.Space.WORLD);
+      //    bone.bakeCurrentTransformIntoVertices()
+      //  }
+      //}
       data.models[key] = mesh;
     }
 

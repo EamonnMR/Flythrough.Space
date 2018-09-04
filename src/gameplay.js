@@ -6,7 +6,8 @@ import { inputSystem, bindInputFunctions, unbindInputFunctions} from "./input.js
 import {
 	npcSpawnerSystem,
 	modelPositionSystem,
-	cameraFollowSystem
+	cameraFollowSystem,
+  turretPointSystem
 } from "./entities.js";
 import { collisionDetectionSystem } from "./collision.js";
 import { setup_system } from "./system.js";
@@ -35,6 +36,7 @@ export class GamePlayState extends ViewState {
       velocitySystem,
       modelPositionSystem,
       cameraFollowSystem,
+      turretPointSystem,
       decaySystem,
       collisionDetectionSystem,
       // hud.selectionFollowSystem,
