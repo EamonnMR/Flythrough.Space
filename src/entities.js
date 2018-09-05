@@ -1,7 +1,6 @@
 import { Weapon } from "./weapon.js";
 import { apply_upgrades } from "./util.js";
-
-let SHIP_Z = -2;
+import { create_composite_model } from "./graphics.js";
 
 export function npcShipFactory(data, type, position, hud, ai, govt){
   let ship = shipFactory(data, type, position);
@@ -24,60 +23,6 @@ export function playerShipFactory(data, type, position, camera, hud, player) {
   ship.fuel = player.fuel;
   return ship;
 };
-
-function get_bone_group(skeleton, prefix){
-  let bone_group = [];
-  skeleton.bones.forEach((bone) => {
-    if(bone.name.startsWith(prefix)){
-      bone_group.push(bone);
-    }
-  });
-
-  return bone_group;
-};
-export function create_composite_model(ship, data){
-  // Create a ship's model out of the base mesh of the ship
-  // plus the meshes of any attached upgrades.
-  //
-  // Hurray for justifying the creation of this entire game!
-  ship.model = data.get_mesh(ship.mesh);
-  let mesh_count = 0;
-
-
-
-  if(ship.model.skeleton && ship.weapon_small){
-    let bone_map = get_bone_group(ship.model.skeleton, "weapon_small_");
-    if(bone_map.length > 0){
-      let weapon_index = 0;
-      for(let weapon of ship.weapons){
-        if(weapon.mesh && weapon_index < ship.weapon_small){
-          let weapon_mesh = data.get_mesh(weapon.mesh);
-          weapon.model = weapon_mesh;
-          // TODO: This is kinda hacky and I'm not a huge fan of it
-          // There's got to be a saner way to do this (ie attachToBone)
-          // but thus far they've all had holdups.
-          
-          // Translate to the bone's offset
-          // Note that the Y and Z are transposed here.
-          // Otherwise it comes out wrong. Something something rotation.
-          let position = bone_map[weapon_index].getPosition(); 
-          weapon.model.translate(BABYLON.Axis.X, position.x, BABYLON.Space.LOCAL);
-          weapon.model.translate(BABYLON.Axis.Y, position.z, BABYLON.Space.LOCAL);
-          weapon.model.translate(BABYLON.Axis.Z, position.y, BABYLON.Space.LOCAL);
-
-          // Reparent to the mesh to follow
-          weapon.model.parent = ship.model;
-          weapon.model.visibility = 1;
-
-          weapon_index += 1;
-        }
-      }
-    }
-  }
-
-  ship.model.visibility = 1;
-};
-
 
 export function shipFactory(data, type, position){
   let ship = Object.create(type);
@@ -122,39 +67,6 @@ export function asteroidFactory (position, velocity, sprite, hud) {
     'hittable': true,
     'radar_pip': hud.get_radar_pip(5, '#FF00FFFF')
   };
-};
-
-export function cameraFollowSystem (entMan) {
-  for (let entity of entMan.get_with(['position', 'camera'])) {
-    entity.camera.position.x = entity.position.x;
-    entity.camera.position.y = entity.position.y;
-  }
-};
-
-export function modelPositionSystem (entMan) {
-  for (let entity of entMan.get_with(['model'])) {
-    if ('position' in entity) {
-      // Would it be possible to get it such that
-      // entity.position === entity.model.position?
-      entity.model.position.x = entity.position.x;
-      entity.model.position.y = entity.position.y;
-    }
-    if ('direction' in entity) {
-      entity.model.rotate(
-          BABYLON.Axis.Z, -1 * entity.direction_delta, BABYLON.Space.LOCAL);
-      entity.direction_delta = 0;
-    }
-  }
-};
-
-export function turretPointSystem (entMan) {
-  for(let entity of entMan.get_with(['model'])) {
-    if(entity.model.skeleton){
-      for(let bone of get_bone_group(entity.model.skeleton, "turret")){
-        bone.rotate(BABYLON.Axis.Z, Math.PI * (new Date().getSeconds() / 10), BABYLON.Space.LOCAL);
-      }
-    }
-  }
 };
 
 export function npcSpawnerFactory(data, system, typeset, hud) {
@@ -203,14 +115,13 @@ function count_npcs(entMan){
   return entMan.get_with(['ai']).length;
 }
 
-function random_position(z=SHIP_Z){
+function random_position(){
   let distance = Math.random() * 100;
   let angle = Math.random() * 2 * Math.PI;
 
   return {
     x: Math.cos(angle) * distance,
     y: Math.sin(angle) * distance,
-    z: z
   };
 };
 

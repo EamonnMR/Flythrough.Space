@@ -7,6 +7,7 @@ import { TradeMenu } from  "./trade.js";
 import { ShipyardMenu} from "./shipyard.js";
 import { load_all } from "./load.js";
 import { UpgradeMenu } from "./upgrade_store.js";
+import { get_game_camera } from "./graphics.js";
 
 function init(game_canvas, scene, engine, data){
   /* Main entry point for the app (after loading). Binds events and such. */
@@ -15,8 +16,8 @@ function init(game_canvas, scene, engine, data){
 
 
 
-  let camera = new BABYLON.FreeCamera(
-            "camera1", new BABYLON.Vector3(0, -1, -10), scene);
+  let camera = get_game_camera(scene);
+
 
   // start initial state
   
@@ -31,7 +32,7 @@ function init(game_canvas, scene, engine, data){
     'trade': new TradeMenu(data.spobs, player_data, data.trade),
     'shipyard': new ShipyardMenu(data.spobs, player_data, data.ships),
     'upgrades': new UpgradeMenu(data.spobs, player_data, data.upgrades, data),
-  }, 'upgrades');
+  }, 'gameplay');
  
   // Handle resizes
 
