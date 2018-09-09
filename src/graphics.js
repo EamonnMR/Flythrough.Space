@@ -21,14 +21,13 @@ function get_bone_group(skeleton, prefix){
   return bone_group;
 };
 
-let CAMERA = null;
-
 export function get_game_camera(scene){
-  CAMERA = new BABYLON.FollowCamera("case_cam", new BABYLON.Vector3(0, 10, -10), scene);
+  let camera = new BABYLON.FollowCamera("case_cam", new BABYLON.Vector3(0, 0, 0), scene);
   // TODO: Ingame control for these things
-  CAMERA.radius = 30;
-  CAMERA.heightOffset = 30;
-  CAMERA.rotationOffset = 0;
+  camera.radius = 30;
+  camera.heightOffset = 40;
+  camera.rotationOffset = 0;
+  return camera;
 
 };
 
@@ -75,13 +74,10 @@ export function create_composite_model(ship, data){
   ship.model.visibility = 1;
 };
 
-let once = true;
 export function cameraFollowSystem (entMan) {
   for (let entity of entMan.get_with(['model', 'camera'])) {
-    if(once){
-      CAMERA.lockedTarget = entity.model;
-    }
-    CAMERA.rotationOffset = 180 * (entity.direction / Math.PI);
+      entity.camera.lockedTarget = entity.model;
+      entity.camera.rotationOffset = 180 * (entity.direction / Math.PI);
   }
 };
 
