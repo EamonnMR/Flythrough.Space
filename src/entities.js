@@ -1,6 +1,9 @@
 import { Weapon } from "./weapon.js";
 import { apply_upgrades } from "./util.js";
-import { create_composite_model } from "./graphics.js";
+import {
+  create_composite_model,
+  create_planet_sprite
+} from "./graphics.js";
 
 export function npcShipFactory(data, type, position, hud, ai, govt){
   let ship = shipFactory(data, type, position);
@@ -45,7 +48,7 @@ export function planetFactory (data, name, hud){
   let planet = Object.create(data.spobs[name]);
   
   planet.position = {x: planet.x, y: planet.y};
-  planet.model = data.get_sprite(data.spobtypes[planet.sType].sprite);
+  planet.model = create_planet_sprite(data, planet); 
   planet.spob_name = name;
   planet.radar_pip = hud.get_radar_pip(15, "Yellow");
   

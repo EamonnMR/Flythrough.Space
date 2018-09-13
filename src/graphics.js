@@ -1,13 +1,15 @@
 // This handles, among other things, the translation between "game" coordinates
 // (which are top down, X, Y) into engine coordinates. The rest of the game
 // can deal with 2d coordinates.
-// NGN   GAME
-// x --> X
-// y --> Nothing
-// Z --> Y
+// Engine --> Game
+// x      --> X
+// y      --> Nothing
+// Z      --> Y
 
 
 let SHIP_Y = -2;
+let PLANET_SCALE = 25;
+let PLANET_Y = -10;
 
 function get_bone_group(skeleton, prefix){
   // Get a group of bones with the same prefix
@@ -101,7 +103,7 @@ export function turretPointSystem (entMan) {
   for(let entity of entMan.get_with(['model'])) {
     if(entity.model.skeleton){
       for(let bone of get_bone_group(entity.model.skeleton, "turret")){
-        bone.rotate(BABYLON.Axis.Y, Math.PI * (new Date().getSeconds() / 10), BABYLON.Space.LOCAL);
+        // TODO: Rotate to face target if target exists
       }
     }
   }
@@ -120,3 +122,9 @@ function count_npcs(entMan){
   return entMan.get_with(['ai']).length;
 }
 
+export function create_planet_sprite(data, planet){
+  let sprite = planet.model = data.get_sprite(data.spobtypes[planet.sType].sprite);
+  sprite.size = PLANET_SCALE;
+  sprite.position.y = PLANET_Y;
+  return sprite;
+}
