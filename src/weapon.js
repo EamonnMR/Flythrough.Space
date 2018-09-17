@@ -23,6 +23,8 @@ export function decaySystem (entMan) {
 
 function bulletFactory(position, sprite, direction, speed, initialVelocity, proto, ignore_gov, ignore_player) {
   sprite.angle = direction;
+  sprite.y = -2;
+  // TODO: Get the Y offset based on the depth of the bone
   let velocity = {'x': initialVelocity.x, 'y': initialVelocity.y};
   accelerate(velocity, direction, speed);
 
