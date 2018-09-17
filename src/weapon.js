@@ -22,11 +22,7 @@ export function decaySystem (entMan) {
 };
 
 function bulletFactory(position, sprite, direction, speed, initialVelocity, proto, ignore_gov, ignore_player) {
-  sprite.position.x = position.x;
-  sprite.position.y = position.y;
-  sprite.position.z = 0;
   sprite.angle = direction;
-  sprite.size = 0.115;
   let velocity = {'x': initialVelocity.x, 'y': initialVelocity.y};
   accelerate(velocity, direction, speed);
 
