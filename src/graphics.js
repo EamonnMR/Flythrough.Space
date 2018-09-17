@@ -29,6 +29,8 @@ export function get_game_camera(scene){
   camera.radius = 30;
   camera.heightOffset = 40;
   camera.rotationOffset = 0;
+  camera.cameraAcceleration = .1;
+  camera.maxCameraSpeed = 100;
   return camera;
 
 };
