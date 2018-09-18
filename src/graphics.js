@@ -10,7 +10,7 @@
 const SHIP_Y = -2;
 const PLANET_SCALE = 25;
 const PLANET_Y = -10;
-let CAM_OFFSET = new BABYLON.Vector3(0, 20, 20);
+let CAM_OFFSET = new BABYLON.Vector3(0, 40, 30);
 
 function get_bone_group(skeleton, prefix){
   // Get a group of bones with the same prefix
