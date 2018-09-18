@@ -4,26 +4,28 @@ import { weaponSystem, decaySystem} from "./weapon.js";
 import { EntityManager, deletionSystem} from "./ecs.js";
 import { inputSystem, bindInputFunctions, unbindInputFunctions} from "./input.js";
 import {
-	npcSpawnerSystem,
-	modelPositionSystem,
-	cameraFollowSystem
+	npcSpawnerSystem
 } from "./entities.js";
+import {
+	modelPositionSystem,
+	cameraFollowSystem,
+  turretPointSystem
+} from "./graphics.js";
 import { collisionDetectionSystem } from "./collision.js";
 import { setup_system } from "./system.js";
 import { ViewState } from "./states.js";
 import { radarFollowSystem, HUD } from  "./hud.js";
 import { ai_system } from "./ai.js";
-
+import { get_game_camera } from "./graphics.js";
 
 export class GamePlayState extends ViewState {
 
-  constructor(scene, camera, data, player_data) {
+  constructor(scene, data, player_data) {
     super();
 
     this.data = data;
     this.scene = scene;
-    this.camera = camera;
-
+    //this.camera = null;
     this.player_data = player_data;
 
     this.entMan = new EntityManager(player_data, data, [
@@ -35,6 +37,7 @@ export class GamePlayState extends ViewState {
       velocitySystem,
       modelPositionSystem,
       cameraFollowSystem,
+      turretPointSystem,
       decaySystem,
       collisionDetectionSystem,
       // hud.selectionFollowSystem,
@@ -53,6 +56,9 @@ export class GamePlayState extends ViewState {
   }
 
   enter(){
+    if(! this.camera){
+      this.camera = get_game_camera(this.scene);
+    }
     if (this.empty){
       this.setup_world();
     }
@@ -127,7 +133,7 @@ export class GamePlayState extends ViewState {
   create_world_models( system_name ){
     this.world_models = setup_system(
   		this.scene,
-			this.camera,
+      this.camera,
 			this.entMan,
    		system_name,
       this.hud,
@@ -149,6 +155,7 @@ export class GamePlayState extends ViewState {
   }
 
   clear_world(){
+    this.camera.lockedTarget = null;
     this.entMan.clear();
     this.dispose_world_models();
     this.hud.dispose();

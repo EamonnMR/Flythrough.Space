@@ -21,11 +21,15 @@ export class Data {
   get_mesh(name){
     // Remember, these will come in at 0 visibility. Make sure
     // to set visibility only after you set position
-    let model = null;  // TODO: Put a cube in here
+    let clone = null;  // TODO: Put a cube in here
     if (name in this.models){
-      model = this.models[name];
+      let model = this.models[name];
+      clone = model.clone();
+      if(model.skeleton){
+        clone.skeleton = model.skeleton.clone("clone");
+      }
     }
-    return model.clone();
+    return clone;
   }
 
   get_sprite_mgr(name){
@@ -51,7 +55,7 @@ function load_assets( source_json, scene, data, finish_callback ){
         "", "assets/",  source_json.meshes[key]);
     model_task.onSuccess = (task) => {
       let mesh = task.loadedMeshes[0]; // TODO: Multimesh files
-      mesh.visibility = 0; // Clone this later
+      mesh.visibility = 0; // Make the clone visible when you're ready for it
       data.models[key] = mesh;
     }
 

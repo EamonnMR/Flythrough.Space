@@ -5,8 +5,8 @@ export function radarFollowSystem(entMan){
   if(player && player.position){
     for (let entity of entMan.get_with(['position', 'radar_pip'])){
       // Position, relative to the player, inverted
-      entity.radar_pip.left = (entity.position.x - player.position.x) / scale_factor;
-      entity.radar_pip.top = (entity.position.y - player.position.y) / (-1 * scale_factor);
+      entity.radar_pip.left = (entity.position.x - player.position.x) / (-1 * scale_factor);
+      entity.radar_pip.top = (entity.position.y - player.position.y) / scale_factor;
     }
   }
 };

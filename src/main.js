@@ -13,17 +13,12 @@ function init(game_canvas, scene, engine, data){
 
   scene.clearColor = new BABYLON.Color3(0, 0, 0);
 
-
-
-  let camera = new BABYLON.FreeCamera(
-            "camera1", new BABYLON.Vector3(0, -1, -10), scene);
-
   // start initial state
   
   let player_data = new PlayerSave(data.ships, data.upgrades);
   let stateMgr = new StateManager({
     'gameplay': new GamePlayState(
-        scene, camera, data, player_data),
+        scene, data, player_data),
     'map': new MapView(
         data, {x: 0, y: 0}, game_canvas, player_data),
 
@@ -31,7 +26,7 @@ function init(game_canvas, scene, engine, data){
     'trade': new TradeMenu(data.spobs, player_data, data.trade),
     'shipyard': new ShipyardMenu(data.spobs, player_data, data.ships),
     'upgrades': new UpgradeMenu(data.spobs, player_data, data.upgrades, data),
-  }, 'upgrades');
+  }, 'gameplay');
  
   // Handle resizes
 

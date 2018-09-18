@@ -1,7 +1,9 @@
 import { Weapon } from "./weapon.js";
 import { apply_upgrades } from "./util.js";
-
-let SHIP_Z = -2;
+import {
+  create_composite_model,
+  create_planet_sprite
+} from "./graphics.js";
 
 export function npcShipFactory(data, type, position, hud, ai, govt){
   let ship = shipFactory(data, type, position);
@@ -25,14 +27,8 @@ export function playerShipFactory(data, type, position, camera, hud, player) {
   return ship;
 };
 
-
-
 export function shipFactory(data, type, position){
   let ship = Object.create(type);
-
-  ship.model = data.get_mesh(ship.mesh);
-  ship.model.visibility = 1;
-
   ship.position = position;
   ship.direction = 0;
   ship.velocity = {x: 0, y: 0};
@@ -43,14 +39,16 @@ export function shipFactory(data, type, position){
   ship.collider = {radius: .5};
   ship.fuel = ship.max_fuel;
   apply_upgrades(ship, ship.upgrades, data);
+  create_composite_model(ship, data);
   return ship;
 };
+
 
 export function planetFactory (data, name, hud){
   let planet = Object.create(data.spobs[name]);
   
   planet.position = {x: planet.x, y: planet.y};
-  planet.model = data.get_sprite(data.spobtypes[planet.sType].sprite);
+  planet.model = create_planet_sprite(data, planet); 
   planet.spob_name = name;
   planet.radar_pip = hud.get_radar_pip(15, "Yellow");
   
@@ -72,29 +70,6 @@ export function asteroidFactory (position, velocity, sprite, hud) {
     'hittable': true,
     'radar_pip': hud.get_radar_pip(5, '#FF00FFFF')
   };
-};
-
-export function cameraFollowSystem (entMan) {
-  for (let entity of entMan.get_with(['position', 'camera'])) {
-    entity.camera.position.x = entity.position.x;
-    entity.camera.position.y = entity.position.y;
-  }
-};
-
-export function modelPositionSystem (entMan) {
-  for (let entity of entMan.get_with(['model'])) {
-    if ('position' in entity) {
-      // Would it be possible to get it such that
-      // entity.position === entity.model.position?
-      entity.model.position.x = entity.position.x;
-      entity.model.position.y = entity.position.y;
-    }
-    if ('direction' in entity) {
-      entity.model.rotate(
-          BABYLON.Axis.Z, -1 * entity.direction_delta, BABYLON.Space.LOCAL);
-      entity.direction_delta = 0;
-    }
-  }
 };
 
 export function npcSpawnerFactory(data, system, typeset, hud) {
@@ -143,14 +118,13 @@ function count_npcs(entMan){
   return entMan.get_with(['ai']).length;
 }
 
-function random_position(z=SHIP_Z){
+function random_position(){
   let distance = Math.random() * 100;
   let angle = Math.random() * 2 * Math.PI;
 
   return {
     x: Math.cos(angle) * distance,
     y: Math.sin(angle) * distance,
-    z: z
   };
 };
 

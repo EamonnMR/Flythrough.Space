@@ -22,11 +22,9 @@ export function decaySystem (entMan) {
 };
 
 function bulletFactory(position, sprite, direction, speed, initialVelocity, proto, ignore_gov, ignore_player) {
-  sprite.position.x = position.x;
-  sprite.position.y = position.y;
-  sprite.position.z = 0;
   sprite.angle = direction;
-  sprite.size = 0.115;
+  sprite.y = -2;
+  // TODO: Get the Y offset based on the depth of the bone
   let velocity = {'x': initialVelocity.x, 'y': initialVelocity.y};
   accelerate(velocity, direction, speed);
 
@@ -53,12 +51,14 @@ function bulletFactory(position, sprite, direction, speed, initialVelocity, prot
 };
 
 export class Weapon {
-  constructor(period, sprite_mgr, projectile, velocity){
+  constructor(period, sprite_mgr, projectile, velocity, mesh){
     this.timer = 0;
     this.period = period;
     this.sprite_mgr = sprite_mgr;
     this.speed = velocity;
     this.projectile = projectile;
+    this.mesh= mesh;
+    this.model = null; // To be filled in elsewhere TODO: gross
   }
 
   tryShoot(entMan, entity) {
