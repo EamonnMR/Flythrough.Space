@@ -37,6 +37,7 @@ export function get_chase_camera(scene){
 
 export function uni_game_camera(scene){
   let camera = new BABYLON.UniversalCamera("uni_cam", CAM_OFFSET, scene); 
+  camera.setTarget(new BABYLON.Vector3(0,0,0));
   return camera;
 };
 
@@ -91,13 +92,9 @@ export function chaseCameraFollowSystem (entMan) {
     entity.camera.rotationOffset = 180 * (entity.direction / Math.PI);
   }
 };
-
+let pragma_once = true;
 export function uniCameraFollowSystem(entMan){
   for (let entity of entMan.get_with(['model', 'camera'])) {
-    if(! entity.cam_target){
-      entity.camera.setTarget(entity.model.position);
-      entity.cam_target = true;
-    }
     entity.camera.position = entity.model.position.add(CAM_OFFSET);
   }
 };
