@@ -7,9 +7,10 @@
 // Z      --> Y
 
 
-let SHIP_Y = -2;
-let PLANET_SCALE = 25;
-let PLANET_Y = -10;
+const SHIP_Y = -2;
+const PLANET_SCALE = 25;
+const PLANET_Y = -10;
+let CAM_OFFSET = new BABYLON.Vector3(0, 20, 20);
 
 function get_bone_group(skeleton, prefix){
   // Get a group of bones with the same prefix
@@ -23,7 +24,7 @@ function get_bone_group(skeleton, prefix){
   return bone_group;
 };
 
-export function get_game_camera(scene){
+export function get_chase_camera(scene){
   let camera = new BABYLON.FollowCamera("case_cam", new BABYLON.Vector3(0, 0, 0), scene);
   // TODO: Ingame control for these things
   camera.radius = 30;
@@ -32,8 +33,14 @@ export function get_game_camera(scene){
   camera.cameraAcceleration = .1;
   camera.maxCameraSpeed = 100;
   return camera;
-
 };
+
+export function uni_game_camera(scene){
+  let camera = new BABYLON.UniversalCamera("uni_cam", CAM_OFFSET, scene); 
+  return camera;
+};
+
+export let get_game_camera = uni_game_camera;
 
 export function create_composite_model(ship, data){
   // Create a ship's model out of the base mesh of the ship
@@ -78,12 +85,24 @@ export function create_composite_model(ship, data){
   ship.model.visibility = 1;
 };
 
-export function cameraFollowSystem (entMan) {
+export function chaseCameraFollowSystem (entMan) {
   for (let entity of entMan.get_with(['model', 'camera'])) {
-      entity.camera.lockedTarget = entity.model;
-      entity.camera.rotationOffset = 180 * (entity.direction / Math.PI);
+    entity.camera.lockedTarget = entity.model;
+    entity.camera.rotationOffset = 180 * (entity.direction / Math.PI);
   }
 };
+
+export function uniCameraFollowSystem(entMan){
+  for (let entity of entMan.get_with(['model', 'camera'])) {
+    if(! entity.cam_target){
+      entity.camera.setTarget(entity.model.position);
+      entity.cam_target = true;
+    }
+    entity.camera.position = entity.model.position.add(CAM_OFFSET);
+  }
+};
+
+export let cameraFollowSystem = uniCameraFollowSystem;
 
 export function modelPositionSystem (entMan) {
   for (let entity of entMan.get_with(['model'])) {
