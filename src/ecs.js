@@ -56,6 +56,16 @@ export class EntityManager {
     return filtered_ents;
   }
 
+  get_with_exact(member, value){
+    let filtered_ents = []
+    for(let ent of this.get_with([member])){
+      if(ent[member] === value){
+        filtered_ents.push( ent );
+      }
+    }
+    return filtered_ents;
+  }
+
   update () {
 
     let time = Date.now();

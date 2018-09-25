@@ -54,7 +54,7 @@ export function setup_system(scene, camera, entMan, system, hud, data, player_da
   if ('spobs' in system_dat) {
     for (let spob_name of system_dat.spobs){
       let spob_dat = data.spobs[spob_name];
-      let planet = planetFactory(data, spob_name, hud)
+      let planet = planetFactory(data, spob_name, hud, scene)
       planets.push( planet );
     }
   }

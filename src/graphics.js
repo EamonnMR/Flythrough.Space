@@ -140,9 +140,16 @@ function count_npcs(entMan){
   return entMan.get_with(['ai']).length;
 }
 
-export function create_planet_sprite(data, planet){
-  let sprite = planet.model = data.get_sprite(data.spobtypes[planet.sType].sprite);
+export function create_planet_sprite(data, planet, scene){
+  // We want the planet to be a sprite because A E S T H E T I C
+  // but for it to properly interact with the GUI we need an actual mesh.
+  // So we create an invisible mesh and attach the sprite to it.
+  let sprite = data.get_sprite(data.spobtypes[planet.sType].sprite);
   sprite.size = PLANET_SCALE;
   sprite.position.y = PLANET_Y;
-  return sprite;
+  let sphere = BABYLON.Mesh.CreateSphere("sphere1", 2, 2, scene);
+  sphere.translate(BABYLON.Axis.Y, PLANET_Y, BABYLON.Space.LOCAL);
+  sphere.visibility = 0;
+  sprite.parent = sphere;
+  return sphere;
 }

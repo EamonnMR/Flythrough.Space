@@ -44,12 +44,13 @@ export function shipFactory(data, type, position){
 };
 
 
-export function planetFactory (data, name, hud){
+export function planetFactory (data, name, hud, scene){
   let planet = Object.create(data.spobs[name]);
   
   planet.position = {x: planet.x, y: planet.y};
-  planet.model = create_planet_sprite(data, planet); 
+  planet.model = create_planet_sprite(data, planet, scene); 
   planet.spob_name = name;
+  // TODO: Change pip color based on landability status
   planet.radar_pip = hud.get_radar_pip(15, "Yellow");
   
   return planet;
@@ -57,6 +58,7 @@ export function planetFactory (data, name, hud){
 
 
 export function asteroidFactory (position, velocity, sprite, hud) {
+  // TODO: Asteroids should have some sort of data
   sprite.position.x = position.x;
   sprite.position.y = position.y;
   sprite.position.z = position.z;

@@ -27,6 +27,13 @@ export class HUD{
     this.nav_text = this.get_text();
     this.radar_box = this.get_radar_box();
     this.nav_box = this.get_nav_box();
+    this.spob_label = this.get_spob_label();
+  }
+
+  get_spob_label(){
+    let block = this.get_text();
+    this.adt.addControl(block);
+    return block;
   }
 
 
@@ -83,6 +90,15 @@ export class HUD{
     let fuel_line = "Fuel (jumps): " + this.player_data.fuel;
     if (this.player_data.selected_spob){
       planet_line += this.player_data.selected_spob;
+      let possible_spobs = this.entMan.get_with_exact("spob_name", this.player_data.selected_spob)
+      if(possible_spobs.length > 0){
+        let spob = possible_spobs[0];
+        spob.model.isDisposed = () => { return false }; // Hack
+        this.spob_label.text = spob.spob_name;
+        this.spob_label.linkWithMesh(spob.model);
+      } else {
+        this.spob_label.text = "";
+      }
     }
     if (this.player_data.selected_system){
       jump_line += this.player_data.selected_system;

@@ -40,7 +40,6 @@ export class GamePlayState extends ViewState {
       turretPointSystem,
       decaySystem,
       collisionDetectionSystem,
-      // hud.selectionFollowSystem,
       radarFollowSystem,
       deletionSystem
     ]);
