@@ -33,11 +33,13 @@ export class HUD{
   get_spob_label(){
     let block = this.get_text();
     this.adt.addControl(block);
+    // TODO: Derive link offset Y from planet graphic size
+    // TODO: Brackets?
+    block.linkOffsetY = 160;
     return block;
-  }
+ }
 
-
-  get_radar_pip(size, color){
+ get_radar_pip(size, color){
     /* Defines the style for Radar Pips */
     let pip = new BABYLON.GUI.Ellipse();
     let str_size = size + "px";
