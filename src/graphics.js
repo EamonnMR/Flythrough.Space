@@ -28,7 +28,7 @@ export function get_chase_camera(scene){
   let camera = new BABYLON.FollowCamera("case_cam", new BABYLON.Vector3(0, 0, 0), scene);
   // TODO: Ingame control for these things
   camera.radius = 30;
-  camera.heightOffset = 40;
+  camera.heightOffset = 400;
   camera.rotationOffset = 0;
   camera.cameraAcceleration = .1;
   camera.maxCameraSpeed = 100;
@@ -144,12 +144,17 @@ export function create_planet_sprite(data, planet, scene){
   // We want the planet to be a sprite because A E S T H E T I C
   // but for it to properly interact with the GUI we need an actual mesh.
   // So we create an invisible mesh and attach the sprite to it.
+  // Except it does not really attach so we need to move and dispose it
+  // seperately. That's why we attach the sprite to the entity.
   let sprite = data.get_sprite(data.spobtypes[planet.sType].sprite);
   sprite.size = PLANET_SCALE;
   sprite.position.y = PLANET_Y;
+  sprite.position.x = planet.x;
+  sprite.position.z = planet.y;
   let sphere = BABYLON.Mesh.CreateSphere("sphere1", 2, 2, scene);
   sphere.translate(BABYLON.Axis.Y, PLANET_Y, BABYLON.Space.LOCAL);
   sphere.visibility = 0;
   sprite.parent = sphere;
+  planet.sprite = sprite;
   return sphere;
 }

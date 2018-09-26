@@ -120,7 +120,11 @@ export function deletionSystem (entMan) {
 };
 
 function delete_model (entity) {
-  let MODEL_ATTR = ['model', 'radar_pip'];
+  let MODEL_ATTR = [
+    'model',
+    'radar_pip',
+    'sprite'
+  ];
 
   for(let attribute of MODEL_ATTR ){
     if(attribute in entity){
