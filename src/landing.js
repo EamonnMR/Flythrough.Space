@@ -22,7 +22,7 @@ export class LandingMenu extends BaseMenuView {
     /* Middle Widgets */
     const CENTER = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_CENTER;
     // TODO: Load from planet
-    widgets.push(new HeroImage("assets/rustscape.png"),
+    widgets.push(new HeroImage("assets/rustscape.png",
           CENTER,
           BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
         0,0));

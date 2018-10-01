@@ -51,11 +51,13 @@ export function setup_system(scene, camera, entMan, system, hud, data, player_da
 
   let planets = [];
   // TODO: Why keep planets list seperate?
+  let index = 0;
   if ('spobs' in system_dat) {
     for (let spob_name of system_dat.spobs){
       let spob_dat = data.spobs[spob_name];
-      let planet = planetFactory(data, spob_name, hud, scene)
+      let planet = planetFactory(data, spob_name, hud, scene, index)
       planets.push( planet );
+      index++
     }
   }
 

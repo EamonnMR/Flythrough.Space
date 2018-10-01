@@ -105,6 +105,29 @@ function handleKeyUp ( event ){
       break;
     case 76: // 'l'
       game_ctrl.try_land();
+      break;
+    case 9: // tab
+      game_ctrl.select_closest();
+      break;
+    case 49: // keyboard 1, etc
+      game_ctrl.select_spob(0);
+      break;
+    case 50: // keyboard 1, etc
+      game_ctrl.select_spob(1);
+      break;
+    case 51: // keyboard 1, etc
+      game_ctrl.select_spob(2);
+      break;
+    case 52: // keyboard 1, etc
+      game_ctrl.select_spob(3);
+      break;
+    case 53: // keyboard 1, etc
+      game_ctrl.select_spob(4);
+      break;
+    case 54: // keyboard 1, etc
+      game_ctrl.select_spob(5);
+      break;
+
   }
 };
 
@@ -120,6 +143,8 @@ let no_op_game_ctrl = {
   reset_game: no_op,
   hyper_jump: no_op,
   try_land: no_op,
+  select_closest: no_op,
+  select_spob: no_op,
 };
 
 export function unbindInputFunctions(){

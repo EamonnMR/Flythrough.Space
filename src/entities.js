@@ -44,7 +44,7 @@ export function shipFactory(data, type, position){
 };
 
 
-export function planetFactory (data, name, hud, scene){
+export function planetFactory (data, name, hud, scene, index){
   let planet = Object.create(data.spobs[name]);
   
   planet.position = {x: planet.x, y: planet.y};
@@ -52,6 +52,9 @@ export function planetFactory (data, name, hud, scene){
   planet.spob_name = name;
   // TODO: Change pip color based on landability status
   planet.radar_pip = hud.get_radar_pip(15, "Yellow");
+  
+  // For number-key auto selection purposes
+  planet.spob_index = index;
   
   return planet;
 };

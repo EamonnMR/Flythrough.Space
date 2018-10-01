@@ -101,9 +101,9 @@ export class GamePlayState extends ViewState {
       },
       */
       try_land: () => {
-        let sys_spobs = this.entMan.get_with(['spob_name']);
-        let landable = this.find_closest_landable_to_player(sys_spobs);
         if (this.player_data.selected_spob == null){
+          let sys_spobs = this.entMan.get_with(['spob_name']);
+          let landable = this.find_closest_landable_to_player(sys_spobs);
           if (landable){
             this.player_data.selected_spob = landable.spob_name;
           }
@@ -125,7 +125,22 @@ export class GamePlayState extends ViewState {
             console.log("Player tried to land somewhere wrong");
           }
         }
-      }
+      },
+      select_closest: () => {
+        let player = this.get_player_ent();
+        let target = this.find_closest_target();
+        if(target){
+          player.target = target.id;
+          console.log(player.target);
+        }
+      },
+
+      select_spob: (index) => {
+        let indexed_spob = this.entMan.get_with_exact("spob_index", index)[0]; 
+        if (indexed_spob){
+          this.player_data.selected_spob = indexed_spob.spob_name;
+        }
+      },
     });
   }
 
@@ -180,19 +195,25 @@ export class GamePlayState extends ViewState {
     return true;
   }
 
-  find_closest_landable_to_player(spobs){
-    let min_distance = null;
-    let player = this.get_player_ent();
+  get_closest_thing(middle_thing, other_things){
+    let min_distance = Number.POSITIVE_INFINITY;
     let choice = null;
-    for(let spob of spobs){
-      let dist = distance(
-          spob.position, player.position);
-      if (!min_distance || min_distance > dist
-          && this.spob_is_landable(spob)){
+    for( let other of other_things){
+      let dist = distance(middle_thing.position, other.position);
+      if(min_distance > dist){
         min_distance = dist;
-        choice = spob;
+        choice = other;
       }
     }
     return choice;
+  }
+
+  find_closest_landable_to_player(spobs){
+    let player = this.get_player_ent();
+    return this.get_closest_thing(player, spobs)
+  }
+
+  find_closest_target(targeter){
+    return get_closest_thing(targeter, this.entMan.get_with(["ai"]));
   }
 }
