@@ -31,7 +31,8 @@
     "space"      : 40,
     "cargo"      : 20,
     "price"      : 25001,
-    "tech"       : {"khanda":1}
+    "tech"       : {"khanda":1},
+    "max_fuel"   : 3
   },
   "courier"  :{
     "short_name"  : "Courier",
@@ -46,7 +47,8 @@
     "space"      : 14,
     "cargo"      : 50,
     "price"      : 20000,
-    "tech"       : {"accra":1}
+    "tech"       : {"accra":1},
+    "max_fuel"   : 3
   },
   "argosy":{
     "short_name"  : "Argosy",
@@ -60,7 +62,8 @@
     "space"      : 40,
     "cargo"      : 100,
     "price"      : 70000,
-    "tech"       : {"khanda":3}
+    "tech"       : {"khanda":3},
+    "max_fuel"   : 3
   },
   "bulk":{
     "short_name"  : "Bulk Freighter",
@@ -74,7 +77,8 @@
     "space"      : 10,
     "cargo"      : 200,
     "price"      : 100000,
-    "tech"       : {"accra":2}
+    "tech"       : {"accra":2},
+    "max_fuel"   : 3
   },
   "oxana":{
     "short_name"  : "Oxana",
@@ -89,7 +93,8 @@
     "space"      : 30,
     "cargo"      : 270,
     "price"      : 2000000,
-    "tech"       : {"melkin":3}
+    "tech"       : {"melkin":3},
+    "max_fuel"   : 4
   },
   "vera":{
     "short_name"  : "Vera",
@@ -104,7 +109,8 @@
     "space"      : 100,
     "cargo"      : 70,
     "price"      : 2000000,
-    "tech"       : {"melkin":4}
+    "tech"       : {"melkin":4},
+    "max_fuel"   : 4
   },
   "pertinax":{
     "short_name"  : "Pertinax",
@@ -119,7 +125,8 @@
     "space"      : 100,
     "cargo"      : 70,
     "price"      : 2000000,
-    "tech"       : {"caudron":5}
+    "tech"       : {"caudron":5},
+    "max_fuel":      4
   },
   "cetacea":{
     "short_name"  : "Cetacea",
@@ -133,7 +140,8 @@
     "space"      : 80,
     "cargo"      : 600,
     "price"      : 8000000,
-    "tech"       : {"accra":4}
+    "tech"       : {"accra":4},
+    "max_fuel"       : 4
   },
   "civ_corvette":{
     "short_name"  : "Corvette",
@@ -148,7 +156,8 @@
     "space"      : 70,
     "cargo"      : 40,
     "price"      : 8000000,
-    "tech"       : {"khanda":2}
+    "tech"       : {"khanda":2},
+    "max_fuel"       : 3
   },
   
   "cas_corvette":{
@@ -164,7 +173,8 @@
     "space"      : 55,
     "cargo"      : 30,
     "price"      : 600000,
-    "tech"       : {"cas":4}
+    "tech"       : {"cas":4},
+    "max_fuel"       : 3
   },
 
   "cas_oe_fighter"   :{
@@ -180,7 +190,8 @@
     "space"      : 20,
     "cargo"      : 10,
     "price"      : 5000,
-    "tech"       : {"cas":1}
+    "tech"       : {"cas":1},
+    "max_fuel"       : 3
   },
 
    "cas_frigate"  :{
@@ -195,6 +206,7 @@
     "space"      : 80,
     "cargo"      : 40,
     "price"      : 500000,
+    "max_fuel"       : 3,
     "tech"       : {"cas":3}
   },
  
@@ -212,6 +224,7 @@
     "cargo"      : 60,
     "price"      : 80000000,
     "tech"       : {"cas":5},
+    "max_fuel"       : 5,
     "carried_fighters": { "cas_oe_fighter": 6}
   },
 
@@ -228,7 +241,8 @@
     "space"      : 20,
     "cargo"      : 10,
     "price"      : 5000,
-    "tech"       : {"oe":1}
+    "tech"       : {"oe":1},
+    "max_fuel"   : 2
   },
   
   "oe_frig"  :{
@@ -243,7 +257,8 @@
     "space"      : 80,
     "cargo"      : 40,
     "price"      : 500000,
-    "tech"       : {"oe":2}
+    "tech"       : {"oe":2},
+    "max_fuel"   : 3
   },
   
   "oe_cru"  :{
@@ -259,7 +274,8 @@
     "space"      : 120,
     "cargo"      : 80,
     "price"      : 900000,
-    "tech"       : {"oe":3}
+    "tech"       : {"oe":3},
+    "max_fuel"   : 4 
   },
   
   "xic_drillship":{
@@ -277,7 +293,8 @@
     "space"      : 80,
     "cargo"      : 40,
     "price"      : 500000,
-    "tech"       : {"xic":4}
+    "tech"       : {"xic":4},
+    "max_fuel"   : 5
   },
   "xic_prospector":{
     "icon"       : "img/Meowx/xicfi_icon.png",
@@ -293,7 +310,8 @@
     "space"      : 40,
     "cargo"      : 20,
     "price"      : 25000,
-    "tech"       : {"xic":2 }
+    "tech"       : {"xic":2 },
+    "max_fuel"   : 3
   },
   "itaska_bomber":{
     "mesh"     : "it_mask",
@@ -309,7 +327,8 @@
     "space"      : 15,
     "cargo"      : 10,
     "price"      : 10000,
-    "tech"       : {"pen":2}
+    "tech"       : {"pen":2},
+    "max_fuel"   : 3
   },
   "itaska_corvette":{
     "mesh"     : "it_clipper",
@@ -323,7 +342,8 @@
     "space"      : 100,
     "cargo"      : 50,
     "price"      : 2000000,
-    "tech"       : {"pen": 4}
+    "tech"       : {"pen": 4},
+    "max_fuel"   : 3
   },
   "itaska_battleship":{
     "short_name"  : "Franklin",
@@ -337,7 +357,8 @@
     "space"      : 200,
     "cargo"      : 50,
     "price"      : 5000000,
-    "tech"       : {"itaskan_ship":3}
+    "tech"       : {"itaskan_ship":3},
+    "max_fuel"   : 3
   },
 
   "league_sparrow":{
@@ -354,7 +375,8 @@
     "space"      : 30,
     "cargo"      : 10,
     "price"      : 200000,
-    "tech"       : {"league":1}
+    "tech"       : {"league":1},
+    "max_fuel"   : 2
   },
   "league_heavy_fighter":{
     "model": "heavy_fi",
@@ -369,7 +391,8 @@
     "space"      : 40,
     "cargo"      : 20,
     "price"      : 25000,
-    "tech"       : {"league": 2}
+    "tech"       : {"league": 2},
+    "max_fuel"   : 3
   },
   "league_corvette":{
     "short_name"  : "League Corvette",
@@ -384,7 +407,8 @@
     "space"      : 50,
     "cargo"      : 30,
     "price"      : 800000,
-    "tech"       : {"league":3}
+    "tech"       : {"league":3},
+    "max_fuel"   : 3
   },
 
   "league_argosy":{
@@ -399,7 +423,8 @@
     "space"      : 40,
     "cargo"      : 100,
     "price"      : 70000,
-    "tech"       : {"league":4}
+    "tech"       : {"league":4},
+    "max_fuel"   : 3
   },
 
   "league_warship":{
@@ -415,7 +440,8 @@
     "space"      : 100,
     "cargo"      : 200,
     "price"      : 6000000,
-    "tech"       : {"league":5}
+    "tech"       : {"league":5},
+    "max_fuel"   : 4
   },
   "ff_oe_fighter"   :{
     "short_name"  : "FF Fighter",
@@ -429,7 +455,8 @@
     "space"      : 20,
     "cargo"      : 10,
     "price"      : 5000,
-    "tech"       : {"V":1}
+    "tech"       : {"V":1},
+    "max_fuel"   : 3
   },
   
   "ff_oe_frig"  :{
@@ -444,7 +471,8 @@
     "space"      : 80,
     "cargo"      : 40,
     "price"      : 500000,
-    "tech"       : {"V":2}
+    "tech"       : {"V":2},
+    "max_fuel"   : 4
   },
   
   "ff_oe_cru"  :{
@@ -460,7 +488,8 @@
     "space"      : 120,
     "cargo"      : 80,
     "price"      : 900000,
-    "tech"       : {"V":3}
+    "tech"       : {"V":3},
+    "max_fuel"   : 5
   },
   "ff_oe_corvette":{
     "short_name"  : "FF Corv.",
@@ -475,7 +504,8 @@
     "space"      : 55,
     "cargo"      : 30,
     "price"      : 600000,
-    "tech"       : {"V":4}
+    "tech"       : {"V":4},
+    "max_fuel"   : 4
   },
    "ne_heavyfi"      :{
     "short_name"  : "NE Thunder",
@@ -490,7 +520,8 @@
     "space"      : 40,
     "cargo"      : 15,
     "price"      : 10000,
-    "tech"       :  {"ne":2}
+    "tech"       :  {"ne":2},
+    "max_fuel"   : 3
   },
   "neVette":{
     "short_name"  : "NE Nimbus.",
@@ -505,7 +536,8 @@
     "space"      : 55,
     "cargo"      : 60,
     "price"      : 600000,
-    "tech"       :  {"ne":4}
+    "tech"       :  {"ne":4},
+    "max_fuel"   : 3
   },
   "nebattleship"      :{
     "icon"       : "img/onyx/Onyx/thumb/redfrigate.bmp",
@@ -522,7 +554,8 @@
     "space"      : 40,
     "cargo"      : 15,
     "price"      : 10000,
-    "tech"       :  {"ne":3}
+    "tech"       :  {"ne":3},
+    "max_fuel"   : 4
   },
     
   "necruiser"  :{
@@ -539,7 +572,8 @@
     "space"      : 300,
     "cargo"      : 100,
     "price"      : 90000000,
-    "tech"       : {"ne":5}
+    "tech"       : {"ne":5},
+    "max_fuel"   : 4
   },
   
   "wlknfrigate":{
@@ -555,7 +589,8 @@
     "space"      : 10,
     "cargo"      : 5,
     "price"      : 10000,
-    "tech"       :  {"wlkn":4}
+    "tech"       :  {"wlkn":4},
+    "max_fuel"   : 4
   },
   "wlkncarrier":{
     "short_name"  : "Nightshade",
@@ -571,7 +606,8 @@
     "space"      : 200,
     "cargo"      : 100,
     "price"      : 6000000,
-    "tech"       : {"wlkn":5}
+    "tech"       : {"wlkn":5},
+    "max_fuel"   : 6
   },
   "caudron_sparrow":{
     "mesh": "light_fi",
@@ -587,7 +623,8 @@
     "space"      : 30,
     "cargo"      : 10,
     "price"      : 200000,
-    "tech"       : {"league":1}
+    "tech"       : {"league":1},
+    "max_fuel"   : 3
   },
   "pirate_ahab":{
     "short_name"  : "Ahab",
@@ -602,7 +639,8 @@
     "space"      : 80,
     "cargo"      : 600,
     "price"      : 8000000,
-    "tech"       : {"pirate":4}
+    "tech"       : {"pirate":4},
+    "max_fuel"   : 5
   },
   "caudron_corvette":{
     "short_name"  : "Corvette",
@@ -618,7 +656,8 @@
     "space"      : 70,
     "cargo"      : 40,
     "price"      : 8000000,
-    "tech"       : {"caudron":3}
+    "tech"       : {"caudron":3},
+    "max_fuel"   : 5
   },
   "patsy" : {
     "mesh"      : "oe_fi",
@@ -652,7 +691,8 @@
     "space"      : 14,
     "cargo"      : 50,
     "price"      : 20000,
-    "tech"       : {"pirate":2}
+    "tech"       : {"pirate":2},
+    "max_fuel"   : 4
   },
   "triggerman":{
     "short_name"  : "Triggerman",
@@ -667,7 +707,8 @@
     "space"      : 40,
     "cargo"      : 100,
     "price"      : 70000,
-    "tech"       : {"pirate":3}
+    "tech"       : {"pirate":3},
+    "max_fuel"   : 4
   }
 
 }
