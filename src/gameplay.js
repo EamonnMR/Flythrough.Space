@@ -127,8 +127,9 @@ export class GamePlayState extends ViewState {
         }
       },
       select_closest: () => {
+        console.log("Finding Closest npc");
         let player = this.get_player_ent();
-        let target = this.find_closest_target();
+        let target = this.find_closest_target(player);
         if(target){
           player.target = target.id;
           console.log(player.target);
@@ -210,10 +211,11 @@ export class GamePlayState extends ViewState {
 
   find_closest_landable_to_player(spobs){
     let player = this.get_player_ent();
+
     return this.get_closest_thing(player, spobs)
   }
 
   find_closest_target(targeter){
-    return get_closest_thing(targeter, this.entMan.get_with(["ai"]));
+    return this.get_closest_thing(targeter, this.entMan.get_with(["ai"]));
   }
 }

@@ -73,6 +73,7 @@ function handleKeyDown ( event ){
 };
 
 function handleKeyUp ( event ){
+  console.log(event.keyCode);
   switch(event.keyCode){
     case 38:
       inputStates.forward = false;
@@ -106,25 +107,25 @@ function handleKeyUp ( event ){
     case 76: // 'l'
       game_ctrl.try_land();
       break;
-    case 9: // tab
+    case 192: // ~
       game_ctrl.select_closest();
       break;
     case 49: // keyboard 1, etc
       game_ctrl.select_spob(0);
       break;
-    case 50: // keyboard 1, etc
+    case 50: // keyboard 2, etc
       game_ctrl.select_spob(1);
       break;
-    case 51: // keyboard 1, etc
+    case 51: // keyboard 3, etc
       game_ctrl.select_spob(2);
       break;
-    case 52: // keyboard 1, etc
+    case 52: // keyboard 4, etc
       game_ctrl.select_spob(3);
       break;
-    case 53: // keyboard 1, etc
+    case 53: // keyboard 5, etc
       game_ctrl.select_spob(4);
       break;
-    case 54: // keyboard 1, etc
+    case 54: // keyboard 6, etc
       game_ctrl.select_spob(5);
       break;
 
