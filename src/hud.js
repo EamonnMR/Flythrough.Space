@@ -11,10 +11,6 @@ export function radarFollowSystem(entMan){
   }
 };
 
-export function selectionFollowSystem(entMan){
-
-};
-
 export class HUD{
   constructor(scene, entMan, player_data){
     // TODO: Do I actually still need to plumb the scene through here?
@@ -28,6 +24,7 @@ export class HUD{
     this.radar_box = this.get_radar_box();
     this.nav_box = this.get_nav_box();
     this.spob_label = this.get_spob_label();
+    this.target_label = this.get_target_label();
   }
 
   get_spob_label(){
@@ -37,6 +34,14 @@ export class HUD{
     // TODO: Brackets?
     block.linkOffsetY = 160;
     return block;
+ }
+
+ get_target_label(){
+   let block = this.get_text();
+   this.adt.addControl(block);
+   // TODO: Health bar - compare health to max health, shields to max shields
+   block.linkOffsetY = 25;
+   return block;
  }
 
  get_radar_pip(size, color){
@@ -102,6 +107,18 @@ export class HUD{
         this.spob_label.text = "";
       }
     }
+
+    if (player && player.target){
+      let possible_target = this.entMan.get(player.target);
+      if(possible_target){
+        this.target_label.text = possible_target.short_name;
+        this.target_label.linkWithMesh(possible_target.model);
+      } else {
+        this.target_label.text = "";
+      }
+    }
+
+
     if (this.player_data.selected_system){
       jump_line += this.player_data.selected_system;
     }
