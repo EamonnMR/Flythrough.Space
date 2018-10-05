@@ -1,5 +1,7 @@
 import { Weapon } from "./weapon.js";
 
+const ARC = Math.PI * 2;
+
 export function distance(l_pos, r_pos){
   return Math.sqrt(
       Math.pow(l_pos.x - r_pos.x, 2) +
@@ -51,3 +53,29 @@ export function apply_upgrades(ship, upgrades, data){
     }
   }
 }
+
+export function point_at(to, startangle, from){
+  let dx = to.x - from.x;
+  let dy = to.y - from.y;
+  
+  let cw = (Math.atan2(dy, dx) - startangle);
+  let ccw = ARC;
+  if (cw > 0){
+    ccw = ARC - cw;
+  } else {
+    ccw = ARC + cw;
+  }
+  console.log( startangle );
+  console.log( -1  * cw );
+  console.log( -1  * ccw );
+  
+  if(Math.abs(cw) < Math.abs(ccw)){
+    return -1 * cw;
+  } else {
+    return -1 * ccw;
+  }
+
+  
+}
+
+

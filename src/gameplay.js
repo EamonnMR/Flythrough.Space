@@ -9,13 +9,12 @@ import {
 import {
 	modelPositionSystem,
 	cameraFollowSystem,
-  turretPointSystem
 } from "./graphics.js";
 import { collisionDetectionSystem } from "./collision.js";
 import { setup_system } from "./system.js";
 import { ViewState } from "./states.js";
 import { radarFollowSystem, HUD } from  "./hud.js";
-import { ai_system } from "./ai.js";
+import { ai_system, turretPointSystem  } from "./ai.js";
 import { get_game_camera } from "./graphics.js";
 
 export class GamePlayState extends ViewState {

@@ -6,13 +6,14 @@
 // y      --> Nothing
 // Z      --> Y
 
+import { point_at } from "./util.js";
 
 const SHIP_Y = -2;
 const PLANET_SCALE = 25;
 const PLANET_Y = -10;
 let CAM_OFFSET = new BABYLON.Vector3(0, 40, 30);
 
-function get_bone_group(skeleton, prefix){
+export function get_bone_group(skeleton, prefix){
   // Get a group of bones with the same prefix
   let bone_group = [];
   skeleton.bones.forEach((bone) => {
@@ -117,15 +118,6 @@ export function modelPositionSystem (entMan) {
   }
 };
 
-export function turretPointSystem (entMan) {
-  for(let entity of entMan.get_with(['model'])) {
-    if(entity.model.skeleton){
-      for(let bone of get_bone_group(entity.model.skeleton, "turret")){
-        // TODO: Rotate to face target if target exists
-      }
-    }
-  }
-};
 
 function count_npcs(entMan){
   // Counts the number of NPC ships in the system

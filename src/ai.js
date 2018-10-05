@@ -1,15 +1,17 @@
-import { distance } from "./util.js";
+import { distance, point_at } from "./util.js";
 import { rotate, accelerate, /*decelerate*/ } from "./physics.js";
+import { get_bone_group } from "./graphics.js";
 
-let arc = Math.PI * 2;
+const ARC = Math.PI * 2;
 
+const TURN_MIN = Math.PI / 25;
 
 // For a more interesting game, these should probably be ship properties.
 // Might not be crazy to calculate them based on the ship's stats and allow
 // for an override in the data
-let ENGAGE_DISTANCE = 50;
-let ENGAGE_ANGLE = .25;
-let ACCEL_DISTANCE = 1;
+const ENGAGE_DISTANCE = 50;
+const ENGAGE_ANGLE = .25;
+const ACCEL_DISTANCE = 1;
 
 export function ai_system(entMan){
   for (let entity of entMan.get_with(['ai'])) {
@@ -124,56 +126,36 @@ function find_closest_target(position, entMan, criteria){
     return null;
   }
 }
-    
 
-function point_at(to, startangle, from){
-  let dx = to.x - from.x;
-  let dy = to.y - from.y;
-  
-  // console.log(("dx " + dx) + ", dy " + dy);
-  let cw = (Math.atan2(dy, dx) - startangle);
-  let ccw = arc;
-  //let ccw = (Math.atan2(dy, dx) - startangle);
-  if (cw > 0){
-    ccw = arc - cw;
-  } else {
-    ccw = arc + cw;
+function constrained_point(source, source_angle, destination, possible_turn){
+  // Get the ideal facing, subtract out current angle
+  let goal_turn = point_at(source, source_angle, destination);
+  // If angle is outside a certain margin, rotate the ship to face the target
+  // Maybe pull this out into a "AI tries to face in a direction" system?
+  let turn = 0;
+
+  if(goal_turn > 0){
+    if(goal_turn > possible_turn){
+      return possible_turn;
+    } else {
+      return goal_turn;
+    }
+  } else if (goal_turn < 0){
+    if(Math.abs(goal_turn) > possible_turn){
+      return possible_turn * -1;
+    } else {
+      return goal_turn;
+    }
   }
-  // console.log("cw:  " + cw);
-  // console.log("ccw: " + ccw);
-  
-  if(Math.abs(cw) < Math.abs(ccw)){
-    return -1 * cw;
-  } else {
-    return -1 * ccw;
-  }
-  
 }
 
 function engage(entity, target, delta_time, entMan){
 
   let distance = distance(entity.position, target.position);
   
-  // Get the ideal facing, subtract out current angle
-  let goal_turn = point_at(target.position, entity.direction, entity.position);
-  // If angle is outside a certain margin, rotate the ship to face the target
-  // Maybe pull this out into a "AI tries to face in a direction" system?
-  let final_turn = 0;
-  let possible_turn = (entity.rotation * delta_time); // How far we _can_ turn this frame
+  let final_turn = constrained_point(entity.position, entity.direction, target.position, entity.rotation * delta_time);
 
-  if(goal_turn > 0){
-    if(goal_turn > possible_turn){
-      final_turn = possible_turn;
-    } else {
-      final_turn = goal_turn;
-    }
-  } else if (goal_turn < 0){
-    if(Math.abs(goal_turn) > possible_turn){
-      final_turn = possible_turn * -1;
-    } else {
-      final_turn = goal_turn;
-    }
-  }
+  // Why?
   entity.ai.angle = distance;
   
   // Do rotation 
@@ -196,3 +178,28 @@ function engage(entity, target, delta_time, entMan){
   }
   
 };
+
+export function turretPointSystem (entMan) {
+  const TURRET_ROT_SPEED = Math.PI / 10;
+  for(let entity of entMan.get_with(['model'])) {
+    if(entity.model.skeleton){
+      if(entity.target){
+        // In this case we want to track the target
+        let target = entMan.get(entity.target);
+        if(target){
+          for(let bone of get_bone_group(entity.model.skeleton, "turret")){
+            // Crude method: point all turrets at the same angle
+            // (ie no convergence)
+            let current_angle = (bone.rotation.y - entity.direction) % ARC;
+            let turn = constrained_point(entity.position, current_angle, target.position, Math.PI / 20); 
+            // Small amount of dampening to prevent jitter
+            if( Math.abs(turn) > TURN_MIN ){
+              bone.rotate(BABYLON.Axis.Y, turn, BABYLON.Space.LOCAL);
+            }
+          }
+        }
+      }
+    }
+  }
+};
+
