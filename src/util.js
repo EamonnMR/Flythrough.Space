@@ -55,7 +55,10 @@ export function apply_upgrades(ship, upgrades, data){
 }
 
 export function point_at(to, startangle, from){
-  let dx = to.x - from.x;
+  // This works for turrets but drives me nuts for being weird.
+  // TODO: Does this break ship AI?
+  // TODO: This could really use some automated tests.
+  let dx = from.x - to.x;
   let dy = to.y - from.y;
   
   let cw = (Math.atan2(dy, dx) - startangle);
@@ -65,14 +68,11 @@ export function point_at(to, startangle, from){
   } else {
     ccw = ARC + cw;
   }
-  console.log( startangle );
-  console.log( -1  * cw );
-  console.log( -1  * ccw );
   
   if(Math.abs(cw) < Math.abs(ccw)){
-    return -1 * cw;
+    return cw;
   } else {
-    return -1 * ccw;
+    return ccw;
   }
 
   

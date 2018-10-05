@@ -129,7 +129,7 @@ function find_closest_target(position, entMan, criteria){
 
 function constrained_point(source, source_angle, destination, possible_turn){
   // Get the ideal facing, subtract out current angle
-  let goal_turn = point_at(source, source_angle, destination);
+  let goal_turn = point_at(destination, source_angle, source);
   // If angle is outside a certain margin, rotate the ship to face the target
   // Maybe pull this out into a "AI tries to face in a direction" system?
   let turn = 0;
@@ -190,7 +190,7 @@ export function turretPointSystem (entMan) {
           for(let bone of get_bone_group(entity.model.skeleton, "turret")){
             // Crude method: point all turrets at the same angle
             // (ie no convergence)
-            let current_angle = (bone.rotation.y - entity.direction) % ARC;
+            let current_angle = bone.rotation.y;
             let turn = constrained_point(entity.position, current_angle, target.position, Math.PI / 20); 
             // Small amount of dampening to prevent jitter
             if( Math.abs(turn) > TURN_MIN ){
