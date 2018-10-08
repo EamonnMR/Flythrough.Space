@@ -190,7 +190,7 @@ export function turretPointSystem (entMan) {
           for(let bone of get_bone_group(entity.model.skeleton, "turret")){
             // Crude method: point all turrets at the same angle
             // (ie no convergence)
-            let current_angle = bone.rotation.y;
+            let current_angle = (bone.rotation.y - entity.direction) % ARC;
             let turn = constrained_point(entity.position, current_angle, target.position, Math.PI / 20); 
             // Small amount of dampening to prevent jitter
             if( Math.abs(turn) > TURN_MIN ){
