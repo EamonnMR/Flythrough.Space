@@ -140,23 +140,13 @@ function constrained_point(source, source_angle, destination, possible_turn){
     } else {
       return goal_turn;
     }
-  } else if (goal_turn < 0){
-    if(Math.abs(goal_turn) > possible_turn){
+  } else {
+    if(goal_turn < (-1 * possible_turn)){
       return possible_turn * -1;
     } else {
-      return goal_turn;
+      return goal_turn
     }
   }
-}
-
-function engage(entity, target, delta_time, entMan){
-
-  let distance = distance(entity.position, target.position);
-  
-  let final_turn = constrained_point(entity.position, entity.direction, target.position, entity.rotation * delta_time);
-
-  // Why?
-  entity.ai.angle = distance;
   
   // Do rotation 
   rotate(entity, -1 * final_turn );
@@ -191,11 +181,11 @@ export function turretPointSystem (entMan) {
             // Crude method: point all turrets at the same angle
             // (ie no convergence)
             let current_angle = (bone.rotation.y - entity.direction) % ARC;
-            let turn = constrained_point(entity.position, current_angle, target.position, Math.PI / 20); 
+            let turn = constrained_point(entity.position, current_angle, target.position, Math.PI / 100); 
             // Small amount of dampening to prevent jitter
-            if( Math.abs(turn) > TURN_MIN ){
+            //if( Math.abs(turn) > TURN_MIN ){
               bone.rotate(BABYLON.Axis.Y, turn, BABYLON.Space.LOCAL);
-            }
+            //}
           }
         }
       }

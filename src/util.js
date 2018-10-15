@@ -61,21 +61,27 @@ export function point_at(to, startangle, from){
   let dx = from.x - to.x;
   let dy = to.y - from.y;
   
-  let cw = (Math.atan2(dy, dx) - startangle);
+  let cw = (Math.atan2(dy, dx) - startangle) % ARC;
   let ccw = ARC;
   if (cw > 0){
     ccw = ARC - cw;
   } else {
     ccw = ARC + cw;
   }
-  
+  console.log("start: " + startangle);
+  console.log("diff : " + Math.atan2(dx, dy))
+
   if(Math.abs(cw) < Math.abs(ccw)){
+    console.log("*  CW: " + cw);
+    console.log("  CCW: " + ccw);
+    console.log("  sum: " + (cw + ccw));
     return cw;
   } else {
+    console.log("   CW: " + cw);
+    console.log("* CCW: " + ccw);
+    console.log("  sum: " + (cw + ccw));
     return ccw;
   }
-
-  
 }
 
 
