@@ -18,6 +18,7 @@
     "cas_carrier": "casamance_carrier.babylon",
     "cas_corv": "casamance_corv.babylon",
     "oxana": "oxana.babylon",
+    "courier": "courier.babylon",
     "plasma_cannon": "plasma_cannon.babylon"
   },
   "sprites": {

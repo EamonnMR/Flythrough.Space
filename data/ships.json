@@ -35,6 +35,7 @@
     "max_fuel"   : 3
   },
   "courier"  :{
+    "mesh"        : "courier",
     "short_name"  : "Courier",
     "long_name"   : "Accra Courier",
     "full_name"   : "Accra Starworks Courier",
