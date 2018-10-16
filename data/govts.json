@@ -1,8 +1,8 @@
 {
   "direc":{
     "name":"Casamance Directorate",
-    "color":"#0000CDFF",
-    "dark_color":"#0000C3FF",
+    "color":"#0000EDFF",
+    "dark_color":"#101060FF",
     "foes": [
       "orion",
       "orasos",
@@ -31,18 +31,18 @@
   "orasos":{
     "name":"Caudron Pirate Cartell",
     "color":"#CD5C5CFF",
-    "dark_color":"#C35656FF",
+    "dark_color":"#A32626FF",
     "attack_default": true
   },
   "hex":{
     "name":"League",
     "color":"#008000FF",
-    "dark_color":"#007100FF"
+    "dark_color":"#003500FF"
   },
   "drone":{
     "name":"Northern Empire",
     "color":"#FF0000FF",
-    "dark_color":"#F00000FF"
+    "dark_color":"#DD1010FF"
   },
   "fifth":{
     "name":"5th Fleet",

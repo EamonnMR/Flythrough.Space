@@ -28,7 +28,7 @@ const SELECTED_SPACELANE_THICKNESS = 2;
 const SPACELANE_COLOR = "Gray";
 
 const nogov_color = '#AFAFAF';
-const nogov_dark = '#A9A9A9';
+const nogov_dark = '#494949';
 
 export class MapView extends ViewState{
   constructor(data, position, game_canvas, player){
