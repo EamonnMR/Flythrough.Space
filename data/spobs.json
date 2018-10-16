@@ -419,7 +419,7 @@
 		"tech":{
 			"itaskan_wep":2
 		},
-		"text":"One of a few on the Bankour/Itaska border, this station is part of the Itaskan territory claimed by Bankour, so it suffers from the most incursions."
+		"text":"One of a few on the Empire/Itaska border, this station is part of the Itaskan territory claimed by the Northern Empire, so it suffers from the most incursions."
 	},
 	"Sinaqara":{
 		"sType":"onyxDesertJ",
@@ -644,7 +644,7 @@
 		},
 		"text":"On the tense border between the Casamance Directorate and the Eastern League, coldwater's chilly landscape is listed as the most likley planet to be invaded in Casamance space. It's rumored that there are large fortresses cut into the glaciers, but the navy is quiet on the subject."
 	},
-  "Bikonour":{
+  "Baikonur":{
     "govt": "drone",
     "x": 0,
     "y": 0,
@@ -653,6 +653,6 @@
       "water": "low",
       "grain": "high"
     },
-    "text": "Settled, if the histories are to be believed, by spacefarers from Itaskana, Bikonour was once the heart of a spacefaring civlization of its own, before it became the final conquest of the empire, and now cherished posession of the Northern Empire. Perhaps as a last act of defiance, shipyards here producing old Bikonour craft still operate."
+    "text": "Settled, if the histories are to be believed, by spacefarers from Itaskana, Baikonur was once the heart of a spacefaring civlization of its own, before it became the final conquest of the empire, and now cherished posession of the Northern Empire. Perhaps as a last act of defiance, shipyards here producing old Baikonur craft still operate, and are well regarded civilian vessels."
   }
 }
