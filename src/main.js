@@ -22,7 +22,7 @@ function init(game_canvas, scene, engine, data){
     'map': new MapView(
         data, {x: 0, y: 0}, game_canvas, player_data),
 
-    'landing': new LandingMenu(data.spobs, player_data),
+    'landing': new LandingMenu(data.spobs, data.spobtypes, player_data),
     'trade': new TradeMenu(data.spobs, player_data, data.trade),
     'shipyard': new ShipyardMenu(data.spobs, player_data, data.ships),
     'upgrades': new UpgradeMenu(data.spobs, player_data, data.upgrades, data),

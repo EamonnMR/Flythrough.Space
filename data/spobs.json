@@ -1,6 +1,6 @@
 {
 	"Accra":{
-		"sType":"onyxM3Earthlike",
+		"sType":"martian",
 		"x"    : 250,
 		"y"    : 140,
 		"govt" : "direc",
@@ -18,7 +18,7 @@
 		"x"    : -200,
 		"y"    : -400,
 		"govt" : "direc",
-		"text": "Alluvium Fleet Yards is the flagship starship building site of Accra Stardrives.",
+		"text": "Alluvium Fleet Yards is the flagship starship building site of Accra Stardrives. Every corridor you go down is bustling with activity - engineneers in animated discussion about robotic assembly, mechanics lugging exotic tools, and even sales people for Accra Drive Systems who, occasionally, realize that you're a starship captain and try to make a sale.",
 		"tech":{
 			"accra":3,
 			"generic":3,
@@ -277,18 +277,17 @@
 		"y":0
 	},
 	"Kimathi":{
-		"sType":"onyxIceM",
+		"sType":"plutonic",
 		"govt":"direc",
-		"text":"This fridged land of rock and ice was once a large producer of starships and weapons, but since the demand for the goods that they produced has gone down signifigantly, they have fallen on hard times. The shipwrights that remain still produce even the largest Old Empire designs, albeit at a much lower rate then in centuries past.",
+		"text":"This fridged ball of rock and ice was once a vital producer of starships and parts, but it has fallen on hard times and lacked the capital to re-tool its rusting factories. There's a grim determination among those who remain, though, all insisting that \"Kimathi will be good again, any time now\" but that remains to be seen.",
 		"tech":{
 			"oe_ship":3,
 			"oe_wep":3,
-			"generic":1,
-			"accra":2
+			"generic":1
 		},
 		"trade":{
 			"plas":"high",
-			"water":"med",
+			"water":"low",
 			"dut":"med"
 		},
 		"x":0,
@@ -317,7 +316,7 @@
 		"sType":"gnPlanet1Lunar",
 		"x":0,
 		"y":0,
-		"text":"Once the home of the epinomous Meklin Design Bearu, this barren rock was picked for its isolation. However, during the schism, the system became a battleground between the North and the League, so the planet was evacuated in 1100. The facilities remain, but anything of value has been removed or sabatoged to prevent capture. Most of the Meklin staff (and the title &quot;Meklin Design Bearu&quot;) moved to the Peenemunde system, but some remained loyal to the north and joined them, forming the Kalush DB."
+		"text":"Once the home of the epinomous Meklin Design Bearu, this barren rock was picked for its isolation. However, during the schism, the system became a battleground between the North and the League, so the planet was evacuated in 1100. The facilities remain, but anything of value has been removed or sabatoged to prevent capture. Most of the Meklin staff (and the title \"Meklin Design Bearu\") moved to the Peenemunde system, but some remained loyal to the north and joined them, forming the Kalush DB."
 	},
 	
 	"Union 1":{

@@ -1,4 +1,13 @@
 {
+  "plutonic":{
+    "sprite": null,
+    "img": "assets/icescape.png"
+  },
+  "martian": {
+    "sprite": null,
+    "img": "assets/rustscape.png"
+  },
+
 	"onyxEarthlikeA":{
 		"sprite":"img/onyx/Onyx/CleanStellars/A.png",
 		"scape":"img/Other/resurrection_river.png",
