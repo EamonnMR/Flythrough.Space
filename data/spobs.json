@@ -653,5 +653,23 @@
       "grain": "high"
     },
     "text": "Settled, if the histories are to be believed, by spacefarers from Itaskana, Baikonur was once the heart of a spacefaring civlization of its own, before it became the final conquest of the empire, and now cherished posession of the Northern Empire. Perhaps as a last act of defiance, shipyards here producing old Baikonur craft still operate, and are well regarded civilian vessels."
+  },
+  "Nightside": {
+    "govt": "orasos",
+    "x": 0,
+    "y": 0,
+    "trade": {
+      "ethyl": "high",
+      "grain": "high",
+      "gas": "high"
+    },
+    "text": "As with any tidally locked world, Nightside rotates very slowly in relation to its parent star-in this case less than once per million years. This means that only one side of the planet has a tolerable climate-leading to its name. Far from civilization and deep in a pirate infested nebula, Nightside is a hub of illegal activity. You can get anything here for the right price, but nobody can pay as much as the Caudron family, so they're in charge."
+  },
+  "Horizon": {
+    "govt": "drone",
+    "x": 0,
+    "y": 0,
+    "text": "Horizon is tidally locked such that a \"day\" lasts about a hundred years, most of which is in punishing cold and darnkess or unbearable heat and light. This has pushed the civilization here to adopt a nomadic lifestyle, building elaborite (and enormous) land vehicles which can relocate as the terminator moves across the surface."
   }
+
 }
