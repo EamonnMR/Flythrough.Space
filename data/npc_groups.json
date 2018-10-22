@@ -1,18 +1,18 @@
 {
   "trader_lowtech": {
-    "govt": "merchent",
+    "govt": "merchant",
     "ships": [
       "shuttle",
       "courier",
       "oe_fighter",
-      "oe_frigate"
+      "oe_frig"
     ]
   },
   "trader_bulk": {
-    "govt": "merchent",
+    "govt": "merchant",
     "ships": [
       "courier",
-      "oe_frigate",
+      "oe_frig",
       "oxana",
       "bulk",
       "argosy",
@@ -21,7 +21,7 @@
     ]
   },
   "trader_danger": {
-    "govt": "merchent",
+    "govt": "merchant",
     "ships": [
       "argosy",
       "civ_heavy_fighter",
@@ -29,7 +29,7 @@
       "vera",
       "civ_corvette",
       "oe_cru",
-      "oe_frigate"
+      "oe_frig"
     ]
   },
   "pirate_expedition": {
@@ -52,7 +52,7 @@
     "govt": "orasos",
     "ships": [
       "caudron_corvette",
-      "caudron_pertinax"
+      "pertinax"
     ]
   },
   "xic_presence": {

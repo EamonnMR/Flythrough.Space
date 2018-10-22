@@ -135,7 +135,9 @@ function random_position(){
 function random_type(npcs, data){
   // A fun StackOverflow post for sure:
   // https://stackoverflow.com/questions/5915096/get-random-item-from-javascript-array	
-  return data.ships[npcs[Math.floor(Math.random() * npcs.length)]];
+  let type = npcs[Math.floor(Math.random() * npcs.length)];
+  console.log(type);
+  return data.ships[type];
 };
 
 function random_group(groups, data){
