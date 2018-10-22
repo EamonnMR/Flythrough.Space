@@ -28,6 +28,8 @@ export class Data {
       if(model.skeleton){
         clone.skeleton = model.skeleton.clone("clone");
       }
+    } else { // Default for ships with no mesh
+      clone = this.models["shuttle"].clone();
     }
     return clone;
   }

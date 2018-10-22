@@ -118,6 +118,14 @@
     "x":902,
     "y":1145,
     "govt":"direc",
+    "npc_average": 4,
+    "npcs": [
+      "trader_lowtech",
+      "trader_bulk",
+      "pirate_expedition",
+      "cas_capital",
+      "cas_patrol"
+    ],
     "spobs":[
       "Accra",
       "Alluvium Fleet Yards",

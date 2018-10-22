@@ -147,13 +147,24 @@ function constrained_point(source, source_angle, destination, possible_turn){
       return goal_turn
     }
   }
-  
+}
+
+function engage(entity, target, delta_time, entMan){
+
+  let dist = distance(entity.position, target.position);
+  let final_turn = constrained_point(
+    entity.position,
+    target.dir,
+    target.position,
+    entity.rotation
+  );
+
   // Do rotation 
   rotate(entity, -1 * final_turn );
   entity.direction_delta = final_turn;
 
   // Acclerate
-  if(distance > ACCEL_DISTANCE){
+  if(dist > ACCEL_DISTANCE){
     accelerate(entity.velocity, entity.direction,
        entity.accel * delta_time); 
   } //else {
@@ -166,7 +177,6 @@ function constrained_point(source, source_angle, destination, possible_turn){
       }
     }
   }
-  
 };
 
 export function turretPointSystem (entMan) {

@@ -40,9 +40,9 @@ export function setup_system(scene, camera, entMan, system, hud, data, player_da
         player_data
     ),
   ];
-  if( system_dat.govt ){
+  if( system_dat.npcs ){
     ents.push(
-      npcSpawnerFactory( data, system_dat, ['shuttle'], hud)
+      npcSpawnerFactory(data, system_dat, hud)
     );
   }
 

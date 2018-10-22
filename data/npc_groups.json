@@ -1,0 +1,79 @@
+{
+  "trader_lowtech": {
+    "govt": "merchent",
+    "ships": [
+      "shuttle",
+      "courier",
+      "oe_fighter",
+      "oe_frigate"
+    ]
+  },
+  "trader_bulk": {
+    "govt": "merchent",
+    "ships": [
+      "courier",
+      "oe_frigate",
+      "oxana",
+      "bulk",
+      "argosy",
+      "cetacea",
+      "oe_cru"
+    ]
+  },
+  "trader_danger": {
+    "govt": "merchent",
+    "ships": [
+      "argosy",
+      "civ_heavy_fighter",
+      "courier",
+      "vera",
+      "civ_corvette",
+      "oe_cru",
+      "oe_frigate"
+    ]
+  },
+  "pirate_expedition": {
+    "govt": "pirate",
+    "ships": [
+      "patsy",
+      "pirate_sleeper",
+      "triggerman"
+    ]
+  },
+  "pirate_raid": {
+    "govt": "pirate",
+    "ships": [
+      "pirate_sleeper",
+      "triggerman",
+      "pirate_ahab"
+    ]
+  },
+  "caudron_gang": {
+    "govt": "orasos",
+    "ships": [
+      "caudron_corvette",
+      "caudron_pertinax"
+    ]
+  },
+  "xic_presence": {
+    "govt": "xic",
+    "ships": [
+      "xic_drillship"
+    ]
+  },
+  "cas_patrol": {
+    "govt": "direc",
+    "ships": [
+      "cas_corvette",
+      "cas_oe_fighter"
+    ]
+  },
+  "cas_capital": {
+    "govt": "direc",
+    "ships": [
+      "cas_corvette",
+      "cas_frigate",
+      "cas_carrier"
+    ]
+  }
+}

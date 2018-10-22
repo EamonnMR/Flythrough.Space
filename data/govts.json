@@ -55,5 +55,12 @@
     "color":"#F5B5C1FF",
     "dark_color":"#F0B0BBFF",
     "attack_asteroids": true
+  },
+  "merchant":{
+    "name": "Merchents"
+  },
+  "pirate": {
+    "name": "Pirate",
+    "attack_default": true
   }
 }
