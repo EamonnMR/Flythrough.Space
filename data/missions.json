@@ -6,9 +6,89 @@
     "cargo": {
       "type": "*legal",
       "amount": "5-10"
+    },
+    "dest": {
+      "sys": "*samegov",
+      "spob": "*"
+    }
+  },
+  "rideshare": {
+    "name": "Ferry Passengers to {{ dest.spob }}",
+    "brief": "Passengers have hailed a ride to {{ dest.spob }} in the {{dest.sys}} system.",
+    "payout": 2000,
+    "cargo": {
+      "type": "passengers",
+      "amount": 1
+    },
+    "dest": {
+      "sys": "*samegov",
+      "spob": "*"
+    }
+
+  },
+  "smuggle" {
+    "name": "Smuggle {{ cargo.type }} to {{ dest.spob }}",
+    "brief": "Some perhaps less than legal exporters need {{ cargo.amount }} tons of {{ cargo.type }} moved discretely.",
+    "cargo": {
+      "type": "*illegal",
+      "amount": "10-20",
+      "illegal": true
+    },
+    "dest": {
+      "sys": "*samegov",
+      "spob": "*"
+    },
+    "payout": 14000
+  },
+  "bounty_direc": {
+    "name": "Wanted: Dead or Alive",
+    "brief": "Reward: 20000 credcoin. To be paid in full upon destruction of the pirate vessle \"{{ target.name }}\". As usual, crew may surrender at any port for immediate sentencing. Last spotted near the {{ dest.sys }} system, raiding merchant vessles.",
+    "offer": {
+      "spob.govt": "=direc"
+    },
+    "target": {
+      "group": "pirate_raid",
+      "random_name": [
+        "Ghost of a chance",
+        "Miriam",
+        "Indrid",
+        "Black Flag",
+        "Don't Try It",
+        "Basket Case",
+        "Killer G",
+        "Shipbreaker",
+        "Your Worst Nightmare",
+        "Black Hole",
+        "Brown Dwarf",
+        "Vordhosbn",
+        "X-tra Fast",
+        "Shut Up And Pay Up",
+        "Ruiner"
+      ]
+    }
+  },
+  "bounty_ne": {
+    "name": "Terrorist Watch List: Wanted",
+    "brief": "Seditious and unworthy pirates are operating a ship called {{ target.name }} in and around the {{ dest.sys }} system. Any captain who can eliminate this ship will be richly rewarded.",
+    "offer": {
+      "spob.govt": "drone"
+    },
+    "target": {
+      "group": "baik_pirates",
+      "names": [
+        "Baikonour Forever",
+        "Invictus",
+        "Novochock"
+      ]
     }
   },
   "caudron1":{
-    "offer": "You're met at the spaceport by a hulking cyborg in business attire who introduces himself as Julien.\n \"You'd better come with me\" he says, and eyeing his metallic hands you realize you should probably comply, at least until you figure out who he is. He does not pat you down for weapons, which is almost more intimidating. You end up in an upscale nightclub, where Julien orders a lavish plate of Bjarnean Scrod. \"What's this about?\" you ask.\nThe cyborg takes his time to reply \"You've been raiding merchant ships, yes?\" You reach for your pistol, and he smiles \"calm down, I'm not a secret agent. I'm not here to stop you from engaging in piracy. What I am here to do is make sure you follow the rules.\"\n\"Rules? What rules?\"\n\"Rules like... the family gets a cut. That you don't shake down any merchents who have paid their protection money. Paying your own protection money. I represent the Caudron Family.\" around your booth, four more cyborgs shimmer into view, as if from nowhere. Eachh one locks eyes with you and then disappears again. You unhand your pistol. This \"Family\" seems to mean business."
+    "offer": "You're met at the spaceport by a hulking cyborg in business attire who introduces himself as Julien.\n \"You'd better come with me\" he says, and eyeing his metallic hands you realize you should probably comply, at least until you figure out who he is. He does not pat you down for weapons, which is almost more intimidating. You end up in an upscale nightclub, where Julien orders a lavish plate of Bjarnean Scrod. \"What's this about?\" you ask.\nThe cyborg takes his time to reply \"You've been raiding merchant ships, yes?\" You reach for your pistol, and he smiles \"calm down, I'm not a secret agent. I'm not here to stop you from engaging in piracy. What I am here to do is make sure you follow the rules.\"\n\"Rules? What rules?\"\n\"Rules like... the family gets a cut. That you don't shake down any merchents who have paid their protection money. Paying your own protection money. I represent the Caudron Family.\" around your booth, four more cyborgs shimmer into view, as if from nowhere. Eachh one locks eyes with you and then disappears again. You unhand your pistol. This \"Family\" seems to mean business.",
+    "accept": "\"I'm glad we could come to an understanding, for now\" says Jilien, his cybernetic eye scanning the scrod on his fork \"There's a planet deep in the Orasos nebula, called Nightside. We're loading your ship right now with a cargo of this stuff\" he indicates the Scrod on his plate. \"If you're the sort of captain we think you are, you won't have any trouble bringing this into the nebula without attracting too much attention from the authorities.\"\n\"The nebula is a deathtrap, full of pirates\" you mention, trying to sound casual.\n\"An excellent way to earn the respect of criminals, I've found\" Julien responds, now making eye contact \"is to show that you don't fear them. Now, please, your meal is getting cold. I'd hate to see it go to waste.",
+    "cargo": {
+      "type": "scrod",
+      "amount": 5,
+      "always_illegal": true
+    }
   }
 }
