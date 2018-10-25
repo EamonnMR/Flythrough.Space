@@ -1,4 +1,13 @@
 {
+  "basic_cargo": {
+    "name": "Transport {{ cargo.type }} to {{ dest.spob }}",
+    "brief": "A merchant vessel is needed to transport {{ cargo.amount }} tons of {{ cargo.type }} to {{ dest.spob}} in the {{ dest.sys }} system. Payment upon arrival will be {{ payout }}",
+    "payout": 20000,
+    "cargo": {
+      "type": "*legal",
+      "amount": "5-10"
+    }
+  },
   "caudron1":{
     "offer": "You're met at the spaceport by a hulking cyborg in business attire who introduces himself as Julien.\n \"You'd better come with me\" he says, and eyeing his metallic hands you realize you should probably comply, at least until you figure out who he is. He does not pat you down for weapons, which is almost more intimidating. You end up in an upscale nightclub, where Julien orders a lavish plate of Bjarnean Scrod. \"What's this about?\" you ask.\nThe cyborg takes his time to reply \"You've been raiding merchant ships, yes?\" You reach for your pistol, and he smiles \"calm down, I'm not a secret agent. I'm not here to stop you from engaging in piracy. What I am here to do is make sure you follow the rules.\"\n\"Rules? What rules?\"\n\"Rules like... the family gets a cut. That you don't shake down any merchents who have paid their protection money. Paying your own protection money. I represent the Caudron Family.\" around your booth, four more cyborgs shimmer into view, as if from nowhere. Eachh one locks eyes with you and then disappears again. You unhand your pistol. This \"Family\" seems to mean business."
   }
