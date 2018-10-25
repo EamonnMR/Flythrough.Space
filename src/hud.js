@@ -1,3 +1,5 @@
+import { get_text } from "./util.js"
+
 export function radarFollowSystem(entMan){
   let scale_factor = 5;
   let offset = {x: 100, y:100};
@@ -20,7 +22,8 @@ export class HUD{
     this.entMan = entMan; // TODO: Should we just pass this?
     this.player_data = player_data;
     
-    this.nav_text = this.get_text();
+    this.fuel_status = this.get_status_bar(150, "10px", "blue", () => {return player_data.fuel / player_data.max_fuel()} )
+    this.nav_text = get_text();
     this.radar_box = this.get_radar_box();
     this.nav_box = this.get_nav_box();
     this.spob_label = this.get_spob_label();
@@ -28,7 +31,7 @@ export class HUD{
   }
 
   get_spob_label(){
-    let block = this.get_text();
+    let block = get_text();
     this.adt.addControl(block);
     // TODO: Derive link offset Y from planet graphic size
     // TODO: Brackets?
@@ -37,7 +40,7 @@ export class HUD{
  }
 
  get_target_label(){
-   let block = this.get_text();
+   let block = get_text();
    this.adt.addControl(block);
    // TODO: Health bar - compare health to max health, shields to max shields
    block.linkOffsetY = 25;
@@ -63,9 +66,10 @@ export class HUD{
     let box = this.get_box_generic("200px", "80px");
 
     box.addControl(this.nav_text);
+    box.addControl(this.fuel_status);
     this.nav_text.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT
 
-    this.adt.addControl(box);    
+    this.adt.addControl(box); 
     box.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
     box.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
     return box
@@ -80,21 +84,13 @@ export class HUD{
     box.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
     return box;
   }
-    
-
-  get_text(){
-    let text = new BABYLON.GUI.TextBlock();
-    text.color = "White";
-    text.text = "";
-    return text;
-  }
 
   update(){
     let possible_player = this.entMan.get_with(['input']);
     let player = possible_player[0];
     let planet_line = "In-System: ";
     let jump_line = "Galactic: ";
-    let fuel_line = "Fuel (jumps): " + this.player_data.fuel;
+    this.fuel_status.update_func();
     if (this.player_data.selected_spob){
       planet_line += this.player_data.selected_spob;
       let possible_spobs = this.entMan.get_with_exact("spob_name", this.player_data.selected_spob)
@@ -122,13 +118,40 @@ export class HUD{
     if (this.player_data.selected_system){
       jump_line += this.player_data.selected_system;
     }
-    this.nav_text.text = [planet_line, jump_line, fuel_line, ""].join("\n")
+    this.nav_text.text = [planet_line, jump_line, ""].join("\n")
   }
 
   dispose(){
     // Make sure we dispose everything we made and clear globals
     this.adt.dispose();
-  } 
+  }
+
+  get_status_bar(max_width, height, color, update){
+    // This gives you a status bar which will evaluate the function
+    // given in update to get a percentage width.
+    let box = new BABYLON.GUI.Rectangle();
+    box.height = height;
+    box.width = "10px";
+    box.max_width = max_width;
+    box.get_status = update;
+    box.alpha = 1;
+    box.background = color;
+    box.color = color;
+    box.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+    box.verticalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_TOP;
+
+    // Syntactically we want to use `function` because of how `this` behaves.
+    // (I think...)
+    function update_func(){
+      console.log(this);
+      console.log(this.get_status());
+      this.width = "" + (max_width * this.get_status()) + "px";
+    }
+
+    box.update_func = update_func;
+
+    return box;
+  }
 
   get_box_generic(width, height){
     /* Defines the style for HUD boxes */
