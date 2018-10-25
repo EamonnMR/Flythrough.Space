@@ -237,6 +237,7 @@
 			"alloy":"med",
 			"roto":"low",
 			"pure":"high",
+      "scrod":"low",
 			"powerconv":"high"
 		},
 		"x":0,
@@ -670,6 +671,8 @@
     "x": 0,
     "y": 0,
     "text": "Horizon is tidally locked such that a \"day\" lasts about a hundred years, most of which is in punishing cold and darnkess or unbearable heat and light. This has pushed the civilization here to adopt a nomadic lifestyle, building elaborite (and enormous) land vehicles which can relocate as the terminator moves across the surface."
+  },
+  "Broken Hill": {
+    "text": "A warm, dry, dusty planet where you wouldn't expect too much wildlife. However, it's teeming with some of the deadliest creatures in the galaxy. An evolutionary arms race has lead to the development of increasingly deadly venoms and antivenims, toxins and antidotes. It is advised that you take care while traveling here."
   }
-
 }
