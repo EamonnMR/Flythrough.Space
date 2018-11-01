@@ -1618,7 +1618,8 @@
     "y":669,
     "govt":"drone",
     "spobs": [
-      "Baikonur"
+      "Baikonur",
+      "Bukov"
     ],
     "links":[
       ".270",

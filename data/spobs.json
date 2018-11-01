@@ -674,5 +674,17 @@
   },
   "Broken Hill": {
     "text": "A warm, dry, dusty planet where you wouldn't expect too much wildlife. However, it's teeming with some of the deadliest creatures in the galaxy. An evolutionary arms race has lead to the development of increasingly deadly venoms and antivenims, toxins and antidotes. It is advised that you take care while traveling here."
+  },
+  "Wieliczka": {
+    "text": "Though the surface of Wieliczka is arid, its appearance is deceptive-its oceans are all under ground. Though not especially dense, and permiable enough for the roots of mighty trees to reach down into the brine, the surface is enough to shield the cities of Wieliczka from the harsh glare of its parent star, Rainsford."
+  },
+  "krysto": {
+    "text": "The low gravity of this remote, small planet is the ideal condition for propulsion research. The world is more agglomeration of comets than terrestrial planet, though bitter winds powered by tidal forces from its dim star have long since erased evidence of the anchinent impacts."
+  },
+  "Bukov:{
+    "govt": "drone",
+    "x": 25,
+    "y": 38,
+    "text": "Bukov's spaceport is in the center of a blast-swept plane of green trinitite glass, surrounded by thick walls of nanocrete, and staffed by pitiless marines. This security is needed, of course, because the rest of the planet, including all of its major cities, is used as a prison by the empire. It was discovered at some point that in some cases, such as radical Bikonour partisans (many of whom already lived on Bukov, it should be noted) it would be cheaper to cordon off an entire world than to build additional prison stations."
   }
 }
