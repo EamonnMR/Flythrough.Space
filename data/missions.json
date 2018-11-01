@@ -24,7 +24,6 @@
       "sys": "*samegov",
       "spob": "*"
     }
-
   },
   "smuggle" {
     "name": "Smuggle {{ cargo.type }} to {{ dest.spob }}",
@@ -78,7 +77,8 @@
       "names": [
         "Baikonour Forever",
         "Invictus",
-        "Novochock"
+        "Novochock",
+        "Radio Free Baikonour"
       ]
     }
   },
@@ -89,6 +89,17 @@
       "type": "scrod",
       "amount": 5,
       "always_illegal": true
+    }
+  },
+  "bukov_breakout": {
+    "dest": {
+      "sys": "baikon",
+      "spob": "bukov"
+    },
+    "pickup": "You touch down far outside of the fortress-spaceport that usually controls all traffic to and from this forsaken rock. Prisoners swarm into your hold, and a few are even clinging to the side of the ship as you take off. You hope they have the good sense to jump before you reach orbit. As you scream out of the atmosphere, you recieve a transmission.\n\"{{ player.ship_name }}, takeoff was not authorized. Power down your shields and prepare to be boarded.\" Your radar indicates that several imperial vessles are in high orbit, and if radar dots could look spoiling for a fight, they would.",
+    "cargo": {
+      "type": "prisoners",
+      "amount": 20
     }
   }
 }
