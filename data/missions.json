@@ -25,7 +25,7 @@
       "spob": "*"
     }
   },
-  "smuggle" {
+  "smuggle": {
     "name": "Smuggle {{ cargo.type }} to {{ dest.spob }}",
     "brief": "Some perhaps less than legal exporters need {{ cargo.amount }} tons of {{ cargo.type }} moved discretely.",
     "cargo": {
