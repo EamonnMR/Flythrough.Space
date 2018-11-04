@@ -73,9 +73,14 @@
       "size":  32
     },
     "redplanet": {
-      "img": "assets/renderwahn_planets/A00.png",
+      "img": "assets/planets/wieliczka.png",
       "count": 10,
-      "size": 122 
+      "size": 400 
+    },
+    "wajir": {
+      "img": "assets/planets/wajir.png",
+      "count": 1,
+      "size": 670
     },
     "asteroid": {
       "img": "assets/asteroid.png",

@@ -30,6 +30,7 @@
 	
 	"Wajir":{
 		"sType":"sgHighWinds",
+    "sprite": "wajir",
 		"x":0,
 		"y":0,
 		"text":"Accra orbits this gas giant."

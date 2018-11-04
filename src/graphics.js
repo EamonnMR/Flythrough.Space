@@ -9,7 +9,7 @@
 import { point_at } from "./util.js";
 
 const SHIP_Y = -2;
-const PLANET_SCALE = 25;
+const PLANET_SCALE = 15;
 const PLANET_Y = -10;
 let CAM_OFFSET = new BABYLON.Vector3(0, 40, 30);
 
@@ -138,7 +138,12 @@ export function create_planet_sprite(data, planet, scene){
   // So we create an invisible mesh and attach the sprite to it.
   // Except it does not really attach so we need to move and dispose it
   // seperately. That's why we attach the sprite to the entity.
-  let sprite = data.get_sprite(data.spobtypes[planet.sType].sprite);
+  let sprite = null; 
+  if("sprite" in planet){
+    sprite = data.get_sprite(planet.sprite);
+  } else {
+    sprite = data.get_sprite(data.spobtypes[planet.sType].sprite);
+  }
   sprite.size = PLANET_SCALE;
   sprite.position.y = PLANET_Y;
   sprite.position.x = planet.x;
