@@ -1,6 +1,7 @@
 {
 	"Accra":{
 		"sType":"martian",
+    "sprite": "accra",
 		"x"    : 250,
 		"y"    : 140,
 		"govt" : "direc",
@@ -225,6 +226,7 @@
 	
 	"Bjarne":{
 		"sType":"onyxEarthlikeE",
+    "sprite": "cloudy_blue",
 		"govt":"direc",
 		"text":"Vast oceans dominate Bjarne's landscape, and industrial activity dominates the surface. Bjarne one of the most enterprise focused worlds in the Directorate.",
 		"tech":{

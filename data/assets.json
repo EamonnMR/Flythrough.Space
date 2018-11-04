@@ -82,6 +82,16 @@
       "count": 1,
       "size": 670
     },
+    "cloudy_blue": {
+      "img": "assets/planets/cloudy_blue.png",
+      "count": 1,
+      "size": 440
+    },
+    "accra": {
+      "img": "assets/planets/accra.png",
+      "count": 1,
+      "size": 250
+    },
     "asteroid": {
       "img": "assets/asteroid.png",
       "count": 10,
