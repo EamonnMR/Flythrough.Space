@@ -124,7 +124,7 @@ function delete_model (entity) {
     'model',
     'radar_pip',
     'sprite',
-    'gui_overlay',
+    'overlay',
   ];
 
   for(let attribute of MODEL_ATTR ){
