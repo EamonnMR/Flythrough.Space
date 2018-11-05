@@ -120,10 +120,11 @@ export function deletionSystem (entMan) {
 };
 
 function delete_model (entity) {
-  let MODEL_ATTR = [
+  const MODEL_ATTR = [
     'model',
     'radar_pip',
-    'sprite'
+    'sprite',
+    'gui_overlay',
   ];
 
   for(let attribute of MODEL_ATTR ){

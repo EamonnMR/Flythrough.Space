@@ -57,9 +57,9 @@ export function ai_system(entMan){
         for(let foe of list_closest_targets(entity.position, entMan, ['hittable'])){
           if('govt' in foe){ 
             if (foe.govt !== entity.govt){
-              console.log("govts are different - check if foe");
+              // console.log("govts are different - check if foe");
               if (govt.attack_default || ('foes' in govt && govt.foes.includes(foe.govt))){
-                console.log("Found target of foe govt: " + foe.govt + ", attacking!");
+                // console.log("Found target of foe govt: " + foe.govt + ", attacking!");
                 set_target(ai, foe);
                 return;
               }
@@ -71,7 +71,7 @@ export function ai_system(entMan){
               )
             )
           ){
-            console.log("Found player-aligned target, attacking!");
+            // console.log("Found player-aligned target, attacking!");
             set_target(ai, foe);
             return;
           } 
@@ -89,7 +89,7 @@ export function ai_system(entMan){
 };
 
 function set_target(ai_component, target_entity){
-  console.log("target aquired: " + target_entity.id);
+  // console.log("target aquired: " + target_entity.id);
   ai_component.target = target_entity.id;
   ai_component.state = 'violent';
 }

@@ -10,6 +10,7 @@ export function npcShipFactory(data, type, position, hud, ai, govt){
   ship.ai = ai;
   ship.radar_pip = hud.get_radar_pip(4, '#FF0000FF');
   ship.govt = govt;
+  ship.overlay = hud.get_overlay_texture(ship);
   return ship;
 }
 

@@ -13,6 +13,20 @@ export function radarFollowSystem(entMan){
   }
 };
 
+export function healthBarSystem(entMan){
+  for (let entity of entMan.get_with(['model', 'health', 'overlay'])){
+    if(entity.health < entity.maxhealth){
+      if (! gui_healthbar in entity){
+        entity.gui_healthbar = get_stat_bar("Red");
+      }
+      entity.gui_healthbar.width = entity.health / entity.max_health;
+      entity.overlay.addControl(entity.gui_healthbar);
+    } else {
+      entity.gui_healthbar.dispose();
+    }
+  }
+}
+
 export class HUD{
   constructor(scene, entMan, player_data){
     // TODO: Do I actually still need to plumb the scene through here?
@@ -61,6 +75,15 @@ export class HUD{
     return pip;
   }
 
+  get_overlay_texture(entity){
+    // Makes an overlay texture for the entity to draw target brackets,
+    // health bars, etc.
+    console.log("got overlay texture");
+    let overlay = this.get_box_generic("200px", "200px");
+    this.adt.addControl(overlay);
+    overlay.linkWithMesh(entity.model);
+    return overlay;
+  }
 
   get_nav_box(){
     let box = this.get_box_generic("200px", "80px");
@@ -143,8 +166,8 @@ export class HUD{
     // Syntactically we want to use `function` because of how `this` behaves.
     // (I think...)
     function update_func(){
-      console.log(this);
-      console.log(this.get_status());
+      //console.log(this);
+      //console.log(this.get_status());
       this.width = "" + (max_width * this.get_status()) + "px";
     }
 

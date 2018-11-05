@@ -68,18 +68,18 @@ export function point_at(to, startangle, from){
   } else {
     ccw = ARC + cw;
   }
-  console.log("start: " + startangle);
-  console.log("diff : " + Math.atan2(dx, dy))
+  // console.log("start: " + startangle);
+  // console.log("diff : " + Math.atan2(dx, dy))
 
   if(Math.abs(cw) < Math.abs(ccw)){
-    console.log("*  CW: " + cw);
-    console.log("  CCW: " + ccw);
-    console.log("  sum: " + (cw + ccw));
+    // console.log("*  CW: " + cw);
+    // console.log("  CCW: " + ccw);
+    // console.log("  sum: " + (cw + ccw));
     return cw;
   } else {
-    console.log("   CW: " + cw);
-    console.log("* CCW: " + ccw);
-    console.log("  sum: " + (cw + ccw));
+    // console.log("   CW: " + cw);
+    // console.log("* CCW: " + ccw);
+    // console.log("  sum: " + (cw + ccw));
     return ccw;
   }
 }
