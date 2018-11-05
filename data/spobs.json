@@ -1,6 +1,5 @@
 {
 	"Accra":{
-		"sType":"martian",
     "sprite": "accra",
 		"x"    : 250,
 		"y"    : 140,
@@ -502,7 +501,7 @@
 		}
 	},
 	"Tuolumne":{
-		"sType":"onyxM9Desert",
+    "sprite": "tolumne",
 		"x":-225,
 		"y":-318,
 		"text":"Forsaken Desert"
@@ -562,7 +561,7 @@
 		}
 	},
 	"Izumrudnoye":{
-		"sType":"rwI00",
+    "sprite": "izumrudnoye",
 		"scape":"img/AVDezign/Ekchuah.jpg",
 		"govt":"pen",
 		"x":-10,
