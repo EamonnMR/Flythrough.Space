@@ -40,7 +40,7 @@ export class GamePlayState extends ViewState {
       decaySystem,
       collisionDetectionSystem,
       radarFollowSystem,
-      deletionSystem
+      deletionSystem,
     ]);
     this.empty = true;
     this.world_models = [];

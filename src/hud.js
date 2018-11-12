@@ -13,24 +13,18 @@ export function radarFollowSystem(entMan){
   }
 };
 
-export function healthBarSystem(entMan){
-  for (let entity of entMan.get_with(['model', 'health', 'overlay'])){
-    if(entity.health < entity.maxhealth){
-      if (! gui_healthbar in entity){
-        entity.gui_healthbar = get_stat_bar("Red");
-      }
-      entity.gui_healthbar.width = entity.health / entity.max_health;
-      entity.overlay.addControl(entity.gui_healthbar);
-    } else {
-      entity.gui_healthbar.dispose();
-    }
-  }
-}
+
+// This is for drawing health bars over each entity. Not in the design atm.
+//export function healthBarSystem(entMan){
+//  for (let entity of entMan.get_with([ 'hitpoints', 'max_hp', 'gui_healthbar'])){
+//    // TODO: Hide health bar if health == max_hp 
+//    entity.gui_healthbar.update_func();
+//  }
+//}
 
 export class HUD{
   constructor(scene, entMan, player_data){
-    // TODO: Do I actually still need to plumb the scene through here?
-    // Remove it if not
+    // TODO: Singleton. 
     this.adt = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 
     this.entMan = entMan; // TODO: Should we just pass this?
@@ -41,7 +35,18 @@ export class HUD{
     this.radar_box = this.get_radar_box();
     this.nav_box = this.get_nav_box();
     this.spob_label = this.get_spob_label();
-    this.target_label = this.get_target_label();
+    this.target_label = get_text();
+    this.target_health_bar = this.get_status_bar(150, "10px", "red", () => {
+      if(this.ent_target){
+        return this.ent_target.max_hp / this.ent_target.hitpoints;
+      }
+    });
+    this.target_shield_bar = this.get_status_bar(150, "10px", "blue", () => {
+      if(this.ent_target){
+        return this.ent_target.shields / this.ent_target.max_shields;
+      }
+    });
+    this.target_box = this.get_target_box();
   }
 
   get_spob_label(){
@@ -51,14 +56,6 @@ export class HUD{
     // TODO: Brackets?
     block.linkOffsetY = 160;
     return block;
- }
-
- get_target_label(){
-   let block = get_text();
-   this.adt.addControl(block);
-   // TODO: Health bar - compare health to max health, shields to max shields
-   block.linkOffsetY = 25;
-   return block;
  }
 
  get_radar_pip(size, color){
@@ -78,10 +75,13 @@ export class HUD{
   get_overlay_texture(entity){
     // Makes an overlay texture for the entity to draw target brackets,
     // health bars, etc.
-    console.log("got overlay texture");
-    let overlay = this.get_box_generic("200px", "200px");
+    let overlay = this.get_box_generic("50px", "50px");
     this.adt.addControl(overlay);
     overlay.linkWithMesh(entity.model);
+    //if ("hitpoints" in entity){
+    //  entity.gui_healthbar = this.get_status_bar(20, "10%", "Red", () => {
+    //    return entity.hitpoints / entity.max_hp;
+    //});
     return overlay;
   }
 
@@ -108,6 +108,20 @@ export class HUD{
     return box;
   }
 
+  get_target_box(){
+    let box = this.get_box_generic("200px", "200px");
+
+    box.addControl(this.target_label);
+    box.addControl(this.target_health_bar);
+    box.addControl(this.target_shield_bar);
+    this.target_label.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+    this.adt.addControl(box);
+    box.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+    box.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
+
+    return box;
+  }
+
   update(){
     let possible_player = this.entMan.get_with(['input']);
     let player = possible_player[0];
@@ -130,11 +144,15 @@ export class HUD{
     if (player && player.target){
       let possible_target = this.entMan.get(player.target);
       if(possible_target){
-        this.target_label.text = possible_target.short_name;
-        this.target_label.linkWithMesh(possible_target.model);
+        this.target_ent = possible_target;
+        this.target_label.text = this.target_ent.short_name;
       } else {
-        this.target_label.text = "";
+        this.target_label.text = "<No Target>";
       }
+      this.target_health_bar.update_func();
+      this.target_shield_bar.update_func();
+      // Definitely don't keep a reference around. That would be bad.
+      delete this.possible_target;
     }
 
 
@@ -166,8 +184,6 @@ export class HUD{
     // Syntactically we want to use `function` because of how `this` behaves.
     // (I think...)
     function update_func(){
-      //console.log(this);
-      //console.log(this.get_status());
       this.width = "" + (max_width * this.get_status()) + "px";
     }
 

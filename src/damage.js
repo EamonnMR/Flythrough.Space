@@ -19,7 +19,7 @@ export function damage_handler(damager, damaged){
     damaged.hitpoints -= damager.damage;
 
     // If an entity's hitpoints are gone, destroy it
-    if (damaged.hitpoints >= 0){
+    if (damaged.hitpoints <= 0){
       damaged.remove = true;
   }
 }

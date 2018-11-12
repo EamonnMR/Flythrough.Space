@@ -35,7 +35,7 @@ export function shipFactory(data, type, position){
   ship.velocity = {x: 0, y: 0};
   ship.direction_delta = 0;
   ship.hittable = true;
-  ship.hitpoints = ship.max_hp;
+  ship.hitpoints = ship.max_hp / 2;
   ship.shields = ship.max_shields;
   ship.collider = {radius: .5};
   ship.fuel = ship.max_fuel;
