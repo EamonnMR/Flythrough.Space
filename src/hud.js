@@ -1,6 +1,8 @@
 import { get_text } from "./util.js"
 
 export function radarFollowSystem(entMan){
+  // Makes radar pips follow entities.
+  // TODO: Color pips based on AI status towards player.
   let scale_factor = 5;
   let offset = {x: 100, y:100};
   let player = entMan.get_with(['input'])[0];
@@ -37,13 +39,20 @@ export class HUD{
     this.spob_label = this.get_spob_label();
     this.target_label = get_text();
     this.target_health_bar = this.get_status_bar(150, "10px", "red", () => {
-      if(this.ent_target){
-        return this.ent_target.max_hp / this.ent_target.hitpoints;
+      if(this.target_ent){
+        console.log("HP percent");
+        console.log(this.target_ent);
+        debugger;
+        console.log(this.target_ent.hitpoints / this.target_ent.max_hp) 
+
+        return this.target_ent.hitpoints / this.target_ent.max_hp; 
       }
     });
     this.target_shield_bar = this.get_status_bar(150, "10px", "blue", () => {
-      if(this.ent_target){
-        return this.ent_target.shields / this.ent_target.max_shields;
+      if(this.target_ent){
+        console.log("shield percent: ");
+        console.log(this.target_ent.shields / this.target_ent.max_shields)
+        return this.target_ent.shields / this.target_ent.max_shields;
       }
     });
     this.target_box = this.get_target_box();
@@ -115,6 +124,7 @@ export class HUD{
     box.addControl(this.target_health_bar);
     box.addControl(this.target_shield_bar);
     this.target_label.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+    this.target_health_bar.top = 20
     this.adt.addControl(box);
     box.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
     box.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
