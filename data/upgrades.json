@@ -27,8 +27,8 @@
       "cooldown": 500,
       "velocity": 0.01,
       "proj": {
-        "damage": 1,
-        "shield_damage": 2,
+        "damage": 10,
+        "shield_damage": 20,
         "max_age": 5000,
         "collider": {"radius": 0.3}
       }

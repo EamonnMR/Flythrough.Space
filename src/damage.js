@@ -13,6 +13,15 @@ export function shot_handler(shot, object){
 
 export function damage_handler(damager, damaged){
   // A projectile or some such has hit something hittable
+  if ('shield_damage' in damager && 'shields' in damaged){
+    damaged.shields -= damager.shield_damage;
+    if ( damaged.shields >= 0){
+      return; // Shields prevent hull damage
+    } else if (damaged.shields <= 0){
+      damaged.shields = 0;
+    }
+  }
+
   if ('damage' in damager && 'hitpoints' in damaged){
     }
     // Remove hitpoints equal to the damage done

@@ -42,7 +42,6 @@ export class HUD{
       if(this.target_ent){
         console.log("HP percent");
         console.log(this.target_ent);
-        debugger;
         console.log(this.target_ent.hitpoints / this.target_ent.max_hp) 
 
         return this.target_ent.hitpoints / this.target_ent.max_hp; 
