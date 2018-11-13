@@ -181,7 +181,8 @@ export class GamePlayState extends ViewState {
     this.hud = new HUD(
         this.scene,
         this.entMan,
-        this.player_data
+        this.player_data,
+        this.data.govts,
     );
     this.create_world_models(this.player_data.current_system);
     this.empty = false;

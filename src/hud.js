@@ -1,5 +1,7 @@
 import { get_text } from "./util.js"
 
+const DEFAULT_GOVT_NAME = "Independant";
+
 export function radarFollowSystem(entMan){
   // Makes radar pips follow entities.
   // TODO: Color pips based on AI status towards player.
@@ -25,12 +27,13 @@ export function radarFollowSystem(entMan){
 //}
 
 export class HUD{
-  constructor(scene, entMan, player_data){
+  constructor(scene, entMan, player_data, govt_data){
     // TODO: Singleton. 
     this.adt = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 
     this.entMan = entMan; // TODO: Should we just pass this?
     this.player_data = player_data;
+    this.gov_data = govt_data;
     
     this.fuel_status = this.get_status_bar(150, "10px", "blue", () => {return player_data.fuel / player_data.max_fuel()} )
     this.nav_text = get_text();
@@ -38,6 +41,8 @@ export class HUD{
     this.nav_box = this.get_nav_box();
     this.spob_label = this.get_spob_label();
     this.target_label = get_text();
+    this.target_govt = get_text();
+    this.target_subtitle = get_text();
     this.target_health_bar = this.get_status_bar(150, "10px", "red", () => {
       if(this.target_ent){
         console.log("HP percent");
@@ -120,10 +125,14 @@ export class HUD{
     let box = this.get_box_generic("200px", "200px");
 
     box.addControl(this.target_label);
+    box.addControl(this.target_govt);
+    box.addControl(this.target_subtitle);
     box.addControl(this.target_health_bar);
     box.addControl(this.target_shield_bar);
     this.target_label.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
-    this.target_health_bar.top = 20
+    this.target_health_bar.top = 20;
+    this.target_govt.top = 30;
+    this.target_subtitle.top = 40;
     this.adt.addControl(box);
     box.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
     box.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
@@ -155,8 +164,16 @@ export class HUD{
       if(possible_target){
         this.target_ent = possible_target;
         this.target_label.text = this.target_ent.short_name;
+        this.target_subtitle.text = "" // TODO: Variants?
+        if( "govt" in this.target_ent ){
+          this.target_govt.text = this.gov_data[this.target_ent.govt].short_name;
+        } else {
+          this.target_govt.text = DEFAULT_GOVT_NAME;
+        }
       } else {
         this.target_label.text = "<No Target>";
+        this.target_subtitle.text = " ";
+        this.target_govt.text = " ";
       }
       this.target_health_bar.update_func();
       this.target_shield_bar.update_func();
