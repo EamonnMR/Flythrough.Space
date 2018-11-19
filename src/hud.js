@@ -1,6 +1,8 @@
 import { get_text } from "./util.js"
 
 const DEFAULT_GOVT_NAME = "Independant";
+const TARGET_PIP_SIZE = "10px";
+const TARGET_PIP_RADIUS = 30;
 
 export function radarFollowSystem(entMan){
   // Makes radar pips follow entities.
@@ -43,6 +45,30 @@ export class HUD{
     this.target_label = get_text();
     this.target_govt = get_text();
     this.target_subtitle = get_text();
+
+    // Target pips - attached to the overlay and drawn around the target.
+    function get_target_pip(x, y){
+      let pip = new BABYLON.GUI.Ellipse();
+      pip.width = TARGET_PIP_SIZE;
+      pip.height = TARGET_PIP_SIZE;
+      pip.left = x * TARGET_PIP_RADIUS; // - (TARGET_PIP_SIZE / 2);
+      pip.top = y * TARGET_PIP_RADIUS; // - (TARGET_PIP_SIZE / 2);
+      pip.background = "white";
+      pip.color = "white"; // TODO: Alter color based on ship status
+      pip.thickness = 1;
+      pip.zIndex = 3;
+      pip.alpha = .5; 
+      return pip;
+    }
+
+    // TODO: Change target pip radius based on target size
+    this.target_pips = {
+      bottom: get_target_pip(0, -1.5),
+      left: get_target_pip(-2, 1.5),
+      right: get_target_pip(2, 1.5),
+      //pip: get_target_pip(0,0)
+    };
+
     this.target_health_bar = this.get_status_bar(150, "10px", "red", () => {
       if(this.target_ent){
         console.log("HP percent");
@@ -60,6 +86,12 @@ export class HUD{
       }
     });
     this.target_box = this.get_target_box();
+  }
+
+  deselect(entity){
+    entity.overlay.removeControl(this.target_pips.bottom);
+    entity.overlay.removeControl(this.target_pips.left);
+    entity.overlay.removeControl(this.target_pips.right);
   }
 
   get_spob_label(){
@@ -88,7 +120,9 @@ export class HUD{
   get_overlay_texture(entity){
     // Makes an overlay texture for the entity to draw target brackets,
     // health bars, etc.
-    let overlay = this.get_box_generic("50px", "50px");
+    let overlay = this.get_box_generic("140px", "140px");
+    overlay.alpha = 0;
+    // overlay.alpha = 0;
     this.adt.addControl(overlay);
     overlay.linkWithMesh(entity.model);
     //if ("hitpoints" in entity){
@@ -165,6 +199,11 @@ export class HUD{
         this.target_ent = possible_target;
         this.target_label.text = this.target_ent.short_name;
         this.target_subtitle.text = "" // TODO: Variants?
+        
+        this.target_ent.overlay.addControl(this.target_pips.bottom);
+        this.target_ent.overlay.addControl(this.target_pips.left);
+        this.target_ent.overlay.addControl(this.target_pips.right);
+
         if( "govt" in this.target_ent ){
           this.target_govt.text = this.gov_data[this.target_ent.govt].short_name;
         } else {
