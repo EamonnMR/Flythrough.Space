@@ -129,10 +129,7 @@ export class GamePlayState extends ViewState {
         let player = this.get_player_ent();
         let target = this.find_closest_target(player);
         if(target){
-          let old_target = player.target;
-          if(old_target){
-            this.hud.deselect(this.entMan.get(old_target));
-          }
+          this.hud.deselect(this.entMan.get(player.target));
           player.target = target.id;
         }
       },

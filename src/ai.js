@@ -21,7 +21,6 @@ export function ai_system(entMan){
       if ('target' in ai){
         let target = entMan.get(ai.target);
         if(target){
-          console.log(entity);
           engage(entity, target, entMan.delta_time, entMan);
         } else {
           console.log("Target gone");
@@ -66,9 +65,9 @@ export function ai_system(entMan){
         for(let foe of list_closest_targets(entity.position, entMan, ['hittable'])){
           if('govt' in foe){ 
             if (foe.govt !== entity.govt){
-              // console.log("govts are different - check if foe");
+              console.log("govts are different - check if foe");
               if (govt.attack_default || ('foes' in govt && govt.foes.includes(foe.govt))){
-                // console.log("Found target of foe govt: " + foe.govt + ", attacking!");
+                console.log("Found target of foe govt: " + foe.govt + ", attacking!");
                 set_target(ai, foe);
                 return;
               }
@@ -98,7 +97,7 @@ export function ai_system(entMan){
 };
 
 function set_target(ai_component, target_entity){
-  // console.log("target aquired: " + target_entity.id);
+  console.log("target aquired: " + target_entity.id);
   ai_component.target = target_entity.id;
   ai_component.state = 'violent';
   console.log("Entity now " + ai_component.state + " towards: " + ai_component.target);

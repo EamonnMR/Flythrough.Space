@@ -83,9 +83,11 @@ export class HUD{
   }
 
   deselect(entity){
-    entity.overlay.removeControl(this.target_pips.bottom);
-    entity.overlay.removeControl(this.target_pips.left);
-    entity.overlay.removeControl(this.target_pips.right);
+    if(entity){
+      entity.overlay.removeControl(this.target_pips.bottom);
+      entity.overlay.removeControl(this.target_pips.left);
+      entity.overlay.removeControl(this.target_pips.right);
+    }
   }
 
   get_spob_label(){

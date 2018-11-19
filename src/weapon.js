@@ -11,12 +11,10 @@ export function weaponSystem (entMan) {
 };
   
 export function decaySystem (entMan) {
-  for (let entity of entMan.get_with(['age', 'maxage'])) {
-    if ( 'age' in entity && 'max_age' in entity ) {
-      entity.age += entMan.delta_time;
-      if ( entity.age > entity.max_age ) {
-        entity.remove = true;
-      }
+  for (let entity of entMan.get_with(['age', 'max_age'])) {
+    entity.age += entMan.delta_time;
+    if ( entity.age > entity.max_age ) {
+      entity.remove = true;
     }
   }
 };
@@ -34,6 +32,11 @@ function bulletFactory(position, sprite, direction, speed, initialVelocity, prot
   shot.model = sprite;
   shot.velocity = velocity;
   shot.age = 0.0;
+  
+  // Lag prevention measure.
+  if(! 'max_age' in shot){
+    shot.max_age = 1000;
+  }
 
   if(ignore_gov != null){
     shot.ignoregov = ignore_gov;
