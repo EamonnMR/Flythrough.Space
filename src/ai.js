@@ -20,6 +20,7 @@ export function ai_system(entMan){
       if ('target' in ai){
         let target = entMan.get(ai.target);
         if(target){
+          console.log(entity);
           engage(entity, target, entMan.delta_time, entMan);
         } else {
           console.log("Target gone");
@@ -38,9 +39,16 @@ export function ai_system(entMan){
     } else if (ai.state == 'passive') {
       // This is sort of the hub behavior - select a new thing to do
       if ('aggro' in ai){
-        // Aggro is a list of entities that have pissed this entity off
-        // Go through the aggro list till it finds one that is alive
+        // TODO: Somehow prioritize this?
+        for( let possible_target_id of ai.aggro ){
+          let possible_target = entMan.get(possible_target_id);
+          if(possible_target){
+            set_target(ai, possible_target);
+            break;
+          }
+        }
       }
+
       if ('govt' in entity){
         let govt = entMan.data.govts[entity.govt];
         // TODO: Really this should look at the closest hittable target
@@ -92,6 +100,7 @@ function set_target(ai_component, target_entity){
   // console.log("target aquired: " + target_entity.id);
   ai_component.target = target_entity.id;
   ai_component.state = 'violent';
+  console.log("Entity now " + ai_component.state + " towards: " + ai_component.target);
 }
 
 
@@ -150,11 +159,15 @@ function constrained_point(source, source_angle, destination, possible_turn){
 }
 
 function engage(entity, target, delta_time, entMan){
+  //console.log(entity);
+  //console.log("engaging");
+  //console.log(target);
 
   let dist = distance(entity.position, target.position);
+  // TODO: This is getting NaN, preventing AI from working
   let final_turn = constrained_point(
     entity.position,
-    target.dir,
+    target.direction,
     target.position,
     entity.rotation
   );

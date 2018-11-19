@@ -71,17 +71,11 @@ export class HUD{
 
     this.target_health_bar = this.get_status_bar(150, "10px", "red", () => {
       if(this.target_ent){
-        console.log("HP percent");
-        console.log(this.target_ent);
-        console.log(this.target_ent.hitpoints / this.target_ent.max_hp) 
-
         return this.target_ent.hitpoints / this.target_ent.max_hp; 
       }
     });
     this.target_shield_bar = this.get_status_bar(150, "10px", "blue", () => {
       if(this.target_ent){
-        console.log("shield percent: ");
-        console.log(this.target_ent.shields / this.target_ent.max_shields)
         return this.target_ent.shields / this.target_ent.max_shields;
       }
     });

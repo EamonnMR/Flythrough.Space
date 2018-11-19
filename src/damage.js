@@ -11,7 +11,16 @@ export function shot_handler(shot, object){
   // Add other special case shot interaction logic here
 }
 
+function draw_aggro(damager, damaged){
+  if( 'ai' in damaged){
+    if ( 'aggro' in damaged.ai ){
+      damaged.ai.aggro.push(damager.id);
+    }
+  }
+}
+
 export function damage_handler(damager, damaged){
+  draw_aggro(damager, damaged);
   // A projectile or some such has hit something hittable
   if ('shield_damage' in damager && 'shields' in damaged){
     damaged.shields -= damager.shield_damage;

@@ -126,7 +126,6 @@ export class GamePlayState extends ViewState {
         }
       },
       select_closest: () => {
-        console.log("Finding Closest npc");
         let player = this.get_player_ent();
         let target = this.find_closest_target(player);
         if(target){
@@ -135,7 +134,6 @@ export class GamePlayState extends ViewState {
             this.hud.deselect(this.entMan.get(old_target));
           }
           player.target = target.id;
-          console.log(player.target);
         }
       },
 

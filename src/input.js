@@ -73,7 +73,6 @@ function handleKeyDown ( event ){
 };
 
 function handleKeyUp ( event ){
-  console.log(event.keyCode);
   switch(event.keyCode){
     case 38:
       inputStates.forward = false;
@@ -89,11 +88,9 @@ function handleKeyUp ( event ){
       break;
     case 27: // escape
       if(!debounce_esc){
-        console.log('escape');
         debounce_esc = true;
         setTimeout(() => {
           debounce_esc = false;
-          console.log('debounce');
         }, 5000);
         game_ctrl.toggle_pause();
       }
