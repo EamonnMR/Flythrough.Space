@@ -1,4 +1,5 @@
-import { distance, point_at } from "./util.js";
+import { distance, /*point_at*/ } from "./util.js";
+    //if( "img" in this.spob_types[this.spob.sType] ){
 import { rotate, accelerate, /*decelerate*/ } from "./physics.js";
 import { get_bone_group } from "./graphics.js";
 
@@ -158,11 +159,36 @@ function constrained_point(source, source_angle, destination, possible_turn){
   }
 }
 
+
+function point_at(to, startangle, from){
+  let dx = to.x - from.x;
+  let dy = to.y - from.y;
+  
+  // console.log(("dx " + dx) + ", dy " + dy);
+  let cw = (Math.atan2(dy, dx) - startangle);
+  let ccw = ARC;
+  //let ccw = (Math.atan2(dy, dx) - startangle);
+  if (cw > 0){
+    ccw = ARC - cw;
+  } else {
+    ccw = ARC + cw;
+  }
+  // console.log("cw:  " + cw);
+  // console.log("ccw: " + ccw);
+  
+  if(Math.abs(cw) < Math.abs(ccw)){
+    return -1 * cw;
+  } else {
+    return -1 * ccw;
+  }
+  
+}
+
 function engage(entity, target, delta_time, entMan){
   //console.log(entity);
   //console.log("engaging");
   //console.log(target);
-
+  /*
   let dist = distance(entity.position, target.position);
   // TODO: This is getting NaN, preventing AI from working
   let final_turn = constrained_point(
@@ -171,6 +197,30 @@ function engage(entity, target, delta_time, entMan){
     target.position,
     entity.rotation
   );
+  */
+
+	let dist = distance(entity.position, target.position);
+
+	// Get the ideal facing, subtract out current angle
+	let goal_turn = point_at(target.position, entity.direction, entity.position);
+	// If angle is outside a certain margin, rotate the ship to face the target
+	// Maybe pull this out into a "AI tries to face in a direction" system?
+	let final_turn = 0;
+	let possible_turn = (entity.rotation * delta_time); // How far we _can_ turn this frame
+
+	if(goal_turn > 0){
+		if(goal_turn > possible_turn){
+			final_turn = possible_turn;
+		} else {
+			final_turn = goal_turn;
+		}
+	} else if (goal_turn < 0){
+		if(Math.abs(goal_turn) > possible_turn){
+			final_turn = possible_turn * -1;
+		} else {
+			final_turn = goal_turn;
+		}
+	}
 
   // Do rotation 
   rotate(entity, -1 * final_turn );
@@ -184,7 +234,7 @@ function engage(entity, target, delta_time, entMan){
   //  decelerate(entity.velocity)
   //}
   if(entity.directon < ENGAGE_ANGLE || entity.direction > -1 * ENGAGE_ANGLE){
-    if(distance < ENGAGE_DISTANCE){
+    if(dist < ENGAGE_DISTANCE){
       for (let weapon of entity.weapons){
         weapon.tryShoot(entMan, entity);
       }
