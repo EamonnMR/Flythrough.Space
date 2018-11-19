@@ -23,9 +23,6 @@ export class LandingMenu extends BaseMenuView {
     /* Middle Widgets */
     const CENTER = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_CENTER;
     let image = "assets/rustscape.png";
-    if( "img" in this.spob_types[this.spob.sType] ){
-      image = this.spob_types[this.spob.sType].img;
-    }
     if( "img" in this.spob ){
       image = this.spob.img;
     }
