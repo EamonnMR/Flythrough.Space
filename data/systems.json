@@ -935,7 +935,7 @@
   "Kilwa":{
     "x":829,
     "y":1363,
-    "govt":"orion",
+    "govt":"direc",
     "spobs":[
       "Vatsa"
     ],
@@ -948,7 +948,7 @@
   "Kagame":{
     "x":785,
     "y":1444,
-    "govt":"orion",
+    "govt":"direc",
     "links":[
       ".257",
       ".*23",
@@ -958,7 +958,7 @@
   "Mideska":{
     "x":955,
     "y":1496,
-    "govt":"orion",
+    "govt":"direc",
     "links":[
       "Minna",
       ".343",
@@ -1208,7 +1208,6 @@
   "Sabara":{
     "x":591,
     "y":1268,
-    "govt":"orion",
     "links":[
       "Asuangate",
       "Azuay"
@@ -1217,7 +1216,6 @@
   "Amstrad":{
     "x":485,
     "y":1323,
-    "govt":"orion",
     "links":[
       "Asuangate",
       "Misiones",
@@ -1228,7 +1226,7 @@
   "Asuangate":{
     "x":588,
     "y":1383,
-    "govt":"orion",
+    "govt":"direc",
     "spobs":[
       "Sinaqara"
     ],
@@ -1244,7 +1242,6 @@
   ".235":{
     "x":420,
     "y":1437,
-    "govt":"orion",
     "links":[
       ".361",
       ".363",
@@ -1254,7 +1251,6 @@
   "Misiones":{
     "x":479,
     "y":1229,
-    "govt":"orion",
     "links":[
       "Pavlichenko",
       "Amstrad"
@@ -1414,7 +1410,7 @@
   "Azuay":{
     "x":706,
     "y":1253,
-    "govt":"orion",
+    "govt":"direc",
     "links":[
       "Sabara",
       "Jibril"
@@ -1501,7 +1497,7 @@
   ".257":{
     "x":663,
     "y":1504,
-    "govt":"orion",
+    "govt":"direc",
     "links":[
       "Kagame",
       "Asuangate",
@@ -2754,7 +2750,6 @@
   "Distrito":{
     "x":485,
     "y":1391,
-    "govt":"orion",
     "links":[
       "Amstrad",
       "Asuangate",
@@ -2764,7 +2759,7 @@
   ".*10":{
     "x":540,
     "y":1492,
-    "govt":"orion",
+    "govt":"direc",
     "links":[
       ".235",
       ".257",
@@ -2904,7 +2899,7 @@
   "Jibril":{
     "x":744,
     "y":1371,
-    "govt":"orion",
+    "govt":"direc",
     "links":[
       "Kilwa",
       "Kagame",

@@ -397,7 +397,7 @@
 	},
 	"Vatsa":{
 		"sType":"rwG00",
-		"govt":"orion",
+		"govt":"direc",
 		"x":0,
 		"y":0,
 		"tech":{
@@ -438,7 +438,7 @@
 			"dark":"high",
 			"xerum":"high"
 		},
-		"text":"The center of the United Planets of Willkanuta, old nemisis of the old empire. The Willkanuta has been in political turmoil intermittently for most of its history, but its military, the Space Command, has remained stable and above the fray. This is one of the few planets that they control outwright."
+		"text":"An anchient homeworld, its distance from centers of conflict, Sinaqara was one of the safest planets for most of its history. However, recent Itaskan raids have given it a bad reputation."
 	},
 	"Kuzma":{
 		"sType":"onyxDesertP",
