@@ -12,7 +12,7 @@ const TURN_MIN = Math.PI / 25;
 // for an override in the data
 const ENGAGE_DISTANCE = 50;
 const ENGAGE_ANGLE = .25;
-const ACCEL_DISTANCE = 1;
+const ACCEL_DISTANCE = 10;
 
 export function ai_system(entMan){
   for (let entity of entMan.get_with(['ai'])) {
