@@ -1,5 +1,4 @@
 import { distance, /*point_at*/ } from "./util.js";
-    //if( "img" in this.spob_types[this.spob.sType] ){
 import { rotate, accelerate, /*decelerate*/ } from "./physics.js";
 import { get_bone_group } from "./graphics.js";
 
@@ -103,8 +102,6 @@ function set_target(ai_component, target_entity){
   console.log("Entity now " + ai_component.state + " towards: " + ai_component.target);
 }
 
-
-
 function list_closest_targets(position, entMan, criteria){
   let possible_targets = entMan.get_with(criteria); // TODO: Add position to this list  
   if (possible_targets.length > 0){
@@ -161,7 +158,9 @@ function point_at(to, startangle, from){
   
 }
 
-function constrained_point(goal_turn, possible_turn){
+function constrained_point(target, start_angle, position, possible_turn){
+  // point_at but with a rotation speed limit (which is most things)
+	let goal_turn = point_at(target, start_angle, position);
   let final_turn = 0;
 	if(goal_turn > 0){
 		if(goal_turn > possible_turn){
@@ -182,32 +181,16 @@ function constrained_point(goal_turn, possible_turn){
 }
 
 function engage(entity, target, delta_time, entMan){
-  //console.log(entity);
-  //console.log("engaging");
-  //console.log(target);
-  /*
-  let dist = distance(entity.position, target.position);
-  // TODO: This is getting NaN, preventing AI from working
-  let final_turn = constrained_point(
+	// Get the ideal facing, subtract out current angle
+	// If angle is outside a certain margin, rotate the ship to face the target
+	let final_turn  = constrained_point(
+    target.position, 
+    entity.direction,
     entity.position,
-    target.direction,
-    target.position,
-    entity.rotation
+    entity.rotation * delta_time
   );
-  */
 
 	let dist = distance(entity.position, target.position);
-
-	// Get the ideal facing, subtract out current angle
-	let goal_turn = point_at(target.position, entity.direction, entity.position);
-	// If angle is outside a certain margin, rotate the ship to face the target
-	// Maybe pull this out into a "AI tries to face in a direction" system?
-	let possible_turn = (entity.rotation * delta_time); // How far we _can_ turn this frame
-
-  let final_turn = constrained_point(
-    goal_turn,
-    possible_turn,
-  )
 
   // Do rotation 
   rotate(entity, -1 * final_turn );
@@ -241,7 +224,7 @@ export function turretPointSystem (entMan) {
             // Crude method: point all turrets at the same angle
             // (ie no convergence)
             let current_angle = (bone.rotation.y - entity.direction) % ARC;
-            let turn = 0 // constrained_point(entity.position, current_angle, target.position, Math.PI / 100); 
+            let turn = constrained_point(target.position, current_angle, entity.position, Math.PI / 100); 
             // Small amount of dampening to prevent jitter
             //if( Math.abs(turn) > TURN_MIN ){
               bone.rotate(BABYLON.Axis.Y, turn, BABYLON.Space.LOCAL);
