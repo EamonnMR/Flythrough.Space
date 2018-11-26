@@ -1,4 +1,4 @@
-import { distance, /*point_at*/ } from "./util.js";
+import { distance, } from "./util.js";
 import { rotate, accelerate, /*decelerate*/ } from "./physics.js";
 import { get_bone_group } from "./graphics.js";
 
@@ -223,11 +223,11 @@ export function turretPointSystem (entMan) {
           for(let bone of get_bone_group(entity.model.skeleton, "turret")){
             // Crude method: point all turrets at the same angle
             // (ie no convergence)
-            let current_angle = (bone.rotation.y - entity.direction) % ARC;
-            let turn = constrained_point(target.position, current_angle, entity.position, Math.PI / 100); 
+            let current_angle = (entity.direction - bone.rotation.y ) % ARC; 
+            let turn = constrained_point(target.position, current_angle, entity.position, Math.PI/50); 
             // Small amount of dampening to prevent jitter
             //if( Math.abs(turn) > TURN_MIN ){
-              bone.rotate(BABYLON.Axis.Y, turn, BABYLON.Space.LOCAL);
+              bone.rotate(BABYLON.Axis.Y, -1 *  turn, BABYLON.Space.LOCAL);
             //}
           }
         }

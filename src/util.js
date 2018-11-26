@@ -54,36 +54,6 @@ export function apply_upgrades(ship, upgrades, data){
   }
 }
 
-export function point_at(to, startangle, from){
-  // This works for turrets but drives me nuts for being weird.
-  // TODO: Does this break ship AI?
-  // TODO: This could really use some automated tests.
-  let dx = from.x - to.x;
-  let dy = to.y - from.y;
-  
-  let cw = (Math.atan2(dy, dx) - startangle) % ARC;
-  let ccw = ARC;
-  if (cw > 0){
-    ccw = ARC - cw;
-  } else {
-    ccw = ARC + cw;
-  }
-  // console.log("start: " + startangle);
-  // console.log("diff : " + Math.atan2(dx, dy))
-
-  if(Math.abs(cw) < Math.abs(ccw)){
-    // console.log("*  CW: " + cw);
-    // console.log("  CCW: " + ccw);
-    // console.log("  sum: " + (cw + ccw));
-    return cw;
-  } else {
-    // console.log("   CW: " + cw);
-    // console.log("* CCW: " + ccw);
-    // console.log("  sum: " + (cw + ccw));
-    return ccw;
-  }
-}
-
 export function get_text(){
   let text = new BABYLON.GUI.TextBlock();
   text.color = "White";
@@ -91,3 +61,4 @@ export function get_text(){
   text.font_family = "Sans";
   return text;
 }
+
