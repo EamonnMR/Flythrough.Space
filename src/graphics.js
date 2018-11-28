@@ -6,8 +6,6 @@
 // y      --> Nothing
 // Z      --> Y
 
-import { point_at } from "./util.js";
-
 const SHIP_Y = -2;
 const PLANET_SCALE = 15;
 const PLANET_Y = -10;
