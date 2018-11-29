@@ -381,6 +381,7 @@
     "x":1128,
     "y":968,
     "govt":"direc",
+    "spobs": "Wieliczka",
     "links":[
       "Rossum",
       "Holcomb",
@@ -1093,6 +1094,7 @@
     "x":1529,
     "y":1581,
     "govt":"orasos",
+    "spobs": "Nightside",
     "links":[
       ".216",
       ".226"
@@ -1420,6 +1422,7 @@
     "x":693,
     "y":313,
     "govt":"drone",
+    "spobs": "Horizon",
     "links":[
       ".202",
       ".203",
@@ -1581,6 +1584,7 @@
   ".265":{
     "x":783,
     "y":193,
+    "spobs": "Krysto",
     "govt":"drone",
     "links":[
       ".191",
@@ -1722,6 +1726,7 @@
     "x":458,
     "y":566,
     "govt":"drone",
+    "spobs": "Broken Hill",
     "links":[
       ".252",
       ".274",

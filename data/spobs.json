@@ -227,7 +227,7 @@
 		"sType":"onyxEarthlikeE",
     "sprite": "cloudy_blue",
 		"govt":"direc",
-		"text":"Vast oceans dominate Bjarne's landscape, and industrial activity dominates the surface. Bjarne one of the most enterprise focused worlds in the Directorate. Its citizens have a reputation, perhaps deserved, of attention to technical detail.",
+		"text":"The surface of Bjarne is almost entirely covered with water, so most of its cities are mostly or entirely submerged, anchored to bedrock deep below the waves. Bjarne one of the most enterprise focused worlds in the Directorate. Its citizens have a reputation, perhaps deserved, of attention to technical detail.",
 		"tech":{
 			"khanda":2,
 			"oe_wep":2,
@@ -456,7 +456,7 @@
 		"x":0,
 		"y":0,
 		"govt":"pen",
-		"text":"A lonely outpost on the Bankour border, Cobb has many old bases but most navy activity takes place in orbit on the DIII. It is mostly a warehouse."
+		"text":"A lonely outpost on the NE border, Cobb has many old bases but most navy activity takes place in orbit on the DIII. It is mostly a warehouse."
 	},
 	
 	"DIII - Loneozner":{
@@ -464,7 +464,7 @@
 		"x":30,
 		"y":100,
 		"govt":"pen",
-		"text":"As far as Bankour border posts go, this one is quiet. The Bankour do not regularly skirmish in this system, and it is widely considered a backwater. Flotilla III, the flotilla based here, constantly emphasizes the feeling of dread that they experience, not knowing when the next attack will be.",
+		"text":"As far as NE border posts go, this one is quiet. The Imperials do not regularly skirmish in this system, and it is widely considered a backwater. Flotilla III, the flotilla based here, constantly emphasizes the feeling of dread that they experience, not knowing when the next attack will be.",
 		"tech":{
 			"generic":2,
 			"itaskan_wep":2,
@@ -517,7 +517,7 @@
 		"govt":"pen",
 		"x":0,
 		"y":0,
-		"text":"Pajitnov is as aristocratic as you can really get in the peninsula, with high-tech and administrative jobs for most of the workforce."
+		"text":"Pajitnov is as aristocratic as you can really get in the peninsula, with high-tech and administrative activity during the day and lavish parties at stunning techno-villas at night. It helps that its nights last 36 hours."
 	},
 	"Tamt":{
 		"sType":"gnPlanet13Purple",
@@ -545,7 +545,7 @@
 		"govt":"pen",
 		"x":0,
 		"y":0,
-		"text":"With no biosphere, Angeles was an ideal testbed for airtight colony technology. It was a smashing success and its population now numbers in the tens of billions.",
+		"text":"With no biosphere, Angeles was an ideal testbed for airtight colony technology. It was a smashing success and its population now numbers in the tens of billions. Some of the best-smelling recycled air in the galaxy can be found in the tunnels and domes here, but most goods need to be brought from off-world.",
 		"trade":{
 			"water":"high",
 			"grain":"high",
@@ -579,7 +579,7 @@
 		"govt":"pen",
 		"x":-50,
 		"y":-300,
-		"text":"Aralsk was dealt a crippling environmental blow at some point in its history, and is now mostly used to study the dried out oceans and giant tectonic fissueres."
+		"text":"Aralsk was dealt a crippling environmental blow at some point in its history, and is now mostly occupied by scientists who study the dried out oceans and giant tectonic fissueres, hoping to discover what dread fate befell the planet, if other similarly sized worlds are at risk, and how it could be averted."
 	},
 	"Itaskana":{
 		"sType":"gnPlanet11Maroon",
@@ -587,7 +587,7 @@
 		"govt":"pen",
 		"x":0,
 		"y":0,
-		"text":"The center of Itaskan civilization, Itaskana is the namesake of the 'peninsula' that is governed from its surface. It was here that the treaties creating it where signed, and the shield technology that enabled it matured. Currently it is one of the few worlds in the peninsula so environmentally ruined that it is considered a lost cause, a victim of centuries of rapid technological progress and unchecked plasma exparaments. It is dotted with monuments that are rarely visited."
+		"text":"The center of Itaskan civilization, Itaskana is the namesake of the 'peninsula' of isolated stars that the Itaskans call home. Schoolchildren are shuttled here to see the famous parlament chambers the great treaties creating Itaska's government where signed, and the labs shield technology that enabled it matured. Sadly it is one of the few worlds in the peninsula so environmentally ruined that it is considered a lost cause, a victim of centuries of rapid technological progress and unchecked plasma experiments."
 	},
 	"Gillespie":{
 		"sType":"onyxM7Desert",
@@ -595,7 +595,7 @@
 		"govt":"pen",
 		"x":-38,
 		"y":49,
-		"text":"Populated since at least 200, Gillespie was a very target of colonies, so the lanscape is a patchwork of different visions of extraplanetary colonization. It has been called the 'mother of itaskan spaceflight' since if it wasn't so close to Itaskana, they might have never developed starship technology."
+		"text":"Populated since at least 200, Gillespie was a very attractive target for off-world colonization, so the lanscape is a patchwork of different visions of extraplanetary utopia. It has been called the 'mother of itaskan spaceflight' since if it wasn't so close to Itaskana, they might have never had a reason to develop starship technology. Though it's speculated that people arrived on every planet by spaceflight in the first place."
 	},
 	"Buttonwood":{
 		"sType":"rwI01",
@@ -603,7 +603,7 @@
 		"govt":"pen",
 		"x":300,
 		"y":-30,
-		"text":"Over the last five hundred years, inhabitants have been moving from Itaskana to Buttonwood, due to radiation in Itaskana's seriously ionized atmosphere. It was home to the ''Buttonwood Accords'' where bans on environmentally destructive practices where put into effect throughout Itaskan space, settling what many called the 'last generational fude in Itaskan space'",
+		"text":"Over the last five hundred years, inhabitants have been moving from Itaskana to Buttonwood, due to radiation in Itaskana's seriously ionized atmosphere. It was home to the \"Buttonwood Accords\" where bans on environmentally destructive practices where put into effect throughout Itaskan space, settling what is called the \"last generational fued\" in the 330s.",
 		"trade":{
 			"compu":"high",
 			"water":"high",
@@ -679,8 +679,8 @@
   "Wieliczka": {
     "text": "Though the surface of Wieliczka is arid, its appearance is deceptive-its oceans are all under ground. Though not especially dense, and permiable enough for the roots of mighty trees to reach down into the brine, the surface is enough to shield the cities of Wieliczka from the harsh glare of its parent star, Rainsford."
   },
-  "krysto": {
-    "text": "The low gravity of this remote, small planet is the ideal condition for propulsion research. The world is more agglomeration of comets than terrestrial planet, though bitter winds powered by tidal forces from its dim star have long since erased evidence of the anchinent impacts."
+  "Krysto": {
+    "text": "The low gravity of this remote, small planet is the ideal condition for propulsion research (and, incidentally, long jump.) The world is more agglomeration of comets than terrestrial planet, though bitter winds powered by tidal forces from its dim star have long since erased evidence of the anchinent impacts. Extensive ice tunnels and secret bases are supposedly just below the rough, spiky surface."
   },
   "Bukov":{
     "govt": "drone",
