@@ -4,7 +4,7 @@
 		"x"    : 250,
 		"y"    : 140,
 		"govt" : "direc",
-		"text": "The birthplace of the modern FTL drive, and as a result the capital of the Old Empire, a galaxy-spanning civilization that collapsed a generation ago. It was these shipyards that built the first wave of ships that crossed the Aleutian sector, and is still a hub for ship construction. After the empire's collapse, most of the government fled, leaving the terrestrials in charge, many of them expert starship builders. They ultimately formed Accra Drive Systems, a successful manufacturer of modern starships, and an alliance of surrounding worlds called the Casamance Directorate.",
+		"text": "The birthplace of the modern FTL drive, and as a result the capital of the Old Empire, a galaxy-spanning civilization that collapsed a generation ago. It was these shipyards that built the first wave of ships that crossed the sector, and is still a hub for ship construction. After the empire's collapse, most of the government fled, leaving the terrestrials in charge, many of them expert starship builders. They ultimately formed Accra Drive Systems, a successful manufacturer of modern starships, and an alliance of surrounding worlds called the Casamance Directorate.",
 		"trade":{
 			"alloy":"high",
 			"grain":"high",
@@ -687,5 +687,17 @@
     "x": 25,
     "y": 38,
     "text": "Bukov's spaceport is in the center of a blast-swept plane of green trinitite glass, surrounded by thick walls of nanocrete, and staffed by pitiless marines. This security is needed, of course, because the rest of the planet, including all of its major cities, is used as a prison by the empire. It was discovered at some point that in some cases, such as radical Bikonour partisans (many of whom already lived on Bukov, it should be noted) it would be cheaper to cordon off an entire world than to build additional prison stations."
+  },
+  "Kejetia": {
+    "govt": "direc",
+    "x": 0,
+    "y": 0,
+    "text": "If there's a bright center to the casamance directorate, this is the point that it's furthest from. Pirate raids are a regular sight in the skies over Kejetia. Attempts to contact additional civilizations or find fertile planets beyond this point have proved fruitless."
+  },
+  "Kufuor": {
+    "govt": "direc",
+    "x": 0,
+    "y": 0,
+    "text": "Just far enough from Akosombo Nebula to avoid the worst effects, Kufuor is still a relatively harsh environment. It has earned its reputation as a waystation for ill fated expolorers-no direct jump path has been discovered into the nebula from here. It is also a waystation for Casamance Navy ships hunting outlawed pirates into the frontier."
   }
 }

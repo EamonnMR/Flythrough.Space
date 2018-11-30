@@ -446,6 +446,9 @@
   "Illorin":{
     "x":1044,
     "y":1356,
+    "spobs": [
+      "Kejetia"
+    ],
     "govt":"direc",
     "links":[
       "Sipali",
@@ -2884,6 +2887,9 @@
   "Jes":{
     "x":1070,
     "y":1474,
+    "spobs": [
+      "Kejetia"
+    ],
     "govt":"direc",
     "links":[
       "Illorin",
