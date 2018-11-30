@@ -717,5 +717,16 @@
     "x": 0,
     "y": 0,
     "text": "This station marks not only the furthest \"southern\" extent of the old empire, but also the furthest habitation in this galactic direction. It was empty then, and it's empty now. No human-occipied homeworlds have been found beyond it, and Broken Arrow was the only successful settlement in the region. The only people who go beyond are those who have nowhere else to go, desperate pirates, killers and outlaws."
+  },
+  "Veracruz": {
+    "x": 0,
+    "y": 0,
+    "govt": "hex",
+    "text": "An anchient and expertly terraformed homeworld, Veracruz is best known as the seat of power of the Sinod of the Six - a popular but young regional faith that believes that the six hyperlanes that converge on the Kuluene system are a sign that the Great Being is going to be reincatnated somewhere on Veracruz-though as yet, no candidate messiah has passed the rigorous testing process. The Sinod is, interestingly enough, a full member of the League.",
+    "trade": {
+      "scriptures": "low",
+      "food": "high",
+      "medicine": "med"
+    }
   }
 }
