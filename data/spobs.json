@@ -699,5 +699,23 @@
     "x": 0,
     "y": 0,
     "text": "Just far enough from Akosombo Nebula to avoid the worst effects, Kufuor is still a relatively harsh environment. It has earned its reputation as a waystation for ill fated expolorers-no direct jump path has been discovered into the nebula from here. It is also a waystation for Casamance Navy ships hunting outlawed pirates into the frontier."
+  },
+  "Broken Arrow": {
+    "govt": "direc",
+    "x": 0,
+    "y": 0,
+    "text": "Broken Arrow has a warm, dry climate, perfect for many types of hardy megafauna which they heard as livestock here. Giant mechanical suits are employed by the farmers to drive the enormous beasts around (and avoid being trampled under foot.)",
+    "trade": {
+      "alloy": "med",
+      "pure": "high",
+      "scrod": "high",
+      "food": "low"
+    }
+  },
+  "Frontier Outpost III": {
+    "govt": "direc",
+    "x": 0,
+    "y": 0,
+    "text": "This station marks not only the furthest \"southern\" extent of the old empire, but also the furthest habitation in this galactic direction. It was empty then, and it's empty now. No human-occipied homeworlds have been found beyond it, and Broken Arrow was the only successful settlement in the region. The only people who go beyond are those who have nowhere else to go, desperate pirates, killers and outlaws."
   }
 }

@@ -954,7 +954,7 @@
     "y":1444,
     "govt":"direc",
     "links":[
-      ".257",
+      "Nowra",
       ".*23",
       "Jibril"
     ]
@@ -1238,7 +1238,7 @@
     "links":[
       "Sabara",
       "Amstrad",
-      ".257",
+      "Nowra",
       "Distrito",
       ".*10",
       "Jibril"
@@ -1500,10 +1500,14 @@
       "Kharkov"
     ]
   },
-  ".257":{
+  "Nowra":{
     "x":663,
     "y":1504,
     "govt":"direc",
+    "spobs": [
+      "Broken Arrow",
+      "Frontier Outpost III"
+    ],
     "links":[
       "Kagame",
       "Asuangate",
@@ -2358,7 +2362,7 @@
     "x":785,
     "y":1614,
     "links":[
-      ".257",
+      "Nowra",
       ".344",
       ".346",
       ".*23"
@@ -2378,7 +2382,7 @@
     "x":639,
     "y":1611,
     "links":[
-      ".257",
+      "Nowra",
       ".346",
       ".348"
     ]
@@ -2770,7 +2774,7 @@
     "govt":"direc",
     "links":[
       ".235",
-      ".257",
+      "Nowra",
       ".359"
     ]
   },
