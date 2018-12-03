@@ -18,6 +18,7 @@ export function apply_upgrade(ship, upgrade, data){
         data.get_sprite_mgr(weapon.sprite),
         weapon.proj,
         weapon.velocity,
+        weapon.miss,
         weapon.mesh,
       ));
     } else if (key === "price" || key === "tech" || key === "desc" || key === "name"){

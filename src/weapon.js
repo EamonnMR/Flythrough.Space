@@ -54,11 +54,12 @@ function bulletFactory(position, sprite, direction, speed, initialVelocity, prot
 };
 
 export class Weapon {
-  constructor(period, sprite_mgr, projectile, velocity, mesh){
+  constructor(period, sprite_mgr, projectile, velocity, inaccuracy, mesh){
     this.timer = 0;
     this.period = period;
     this.sprite_mgr = sprite_mgr;
     this.speed = velocity;
+    this.inaccuracy = inaccuracy;
     this.projectile = projectile;
     this.mesh= mesh;
     this.model = null; // To be filled in elsewhere TODO: gross
@@ -71,12 +72,12 @@ export class Weapon {
         entMan.insert(bulletFactory(
                       entity.position,
                       new BABYLON.Sprite("bullet", this.sprite_mgr),
-                      entity.direction,
+                      this.random_dir(entity.direction),
                       this.speed,
                       entity.velocity || {'x': 0, 'y': 0},
                       this.projectile,
                       'govt' in entity ? entity.govt : null,
-                      'player_aligned' in entity))
+                      'player_aligned' in entity));
       }
     }
   }
@@ -85,6 +86,12 @@ export class Weapon {
     if (this.timer > 0){
       this.timer -= entMan.delta_time;
     }
- }
+  }
+
+  random_dir(dir){
+    return (
+      dir + this.inaccuracy * (Math.random() - 0.5)
+    ) % (Math.PI * 2);
+  }
 };
 
