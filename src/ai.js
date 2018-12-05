@@ -205,9 +205,7 @@ function engage(entity, target, delta_time, entMan){
   //}
   if(entity.directon < ENGAGE_ANGLE || entity.direction > -1 * ENGAGE_ANGLE){
     if(dist < ENGAGE_DISTANCE){
-      for (let weapon of entity.weapons){
-        weapon.tryShoot(entMan, entity);
-      }
+      entity.shoot_primary = true;
     }
   }
 };

@@ -40,10 +40,8 @@ export function inputSystem (entMan) {
 //        entity.direction_delta = 0;
 //      }
     }
-    if ('weapons' in entity && inputStates.shoot) {
-      for (let weapon of entity.weapons){
-        weapon.tryShoot(entMan, entity);
-      }
+    if (inputStates.shoot) {
+      entity.shoot_primary = true;
     }
   }
 };

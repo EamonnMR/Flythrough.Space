@@ -1,4 +1,4 @@
-import { Weapon } from "./weapon.js";
+import { weapon_factory } from "./weapon.js";
 
 const ARC = Math.PI * 2;
 
@@ -13,14 +13,7 @@ export function apply_upgrade(ship, upgrade, data){
   for(let key of Object.keys(upgrade)){
     if(key === "weapon"){
       let weapon = upgrade.weapon;
-      ship.weapons.push( new Weapon(
-        weapon.cooldown,
-        data.get_sprite_mgr(weapon.sprite),
-        weapon.proj,
-        weapon.velocity,
-        weapon.miss,
-        weapon.mesh,
-      ));
+      ship.weapons.push( weapon_factory(weapon, data));
     } else if (key === "price" || key === "tech" || key === "desc" || key === "name"){
       // TODO: Should ships auto-include the price of upgrades?
       // Would that make life easier or harder?

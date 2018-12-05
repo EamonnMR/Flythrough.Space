@@ -49,7 +49,7 @@
     },
     "autocannon": {
       "img": "assets/sprites/autocannon.png",
-      "count": 1000,
+      "count": 2000,
       "size":  32
     },
     "degenerate_matter": {

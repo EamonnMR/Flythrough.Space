@@ -1,4 +1,3 @@
-import { Weapon } from "./weapon.js";
 import { apply_upgrades } from "./util.js";
 import {
   create_composite_model,
