@@ -97,10 +97,8 @@ export function ai_system(entMan){
 };
 
 function set_target(ai_component, target_entity){
-  console.log("target aquired: " + target_entity.id);
   ai_component.target = target_entity.id;
   ai_component.state = 'violent';
-  console.log("Entity now " + ai_component.state + " towards: " + ai_component.target);
 }
 
 function list_closest_targets(position, entMan, criteria){
@@ -160,7 +158,7 @@ function point_at(to, startangle, from){
 }
 
 function constrained_point(target, start_angle, position, possible_turn){
-  // point_at but with a rotation speed limit (which is most things)
+  // point_at but with a rotation speed limit (which is most things that point)
 	let goal_turn = point_at(target, start_angle, position);
   let final_turn = 0;
 	if(goal_turn > 0){
@@ -212,7 +210,8 @@ function engage(entity, target, delta_time, entMan){
 };
 
 export function turretPointSystem (entMan) {
-  const TURRET_ROT_SPEED = Math.PI / 10;
+  // TODO: 
+  const TURRET_ROT_SPEED = Math.PI / 50; // TODO: Make attribute of ship
   for(let entity of entMan.get_with(['model'])) {
     if(entity.model.skeleton){
       if(entity.target){
@@ -223,7 +222,7 @@ export function turretPointSystem (entMan) {
             // Crude method: point all turrets at the same angle
             // (ie no convergence)
             let current_angle = (entity.direction - bone.rotation.y ) % ARC; 
-            let turn = constrained_point(target.position, current_angle, entity.position, Math.PI/50); 
+            let turn = constrained_point(target.position, current_angle, entity.position, TURRET_ROT_SPEED); 
             // Small amount of dampening to prevent jitter
             //if( Math.abs(turn) > TURN_MIN ){
               bone.rotate(BABYLON.Axis.Y, -1 *  turn, BABYLON.Space.LOCAL);
