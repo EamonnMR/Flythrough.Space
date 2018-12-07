@@ -105,7 +105,8 @@
     "quicksilver": {
       "img": "assets/planets/quicksilver.png",
       "count": 1,
-      "size": 215,
+      "size": 215
+    },
     "asteroid": {
       "img": "assets/asteroid.png",
       "count": 10,
