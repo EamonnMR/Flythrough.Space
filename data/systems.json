@@ -682,6 +682,9 @@
     "x":973,
     "y":505,
     "govt":"drone",
+    "spobs": [
+      "Quicksilver"
+    ],
     "links":[
       "Novosibirsk",
       ".193"
