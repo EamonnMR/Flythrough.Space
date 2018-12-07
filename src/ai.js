@@ -38,12 +38,16 @@ export function ai_system(entMan){
     } else if (ai.state == 'passive') {
       // This is sort of the hub behavior - select a new thing to do
       if ('aggro' in ai){
+        console.log("Checking aggro");
         // TODO: Somehow prioritize this?
         for( let possible_target_id of ai.aggro ){
           let possible_target = entMan.get(possible_target_id);
           if(possible_target){
             set_target(ai, possible_target);
             break;
+          } else {
+            let index = ai.aggro.indexOf(possible_target_id);
+            ai.aggro.splice(index, 1);
           }
         }
       }
@@ -64,9 +68,7 @@ export function ai_system(entMan){
         for(let foe of list_closest_targets(entity.position, entMan, ['hittable'])){
           if('govt' in foe){ 
             if (foe.govt !== entity.govt){
-              console.log("govts are different - check if foe");
               if (govt.attack_default || ('foes' in govt && govt.foes.includes(foe.govt))){
-                console.log("Found target of foe govt: " + foe.govt + ", attacking!");
                 set_target(ai, foe);
                 return;
               }
@@ -78,7 +80,6 @@ export function ai_system(entMan){
               )
             )
           ){
-            // console.log("Found player-aligned target, attacking!");
             set_target(ai, foe);
             return;
           } 

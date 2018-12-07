@@ -12,9 +12,11 @@ export function shot_handler(shot, object){
 }
 
 function draw_aggro(damager, damaged){
-  if( 'ai' in damaged){
+  if( 'ai' in damaged && 'creator' in damager){
     if ( 'aggro' in damaged.ai ){
-      damaged.ai.aggro.push(damager.id);
+      damaged.ai.aggro.push(damager.creator);
+    } else {
+      damaged.ai.aggro = [ damager.creator ];
     }
   }
 }

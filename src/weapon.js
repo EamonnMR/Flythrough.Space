@@ -12,7 +12,7 @@ export function decaySystem (entMan) {
   }
 };
 
-function bulletFactory(position, sprite, direction, speed, initialVelocity, proto, ignore_gov, ignore_player) {
+function bulletFactory(creator, position, sprite, direction, speed, initialVelocity, proto, ignore_gov, ignore_player) {
   sprite.angle = direction;
   sprite.y = -2;
   // TODO: Get the Y offset based on the depth of the bone
@@ -20,6 +20,8 @@ function bulletFactory(position, sprite, direction, speed, initialVelocity, prot
   accelerate(velocity, direction, speed);
 
   let shot = Object.create(proto);
+
+  shot.creator = creator;
 
   shot.position = {x: position.x, y: position.y}; // TODO: es6 clone?
   shot.model = sprite;
@@ -62,8 +64,8 @@ function fire_weapon(weapon, entity, entMan) {
   if(weapon.timer <= 0) {
     weapon.timer += weapon.period;
     if (weapon.proj){
-      debugger;
       entMan.insert(bulletFactory(
+                    entity.id,
                     entity.position,
                     new BABYLON.Sprite("bullet", weapon.sprite_mgr),
                     (entity.direction + weapon.inaccuracy * (Math.random() - 0.5)) % (Math.PI * 2),
