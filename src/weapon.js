@@ -55,14 +55,22 @@ export function weapon_factory(proto, data) {
   let weapon = Object.create(proto);
   weapon.timer = 0;
   weapon.burst_timer = 0;
+  weapon.burst_counter = 0;
   weapon.sprite_mgr = data.get_sprite_mgr(weapon.sprite);
   weapon.model = null; // To be filled in elsewhere TODO: gross
   return weapon;
 }
 
 function fire_weapon(weapon, entity, entMan) {
-  if(weapon.timer <= 0) {
+  if(weapon.timer <= 0 && weapon.burst_timer <= 0) {
     weapon.timer += weapon.period;
+    if (weapon.burst_period){
+      weapon.burst_counter += 1;
+      if (weapon.burst_counter > weapon.burst_size){
+        weapon.burst_timer += weapon.burst_period;
+        weapon.burst_counter = 0;
+      }
+    }
     if (weapon.proj){
       entMan.insert(bulletFactory(
                     entity.id,
@@ -94,6 +102,9 @@ export function weaponSystem (entMan) {
     for (let weapon of entity.weapons) {
       if (weapon.timer > 0){
         weapon.timer -= entMan.delta_time;
+      }
+      if (weapon.burst_timer > 0){
+        weapon.burst_timer -= entMan.delta_time;
       }
       if(shoot_primary){
         fire_weapon(weapon, entity, entMan);

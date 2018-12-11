@@ -107,6 +107,11 @@
       "count": 1,
       "size": 215
     },
+    "blue_atmo": {
+      "img": "assets/planets/blue_atmo.png",
+      "count": 1,
+      "size": 196
+    },
     "asteroid": {
       "img": "assets/asteroid.png",
       "count": 10,

@@ -595,7 +595,11 @@
 		"govt":"pen",
 		"x":-38,
 		"y":49,
-		"text":"Populated since at least 200, Gillespie was a very attractive target for off-world colonization, so the lanscape is a patchwork of different visions of extraplanetary utopia. It has been called the 'mother of itaskan spaceflight' since if it wasn't so close to Itaskana, they might have never had a reason to develop starship technology. Though it's speculated that people arrived on every planet by spaceflight in the first place."
+		"text":"Populated since at least 200, Gillespie was a very attractive target for off-world colonization, so the lanscape is a patchwork of different visions of extraplanetary utopia. It has been called the 'mother of itaskan spaceflight' since if it wasn't so close to Itaskana, they might have never had a reason to develop starship technology. Though it's speculated that people arrived on every planet by spaceflight in the first place.",
+    "trade": {
+      "food": "high",
+      "kombucha": "high"
+    }
 	},
 	"Buttonwood":{
 		"sType":"rwI01",
@@ -737,6 +741,18 @@
     "text": "Quicksilver is named for its brilliant mercury oceans. The winds and tides keep the surface fresh enough that it is never fully oxidized, even though its atmosphere and landmasses have a considerable amount of iron oxide. Metals are the name of the game here. It's not as if people would choose to live here for any other reason, though you must admit that the view of the glassy silver ocean is stunning.",
     "trade": {
       "pure": "low"
+    }
+  },
+  "Franconia": {
+    "x": 0,
+    "y": 0,
+    "govt": "drone",
+    "sprite": "blue_atmo",
+    "text": "Franconia's methane rich atmosphere makes it smell a bit off, but an excellent place to grow all manner of microbes. Fermented beverages are all the rage here, and you can find dozens of small vendors of beer, mead, and something called \"Komubcha\"",
+    "trade": {
+      "food": "low",
+      "kombucha": "low",
+      "pure": "high"
     }
   }
 }
