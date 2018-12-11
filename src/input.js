@@ -89,7 +89,7 @@ function handleKeyUp ( event ){
         debounce_esc = true;
         setTimeout(() => {
           debounce_esc = false;
-        }, 5000);
+        }, 3000);
         game_ctrl.toggle_pause();
       }
       break;

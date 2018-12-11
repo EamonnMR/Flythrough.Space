@@ -129,7 +129,12 @@ function delete_model (entity) {
 
   for(let attribute of MODEL_ATTR ){
     if(attribute in entity){
-      entity[attribute].dispose();
+      try{
+        entity[attribute].dispose();
+      } catch {
+        console.log("attribute");
+        debugger;
+      }
     }
   }
 };

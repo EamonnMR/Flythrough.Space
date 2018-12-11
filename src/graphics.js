@@ -137,10 +137,10 @@ export function create_planet_sprite(data, planet, scene){
   // Except it does not really attach so we need to move and dispose it
   // seperately. That's why we attach the sprite to the entity.
   let sprite = null; 
-  if("sprite" in planet){
+  if("sprite" in planet && planet.sprite){
     sprite = data.get_sprite(planet.sprite);
   } else {
-    sprite = data.get_sprite(data.spobtypes[planet.sType].sprite);
+    sprite = data.get_sprite("redplanet")
   }
   sprite.size = PLANET_SCALE;
   sprite.position.y = PLANET_Y;

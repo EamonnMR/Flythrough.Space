@@ -313,16 +313,16 @@
   
   "xic_drillship":{
     "icon"       : "img/onyx/Onyx/thumb/pheonix.bmp",
-    "sprite"     : "onxpheonix",
+    "mesh"       : "shuttle",
     "short_name"  : "XIC Drillship",
     "long_name"   : "XIC Drillship",
     "full_name"   : "XIC Drillship Cruiser",
     "desc"       : "This ship goes on long missions for XIC, carrying wings of ships that manage the asteroid chunks as the drillship breaks asteroids up. It has through-and-through engines, essentially similar to those of an OE fighter but simpler with an eye towards power generation rather than speed. Its internal docking ring protects fighters from harsher bouts with microasteroids.",
     "upgrades"    : {"plasma200": 2, "mining_laser": 1},
     "carried_ships": {"xic_prospector": 5},
-    "rotation"  : 0.008,
-    "accel"      : 0.000008,
-    "max_speed"   : 0.0006,
+    "rotation"  : 0.006,
+    "accel"      : 0.0002,
+    "max_speed"   : 0.006,
     "space"      : 80,
     "cargo"      : 40,
     "price"      : 500000,
@@ -333,7 +333,6 @@
   },
   "xic_prospector":{
     "icon"       : "img/Meowx/xicfi_icon.png",
-    "sprite"     : "meowx_xic_fi",
     "short_name"  : "XIC Prospector",
     "long_name"   : "XIC Asteroid Prospector",
     "full_name"   : "XIC Asteroid Prospector",
@@ -606,7 +605,6 @@
   },
   "nebattleship"      :{
     "icon"       : "img/onyx/Onyx/thumb/redfrigate.bmp",
-    "sprite"     : "onxredcru",
     "short_name"  : "NE Tiger",
     "long_name"   : "NE Tiger battleship",
     "full_name"   : "NE Battleship Type 1200",
@@ -627,7 +625,6 @@
     
   "necruiser"  :{
     "icon"       : "img/Meowx/redcru_icon.png",
-    "sprite"     : "meowx_red_cru",
     "short_name"  : "NE Battlecruiser",
     "long_name"   : "NE Battlecruiser",
     "full_name"   : "NE Type 1159 Heavy Battleship",
