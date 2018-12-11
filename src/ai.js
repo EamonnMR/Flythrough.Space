@@ -10,7 +10,7 @@ const TURN_MIN = Math.PI / 25;
 // Might not be crazy to calculate them based on the ship's stats and allow
 // for an override in the data
 const ENGAGE_DISTANCE = 50;
-const ENGAGE_ANGLE = .25;
+const ENGAGE_ANGLE = Math.PI / 8;
 const ACCEL_DISTANCE = 10;
 
 export function ai_system(entMan){

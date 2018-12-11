@@ -100,15 +100,15 @@
     "price"          : 1000,
     "exclass"        : "ejectorrack",
     "weapon"      : {
-      "sprite":"autocannon",
+      "sprite":"missile",
       "velocity":0.035,
       "inaccuracy":0.01,
-      "period": 10,
+      "period": 500,
       "ammo":"dumbfiremissile",
       "proj": {
         "shield_damage":10,
         "damage":10,
-        "max_age":100000,
+        "max_age":4000,
         "collider": {"radius": 0.2}
       }
     },
