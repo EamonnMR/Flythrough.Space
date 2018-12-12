@@ -65,7 +65,7 @@
   "autocannon":{
     "name"           : "20mm Autocannon",
     "space"          : -3,
-    "desc"           : "An elegant weapon, from a less civilized age. the 20mm autocannon is a close combat weapon due mainly to its inaccuracy. It fires high-explosive, armor piercing shells at high velocities, propelled through eight barrels. It is often used as a cheap close-in weapon, after plasma cannons have been used to strip away shields, as it is more efficient at penitrating armor (having been perfected long before energy shields ever where.",
+    "desc"           : "An elegant weapon, from a less civilized age. Similar arms have been used since before modern spaceflight, and if it isn't broken, don't fix it. The 20mm autocannon is a close combat weapon due mainly to its inaccuracy. It is often used as a cheap close-in weapon, after plasma cannons have been used to strip away shields, as it is more efficient at busting armor (having been perfected long before energy shields ever where.)",
     "price"          : 500,
     "exclass"        : "autocannon",
     "weapon"      : {

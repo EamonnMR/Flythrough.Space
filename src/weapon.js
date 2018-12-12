@@ -61,16 +61,50 @@ export function weapon_factory(proto, data) {
   return weapon;
 }
 
-function fire_weapon(weapon, entity, entMan) {
+
+function consume_ammo(weapon, entity){
+  if("ammo" in weapon){
+    if(weapon.ammo in entity.upgrades && entity.upgrades[weapon.ammo] > 0){
+      entity.upgrades[weapon.ammo] -= 1;
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    return true
+  }
+}
+
+function weapon_can_fire(weapon, entity){
   if(weapon.timer <= 0 && weapon.burst_timer <= 0) {
     weapon.timer += weapon.period;
     if (weapon.burst_period){
+      // Only consume ammo for burst weapons at the start of a burst.
+      if(weapon.burst_counter == 0){
+        if (!consume_ammo(weapon, entity)){
+          // We're out of ammo, no need to mess with the timer
+          return false;
+        }
+      }
       weapon.burst_counter += 1;
       if (weapon.burst_counter > weapon.burst_size){
         weapon.burst_timer += weapon.burst_period;
         weapon.burst_counter = 0;
+        return false;
+      } else {
+        return true;
       }
+    } else {
+      return consume_ammo(weapon, entity);
     }
+  } else {
+    return false;
+  }
+}
+
+
+function fire_weapon(weapon, entity, entMan) {
+  if(weapon_can_fire(weapon, entity)){
     if (weapon.proj){
       entMan.insert(bulletFactory(
                     entity.id,
@@ -85,12 +119,6 @@ function fire_weapon(weapon, entity, entMan) {
     }
     // TODO: Handle beams or any other type of weapon
   }
-}
-  
-function random_dir(direction, inaccuracy){
-  return (
-    direction + inaccuracy * (Math.random() - 0.5)
-  ) % (Math.PI * 2);
 }
 
 export function weaponSystem (entMan) {
