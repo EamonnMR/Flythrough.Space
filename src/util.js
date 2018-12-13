@@ -56,3 +56,16 @@ export function get_text(){
   return text;
 }
 
+export function random_position(){
+  // Pick a regular old position in a system.
+  const MAX_DIST = 200;
+  let distance = Math.random() * MAX_DIST;
+  let angle = Math.random() * 2 * Math.PI;
+
+  return {
+    x: Math.cos(angle) * distance,
+    y: Math.sin(angle) * distance,
+  };
+};
+
+

@@ -1,5 +1,5 @@
-import { distance, } from "./util.js";
-import { rotate, accelerate, /*decelerate*/ } from "./physics.js";
+import { distance, random_position } from "./util.js";
+import { rotate, accelerate, decelerate } from "./physics.js";
 import { get_bone_group } from "./graphics.js";
 
 const ARC = Math.PI * 2;
@@ -12,6 +12,8 @@ const TURN_MIN = Math.PI / 25;
 const ENGAGE_DISTANCE = 50;
 const ENGAGE_ANGLE = Math.PI / 8;
 const ACCEL_DISTANCE = 10;
+const IDLE_ARRIVAL_THRESH = 50;
+const AI_DWELL_MAX = 1000;
 
 export function ai_system(entMan){
   for (let entity of entMan.get_with(['ai'])) {
@@ -50,9 +52,7 @@ export function ai_system(entMan){
             ai.aggro.splice(index, 1);
           }
         }
-      }
-
-      if ('govt' in entity){
+      } else if ('govt' in entity){
         let govt = entMan.data.govts[entity.govt];
         // TODO: Really this should look at the closest hittable target
         // and integrate the player / govt logic together
@@ -91,10 +91,42 @@ export function ai_system(entMan){
       }
 
       // Do neautral passive things such as fly to planets or leave the system
+      console.log("Nothing to do; idle");
+      idle(entity, ai, entMan.delta_time);
       
     }
   }
 };
+
+function idle(entity, ai, delta_time){
+  if("destination" in ai){
+    // TODO Fly towards destination
+    if (distance(entity.position, ai.destination) < IDLE_ARRIVAL_THRESH){
+      decelerate(entity.velocity, (entity.accel / 2) * delta_time);
+      if("dwell_time" in ai){
+        ai.dwell_time += delta_time;
+      } else {
+        ai.dwell_time = delta_time;
+      }
+
+      if( ai.dwell_time > AI_DWELL_MAX ){ 
+        delete ai.destination;
+        delete ai.dwell_time;
+      }
+    } else {
+      constrained_point(
+        ai.destination, 
+        entity.direction,
+        entity.position,
+        entity.rotation * delta_time
+      );
+      accelerate(entity.velocity, entity.direction, entity.accel * delta_time);
+    }
+  } else {
+    ai.destination = random_position()
+  }
+}
+  
 
 function set_target(ai_component, target_entity){
   ai_component.target = target_entity.id;
@@ -182,7 +214,7 @@ function constrained_point(target, start_angle, position, possible_turn){
 function engage(entity, target, delta_time, entMan){
 	// Get the ideal facing, subtract out current angle
 	// If angle is outside a certain margin, rotate the ship to face the target
-	let final_turn  = constrained_point(
+	let final_turn = constrained_point(
     target.position, 
     entity.direction,
     entity.position,
@@ -199,9 +231,9 @@ function engage(entity, target, delta_time, entMan){
   if(dist > ACCEL_DISTANCE){
     accelerate(entity.velocity, entity.direction,
        entity.accel * delta_time); 
-  } //else {
-  //  decelerate(entity.velocity)
-  //}
+  } else {
+    // decelerate(entity.velocity, (entity.accel / 2) * delta_time)
+  }
   if(entity.directon < ENGAGE_ANGLE || entity.direction > -1 * ENGAGE_ANGLE){
     if(dist < ENGAGE_DISTANCE){
       entity.shoot_primary = true;

@@ -4,9 +4,9 @@ export function accelerate(velocity, direction, magnitude){
 };
 
 export function decelerate(velocity, rate, curve=false){
-  let dir = Math.atan2(entity.velocity.y, entity.velocity.x);
-  let speed = Math.sqrt( Math.pow(entity.velocity.x, 2)
-        + Math.pow(entity.velocity.x, 2) );
+  let dir = Math.atan2(velocity.y, velocity.x);
+  let speed = Math.sqrt( Math.pow(velocity.x, 2)
+        + Math.pow(velocity.x, 2) );
   if(curve){
     speed = Math.sqrt( speed );
   } else {

@@ -1,4 +1,4 @@
-import { apply_upgrades } from "./util.js";
+import { apply_upgrades, random_position } from "./util.js";
 import {
   create_composite_model,
   create_planet_sprite
@@ -121,16 +121,6 @@ function count_npcs(entMan){
   // and isn't part of a mission, etc
   return entMan.get_with(['ai']).length;
 }
-
-function random_position(){
-  let distance = Math.random() * 100;
-  let angle = Math.random() * 2 * Math.PI;
-
-  return {
-    x: Math.cos(angle) * distance,
-    y: Math.sin(angle) * distance,
-  };
-};
 
 function random_type(npcs, data){
   // A fun StackOverflow post for sure:
