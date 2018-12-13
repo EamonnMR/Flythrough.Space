@@ -101,7 +101,9 @@ export function ai_system(entMan){
 function idle(entity, ai, delta_time){
   if("destination" in ai){
     // TODO Fly towards destination
-    if (distance(entity.position, ai.destination) < IDLE_ARRIVAL_THRESH){
+    let dist = distance(entity.position, ai.destination);
+    if (dist < IDLE_ARRIVAL_THRESH){
+
       decelerate(entity.velocity, (entity.accel / 2) * delta_time);
       if("dwell_time" in ai){
         ai.dwell_time += delta_time;
@@ -114,16 +116,21 @@ function idle(entity, ai, delta_time){
         delete ai.dwell_time;
       }
     } else {
-      constrained_point(
+      // TODO: Refactor identical code from "engage" into "fly_towards"?
+      let turn = constrained_point(
         ai.destination, 
         entity.direction,
         entity.position,
         entity.rotation * delta_time
       );
+      rotate(entity, -1 * turn );
+      entity.direction_delta = turn;
       accelerate(entity.velocity, entity.direction, entity.accel * delta_time);
     }
   } else {
     ai.destination = random_position()
+    console.log("Flying aimlessly to:");
+    console.log(ai.destination);
   }
 }
   
