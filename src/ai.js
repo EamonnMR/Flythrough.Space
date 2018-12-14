@@ -1,5 +1,5 @@
 import { distance, random_position } from "./util.js";
-import { rotate, accelerate, decelerate } from "./physics.js";
+import { rotate, accelerate, decelerate, linear_vel } from "./physics.js";
 import { get_bone_group } from "./graphics.js";
 
 const ARC = Math.PI * 2;
@@ -14,6 +14,7 @@ const ENGAGE_ANGLE = Math.PI / 8;
 const ACCEL_DISTANCE = 10;
 const IDLE_ARRIVAL_THRESH = 50;
 const AI_DWELL_MAX = 1000;
+const AI_IDLE_COAST = 0.01;
 
 export function ai_system(entMan){
   for (let entity of entMan.get_with(['ai'])) {
@@ -125,7 +126,10 @@ function idle(entity, ai, delta_time){
       );
       rotate(entity, -1 * turn );
       entity.direction_delta = turn;
-      accelerate(entity.velocity, entity.direction, entity.accel * delta_time);
+      if(linear_vel(entity.velocity) < AI_IDLE_COAST){
+        // Ships shouldn't race around if they're idling
+        accelerate(entity.velocity, entity.direction, entity.accel * delta_time);
+      }
     }
   } else {
     ai.destination = random_position()
