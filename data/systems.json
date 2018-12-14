@@ -1246,7 +1246,7 @@
       "Amstrad",
       "Nowra",
       "Distrito",
-      ".*10",
+      "Pereira",
       "Jibril"
     ]
   },
@@ -1256,7 +1256,7 @@
     "links":[
       ".361",
       ".363",
-      ".*10"
+      "Pereira"
     ]
   },
   "Misiones":{
@@ -1517,7 +1517,7 @@
     "links":[
       "Kagame",
       "Asuangate",
-      ".*10"
+      "Pereira"
     ]
   },
   ".258":{
@@ -2503,7 +2503,7 @@
     "links":[
       ".357",
       ".358",
-      ".*10"
+      "Pereira"
     ]
   },
   ".360":{
@@ -2777,10 +2777,21 @@
       ".235"
     ]
   },
-  ".*10":{
+  "Pereira":{
     "x":540,
     "y":1492,
     "govt":"direc",
+    "spobs": [
+      "Vasconcells",
+      "Arruda"
+    ],
+    "npc_average": 2,
+    "npcs": [
+      "trader_lowtech",
+      "pirate_expedition",
+      "cas_patrol"
+    ],
+
     "links":[
       ".235",
       "Nowra",

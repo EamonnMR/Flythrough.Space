@@ -754,5 +754,21 @@
       "kombucha": "low",
       "pure": "high"
     }
+  },
+  "Vasconcells": {
+    "x": 15,
+    "y": -15,
+    "govt": "direc",
+    "text": "A newly settled world, most people on Vasconcells (or at least their parents) where born on Sinquara. The Vasconcells Concern, a company which has bought up most of the liveable surface, is offering relocation vouchers for residents to come mine valuable ore here.",
+    "trade": {
+      "ore": "low",
+      "food": "high"
+    }
+  },
+  "Arruda": {
+    "x": -15,
+    "y": 15,
+    "govt": "direc",
+    "text": "The directorate maintains a small presence here, but with plenty of other places to put its growing population, Arruda has remained, thus far, unappealing."
   }
 }
