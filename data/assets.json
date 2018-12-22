@@ -112,6 +112,11 @@
       "count": 1,
       "size": 196
     },
+    "kosach": {
+      "img": "assets/planets/kosach.png",
+      "count": 1,
+      "size": 236
+    },
     "asteroid": {
       "img": "assets/asteroid.png",
       "count": 10,

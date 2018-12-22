@@ -265,7 +265,7 @@
 		"y":0
 	},
 	"Kosach":{
-		"sType":"onyxEarthlikeI",
+    "sprite": "kosach",
 		"govt":"drone",
 		"text":"An industrialized world with a large population and matching production output. Factories run around the clock, building everything from starships to Rotovators.",
 		"tech":{
