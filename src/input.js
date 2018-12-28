@@ -40,10 +40,8 @@ export function inputSystem (entMan) {
 //        entity.direction_delta = 0;
 //      }
     }
-    if ('weapons' in entity && inputStates.shoot) {
-      for (let weapon of entity.weapons){
-        weapon.tryShoot(entMan, entity);
-      }
+    if (inputStates.shoot) {
+      entity.shoot_primary = true;
     }
   }
 };
@@ -88,12 +86,10 @@ function handleKeyUp ( event ){
       break;
     case 27: // escape
       if(!debounce_esc){
-        console.log('escape');
         debounce_esc = true;
         setTimeout(() => {
           debounce_esc = false;
-          console.log('debounce');
-        }, 5000);
+        }, 3000);
         game_ctrl.toggle_pause();
       }
       break;
@@ -105,6 +101,29 @@ function handleKeyUp ( event ){
       break;
     case 76: // 'l'
       game_ctrl.try_land();
+      break;
+    case 192: // ~
+      game_ctrl.select_closest();
+      break;
+    case 49: // keyboard 1, etc
+      game_ctrl.select_spob(0);
+      break;
+    case 50: // keyboard 2, etc
+      game_ctrl.select_spob(1);
+      break;
+    case 51: // keyboard 3, etc
+      game_ctrl.select_spob(2);
+      break;
+    case 52: // keyboard 4, etc
+      game_ctrl.select_spob(3);
+      break;
+    case 53: // keyboard 5, etc
+      game_ctrl.select_spob(4);
+      break;
+    case 54: // keyboard 6, etc
+      game_ctrl.select_spob(5);
+      break;
+
   }
 };
 
@@ -120,6 +139,8 @@ let no_op_game_ctrl = {
   reset_game: no_op,
   hyper_jump: no_op,
   try_land: no_op,
+  select_closest: no_op,
+  select_spob: no_op,
 };
 
 export function unbindInputFunctions(){

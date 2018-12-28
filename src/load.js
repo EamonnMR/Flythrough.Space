@@ -28,6 +28,8 @@ export class Data {
       if(model.skeleton){
         clone.skeleton = model.skeleton.clone("clone");
       }
+    } else { // Default for ships with no mesh
+      clone = this.models["shuttle"].clone();
     }
     return clone;
   }
@@ -44,6 +46,27 @@ export class Data {
   get_sprite(name){
     return new BABYLON.Sprite(name, this.get_sprite_mgr(name));
   }
+
+  validate(){
+    // Generally game logic should not live in the loader, but having
+    // the data consistency checked at load time is a major QOL thing.
+    // Additionally, this could be spun out into a unit test at some
+    // point.
+
+    // Validate that ships in NPC grops refer to real ships
+    if("npc_groups" in this && "ships" in this){
+      Object.keys(this.npc_groups).forEach( (name, index) => {
+        for(let ship of this.npc_groups[name].ships){
+          if(!(ship in this.ships)){
+            console.log("**Data Validation** Ship  \"" + ship + "\" in group \"" + name + "\" not found");
+          }
+        }
+      });
+    }
+      
+}
+
+
 }
 
 function load_assets( source_json, scene, data, finish_callback ){
@@ -95,6 +118,7 @@ export function load_all(engine, scene, done){
   xhr.onload = () => {
     if (xhr.status == 200){
       load_assets(JSON.parse(xhr.responseText), scene, data_mgr, () => {
+        data_mgr.validate();
         done(data_mgr);
       });
     }

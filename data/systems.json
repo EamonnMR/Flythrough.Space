@@ -118,6 +118,14 @@
     "x":902,
     "y":1145,
     "govt":"direc",
+    "npc_average": 4,
+    "npcs": [
+      "trader_lowtech",
+      "trader_bulk",
+      "pirate_expedition",
+      "cas_capital",
+      "cas_patrol"
+    ],
     "spobs":[
       "Accra",
       "Alluvium Fleet Yards",
@@ -314,6 +322,9 @@
       "Mantilla",
       "Renbrook",
       "Taylhardat"
+    ],
+    "spobs": [
+      "Veracruz"
     ]
   },
   "Enyeama":{
@@ -373,6 +384,7 @@
     "x":1128,
     "y":968,
     "govt":"direc",
+    "spobs": "Wieliczka",
     "links":[
       "Rossum",
       "Holcomb",
@@ -437,6 +449,9 @@
   "Illorin":{
     "x":1044,
     "y":1356,
+    "spobs": [
+      "Kejetia"
+    ],
     "govt":"direc",
     "links":[
       "Sipali",
@@ -667,6 +682,9 @@
     "x":973,
     "y":505,
     "govt":"drone",
+    "spobs": [
+      "Quicksilver"
+    ],
     "links":[
       "Novosibirsk",
       ".193"
@@ -927,7 +945,7 @@
   "Kilwa":{
     "x":829,
     "y":1363,
-    "govt":"orion",
+    "govt":"direc",
     "spobs":[
       "Vatsa"
     ],
@@ -940,9 +958,9 @@
   "Kagame":{
     "x":785,
     "y":1444,
-    "govt":"orion",
+    "govt":"direc",
     "links":[
-      ".257",
+      "Nowra",
       ".*23",
       "Jibril"
     ]
@@ -950,7 +968,7 @@
   "Mideska":{
     "x":955,
     "y":1496,
-    "govt":"orion",
+    "govt":"direc",
     "links":[
       "Minna",
       ".343",
@@ -1085,6 +1103,7 @@
     "x":1529,
     "y":1581,
     "govt":"orasos",
+    "spobs": "Nightside",
     "links":[
       ".216",
       ".226"
@@ -1200,7 +1219,6 @@
   "Sabara":{
     "x":591,
     "y":1268,
-    "govt":"orion",
     "links":[
       "Asuangate",
       "Azuay"
@@ -1209,7 +1227,6 @@
   "Amstrad":{
     "x":485,
     "y":1323,
-    "govt":"orion",
     "links":[
       "Asuangate",
       "Misiones",
@@ -1220,33 +1237,31 @@
   "Asuangate":{
     "x":588,
     "y":1383,
-    "govt":"orion",
+    "govt":"direc",
     "spobs":[
       "Sinaqara"
     ],
     "links":[
       "Sabara",
       "Amstrad",
-      ".257",
+      "Nowra",
       "Distrito",
-      ".*10",
+      "Pereira",
       "Jibril"
     ]
   },
   ".235":{
     "x":420,
     "y":1437,
-    "govt":"orion",
     "links":[
       ".361",
       ".363",
-      ".*10"
+      "Pereira"
     ]
   },
   "Misiones":{
     "x":479,
     "y":1229,
-    "govt":"orion",
     "links":[
       "Pavlichenko",
       "Amstrad"
@@ -1406,7 +1421,7 @@
   "Azuay":{
     "x":706,
     "y":1253,
-    "govt":"orion",
+    "govt":"direc",
     "links":[
       "Sabara",
       "Jibril"
@@ -1416,6 +1431,7 @@
     "x":693,
     "y":313,
     "govt":"drone",
+    "spobs": "Horizon",
     "links":[
       ".202",
       ".203",
@@ -1472,7 +1488,7 @@
     "links":[
       ".139",
       ".271",
-      ".272",
+      "Pavlodar",
       ".258"
     ]
   },
@@ -1490,14 +1506,18 @@
       "Kharkov"
     ]
   },
-  ".257":{
+  "Nowra":{
     "x":663,
     "y":1504,
-    "govt":"orion",
+    "govt":"direc",
+    "spobs": [
+      "Broken Arrow",
+      "Frontier Outpost III"
+    ],
     "links":[
       "Kagame",
       "Asuangate",
-      ".*10"
+      "Pereira"
     ]
   },
   ".258":{
@@ -1577,6 +1597,7 @@
   ".265":{
     "x":783,
     "y":193,
+    "spobs": "Krysto",
     "govt":"drone",
     "links":[
       ".191",
@@ -1605,16 +1626,20 @@
       ".*12"
     ]
   },
-  ".269":{
+  "Baikon":{
     "x":637,
     "y":669,
     "govt":"drone",
+    "spobs": [
+      "Baikonur",
+      "Bukov"
+    ],
     "links":[
       ".270",
       ".271",
-      ".272",
+      "Pavlodar",
       ".274",
-      ".281",
+      "Woodstock",
       ".282"
     ]
   },
@@ -1625,7 +1650,7 @@
       "Khust",
       ".254",
       ".268",
-      ".269"
+      "Baikon"
     ]
   },
   ".271":{
@@ -1635,10 +1660,10 @@
     "links":[
       ".254",
       ".255",
-      ".269"
+      "Baikon"
     ]
   },
-  ".272":{
+  "Pavlodar":{
     "x":586,
     "y":752,
     "govt":"drone",
@@ -1647,7 +1672,7 @@
     ],
     "links":[
       ".255",
-      ".269"
+      "Baikon"
     ]
   },
   "Kharkov":{
@@ -1670,7 +1695,7 @@
     "links":[
       ".258",
       ".259",
-      ".269",
+      "Baikon",
       ".280"
     ]
   },
@@ -1714,6 +1739,7 @@
     "x":458,
     "y":566,
     "govt":"drone",
+    "spobs": "Broken Hill",
     "links":[
       ".252",
       ".274",
@@ -1721,12 +1747,15 @@
       ".*1"
     ]
   },
-  ".281":{
+  "Woodstock":{
     "x":551,
     "y":562,
     "govt":"drone",
+    "spobs": [
+      "Franconia"
+    ],
     "links":[
-      ".269",
+      "Baikon",
       ".*1"
     ]
   },
@@ -1735,7 +1764,8 @@
     "y":616,
     "govt":"drone",
     "links":[
-      ".269"
+      "Baikon",
+      ".268"
     ]
   },
   ".283":{
@@ -2341,7 +2371,7 @@
     "x":785,
     "y":1614,
     "links":[
-      ".257",
+      "Nowra",
       ".344",
       ".346",
       ".*23"
@@ -2361,7 +2391,7 @@
     "x":639,
     "y":1611,
     "links":[
-      ".257",
+      "Nowra",
       ".346",
       ".348"
     ]
@@ -2473,7 +2503,7 @@
     "links":[
       ".357",
       ".358",
-      ".*10"
+      "Pereira"
     ]
   },
   ".360":{
@@ -2664,7 +2694,7 @@
       ".252",
       ".253",
       ".280",
-      ".281",
+      "Woodstock",
       ".*2"
     ]
   },
@@ -2741,20 +2771,30 @@
   "Distrito":{
     "x":485,
     "y":1391,
-    "govt":"orion",
     "links":[
       "Amstrad",
       "Asuangate",
       ".235"
     ]
   },
-  ".*10":{
+  "Pereira":{
     "x":540,
     "y":1492,
-    "govt":"orion",
+    "govt":"direc",
+    "spobs": [
+      "Vasconcells",
+      "Arruda"
+    ],
+    "npc_average": 2,
+    "npcs": [
+      "trader_lowtech",
+      "pirate_expedition",
+      "cas_patrol"
+    ],
+
     "links":[
       ".235",
-      ".257",
+      "Nowra",
       ".359"
     ]
   },
@@ -2871,6 +2911,9 @@
   "Jes":{
     "x":1070,
     "y":1474,
+    "spobs": [
+      "Kejetia"
+    ],
     "govt":"direc",
     "links":[
       "Illorin",
@@ -2891,7 +2934,7 @@
   "Jibril":{
     "x":744,
     "y":1371,
-    "govt":"orion",
+    "govt":"direc",
     "links":[
       "Kilwa",
       "Kagame",

@@ -6,9 +6,10 @@ import {
   } from "./menu.js";
 
 export class LandingMenu extends BaseMenuView {
-  constructor(spobs, player_data){
+  constructor(spobs, spob_types, player_data){
     super();
     this.spobs = spobs;
+    this.spob_types = spob_types;
     this.player_data = player_data;
   }
   enter(){
@@ -21,8 +22,11 @@ export class LandingMenu extends BaseMenuView {
 
     /* Middle Widgets */
     const CENTER = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_CENTER;
-    // TODO: Load from planet
-    widgets.push(new HeroImage("assets/misc_pd/Doha.png",
+    let image = "assets/rustscape.png";
+    if( "img" in this.spob ){
+      image = this.spob.img;
+    }
+    widgets.push(new HeroImage(image,
           CENTER,
           BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
         0,0));

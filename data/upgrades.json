@@ -23,12 +23,12 @@
     "weapon"      : {
       "mesh":  "plasma_cannon",
       "sprite": "plasma",
-      "miss": 0.1,
-      "cooldown": 500,
+      "inaccuracy": 0.1,
+      "period": 500,
       "velocity": 0.01,
       "proj": {
-        "damage": 1,
-        "shield_damage": 2,
+        "damage": 10,
+        "shield_damage": 20,
         "max_age": 5000,
         "collider": {"radius": 0.3}
       }
@@ -42,13 +42,13 @@
     "price"          : 2500,
     "weapon"         : {
       "sprite": "plasma_large",
-      "miss": 0.05,
-      "cooldown": 1500,
+      "inaccuracy": 0.05,
+      "period": 2000,
       "velocity":0.01,
       "proj": {
         "shield_damage": 60,
         "damage": 30,
-        "max_age":8000,
+        "max_age": 4000,
         "collider": {"radius": 1.2}
       }
     },
@@ -65,21 +65,21 @@
   "autocannon":{
     "name"           : "20mm Autocannon",
     "space"          : -3,
-    "desc"           : "An elegant weapon, from a less civilized age. the 20mm autocannon is a close combat weapon due mainly to its inaccuracy. It fires high-explosive, armor piercing shells at high velocities, propelled through eight barrels. It is often used as a cheap close-in weapon, after plasma cannons have been used to strip away shields, as it is more efficient at penitrating armor (having been perfected long before energy shields ever where.",
+    "desc"           : "An elegant weapon, from a less civilized age. Similar arms have been used since before modern spaceflight, and if it isn't broken, don't fix it. The 20mm autocannon is a close combat weapon due mainly to its inaccuracy. It is often used as a cheap close-in weapon, after plasma cannons have been used to strip away shields, as it is more efficient at busting armor (having been perfected long before energy shields ever where.)",
     "price"          : 500,
     "exclass"        : "autocannon",
     "weapon"      : {
       "sprite":"autocannon",
       "velocity":0.035,
-      "miss":0.5,
-      "cooldown":50,
-      "burstsize":20,
-      "burstcooldown":500,
+      "inaccuracy":0.5,
+      "period":100,
+      "burst_size":5,
+      "burst_period":1000,
       "ammo":"autocannonammo",
       "proj": {
         "shield_damage":1,
         "damage":5,
-        "max_age":100000,
+        "max_age":1000,
         "collider": {"radius": 0.1}
       }
     },
@@ -100,15 +100,15 @@
     "price"          : 1000,
     "exclass"        : "ejectorrack",
     "weapon"      : {
-      "sprite":"autocannon",
+      "sprite":"missile",
       "velocity":0.035,
-      "miss":0.01,
-      "cooldown": 10,
+      "inaccuracy":0.01,
+      "period": 500,
       "ammo":"dumbfiremissile",
       "proj": {
         "shield_damage":10,
         "damage":10,
-        "max_age":100000,
+        "max_age":4000,
         "collider": {"radius": 0.2}
       }
     },
@@ -137,8 +137,8 @@
     "desc"           : "The \"Dragnet\" point defense solution is used almost exclusively by pirates. It consists of a light tractor beam, able only to do non-lethal damage to hulls (but stronger against shields). Pirate warshis can then steal the fighters captured by the turrets. As a point defense weapon, however, it has one critical flaw-it cannot destroy incoming projectiles, and isn't even configured to fire on them-it would simply pull them towards the ship.",
     "price"          : 25000,
     "weapon"         : {
-      "miss":0,
-      "cooldown":0.2,
+      "inaccuracy":0,
+      "period":0.2,
       "beam": {
         "shield_damage":40,
         "damage":30,
@@ -188,14 +188,14 @@
     "desc"           : "The propulsion for this cannon is generated entirely by forcefields, because it is critical that the ammunition never actually touch the barrel. When the projectiles strike a ship's hull, they annhilate it, carving a hole and melting the surrounding plating with intense radiation. Unfortunately, the weapon is useless against shields because its velocity and weight aren't high enough to make a dent (prescisely why sheilds are used to protect the barrel!)",
     "price"          : 100000,
     "weapon"         : {
-      "miss":0.07,
+      "inaccuracy":0.07,
       "ammo":"antigunammo", 
       "sprite":"antimatter",
       "velocity":0.0005,
-      "miss":0.4,
-      "cooldown":50,
+      "inaccuracy":0.4,
+      "period":50,
       "burstsize":20,
-      "burstcooldown":10000,
+      "burstperiod":10000,
       "proj":{
         "shield_damage":0,
         "damage":25,
@@ -228,7 +228,7 @@
     "desc"           : "The key component of this upgrade is an enormous airlock for launching ships, and an area large enough to house them. Areas to store and service the ships are added seperately, and additional launch bays can be added to facilitate faster launching.",
     "price"          : 10000,
     "fighterbay"     : true,
-    "fightercooldown": 1,
+    "fighterperiod": 1,
     "tech"           : {"generic":2}
   },
   "degengun":{
@@ -239,10 +239,10 @@
     "weapon"         : {
       "sprite":"degenerate",
       "velocity":0.0035,
-      "miss":0.3,
-      "cooldown":25,
+      "inaccuracy":0.3,
+      "period":25,
       "burstsize":20,
-      "burstcooldown":10000,
+      "burstperiod":10000,
       "proj": {
         "max_age":700,
         "shield_damage":10,
@@ -258,8 +258,8 @@
     "price"          : 15000,
     "weapon":        {
       "sprite" : "sling",
-      "miss": 0.001,
-      "cooldown": 4000,
+      "inaccuracy": 0.001,
+      "period": 4000,
       "velocity": 0.001,
       "proj": {
         "shield_damage": 50,
@@ -278,8 +278,8 @@
     "desc"          : "Using a stabilized payload of like-colored quarks, the projectile from this weapon is attached to the target by gluons, which singshot it with devastating force. If it manages to make contact with a target's hull, the now free quarks will play havoc with its atomic structure, causing unpredictable (but always devastating) damage. A curious side effect of the strong-force \"guidance\" is that the further away the target is when the projectile is launched, the more damage it will do.",
     "weapon"        : {
       "sprite": "gluon",
-      "miss": 0.05,
-      "cooldown": 1500,
+      "inaccuracy": 0.05,
+      "period": 1500,
       "velocity":0.001,
       "guidance": true,
       "proj": {
@@ -297,8 +297,8 @@
     "name": "Wave Siphon",
     "tech"          : {"wsc": 2},
     "weapon"         : {
-      "miss":0,
-      "cooldown":0.001,
+      "inaccuracy":0,
+      "period":0.001,
       "beam": {
         "shield_damage":50,
         "damage":0,
@@ -331,8 +331,8 @@
     "price"          : 800,
     "space"          : -6,
     "weapon"         : {
-      "miss": 0.1,
-      "cooldown":0.001,
+      "inaccuracy": 0.1,
+      "period":0.001,
       "beam": {
         "shield_damage":20,
         "damage":20,
@@ -349,8 +349,8 @@
     "space"          : -5,
     "weapon"      : {
       "sprite": "ion",
-      "miss": 0.1,
-      "cooldown": 500,
+      "inaccuracy": 0.1,
+      "period": 500,
       "velocity": 0.001,
       "proj": {
         "damage": 1,
@@ -370,8 +370,8 @@
     "space"          : -22,
     "weapon"         : {
       "sprite": "ion_large",
-      "miss": 0.05,
-      "cooldown": 1500,
+      "inaccuracy": 0.05,
+      "period": 1500,
       "velocity":0.001,
       "proj": {
         "shield_damage": 60,
@@ -389,8 +389,8 @@
     "price"          : 50000,
     "space"          : -20,
     "weapon"         : {
-      "miss": 0,
-      "cooldown":0.001,
+      "inaccuracy": 0,
+      "period":0.001,
       "beam": {
         "shield_damage":20,
         "damage":60,

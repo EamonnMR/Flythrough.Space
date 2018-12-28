@@ -9,13 +9,12 @@ import {
 import {
 	modelPositionSystem,
 	cameraFollowSystem,
-  turretPointSystem
 } from "./graphics.js";
 import { collisionDetectionSystem } from "./collision.js";
 import { setup_system } from "./system.js";
 import { ViewState } from "./states.js";
 import { radarFollowSystem, HUD } from  "./hud.js";
-import { ai_system } from "./ai.js";
+import { ai_system, turretPointSystem  } from "./ai.js";
 import { get_game_camera } from "./graphics.js";
 
 export class GamePlayState extends ViewState {
@@ -40,9 +39,8 @@ export class GamePlayState extends ViewState {
       turretPointSystem,
       decaySystem,
       collisionDetectionSystem,
-      // hud.selectionFollowSystem,
       radarFollowSystem,
-      deletionSystem
+      deletionSystem,
     ]);
     this.empty = true;
     this.world_models = [];
@@ -102,9 +100,9 @@ export class GamePlayState extends ViewState {
       },
       */
       try_land: () => {
-        let sys_spobs = this.entMan.get_with(['spob_name']);
-        let landable = this.find_closest_landable_to_player(sys_spobs);
         if (this.player_data.selected_spob == null){
+          let sys_spobs = this.entMan.get_with(['spob_name']);
+          let landable = this.find_closest_landable_to_player(sys_spobs);
           if (landable){
             this.player_data.selected_spob = landable.spob_name;
           }
@@ -126,7 +124,22 @@ export class GamePlayState extends ViewState {
             console.log("Player tried to land somewhere wrong");
           }
         }
-      }
+      },
+      select_closest: () => {
+        let player = this.get_player_ent();
+        let target = this.find_closest_target(player);
+        if(target){
+          this.hud.deselect(this.entMan.get(player.target));
+          player.target = target.id;
+        }
+      },
+
+      select_spob: (index) => {
+        let indexed_spob = this.entMan.get_with_exact("spob_index", index)[0]; 
+        if (indexed_spob){
+          this.player_data.selected_spob = indexed_spob.spob_name;
+        }
+      },
     });
   }
 
@@ -167,7 +180,8 @@ export class GamePlayState extends ViewState {
     this.hud = new HUD(
         this.scene,
         this.entMan,
-        this.player_data
+        this.player_data,
+        this.data.govts,
     );
     this.create_world_models(this.player_data.current_system);
     this.empty = false;
@@ -181,19 +195,26 @@ export class GamePlayState extends ViewState {
     return true;
   }
 
-  find_closest_landable_to_player(spobs){
-    let min_distance = null;
-    let player = this.get_player_ent();
+  get_closest_thing(middle_thing, other_things){
+    let min_distance = Number.POSITIVE_INFINITY;
     let choice = null;
-    for(let spob of spobs){
-      let dist = distance(
-          spob.position, player.position);
-      if (!min_distance || min_distance > dist
-          && this.spob_is_landable(spob)){
+    for( let other of other_things){
+      let dist = distance(middle_thing.position, other.position);
+      if(min_distance > dist){
         min_distance = dist;
-        choice = spob;
+        choice = other;
       }
     }
     return choice;
+  }
+
+  find_closest_landable_to_player(spobs){
+    let player = this.get_player_ent();
+
+    return this.get_closest_thing(player, spobs)
+  }
+
+  find_closest_target(targeter){
+    return this.get_closest_thing(targeter, this.entMan.get_with(["ai"]));
   }
 }

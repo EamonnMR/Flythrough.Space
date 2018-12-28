@@ -18,6 +18,7 @@
     "cas_carrier": "casamance_carrier.babylon",
     "cas_corv": "casamance_corv.babylon",
     "oxana": "oxana.babylon",
+    "courier": "courier.babylon",
     "plasma_cannon": "plasma_cannon.babylon"
   },
   "sprites": {
@@ -48,7 +49,7 @@
     },
     "autocannon": {
       "img": "assets/sprites/autocannon.png",
-      "count": 1000,
+      "count": 2000,
       "size":  32
     },
     "degenerate_matter": {
@@ -72,9 +73,49 @@
       "size":  32
     },
     "redplanet": {
-      "img": "assets/renderwahn_planets/A00.png",
+      "img": "assets/planets/wieliczka.png",
       "count": 10,
-      "size": 122 
+      "size": 400 
+    },
+    "wajir": {
+      "img": "assets/planets/wajir.png",
+      "count": 1,
+      "size": 670
+    },
+    "cloudy_blue": {
+      "img": "assets/planets/cloudy_blue.png",
+      "count": 1,
+      "size": 440
+    },
+    "accra": {
+      "img": "assets/planets/accra.png",
+      "count": 1,
+      "size": 250
+    },
+    "tolumne": {
+      "img": "assets/planets/tolumne.png",
+      "count": 1,
+      "size": 200
+    },
+    "izumrudnoye": {
+      "img": "assets/planets/izumrudnoye.png",
+      "count": 1,
+      "size": 225
+    },
+    "quicksilver": {
+      "img": "assets/planets/quicksilver.png",
+      "count": 1,
+      "size": 215
+    },
+    "blue_atmo": {
+      "img": "assets/planets/blue_atmo.png",
+      "count": 1,
+      "size": 196
+    },
+    "kosach": {
+      "img": "assets/planets/kosach.png",
+      "count": 1,
+      "size": 236
     },
     "asteroid": {
       "img": "assets/asteroid.png",
@@ -90,6 +131,7 @@
     "upgrades": "upgrades.json",
     "ships": "ships.json",
     "spobtypes": "spobtypes.json",
-    "trade": "trade.json"
+    "trade": "trade.json",
+    "npc_groups": "npc_groups.json"
   }
 }

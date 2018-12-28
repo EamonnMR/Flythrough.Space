@@ -86,5 +86,9 @@
   "ice9":{
     "name": "Ice Nine",
     "price": 250
+  },
+  "kombucha":{
+    "name": "Kombucha",
+    "price": 125
   }
 }

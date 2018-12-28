@@ -1,15 +1,20 @@
-import { distance } from "./util.js";
-import { rotate, accelerate, /*decelerate*/ } from "./physics.js";
+import { distance, random_position } from "./util.js";
+import { rotate, accelerate, decelerate, linear_vel } from "./physics.js";
+import { get_bone_group } from "./graphics.js";
 
-let arc = Math.PI * 2;
+const ARC = Math.PI * 2;
 
+const TURN_MIN = Math.PI / 25;
 
 // For a more interesting game, these should probably be ship properties.
 // Might not be crazy to calculate them based on the ship's stats and allow
 // for an override in the data
-let ENGAGE_DISTANCE = 50;
-let ENGAGE_ANGLE = .25;
-let ACCEL_DISTANCE = 1;
+const ENGAGE_DISTANCE = 50;
+const ENGAGE_ANGLE = Math.PI / 8;
+const ACCEL_DISTANCE = 10;
+const IDLE_ARRIVAL_THRESH = 50;
+const AI_DWELL_MAX = 1000;
+const AI_IDLE_COAST = 0.01;
 
 export function ai_system(entMan){
   for (let entity of entMan.get_with(['ai'])) {
@@ -36,10 +41,19 @@ export function ai_system(entMan){
     } else if (ai.state == 'passive') {
       // This is sort of the hub behavior - select a new thing to do
       if ('aggro' in ai){
-        // Aggro is a list of entities that have pissed this entity off
-        // Go through the aggro list till it finds one that is alive
-      }
-      if ('govt' in entity){
+        console.log("Checking aggro");
+        // TODO: Somehow prioritize this?
+        for( let possible_target_id of ai.aggro ){
+          let possible_target = entMan.get(possible_target_id);
+          if(possible_target){
+            set_target(ai, possible_target);
+            break;
+          } else {
+            let index = ai.aggro.indexOf(possible_target_id);
+            ai.aggro.splice(index, 1);
+          }
+        }
+      } else if ('govt' in entity){
         let govt = entMan.data.govts[entity.govt];
         // TODO: Really this should look at the closest hittable target
         // and integrate the player / govt logic together
@@ -55,9 +69,7 @@ export function ai_system(entMan){
         for(let foe of list_closest_targets(entity.position, entMan, ['hittable'])){
           if('govt' in foe){ 
             if (foe.govt !== entity.govt){
-              console.log("govts are different - check if foe");
               if (govt.attack_default || ('foes' in govt && govt.foes.includes(foe.govt))){
-                console.log("Found target of foe govt: " + foe.govt + ", attacking!");
                 set_target(ai, foe);
                 return;
               }
@@ -69,7 +81,6 @@ export function ai_system(entMan){
               )
             )
           ){
-            console.log("Found player-aligned target, attacking!");
             set_target(ai, foe);
             return;
           } 
@@ -81,18 +92,57 @@ export function ai_system(entMan){
       }
 
       // Do neautral passive things such as fly to planets or leave the system
+      console.log("Nothing to do; idle");
+      idle(entity, ai, entMan.delta_time);
       
     }
   }
 };
 
+function idle(entity, ai, delta_time){
+  if("destination" in ai){
+    // TODO Fly towards destination
+    let dist = distance(entity.position, ai.destination);
+    if (dist < IDLE_ARRIVAL_THRESH){
+
+      decelerate(entity.velocity, (entity.accel / 2) * delta_time);
+      if("dwell_time" in ai){
+        ai.dwell_time += delta_time;
+      } else {
+        ai.dwell_time = delta_time;
+      }
+
+      if( ai.dwell_time > AI_DWELL_MAX ){ 
+        delete ai.destination;
+        delete ai.dwell_time;
+      }
+    } else {
+      // TODO: Refactor identical code from "engage" into "fly_towards"?
+      let turn = constrained_point(
+        ai.destination, 
+        entity.direction,
+        entity.position,
+        entity.rotation * delta_time
+      );
+      rotate(entity, -1 * turn );
+      entity.direction_delta = turn;
+      if(linear_vel(entity.velocity) < AI_IDLE_COAST){
+        // Ships shouldn't race around if they're idling
+        accelerate(entity.velocity, entity.direction, entity.accel * delta_time);
+      }
+    }
+  } else {
+    ai.destination = random_position()
+    console.log("Flying aimlessly to:");
+    console.log(ai.destination);
+  }
+}
+  
+
 function set_target(ai_component, target_entity){
-  console.log("target aquired: " + target_entity.id);
   ai_component.target = target_entity.id;
   ai_component.state = 'violent';
 }
-
-
 
 function list_closest_targets(position, entMan, criteria){
   let possible_targets = entMan.get_with(criteria); // TODO: Add position to this list  
@@ -124,7 +174,7 @@ function find_closest_target(position, entMan, criteria){
     return null;
   }
 }
-    
+
 
 function point_at(to, startangle, from){
   let dx = to.x - from.x;
@@ -132,12 +182,12 @@ function point_at(to, startangle, from){
   
   // console.log(("dx " + dx) + ", dy " + dy);
   let cw = (Math.atan2(dy, dx) - startangle);
-  let ccw = arc;
+  let ccw = ARC;
   //let ccw = (Math.atan2(dy, dx) - startangle);
   if (cw > 0){
-    ccw = arc - cw;
+    ccw = ARC - cw;
   } else {
-    ccw = arc + cw;
+    ccw = ARC + cw;
   }
   // console.log("cw:  " + cw);
   // console.log("ccw: " + ccw);
@@ -150,49 +200,80 @@ function point_at(to, startangle, from){
   
 }
 
-function engage(entity, target, delta_time, entMan){
-
-  let distance = distance(entity.position, target.position);
-  
-  // Get the ideal facing, subtract out current angle
-  let goal_turn = point_at(target.position, entity.direction, entity.position);
-  // If angle is outside a certain margin, rotate the ship to face the target
-  // Maybe pull this out into a "AI tries to face in a direction" system?
+function constrained_point(target, start_angle, position, possible_turn){
+  // point_at but with a rotation speed limit (which is most things that point)
+	let goal_turn = point_at(target, start_angle, position);
   let final_turn = 0;
-  let possible_turn = (entity.rotation * delta_time); // How far we _can_ turn this frame
+	if(goal_turn > 0){
+		if(goal_turn > possible_turn){
+			final_turn = possible_turn;
+		} else {
+			final_turn = goal_turn;
+		}
+	} else if (goal_turn < 0){
+		if(Math.abs(goal_turn) > possible_turn){
+			final_turn = possible_turn * -1;
+		} else {
+			final_turn = goal_turn;
+		}
+	}
 
-  if(goal_turn > 0){
-    if(goal_turn > possible_turn){
-      final_turn = possible_turn;
-    } else {
-      final_turn = goal_turn;
-    }
-  } else if (goal_turn < 0){
-    if(Math.abs(goal_turn) > possible_turn){
-      final_turn = possible_turn * -1;
-    } else {
-      final_turn = goal_turn;
-    }
-  }
-  entity.ai.angle = distance;
-  
+  return final_turn;
+
+}
+
+function engage(entity, target, delta_time, entMan){
+	// Get the ideal facing, subtract out current angle
+	// If angle is outside a certain margin, rotate the ship to face the target
+	let final_turn = constrained_point(
+    target.position, 
+    entity.direction,
+    entity.position,
+    entity.rotation * delta_time
+  );
+
+	let dist = distance(entity.position, target.position);
+
   // Do rotation 
   rotate(entity, -1 * final_turn );
   entity.direction_delta = final_turn;
 
   // Acclerate
-  if(distance > ACCEL_DISTANCE){
+  if(dist > ACCEL_DISTANCE){
     accelerate(entity.velocity, entity.direction,
        entity.accel * delta_time); 
-  } //else {
-  //  decelerate(entity.velocity)
-  //}
+  } else {
+    // decelerate(entity.velocity, (entity.accel / 2) * delta_time)
+  }
   if(entity.directon < ENGAGE_ANGLE || entity.direction > -1 * ENGAGE_ANGLE){
-    if(distance < ENGAGE_DISTANCE){
-      for (let weapon of entity.weapons){
-        weapon.tryShoot(entMan, entity);
+    if(dist < ENGAGE_DISTANCE){
+      entity.shoot_primary = true;
+    }
+  }
+};
+
+export function turretPointSystem (entMan) {
+  // TODO: 
+  const TURRET_ROT_SPEED = Math.PI / 50; // TODO: Make attribute of ship
+  for(let entity of entMan.get_with(['model'])) {
+    if(entity.model.skeleton){
+      if(entity.target){
+        // In this case we want to track the target
+        let target = entMan.get(entity.target);
+        if(target){
+          for(let bone of get_bone_group(entity.model.skeleton, "turret")){
+            // Crude method: point all turrets at the same angle
+            // (ie no convergence)
+            let current_angle = (entity.direction - bone.rotation.y ) % ARC; 
+            let turn = constrained_point(target.position, current_angle, entity.position, TURRET_ROT_SPEED); 
+            // Small amount of dampening to prevent jitter
+            //if( Math.abs(turn) > TURN_MIN ){
+              bone.rotate(BABYLON.Axis.Y, -1 *  turn, BABYLON.Space.LOCAL);
+            //}
+          }
+        }
       }
     }
   }
-  
 };
+

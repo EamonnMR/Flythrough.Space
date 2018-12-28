@@ -1,16 +1,21 @@
 {
   "direc":{
     "name":"Casamance Directorate",
-    "color":"#0000CDFF",
-    "dark_color":"#0000C3FF",
+    "short_name": "Cas. Direc.",
+    "color":"#0000EDFF",
+    "dark_color":"#101060FF",
     "foes": [
+      "drone",
       "orion",
       "orasos",
-      "hex"
+      "pirate",
+      "pen",
+      "fifth"
     ]
   },
   "pen":{
     "name":"Itaskan Republic",
+    "short_name": "Itaskan",
     "color":"#F5F500FF",
     "dark_color":"#EAEA00FF",
     "foes": [
@@ -18,42 +23,46 @@
       "orion"
     ]
   },
-  "orion":{
-    "name":"Willkanuta",
-    "color":"#9370D8FF",
-    "dark_color":"#8D6AD2FF",
-    "foes": [
-      "hex",
-      "pen",
-      "direc"
-    ]
-  },
   "orasos":{
     "name":"Caudron Pirate Cartell",
+    "short_name": "Cartell",
     "color":"#CD5C5CFF",
-    "dark_color":"#C35656FF",
+    "dark_color":"#A32626FF",
     "attack_default": true
   },
   "hex":{
     "name":"League",
+    "short_name": "League",
     "color":"#008000FF",
-    "dark_color":"#007100FF"
+    "dark_color":"#003500FF"
   },
   "drone":{
     "name":"Northern Empire",
+    "short_name": "N. Empire",
     "color":"#FF0000FF",
-    "dark_color":"#F00000FF"
+    "dark_color":"#DD1010FF"
   },
   "fifth":{
     "name":"5th Fleet",
+    "short_name": "FL - V",
     "color":"#A52A2AFF",
     "dark_color":"#712020FF",
     "attack_default": true
   },
   "xic":{
     "name":"XIC Mining",
+    "short_name": "XIC",
     "color":"#F5B5C1FF",
     "dark_color":"#F0B0BBFF",
     "attack_asteroids": true
+  },
+  "merchant":{
+    "name": "Merchents",
+    "short_name": "Merch"
+  },
+  "pirate": {
+    "name": "Pirate",
+    "short_name": "Pirate",
+    "attack_default": true
   }
 }

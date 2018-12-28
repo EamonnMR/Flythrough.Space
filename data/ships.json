@@ -14,8 +14,8 @@
     "cargo"      : 10,
     "price"      : 1000,
     "tech"       : {"civilian":0},
-    "max_hp"     : 1,
-    "max_shields": 1,
+    "max_hp"     : 50,
+    "max_shields": 25,
     "max_fuel"   : 3
   },
   "civ_heavy_fighter":{
@@ -31,9 +31,13 @@
     "space"      : 40,
     "cargo"      : 20,
     "price"      : 25001,
-    "tech"       : {"khanda":1}
+    "tech"       : {"khanda":1},
+    "max_fuel"   : 3,
+    "max_hp"     : 250,
+    "max_shields": 100
   },
   "courier"  :{
+    "mesh"        : "courier",
     "short_name"  : "Courier",
     "long_name"   : "Accra Courier",
     "full_name"   : "Accra Starworks Courier",
@@ -46,7 +50,10 @@
     "space"      : 14,
     "cargo"      : 50,
     "price"      : 20000,
-    "tech"       : {"accra":1}
+    "tech"       : {"accra":1},
+    "max_fuel"   : 3,
+    "max_hp"     : 500,
+    "max_shields": 250
   },
   "argosy":{
     "short_name"  : "Argosy",
@@ -60,7 +67,10 @@
     "space"      : 40,
     "cargo"      : 100,
     "price"      : 70000,
-    "tech"       : {"khanda":3}
+    "tech"       : {"khanda":3},
+    "max_fuel"   : 3,
+    "max_hp"     : 600,
+    "max_shields": 400
   },
   "bulk":{
     "short_name"  : "Bulk Freighter",
@@ -74,7 +84,10 @@
     "space"      : 10,
     "cargo"      : 200,
     "price"      : 100000,
-    "tech"       : {"accra":2}
+    "tech"       : {"accra":2},
+    "max_fuel"   : 3,
+    "max_hp"     : 700,
+    "max_shields": 300
   },
   "oxana":{
     "short_name"  : "Oxana",
@@ -89,7 +102,10 @@
     "space"      : 30,
     "cargo"      : 270,
     "price"      : 2000000,
-    "tech"       : {"melkin":3}
+    "tech"       : {"melkin":3},
+    "max_fuel"   : 4,
+    "max_hp"     : 800,
+    "max_shields": 500
   },
   "vera":{
     "short_name"  : "Vera",
@@ -104,13 +120,16 @@
     "space"      : 100,
     "cargo"      : 70,
     "price"      : 2000000,
-    "tech"       : {"melkin":4}
+    "tech"       : {"melkin":4},
+    "max_fuel"   : 4,
+    "max_hp"     : 700,
+    "max_shields": 500
   },
   "pertinax":{
     "short_name"  : "Pertinax",
     "long_name"   : "Caudron Pertinax",
     "mesh":   "vera",
-    "full_name"   : "Caudron Staryards Pertinax Heavy Frigate",
+    "full_name"   : "Caudron Custom Starships Pertinax Heavy Frigate",
     "desc"       : "Built off of Melkin's famous Vera class, the Pertinax is specialized for piracy, packing dragnet turrets and ion cannons. Probably the most feared pirate ship in the galaxy.",
     "upgrades"    : {"ion_cannon_200": 3, "dragnet": 2, "ejectorrack": 4, "guidedmissile":20},
     "rotation"  : 0.001,
@@ -119,7 +138,10 @@
     "space"      : 100,
     "cargo"      : 70,
     "price"      : 2000000,
-    "tech"       : {"caudron":5}
+    "tech"       : {"caudron":5},
+    "max_fuel":      4,
+    "max_hp"     : 700,
+    "max_shields": 550
   },
   "cetacea":{
     "short_name"  : "Cetacea",
@@ -133,7 +155,10 @@
     "space"      : 80,
     "cargo"      : 600,
     "price"      : 8000000,
-    "tech"       : {"accra":4}
+    "tech"       : {"accra":4},
+    "max_fuel"       : 4,
+    "max_hp"     : 750,
+    "max_shields": 325
   },
   "civ_corvette":{
     "short_name"  : "Corvette",
@@ -148,7 +173,10 @@
     "space"      : 70,
     "cargo"      : 40,
     "price"      : 8000000,
-    "tech"       : {"khanda":2}
+    "tech"       : {"khanda":2},
+    "max_fuel"       : 3,
+    "max_hp"     : 350,
+    "max_shields": 200
   },
   
   "cas_corvette":{
@@ -164,7 +192,10 @@
     "space"      : 55,
     "cargo"      : 30,
     "price"      : 600000,
-    "tech"       : {"cas":4}
+    "tech"       : {"cas":4},
+    "max_fuel"       : 3,
+    "max_hp"     : 400,
+    "max_shields": 200
   },
 
   "cas_oe_fighter"   :{
@@ -175,12 +206,15 @@
     "desc"       : "Basically, this is a repainted Old Empire Type 950, barely improved with more modern weapons. It is a point of pride in the Casamance Directorate to still run these ships, and what they lack in power is made up for in numbers. And the build quality of Accra Starworks is certainly better than the dodgy backwater shipyards that crank out the more common variant.",
     "upgrades"    : {"ejectorrack":4, "plasma50":2, "dumbfiremissile": 4},
     "rotation"  : 0.01,
-    "accel"      : 0.0001,
-    "max_speed"   : 0.05,
+    "accel"      : 0.00005,
+    "max_speed"   : 0.02,
     "space"      : 20,
     "cargo"      : 10,
     "price"      : 5000,
-    "tech"       : {"cas":1}
+    "tech"       : {"cas":1},
+    "max_fuel"   : 3,
+    "max_hp"     : 100,
+    "max_shields": 50 
   },
 
    "cas_frigate"  :{
@@ -195,7 +229,10 @@
     "space"      : 80,
     "cargo"      : 40,
     "price"      : 500000,
-    "tech"       : {"cas":3}
+    "max_fuel"       : 3,
+    "tech"       : {"cas":3},
+    "max_hp"     : 500,
+    "max_shields": 250
   },
  
   "cas_carrier":{
@@ -207,11 +244,14 @@
     "upgrades"    : {"plasma200": 3},
     "rotation"  : 0.0001,
     "accel"      : 0.0006,
-    "max_speed"   : 6,
+    "max_speed"  : 0.06,
     "space"      : 100,
     "cargo"      : 60,
     "price"      : 80000000,
     "tech"       : {"cas":5},
+    "max_fuel"       : 5,
+    "max_hp"     : 800,
+    "max_shields": 400,
     "carried_fighters": { "cas_oe_fighter": 6}
   },
 
@@ -228,7 +268,10 @@
     "space"      : 20,
     "cargo"      : 10,
     "price"      : 5000,
-    "tech"       : {"oe":1}
+    "tech"       : {"oe":1},
+    "max_fuel"   : 2,
+    "max_hp"     : 100,
+    "max_shields": 50 
   },
   
   "oe_frig"  :{
@@ -243,7 +286,10 @@
     "space"      : 80,
     "cargo"      : 40,
     "price"      : 500000,
-    "tech"       : {"oe":2}
+    "tech"       : {"oe":2},
+    "max_fuel"   : 3,
+    "max_hp"     : 450,
+    "max_shields": 200
   },
   
   "oe_cru"  :{
@@ -259,29 +305,34 @@
     "space"      : 120,
     "cargo"      : 80,
     "price"      : 900000,
-    "tech"       : {"oe":3}
+    "tech"       : {"oe":3},
+    "max_fuel"   : 4,
+    "max_hp"     : 650,
+    "max_shields": 300 
   },
   
   "xic_drillship":{
     "icon"       : "img/onyx/Onyx/thumb/pheonix.bmp",
-    "sprite"     : "onxpheonix",
+    "mesh"       : "shuttle",
     "short_name"  : "XIC Drillship",
     "long_name"   : "XIC Drillship",
     "full_name"   : "XIC Drillship Cruiser",
     "desc"       : "This ship goes on long missions for XIC, carrying wings of ships that manage the asteroid chunks as the drillship breaks asteroids up. It has through-and-through engines, essentially similar to those of an OE fighter but simpler with an eye towards power generation rather than speed. Its internal docking ring protects fighters from harsher bouts with microasteroids.",
     "upgrades"    : {"plasma200": 2, "mining_laser": 1},
     "carried_ships": {"xic_prospector": 5},
-    "rotation"  : 0.008,
-    "accel"      : 0.000008,
-    "max_speed"   : 0.0006,
+    "rotation"  : 0.006,
+    "accel"      : 0.0002,
+    "max_speed"   : 0.006,
     "space"      : 80,
     "cargo"      : 40,
     "price"      : 500000,
-    "tech"       : {"xic":4}
+    "tech"       : {"xic":4},
+    "max_fuel"   : 5,
+    "max_hp"     : 600,
+    "max_shields": 350
   },
   "xic_prospector":{
     "icon"       : "img/Meowx/xicfi_icon.png",
-    "sprite"     : "meowx_xic_fi",
     "short_name"  : "XIC Prospector",
     "long_name"   : "XIC Asteroid Prospector",
     "full_name"   : "XIC Asteroid Prospector",
@@ -293,7 +344,10 @@
     "space"      : 40,
     "cargo"      : 20,
     "price"      : 25000,
-    "tech"       : {"xic":2 }
+    "tech"       : {"xic":2 },
+    "max_fuel"   : 3,
+    "max_hp"     : 300,
+    "max_shields": 175
   },
   "itaska_bomber":{
     "mesh"     : "it_mask",
@@ -309,7 +363,10 @@
     "space"      : 15,
     "cargo"      : 10,
     "price"      : 10000,
-    "tech"       : {"pen":2}
+    "tech"       : {"pen":2},
+    "max_fuel"   : 3,
+    "max_hp"     : 150,
+    "max_shields": 250
   },
   "itaska_corvette":{
     "mesh"     : "it_clipper",
@@ -323,7 +380,10 @@
     "space"      : 100,
     "cargo"      : 50,
     "price"      : 2000000,
-    "tech"       : {"pen": 4}
+    "tech"       : {"pen": 4},
+    "max_fuel"   : 3,
+    "max_hp"     : 200,
+    "max_shields": 350
   },
   "itaska_battleship":{
     "short_name"  : "Franklin",
@@ -337,7 +397,10 @@
     "space"      : 200,
     "cargo"      : 50,
     "price"      : 5000000,
-    "tech"       : {"itaskan_ship":3}
+    "tech"       : {"itaskan_ship":3},
+    "max_fuel"   : 3,
+    "max_hp"     : 500,
+    "max_shields": 900
   },
 
   "league_sparrow":{
@@ -354,7 +417,10 @@
     "space"      : 30,
     "cargo"      : 10,
     "price"      : 200000,
-    "tech"       : {"league":1}
+    "tech"       : {"league":1},
+    "max_fuel"   : 2,
+    "max_hp"     : 90,
+    "max_shields": 50
   },
   "league_heavy_fighter":{
     "model": "heavy_fi",
@@ -369,7 +435,10 @@
     "space"      : 40,
     "cargo"      : 20,
     "price"      : 25000,
-    "tech"       : {"league": 2}
+    "tech"       : {"league": 2},
+    "max_fuel"   : 3,
+    "max_hp"     : 250,
+    "max_shields": 100
   },
   "league_corvette":{
     "short_name"  : "League Corvette",
@@ -384,14 +453,17 @@
     "space"      : 50,
     "cargo"      : 30,
     "price"      : 800000,
-    "tech"       : {"league":3}
+    "tech"       : {"league":3},
+    "max_fuel"   : 3,
+    "max_hp"     : 350,
+    "max_shields": 200
   },
 
   "league_argosy":{
     "short_name"  : "League Argosy",
     "long_name"   : "League Argosy",
     "full_name"   : "Khanda Mod. Lothal-type Argosy",
-    "desc"       : "Upgunned, this argosy is closer to a battleship than a cargo ship",
+    "desc"       : "Upgunned, this argosy is closer to a battleship than a cargo ship. But besides the livery and missile racks, this is similar to the commercial version in most respects. Call it a trim level.",
     "upgrades"    : {"plasma200": 2, "ejectorrack": 4, "dumbfiremissile": 10},
     "rotation"  : 0.0065,
     "accel"      : 0.00001,
@@ -399,7 +471,10 @@
     "space"      : 40,
     "cargo"      : 100,
     "price"      : 70000,
-    "tech"       : {"league":4}
+    "tech"       : {"league":4},
+    "max_fuel"   : 3,
+    "max_hp"     : 600,
+    "max_shields": 400
   },
 
   "league_warship":{
@@ -415,7 +490,10 @@
     "space"      : 100,
     "cargo"      : 200,
     "price"      : 6000000,
-    "tech"       : {"league":5}
+    "tech"       : {"league":5},
+    "max_fuel"   : 4,
+    "max_hp"     : 900,
+    "max_shields": 600
   },
   "ff_oe_fighter"   :{
     "short_name"  : "FF Fighter",
@@ -429,7 +507,10 @@
     "space"      : 20,
     "cargo"      : 10,
     "price"      : 5000,
-    "tech"       : {"V":1}
+    "tech"       : {"V":1},
+    "max_fuel"   : 3,
+    "max_hp"     : 100,
+    "max_shields": 50 
   },
   
   "ff_oe_frig"  :{
@@ -444,7 +525,10 @@
     "space"      : 80,
     "cargo"      : 40,
     "price"      : 500000,
-    "tech"       : {"V":2}
+    "tech"       : {"V":2},
+    "max_fuel"   : 4,
+    "max_hp"     : 450,
+    "max_shields": 200
   },
   
   "ff_oe_cru"  :{
@@ -460,13 +544,16 @@
     "space"      : 120,
     "cargo"      : 80,
     "price"      : 900000,
-    "tech"       : {"V":3}
+    "tech"       : {"V":3},
+    "max_fuel"   : 5,
+    "max_hp"     : 650,
+    "max_shields": 300 
   },
   "ff_oe_corvette":{
     "short_name"  : "FF Corv.",
     "long_name"   : "Fifth Fleet Corvette",
     "full_name"   : "Emperial Corvette Type 991",
-    "desc"       : "An innovative design that came too late to be immortalized by the devotion of hundreds of factories, the 991 corvette was arguably the first such ship, with the long operational range of a scout fighter and some of a battleship's punch. It is often seen providing support for wings of fighters.",
+    "desc"       : "An innovative design that came too late to be immortalized by the devotion of hundreds of factories, the 991 corvette was arguably the first such ship, with the long operational range of a scout fighter and some of a battleship's punch. Though the shortage of tooling will always make it a less common sight than the fighters or cruisers, it is often seen providing support for wings of fighters. Only the best pilots are allowed to risk these ships in battle.",
     "weapons"    : {},
     "upgrades"    : {"antigun": 4, "ejectorrack": 2, "guidedmissile": 20},
     "rotation"  : 0.007,
@@ -475,7 +562,10 @@
     "space"      : 55,
     "cargo"      : 30,
     "price"      : 600000,
-    "tech"       : {"V":4}
+    "tech"       : {"V":4},
+    "max_fuel"   : 4,
+    "max_hp"     : 400,
+    "max_shields": 200
   },
    "ne_heavyfi"      :{
     "short_name"  : "NE Thunder",
@@ -490,7 +580,10 @@
     "space"      : 40,
     "cargo"      : 15,
     "price"      : 10000,
-    "tech"       :  {"ne":2}
+    "tech"       :  {"ne":2},
+    "max_fuel"   : 3,
+    "max_hp"     : 250,
+    "max_shields": 125
   },
   "neVette":{
     "short_name"  : "NE Nimbus.",
@@ -505,11 +598,13 @@
     "space"      : 55,
     "cargo"      : 60,
     "price"      : 600000,
-    "tech"       :  {"ne":4}
+    "tech"       :  {"ne":4},
+    "max_fuel"   : 3,
+    "max_hp"     : 375,
+    "max_shields": 225
   },
   "nebattleship"      :{
     "icon"       : "img/onyx/Onyx/thumb/redfrigate.bmp",
-    "sprite"     : "onxredcru",
     "short_name"  : "NE Tiger",
     "long_name"   : "NE Tiger battleship",
     "full_name"   : "NE Battleship Type 1200",
@@ -522,12 +617,14 @@
     "space"      : 40,
     "cargo"      : 15,
     "price"      : 10000,
-    "tech"       :  {"ne":3}
+    "tech"       :  {"ne":3},
+    "max_fuel"   : 4,
+    "max_hp"     : 600,
+    "max_shields": 400 
   },
     
   "necruiser"  :{
     "icon"       : "img/Meowx/redcru_icon.png",
-    "sprite"     : "meowx_red_cru",
     "short_name"  : "NE Battlecruiser",
     "long_name"   : "NE Battlecruiser",
     "full_name"   : "NE Type 1159 Heavy Battleship",
@@ -539,7 +636,10 @@
     "space"      : 300,
     "cargo"      : 100,
     "price"      : 90000000,
-    "tech"       : {"ne":5}
+    "tech"       : {"ne":5},
+    "max_fuel"   : 4,
+    "max_hp"     : 850,
+    "max_shields": 475
   },
   
   "wlknfrigate":{
@@ -555,7 +655,10 @@
     "space"      : 10,
     "cargo"      : 5,
     "price"      : 10000,
-    "tech"       :  {"wlkn":4}
+    "tech"       :  {"wlkn":4},
+    "max_fuel"   : 4,
+    "max_hp"     : 500,
+    "max_shields": 500
   },
   "wlkncarrier":{
     "short_name"  : "Nightshade",
@@ -571,7 +674,10 @@
     "space"      : 200,
     "cargo"      : 100,
     "price"      : 6000000,
-    "tech"       : {"wlkn":5}
+    "tech"       : {"wlkn":5},
+    "max_fuel"   : 6,
+    "max_hp"     : 1500,
+    "max_shields": 1500
   },
   "caudron_sparrow":{
     "mesh": "light_fi",
@@ -587,7 +693,10 @@
     "space"      : 30,
     "cargo"      : 10,
     "price"      : 200000,
-    "tech"       : {"league":1}
+    "tech"       : {"league":1},
+    "max_fuel"   : 3,
+    "max_hp"     : 100,
+    "max_shields": 70
   },
   "pirate_ahab":{
     "short_name"  : "Ahab",
@@ -602,7 +711,10 @@
     "space"      : 80,
     "cargo"      : 600,
     "price"      : 8000000,
-    "tech"       : {"pirate":4}
+    "tech"       : {"pirate":4},
+    "max_fuel"   : 5,
+    "max_hp"     : 750,
+    "max_shields": 325
   },
   "caudron_corvette":{
     "short_name"  : "Corvette",
@@ -618,7 +730,10 @@
     "space"      : 70,
     "cargo"      : 40,
     "price"      : 8000000,
-    "tech"       : {"caudron":3}
+    "tech"       : {"caudron":3},
+    "max_fuel"   : 5,
+    "max_hp"     : 350,
+    "max_shields": 200
   },
   "patsy" : {
     "mesh"      : "oe_fi",
@@ -635,8 +750,8 @@
     "cargo"      : 5,
     "price"      : 1000,
     "tech"       : {"pirate":1},
-    "max_hp"     : 1,
-    "max_shields": 1,
+    "max_hp"     : 50,
+    "max_shields": 25,
     "max_fuel"   : 3
   },
   "pirate_sleeper"  :{
@@ -652,7 +767,10 @@
     "space"      : 14,
     "cargo"      : 50,
     "price"      : 20000,
-    "tech"       : {"pirate":2}
+    "tech"       : {"pirate":2},
+    "max_fuel"   : 4,
+    "max_hp"     : 500,
+    "max_shields": 250
   },
   "triggerman":{
     "short_name"  : "Triggerman",
@@ -667,7 +785,9 @@
     "space"      : 40,
     "cargo"      : 100,
     "price"      : 70000,
-    "tech"       : {"pirate":3}
+    "tech"       : {"pirate":3},
+    "max_fuel"   : 4,
+    "max_hp"     : 600,
+    "max_shields": 400
   }
-
 }

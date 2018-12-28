@@ -1,4 +1,5 @@
 import { ViewState } from "./states.js"
+import { get_text } from "./util.js"
 
 export class BaseMenuView extends ViewState {
   setup_menu(widgets){
@@ -109,7 +110,7 @@ export class TextBox extends Widget{
   }
 
   setup(){
-    let control = new BABYLON.GUI.TextBlock();
+    let control = get_text();
     control.text = this.text;
     this.setup_control(control);
     return control;

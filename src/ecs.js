@@ -56,6 +56,16 @@ export class EntityManager {
     return filtered_ents;
   }
 
+  get_with_exact(member, value){
+    let filtered_ents = []
+    for(let ent of this.get_with([member])){
+      if(ent[member] === value){
+        filtered_ents.push( ent );
+      }
+    }
+    return filtered_ents;
+  }
+
   update () {
 
     let time = Date.now();
@@ -110,11 +120,21 @@ export function deletionSystem (entMan) {
 };
 
 function delete_model (entity) {
-  let MODEL_ATTR = ['model', 'radar_pip'];
+  const MODEL_ATTR = [
+    'model',
+    'radar_pip',
+    'sprite',
+    'overlay',
+  ];
 
   for(let attribute of MODEL_ATTR ){
     if(attribute in entity){
-      entity[attribute].dispose();
+      try{
+        entity[attribute].dispose();
+      } catch {
+        console.log("attribute");
+        debugger;
+      }
     }
   }
 };

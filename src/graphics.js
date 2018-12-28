@@ -6,13 +6,12 @@
 // y      --> Nothing
 // Z      --> Y
 
-
 const SHIP_Y = -2;
-const PLANET_SCALE = 25;
+const PLANET_SCALE = 15;
 const PLANET_Y = -10;
 let CAM_OFFSET = new BABYLON.Vector3(0, 40, 30);
 
-function get_bone_group(skeleton, prefix){
+export function get_bone_group(skeleton, prefix){
   // Get a group of bones with the same prefix
   let bone_group = [];
   skeleton.bones.forEach((bone) => {
@@ -28,7 +27,7 @@ export function get_chase_camera(scene){
   let camera = new BABYLON.FollowCamera("case_cam", new BABYLON.Vector3(0, 0, 0), scene);
   // TODO: Ingame control for these things
   camera.radius = 30;
-  camera.heightOffset = 40;
+  camera.heightOffset = 400;
   camera.rotationOffset = 0;
   camera.cameraAcceleration = .1;
   camera.maxCameraSpeed = 100;
@@ -117,15 +116,6 @@ export function modelPositionSystem (entMan) {
   }
 };
 
-export function turretPointSystem (entMan) {
-  for(let entity of entMan.get_with(['model'])) {
-    if(entity.model.skeleton){
-      for(let bone of get_bone_group(entity.model.skeleton, "turret")){
-        // TODO: Rotate to face target if target exists
-      }
-    }
-  }
-};
 
 function count_npcs(entMan){
   // Counts the number of NPC ships in the system
@@ -140,9 +130,26 @@ function count_npcs(entMan){
   return entMan.get_with(['ai']).length;
 }
 
-export function create_planet_sprite(data, planet){
-  let sprite = planet.model = data.get_sprite(data.spobtypes[planet.sType].sprite);
+export function create_planet_sprite(data, planet, scene){
+  // We want the planet to be a sprite because A E S T H E T I C
+  // but for it to properly interact with the GUI we need an actual mesh.
+  // So we create an invisible mesh and attach the sprite to it.
+  // Except it does not really attach so we need to move and dispose it
+  // seperately. That's why we attach the sprite to the entity.
+  let sprite = null; 
+  if("sprite" in planet && planet.sprite){
+    sprite = data.get_sprite(planet.sprite);
+  } else {
+    sprite = data.get_sprite("redplanet")
+  }
   sprite.size = PLANET_SCALE;
   sprite.position.y = PLANET_Y;
-  return sprite;
+  sprite.position.x = planet.x;
+  sprite.position.z = planet.y;
+  let sphere = BABYLON.Mesh.CreateSphere("sphere1", 2, 2, scene);
+  sphere.translate(BABYLON.Axis.Y, PLANET_Y, BABYLON.Space.LOCAL);
+  sphere.visibility = 0;
+  sprite.parent = sphere;
+  planet.sprite = sprite;
+  return sphere;
 }

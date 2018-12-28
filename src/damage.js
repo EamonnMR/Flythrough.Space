@@ -11,15 +11,35 @@ export function shot_handler(shot, object){
   // Add other special case shot interaction logic here
 }
 
+function draw_aggro(damager, damaged){
+  if( 'ai' in damaged && 'creator' in damager){
+    if ( 'aggro' in damaged.ai ){
+      damaged.ai.aggro.push(damager.creator);
+    } else {
+      damaged.ai.aggro = [ damager.creator ];
+    }
+  }
+}
+
 export function damage_handler(damager, damaged){
+  draw_aggro(damager, damaged);
   // A projectile or some such has hit something hittable
+  if ('shield_damage' in damager && 'shields' in damaged){
+    damaged.shields -= damager.shield_damage;
+    if ( damaged.shields >= 0){
+      return; // Shields prevent hull damage
+    } else if (damaged.shields <= 0){
+      damaged.shields = 0;
+    }
+  }
+
   if ('damage' in damager && 'hitpoints' in damaged){
     }
     // Remove hitpoints equal to the damage done
     damaged.hitpoints -= damager.damage;
 
     // If an entity's hitpoints are gone, destroy it
-    if (damaged.hitpoints >= 0){
+    if (damaged.hitpoints <= 0){
       damaged.remove = true;
   }
 }
