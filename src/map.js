@@ -45,6 +45,13 @@ export class MapView extends ViewState{
     this.game_canvas = game_canvas;
 
     this.selection = player.selected_system;
+    // Faction colors
+    this.govt_colors = {};
+    this.govt_dark_colors = {};
+    for (let name of Object.keys(this.data.govts)){
+      this.govt_colors[ name ] = this.data.govts[ name ].color;
+      this.govt_dark_colors[ name ] = this.data.govts[ name ].dark_color;
+    }
   }
 
   enter(){
@@ -68,16 +75,19 @@ export class MapView extends ViewState{
     this.make_in_system_dot();
 
     this.make_selection_circle();
-    // Set up color fills for map drawing
-    let govt_colors = {};
-    let govt_dark_colors = {};
 
-    for (let name of Object.keys(this.data.govts)){
-      govt_colors[ name ] = this.data.govts[ name ].color;
-      // TODO: Why aren't dark colors working?
-      govt_dark_colors[ name ] = this.data.govts[ name ].dark_color;
-    }
+    this.create_visible_systems();
 
+    this.create_unexplored_systems();
+
+    this.map_sub = null;
+
+    this.setup_dragging();
+    console.log("Finished entering map");
+
+  }
+
+  create_visible_systems(){
     for ( let system_name of Object.keys(this.data.systems)) {
       let system_dat = this.data.systems[system_name];
 
@@ -106,7 +116,7 @@ export class MapView extends ViewState{
       let is_light = 'spobs' in system_dat;
       
       if( "govt" in system_dat ){
-        color = is_light ? govt_colors[system_dat.govt] : govt_dark_colors[system_dat.govt];
+        color = is_light ? this.govt_colors[system_dat.govt] : this.govt_dark_colors[system_dat.govt];
       } else {
         color = is_light ? nogov_color : nogov_dark;
       }
@@ -127,17 +137,11 @@ export class MapView extends ViewState{
        * it will work on the first four or so systems you
        * assign a listener to and nothing else.
       sys_circle.onPointerDownObservable.add((event) => {
-        console.log(event);
         this.update_selection(system_name);
       });
       */
       this.map_image.addControl(sys_circle);
     }
-    this.map_sub = null;
-
-    this.setup_dragging();
-    console.log("Finished entering map");
-
   }
 
   update_selection( system_name ){
@@ -189,8 +193,6 @@ export class MapView extends ViewState{
   make_in_system_dot(){
     // Expects this.data and this.map_image
     let in_system = this.data.systems[this.player.current_system];
-    console.log(Object.keys(this.data.systems));
-    console.log(this.player);
     let in_system_dot = this.get_circle(
         in_system.x, in_system.y,
         IN_SYS_CIRCLE_SIZE,
