@@ -29,6 +29,7 @@ const SPACELANE_COLOR = "Gray";
 
 const nogov_color = '#AFAFAF';
 const nogov_dark = '#494949';
+const UNEXPLORED_COLOR = nogov_dark;
 
 export class MapView extends ViewState{
   constructor(data, position, game_canvas, player){
@@ -110,26 +111,11 @@ export class MapView extends ViewState{
       sys_text.zIndex = Z_SYSTEXT;
       
       
+      this.make_sys_circle(system_dat, true);
 
       // Determine the color of the circle based on government, if its empty
       let color = null;
-      let is_light = 'spobs' in system_dat;
-      
-      if( "govt" in system_dat ){
-        color = is_light ? this.govt_colors[system_dat.govt] : this.govt_dark_colors[system_dat.govt];
-      } else {
-        color = is_light ? nogov_color : nogov_dark;
-      }
-
-      let sys_circle = this.get_circle(
-          system_dat.x,
-          system_dat.y,
-          CIRCLE_SIZE_INT,
-          color,
-          CIRCLE_THICKNESS,
-          Z_SYSCIRCLE,
-      )
-      /*
+         /*
        * This ought to work. What's more, it should be nicer
        * than brute forcing all of the circles.
        * 
@@ -140,9 +126,34 @@ export class MapView extends ViewState{
         this.update_selection(system_name);
       });
       */
-      this.map_image.addControl(sys_circle);
     }
   }
+
+  create_unexplored_systems(){
+  }
+
+  make_sys_circle(system_dat, explored){
+    let color = UNEXPLORED_COLOR;
+    let is_light = 'spobs' in system_dat;
+    if(explored){  
+      if( "govt" in system_dat ){
+        color = is_light ? this.govt_colors[system_dat.govt] : this.govt_dark_colors[system_dat.govt];
+      } else {
+        color = is_light ? nogov_color : nogov_dark;
+      }
+    }
+    let sys_circle = this.get_circle(
+        system_dat.x,
+        system_dat.y,
+        CIRCLE_SIZE_INT,
+        color,
+        CIRCLE_THICKNESS,
+        Z_SYSCIRCLE,
+    )
+    this.map_image.addControl(sys_circle);
+  }
+
+   
 
   update_selection( system_name ){
     this.selection = system_name;
