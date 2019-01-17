@@ -71,25 +71,28 @@ export class MapView extends ViewState{
 
     this.adt.addControl(this.map_image);
 
+    this.calculate_visible_systems();
+
     this.create_spacelanes();
     
     this.make_in_system_dot();
 
     this.make_selection_circle();
 
-    this.create_visible_systems();
-
     this.create_unexplored_systems();
+
+    this.create_explored_systems();
 
     this.map_sub = null;
 
     this.setup_dragging();
+
     console.log("Finished entering map");
 
   }
 
-  create_visible_systems(){
-    for ( let system_name of Object.keys(this.data.systems)) {
+  create_explored_systems(){
+    for ( let system_name of this.explored_systems) {
       let system_dat = this.data.systems[system_name];
 
       let sys_text = new BABYLON.GUI.TextBlock();
@@ -113,9 +116,7 @@ export class MapView extends ViewState{
       
       this.make_sys_circle(system_dat, true);
 
-      // Determine the color of the circle based on government, if its empty
-      let color = null;
-         /*
+      /*
        * This ought to work. What's more, it should be nicer
        * than brute forcing all of the circles.
        * 
@@ -130,6 +131,9 @@ export class MapView extends ViewState{
   }
 
   create_unexplored_systems(){
+    for (let system_name of this.unexplored_systems){
+      this.make_sys_circle(this.data.systems[system_name], false);
+    }
   }
 
   make_sys_circle(system_dat, explored){
@@ -152,8 +156,6 @@ export class MapView extends ViewState{
     )
     this.map_image.addControl(sys_circle);
   }
-
-   
 
   update_selection( system_name ){
     this.selection = system_name;
@@ -232,7 +234,7 @@ export class MapView extends ViewState{
   create_spacelanes(){
     let already_done = []; // Any system which already has its lines drawn should have no further lines drawn
     this.spacelanes = []; // These will be moved later, so we need a pointer to them
-    for ( let system_name of Object.keys(this.data.systems)) {
+    for ( let system_name of this.explored_systems) {
       let system_dat = this.data.systems[system_name];
       for (let other_system_id of system_dat.links ){
         if (!(other_system_id in this.data.systems)) {
@@ -268,6 +270,22 @@ export class MapView extends ViewState{
       // Two way links are gross
 
     }
+  }
+
+  calculate_visible_systems(){
+    // CHEAT: this.explored_systems = Object.keys( this.data.systems);
+    this.explored_systems = this.player.explored;
+    this.unexplored_systems = [];
+    for( let system of this.explored_systems ){
+      for( let link of this.data.systems[system].links ){
+        if (!(link in this.explored_systems) && !( link in this.unexplored_systems)){
+          this.unexplored_systems.push( link );
+        }
+      }
+    }
+    this.visible_systems = this.explored_systems.concat(this.unexplored_systems);
+    console.log(this.explored_systems);
+    console.log("Unexplored Systems: " + this.unexplored_systems);
   }
 
   move_spacelanes(){
@@ -310,7 +328,7 @@ export class MapView extends ViewState{
       // Original map code
       // TODO: Replace this with the above nice code...
       // if it can be made to, like, work.
-      for ( let system_name of Object.keys(this.data.systems)) {
+      for ( let system_name of this.visible_systems) {
         let system_dat = this.data.systems[system_name];
         //Ugly brute force clicking-on-system check
         //Treats the map circles as squares

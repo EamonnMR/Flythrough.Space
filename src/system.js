@@ -13,6 +13,7 @@ import {
 } from "./entities.js"; 
 
 export function setup_system(scene, camera, entMan, system, hud, data, player_data){
+  player_data.explore_system(system);
   let system_dat = data.systems[system];
 
   let lights = [

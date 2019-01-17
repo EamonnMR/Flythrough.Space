@@ -1,10 +1,32 @@
-/* Player State - this is what's shared between game states. */
+/* Player State - this is what's shared between game states, and also handles saving and loading */
 
 import { apply_upgrade, apply_upgrades } from "./util.js";
 
+const PREFIX = "savefile_"  // Prefix for player saves in local storage.
+const LAST_SAVE = "last_save"  // Stores the key for the last used save file
+
+export function load_save(save_name){
+  return JSON.parse(localStorage.getItem( key ));
+}
+
+export function load_saves(){
+  return Object.keys( localStorage ).filter( (key) => key.startsWith("savefile_")).map( load_save )
+}
+
+export function resume(){
+  return load_save( localStorage.getItem( LAST_SAVE ));
+}
+
 export class PlayerSave {
+
+  save(){
+    let key = PREFIX + this.name;
+    localStorage.setItem( key, JSON.stringify( this ) );
+    localStorage.setItem( LAST_SAVE, key );
+  }
+
   constructor(ships, upgrades) {
-    // TODO: Load this from some sort of backing store / DB / etc
+    this.name = "Joe Bloggs"
     this.money = 100000000;
     this.map_pos = {x: 0, y: 0};
     this.selected_system = "Casamance";
@@ -25,6 +47,7 @@ export class PlayerSave {
     }
     this.ship_dat = Object.create(ships[this.ship_type]);
     this.ship_dat.upgrades = this.upgrades;
+    this.explored = []
   }
 
   total_cargo(){
@@ -118,6 +141,18 @@ export class PlayerSave {
     this.ship_dat.upgrades = this.upgrades;
     this.money -= upgrade.price * quantity;
     console.log(this);
+  }
+  
+  explore_system(system_name){
+    console.log("System explored!");
+    if(!(system_name in this.explored)){
+      this.explored.push(system_name);
+    }
+    console.log(this.explored);
+  }
+
+  system_explored(system_name){
+    return system_name in this.explored;
   }
 }
 
