@@ -145,7 +145,7 @@ export class PlayerSave {
   
   explore_system(system_name){
     console.log("System explored!");
-    if(!(system_name in this.explored)){
+    if(!this.explored.includes(system_name)){
       this.explored.push(system_name);
     }
     console.log(this.explored);

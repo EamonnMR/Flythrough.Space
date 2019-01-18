@@ -40,8 +40,8 @@ export class MapView extends ViewState{
     this.scale_factor = 1;
     //this.diff = {x: game_canvas.width() / 2, y: game_canvas.height() / 2};
 
-    this.offset = { x: position.x,
-                    y: position.y};
+    this.offset = {x: -600, y: -1000}; //{ x: position.x,
+                  //  y: position.y};
     this.scrollables = [];
     this.game_canvas = game_canvas;
 
@@ -137,6 +137,10 @@ export class MapView extends ViewState{
   }
 
   make_sys_circle(system_dat, explored){
+    if (! system_dat){
+      console.log("Error: system does not exist")
+      return;
+    }
     let color = UNEXPLORED_COLOR;
     let is_light = 'spobs' in system_dat;
     if(explored){  
@@ -273,18 +277,19 @@ export class MapView extends ViewState{
   }
 
   calculate_visible_systems(){
-    // CHEAT: this.explored_systems = Object.keys( this.data.systems);
+    //this.explored_systems = Object.keys( this.data.systems);
     this.explored_systems = this.player.explored;
+    console.log("Explored: ");
+    console.log(this.explored_systems);
     this.unexplored_systems = [];
     for( let system of this.explored_systems ){
       for( let link of this.data.systems[system].links ){
-        if (!(link in this.explored_systems) && !( link in this.unexplored_systems)){
+        if (!this.explored_systems.includes(link) && !this.unexplored_systems.includes(link)){
           this.unexplored_systems.push( link );
         }
       }
     }
     this.visible_systems = this.explored_systems.concat(this.unexplored_systems);
-    console.log(this.explored_systems);
     console.log("Unexplored Systems: " + this.unexplored_systems);
   }
 
