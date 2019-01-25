@@ -770,5 +770,12 @@
     "y": 15,
     "govt": "direc",
     "text": "The directorate maintains a small presence here, but with plenty of other places to put its growing population, Arruda has remained, thus far, unappealing."
+  },
+  "Traprain": {
+    "sprite": "accra",
+    "x": 0,
+    "y": 0,
+    "govt": "hex",
+    "text": "While an unremarkable, though habitable world in most respects, Lungus is notable as a sort of cradle of the League's way of life. It was this world which first had its debt (public and private) bought out by a consortium of megacorporations. While in theory they still had the option of paying down the debt, for all practical purposes they had become serfs to the League. This pattern was repeated across numerous worlds, often continents at a time."
   }
 }

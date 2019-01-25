@@ -2140,6 +2140,9 @@
     "x":1395,
     "y":654,
     "govt":"hex",
+    "spobs": [
+      "Traprain"
+    ],
     "links":[
       "Kazanlak",
       "Ingolstadt",
