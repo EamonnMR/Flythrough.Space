@@ -687,7 +687,7 @@
     ],
     "links":[
       "Novosibirsk",
-      ".193"
+      "Intrepid"
     ]
   },
   "Dnipropetrovsk":{
@@ -793,41 +793,41 @@
     "y":220,
     "govt":"drone",
     "links":[
-      ".192",
+      "Nemesis",
       ".265",
       ".*31"
     ]
   },
-  ".192":{
+  "Nemesis":{
     "x":897,
     "y":320,
     "govt":"drone",
     "links":[
       ".191",
-      ".193",
-      ".194",
-      ".203",
-      ".204",
-      ".205"
+      "Intrepid",
+      "Resolute",
+      "Unrelenting",
+      "Victory",
+      "Defiance"
     ]
   },
-  ".193":{
+  "Intrepid":{
     "x":912,
     "y":435,
     "govt":"drone",
     "links":[
       ".181",
-      ".192",
-      ".194"
+      "Nemesis",
+      "Resolute"
     ]
   },
-  ".194":{
+  "Resolute":{
     "x":1010,
     "y":334,
     "govt":"drone",
     "links":[
-      ".192",
-      ".193",
+      "Nemesis",
+      "Intrepid",
       ".195",
       ".196",
       ".197"
@@ -838,7 +838,7 @@
     "y":412,
     "govt":"drone",
     "links":[
-      ".194"
+      "Resolute"
     ]
   },
   ".196":{
@@ -846,7 +846,7 @@
     "y":297,
     "govt":"drone",
     "links":[
-      ".194",
+      "Resolute",
       ".198",
       ".*31"
     ]
@@ -912,31 +912,31 @@
       ".*11"
     ]
   },
-  ".203":{
+  "Unrelenting":{
     "x":808,
     "y":265,
     "govt":"drone",
     "links":[
-      ".192",
+      "Nemesis",
       ".250",
       ".265"
     ]
   },
-  ".204":{
+  "Victory":{
     "x":800,
     "y":344,
     "govt":"drone",
     "links":[
-      ".192",
+      "Nemesis",
       ".250"
     ]
   },
-  ".205":{
+  "Defiance":{
     "x":815,
     "y":423,
     "govt":"drone",
     "links":[
-      ".192",
+      "Nemesis",
       ".250",
       ".*11"
     ]
@@ -1434,9 +1434,9 @@
     "spobs": "Horizon",
     "links":[
       ".202",
-      ".203",
-      ".204",
-      ".205",
+      "Unrelenting",
+      "Victory",
+      "Defiance",
       ".261"
     ]
   },
@@ -1601,7 +1601,7 @@
     "govt":"drone",
     "links":[
       ".191",
-      ".203",
+      "Unrelenting",
       ".261",
       ".277*"
     ]
@@ -2808,7 +2808,7 @@
     "links":[
       "Novosibirsk",
       ".202",
-      ".205",
+      "Defiance",
       ".253",
       ".*12"
     ]
