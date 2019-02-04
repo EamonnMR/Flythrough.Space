@@ -251,25 +251,6 @@
     },
     "tech"           : {"itaskan":1}
   },
-  "sling": {
-    "name"           : "10mm Shield-exclusion sling",
-    "space"          : -10,
-    "desc"           : "Works much like a force shield, but in reverse. When charged, the generators force a projectile out of a narrow channel where it picks up enough speed to have a devastating impact by the end. Very effective at long range against slow ships, but won't be able to tag faster fighters since it's an unguided projectile.",
-    "price"          : 15000,
-    "weapon":        {
-      "sprite" : "sling",
-      "inaccuracy": 0.001,
-      "period": 4000,
-      "velocity": 0.001,
-      "proj": {
-        "shield_damage": 50,
-        "damage": 100,
-        "max_age": 10000,
-        "collider": {"radius": 2}
-      } 
-    },
-    "tech"           : {"itaskan": 2}
-  },
   "quarkgun":{
     "name"           : "One Mole Quarkgun",
     "space"          : -10,
