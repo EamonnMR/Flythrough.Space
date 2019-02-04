@@ -347,7 +347,7 @@
 	"Frontier Outpost V":{
 		"sType":"oeStation",
 		"govt":"fifth",
-		"text":"The nearest Fifth Fleet outpost to other civilizations, this old frontier outpost now guards against incursions from inner worlds, marking the border to what the Fifth Fleet would describe as the \"last remnants of the empire\".",
+		"text":"The nearest Fifth Fleet outpost to other civilizations, this old frontier outpost now guards against incursions from inner worlds, marking the border to what the Fifth Fleet would describe as the \"last remnants of the empire\" (and what others would call \"A haven for pirates\".",
 		"tech":{
 			"oe_wep":3,
 			"V":3

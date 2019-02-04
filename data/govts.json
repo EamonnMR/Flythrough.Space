@@ -45,7 +45,7 @@
   "fifth":{
     "name":"5th Fleet",
     "short_name": "FL - V",
-    "color":"#A52A2AFF",
+    "color":"#A83838FF",
     "dark_color":"#712020FF",
     "attack_default": true
   },
