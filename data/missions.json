@@ -96,10 +96,13 @@
       "sys": "baikon",
       "spob": "bukov"
     },
-    "pickup": "You touch down far outside of the fortress-spaceport that usually controls all traffic to and from this forsaken rock. Prisoners swarm into your hold, and a few are even clinging to the side of the ship as you take off. You hope they have the good sense to jump before you reach orbit. As you scream out of the atmosphere, you recieve a transmission.\n\"{{ player.ship_name }}, takeoff was not authorized. Power down your shields and prepare to be boarded.\" Your radar indicates that several imperial vessles are in high orbit, and if radar dots could look spoiling for a fight, they would.",
+    "pickup": "You touch down far outside of the fortress-spaceport that usually controls all traffic to and from this forsaken rock. Prisoners swarm into your hold, and a few are even clinging to the side of the ship as you take off. You hope they have the good sense to let go before you reach orbit. As you scream out of the atmosphere, you recieve a transmission.\n\"{{ player.ship_name }}, takeoff was not authorized. Power down your shields and prepare to be boarded.\" Your radar indicates that several imperial vessles are in high orbit, and if radar dots could look spoiling for a fight, they would.",
     "cargo": {
       "type": "prisoners",
       "amount": 20
     }
-  }
+  },
+  "itaskan_hook": {
+    "offer": "As you sit down in the bar, electronic music from the dancefloor covers the sound of some flight-suited astronauts approaching your table. Two of them have the gleaming helmets of Itaskan flight crew, while the man in the middle carries his. His appearance is paradoxically youthful but with a few very clear markers of age.\n\"{{ player.name }}, would you be interested in a perilous journey across known and unknown space?\" the middle man asks.",
+    "accept": "\"Wonderful\" says the well-preserved man \"My name is Professor Morton, but you can call me Tyrell. I've got a fairly sensative mission and your reputation precedes you. It's scientific in nature-natural history really. Our first stop will be nearby Baikon."
 }
