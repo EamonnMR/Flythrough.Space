@@ -777,5 +777,12 @@
     "y": 0,
     "govt": "hex",
     "text": "While an unremarkable, though habitable world in most respects, Lungus is notable as a sort of cradle of the League's way of life. It was this world which first had its debt (public and private) bought out by a consortium of megacorporations. While in theory they still had the option of paying down the debt, for all practical purposes they had become serfs to the League. This pattern was repeated across numerous worlds, often continents at a time."
+  },
+  "Prospero": {
+    "sprite": "accra",
+    "x": 0,
+    "y": 0,
+    "govt": "drone",
+    "text": "A terrestrial world that may have been habitable before its parent star, Nemisis, went red-giant. Airtight stations look out over the scarred, red-bathed magma plains. What activity there is on the surface mostly work that is cheaper to do in a gravity well than in orbit, and mining the precious, heavier metals that are unusually rich on its stripped crust."
   }
 }
