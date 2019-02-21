@@ -18,9 +18,9 @@ export function setup_system(scene, camera, entMan, system, hud, data, player_da
 
   let lights = [
     {
-      'name': 'sun',
-      'pos': {x: 0, y: 1, z: 0},
-      'intensity': .5
+      type: "hemi",
+      x: 0, y: 1, z: 0,
+      intensity: .5
     }
   ]
   
@@ -86,10 +86,20 @@ function enter_system(scene, entMan, planets, lights, ents) {
 };
 
 function lightFactory(data, scene){
-  let light = new BABYLON.HemisphericLight(data.name,
-      new BABYLON.Vector3(data.pos.x, data.pos.y, data.pos.z),
+  let light = null 
+  if(data.type = "hemi"){
+    light = new BABYLON.HemisphericLight(
+        "",
+        new BABYLON.Vector3(data.x, data.y, data.z),
+        scene
+    );
+  } else {
+    light = new BABYLON.DirectionalLight(
+      "",
+      new BABYLON.Vector3(data.x, data.y, data.z),
       scene
-  );
+    ); 
+  }
 
   light.intensity = data.intensity;
   
