@@ -1,5 +1,5 @@
 /* This is sort of the last corner where the code is still being left totally
- * messy. A bunch of this needs to be broken out into loader code, and the
+ pecular produces a highlight color on a
  * rest might be small enogh to move back to GameplaySystem
  *
  * Returns an array of models which 'belong' to the system rather than any
@@ -19,7 +19,7 @@ export function setup_system(scene, camera, entMan, system, hud, data, player_da
   let lights = [
     {
       type: "hemi",
-      x: 0, y: 1, z: 0,
+      position: [0,1,0],
       intensity: .5
     }
   ]
@@ -88,17 +88,32 @@ function enter_system(scene, entMan, planets, lights, ents) {
 function lightFactory(data, scene){
   let light = null 
   if(data.type = "hemi"){
+    // Useful nebula-adjacent systems where there's an ambient background
+
     light = new BABYLON.HemisphericLight(
         "",
-        new BABYLON.Vector3(data.x, data.y, data.z),
+        new BABYLON.Vector3(...data.position),
         scene
     );
   } else {
     light = new BABYLON.DirectionalLight(
       "",
-      new BABYLON.Vector3(data.x, data.y, data.z),
+      new BABYLON.Vector3(...data.position),
       scene
     ); 
+  }
+
+  if(data.diffuse){
+    light.diffuse = new BABYLON.Color3(...data.diffuse);
+  }
+
+  if(data.specular){
+    light.specular = new BABYLON.Color3(...data.specular);
+  }
+
+  if(data.obverse){
+    // Only matters for hemi lights
+    light.groundColor = new BABYLON.Color3(...data.obverse);
   }
 
   light.intensity = data.intensity;
