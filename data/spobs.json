@@ -776,7 +776,7 @@
     "x": 0,
     "y": 0,
     "govt": "hex",
-    "text": "While an unremarkable, though habitable world in most respects, Lungus is notable as a sort of cradle of the League's way of life. It was this world which first had its debt (public and private) bought out by a consortium of megacorporations. While in theory they still had the option of paying down the debt, for all practical purposes they had become serfs to the League. This pattern was repeated across numerous worlds, often continents at a time."
+    "text": "While an unremarkable, though habitable world in most respects, Traprain is notable as a sort of cradle of the League's way of life. It was this world which first had its debt (public and private) bought out by a consortium of megacorporations. While in theory they still had the option of paying down the debt, for all practical purposes they had become serfs to the League. This pattern was repeated across numerous worlds, often continents at a time."
   },
   "Prospero": {
     "sprite": "accra",
@@ -789,6 +789,6 @@
     "x": 30,
     "y": 10,
     "govt": "drone",
-    "The capital of Loyalist space. Seat of the Clonelord, though it's considered poor form for them to be outside of a starship when there's conquest to be done. The current Clonelord of the Loyal Suns has chaffed at the idea of lasting peace and taken every opportunity to skirmish with pirates and freeholders, so while it is still the bearucratic heart of the Loyal Suns, it's become passe to actually be seen here."
+    "text": "The capital of Loyalist space. Seat of the Clonelord, though it's considered poor form for them to be outside of a starship when there's conquest to be done. The current Clonelord of the Loyal Suns has chaffed at the idea of lasting peace and taken every opportunity to skirmish with pirates and freeholders, so while it is still the bearucratic heart of the Loyal Suns, it's become passe to actually be seen here."
   }
 }

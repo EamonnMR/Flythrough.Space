@@ -1,7 +1,7 @@
 {
   "direc":{
-    "name":"Casamance Directorate",
-    "short_name": "Cas. Direc.",
+    "name":"Casamance Freehold",
+    "short_name": "Freehold",
     "color":"#0000EDFF",
     "dark_color":"#101060FF",
     "foes": [
@@ -37,8 +37,8 @@
     "dark_color":"#003500FF"
   },
   "drone":{
-    "name":"Northern Empire",
-    "short_name": "N. Empire",
+    "name":"Loyal Suns",
+    "short_name": "Loyal.",
     "color":"#FF0000FF",
     "dark_color":"#DD1010FF"
   },
@@ -63,6 +63,11 @@
   "pirate": {
     "name": "Pirate",
     "short_name": "Pirate",
+    "attack_default": true
+  },
+  "baik": {
+    "name": "Baikonour Rebels",
+    "short_name": "Rebel",
     "attack_default": true
   }
 }
