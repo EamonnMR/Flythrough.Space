@@ -790,5 +790,11 @@
     "y": 10,
     "govt": "drone",
     "text": "The capital of Loyalist space. Seat of the Clonelord, though it's considered poor form for them to be outside of a starship when there's conquest to be done. The current Clonelord of the Loyal Suns has chaffed at the idea of lasting peace and taken every opportunity to skirmish with pirates and freeholders, so while it is still the bearucratic heart of the Loyal Suns, it's become passe to actually be seen here."
+  },
+  "Doabka": {
+    "x": 0,
+    "y": 0,
+    "govt": "hex",
+    "text": "The thin atmosphere and lack of water on Doabka have left its surface largely untouched by erosion, so the edges are sharp and the craters are plentiful. These conditions are perfect for extreme land vehicle racing, and some of the most exciting overland championships take place in Doabka's low gravity environ."
   }
 }
