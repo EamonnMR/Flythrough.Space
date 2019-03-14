@@ -791,10 +791,29 @@
     "govt": "drone",
     "text": "The capital of Loyalist space. Seat of the Clonelord, though it's considered poor form for them to be outside of a starship when there's conquest to be done. The current Clonelord of the Loyal Suns has chaffed at the idea of lasting peace and taken every opportunity to skirmish with pirates and freeholders, so while it is still the bearucratic heart of the Loyal Suns, it's become passe to actually be seen here."
   },
-  "Doabka": {
+  "Khadir": {
     "x": 0,
     "y": 0,
     "govt": "hex",
-    "text": "The thin atmosphere and lack of water on Doabka have left its surface largely untouched by erosion, so the edges are sharp and the craters are plentiful. These conditions are perfect for extreme land vehicle racing, and some of the most exciting overland championships take place in Doabka's low gravity environ."
+    "text": "The thin atmosphere and lack of water on Khadir have left its surface largely untouched by erosion, so the edges are sharp and the craters are plentiful. These conditions are perfect for extreme land vehicle racing, and some of the most exciting overland championships take place in Doabka's low gravity environ."
+  },
+  "Jagran": {
+    "x": 0,
+    "y": 0,
+    "govt": "hex",
+    "text": "With rich natural and human resources, the anchient homeworld of Jagran is a major player in League politics. Its best known export is probably mid-sized starships, prized for their build quality and attention to detail. The Khanda corporation, a major League partner company is responsible for this reputation. Khanda ships can be found for sale across the galaxy but the most sensative parts are assembled right here on Jagran.",
+    "tech": {
+      "khanda": 3
+    }
+  },
+  "Zhongshan": {
+    "x": 0,
+    "y": 0,
+    "govt": "hex",
+    "text": "Perhaps unique among homeworlds, the surface of Zongshan is extremely harsh with corrosive gasses, crushing pressure, and an unbreathable atmosphere. Rather than attempt to terraform it, a decision must have been made to avoid the problem entirely. Major cities dot Zhongshan, but they employ a unique solution to the atmosphere problem-they float above the deadly clouds with lighter-than-air volumes. Rather than pouring a foundation, the construction of a new building on Zhongshan begins with 'floating' and inflating a new volume. Before the advent of interstellar trade and export, 'surface-divers' where an unfortunate necessity, and though the practice is largely gone there is still quite a bit of pride among those who can trace their ancestry back to those who braved the death-clouds at the surface.",
+    "trade": {
+      "alloy": "high",
+      "grain": "high"
+    }
   }
 }

@@ -2207,13 +2207,14 @@
       "Ravi"
     ],
     "spobs": [
-      "Doabka"
+      "Khadir"
     ]
   },
   "Ravi":{
     "x":1481,
     "y":806,
     "govt":"hex",
+    "spobs": [ "Jagran" ],
     "links":[
       "Jhelum",
       "Ludhiana",
@@ -2303,6 +2304,7 @@
     "x":1811,
     "y":991,
     "govt":"hex",
+    "spobs": [ "Zhongshan" ],
     "links":[
       "Anyuan",
       "Kirchner",
