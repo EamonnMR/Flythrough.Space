@@ -670,7 +670,7 @@
     "links":[
       "Kiriyenko",
       "Rybak",
-      "Dnipropetrovsk"
+      "Contra Costa"
     ]
   },
   "Rybak":{
@@ -696,7 +696,7 @@
       "Intrepid"
     ]
   },
-  "Dnipropetrovsk":{
+  "Contra Costa":{
     "x":1017,
     "y":588,
     "govt":"drone",
@@ -713,7 +713,7 @@
     "govt":"drone",
     "links":[
       ".181",
-      "Dnipropetrovsk",
+      "Contra Costa",
       ".*11",
       ".*12"
     ]
@@ -916,7 +916,7 @@
     "y":623,
     "govt":"drone",
     "links":[
-      "Dnipropetrovsk",
+      "Contra Costa",
       "Khust"
     ]
   },
@@ -2861,7 +2861,7 @@
     "govt":"drone",
     "links":[
       "Rybak",
-      "Dnipropetrovsk",
+      "Contra Costa",
       ".197",
       "Latyshev"
     ]
