@@ -815,5 +815,20 @@
       "alloy": "high",
       "grain": "high"
     }
+  },
+  "Hoosac":{
+    "x": 0,
+    "y": 0,
+    "govt": "drone",
+    "text": "A geologically active world may not be dangerous for the obvious reasons. While earthquakes and eruptions certainly pose threats, the ash clouds that cover the sky and uneroded badlands that scar the surface are the real thorn in the side of Loyal Suns marines stationed here. Generations of guerilla warfare have hardened the hearts and hands of the people who still cling to independance here. It is widely considered to be ungovornable, as the long line of unfortunate planetary govorners will tell you.",
+    "trade": {
+      "small_arms": "high"
+    }
+  },
+  "Hoosac Orbital":{
+    "x": 10,
+    "y": 3,
+    "govt": "drone",
+    "text": "To say that Housatonic is considered a bad post is an understatement. The surface is so treacherous that to keep a foothold, they've constructed an entire orbital to support ground bases. Fat lot of good it does, however, when an eruption makes orbital drop and recovery impossible."
   }
 }

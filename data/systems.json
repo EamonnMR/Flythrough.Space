@@ -865,7 +865,7 @@
     "govt":"drone",
     "links":[
       "Resolute",
-      ".198",
+      "Housatonic",
       ".*31"
     ]
   },
@@ -875,11 +875,11 @@
     "govt":"drone",
     "links":[
       ".195",
-      ".198",
+      "Housatonic",
       "Khabarovsk"
     ]
   },
-  ".198":{
+  "Housatonic":{
     "x":1211,
     "y":365,
     "govt":"drone",
@@ -888,6 +888,10 @@
       ".197",
       "Latyshev",
       ".*20"
+    ],
+    "spobs":[
+      "Hoosac",
+      "Hoosac Orbital"
     ]
   },
   ".199":{
@@ -2289,7 +2293,7 @@
     ]
   },
   "Horace-Mann":{
-    "x":1983,
+    "x"Housatonic3,
     "y":1011,
     "spobs":[
       "Encroachment Rein"
@@ -2485,7 +2489,7 @@
   },
   ".354":{
     "x":393,
-    "y":1988,
+    "y"Housatonic8,
     "spobs":[
       "Deimos"
     ],
@@ -2874,7 +2878,7 @@
       "Kalush"
     ],
     "links":[
-      ".198",
+      "Housatonic",
       ".199",
       "Khabarovsk",
       "Khloponin"
@@ -2930,7 +2934,7 @@
     "x":1292,
     "y":309,
     "links":[
-      ".198",
+      "Housatonic",
       ".307",
       ".*16"
     ]
