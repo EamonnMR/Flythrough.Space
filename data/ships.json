@@ -568,8 +568,8 @@
     "max_shields": 200
   },
    "ne_heavyfi"      :{
-    "short_name"  : "LS Thunder",
-    "long_name"   : "LS Thunder fighter",
+    "short_name"  : "LS Tandem",
+    "long_name"   : "LS Tandem fighter",
     "full_name"   : "Loyal Suns Heavy Starfighter Type 1153 rev C",
     "desc"       : "The Thunder is the legendary staple fighter of the Northern Empire, known and respected across the sector. There is a direct and obvious line between the OE fighter and this ship, with similar intake ramscoops and essentially the same rocket engines, just scaled up. Many describe it as \"the OE fighter, perfected.\", but there are of course some tradeoffs. It isn't quite as nimble and it's quite a bit more expensive and takes up more room on a flight deck, so they can't field as many. And there is certainly a smaller back-stock of parts, engieneers feeling less constrained to maintain compatability with generations-old designs.",
     "weapons"    : {},
@@ -586,9 +586,9 @@
     "max_shields": 125
   },
   "neVette":{
-    "short_name"  : "LS Nimbus.",
-    "long_name"   : "LS Numbus Corvette",
-    "full_name"   : "LS Corvette Type 1160",
+    "short_name"  : "LS Endurer",
+    "long_name"   : "LS Endurer Corvette",
+    "full_name"   : "Loyal Suns Corvette Type 1160",
     "desc"       : "Designed to work in concert with the generally lighter and more agile (both tactically and strategiclly) fleets of the Northern Empire, the Nimbus is a multi-role ship, making dangerous supply runs, bringing additional heat in firefights, and running back-water patrols.",
     "weapons"    : {},
     "upgrades"    : {"ne_beam": 2, "antigun": 4, "ejectorrack": 2, "guidedmissile": 20},
@@ -605,9 +605,9 @@
   },
   "nebattleship"      :{
     "icon"       : "img/onyx/Onyx/thumb/redfrigate.bmp",
-    "short_name"  : "LS Tiger",
-    "long_name"   : "LS Tiger battleship",
-    "full_name"   : "LS Battleship Type 1200",
+    "short_name"  : "LS Retaliator",
+    "long_name"   : "LS Retaliator battleship",
+    "full_name"   : "LS Battleship Type 1200 (\"Retaliator\")",
     "desc"       : "This new and very modern warship is designed along the lines of a fighter rather than a frigate. There's something ideological here, the primacy of the starship pilot, of visceral combat, that gets at the heart of the Loyalist psyche. It's the largest ship in the galaxy where the captain's chair is also the pilot's seat. Its self sufficiency, another doctrinal holdover from conquering uncontacted planets, is key to its success; they can operate totally independandly of the rest of the fleet, and support wings of deep-striking heavy fighters.",
     "weapons"    : {},
     "upgrades"    : {"ne_beam": 2, "plasma200":2, "antigun": 2},
@@ -625,10 +625,10 @@
     
   "necruiser"  :{
     "icon"       : "img/Meowx/redcru_icon.png",
-    "short_name"  : "LS Battlecruiser",
-    "long_name"   : "LS Battlecruiser",
-    "full_name"   : "LS Type 1159 Heavy Battleship",
-    "desc"       : "The enormous Loyal Suns battlecruiser was built to replace the aging fleet of type 930s, which where barely large enough to accomodate the new heavy fighters. Though heavy fighters and battleships can operate deep in enemey territory for extended periods, the value of having a home base and firebase has been long recognized. Unfortunately, the price tag on a LS battleship has scaled up with the size, and very few have been launched, which has drawn criticisim when it is compared to the widely deployed League carrier. The designers, however, maintain that this ship is in a tier of its own, and should not be compared to the vastly converted freighter. The Supreme Comissar of the Loyal Suns fleet herself commands one of these monsters, as does the Lord Clone himself.",
+    "short_name"  : "LS Absolver",
+    "long_name"   : "LS Absolver",
+    "full_name"   : "Loyal Suns Type 1159 Heavy Battleship",
+    "desc"       : "The enormous Loyal Suns battlecruiser was built to replace the aging fleet of type 930s, which where barely large enough to accomodate the new heavy fighters. Though heavy fighters and battleships can operate deep in enemey territory for extended periods, the value of having a home base and firebase has been long recognized. Unfortunately, the price tag on an Absolver has scaled up with the size, and very few have been launched, which has drawn criticisim when it is compared to the widely deployed League carrier. The designers, however, maintain that this ship is in a tier of its own, and should not be compared to the vastly converted freighter. The Supreme Comissar of the Loyal Suns fleet herself commands one of these monsters, as does the Lord Clone himself.",
     "upgrades"    : {"ne_beam": 4, "plasma200":2, "antigun": 2},
     "rotation"  : 0.01,
     "accel"      : 0.0001,
