@@ -830,5 +830,20 @@
     "y": 3,
     "govt": "drone",
     "text": "To say that Housatonic is considered a bad post is an understatement. The surface is so treacherous that to keep a foothold, they've constructed an entire station to support ground bases. Fat lot of good it does, however, when an eruption makes orbital drop and recovery impossible."
-  }
+  },
+  "Agra": {
+    "x": -7,
+    "y": 5,
+    "govt": "hex",
+    "trade": {
+      "food": "low"
+    },
+    "text": "Agra's reputation is built almost entirely on food. There is plenty of produce for export, of course, but any local will tell you that the very best way to consume that produce is on-world, at one of the many fine eating establishments. The trick is the spices, sourced (again, locally) from equitorial environs and brought by heavy-lift airship to the spaceports of the northern pole, where the capital is located."
+  },
+  "Reddy":{
+    "x": 3,
+    "y": -6,
+    "govt": "hex",
+    "text": "Reddy is a small, low-gravity backwater world. Unable to trap an atmosphere, Reddy's cities are under brilliant domes which are lit different colors for various festivals and can be seen from the sky like little ornaments."
+  } 
 }

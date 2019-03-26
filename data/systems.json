@@ -310,6 +310,10 @@
     "x":1264,
     "y":903,
     "govt":"hex",
+    "spobs": [
+      "Agra",
+      "Reddy"
+    ],
     "links":[
       "Holcomb",
       "Pyatigorsk",
