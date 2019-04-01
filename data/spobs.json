@@ -845,5 +845,11 @@
     "y": -6,
     "govt": "hex",
     "text": "Reddy is a small, low-gravity backwater world. Unable to trap an atmosphere, Reddy's cities are under brilliant domes which are lit different colors for various festivals and can be seen from the sky like little ornaments."
-  } 
+  },
+ "Morcia": {
+   "x": 0,
+   "y": 0,
+   "govt": "drone",
+   "text": "There are two distinct civilizations on Morcia, frequently at each other's throats. One of them, the one you can land and trade at, has contact with the outside galaxy and is aligned with the Loyal Suns. The other, reclusive civilization has resisted direct dealings with spacefarers thus far."
+ }
 }
