@@ -51,7 +51,6 @@ export function create_composite_model(ship, data){
   let mesh_count = 0;
 
 
-
   if(ship.model.skeleton && ship.weapon_small){
     let bone_map = get_bone_group(ship.model.skeleton, "weapon_small_");
     if(bone_map.length > 0){
@@ -68,8 +67,8 @@ export function create_composite_model(ship, data){
           // Note that the Y and Z are transposed here.
           // Otherwise it comes out wrong. Something something rotation.
           let position = bone_map[weapon_index].getPosition(); 
-          weapon.model.translate(BABYLON.Axis.X, position.x, BABYLON.Space.LOCAL);
-          weapon.model.translate(BABYLON.Axis.Y, position.Y, BABYLON.Space.LOCAL);
+          weapon.model.translate(BABYLON.Axis.X, - position.x, BABYLON.Space.LOCAL);
+          weapon.model.translate(BABYLON.Axis.Y, position.y, BABYLON.Space.LOCAL);
           weapon.model.translate(BABYLON.Axis.Z, position.z, BABYLON.Space.LOCAL);
 
           // Reparent to the mesh to follow
