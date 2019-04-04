@@ -42,6 +42,39 @@ export function uni_game_camera(scene){
 
 export let get_game_camera = uni_game_camera;
 
+function attach_mesh_to_bone(base_mesh, component_mesh, target_bone){
+  // http://www.html5gamedevs.com/topic/1759-attaching-object-to-bone/
+  let matricesWeights =[];
+  let floatIndices =[];
+  // TODO: We can probably just pass a bone object to get the index
+  let bone_index =-1;	// Find bone's Index
+  for (let i=0; i < base_mesh.skeleton.bones.length; i++)	{
+    if (base_mesh.skeleton.bones[i].name == target_bone){
+        bone_index = i;
+        break;
+    }
+  }
+  if (bone_index === -1) {
+    console.error("Unable to find bone : "+boneName);
+    return;
+  }
+  // Build matrices and indices buffers.
+  for (let i=0; i < component_mesh._totalVertices; i++)	{
+		matricesWeights[i*4+0]=1.0;
+    matricesWeights[i*4+1]=0.0;
+    matricesWeights[i*4+2]=0.0;	
+    matricesWeights[i*4+3]=0.0;
+    floatIndices[i*4+0]=bone_index;
+    floatIndices[i*4+1]=bone_index;
+    floatIndices[i*4+2]=bone_index;
+    floatIndices[i*4+3]=bone_index;
+  }
+  // Mounting the object on the skeleton
+  component_mesh.skeleton = base_mesh.skeleton;
+  component_mesh.setVerticesData(matricesWeights, BABYLON.VertexBuffer.MatricesWeightsKind, false);
+  component_mesh.setVerticesData(floatIndices, BABYLON.VertexBuffer.MatricesIndicesKind, false);
+}
+
 export function create_composite_model(ship, data){
   // Create a ship's model out of the base mesh of the ship
   // plus the meshes of any attached upgrades.
