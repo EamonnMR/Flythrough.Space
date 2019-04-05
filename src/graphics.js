@@ -14,11 +14,12 @@ let CAM_OFFSET = new BABYLON.Vector3(0, 40, 30);
 export function get_bone_group(skeleton, prefix){
   // Get a group of bones with the same prefix
   let bone_group = [];
-  skeleton.bones.forEach((bone) => {
-    if(bone.name.startsWith(prefix)){
-      bone_group.push(bone);
+  for(let i = 0; i < skeleton.bones.length; i++){
+    let bone = skeleton.bones[i];
+    if (bone.name.startsWith(prefix)){
+      bone_group.push({bone: bone, index: i});
     }
-  });
+  }
 
   return bone_group;
 };
@@ -42,39 +43,6 @@ export function uni_game_camera(scene){
 
 export let get_game_camera = uni_game_camera;
 
-function attach_mesh_to_bone(base_mesh, component_mesh, target_bone){
-  // http://www.html5gamedevs.com/topic/1759-attaching-object-to-bone/
-  let matricesWeights =[];
-  let floatIndices =[];
-  // TODO: We can probably just pass a bone object to get the index
-  let bone_index =-1;	// Find bone's Index
-  for (let i=0; i < base_mesh.skeleton.bones.length; i++)	{
-    if (base_mesh.skeleton.bones[i].name == target_bone){
-        bone_index = i;
-        break;
-    }
-  }
-  if (bone_index === -1) {
-    console.error("Unable to find bone : "+boneName);
-    return;
-  }
-  // Build matrices and indices buffers.
-  for (let i=0; i < component_mesh._totalVertices; i++)	{
-		matricesWeights[i*4+0]=1.0;
-    matricesWeights[i*4+1]=0.0;
-    matricesWeights[i*4+2]=0.0;	
-    matricesWeights[i*4+3]=0.0;
-    floatIndices[i*4+0]=bone_index;
-    floatIndices[i*4+1]=bone_index;
-    floatIndices[i*4+2]=bone_index;
-    floatIndices[i*4+3]=bone_index;
-  }
-  // Mounting the object on the skeleton
-  component_mesh.skeleton = base_mesh.skeleton;
-  component_mesh.setVerticesData(matricesWeights, BABYLON.VertexBuffer.MatricesWeightsKind, false);
-  component_mesh.setVerticesData(floatIndices, BABYLON.VertexBuffer.MatricesIndicesKind, false);
-}
-
 export function create_composite_model(ship, data){
   // Create a ship's model out of the base mesh of the ship
   // plus the meshes of any attached upgrades.
@@ -85,11 +53,11 @@ export function create_composite_model(ship, data){
 
 
   if(ship.model.skeleton && ship.weapon_small){
-    let bone_map = get_bone_group(ship.model.skeleton, "weapon_small_");
+    let bone_map = get_bone_group(ship.model.skeleton, "turret_");
     if(bone_map.length > 0){
       let weapon_index = 0;
       for(let weapon of ship.weapons){
-        if(weapon.mesh && weapon_index < ship.weapon_small){
+        if(weapon.mesh && weapon_index < ship.weapon_small && weapon_index < bone_map.length){
           let weapon_mesh = data.get_mesh(weapon.mesh);
           weapon.model = weapon_mesh;
           // TODO: This is kinda hacky and I'm not a huge fan of it
@@ -99,13 +67,16 @@ export function create_composite_model(ship, data){
           // Translate to the bone's offset
           // Note that the Y and Z are transposed here.
           // Otherwise it comes out wrong. Something something rotation.
-          let position = bone_map[weapon_index].getPosition(); 
-          weapon.model.translate(BABYLON.Axis.X, - position.x, BABYLON.Space.LOCAL);
-          weapon.model.translate(BABYLON.Axis.Y, position.y, BABYLON.Space.LOCAL);
-          weapon.model.translate(BABYLON.Axis.Z, position.z, BABYLON.Space.LOCAL);
+          //let position = bone_map[weapon_index].bone.getPosition(); 
+          //weapon.model.translate(BABYLON.Axis.X, - position.x, BABYLON.Space.LOCAL);
+          //weapon.model.translate(BABYLON.Axis.Y, position.y, BABYLON.Space.LOCAL);
+          //weapon.model.translate(BABYLON.Axis.Z, position.z, BABYLON.Space.LOCAL);
 
           // Reparent to the mesh to follow
           weapon.model.parent = ship.model;
+          attach_mesh_to_bone(ship.model, weapon.model, bone_map[weapon_index].index);
+          debugger
+          weapon.model.attachToBone(bone_map[weapon_index].bone, ship.model)
           weapon.model.visibility = 1;
 
           weapon_index += 1;
@@ -123,7 +94,7 @@ export function chaseCameraFollowSystem (entMan) {
     entity.camera.rotationOffset = 180 * (entity.direction / Math.PI);
   }
 };
-let pragma_once = true;
+
 export function uniCameraFollowSystem(entMan){
   for (let entity of entMan.get_with(['model', 'camera'])) {
     entity.camera.position = entity.model.position.add(CAM_OFFSET);
