@@ -10,6 +10,7 @@
 export class Data {
   constructor (){
     this.models = {};
+    this.model_metadata = {};
     this.images = {};
     this.textures = {};
     this.spobs = null;
@@ -24,14 +25,18 @@ export class Data {
     let clone = null;  // TODO: Put a cube in here
     if (name in this.models){
       let model = this.models[name];
-      clone = model.clone();
-      if(model.skeleton){
-        clone.skeleton = model.skeleton.clone("clone");
+      clone = model.mesh.clone();
+      if(model.mesh.skeleton){
+        clone.skeleton = model.mesh.skeleton.clone("clone");
       }
     } else { // Default for ships with no mesh
-      clone = this.models["shuttle"].clone();
+      clone = this.models["shuttle"].mesh.clone();
     }
     return clone;
+  }
+
+  get_mesh_meta(name){
+    return this.models[name];
   }
 
   get_sprite_mgr(name){
@@ -74,12 +79,21 @@ function load_assets( source_json, scene, data, finish_callback ){
   let manager = new BABYLON.AssetsManager(scene);
   
   for (let key in source_json.meshes) {
+    let meta_blob = source_json.meshes[key];
     let model_task = manager.addMeshTask(key + '_task',
-        "", "assets/",  source_json.meshes[key]);
+        "", "assets/",  meta_blob.file);
+    data.models[key] = meta_blob;
     model_task.onSuccess = (task) => {
       let mesh = task.loadedMeshes[0]; // TODO: Multimesh files
       mesh.visibility = 0; // Make the clone visible when you're ready for it
-      data.models[key] = mesh;
+      let meta_blob = data.models[key];
+      meta_blob.mesh = mesh;
+      if(mesh.skeleton){
+        meta_blob.bone_map = {};
+        for(let i = 0; i < mesh.skeleton.bones.length; i++){
+          meta_blob.bone_map[mesh.skeleton.bones[i].name] = i
+        }
+      }
     }
 
     model_task.onError = (task) => {

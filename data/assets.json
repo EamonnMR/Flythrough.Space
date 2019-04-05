@@ -1,25 +1,33 @@
 {
   "dir": "assets/",
   "meshes": {
-    "shuttle": "shuttle.babylon",
-    "oe_fi": "empfi.babylon",
-    "heavy_fi": "khanda_heavy.babylon",
-    "light_fi": "light_fighter.babylon",
-    "it_clipper": "itaskan_corvette.babylon",
-    "nightshade": "nightshade.babylon",
-    "oe_carrier": "oe_carrier.babylon",
-    "it_mask": "itaskan_something.babylon",
-    "perigrine": "perigrine.babylon",
-    "hemlock": "hemlock.babylon",
-    "starhawk": "starhawk.babylon",
-    "vera": "vera.babylon",
-    "starhawk": "starhawk.babylon",
-    "cas_fighter": "casamance_fighter.babylon",
-    "cas_carrier": "casamance_carrier.babylon",
-    "cas_corv": "casamance_corv.babylon",
-    "oxana": "oxana.babylon",
-    "courier": "courier.babylon",
-    "plasma_cannon": "plasma_cannon.babylon"
+    "shuttle": {
+      "file": "shuttle.babylon",
+      "turrets": {
+        "turret_1": [
+          "weapon_1",
+          "weapon_2"
+        ]
+      }
+    },
+    "oe_fi": {"file": "empfi.babylon"},
+    "heavy_fi": {"file": "khanda_heavy.babylon"},
+    "light_fi": {"file": "light_fighter.babylon"},
+    "it_clipper": {"file": "itaskan_corvette.babylon"},
+    "nightshade": {"file": "nightshade.babylon"},
+    "oe_carrier": {"file": "oe_carrier.babylon"},
+    "it_mask": {"file": "itaskan_something.babylon"},
+    "perigrine": {"file": "perigrine.babylon"},
+    "hemlock": {"file": "hemlock.babylon"},
+    "starhawk": {"file": "starhawk.babylon"},
+    "vera": {"file": "vera.babylon"},
+    "starhawk": {"file": "starhawk.babylon"},
+    "cas_fighter": {"file": "casamance_fighter.babylon"},
+    "cas_carrier": {"file": "casamance_carrier.babylon"},
+    "cas_corv": {"file": "casamance_corv.babylon"},
+    "oxana": {"file": "oxana.babylon"},
+    "courier": {"file": "courier.babylon"},
+    "plasma_cannon": {"file": "plasma_cannon.babylon"}
   },
   "sprites": {
     "plasma": {
