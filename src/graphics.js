@@ -7,8 +7,8 @@
 // Z      --> Y
 
 const SHIP_Y = -2;
-const PLANET_SCALE = 15;
-const PLANET_Y = -10;
+const PLANET_SCALE = 15;  // TODO: Noticing that differently sized planet sprites end up being the same screen-space size. Weird.
+const PLANET_Y = -10;  // TODO: Shots are still being drawn under planets for some reason
 let CAM_OFFSET = new BABYLON.Vector3(0, 40, 30);
 
 export function get_bone_group(skeleton, prefix){
@@ -43,47 +43,72 @@ export function uni_game_camera(scene){
 
 export let get_game_camera = uni_game_camera;
 
+function mount_weapon_on_bone(weapon_model, parent_model, bone_index){
+  weapon.model = weapon_mesh;
+  
+  // Translate to the bone's offset
+  // Note that the Y and Z are transposed here.
+  // Otherwise it comes out wrong. Something something rotation.
+  let position = parent_model.skeleton[bone_index].getPosition(); 
+  weapon.model.translate(BABYLON.Axis.X, - position.x, BABYLON.Space.LOCAL);
+  weapon.model.translate(BABYLON.Axis.Y, position.y, BABYLON.Space.LOCAL);
+  weapon.model.translate(BABYLON.Axis.Z, position.z, BABYLON.Space.LOCAL);
+
+  // Reparent to the mesh to follow
+  weapon.model.parent = parent_model;
+  weapon.model.visibility = 1;
+
+  return weapon_model;
+}
+
+
+function mount_turreted_weapons(model_meta, data, ship_model, weapon_index, weapons){
+  if("turrets" in model_meta){
+    for(let turret of model_meta.turrets){
+      for(let bone_name of model_meta.turrets.mounts){
+        if(weapon_index > weapons.length){
+          return;
+        }
+
+        let weapon = ship.weapons[weapon_index];
+        weapon.model = data.get_mesh(weapon.mesh);
+        mount_weapon_on_bone(weapon.model, ship_model, model_meta.bone_map[bone_name]);
+
+        weapon.model.attachToBone(model_meta.bone_map[turret], ship.model);
+        weapon.model.visibility = 1;
+        weapon_index ++;
+      }
+    }
+  }
+}
+   
+
 export function create_composite_model(ship, data){
   // Create a ship's model out of the base mesh of the ship
   // plus the meshes of any attached upgrades.
   //
   // Hurray for justifying the creation of this entire game!
   ship.model = data.get_mesh(ship.mesh);
-  let mesh_count = 0;
+  let model_meta = data.get_mesh_meta(ship.mesh);
 
+  let weapon_index = 0;  // Note that this index is used for both loops, not reset
 
-  if(ship.model.skeleton && ship.weapon_small){
-    let bone_map = get_bone_group(ship.model.skeleton, "turret_");
-    if(bone_map.length > 0){
-      let weapon_index = 0;
-      for(let weapon of ship.weapons){
-        if(weapon.mesh && weapon_index < ship.weapon_small && weapon_index < bone_map.length){
-          let weapon_mesh = data.get_mesh(weapon.mesh);
-          weapon.model = weapon_mesh;
-          // TODO: This is kinda hacky and I'm not a huge fan of it
-          // There's got to be a saner way to do this (ie attachToBone)
-          // but thus far they've all had holdups.
-          
-          // Translate to the bone's offset
-          // Note that the Y and Z are transposed here.
-          // Otherwise it comes out wrong. Something something rotation.
-          //let position = bone_map[weapon_index].bone.getPosition(); 
-          //weapon.model.translate(BABYLON.Axis.X, - position.x, BABYLON.Space.LOCAL);
-          //weapon.model.translate(BABYLON.Axis.Y, position.y, BABYLON.Space.LOCAL);
-          //weapon.model.translate(BABYLON.Axis.Z, position.z, BABYLON.Space.LOCAL);
-
-          // Reparent to the mesh to follow
-          weapon.model.parent = ship.model;
-          attach_mesh_to_bone(ship.model, weapon.model, bone_map[weapon_index].index);
-          debugger
-          weapon.model.attachToBone(bone_map[weapon_index].bone, ship.model)
-          weapon.model.visibility = 1;
-
-          weapon_index += 1;
-        }
+  // Fixed
+  if("fixed" in model_meta){
+    for(let bone_name of model_meta.fixed){
+      if (weapon_index > ship.weapons.length){
+        break;
       }
+      let weapon = ship.weapons[weapon_index] 
+      weapon.model = data.get_mesh(weapon.mesh);
+      mount_weapon_on_bone(weapon.model, ship.model, model_meta.bone_map[bone_name]);
+      weapon.model.visibility = 1;
+      weapon_index ++;
     }
   }
+
+  // Turreted
+  mount_turreted_weapons(model_meta, data, ship.model, weapon_index, ship.weapons)
 
   ship.model.visibility = 1;
 };
@@ -119,7 +144,7 @@ export function modelPositionSystem (entMan) {
   }
 };
 
-
+/* TODO: Why is this here? vestigial code from a refactor? Is this being used? */
 function count_npcs(entMan){
   // Counts the number of NPC ships in the system
   // If there's a bug with the spawner, it may be that
