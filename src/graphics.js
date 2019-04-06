@@ -44,44 +44,47 @@ export function uni_game_camera(scene){
 export let get_game_camera = uni_game_camera;
 
 function mount_weapon_on_bone(weapon_model, parent_model, bone_index){
-  weapon.model = weapon_mesh;
-  
   // Translate to the bone's offset
   // Note that the Y and Z are transposed here.
   // Otherwise it comes out wrong. Something something rotation.
-  let position = parent_model.skeleton[bone_index].getPosition(); 
-  weapon.model.translate(BABYLON.Axis.X, - position.x, BABYLON.Space.LOCAL);
-  weapon.model.translate(BABYLON.Axis.Y, position.y, BABYLON.Space.LOCAL);
-  weapon.model.translate(BABYLON.Axis.Z, position.z, BABYLON.Space.LOCAL);
+  let position = parent_model.skeleton.bones[bone_index].getPosition(); 
+  weapon_model.translate(BABYLON.Axis.X, - position.x, BABYLON.Space.LOCAL);
+  weapon_model.translate(BABYLON.Axis.Y, position.y, BABYLON.Space.LOCAL);
+  weapon_model.translate(BABYLON.Axis.Z, position.z, BABYLON.Space.LOCAL);
 
   // Reparent to the mesh to follow
-  weapon.model.parent = parent_model;
-  weapon.model.visibility = 1;
-
-  return weapon_model;
+  weapon_model.parent = parent_model;
 }
 
 
-function mount_turreted_weapons(model_meta, data, ship_model, weapon_index, weapons){
+function mount_turreted_weapons(model_meta, data, ship, weapon_index){
   if("turrets" in model_meta){
+    ship.turrets = []
     for(let turret of model_meta.turrets){
-      for(let bone_name of model_meta.turrets.mounts){
-        if(weapon_index > weapons.length){
+      let associated_weapons = []
+      for(let bone_name of turret.mounts){
+        if(weapon_index > ship.weapons.length){
           return;
         }
 
         let weapon = ship.weapons[weapon_index];
         weapon.model = data.get_mesh(weapon.mesh);
-        mount_weapon_on_bone(weapon.model, ship_model, model_meta.bone_map[bone_name]);
+        mount_weapon_on_bone(weapon.model, ship.model, model_meta.bone_map[bone_name]);
 
         weapon.model.attachToBone(model_meta.bone_map[turret], ship.model);
         weapon.model.visibility = 1;
+        associated_weapons.push(weapon_index);
         weapon_index ++;
       }
+      ship.turrets.push({
+        "bone": ship.model.skeleton.bones[model_meta.bone_map[turret]],
+        "mounted_weapons": associated_weapons,
+        "max_angle": null,
+        "min_angle": null,
+      });
     }
   }
-}
-   
+} 
 
 export function create_composite_model(ship, data){
   // Create a ship's model out of the base mesh of the ship
@@ -108,7 +111,7 @@ export function create_composite_model(ship, data){
   }
 
   // Turreted
-  mount_turreted_weapons(model_meta, data, ship.model, weapon_index, ship.weapons)
+  mount_turreted_weapons(model_meta, data, ship, weapon_index)
 
   ship.model.visibility = 1;
 };
