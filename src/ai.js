@@ -4,7 +4,7 @@ import { get_bone_group } from "./graphics.js";
 
 const ARC = Math.PI * 2;
 
-const TURN_MIN = Math.PI / 25;
+const TURN_MIN = Math.PI / 75;
 
 // For a more interesting game, these should probably be ship properties.
 // Might not be crazy to calculate them based on the ship's stats and allow
@@ -253,7 +253,9 @@ function engage(entity, target, delta_time, entMan){
 };
 
 export function turretPointSystem (entMan) {
-  // TODO: 
+  // TODO: This should be calculated per-turret from the turret's origin
+  // Code to actually rotate the turret graphic should live in graphics.js
+  // Torn about where to keep the rotation state.
   const TURRET_ROT_SPEED = Math.PI / 50; // TODO: Make attribute of ship
   for(let entity of entMan.get_with(['model'])) {
     if(entity.model.skeleton){
@@ -261,15 +263,16 @@ export function turretPointSystem (entMan) {
         // In this case we want to track the target
         let target = entMan.get(entity.target);
         if(target){
-          for(let bone of get_bone_group(entity.model.skeleton, "turret")){
+          let turrets = get_bone_group(entity.model.skeleton, "turret");
+          for(let turret of turrets){
             // Crude method: point all turrets at the same angle
             // (ie no convergence)
-            let current_angle = (entity.direction - bone.rotation.y ) % ARC; 
+            let current_angle = (entity.direction - turret.bone.rotation.y ) % ARC; 
             let turn = constrained_point(target.position, current_angle, entity.position, TURRET_ROT_SPEED); 
             // Small amount of dampening to prevent jitter
-            //if( Math.abs(turn) > TURN_MIN ){
-              bone.rotate(BABYLON.Axis.Y, -1 *  turn, BABYLON.Space.LOCAL);
-            //}
+            if( Math.abs(turn) > TURN_MIN ){
+              turret.bone.rotate(BABYLON.Axis.Y, -1 *  turn, BABYLON.Space.LOCAL);
+            }
           }
         }
       }
