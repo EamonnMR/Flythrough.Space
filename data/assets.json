@@ -3,12 +3,15 @@
   "meshes": {
     "shuttle": {
       "file": "shuttle.babylon",
-      "turrets": {
-        "turret_1": [
-          "weapon_1",
-          "weapon_2"
-        ]
-      }
+      "turrets":[
+        {
+          "bone": "turret_1",
+          "mounts": [
+            "weapon_1",
+            "weapon_2"
+          ]
+        }   
+      ]
     },
     "oe_fi": {"file": "empfi.babylon"},
     "heavy_fi": {"file": "khanda_heavy.babylon"},
