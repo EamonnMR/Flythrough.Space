@@ -71,7 +71,7 @@ function mount_turreted_weapons(model_meta, data, ship, weapon_index){
         weapon.model = data.get_mesh(weapon.mesh);
         mount_weapon_on_bone(weapon.model, ship.model, model_meta.bone_map[bone_name]);
 
-        weapon.model.attachToBone(model_meta.bone_map[turret], ship.model);
+        weapon.model.attachToBone(ship.model.skeleton.bones[model_meta.bone_map[turret.bone]], ship.model);
         weapon.model.visibility = 1;
         associated_weapons.push(weapon_index);
         weapon_index ++;
@@ -96,23 +96,27 @@ export function create_composite_model(ship, data){
 
   let weapon_index = 0;  // Note that this index is used for both loops, not reset
 
-  // Fixed
-  if("fixed" in model_meta){
-    for(let bone_name of model_meta.fixed){
-      if (weapon_index > ship.weapons.length){
-        break;
+  // Eventually all models should have something for this, and we can 86 the test
+  
+  if (model_meta){
+
+    // Fixed
+    if("fixed" in model_meta){
+      for(let bone_name of model_meta.fixed){
+        if (weapon_index > ship.weapons.length){
+          break;
+        }
+        let weapon = ship.weapons[weapon_index] 
+        weapon.model = data.get_mesh(weapon.mesh);
+        mount_weapon_on_bone(weapon.model, ship.model, model_meta.bone_map[bone_name]);
+        weapon.model.visibility = 1;
+        weapon_index ++;
       }
-      let weapon = ship.weapons[weapon_index] 
-      weapon.model = data.get_mesh(weapon.mesh);
-      mount_weapon_on_bone(weapon.model, ship.model, model_meta.bone_map[bone_name]);
-      weapon.model.visibility = 1;
-      weapon_index ++;
     }
+
+    // Turreted
+    mount_turreted_weapons(model_meta, data, ship, weapon_index)
   }
-
-  // Turreted
-  mount_turreted_weapons(model_meta, data, ship, weapon_index)
-
   ship.model.visibility = 1;
 };
 
