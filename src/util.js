@@ -52,7 +52,7 @@ export function get_text(){
   let text = new BABYLON.GUI.TextBlock();
   text.color = "White";
   text.text = "";
-  text.font_family = "Sans";
+  text.fontFamily = "Sans";
   return text;
 }
 
