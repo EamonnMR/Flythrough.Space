@@ -120,6 +120,16 @@ export function deletionSystem (entMan) {
 };
 
 function delete_model (entity) {
+
+   if ("weapons" in entity){
+    for(let weapon of entity.weapons){
+      if( "model" in weapon && weapon.model){
+        weapon.model.dispose();
+      }
+    }
+  }
+
+
   const MODEL_ATTR = [
     'model',
     'radar_pip',
@@ -137,5 +147,6 @@ function delete_model (entity) {
       }
     }
   }
-};
+
+ };
 
