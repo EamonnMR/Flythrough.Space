@@ -86,7 +86,7 @@ export function ai_system(entMan){
           } 
         }
 
-        if ("attacks_asteroids" in govt){
+        if ("attacks_asteroids" in govt){ 
           ai.state = 'asteroid_hate';
         }
       }
@@ -257,14 +257,13 @@ export function turretPointSystem (entMan) {
   // Code to actually rotate the turret graphic should live in graphics.js
   // Torn about where to keep the rotation state.
   const TURRET_ROT_SPEED = Math.PI / 50; // TODO: Make attribute of ship
-  for(let entity of entMan.get_with(['model'])) {
+  for(let entity of entMan.get_with(['model', 'turrets'])) {
     if(entity.model.skeleton){
       if(entity.target){
         // In this case we want to track the target
         let target = entMan.get(entity.target);
         if(target){
-          let turrets = get_bone_group(entity.model.skeleton, "turret");
-          for(let turret of turrets){
+          for(let turret of entity.turrets){
             // Crude method: point all turrets at the same angle
             // (ie no convergence)
             let current_angle = (entity.direction - turret.bone.rotation.y ) % ARC; 
@@ -274,6 +273,10 @@ export function turretPointSystem (entMan) {
               turret.bone.rotate(BABYLON.Axis.Y, -1 *  turn, BABYLON.Space.LOCAL);
             }
           }
+        }
+        else{
+          // Move zero to force attachment
+          turret.bone.rotate(BABYLON.Axis.x, 0, BABYLON.Space.LOCAL);
         }
       }
     }

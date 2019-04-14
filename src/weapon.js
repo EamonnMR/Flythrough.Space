@@ -76,6 +76,12 @@ function consume_ammo(weapon, entity){
 }
 
 function weapon_can_fire(weapon, entity){
+  /*
+   * Handles weapon cooldown, burst timers, ammo consumption
+   * Returns a boolean determining if it can fire, and causes
+   * S I D E   E F F E C T S on the target entity and weapon.
+   */
+
   if(weapon.timer <= 0 && weapon.burst_timer <= 0) {
     weapon.timer += weapon.period;
     if (weapon.burst_period){
@@ -105,12 +111,27 @@ function weapon_can_fire(weapon, entity){
 
 function fire_weapon(weapon, entity, entMan) {
   if(weapon_can_fire(weapon, entity)){
+    let direction = entity.direction;
+    let origin = entity.position;
+    let depth = -2; // TODO: import SHIP_Z from graphics.js
+    if(weapon.model){
+      direction = ((1 * Math.PI)    // Code to actually rotate the turret graphic should live in graphics.js
+ + entity.direction - entity.turrets[weapon.turret_index].bone.rotation.y) % (Math.PI  *2);
+      let _ = BABYLON.Quaternion.Identity()
+      let position = BABYLON.Vector3.Zero()
+      // http://www.html5gamedevs.com/topic/31288-get-absolute-rotation-of-child-mesh/ 
+      weapon.model.getWorldMatrix().decompose(BABYLON.Vector3.Zero(), _, position)
+
+      origin = {x: position.x, y: position.z} 
+      console.log(weapon.model.position);
+      depth = entity.model.position.y;
+    }
     if (weapon.proj){
       entMan.insert(bulletFactory(
                     entity.id,
-                    entity.position,
+                    origin,
                     new BABYLON.Sprite("bullet", weapon.sprite_mgr),
-                    (entity.direction + weapon.inaccuracy * (Math.random() - 0.5)) % (Math.PI * 2),
+                    (direction + weapon.inaccuracy * (Math.random() - 0.5)) % (Math.PI * 2),
                     weapon.velocity,
                     entity.velocity || {'x': 0, 'y': 0},
                     weapon.proj,

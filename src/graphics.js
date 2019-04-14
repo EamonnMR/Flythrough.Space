@@ -60,10 +60,12 @@ function mount_weapon_on_bone(weapon_model, parent_model, bone_index){
 function mount_turreted_weapons(model_meta, data, ship, weapon_index){
   if("turrets" in model_meta){
     ship.turrets = []
+    let turret_index = 0;
+
     for(let turret of model_meta.turrets){
       let associated_weapons = []
       for(let bone_name of turret.mounts){
-        if(weapon_index > ship.weapons.length){
+        if(weapon_index >= ship.weapons.length){
           return;
         }
 
@@ -74,14 +76,17 @@ function mount_turreted_weapons(model_meta, data, ship, weapon_index){
         weapon.model.attachToBone(ship.model.skeleton.bones[model_meta.bone_map[turret.bone]], ship.model);
         weapon.model.visibility = 1;
         associated_weapons.push(weapon_index);
+        weapon.turret_index = turret_index;
         weapon_index ++;
       }
       ship.turrets.push({
-        "bone": ship.model.skeleton.bones[model_meta.bone_map[turret]],
+        "bone": ship.model.skeleton.bones[model_meta.bone_map[turret.bone]],
         "mounted_weapons": associated_weapons,
         "max_angle": null,
         "min_angle": null,
+        "direction": 0,
       });
+      turret_index ++;
     }
   }
 } 
@@ -103,7 +108,7 @@ export function create_composite_model(ship, data){
     // Fixed
     if("fixed" in model_meta){
       for(let bone_name of model_meta.fixed){
-        if (weapon_index > ship.weapons.length){
+        if (weapon_index >= ship.weapons.length){
           break;
         }
         let weapon = ship.weapons[weapon_index] 
