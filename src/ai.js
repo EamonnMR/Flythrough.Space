@@ -175,13 +175,21 @@ function find_closest_target(position, entMan, criteria){
   }
 }
 
-
-function point_at(to, startangle, from){
+function point_directly_at(to, from){
+  
   let dx = to.x - from.x;
   let dy = to.y - from.y;
+
+  return Math.atan2(dy, dx) - Math.PI;
+}
   
-  // console.log(("dx " + dx) + ", dy " + dy);
-  let cw = (Math.atan2(dy, dx) - startangle);
+
+function point_at(to, startangle, from, to_vel=null, from_vel=null, proj_vel=null){
+  let cw = point_directly_at(to, from) - startangle;
+  if(to_vel && from_vel && proj_vel){
+    cw = find_firing_solution(to, to_vel, from, from_vel, proj_vel) - startangle;
+  }
+  // If lead data is provided, use find firing solution instead
   let ccw = ARC;
   //let ccw = (Math.atan2(dy, dx) - startangle);
   if (cw > 0){
@@ -200,9 +208,28 @@ function point_at(to, startangle, from){
   
 }
 
-function constrained_point(target, start_angle, position, possible_turn){
+function find_firing_solution(to, to_velocity, from, from_velocity, projectile_velocity){
+  let velocity_difference = {x: to_velocity.x - from_velocity.x, y: to_velocity.y - from_velocity.y};
+  let estimated_impact_time = distance(from, to) / projectile_velocity;
+  return point_directly_at(from, {
+    x: to.x + velocity_difference.x * estimated_impact_time,
+    y: to.y + velocity_difference.y * estimated_impact_time,
+  })
+}
+
+  
+
+function constrained_point(
+  target,
+  start_angle,
+  position,
+  possible_turn,
+  to_vel,
+  from_vel,
+  proj_vel,
+){
   // point_at but with a rotation speed limit (which is most things that point)
-	let goal_turn = point_at(target, start_angle, position);
+	let goal_turn = point_at(target, start_angle, position, to_vel, from_vel, proj_vel);
   let final_turn = 0;
 	if(goal_turn > 0){
 		if(goal_turn > possible_turn){
@@ -229,7 +256,10 @@ function engage(entity, target, delta_time, entMan){
     target.position, 
     entity.direction,
     entity.position,
-    entity.rotation * delta_time
+    entity.rotation * delta_time,
+    target.velocity,
+    entity.velocity,
+    0.01,
   );
 
 	let dist = distance(entity.position, target.position);
@@ -262,21 +292,32 @@ export function turretPointSystem (entMan) {
       if(entity.target){
         // In this case we want to track the target
         let target = entMan.get(entity.target);
-        if(target){
-          for(let turret of entity.turrets){
+        for(let turret of entity.turrets){
+          if(target){
             // Crude method: point all turrets at the same angle
             // (ie no convergence)
             let current_angle = (entity.direction - turret.bone.rotation.y ) % ARC; 
-            let turn = constrained_point(target.position, current_angle, entity.position, TURRET_ROT_SPEED); 
+            let turn = constrained_point(
+              target.position,
+              current_angle,
+              entity.position,
+              TURRET_ROT_SPEED,
+              target.velocity,
+              entity.velocity,
+              0.01,
+            ); 
             // Small amount of dampening to prevent jitter
             if( Math.abs(turn) > TURN_MIN ){
               turret.bone.rotate(BABYLON.Axis.Y, -1 *  turn, BABYLON.Space.LOCAL);
             }
           }
-        }
-        else{
-          // Move zero to force attachment
-          turret.bone.rotate(BABYLON.Axis.x, 0, BABYLON.Space.LOCAL);
+          else{
+            // Move zero to force attachment
+            // This is such a hack
+            if(turret){
+              turret.bone.rotate(BABYLON.Axis.Y, 0, BABYLON.Space.LOCAL);
+            }
+          }
         }
       }
     }
