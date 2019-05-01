@@ -300,7 +300,7 @@ export function turretPointSystem (entMan) {
             let turn = constrained_point(
               target.position,
               current_angle,
-              entity.position,
+              {x: entity.position.x + turret.offset.x, y: entity.position.y + turret.offset.y},
               TURRET_ROT_SPEED,
               target.velocity,
               entity.velocity,

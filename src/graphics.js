@@ -64,6 +64,7 @@ function mount_turreted_weapons(model_meta, data, ship, weapon_index){
 
     for(let turret of model_meta.turrets){
       let associated_weapons = []
+      let bone = ship.model.skeleton.bones[model_meta.bone_map[turret.bone]]
       for(let bone_name of turret.mounts){
         if(weapon_index >= ship.weapons.length){
           return;
@@ -73,14 +74,16 @@ function mount_turreted_weapons(model_meta, data, ship, weapon_index){
         weapon.model = data.get_mesh(weapon.mesh);
         mount_weapon_on_bone(weapon.model, ship.model, model_meta.bone_map[bone_name]);
 
-        weapon.model.attachToBone(ship.model.skeleton.bones[model_meta.bone_map[turret.bone]], ship.model);
+        weapon.model.attachToBone(bone, ship.model);
         weapon.model.visibility = 1;
         associated_weapons.push(weapon_index);
         weapon.turret_index = turret_index;
         weapon_index ++;
       }
+      let position = bone.getPosition();
       ship.turrets.push({
-        "bone": ship.model.skeleton.bones[model_meta.bone_map[turret.bone]],
+        "bone": bone,
+        "offset": {x: position.x, y: position.z}, 
         "mounted_weapons": associated_weapons,
         "max_angle": null,
         "min_angle": null,
