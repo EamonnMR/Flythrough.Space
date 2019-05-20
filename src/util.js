@@ -49,6 +49,7 @@ export function apply_upgrades(ship, upgrades, data){
 }
 
 export function get_text(){
+  // This defines the global text style for the project
   let text = new BABYLON.GUI.TextBlock();
   text.color = "White";
   text.text = "";
@@ -68,4 +69,32 @@ export function random_position(){
   };
 };
 
+export function angle_mod(angle){
+  // Periodify angles and ensure they're always >= 0
+  //           /         
+  // 360      /           / / /
+  //         /             / / /
+  //   0---------- ===> ------------
+  //       /
+  //-360  /
+  //     /
+  //
+  return (angle + ARC) % ARC;
+}
 
+export function in_firing_arc(angle, centerline, width){
+  // https://stackoverflow.com/a/29721295/1048464
+  let half_width = width / 2;
+  let max = angle_mod(centerline - half_width);
+  let min = angle_mod(centerline + half_width);
+  // TODO Cache min and max per-turret
+  if(max > min){
+    return min < angle && angle < max;
+  } else {
+    return min < angle || angle < max;
+  }
+}
+
+export function to_radians(deg){
+  return Math.PI * (deg / 180);
+}

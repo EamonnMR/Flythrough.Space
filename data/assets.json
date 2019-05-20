@@ -9,7 +9,10 @@
           "mounts": [
             "weapon_1",
             "weapon_2"
-          ]
+          ],
+          "facing_deg": 0,
+          "traverse_deg": 90,
+          "speed_deg": 3
         }   
       ]
     },

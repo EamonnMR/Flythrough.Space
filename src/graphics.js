@@ -6,7 +6,9 @@
 // y      --> Nothing
 // Z      --> Y
 
-const SHIP_Y = -2;
+import { to_radians } from "./util.js";
+
+const SHIP_Y = -2; // This might want to be imported from somewhere
 const PLANET_SCALE = 15;  // TODO: Noticing that differently sized planet sprites end up being the same screen-space size. Weird.
 const PLANET_Y = -10;  // TODO: Shots are still being drawn under planets for some reason
 let CAM_OFFSET = new BABYLON.Vector3(0, 40, 30);
@@ -81,12 +83,14 @@ function mount_turreted_weapons(model_meta, data, ship, weapon_index){
         weapon_index ++;
       }
       let position = bone.getPosition();
+      // TODO: bone.rotate(turret.facing)
       ship.turrets.push({
         "bone": bone,
         "offset": {x: position.x, y: position.z}, 
         "mounted_weapons": associated_weapons,
-        "max_angle": null,
-        "min_angle": null,
+        "facing": to_radians( turret.facing_deg ), 
+        "traverse": to_radians( turret.traverse_deg ),
+        "speed": to_radians( turret.speed_deg ),
         "direction": 0,
       });
       turret_index ++;

@@ -1,15 +1,15 @@
-import { distance, random_position } from "./util.js";
+import { distance, random_position, in_firing_arc, angle_mod } from "./util.js";
 import { rotate, accelerate, decelerate, linear_vel } from "./physics.js";
 import { get_bone_group } from "./graphics.js";
 
-const ARC = Math.PI * 2;
+const ARC = Math.PI * 2;  // I don't want to make a political statement by using TAU
 
-const TURN_MIN = Math.PI / 75;
+// const TURN_MIN = Math.PI / 75;
 
 // For a more interesting game, these should probably be ship properties.
 // Might not be crazy to calculate them based on the ship's stats and allow
 // for an override in the data
-const ENGAGE_DISTANCE = 50;
+const ENGAGE_DISTANCE = 100;
 const ENGAGE_ANGLE = Math.PI / 8;
 const ACCEL_DISTANCE = 10;
 const IDLE_ARRIVAL_THRESH = 50;
@@ -25,7 +25,6 @@ export function ai_system(entMan){
         if(target){
           engage(entity, target, entMan.delta_time, entMan);
         } else {
-          console.log("Target gone");
           delete ai.target;
           ai.state = "passive";
         }
@@ -35,13 +34,11 @@ export function ai_system(entMan){
       if(target){
         set_target(ai, target);
       } else {
-        console.log("No more asteroids to hate");
         ai.state = 'passive';
       }
     } else if (ai.state == 'passive') {
       // This is sort of the hub behavior - select a new thing to do
       if ('aggro' in ai){
-        console.log("Checking aggro");
         // TODO: Somehow prioritize this?
         for( let possible_target_id of ai.aggro ){
           let possible_target = entMan.get(possible_target_id);
@@ -92,7 +89,6 @@ export function ai_system(entMan){
       }
 
       // Do neautral passive things such as fly to planets or leave the system
-      console.log("Nothing to do; idle");
       idle(entity, ai, entMan.delta_time);
       
     }
@@ -133,7 +129,6 @@ function idle(entity, ai, delta_time){
     }
   } else {
     ai.destination = random_position()
-    console.log("Flying aimlessly to:");
     console.log(ai.destination);
   }
 }
@@ -197,8 +192,6 @@ function point_at(to, startangle, from, to_vel=null, from_vel=null, proj_vel=nul
   } else {
     ccw = ARC + cw;
   }
-  // console.log("cw:  " + cw);
-  // console.log("ccw: " + ccw);
   
   if(Math.abs(cw) < Math.abs(ccw)){
     return -1 * cw;
@@ -283,10 +276,9 @@ function engage(entity, target, delta_time, entMan){
 };
 
 export function turretPointSystem (entMan) {
-  // TODO: This should be calculated per-turret from the turret's origin
   // Code to actually rotate the turret graphic should live in graphics.js
   // Torn about where to keep the rotation state.
-  const TURRET_ROT_SPEED = Math.PI / 50; // TODO: Make attribute of ship
+  const TURRET_ROT_SPEED = Math.PI / 3100; // TODO: Make attribute of ship
   for(let entity of entMan.get_with(['model', 'turrets'])) {
     if(entity.model.skeleton){
       if(entity.target){
@@ -294,29 +286,45 @@ export function turretPointSystem (entMan) {
         let target = entMan.get(entity.target);
         for(let turret of entity.turrets){
           if(target){
-            // Crude method: point all turrets at the same angle
-            // (ie no convergence)
-            let current_angle = (entity.direction - turret.bone.rotation.y ) % ARC; 
+            let current_angle = angle_mod(entity.direction + turret.bone.rotation.y); 
             let turn = constrained_point(
               target.position,
               current_angle,
               {x: entity.position.x + turret.offset.x, y: entity.position.y + turret.offset.y},
-              TURRET_ROT_SPEED,
+              TURRET_ROT_SPEED * entMan.delta_time, // TODO: turret.speed * delta_time
               target.velocity,
               entity.velocity,
               0.01,
             ); 
-            // Small amount of dampening to prevent jitter
-            if( Math.abs(turn) > TURN_MIN ){
-              turret.bone.rotate(BABYLON.Axis.Y, -1 *  turn, BABYLON.Space.LOCAL);
+            // Constrain turret to firing arc if applicable 
+            let current_rel_angle = angle_mod(turret.bone.rotation.y);
+            let new_angle = angle_mod(turret.bone.rotation.y - turn);
+
+            let do_turn = false;
+            if (turret.traverse){
+              if( in_firing_arc( new_angle, turret.facing, turret.traverse)){
+                do_turn = true;
+                console.log("In firing angle " + new_angle + " facing = " + turret.facing + " traverse = " + turret.traverse);
+              } else {
+                console.log("Out of firing angle. Desired angle:  " + new_angle + " facing = " + turret.facing + " traverse = " + turret.traverse + " current angle: " + current_rel_angle);
+              }
+            } else {
+              do_turn = true;
+            }
+
+            if(do_turn){
+              // turret.bone.rotation.y = angle_mod(turret.bone.rotation.y - turn); 
+              turret.bone.rotate(BABYLON.Axis.Y, -1 * turn, BABYLON.Space.LOCAL);
+            } else {
+              turret.bone.rotate(BABYLON.Axis.Y, 0, BABYLON.Space.LOCAL)
             }
           }
           else{
             // Move zero to force attachment
             // This is such a hack
-            if(turret){
-              turret.bone.rotate(BABYLON.Axis.Y, 0, BABYLON.Space.LOCAL);
-            }
+            // And isn't working anyway
+            console.log("No target");
+            turret.bone.rotation.y = turret.facing; // Return to rest position
           }
         }
       }
