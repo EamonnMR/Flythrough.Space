@@ -115,8 +115,8 @@ function fire_weapon(weapon, entity, entMan) {
     let origin = entity.position;
     let depth = -2; // TODO: import SHIP_Z from graphics.js
     if(weapon.model){
-      direction = ((1 * Math.PI)    // Code to actually rotate the turret graphic should live in graphics.js
- + entity.direction - entity.turrets[weapon.turret_index].bone.rotation.y) % (Math.PI  *2);
+      // direction = ((1 * Math.PI)    // Code to actually rotate the turret graphic should live in graphics.js
+      // + entity.direction - entity.turrets[weapon.turret_index].bone.rotation.y) % (Math.PI  *2);
       let _ = BABYLON.Quaternion.Identity()
       let position = BABYLON.Vector3.Zero()
       // http://www.html5gamedevs.com/topic/31288-get-absolute-rotation-of-child-mesh/ 

@@ -3,19 +3,15 @@
   "meshes": {
     "shuttle": {
       "file": "shuttle.babylon",
-      "turrets":[
-        {
-          "bone": "turret_1",
-          "mounts": [
-            "weapon_1",
-            "weapon_2"
-          ],
-          "facing_deg": 0,
-          "traverse_deg": 90,
-          "speed_deg": 3
-        }   
+      "fixed": [
+        "weapon_1",
+        "weapon_2"
       ]
     },
+    "argosy": {
+      "file": "argosy.babylon"
+    },
+
     "oe_fi": {"file": "empfi.babylon"},
     "heavy_fi": {"file": "khanda_heavy.babylon"},
     "light_fi": {"file": "light_fighter.babylon"},
@@ -25,7 +21,6 @@
     "it_mask": {"file": "itaskan_something.babylon"},
     "perigrine": {"file": "perigrine.babylon"},
     "hemlock": {"file": "hemlock.babylon"},
-    "starhawk": {"file": "starhawk.babylon"},
     "vera": {"file": "vera.babylon"},
     "starhawk": {"file": "starhawk.babylon"},
     "cas_fighter": {"file": "casamance_fighter.babylon"},

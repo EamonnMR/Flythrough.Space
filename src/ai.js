@@ -304,9 +304,7 @@ export function turretPointSystem (entMan) {
             if (turret.traverse){
               if( in_firing_arc( new_angle, turret.facing, turret.traverse)){
                 do_turn = true;
-                console.log("In firing angle " + new_angle + " facing = " + turret.facing + " traverse = " + turret.traverse);
               } else {
-                console.log("Out of firing angle. Desired angle:  " + new_angle + " facing = " + turret.facing + " traverse = " + turret.traverse + " current angle: " + current_rel_angle);
               }
             } else {
               do_turn = true;

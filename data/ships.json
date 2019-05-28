@@ -56,6 +56,7 @@
     "max_shields": 250
   },
   "argosy":{
+    "mesh"        : "argosy",
     "short_name"  : "Argosy",
     "long_name"   : "Khanda Argosy",
     "full_name"   : "Khanda Lothal-type Argosy",
@@ -460,6 +461,7 @@
   },
 
   "league_argosy":{
+    "mesh"       : "argosy",
     "short_name"  : "League Argosy",
     "long_name"   : "League Argosy",
     "full_name"   : "Khanda Mod. Lothal-type Argosy",
@@ -699,7 +701,7 @@
     "max_shields": 200
   },
   "patsy" : {
-    "mesh"      : "oe_fi",
+    "mesh"      : "shuttle",
     "short_name"  : "Patsy",
     "long_name"   : "Pirate Patsy",
     "full_name"   : "Jump capable shuttlecraft type 407 (Pirate \"Patsy\" upgrade)",
@@ -736,11 +738,12 @@
     "max_shields": 250
   },
   "triggerman":{
+    "mesh"        : "argosy",
     "short_name"  : "Triggerman",
     "long_name"   : "Pirate Triggerman",
     "full_name"   : "Khanda Lothal-type Argosy (Pirate \"Triggerman\" upgrade)",
     "desc"       : "Of course pirates would use a ship designed to fight pirates. A cruel irony. A fine ship as well, though more of a sidegrade than an upgrade, this removes the pretense of a trading ship altogether, sacrificing cargo capacity for raw power..", 
-    "weapons"    : {},
+    "weapons"    : {"plasma50": 3},
     "upgrades"    : {},
     "rotation"  : 0.0065,
     "accel"      : 0.00001,

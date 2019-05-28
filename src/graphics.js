@@ -113,7 +113,7 @@ export function create_composite_model(ship, data){
   if (model_meta){
 
     // Fixed
-    if("fixed" in model_meta){
+    if("fixed" in model_meta && ship.model.skeleton){
       for(let bone_name of model_meta.fixed){
         if (weapon_index >= ship.weapons.length){
           break;
@@ -126,8 +126,8 @@ export function create_composite_model(ship, data){
       }
     }
 
-    // Turreted
-    mount_turreted_weapons(model_meta, data, ship, weapon_index)
+    // TODO: Turreted
+    // mount_turreted_weapons(model_meta, data, ship, weapon_index)
   }
   ship.model.visibility = 1;
 };

@@ -88,8 +88,8 @@ function load_assets( source_json, scene, data, finish_callback ){
       mesh.visibility = 0; // Make the clone visible when you're ready for it
       let meta_blob = data.models[key];
       meta_blob.mesh = mesh;
+      meta_blob.bone_map = {};
       if(mesh.skeleton){
-        meta_blob.bone_map = {};
         for(let i = 0; i < mesh.skeleton.bones.length; i++){
           meta_blob.bone_map[mesh.skeleton.bones[i].name] = i
         }

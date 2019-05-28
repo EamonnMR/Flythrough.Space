@@ -35,7 +35,7 @@ export class PlayerSave {
     this.current_spob = "Alluvium Fleet Yards";
     this.initial_position = {x: 0, y: 0};
     this.ship_type = "shuttle";
-    this.upgrades = {"autocannon": 1, "autocannonammo": 5};
+    this.upgrades = {"plasma50": 2};
     this.fuel = 3; // They start out with a full tank of gas (for a shuttle)
 
     this.bulk_cargo = {};

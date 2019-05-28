@@ -277,8 +277,8 @@ export class MapView extends ViewState{
   }
 
   calculate_visible_systems(){
-    //this.explored_systems = Object.keys( this.data.systems);
-    this.explored_systems = this.player.explored;
+    this.explored_systems = Object.keys( this.data.systems);
+    // this.explored_systems = this.player.explored;
     console.log("Explored: ");
     console.log(this.explored_systems);
     this.unexplored_systems = [];
