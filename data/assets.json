@@ -9,7 +9,12 @@
       ]
     },
     "argosy": {
-      "file": "argosy.babylon"
+      "file": "argosy.babylon",
+      "fixed": [
+        "weapon_1",
+        "weapon_2",
+        "weapon_3"
+      ]
     },
 
     "oe_fi": {"file": "empfi.babylon"},
