@@ -1,3 +1,4 @@
+import { is_cheat_enabled } from "./util.js";
 import { ViewState } from "./states.js";
 import { bindInputFunctions, unbindInputFunctions } from "./input.js";
 
@@ -277,8 +278,11 @@ export class MapView extends ViewState{
   }
 
   calculate_visible_systems(){
-    this.explored_systems = Object.keys( this.data.systems);
-    // this.explored_systems = this.player.explored;
+    if (is_cheat_enabled("reveal_map")){
+      this.explored_systems = Object.keys( this.data.systems);
+    } else {
+      this.explored_systems = this.player.explored;
+    }
     console.log("Explored: ");
     console.log(this.explored_systems);
     this.unexplored_systems = [];

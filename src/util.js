@@ -98,3 +98,12 @@ export function in_firing_arc(angle, centerline, width){
 export function to_radians(deg){
   return Math.PI * (deg / 180);
 }
+
+let url_params = new URLSearchParams(window.location.search);
+
+let all_cheats_enabled = url_params.has("all_cheats");
+
+export function is_cheat_enabled(cheat){
+  return all_cheats_enabled || url_params.has(cheat);
+}
+
