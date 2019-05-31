@@ -1,6 +1,6 @@
 /* Player State - this is what's shared between game states, and also handles saving and loading */
 
-import { apply_upgrade, apply_upgrades } from "./util.js";
+import { apply_upgrade, apply_upgrades, is_cheat_enabled } from "./util.js";
 
 const PREFIX = "savefile_"  // Prefix for player saves in local storage.
 const LAST_SAVE = "last_save"  // Stores the key for the last used save file
@@ -27,7 +27,7 @@ export class PlayerSave {
 
   constructor(ships, upgrades) {
     this.name = "Joe Bloggs"
-    this.money = 100000000;
+    this.money = is_cheat_enabled("money") ? 100000000 : 5000;
     this.map_pos = {x: 0, y: 0};
     this.selected_system = "Casamance";
     this.selected_spob = null;
