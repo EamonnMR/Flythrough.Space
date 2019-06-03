@@ -9,13 +9,14 @@ export class ShipyardMenu extends StoreMenu {
       this.player_data.buy_ship(this.selected, this.current_item());
     }
   }
-  get_available_items(){
-    // TODO: Filter by tech
-    return this.items;
-  }
 
   can_purchase_item(item){
     return this.player_data.can_buy_new_ship(item.price)
+  }
+
+  can_sell_item(item){
+    // Can't sell your own ship!
+    return false;
   }
 
   get_selection_tab_widget(key, item, offset){

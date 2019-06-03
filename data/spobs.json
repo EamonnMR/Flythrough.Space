@@ -20,9 +20,9 @@
 		"govt" : "direc",
 		"text": "Alluvium Fleet Yards is the flagship starship building site of Accra Stardrives. Every corridor you go down is bustling with activity - engineneers in animated discussion about robotic assembly, mechanics lugging exotic tools, and even sales people for Accra Drive Systems who, occasionally, realize that you're a starship captain and try to make a sale.",
 		"tech":{
-			"accra":3,
+			"accra":4,
 			"generic":3,
-			"casa":3
+			"cas":4
 		},
     "shipyard": true,
     "custom": true
@@ -690,7 +690,7 @@
     "govt": "drone",
     "x": 25,
     "y": 38,
-    "text": "Bukov's spaceport is in the center of a blast-swept plane of green trinitite glass, surrounded by thick walls of nanocrete, and staffed by pitiless marines. This security is needed, of course, because the rest of the planet, including all of its major cities, is used as a prison by the empire. It was discovered at some point that in some cases, such as radical Bikonour partisans (many of whom already lived on Bukov, it should be noted) it would be cheaper to cordon off an entire world than to build additional prison stations."
+    "text": "Bukov's spaceport is in the center of a blast-swept plane of green trinitite glass, surrounded by thick walls of nanocrete, and staffed by pitiless marines. This security is needed, of course, because the rest of the planet, including all of its major cities, is used as a prison by the Loyal Suns. It was discovered at some point that in some cases, such as radical Bikonour partisans (many of whom already lived on Bukov, it should be noted) it would be cheaper to cordon off an entire world than to build additional prison stations."
   },
   "Kejetia": {
     "govt": "direc",

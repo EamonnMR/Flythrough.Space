@@ -5,6 +5,8 @@ import {
 
 import { TextButton, TextBox, Image, Widget} from "./menu.js";
 
+import { tech_filter, is_cheat_enabled } from "./util.js";
+
 const LIST_SPACING = 7;
 const QUALITY_BAR_SPACING = 5;
 const QUALITY_BAR_FIRST = -40;
@@ -34,16 +36,49 @@ export class StoreMenu extends BaseLandingMenuView {
     /* This gets called by the buy button. */
   }
 
+  do_sell(){
+    /* Lets you decide if an item can be sold */
+  }
+
   get_available_items(){
     /* This lets you list the items (and indeed type of items) available
      * An object where the keys are the canonical name of the item should
-     * be returned.*/
+     * be returned.
+     *
+     * By default, this implements the usual tech rules.
+     * */
+
+    if (is_cheat_enabled('tech')){
+      return this.items;
+    }
+
+    let tech = this.spobs[this.player_data.current_spob].tech;
+    let available_items = {}
+    for (let key of Object.keys(this.items)){
+      if(tech_filter(
+        this.spobs[this.player_data.current_spob].tech,
+        this.items[key].tech
+      )){
+        available_items[key] = this.items[key];
+      }
+    }
+
+    return available_items;
+
+
   }
 
   can_purchase_item(){
     /*
      * Use this method to decide if the buy button should be hilighted and
      * if a purchase should go through.
+     */
+  }
+
+  can_sell_item(){
+    /*
+     * Use this method to decide if the sell button should be shown for
+     * an item
      */
   }
 

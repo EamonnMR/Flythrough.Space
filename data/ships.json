@@ -13,7 +13,7 @@
     "space"      : 10,
     "cargo"      : 10,
     "price"      : 1000,
-    "tech"       : {"civilian":0},
+    "tech"       : {"accra":0},
     "max_hp"     : 50,
     "max_shields": 25,
     "max_fuel"   : 3
@@ -60,7 +60,7 @@
     "short_name"  : "Argosy",
     "long_name"   : "Khanda Argosy",
     "full_name"   : "Khanda Lothal-type Argosy",
-    "desc"       : "Designed to run dangerous cargo routes, the Argosy is a mix power and trade efficiency.",
+    "desc"       : "Designed to run dangerous cargo routes by upstart starship maker Khanda, the Argosy is a mix power and trade efficiency. It will fight like a frigate in a pinch and can carry enough cargo to make the fight worth your while. A version is even used by the League navy",
     "upgrades"    : {"plasma200": 2, "ejectorrack": 2, "dumbfiremissile": 10},
     "rotation"  : 0.0065,
     "accel"      : 0.00001,

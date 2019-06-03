@@ -24,11 +24,6 @@ export class UpgradeMenu extends StoreMenu {
     }
   }
 
-  get_available_items(){
-    // TODO: Filter by tech
-    return this.items;
-  }
-
   can_purchase_item(item){
     return this.player_data.can_buy_upgrade(item.price, item, 1, this.data)
   }

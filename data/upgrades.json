@@ -41,6 +41,7 @@
     "desc"           : "Approxmiately four times as powerful as the standard cannon, the type 400 200kj plasma turret is mounted on most larger civilian ships, as its military use has been eclipsed by more powerful and efficient cannons. Still, if you haven't got a navy at your back, it does not hurt to be packing a 200.",
     "price"          : 2500,
     "weapon"         : {
+      "mesh":  "plasma_cannon",
       "sprite": "plasma_large",
       "inaccuracy": 0.05,
       "period": 2000,
@@ -69,6 +70,7 @@
     "price"          : 500,
     "exclass"        : "autocannon",
     "weapon"      : {
+      "mesh":  "plasma_cannon",
       "sprite":"autocannon",
       "velocity":0.035,
       "inaccuracy":0.5,
@@ -100,6 +102,7 @@
     "price"          : 1000,
     "exclass"        : "ejectorrack",
     "weapon"      : {
+      "mesh":  "plasma_cannon",
       "sprite":"missile",
       "velocity":0.035,
       "inaccuracy":0.01,
@@ -137,6 +140,7 @@
     "desc"           : "The \"Dragnet\" point defense solution is used almost exclusively by pirates. It consists of a light tractor beam, able only to do non-lethal damage to hulls (but stronger against shields). Pirate warshis can then steal the fighters captured by the turrets. As a point defense weapon, however, it has one critical flaw-it cannot destroy incoming projectiles, and isn't even configured to fire on them-it would simply pull them towards the ship.",
     "price"          : 25000,
     "weapon"         : {
+      "mesh":  "plasma_cannon",
       "inaccuracy":0,
       "period":0.2,
       "beam": {
@@ -188,6 +192,7 @@
     "desc"           : "The propulsion for this cannon is generated entirely by forcefields, because it is critical that the ammunition never actually touch the barrel. When the projectiles strike a ship's hull, they annhilate it, carving a hole and melting the surrounding plating with intense radiation. Unfortunately, the weapon is useless against shields because its velocity and weight aren't high enough to make a dent (prescisely why sheilds are used to protect the barrel!)",
     "price"          : 100000,
     "weapon"         : {
+      "mesh":  "plasma_cannon",
       "inaccuracy":0.07,
       "ammo":"antigunammo", 
       "sprite":"antimatter",
@@ -237,6 +242,7 @@
     "desc"           : "Degenerate matter projectiles are favored for various reasons-especially that they can be formed out of space dust. The Original intention was to fire a super-dense projectile in an effort to penitrate shields, forcing the shield to concentrate its energy in a very small area to defeat the projectile, which is damaging to them. It is also able to hold massive amounts of heat for its volume, and releases irradiating nutrons and alpha particles as it dissipates. The drawback is that coalescion fields (similar to the ones employed by plasma guns) cannot contain the degenerate matter for long, so the cannon's range is severely limited.",
     "price"          : 100000,
     "weapon"         : {
+      "mesh":  "plasma_cannon",
       "sprite":"degenerate",
       "velocity":0.0035,
       "inaccuracy":0.3,
@@ -258,6 +264,7 @@
     "tech"          : {"wsc": 1},
     "desc"          : "Using a stabilized payload of like-colored quarks, the projectile from this weapon is attached to the target by gluons, which singshot it with devastating force. If it manages to make contact with a target's hull, the now free quarks will play havoc with its atomic structure, causing unpredictable (but always devastating) damage. A curious side effect of the strong-force \"guidance\" is that the further away the target is when the projectile is launched, the more damage it will do.",
     "weapon"        : {
+      "mesh":  "plasma_cannon",
       "sprite": "gluon",
       "inaccuracy": 0.05,
       "period": 1500,
@@ -278,6 +285,7 @@
     "name": "Wave Siphon",
     "tech"          : {"wsc": 2},
     "weapon"         : {
+      "mesh":  "plasma_cannon",
       "inaccuracy":0,
       "period":0.001,
       "beam": {
@@ -312,6 +320,7 @@
     "price"          : 800,
     "space"          : -6,
     "weapon"         : {
+      "mesh":  "plasma_cannon",
       "inaccuracy": 0.1,
       "period":0.001,
       "beam": {
@@ -329,6 +338,7 @@
     "price"          : 1200,
     "space"          : -5,
     "weapon"      : {
+      "mesh":  "plasma_cannon",
       "sprite": "ion",
       "inaccuracy": 0.1,
       "period": 500,
@@ -350,6 +360,7 @@
     "price"          : 4800,
     "space"          : -22,
     "weapon"         : {
+      "mesh":  "plasma_cannon",
       "sprite": "ion_large",
       "inaccuracy": 0.05,
       "period": 1500,
@@ -370,6 +381,7 @@
     "price"          : 50000,
     "space"          : -20,
     "weapon"         : {
+      "mesh":  "plasma_cannon",
       "inaccuracy": 0,
       "period":0.001,
       "beam": {

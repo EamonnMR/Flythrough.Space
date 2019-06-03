@@ -99,6 +99,26 @@ export function to_radians(deg){
   return Math.PI * (deg / 180);
 }
 
+export function tech_filter(tech_had, tech_needed){
+  /* Basis for what gets shown where. I'm a bit foggy on how
+   * I'd like to implement tech 'levels' at the moment, esp. since
+   * I envision a few hub worlds where each major faction's tech
+   * is available.
+   */
+  
+  // Cleverly handles both empty tech_needed and tech_had
+  for (let key of Object.keys(tech_needed || [])){
+    if(!(key in (tech_had || {}))){
+      return false;
+    } else {
+      if(tech_had[key] < tech_needed[key]){
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
 let url_params = new URLSearchParams(window.location.search);
 
 let all_cheats_enabled = url_params.has("all_cheats");
@@ -107,3 +127,6 @@ export function is_cheat_enabled(cheat){
   return all_cheats_enabled || url_params.has(cheat);
 }
 
+export function overridable_default(key, default_value){
+  url_params.get(key) || default_value;
+}
