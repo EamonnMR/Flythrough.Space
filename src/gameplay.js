@@ -1,15 +1,15 @@
+/* This is the nexus of the game, so there will be a lot of imports here.
+ * anything ending with System gets run every frame and will update some
+ * subset of entities.
+ */
+
 import { distance } from "./util.js";
 import { speedLimitSystem, velocitySystem} from "./physics.js";
 import { weaponSystem, decaySystem} from "./weapon.js";
 import { EntityManager, deletionSystem} from "./ecs.js";
 import { inputSystem, bindInputFunctions, unbindInputFunctions} from "./input.js";
-import {
-	npcSpawnerSystem
-} from "./entities.js";
-import {
-	modelPositionSystem,
-	cameraFollowSystem,
-} from "./graphics.js";
+import { npcSpawnerSystem } from "./entities.js";
+import { modelPositionSystem, cameraFollowSystem } from "./graphics.js";
 import { collisionDetectionSystem } from "./collision.js";
 import { setup_system } from "./system.js";
 import { ViewState } from "./states.js";
@@ -71,18 +71,20 @@ export class GamePlayState extends ViewState {
         this.parent.enter_state('map');
       },
 
+      /* I haven't actually used this for a while
       reset_game: () => {
         this.clear_world();
         this.setup_world();  
       },
+      */
 
       hyper_jump: () => {
 			  if ( this.player_data.current_system
             != this.player_data.selected_system
         ) {
           if (this.player_data.fuel >= 1){ 
-            this.player_data.current_system = 
-                  this.player_data.selected_system;
+            this.player_data.current_system = this.player_data.selected_system;
+            this.player_data.selected_spob = null;  // Can't have people landing on spobs out of the system
             this.clear_world();
             // TODO: Violate all laws of the universe, travel faster than light between high-mass objects
             this.player_data.fuel -= 1;
@@ -192,6 +194,7 @@ export class GamePlayState extends ViewState {
   }
 
   spob_is_landable(spob){
+    // TODO: Unlandable spobs
     return true;
   }
 
