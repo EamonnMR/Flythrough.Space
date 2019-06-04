@@ -37,7 +37,10 @@ export class HUD{
     this.player_data = player_data;
     this.gov_data = govt_data;
     
-    this.fuel_status = this.get_status_bar(150, "10px", "blue", () => {return player_data.fuel / player_data.max_fuel()} )
+    this.tmp_player = null; // Or: how I broke abstraction. This should only exist during update.
+    this.fuel_status = this.get_status_bar(150, "10px", "green", () => {return this.tmp_player.fuel / this.tmp_player.max_fuel})
+    this.health_status = this.get_status_bar(150, "10px", "blue", () => {return this.tmp_player.shields / this.tmp_player.max_shields})
+    this.shield_status = this.get_status_bar(150, "10px", "red", () => {return this.tmp_player.hitpoints / this.tmp_player.max_hp})
     this.nav_text = get_text();
     this.radar_box = this.get_radar_box();
     this.nav_box = this.get_nav_box();
@@ -129,12 +132,19 @@ export class HUD{
   }
 
   get_nav_box(){
-    let box = this.get_box_generic("200px", "80px");
+    let box = this.get_box_generic("200px", "200px");
 
     box.addControl(this.nav_text);
     box.addControl(this.fuel_status);
-    this.nav_text.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT
+    box.addControl(this.shield_status);
+    box.addControl(this.health_status);
+    
+    this.shield_status.top = 20
+    this.health_status.top = 40
 
+    this.nav_text.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT
+    
+    this.nav_text.top = 40
     this.adt.addControl(box); 
     box.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
     box.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
@@ -175,7 +185,6 @@ export class HUD{
     let player = possible_player[0];
     let planet_line = "In-System: ";
     let jump_line = "Galactic: ";
-    this.fuel_status.update_func();
     if (this.player_data.selected_spob){
       planet_line += this.player_data.selected_spob;
       let possible_spobs = this.entMan.get_with_exact("spob_name", this.player_data.selected_spob)
@@ -188,34 +197,41 @@ export class HUD{
         this.spob_label.text = "";
       }
     }
+    if (player){
+      // Gross: pipe this down to functions
+      this.tmp_player = player
+      this.fuel_status.update_func();
+      this.shield_status.update_func();
+      this.health_status.update_func();
 
-    if (player && player.target){
-      let possible_target = this.entMan.get(player.target);
-      if(possible_target){
-        this.target_ent = possible_target;
-        this.target_label.text = this.target_ent.short_name;
-        this.target_subtitle.text = "" // TODO: Variants?
-        
-        this.target_ent.overlay.addControl(this.target_pips.bottom);
-        this.target_ent.overlay.addControl(this.target_pips.left);
-        this.target_ent.overlay.addControl(this.target_pips.right);
+      if (player.target){
+        let possible_target = this.entMan.get(player.target);
+        if(possible_target){
+          this.target_ent = possible_target;
+          this.target_label.text = this.target_ent.short_name;
+          this.target_subtitle.text = "" // TODO: Variants?
+          
+          this.target_ent.overlay.addControl(this.target_pips.bottom);
+          this.target_ent.overlay.addControl(this.target_pips.left);
+          this.target_ent.overlay.addControl(this.target_pips.right);
 
-        if( "govt" in this.target_ent ){
-          this.target_govt.text = this.gov_data[this.target_ent.govt].short_name;
+          if( "govt" in this.target_ent ){
+            this.target_govt.text = this.gov_data[this.target_ent.govt].short_name;
+          } else {
+            this.target_govt.text = DEFAULT_GOVT_NAME;
+          }
         } else {
-          this.target_govt.text = DEFAULT_GOVT_NAME;
+          this.target_label.text = "<No Target>";
+          this.target_subtitle.text = " ";
+          this.target_govt.text = " ";
         }
-      } else {
-        this.target_label.text = "<No Target>";
-        this.target_subtitle.text = " ";
-        this.target_govt.text = " ";
+        this.target_health_bar.update_func();
+        this.target_shield_bar.update_func();
+        // Definitely don't keep a reference around. That would be bad.
+        delete this.possible_target;
       }
-      this.target_health_bar.update_func();
-      this.target_shield_bar.update_func();
-      // Definitely don't keep a reference around. That would be bad.
-      delete this.possible_target;
+      this.tmp_player = null;
     }
-
 
     if (this.player_data.selected_system){
       jump_line += this.player_data.selected_system;
