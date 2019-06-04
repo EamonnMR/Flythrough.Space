@@ -1,3 +1,4 @@
+import { overridable_default } from "./util.js";
 import { GamePlayState } from "./gameplay.js";
 import { PlayerSave } from  "./player.js";
 import { MapView } from "./map.js";
@@ -26,7 +27,7 @@ function init(game_canvas, scene, engine, data){
     'trade': new TradeMenu(data.spobs, player_data, data.trade),
     'shipyard': new ShipyardMenu(data.spobs, player_data, data.ships),
     'upgrades': new UpgradeMenu(data.spobs, player_data, data.upgrades, data),
-  }, 'gameplay');
+  }, overridable_default("state", "gameplay"));
  
   // Handle resizes
 
