@@ -1,13 +1,12 @@
 # Flythrough.Space: A Space Captain Game
 
-Inspired by Escape Velocity and related titles, built on the Babylon engine and written in vanilla ES6. No installation required, just host the files and you're good.
+Inspired by Escape Velocity and related titles, built on the Babylonjs engine and written in vanilla ES6. No installation required, just host the files and you're good.
 
-It's a 2.5D EV clone! Where you fly through space.
+It's a 2.5D Space Combat/Trading RPG! Where you fly through space.
 
 The goal here was to create something others could pick up and play with (as is tradition) so I've done my best to make a pretty open-ended system, even if the GUI got a bit off in the weeds.
 
 The code is all front-end so you can host it on your favorite server (Nginx, Apache, etc) or just run a simple local server:
 
 `python -m SimpleHTTPServer 8000`
-
 

@@ -128,5 +128,5 @@ export function is_cheat_enabled(cheat){
 }
 
 export function overridable_default(key, default_value){
-  url_params.get(key) || default_value;
+  return url_params.get(key) || default_value;
 }

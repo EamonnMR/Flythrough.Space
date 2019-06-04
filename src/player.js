@@ -1,6 +1,11 @@
 /* Player State - this is what's shared between game states, and also handles saving and loading */
 
-import { apply_upgrade, apply_upgrades, is_cheat_enabled } from "./util.js";
+import {
+  apply_upgrade,
+  apply_upgrades,
+  is_cheat_enabled,
+  overridable_default,
+} from "./util.js";
 
 const PREFIX = "savefile_"  // Prefix for player saves in local storage.
 const LAST_SAVE = "last_save"  // Stores the key for the last used save file
@@ -10,7 +15,7 @@ export function load_save(save_name){
 }
 
 export function load_saves(){
-  return Object.keys( localStorage ).filter( (key) => key.startsWith("savefile_")).map( load_save )
+  return Object.keys( localStorage ).filter( (key) => key.startsWith(PREFIX)).map( load_save )
 }
 
 export function resume(){
@@ -31,13 +36,13 @@ export class PlayerSave {
     this.map_pos = {x: 0, y: 0};
     this.selected_system = "Casamance";
     this.selected_spob = null;
-    this.current_system = "Casamance";
-    this.current_spob = "Alluvium Fleet Yards";
+    this.current_system = overridable_default("system", "Casamance");
+    this.current_spob = overridable_default("spob", "Alluvium Fleet Yards");
     this.initial_position = {x: 0, y: 0};
-    this.ship_type = "shuttle";
-    this.upgrades = {"plasma50": 2};
-    this.fuel = 3; // They start out with a full tank of gas (for a shuttle)
-
+    this.ship_type = overridable_default("ship", "shuttle");
+    this.ship_dat = Object.create(ships[this.ship_type]);
+    this.upgrades = this.ship_dat.upgrades;
+    this.fuel = this.ship_dat.max_fuel;
     this.bulk_cargo = {};
     this.mission_cargo = {};
 
@@ -45,8 +50,6 @@ export class PlayerSave {
       // TODO: Default rep?
       orasos: {reputation: -1}
     }
-    this.ship_dat = Object.create(ships[this.ship_type]);
-    this.ship_dat.upgrades = this.upgrades;
     this.explored = []
   }
 
