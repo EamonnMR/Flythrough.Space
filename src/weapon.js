@@ -136,7 +136,8 @@ function fire_weapon(weapon, entity, entMan) {
                     entity.velocity || {'x': 0, 'y': 0},
                     weapon.proj,
                     'govt' in entity ? entity.govt : null,
-                    'player_aligned' in entity));
+                    'player_aligned' in entity
+      ));
     }
     // TODO: Handle beams or any other type of weapon
   }

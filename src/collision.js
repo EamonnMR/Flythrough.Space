@@ -1,5 +1,5 @@
 import { shot_handler } from "./damage.js";
-import { distance } from "./util.js";
+import { distance, is_cheat_enabled } from "./util.js";
 
 
 export function collisionDetectionSystem(entMan){
@@ -20,17 +20,30 @@ export function collisionDetectionSystem(entMan){
   }
 };
 
+function real_player_agent_test(shot, entity){
+  return shot.ignore_player && 'player_aligned' in entity;
+}
+
+function godmode_player_agent_test(shot, entity){
+  return 'player_aligned' in entity;
+}
+let player_agent_test = real_player_agent_test;
+if(is_cheat_enabled("noclip")){
+  player_agent_test = godmode_player_agent_test;
+}
+
 function filter_collisions(shot, entity){
-  return ('shot' in shot && 'hittable' in entity
+  if ('input' in entity){
+    debugger;
+  }
+  return ('shot' in shot
+    && 'hittable' in entity
     && !gov_test(shot, entity)
-    && !player_agent_test(shot, entity));
+    && !player_agent_test(shot, entity)
+  );
 }
 
 function gov_test(shot, entity){
   return 'ignoregov' in shot && 'govt' in entity && shot.ignoregov === entity.govt;
-}
-
-function player_agent_test(shot, entity){
-  return 'ignore_player' in shot && 'player_aligned' in entity;
 }
 
