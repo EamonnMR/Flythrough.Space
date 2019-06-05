@@ -33,9 +33,6 @@ if(is_cheat_enabled("noclip")){
 }
 
 function filter_collisions(shot, entity){
-  if ('input' in entity){
-    debugger;
-  }
   return ('shot' in shot
     && 'hittable' in entity
     && !gov_test(shot, entity)
