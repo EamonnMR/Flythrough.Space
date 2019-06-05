@@ -1,9 +1,9 @@
-/* This is the nexus of the game, so there will be a lot of imports here.
- * anything ending with System gets run every frame and will update some
- * subset of entities.
+/* This is the nexus of the action portion of the game, so there will be
+ * a lot of imports here. Anything ending with System gets run every
+ * frame and will update some subset of entities.
  */
 
-import { distance } from "./util.js";
+import { distance, is_cheat_enabled } from "./util.js";
 import { speedLimitSystem, velocitySystem} from "./physics.js";
 import { weaponSystem, decaySystem} from "./weapon.js";
 import { EntityManager, deletionSystem} from "./ecs.js";
@@ -16,6 +16,7 @@ import { ViewState } from "./states.js";
 import { radarFollowSystem, HUD } from  "./hud.js";
 import { ai_system, turretPointSystem  } from "./ai.js";
 import { get_game_camera } from "./graphics.js";
+import { has_sufficient_distance, has_sufficient_fuel } from "./hyperspace.js"
 
 export class GamePlayState extends ViewState {
 
@@ -82,13 +83,19 @@ export class GamePlayState extends ViewState {
 			  if ( this.player_data.current_system
             != this.player_data.selected_system
         ) {
-          if (this.player_data.fuel >= 1){ 
-            this.player_data.current_system = this.player_data.selected_system;
-            this.player_data.selected_spob = null;  // Can't have people landing on spobs out of the system
-            this.clear_world();
-            // TODO: Violate all laws of the universe, travel faster than light between high-mass objects
-            this.player_data.fuel -= 1;
-            this.setup_world();
+          let player_ent = this.get_player_ent();
+          if (has_sufficient_fuel(player_ent) || is_cheat_enabled("infinite_fuel")){ 
+            if(has_sufficient_distance(player_ent || is_cheat_enabled("jump_anywhere"))){
+              // TODO: Remove control, add hyperjump AI, play some sort of light show ala 2001 space odyssey
+              this.player_data.current_system = this.player_data.selected_system;
+              this.player_data.selected_spob = null;  // Can't have people landing on spobs out of the system
+              this.clear_world();
+              this.player_data.fuel -= 1;
+              this.setup_world();
+            } else {
+              // TODO: Add visible warnings for these so players aren't confused
+              console.log("Tried to hyperjump too close to a star");
+            }
           } else {
             console.log("Tried to hyperjump with insufficient fuel");
           }
