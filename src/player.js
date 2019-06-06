@@ -157,5 +157,19 @@ export class PlayerSave {
   system_explored(system_name){
     return system_name in this.explored;
   }
+
+  // TODO: Clean this up. All govts should be initialized with a default
+  // reputation level as defined in data/govts.json
+  is_govt_hostile(govt_id){
+    return govt_id in this.govts && this.govts[govt_id].reputation < 0;
+  }
+
+  change_govt_reputation(govt_id, delta){
+    if(govt_id in this.govts){
+      this.govts[govt_id].reputation += delta;
+    } else {
+      this.govts[govt_id].reputation = delta;
+    }
+  }
 }
 

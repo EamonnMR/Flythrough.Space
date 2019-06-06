@@ -54,8 +54,7 @@ export function ai_system(entMan){
         let govt = entMan.data.govts[entity.govt];
         // TODO: Really this should look at the closest hittable target
         // and integrate the player / govt logic together
-        if (govt.attack_default || (entity.govt in entMan.player_data.govts
-            && entMan.player_data.govts[entty.govt].reputation < 0)){
+        if (govt.attack_default || entMan.player_data.is_govt_hostile(entity.govt)){
           let target = find_closest_target(entity.position, entMan, ['hittable', 'player_aligned']); 
           if(target){
             set_target(ai, target);
@@ -72,11 +71,7 @@ export function ai_system(entMan){
               }
             }
           } else if ('player_aligned' in foe && 
-            (govt.attack_default || 
-              (entity.govt in entMan.player_data.govts &&
-                 entMan.player_data.govts[entty.govt].reputation < 0
-              )
-            )
+            (govt.attack_default || entMan.player_data.is_govt_hostile(entity.govt))
           ){
             set_target(ai, foe);
             return;
@@ -88,7 +83,7 @@ export function ai_system(entMan){
         }
       }
 
-      // Do neautral passive things such as fly to planets or leave the system
+      // Do neutral passive things such as fly to planets or leave the system
       idle(entity, ai, entMan.delta_time);
       
     }
