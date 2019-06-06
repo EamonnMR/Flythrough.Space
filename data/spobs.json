@@ -851,5 +851,16 @@
    "y": 0,
    "govt": "drone",
    "text": "There are two distinct civilizations on Morcia, frequently at each other's throats. One of them, the one you can land and trade at, has contact with the outside galaxy and is aligned with the Loyal Suns. The other, reclusive civilization has resisted direct dealings with spacefarers thus far."
+ },
+ "Calvados": {
+   "x": 0,
+   "y": 0,
+   "govt": "fifth",
+   "text": "The fifth fleet maintains a small trading post/supply depot here, for that rare trader that braves the journey.",
+   "trade": {
+     "water": "high",
+     "grain": "high",
+     "alloy": "high"
+   }
  }
 }

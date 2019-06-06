@@ -6,7 +6,6 @@
     "dark_color":"#101060FF",
     "foes": [
       "drone",
-      "orion",
       "orasos",
       "pirate",
       "pen",
@@ -20,7 +19,7 @@
     "dark_color":"#EAEA00FF",
     "foes": [
       "drone",
-      "orion"
+      "orasos"
     ]
   },
   "orasos":{
@@ -66,8 +65,8 @@
     "attack_default": true
   },
   "baik": {
-    "name": "Baikonour Rebels",
-    "short_name": "Rebel",
+    "name": "Baikonour Insurgents",
+    "short_name": "Insur",
     "attack_default": true
   }
 }

@@ -484,6 +484,15 @@
     "x":954,
     "y":1393,
     "govt":"direc",
+    "npc_average": 2,
+    "npcs": [
+      "pirate_raid",
+      "pirate_expedition",
+      "trader_danger",
+      "cas_patrol",
+      "cas_capital"
+    ],
+
     "links":[
       "Ibadan",
       "Mideska",
@@ -995,6 +1004,15 @@
     "x":955,
     "y":1496,
     "govt":"direc",
+    "npc_average": 2,
+    "npcs": [
+      "caudron_gang",
+      "pirate_raid",
+      "pirate_expedition",
+      "trader_danger",
+      "cas_patrol",
+      "cas_capital"
+    ],
     "links":[
       "Minna",
       ".343",
@@ -1129,6 +1147,11 @@
     "x":1529,
     "y":1581,
     "govt":"orasos",
+    "npc_average": 5,
+    "npcs": [
+      "caudron_gang",
+      "pirate_expedition"
+    ],
     "spobs": "Nightside",
     "links":[
       ".216",
@@ -1956,7 +1979,7 @@
     "govt":"fifth",
     "links":[
       "Vakarian",
-      "Normandy",
+      "Normanz",
       ".*26"
     ]
   },
@@ -1996,15 +2019,18 @@
     "links":[
       "Vakarian",
       ".303",
-      "Normandy",
+      "Normanz",
       ".310",
       ".312"
     ]
   },
-  "Normandy":{
+  "Normanz":{
     "x":1679,
     "y":464,
     "govt":"fifth",
+    "spobs": ["Calvados"],
+    "npc_average": 2,
+    "npcs": ["ff_defense"],
     "links":[
       "Kirrahe",
       "Marauder",
@@ -2060,7 +2086,7 @@
     "x":1708,
     "y":517,
     "links":[
-      "Normandy",
+      "Normanz",
       ".312"
     ]
   },
@@ -2395,6 +2421,9 @@
   ".343":{
     "x":981,
     "y":1592,
+    "npcs": [
+      "pirate_expedition"
+    ],
     "links":[
       "Mideska",
       ".344",
@@ -2959,6 +2988,15 @@
       "Kejetia"
     ],
     "govt":"direc",
+    "npc_average": 3,
+    "npcs": [
+      "caudron_gang",
+      "pirate_raid",
+      "pirate_expedition",
+      "trader_danger",
+      "cas_patrol",
+      "cas_capital"
+    ],
     "links":[
       "Illorin",
       "Minna",
@@ -2989,6 +3027,14 @@
   "Zenawi":{
     "x":891,
     "y":1431,
+    "npc_average": 1,
+    "npcs": [
+      "xic_presence",
+      "cas_patrol",
+      "trader_danger",
+      "pirate_expedition",
+      "pirate_raid"
+    ],
     "links":[
       "Minna",
       "Kilwa",

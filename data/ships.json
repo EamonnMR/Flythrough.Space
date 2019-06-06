@@ -405,11 +405,11 @@
   },
 
   "league_sparrow":{
-    "mesh": "perigrine",
+    "mesh": "sparrow",
     "short_name"  : "League Fighter",
-    "long_name"   : "Mod. Sparrow Fighter",
-    "full_name"   : "FuHao Type 1200 League Sparrow Starfighter",
-    "desc"       : "A smaller and more nimble version of the retired Sparrow, manufactured specifically for the Leauge navy. Variants of this ship make up the entire Leauge fighter corps. It is the main contribution of the FuHao the League technology sharing agreement.",
+    "long_name"   : "Mod. Passer Fighter",
+    "full_name"   : "FuHao Type 1200 League Passer Starfighter",
+    "desc"       : "An economical, nimble, and agressive fighter, manufactured specifically for the Leauge navy. It is a mainstay of the league's 'swarm of small ships' doctrine-the league can field many of these small ships for every fighter the Fifth Fleet can muster. It is the main contribution of the FuHao the League technology sharing agreement.",
     "weapons"    : [],
     "upgrades"    : {"autocannon": 2, "plasma50": 1, "ejectorrack": 2},
     "rotation"  : 0.018,
@@ -428,7 +428,7 @@
     "short_name"  : "League Heavy",
     "long_name"   : "League Heavy Fighter",
     "full_name"   : "Khanda Heavy Fighter (league mod)",
-    "desc"       : "The league version of Khanda's heavy fighter incorporates some fairly interesting technology from Melkin and FuHao.",
+    "desc"       : "The league's navy version of Khanda's heavy fighter.",
     "upgrades"    : {"autocannon":2, "plasma50":2},
     "rotation"  : 0.01,
     "accel"      : 0.0001,
@@ -646,10 +646,10 @@
   
   "caudron_sparrow":{
     "mesh": "light_fi",
-    "short_name"  : "Caudron Fighter",
-    "long_name"   : "Mod. Sparrow Fighter",
-    "full_name"   : "FuHao Type 1200 League Sparrow Starfighter",
-    "desc"       : "Somehow the caudron cartel got a hold of the tooling to make sparrows deep in the nebula, and the results are slick.",
+    "short_name"  : "Caudron Passer",
+    "long_name"   : "Mod. Passer Fighter",
+    "full_name"   : "FuHao Type 1200 League Passer Starfighter",
+    "desc"       : "Somehow the caudron cartel got a hold of the tooling to make Passers deep in the nebula, and the results are slick.",
     "weapons"    : {},
     "upgrades"    : {},
     "rotation"  : 0.018,
@@ -658,7 +658,7 @@
     "space"      : 30,
     "cargo"      : 10,
     "price"      : 200000,
-    "tech"       : {"league":1},
+    "tech"       : {"caudron":1},
     "max_fuel"   : 3,
     "max_hp"     : 100,
     "max_shields": 70
