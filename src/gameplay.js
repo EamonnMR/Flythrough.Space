@@ -18,6 +18,8 @@ import { ai_system, turretPointSystem  } from "./ai.js";
 import { get_game_camera } from "./graphics.js";
 import { has_sufficient_distance, has_sufficient_fuel } from "./hyperspace.js"
 
+let MIN_LAND_DISTANCE = 50
+
 export class GamePlayState extends ViewState {
 
   constructor(scene, data, player_data) {
@@ -200,9 +202,18 @@ export class GamePlayState extends ViewState {
     return this.entMan.get_with(['input'])[0];
   }
 
-  spob_is_landable(spob){
-    // TODO: Unlandable spobs
-    return true;
+  spob_is_landable(spob_name){
+    let player = this.get_player_ent();
+    let spob = this.entMan.get_with_exact("spob_name", spob_name)[0];
+    return (
+      spob && (
+        ( 
+          (distance(player.position, spob.position) < MIN_LAND_DISTANCE)
+          && ! this.player_data.is_govt_hostile(spob.govt)
+        ) 
+        || is_cheat_enabled('land_anywhere')
+      )
+    );
   }
 
   get_closest_thing(middle_thing, other_things){
