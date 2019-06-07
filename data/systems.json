@@ -341,6 +341,13 @@
     "x":860,
     "y":1211,
     "govt":"direc",
+    "npc_average": 4,
+    "npcs": [
+      "pirate_raid",
+      "trader_bulk",
+      "cas_capital",
+      "cas_patrol"
+    ],
     "links":[
       "Casamance",
       "Kilwa"
@@ -984,6 +991,14 @@
     "spobs":[
       "Vatsa"
     ],
+    "npc_average": 3,
+    "npcs": [
+      "cas_capital",
+      "cas_patrol",
+      "trader_danger",
+      "trader_bulk",
+      "trader_lowtech"
+    ],
     "links":[
       "Enyeama",
       "Ibadan",
@@ -994,6 +1009,13 @@
     "x":785,
     "y":1444,
     "govt":"direc",
+    "npc_average": 2,
+    "npcs": [
+      "trader_danger",
+      "trader_lowtech",
+      "pirate_raid",
+      "cas_patrol"
+    ],
     "links":[
       "Nowra",
       ".*23",
@@ -1572,6 +1594,14 @@
     "spobs": [
       "Broken Arrow",
       "Frontier Outpost III"
+    ],
+    "npc_average": 2,
+    "npcs": [
+      "cas_capital",
+      "cas_patrol",
+      "trader_danger",
+      "trader_lowtech",
+      "pirate_raid"
     ],
     "links":[
       "Kagame",
@@ -3017,6 +3047,14 @@
     "x":744,
     "y":1371,
     "govt":"direc",
+    "npc_average": 3,
+    "npcs": [
+      "cas_capital",
+      "cas_patrol",
+      "trader_danger",
+      "trader_bulk",
+      "trader_lowtech"
+    ],
     "links":[
       "Kilwa",
       "Kagame",
