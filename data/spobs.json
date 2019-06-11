@@ -846,21 +846,33 @@
     "govt": "hex",
     "text": "Reddy is a small, low-gravity backwater world. Unable to trap an atmosphere, Reddy's cities are under brilliant domes which are lit different colors for various festivals and can be seen from the sky like little ornaments."
   },
- "Morcia": {
-   "x": 0,
-   "y": 0,
-   "govt": "drone",
-   "text": "There are two distinct civilizations on Morcia, frequently at each other's throats. One of them, the one you can land and trade at, has contact with the outside galaxy and is aligned with the Loyal Suns. The other, reclusive civilization has resisted direct dealings with spacefarers thus far."
- },
- "Calvados": {
-   "x": 0,
-   "y": 0,
-   "govt": "fifth",
-   "text": "The fifth fleet maintains a small trading post/supply depot here, for that rare trader that braves the journey.",
-   "trade": {
-     "water": "high",
-     "grain": "high",
-     "alloy": "high"
-   }
- }
+  "Morcia": {
+    "x": 0,
+    "y": 0,
+    "govt": "drone",
+    "text": "There are two distinct civilizations on Morcia, frequently at each other's throats. One of them, the one you can land and trade at, has contact with the outside galaxy and is aligned with the Loyal Suns. The other, reclusive civilization has resisted direct dealings with spacefarers thus far."
+  },
+  "Calvados": {
+    "x": 0,
+    "y": 0,
+    "govt": "fifth",
+    "text": "The fifth fleet maintains a small trading post/supply depot here, for that rare trader that braves the journey.",
+    "trade": {
+      "water": "high",
+      "grain": "high",
+      "alloy": "high"
+    }
+  },
+  "Orowan": {
+    "x": 0,
+    "y": 0,
+    "govt": "fifth",
+    "text": "Deep in uncharted space orbits the base of operations of the Fifth Fleet, Orowan. The exact location on the surface is a closely guarded secret and the population of the planet (uncontacted until the Fifth Fleet arrived in its retreat during the collapse of imperial power) is complicit in this secrecy. In exchange they are treated to the spoils of fifth fleet raids.",
+    "trade": {
+      "ore": "med",
+      "food": "low",
+      "ethyl": "high"
+    },
+    "tech": {"V": 5}
+  } 
 }

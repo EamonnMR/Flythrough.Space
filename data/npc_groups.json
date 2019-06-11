@@ -90,6 +90,22 @@
       "ff_oe_frig",
       "ff_oe_cru"
     ]
+  },
+  "league_cap": {
+    "govt": "league",
+    "ships": [
+      "league_corvette",
+      "league_argosy",
+      "league_warship"
+    ]
+  },
+  "league_pt": {
+    "govt": "league",
+    "ships": [
+      "league_sparrow",
+      "league_corvette",
+      "league_heavy_fighter",
+      "league_argosy"
+    ]
   }
-
 }

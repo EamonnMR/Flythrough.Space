@@ -1307,6 +1307,12 @@
   "Amstrad":{
     "x":485,
     "y":1323,
+    "npc_average": 1,
+    "npcs": [
+      "trader_lowtech",
+      "trader_danger",
+      "pirate_expedition"
+    ],
     "links":[
       "Asuangate",
       "Misiones",
@@ -1992,10 +1998,18 @@
       ".*6"
     ]
   },
-  "Vakarian":{
+  "Ulam":{
     "x":1735,
     "y":356,
     "govt":"fifth",
+    "npc_average": 3,
+    "spobs": [
+      "Orowan"
+    ],
+    "npcs":[
+      "ff_raid",
+      "ff_defense"
+    ], 
     "links":[
       "Kirrahe",
       ".302",
@@ -2008,7 +2022,7 @@
     "y":360,
     "govt":"fifth",
     "links":[
-      "Vakarian",
+      "Ulam",
       "Normanz",
       ".*26"
     ]
@@ -2017,7 +2031,7 @@
     "x":1605,
     "y":228,
     "links":[
-      "Vakarian",
+      "Ulam",
       ".306",
       ".*26"
     ]
@@ -2026,7 +2040,7 @@
     "x":1803,
     "y":234,
     "links":[
-      "Vakarian",
+      "Ulam",
       ".303",
       ".306",
       ".309"
@@ -2036,7 +2050,7 @@
     "x":1845,
     "y":302,
     "links":[
-      "Vakarian",
+      "Ulam",
       ".302",
       "Marauder",
       ".309"
@@ -2047,7 +2061,7 @@
     "y":368,
     "govt":"fifth",
     "links":[
-      "Vakarian",
+      "Ulam",
       ".303",
       "Normanz",
       ".310",
@@ -2109,7 +2123,7 @@
       ".309",
       ".317",
       ".*18",
-      ".*27"
+      "Argonne"
     ]
   },
   ".311":{
@@ -2126,7 +2140,7 @@
     "links":[
       "Marauder",
       ".311",
-      ".*27"
+      "Argonne"
     ]
   },
   "Panaorios":{
@@ -2975,7 +2989,7 @@
       "Panaorios",
       "Covasna",
       "Guayas",
-      ".*27"
+      "Argonne"
     ]
   },
   ".*18":{
@@ -3090,12 +3104,22 @@
       ".308"
     ]
   },
-  ".*27":{
+  "Argonne":{
     "x":1906,
     "y":535,
+    "npc_average": 2,
+    "npcs": [
+      "league_cap",
+      "trader_danger",
+      "ff_defense",
+      "ff_raid",
+      "league_pt"
+    ],
     "links":[
       ".310",
-      ".317"
+      ".317",
+      "Stormgald",
+      ".310"
     ]
   },
   ".*28":{
