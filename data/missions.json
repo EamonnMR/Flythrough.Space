@@ -14,7 +14,7 @@
   },
   "rideshare": {
     "name": "Ferry Passengers to {{ dest.spob }}",
-    "brief": "Passengers have hailed a ride to {{ dest.spob }} in the {{dest.sys}} system.",
+    "brief": "Passengers have hailed a ride to {{ dest.spob }} in the {{dest.sys}} system. Safe passage will earn you {{ payout }} credcoin.",
     "payout": 2000,
     "cargo": {
       "type": "passengers",
@@ -68,17 +68,20 @@
   },
   "bounty_ne": {
     "name": "Terrorist Watch List: Wanted",
-    "brief": "Seditious and unworthy pirates are operating a ship called {{ target.name }} in and around the {{ dest.sys }} system. Any captain who can eliminate this ship will be richly rewarded.",
+    "brief": "Seditious and unworthy insurgents are operating a ship called {{ target.name }} in and around the {{ dest.sys }} system. Any captain who can eliminate this ship will be richly rewarded.",
     "offer": {
       "spob.govt": "drone"
     },
     "target": {
-      "group": "baik_pirates",
+      "group": "baik_insur_raid",
       "names": [
         "Baikonour Forever",
         "Invictus",
         "Novochock",
-        "Radio Free Baikonour"
+        "Radio Free Baikonour",
+        "Big K-T",
+        "Unbowed",
+        "Unbroken"
       ]
     }
   },
@@ -105,4 +108,5 @@
   "itaskan_hook": {
     "offer": "As you sit down in the bar, electronic music from the dancefloor covers the sound of some flight-suited astronauts approaching your table. Two of them have the gleaming helmets of Itaskan flight crew, while the man in the middle carries his. His appearance is paradoxically youthful but with a few very clear markers of age.\n\"{{ player.name }}, would you be interested in a perilous journey across known and unknown space?\" the middle man asks.",
     "accept": "\"Wonderful\" says the well-preserved man \"My name is Professor Morton, but you can call me Tyrell. I've got a fairly sensative mission and your reputation precedes you. It's scientific in nature-natural history really. Our first stop will be nearby Baikon."
+  }
 }

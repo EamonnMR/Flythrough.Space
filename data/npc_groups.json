@@ -5,7 +5,8 @@
       "shuttle",
       "courier",
       "oe_fighter",
-      "oe_frig"
+      "oe_frig",
+      "baik_goshawk"
     ]
   },
   "trader_bulk": {
@@ -102,10 +103,72 @@
   "league_pt": {
     "govt": "league",
     "ships": [
-      "league_sparrow",
+      "league_passer",
       "league_corvette",
       "league_heavy_fighter",
       "league_argosy"
+    ]
+  },
+  "western_trader": {
+    "govt": "merchant",
+    "ships":[
+      "goshawk",
+      "courier",
+      "falcon",
+      "or_frigate"
+    ]
+  },
+  "western_trader_small": {
+    "govt": "merchant",
+    "ships":[
+      "oe_fighter",
+      "tercel",
+      "shuttle",
+      "civ_heavy_fighter"
+    ]
+  },
+  "baik_insur_raid": {
+    "govt": "baik",
+    "ships": [
+      "falcon",
+      "goshawk"
+    ]
+  },
+  "ls_pt": {
+    "govt": "drone",
+    "ships": [
+      "ls_heavyfi",
+      "ls_vette"
+    ]
+  },
+  "ls_raid": {
+    "govt": "drone",
+    "ships": [
+      "ls_vette",
+      "ls_retaliator",
+      "ls_absolver"
+    ]
+  },
+  "ls_boss": {
+    "govt": "drone",
+    "ships": [
+      "ls_retaliator",
+      "ls_absolver"
+    ]
+  },
+  "ls_noncom": {
+    "govt": "drone",
+    "ships": [
+      "ls_provider",
+      "ls_runabout"
+    ]
+  },
+  "itaska": {
+    "govt": "pen",
+    "ships": [
+      "itaska_deathcap",
+      "itaska_hemlock",
+      "itaska_nightshade"
     ]
   }
 }

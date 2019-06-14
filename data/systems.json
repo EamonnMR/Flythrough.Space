@@ -85,6 +85,12 @@
     "y":965,
     "govt":"direc",
     "roidSet":"silicaFieldH",
+    "npc_average": 5,
+    "npcs": [
+      "xic_presence",
+      "trader_lowtech",
+      "cas_patrol"
+    ],
     "spobs":[
       "Harcourt",
       "XIC - Bluthgelt"
@@ -178,6 +184,12 @@
     "x":885,
     "y":859,
     "govt":"direc",
+    "npc_average": 3,
+    "npcs": [
+      "xic_presence",
+      "trader_lowtech",
+      "cas_patrol"
+    ],
     "roidSet":"silicaFieldM",
     "spobs":[
       "Cook",
@@ -212,6 +224,13 @@
     "x":685,
     "y":933,
     "govt":"pen",
+    "npc_average": 4,
+    "npcs": [
+      "western_trader",
+      "itaska",
+      "ls_raid"
+    ],
+
     "spobs":[
       "Cobb",
       "DIII - Loneozner"
@@ -1309,9 +1328,12 @@
     "y":1323,
     "npc_average": 1,
     "npcs": [
+      "western_trader_small",
+      "western_trader",
       "trader_lowtech",
       "trader_danger",
-      "pirate_expedition"
+      "pirate_expedition",
+      "itaska"
     ],
     "links":[
       "Asuangate",
@@ -1324,6 +1346,22 @@
     "x":588,
     "y":1383,
     "govt":"direc",
+    "npc_average": 5,
+    "npcs": [
+      "trader_bulk",
+      "western_trader",
+      "cas_capital",
+      "cas_patrol"
+    ],
+    "npc_average": 3,
+    "npcs": [
+      "trader_bulk",
+      "western_trader",
+      "cas_capital",
+      "cas_patrol",
+      "pirate_raid"
+    ],
+
     "spobs":[
       "Sinaqara"
     ],
@@ -1348,6 +1386,12 @@
   "Misiones":{
     "x":479,
     "y":1229,
+    "npc_average": 1,
+    "nocs": [
+      "trader_lowtech",
+      "western_trader_small",
+      "itaska"
+    ],
     "links":[
       "Pavlichenko",
       "Amstrad"
@@ -1357,6 +1401,12 @@
     "x":528,
     "y":1066,
     "govt":"pen",
+    "npc_average": 3,
+    "npcs": [
+      "itaska",
+      "western_trader",
+      "western_trader_small"
+    ],
     "spobs":[
       "DI - Lyrell",
       "Trowel"
@@ -1398,6 +1448,12 @@
     "x":530,
     "y":953,
     "govt":"pen",
+    "npc_average": 4,
+    "npcs": [
+      "western_trader",
+      "itaska",
+      "ls_raid"
+    ],
     "links":[
       "Millwright",
       ".258"
@@ -1583,6 +1639,12 @@
     "x":628,
     "y":1058,
     "govt":"pen",
+    "npc_average": 4,
+    "npcs": [
+      "itaska",
+      "western_trader",
+      "western_trader_small"
+    ],
     "spobs":[
       "Frontier Outpost IV"
     ],
@@ -1618,6 +1680,14 @@
   ".258":{
     "x":557,
     "y":821,
+    "npc_average": 4,
+    "npcs": [
+      "western_trader",
+      "itaska",
+      "ls_raid",
+      "ls_boss"
+    ],
+
     "links":[
       "Straylight",
       ".255",
@@ -1774,6 +1844,13 @@
     "x":596,
     "y":941,
     "govt":"pen",
+    "npc_average": 4,
+    "npcs": [
+      "western_trader",
+      "itaska",
+      "ls_raid"
+    ],
+
     "spobs":[
       "Kopachy",
       "DVI - Strelok"
@@ -1805,6 +1882,14 @@
   "Lemuel":{
     "x":479,
     "y":901,
+    "npc_average": 2,
+    "npcs": [
+      "trader_lowtech",
+      "western_trader",
+      "itaska",
+      "ls_raid"
+    ],
+
     "links":[
       ".248",
       ".258",
@@ -2888,6 +2973,12 @@
   "Distrito":{
     "x":485,
     "y":1391,
+    "npc_average": 2,
+    "npcs": [
+      "western_trader",
+      "trader_danger",
+      "pirate_raid"
+    ],
     "links":[
       "Amstrad",
       "Asuangate",
@@ -2898,6 +2989,15 @@
     "x":540,
     "y":1492,
     "govt":"direc",
+    "npc_average": 4,
+    "npcs": [
+      "trader_bulk",
+      "western_trader",
+      "cas_capital",
+      "cas_patrol",
+      "pirate_expedition"
+    ],
+
     "spobs": [
       "Vasconcells",
       "Arruda"
