@@ -121,7 +121,7 @@ export class MapView extends ViewState{
        * This ought to work. What's more, it should be nicer
        * than brute forcing all of the circles.
        * 
-       * But try, comment this out - it won't work. Or, rather
+       * But try and comment this in - it won't work. Or, rather
        * it will work on the first four or so systems you
        * assign a listener to and nothing else.
       sys_circle.onPointerDownObservable.add((event) => {
@@ -143,7 +143,11 @@ export class MapView extends ViewState{
       return;
     }
     let color = UNEXPLORED_COLOR;
+    
     let is_light = 'spobs' in system_dat;
+    if (is_cheat_enabled("show_npcs")){
+      is_light = 'npc_average' in system_dat && 'npcs' in system_dat;
+    }
     if(explored){  
       if( "govt" in system_dat ){
         color = is_light ? this.govt_colors[system_dat.govt] : this.govt_dark_colors[system_dat.govt];
