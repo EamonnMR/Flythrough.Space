@@ -37,6 +37,7 @@ export class GamePlayState extends ViewState {
       weaponSystem,
       speedLimitSystem,
       velocitySystem,
+      this.matterSystem,
       modelPositionSystem,
       cameraFollowSystem,
       turretPointSystem,
@@ -62,6 +63,9 @@ export class GamePlayState extends ViewState {
     }
     if (this.empty){
       this.setup_world();
+      Matter.Engine.run(this.physics_engine);
+    } else {
+      this.physics_engine.timing.timescale = 1;
     }
     this.entMan.unpause();
     bindInputFunctions({
@@ -71,6 +75,7 @@ export class GamePlayState extends ViewState {
         // so we don't actually put the functionality into the exit() function,
         // we put it before the enter() call.
         this.entMan.pause();
+        this.physics_engine.timing.timescale = 0;
         this.parent.enter_state('map');
       },
 
@@ -195,7 +200,13 @@ export class GamePlayState extends ViewState {
         this.data.govts,
     );
     this.create_world_models(this.player_data.current_system);
+    this.physics_engine = Matter.engine.create();
     this.empty = false;
+  }
+
+  this.matterSystem(entMan){
+    Matter.engine.update(this.physics_engine, entMan.delta_time);
+    // Cheating a bit here. TODO: extract this, make it stateless
   }
 
   get_player_ent(){
