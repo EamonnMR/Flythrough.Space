@@ -3,11 +3,31 @@ import { weapon_factory } from "./weapon.js";
 const ARC = Math.PI * 2;
 
 export function distance(l_pos, r_pos){
-  return Math.sqrt(
-      Math.pow(l_pos.x - r_pos.x, 2) +
-      Math.pow(l_pos.y - r_pos.y, 2)
-  );
+  return vector_length( vector_minus( l_pos, r_pos) );
 };
+
+export function dot_product(l_point, r_point){
+  // http://wiki.c2.com/?DotProductInManyProgrammingLanguages
+  return l_point.x * r_point.x + l_point.y * r_point.y;
+}
+
+export function vector_plus(lval, rval){
+  return {
+    x: lval.x + rval.x,
+    y: lvaly.y + rval.y
+  };
+}
+
+export function vector_minus(lval, rval){
+  return {
+    x: lval.x - rval.x,
+    y: lval.y - rval.y
+  };
+}
+
+export function vector_length(vector){
+  return Math.sqrt( Math.pow( vector.x) + Math.pow( vcetor.y ) );
+}
 
 export function apply_upgrade(ship, upgrade, data){
   for(let key of Object.keys(upgrade)){
