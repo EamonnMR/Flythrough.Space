@@ -1,5 +1,6 @@
 import { shot_handler } from "./damage.js";
-import { distance, dot_product, is_cheat_enabled } from "./util.js";
+import { distance, dot_product, vector_minus, is_cheat_enabled } from "./util.js";
+
 
 
 export function collisionDetectionSystem(entMan){
@@ -43,25 +44,22 @@ function circle_line_collision(circle_entity, line_entity){
   // https://stackoverflow.com/a/1084899/1048464
   // Please refer to the well commented and discussed quadratic equation on
   // stack overflow.
-  let e = line_entity.collider.start
-  let l = line_entity.collider.end
-  let c = circle_entity.position
-  let r = circle_entity.collider.radius
-  let d  = vector_minus(line.collider.end, line.collider.start);
-  let f  = vector_minus(line.collider.start, circle_entity.position);
+  let d  = vector_minus(line_entity.collider.end, line_entity.collider.start);
+  let f  = vector_minus(line_entity.collider.start, circle_entity.position);
   let a = dot_product(d, d);
   let b = 2 * dot_product( d, f) ;
-  let c = dot_product(f, f) - Math.pow(r, 2) ;
+  let c = dot_product(f, f) - Math.pow(circle_entity.collider.radius, 2) ;
 
   let discriminant = b*b-4*a*c;
   if( discriminant < 0 ){
     // no intersection
+    return false;
   } else {
     // ray didn't totally miss sphere,
     // so there is a solution to
     // the equation.
 
-    discriminant = sqrt( discriminant );
+    discriminant = Math.sqrt( discriminant );
 
     // either solution may be on or off the ray so need to test both
     // t1 is always the smaller value, because BOTH discriminant and
