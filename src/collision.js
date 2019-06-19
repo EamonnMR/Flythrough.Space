@@ -41,14 +41,26 @@ function circle_circle_collision(a, b){
 };
 
 function circle_line_collision(circle_entity, line_entity){
+  // HEALTH WARNING: What follows is tearse math code.
   // https://stackoverflow.com/a/1084899/1048464
   // Please refer to the well commented and discussed quadratic equation on
   // stack overflow.
-  let d  = vector_minus(line_entity.collider.end, line_entity.collider.start);
-  let f  = vector_minus(line_entity.collider.start, circle_entity.position);
+  let start = line_entity.collider.start;
+  let end = line_entity.collider.end;
+  let r = circle_entity.collider.radius;
+  let p = circle_entity.position;
+  
+  // Totally inside - short circuit
+  // CASE | --> | (TODO: can this be worked into the below?)
+  if(distance(start, p) < r || distance(end, p) < r){
+    return false;
+  }
+
+  let d  = vector_minus(end, start);
+  let f  = vector_minus(start, p);
   let a = dot_product(d, d);
   let b = 2 * dot_product( d, f) ;
-  let c = dot_product(f, f) - Math.pow(circle_entity.collider.radius, 2) ;
+  let c = dot_product(f, f) - Math.pow(r, 2) ;
 
   let discriminant = b*b-4*a*c;
   if( discriminant < 0 ){
@@ -127,3 +139,4 @@ function gov_test(shot, entity){
   return 'ignoregov' in shot && 'govt' in entity && shot.ignoregov === entity.govt;
 }
 
+debugger;
