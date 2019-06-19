@@ -26,7 +26,7 @@ export function vector_minus(lval, rval){
 }
 
 export function vector_length(vector){
-  return Math.sqrt( Math.pow( vector.x) + Math.pow( vcetor.y ) );
+  return Math.sqrt( Math.pow( vector.x) + Math.pow( vector.y ) );
 }
 
 export function apply_upgrade(ship, upgrade, data){
