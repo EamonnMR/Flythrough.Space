@@ -5,6 +5,7 @@ import {
 } from "./graphics.js";
 
 export function npcShipFactory(data, type, position, hud, ai, govt){
+  console.log(type);
   let ship = shipFactory(data, type, position);
   ship.ai = ai;
   ship.radar_pip = hud.get_radar_pip(4, '#FF0000FF');
@@ -96,6 +97,7 @@ export function npcSpawnerSystem(entMan) {
 			// TODO: Spawn ships in with a warp transition for coolness
 
       let group = random_group(spawner.types, entMan.data);
+      console.log(group);
 		  let npc = npcShipFactory(
                                 entMan.data,
                                 random_type(group.ships, entMan.data),
@@ -126,7 +128,13 @@ function random_type(npcs, data){
   // A fun StackOverflow post for sure:
   // https://stackoverflow.com/questions/5915096/get-random-item-from-javascript-array	
   let type = npcs[Math.floor(Math.random() * npcs.length)];
-  return data.ships[type];
+  if (type in data.ships){
+    return data.ships[type];
+  } else {
+    console.log("Data Error: Ship '" + type + "' does not exist.");
+    // Yeah, this will go infinite if you've got all undefined ships in a group
+    return random_type(npcs, data);
+  }
 };
 
 function random_group(groups, data){
