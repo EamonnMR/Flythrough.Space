@@ -123,7 +123,6 @@ function fire_weapon(weapon, entity, entMan) {
       weapon.model.getWorldMatrix().decompose(BABYLON.Vector3.Zero(), _, position)
 
       origin = {x: position.x, y: position.z} 
-      console.log(weapon.model.position);
       depth = entity.model.position.y;
     }
     if (weapon.proj){
