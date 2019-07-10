@@ -76,11 +76,11 @@ export class LandingMenu extends BaseMenuView {
       );
     }
 
-    if (this.spob.missions){
+    if (true){ // TODO: If missions_available()
       widgets.push(new LandingMenuBigButton(
         'Open Contracts',
         () => {
-          //this.parent.enter_state('missions');
+          this.parent.enter_state('missions');
         },
         LEFT,
         BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,

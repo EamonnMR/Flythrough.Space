@@ -1,53 +1,45 @@
 {
   "basic_cargo": {
-    "name": "Transport {{ cargo.type }} to {{ dest.spob }}",
-    "brief": "A merchant vessel is needed to transport {{ cargo.amount }} tons of {{ cargo.type }} to {{ dest.spob}} in the {{ dest.sys }} system. Payment upon arrival will be {{ payout }}",
+    "name": "Transport ${cargo.type} to ${dest.spob}",
+    "desc": "A merchant vessel is needed to transport ${cargo.amount} tons of ${cargo.type} to ${dest.spob}} in the ${dest.sys} system. Payment upon arrival will be ${payout}",
     "payout": 20000,
     "cargo": {
-      "type": "*legal",
-      "amount": "5-10"
+      "type": "${get_legal_cargo()}",
+      "amount": "rand_int_range(5,10)"
     },
     "dest": {
-      "sys": "*samegov",
-      "spob": "*"
+      "sys": "${get_system_of_like_govt()}",
+      "spob": "${random_spob_in_system()}"
     }
   },
   "rideshare": {
-    "name": "Ferry Passengers to {{ dest.spob }}",
-    "brief": "Passengers have hailed a ride to {{ dest.spob }} in the {{dest.sys}} system. Safe passage will earn you {{ payout }} credcoin.",
+    "name": "Ferry Passengers to ${dest.spob}",
+    "desc": "Passengers have hailed a ride to ${dest.spob} in the ${dest.sys} system. Safe passage will earn you ${payout} credcoin.",
     "payout": 2000,
     "cargo": {
       "type": "passengers",
       "amount": 1
     },
-    "dest": {
-      "sys": "*samegov",
-      "spob": "*"
-    }
+    "dest": "random_same_gov_spob()"
   },
   "smuggle": {
     "name": "Smuggle {{ cargo.type }} to {{ dest.spob }}",
     "brief": "Some perhaps less than legal exporters need {{ cargo.amount }} tons of {{ cargo.type }} moved discretely.",
     "cargo": {
-      "type": "*illegal",
-      "amount": "10-20",
-      "illegal": true
+      "type": "get_illegal_cargo()",
+      "amount": "rand_int_range(5,10)"
     },
-    "dest": {
-      "sys": "*samegov",
-      "spob": "*"
-    },
+    "dest": "random_same_gov_spob()", 
     "payout": 14000
   },
   "bounty_direc": {
     "name": "Wanted: Dead or Alive",
-    "brief": "Reward: 20000 credcoin. To be paid in full upon destruction of the pirate vessle \"{{ target.name }}\". As usual, crew may surrender at any port for immediate sentencing. Last spotted near the {{ dest.sys }} system, raiding merchant vessles.",
-    "offer": {
-      "spob.govt": "=direc"
-    },
+    "brief": "Reward: ${payout} credcoin. To be paid in full upon destruction of the pirate vessle \"${target.name}\". As usual, crew may surrender at any port for immediate sentencing. Last spotted near the ${dest.sys} system, raiding merchant vessles.",
+    "availability": "${govt_is('direc')}",
     "target": {
       "group": "pirate_raid",
-      "random_name": [
+      "name": "${random_choice(target.name_list)}",
+      "name_list": [
         "Ghost of a chance",
         "Miriam",
         "Indrid",

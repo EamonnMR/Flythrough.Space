@@ -146,6 +146,7 @@
     "ships": "ships.json",
     "spobtypes": "spobtypes.json",
     "trade": "trade.json",
-    "npc_groups": "npc_groups.json"
+    "npc_groups": "npc_groups.json",
+    "missions": "missions.json"
   }
 }
