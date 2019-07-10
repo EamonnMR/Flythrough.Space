@@ -1,4 +1,4 @@
-import {StoreMenu, StoreitemName, storeitemDesc, BuyButton} from "./store.js";
+import {StoreMenu, StoreitemName, StoreitemDesc, BuyButton} from "./store.js";
 
 import { TextButton, TextBox } from "./menu.js";
 
@@ -8,6 +8,7 @@ import { missions_for_spob } from "./missions.js";
 export class MissionsMenu extends StoreMenu {
 
   constructor(spobs, player_data, items, data){
+    super();
     this.spobs = spobs;
     this.player_data = player_data;
     this.raw_items = items;

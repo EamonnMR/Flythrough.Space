@@ -34,27 +34,31 @@ export function bake_mission(mission){
 
 function interpolate_mission_text(mission, text){
   for(let x in mission){ // Dump mission into scope
-    eval `let ${x} = ${mission[x]}`;
+    eval(`let ${x} = ${mission[x]}`);
   }
-  return eval '`' + text + '`';
+  return eval('`' + text + '`');
 }
 
 function interpolate_mission_value(mission, value){
   for(let x in mission){ // Sadly, this needs to be copypasta
     eval `let ${x} = ${mission[x]}`;
   }
-  return eval value;
+  return eval(value);
 }
 
 // Legal Cargos
 // TODO: Generate this
 let legal_cargo = ["water", "grain", "gas"]
 
-get_legal_cargo(){
+function get_legal_cargo(){
   // This is where having a DB would be very nice.
   return choose(legal_cargo);
 }
 
-get_random_spob_in_system(system){
+function get_random_spob_in_system(system){
   
+}
+
+export function missions_for_spob(){
+  return []
 }

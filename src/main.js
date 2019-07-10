@@ -1,4 +1,5 @@
 import { overridable_default } from "./util.js";
+import { set_singletons } from "./singletons.js";
 import { GamePlayState } from "./gameplay.js";
 import { PlayerSave } from  "./player.js";
 import { MapView } from "./map.js";
@@ -38,6 +39,7 @@ function init(game_canvas, scene, engine, data){
     stateMgr.resize();
   });
 
+  set_singletons(data, scene, stateMgr, player_data);
 
   engine.runRenderLoop( () => {
     scene.render();
