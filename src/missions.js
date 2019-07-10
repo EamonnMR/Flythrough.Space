@@ -1,3 +1,5 @@
+import { choose } from "./util.js";
+
 /* Missions, or: why implement a DSL when `eval` exists!
  */
 
@@ -20,6 +22,11 @@ export function bake_mission(mission){
     mission.cargo.amount = interpolate_mission_value(mission, mission.cargo.amount);
   }
 
+  if(mission.target){
+    mission.target.type = interpolate_mission_text(mission, mission.target.type);
+    mission.target.name = interpolate_mission_text(mission, mission.target.name);
+  }
+
   mission.desc = interpolate_mission_text(mission, mission.desc);
   mission.name = interpolate_mission_text(mission, mission.name);
 
@@ -39,3 +46,15 @@ function interpolate_mission_value(mission, value){
   return eval value;
 }
 
+// Legal Cargos
+// TODO: Generate this
+let legal_cargo = ["water", "grain", "gas"]
+
+get_legal_cargo(){
+  // This is where having a DB would be very nice.
+  return choose(legal_cargo);
+}
+
+get_random_spob_in_system(system){
+  
+}
