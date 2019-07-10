@@ -119,6 +119,11 @@ export function tech_filter(tech_had, tech_needed){
   return true;
 }
 
+export function choose(choices){
+  // Make a random choice between items in a list
+  return choices[Math.floor(Math.random() * choices.length)];
+}
+
 let url_params = new URLSearchParams(window.location.search);
 
 let all_cheats_enabled = url_params.has("all_cheats");

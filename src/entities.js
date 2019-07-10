@@ -1,4 +1,4 @@
-import { apply_upgrades, random_position } from "./util.js";
+import { apply_upgrades, random_position, choose } from "./util.js";
 import {
   create_composite_model,
   create_planet_sprite
@@ -127,7 +127,7 @@ function count_npcs(entMan){
 function random_type(npcs, data){
   // A fun StackOverflow post for sure:
   // https://stackoverflow.com/questions/5915096/get-random-item-from-javascript-array	
-  let type = npcs[Math.floor(Math.random() * npcs.length)];
+  let type = choose(npcs);
   if (type in data.ships){
     return data.ships[type];
   } else {
@@ -138,7 +138,6 @@ function random_type(npcs, data){
 };
 
 function random_group(groups, data){
-  return data.npc_groups[groups[Math.floor(Math.random() * groups.length)]]; 
+  return data.npc_groups[choose(groups)]; 
 };
-
 
