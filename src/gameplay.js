@@ -30,7 +30,7 @@ export class GamePlayState extends ViewState {
     //this.camera = null;
     this.player_data = player_data;
 
-    this.entMan = new EntityManager(player_data, data, [
+    this.entMan = new EntityManager([
       npcSpawnerSystem,
       inputSystem,
       ai_system,
@@ -156,13 +156,10 @@ export class GamePlayState extends ViewState {
 
   create_world_models( system_name ){
     this.world_models = setup_system(
-  		this.scene,
       this.camera,
 			this.entMan,
    		system_name,
       this.hud,
-      this.data,
-      this.player_data,
   	);
   }
 

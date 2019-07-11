@@ -1,12 +1,12 @@
+import { _ } from "./singletons.js";
 import { apply_upgrades, random_position, choose } from "./util.js";
 import {
   create_composite_model,
   create_planet_sprite
 } from "./graphics.js";
 
-export function npcShipFactory(data, type, position, hud, ai, govt){
-  console.log(type);
-  let ship = shipFactory(data, type, position);
+export function npcShipFactory(type, position, hud, ai, govt){
+  let ship = shipFactory(type, position);
   ship.ai = ai;
   ship.radar_pip = hud.get_radar_pip(4, '#FF0000FF');
   ship.govt = govt;
@@ -14,9 +14,9 @@ export function npcShipFactory(data, type, position, hud, ai, govt){
   return ship;
 }
 
-export function playerShipFactory(data, type, position, camera, hud, player) {
+export function playerShipFactory(type, position, camera, hud) {
 
-  let ship = shipFactory(data, type, position);
+  let ship = shipFactory(type, position);
 
   ship.camera = camera;
   ship.input = true;
@@ -24,11 +24,11 @@ export function playerShipFactory(data, type, position, camera, hud, player) {
   ship.player_aligned = true; // Fake gov for player and minions
 
   ship.radar_pip = hud.get_radar_pip(4, '#00FF00FF');
-  ship.fuel = player.fuel;
+  ship.fuel = _.player.fuel;
   return ship;
 };
 
-export function shipFactory(data, type, position){
+export function shipFactory(type, position){
   let ship = Object.create(type);
   ship.position = position;
   ship.direction = 0;
@@ -39,17 +39,17 @@ export function shipFactory(data, type, position){
   ship.shields = ship.max_shields;
   ship.collider = {radius: .5};
   ship.fuel = ship.max_fuel;
-  apply_upgrades(ship, ship.upgrades, data);
-  create_composite_model(ship, data);
+  apply_upgrades(ship, ship.upgrades);
+  create_composite_model(ship, _.data);
   return ship;
 };
 
 
-export function planetFactory (data, name, hud, scene, index){
-  let planet = Object.create(data.spobs[name]);
+export function planetFactory (name, hud, index){
+  let planet = Object.create(_.data.spobs[name]);
   
   planet.position = {x: planet.x, y: planet.y};
-  planet.model = create_planet_sprite(data, planet, scene); 
+  planet.model = create_planet_sprite(_.data, planet, _.scene); 
   planet.spob_name = name;
   // TODO: Change pip color based on landability status
   planet.radar_pip = hud.get_radar_pip(15, "Yellow");
@@ -78,7 +78,7 @@ export function asteroidFactory (position, velocity, sprite, hud) {
   };
 };
 
-export function npcSpawnerFactory(data, system, hud) {
+export function npcSpawnerFactory(system, hud) {
   return {
     spawner: true,
     spawns_npc: true,
@@ -96,11 +96,10 @@ export function npcSpawnerSystem(entMan) {
       // TODO: Set timer to make this feel more natural
 			// TODO: Spawn ships in with a warp transition for coolness
 
-      let group = random_group(spawner.types, entMan.data);
+      let group = _.data.npc_groups[choose(spawner.types)];
       console.log(group);
 		  let npc = npcShipFactory(
-                                entMan.data,
-                                random_type(group.ships, entMan.data),
+                                random_type(group.ships),
                                 random_position(),
                                 spawner.hud,
                                 {state: 'passive'},
@@ -124,20 +123,17 @@ function count_npcs(entMan){
   return entMan.get_with(['ai']).length;
 }
 
-function random_type(npcs, data){
+function random_type(npcs){
   // A fun StackOverflow post for sure:
   // https://stackoverflow.com/questions/5915096/get-random-item-from-javascript-array	
   let type = choose(npcs);
-  if (type in data.ships){
-    return data.ships[type];
+  if (type in _.data.ships){
+    return _.data.ships[type];
   } else {
     console.log("Data Error: Ship '" + type + "' does not exist.");
     // Yeah, this will go infinite if you've got all undefined ships in a group
-    return random_type(npcs, data);
+    return random_type(npcs);
   }
 };
 
-function random_group(groups, data){
-  return data.npc_groups[choose(groups)]; 
-};
 

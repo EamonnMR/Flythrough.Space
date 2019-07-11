@@ -1,7 +1,5 @@
 export class EntityManager {
-  constructor (player_data, data, systems, entities) {
-    this.data = data;
-    this.player_data = player_data;
+  constructor (systems, entities) {
     if (entities) {
       this.entities = entities;
     } else {

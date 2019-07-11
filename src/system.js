@@ -6,15 +6,17 @@
  * ents and need to be cleaned up on system exit.
  */
 
+import { _ } from "./singletons.js";
+
 import {
   playerShipFactory,
   npcSpawnerFactory,
   planetFactory
 } from "./entities.js"; 
 
-export function setup_system(scene, camera, entMan, system, hud, data, player_data){
-  player_data.explore_system(system);
-  let system_dat = data.systems[system];
+export function setup_system(camera, entMan, system, hud){
+  _.player.explore_system(system);
+  let system_dat = _.data.systems[system];
 
   let lights = [
     {
@@ -30,20 +32,19 @@ export function setup_system(scene, camera, entMan, system, hud, data, player_da
 
 
   let ents = [
-    playerShipFactory( data,
-        player_data.ship_dat, 
+    playerShipFactory(
+        _.player.ship_dat, 
         {
-          x: player_data.initial_position.x,
-          y: player_data.initial_position.y
+          x: _.player.initial_position.x,
+          y: _.player.initial_position.y
         },
         camera,
         hud,
-        player_data
     ),
   ];
   if( system_dat.npcs ){
     ents.push(
-      npcSpawnerFactory(data, system_dat, hud)
+      npcSpawnerFactory(system_dat, hud)
     );
   }
 
@@ -55,22 +56,22 @@ export function setup_system(scene, camera, entMan, system, hud, data, player_da
   let index = 0;
   if ('spobs' in system_dat) {
     for (let spob_name of system_dat.spobs){
-      let spob_dat = data.spobs[spob_name];
-      let planet = planetFactory(data, spob_name, hud, scene, index)
+      let spob_dat = _.data.spobs[spob_name];
+      let planet = planetFactory(spob_name, hud, index)
       planets.push( planet );
       index++
     }
   }
 
-  return enter_system(scene, entMan, planets, lights, ents);
+  return enter_system(entMan, planets, lights, ents);
 };
 
 
-function enter_system(scene, entMan, planets, lights, ents) {
+function enter_system(entMan, planets, lights, ents) {
   let world_models = []
 
   for (let light of lights) {
-    world_models.push(lightFactory(light, scene));
+    world_models.push(lightFactory(light));
   }
 
   for (let ent of ents) {
@@ -85,7 +86,7 @@ function enter_system(scene, entMan, planets, lights, ents) {
   return world_models;
 };
 
-function lightFactory(data, scene){
+function lightFactory(data){
   let light = null 
   if(data.type = "hemi"){
     // Useful nebula-adjacent systems where there's an ambient background
@@ -93,13 +94,13 @@ function lightFactory(data, scene){
     light = new BABYLON.HemisphericLight(
         "",
         new BABYLON.Vector3(...data.position),
-        scene
+        _.scene
     );
   } else {
     light = new BABYLON.DirectionalLight(
       "",
       new BABYLON.Vector3(...data.position),
-      scene
+      _.scene
     ); 
   }
 

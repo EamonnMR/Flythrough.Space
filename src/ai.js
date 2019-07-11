@@ -1,3 +1,4 @@
+import { _ } from "./singletons.js";
 import { distance, random_position, in_firing_arc, angle_mod } from "./util.js";
 import { rotate, accelerate, decelerate, linear_vel } from "./physics.js";
 import { get_bone_group } from "./graphics.js";
@@ -51,10 +52,10 @@ export function ai_system(entMan){
           }
         }
       } else if ('govt' in entity){
-        let govt = entMan.data.govts[entity.govt];
+        let govt = _.data.govts[entity.govt];
         // TODO: Really this should look at the closest hittable target
         // and integrate the player / govt logic together
-        if (govt.attack_default || entMan.player_data.is_govt_hostile(entity.govt)){
+        if (govt.attack_default || _.player.is_govt_hostile(entity.govt)){
           let target = find_closest_target(entity.position, entMan, ['hittable', 'player_aligned']); 
           if(target){
             set_target(ai, target);
@@ -71,7 +72,7 @@ export function ai_system(entMan){
               }
             }
           } else if ('player_aligned' in foe && 
-            (govt.attack_default || entMan.player_data.is_govt_hostile(entity.govt))
+            (govt.attack_default || _.player.is_govt_hostile(entity.govt))
           ){
             set_target(ai, foe);
             return;
