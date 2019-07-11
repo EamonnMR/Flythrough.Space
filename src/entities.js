@@ -40,7 +40,7 @@ export function shipFactory(type, position){
   ship.collider = {radius: .5};
   ship.fuel = ship.max_fuel;
   apply_upgrades(ship, ship.upgrades);
-  create_composite_model(ship, _.data);
+  create_composite_model(ship);
   return ship;
 };
 
@@ -49,7 +49,7 @@ export function planetFactory (name, hud, index){
   let planet = Object.create(_.data.spobs[name]);
   
   planet.position = {x: planet.x, y: planet.y};
-  planet.model = create_planet_sprite(_.data, planet, _.scene); 
+  planet.model = create_planet_sprite(planet); 
   planet.spob_name = name;
   // TODO: Change pip color based on landability status
   planet.radar_pip = hud.get_radar_pip(15, "Yellow");

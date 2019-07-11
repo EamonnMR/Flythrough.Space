@@ -58,7 +58,7 @@ export class GamePlayState extends ViewState {
 
   enter(){
     if(! this.camera){
-      this.camera = get_game_camera(this.scene);
+      this.camera = get_game_camera();
     }
     if (this.empty){
       this.setup_world();
