@@ -1,5 +1,5 @@
 import { overridable_default } from "./util.js";
-import { set_singletons } from "./singletons.js";
+import { _ } from "./singletons.js";
 import { GamePlayState } from "./gameplay.js";
 import { PlayerSave } from  "./player.js";
 import { MapView } from "./map.js";
@@ -13,17 +13,21 @@ import { MissionsMenu } from "./missions_menu.js";
 
 function init(game_canvas, scene, engine, data){
   /* Main entry point for the app (after loading). Binds events and such. */
+  
+  _.data = data;
+  _.scene = scene;
+  _.canvas = game_canvas;
 
   scene.clearColor = new BABYLON.Color3(0, 0, 0);
 
   // start initial state
   
   let player_data = new PlayerSave(data.ships, data.upgrades);
+  _.player = player_data;
   let stateMgr = new StateManager({
     'gameplay': new GamePlayState(
         scene, data, player_data),
-    'map': new MapView(
-        data, {x: 0, y: 0}, game_canvas, player_data),
+    'map': new MapView({x: 0, y: 0}),
 
     'landing': new LandingMenu(data.spobs, data.spobtypes, player_data),
     'trade': new TradeMenu(data.spobs, player_data, data.trade),
@@ -31,6 +35,8 @@ function init(game_canvas, scene, engine, data){
     'upgrades': new UpgradeMenu(data.spobs, player_data, data.upgrades, data),
     'missions': new MissionsMenu(player_data, data.spobs, data.missions, data),
   }, overridable_default("state", "gameplay"));
+
+  _.state_manager = stateMgr;
  
   // Handle resizes
 
@@ -38,8 +44,6 @@ function init(game_canvas, scene, engine, data){
     engine.resize();
     stateMgr.resize();
   });
-
-  set_singletons(data, scene, stateMgr, player_data);
 
   engine.runRenderLoop( () => {
     scene.render();
