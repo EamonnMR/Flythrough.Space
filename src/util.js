@@ -1,4 +1,5 @@
 import { weapon_factory } from "./weapon.js";
+import { _ } from "./singletons.js";
 
 const ARC = Math.PI * 2;
 
@@ -9,11 +10,11 @@ export function distance(l_pos, r_pos){
   );
 };
 
-export function apply_upgrade(ship, upgrade, data){
+export function apply_upgrade(ship, upgrade){
   for(let key of Object.keys(upgrade)){
     if(key === "weapon"){
       let weapon = upgrade.weapon;
-      ship.weapons.push( weapon_factory(weapon, data));
+      ship.weapons.push( weapon_factory(weapon, _.data));
     } else if (key === "price" || key === "tech" || key === "desc" || key === "name"){
       // TODO: Should ships auto-include the price of upgrades?
       // Would that make life easier or harder?
@@ -34,15 +35,15 @@ export function apply_upgrade(ship, upgrade, data){
   }
 }
 
-export function apply_upgrades(ship, upgrades, data){
+export function apply_upgrades(ship, upgrades){
   ship.weapons = [];
   for(let key of Object.keys(upgrades)){
     for(let i = 0; i < upgrades[key]; i++){
-      let upgrade = data.upgrades[key];
+      let upgrade = _.data.upgrades[key];
       if(upgrade === undefined){
         console.log("Invalid Upgrade: " + key);
       } else {
-        apply_upgrade(ship, data.upgrades[key], data);
+        apply_upgrade(ship, _.data.upgrades[key]);
       }
     }
   }
