@@ -13,9 +13,6 @@ export class Data {
     this.model_metadata = {};
     this.images = {};
     this.textures = {};
-    this.spobs = null;
-    this.systems = null;
-    this.govts = null;
     this.sprites = {}
   }
 
