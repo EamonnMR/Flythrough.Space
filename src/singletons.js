@@ -1,6 +1,7 @@
-// I've grown weary of passing everything around all of the time.
-// I'm not going to transition immediately, but we should do some
-// sort of hacky singletons.
+/* Singletons. There's no code to enforce it, just don't set these unless you
+ * mean to. Can be imported for use anywhere so we don't need to pass data, scene,
+ * etc all over a bunch of unrelated functions.
+ */
 
 export var _ = {
   data: null,
