@@ -25,7 +25,7 @@ export class UpgradeMenu extends StoreMenu {
   }
 
   can_purchase_item(item){
-    return this.player_data.can_buy_upgrade(item.price, item, 1, this.data)
+    return this.player_data.can_buy_upgrade(item.price, item, 1)
   }
 
   get_selection_tab_widget(key, item, offset){

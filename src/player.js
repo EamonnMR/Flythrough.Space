@@ -1,5 +1,7 @@
 /* Player State - this is what's shared between game states, and also handles saving and loading */
 
+import { _ } from "./singletons.js";
+
 import {
   apply_upgrade,
   apply_upgrades,
@@ -116,12 +118,12 @@ export class PlayerSave {
     this.upgrades = this.ship_dat.upgrades;
   }
 
-  can_buy_upgrade(price, upgrade, quantity, data){
+  can_buy_upgrade(price, upgrade, quantity){
     let ship_if_bought = Object.create(this.ship_dat);
-    apply_upgrades(ship_if_bought, this.upgrades, data);
+    apply_upgrades(ship_if_bought, this.upgrades);
     
     for(let i = 0; i < quantity; i++){
-      apply_upgrade(ship_if_bought, upgrade, data);
+      apply_upgrade(ship_if_bought, upgrade);
     }
     return this.can_spend_money(upgrade.price * quantity)
       && this.validate_ship( ship_if_bought );
@@ -143,15 +145,12 @@ export class PlayerSave {
 
     this.ship_dat.upgrades = this.upgrades;
     this.money -= upgrade.price * quantity;
-    console.log(this);
   }
   
   explore_system(system_name){
-    console.log("System explored!");
     if(!this.explored.includes(system_name)){
       this.explored.push(system_name);
     }
-    console.log(this.explored);
   }
 
   system_explored(system_name){
