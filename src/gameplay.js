@@ -3,6 +3,7 @@
  * frame and will update some subset of entities.
  */
 
+import { _ } from "./singletons.js";
 import { distance, is_cheat_enabled } from "./util.js";
 import { speedLimitSystem, velocitySystem} from "./physics.js";
 import { weaponSystem, decaySystem} from "./weapon.js";
@@ -22,14 +23,8 @@ let MIN_LAND_DISTANCE = 50
 
 export class GamePlayState extends ViewState {
 
-  constructor(scene, data, player_data) {
+  constructor() {
     super();
-
-    this.data = data;
-    this.scene = scene;
-    //this.camera = null;
-    this.player_data = player_data;
-
     this.entMan = new EntityManager([
       npcSpawnerSystem,
       inputSystem,
@@ -82,17 +77,17 @@ export class GamePlayState extends ViewState {
       */
 
       hyper_jump: () => {
-			  if ( this.player_data.current_system
-            != this.player_data.selected_system
+			  if ( _.player.current_system
+            != _.player.selected_system
         ) {
           let player_ent = this.get_player_ent();
           if (has_sufficient_fuel(player_ent) || is_cheat_enabled("infinite_fuel")){ 
             if(has_sufficient_distance(player_ent || is_cheat_enabled("jump_anywhere"))){
               // TODO: Remove control, add hyperjump AI, play some sort of light show ala 2001 space odyssey
-              this.player_data.current_system = this.player_data.selected_system;
-              this.player_data.selected_spob = null;  // Can't have people landing on spobs out of the system
+              _.player.current_system = _.player.selected_system;
+              _.player.selected_spob = null;  // Can't have people landing on spobs out of the system
               this.clear_world();
-              this.player_data.fuel -= 1;
+              _.player.fuel -= 1;
               this.setup_world();
             } else {
               // TODO: Add visible warnings for these so players aren't confused
@@ -107,29 +102,28 @@ export class GamePlayState extends ViewState {
       },
       /*
       clear_nav: () => {
-        this.player_data.selected_spob = null;
+        _.player.selected_spob = null;
       },
       */
       try_land: () => {
-        if (this.player_data.selected_spob == null){
+        if (_.player.selected_spob == null){
           let sys_spobs = this.entMan.get_with(['spob_name']);
           let landable = this.find_closest_landable_to_player(sys_spobs);
           if (landable){
-            this.player_data.selected_spob = landable.spob_name;
+            _.player.selected_spob = landable.spob_name;
           }
         }
         else {
-          if(this.spob_is_landable(this.player_data.selected_spob)){
+          if(this.spob_is_landable(_.player.selected_spob)){
 
             this.clear_world();
-            this.player_data.current_spob = this.player_data.selected_spob;
-            this.player_data.selected_spob = null;
-            let spob_dat = this.data.spobs[this.player_data.current_spob];
-            let position = this.player_data.initial_position;
+            _.player.current_spob = _.player.selected_spob;
+            _.player.selected_spob = null;
+            let spob_dat = _.data.spobs[_.player.current_spob];
+            let position = _.player.initial_position;
 
             position.x = spob_dat.x;
             position.y = spob_dat.y;
-            this.player_data.initial_position.x 
             this.parent.enter_state('landing');
           } else {
             console.log("Player tried to land somewhere wrong");
@@ -148,7 +142,7 @@ export class GamePlayState extends ViewState {
       select_spob: (index) => {
         let indexed_spob = this.entMan.get_with_exact("spob_index", index)[0]; 
         if (indexed_spob){
-          this.player_data.selected_spob = indexed_spob.spob_name;
+          _.player.selected_spob = indexed_spob.spob_name;
         }
       },
     });
@@ -186,16 +180,17 @@ export class GamePlayState extends ViewState {
 
   setup_world(){
     this.hud = new HUD(
-        this.scene,
+        _.scene,
         this.entMan,
-        this.player_data,
-        this.data.govts,
+        _.player,
+        _.data.govts,
     );
-    this.create_world_models(this.player_data.current_system);
+    this.create_world_models(_.player.current_system);
     this.empty = false;
   }
 
   get_player_ent(){
+    // TODO: I don't love this
     return this.entMan.get_with(['input'])[0];
   }
 
@@ -206,7 +201,7 @@ export class GamePlayState extends ViewState {
       spob && (
         ( 
           (distance(player.position, spob.position) < MIN_LAND_DISTANCE)
-          && ! this.player_data.is_govt_hostile(spob.govt)
+          && ! _.player.is_govt_hostile(spob.govt)
         ) 
         || is_cheat_enabled('land_anywhere')
       )

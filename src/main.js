@@ -25,8 +25,7 @@ function init(game_canvas, scene, engine, data){
   let player_data = new PlayerSave(data.ships, data.upgrades);
   _.player = player_data;
   let stateMgr = new StateManager({
-    'gameplay': new GamePlayState(
-        scene, data, player_data),
+    'gameplay': new GamePlayState(),
     'map': new MapView({x: 0, y: 0}),
 
     'landing': new LandingMenu(data.spobs, data.spobtypes, player_data),
