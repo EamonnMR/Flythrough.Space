@@ -1,3 +1,5 @@
+import { _ } from "./singletons.js";
+
 import {
   BaseMenuView,
   Image,
@@ -6,14 +8,8 @@ import {
   } from "./menu.js";
 
 export class LandingMenu extends BaseMenuView {
-  constructor(spobs, spob_types, player_data){
-    super();
-    this.spobs = spobs;
-    this.spob_types = spob_types;
-    this.player_data = player_data;
-  }
   enter(){
-    this.spob = this.spobs[this.player_data.current_spob];
+    this.spob = _.data.spobs[_.player.current_spob];
     this.setup_menu(this.get_widgets_for_planet());
   }
 
@@ -43,7 +39,7 @@ export class LandingMenu extends BaseMenuView {
     /* LEFT WIDGETS */
     const LEFT = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
     widgets.push(new LandingMenuBigButton(
-      'Leave ' + this.player_data.current_spob,
+      'Leave ' + _.player.current_spob,
       () => {
         this.parent.enter_state('gameplay');
       },
@@ -66,7 +62,7 @@ export class LandingMenu extends BaseMenuView {
 
     if (this.spob.explore){
       widgets.push(new LandingMenuBigButton(
-        'Explore ' + this.player_data.current_spob,
+        'Explore ' + _.player.current_spob,
         () => {
           //this.parent.enter_state('explore');
         },
@@ -90,11 +86,11 @@ export class LandingMenu extends BaseMenuView {
    
     /* Righthand buttons */
     const RIGHT = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-    if (this.spob.govt && this.player_data.can_refuel()){  // If a planet is civilized at all, they can refuel you
+    if (this.spob.govt && _.player.can_refuel()){  // If a planet is civilized at all, they can refuel you
       let refuel_button = new LandingMenuBigButton(
         'Refuel',
         () => {
-          this.player_data.refuel() // TODO: Get player ship type!
+          _.player.refuel() // TODO: Get player ship type!
           console.log("refuel")
           refuel_button.hide(this);
         },
@@ -143,32 +139,6 @@ export class LandingMenu extends BaseMenuView {
     return widgets;
   }
 };
-
-export class TradeMenu extends BaseMenuView {
-  constructor( spobs, player_data ){
-    super();
-    this.spobs = spobs;
-    this.player_data = player_data;
-  }
-  enter(){
-    this.spob = this.spobs[this.player_data.current_spob];
-    this.setup_menu(this.get_trade_widgets());
-  }
-
-  get_trade_widgets(){
-    return [
-      new LandingMenuBigButton(
-        "Return",
-        () => {
-          this.parent.enter_state('landing');
-        },
-        BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT,
-        BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,
-        "0%","0%"
-      )
-    ]
-  }
-}
 
 class HeroImage extends Image {
   setup(){

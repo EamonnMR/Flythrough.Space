@@ -27,9 +27,8 @@ function init(game_canvas, scene, engine, data){
   let stateMgr = new StateManager({
     'gameplay': new GamePlayState(),
     'map': new MapView({x: 0, y: 0}),
-
-    'landing': new LandingMenu(data.spobs, data.spobtypes, player_data),
-    'trade': new TradeMenu(data.spobs, player_data, data.trade),
+    'landing': new LandingMenu(),
+    'trade': new TradeMenu(),
     'shipyard': new ShipyardMenu(data.spobs, player_data, data.ships),
     'upgrades': new UpgradeMenu(data.spobs, player_data, data.upgrades, data),
     'missions': new MissionsMenu(player_data, data.spobs, data.missions, data),
