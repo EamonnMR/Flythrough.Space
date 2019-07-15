@@ -14,11 +14,11 @@ export function npcShipFactory(type, position, hud, ai, govt){
   return ship;
 }
 
-export function playerShipFactory(type, position, camera, hud) {
+export function playerShipFactory(type, position, hud) {
 
   let ship = shipFactory(type, position);
 
-  ship.camera = camera;
+  ship.camera = true;
   ship.input = true;
   ship.player = true; // Is this a hack?
   ship.player_aligned = true; // Fake gov for player and minions

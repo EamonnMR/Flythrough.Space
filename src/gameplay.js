@@ -16,7 +16,6 @@ import { setup_system } from "./system.js";
 import { ViewState } from "./states.js";
 import { radarFollowSystem, HUD } from  "./hud.js";
 import { ai_system, turretPointSystem  } from "./ai.js";
-import { get_game_camera } from "./graphics.js";
 import { has_sufficient_distance, has_sufficient_fuel } from "./hyperspace.js"
 
 let MIN_LAND_DISTANCE = 50
@@ -52,9 +51,6 @@ export class GamePlayState extends ViewState {
   }
 
   enter(){
-    if(! this.camera){
-      this.camera = get_game_camera();
-    }
     if (this.empty){
       this.setup_world();
     }
@@ -150,7 +146,6 @@ export class GamePlayState extends ViewState {
 
   create_world_models( system_name ){
     this.world_models = setup_system(
-      this.camera,
 			this.entMan,
    		system_name,
       this.hud,
@@ -170,7 +165,7 @@ export class GamePlayState extends ViewState {
   }
 
   clear_world(){
-    this.camera.lockedTarget = null;
+    _.camera.lockedTarget = null;
     this.entMan.clear();
     this.dispose_world_models();
     this.hud.dispose();

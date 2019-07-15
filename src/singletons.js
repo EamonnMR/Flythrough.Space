@@ -9,5 +9,7 @@ export var _ = {
   state_manager: null,
   player: null,
   canvas: null,
+  hud: null,
+  camera: null
 };
 

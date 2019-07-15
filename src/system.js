@@ -14,7 +14,7 @@ import {
   planetFactory
 } from "./entities.js"; 
 
-export function setup_system(camera, entMan, system, hud){
+export function setup_system(entMan, system, hud){
   _.player.explore_system(system);
   let system_dat = _.data.systems[system];
 
@@ -38,7 +38,6 @@ export function setup_system(camera, entMan, system, hud){
           x: _.player.initial_position.x,
           y: _.player.initial_position.y
         },
-        camera,
         hud,
     ),
   ];

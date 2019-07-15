@@ -134,14 +134,14 @@ export function create_composite_model(ship){
 
 export function chaseCameraFollowSystem (entMan) {
   for (let entity of entMan.get_with(['model', 'camera'])) {
-    entity.camera.lockedTarget = entity.model;
-    entity.camera.rotationOffset = 180 * (entity.direction / Math.PI);
+    _.camera.lockedTarget = entity.model;
+    _.camera.rotationOffset = 180 * (entity.direction / Math.PI);
   }
 };
 
 export function uniCameraFollowSystem(entMan){
   for (let entity of entMan.get_with(['model', 'camera'])) {
-    entity.camera.position = entity.model.position.add(CAM_OFFSET);
+    _.camera.position = entity.model.position.add(CAM_OFFSET);
   }
 };
 

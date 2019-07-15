@@ -10,6 +10,7 @@ import { ShipyardMenu} from "./shipyard.js";
 import { load_all } from "./load.js";
 import { UpgradeMenu } from "./upgrade_store.js";
 import { MissionsMenu } from "./missions_menu.js";
+import { get_game_camera } from "./graphics.js";
 
 function init(game_canvas, scene, engine, data){
   /* Main entry point for the app (after loading). Binds events and such. */
@@ -19,6 +20,7 @@ function init(game_canvas, scene, engine, data){
   _.canvas = game_canvas;
 
   scene.clearColor = new BABYLON.Color3(0, 0, 0);
+  _.camera = get_game_camera();
 
   // start initial state
   
