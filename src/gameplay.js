@@ -14,7 +14,7 @@ import { modelPositionSystem, cameraFollowSystem } from "./graphics.js";
 import { collisionDetectionSystem } from "./collision.js";
 import { setup_system } from "./system.js";
 import { ViewState } from "./states.js";
-import { radarFollowSystem, HUD } from  "./hud.js";
+import { radarFollowSystem, hudUpdateSystem, HUD } from  "./hud.js";
 import { ai_system, turretPointSystem  } from "./ai.js";
 import { has_sufficient_distance, has_sufficient_fuel } from "./hyperspace.js"
 
@@ -38,6 +38,7 @@ export class GamePlayState extends ViewState {
       collisionDetectionSystem,
       radarFollowSystem,
       deletionSystem,
+      hudUpdateSystem,
     ]);
     this.empty = true;
     this.world_models = [];
@@ -45,9 +46,6 @@ export class GamePlayState extends ViewState {
 
   update(){
     this.entMan.update();
-    if (_.hud){
-      _.hud.update();
-    }
   }
 
   enter(){

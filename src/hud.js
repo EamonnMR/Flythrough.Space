@@ -20,6 +20,12 @@ export function radarFollowSystem(entMan){
   }
 };
 
+export function hudUpdateSystem(entMan){
+  if(_.hud){
+    _.hud.update(entMan);
+  }
+}
+
 
 // This is for drawing health bars over each entity. Not in the design atm.
 //export function healthBarSystem(entMan){
@@ -30,12 +36,9 @@ export function radarFollowSystem(entMan){
 //}
 
 export class HUD{
-  constructor(entMan){
-    // TODO: Singleton. Addendum: Singleton me too
+  constructor(){
     this.adt = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 
-    this.entMan = entMan; // TODO: Should we just pass this?
-    
     this.tmp_player = null; // Or: how I broke abstraction. This should only exist during update.
     this.fuel_status = this.get_status_bar(150, "10px", "green", () => {return this.tmp_player.fuel / this.tmp_player.max_fuel})
     this.health_status = this.get_status_bar(150, "10px", "blue", () => {return this.tmp_player.shields / this.tmp_player.max_shields})
@@ -179,14 +182,14 @@ export class HUD{
     return box;
   }
 
-  update(){
-    let possible_player = this.entMan.get_with(['input']);
+  update(entMan){
+    let possible_player = entMan.get_with(['input']);
     let player = possible_player[0];
     let planet_line = "In-System: ";
     let jump_line = "Galactic: ";
     if (_.player.selected_spob){
       planet_line += _.player.selected_spob;
-      let possible_spobs = this.entMan.get_with_exact("spob_name", _.player.selected_spob)
+      let possible_spobs = entMan.get_with_exact("spob_name", _.player.selected_spob)
       if(possible_spobs.length > 0){
         let spob = possible_spobs[0];
         spob.model.isDisposed = () => { return false }; // Hack
@@ -204,7 +207,7 @@ export class HUD{
       this.health_status.update_func();
 
       if (player.target){
-        let possible_target = this.entMan.get(player.target);
+        let possible_target = entMan.get(player.target);
         if(possible_target){
           this.target_ent = possible_target;
           this.target_label.text = this.target_ent.short_name;
