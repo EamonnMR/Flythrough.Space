@@ -45,8 +45,8 @@ export class GamePlayState extends ViewState {
 
   update(){
     this.entMan.update();
-    if (this.hud){
-      this.hud.update();
+    if (_.hud){
+      _.hud.update();
     }
   }
 
@@ -130,7 +130,7 @@ export class GamePlayState extends ViewState {
         let player = this.get_player_ent();
         let target = this.find_closest_target(player);
         if(target){
-          this.hud.deselect(this.entMan.get(player.target));
+          _.hud.deselect(this.entMan.get(player.target));
           player.target = target.id;
         }
       },
@@ -148,7 +148,6 @@ export class GamePlayState extends ViewState {
     this.world_models = setup_system(
 			this.entMan,
    		system_name,
-      this.hud,
   	);
   }
 
@@ -168,13 +167,13 @@ export class GamePlayState extends ViewState {
     _.camera.lockedTarget = null;
     this.entMan.clear();
     this.dispose_world_models();
-    this.hud.dispose();
-    this.hud = null;
+    _.hud.dispose();
+    _.hud = null;
     this.empty = true;
   }
 
   setup_world(){
-    this.hud = new HUD(
+    _.hud = new HUD(
         this.entMan,
     );
     this.create_world_models(_.player.current_system);

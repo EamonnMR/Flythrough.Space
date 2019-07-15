@@ -14,7 +14,7 @@ import {
   planetFactory
 } from "./entities.js"; 
 
-export function setup_system(entMan, system, hud){
+export function setup_system(entMan, system){
   _.player.explore_system(system);
   let system_dat = _.data.systems[system];
 
@@ -38,12 +38,11 @@ export function setup_system(entMan, system, hud){
           x: _.player.initial_position.x,
           y: _.player.initial_position.y
         },
-        hud,
     ),
   ];
   if( system_dat.npcs ){
     ents.push(
-      npcSpawnerFactory(system_dat, hud)
+      npcSpawnerFactory(system_dat)
     );
   }
 
@@ -56,7 +55,7 @@ export function setup_system(entMan, system, hud){
   if ('spobs' in system_dat) {
     for (let spob_name of system_dat.spobs){
       let spob_dat = _.data.spobs[spob_name];
-      let planet = planetFactory(spob_name, hud, index)
+      let planet = planetFactory(spob_name, index)
       planets.push( planet );
       index++
     }

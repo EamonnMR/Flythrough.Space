@@ -5,16 +5,16 @@ import {
   create_planet_sprite
 } from "./graphics.js";
 
-export function npcShipFactory(type, position, hud, ai, govt){
+export function npcShipFactory(type, position, ai, govt){
   let ship = shipFactory(type, position);
   ship.ai = ai;
-  ship.radar_pip = hud.get_radar_pip(4, '#FF0000FF');
+  ship.radar_pip = _.hud.get_radar_pip(4, '#FF0000FF');
   ship.govt = govt;
-  ship.overlay = hud.get_overlay_texture(ship);
+  ship.overlay = _.hud.get_overlay_texture(ship);
   return ship;
 }
 
-export function playerShipFactory(type, position, hud) {
+export function playerShipFactory(type, position) {
 
   let ship = shipFactory(type, position);
 
@@ -23,7 +23,7 @@ export function playerShipFactory(type, position, hud) {
   ship.player = true; // Is this a hack?
   ship.player_aligned = true; // Fake gov for player and minions
 
-  ship.radar_pip = hud.get_radar_pip(4, '#00FF00FF');
+  ship.radar_pip = _.hud.get_radar_pip(4, '#00FF00FF');
   ship.fuel = _.player.fuel;
   return ship;
 };
@@ -45,14 +45,14 @@ export function shipFactory(type, position){
 };
 
 
-export function planetFactory (name, hud, index){
+export function planetFactory (name, index){
   let planet = Object.create(_.data.spobs[name]);
   
   planet.position = {x: planet.x, y: planet.y};
   planet.model = create_planet_sprite(planet); 
   planet.spob_name = name;
   // TODO: Change pip color based on landability status
-  planet.radar_pip = hud.get_radar_pip(15, "Yellow");
+  planet.radar_pip = _.hud.get_radar_pip(15, "Yellow");
   
   // For number-key auto selection purposes
   planet.spob_index = index;
@@ -61,7 +61,7 @@ export function planetFactory (name, hud, index){
 };
 
 
-export function asteroidFactory (position, velocity, sprite, hud) {
+export function asteroidFactory (position, velocity, sprite) {
   // TODO: Asteroids should have some sort of data
   sprite.position.x = position.x;
   sprite.position.y = position.y;
@@ -74,19 +74,16 @@ export function asteroidFactory (position, velocity, sprite, hud) {
     'hitpoints': 10,
     'collider': {'radius': .5},
     'hittable': true,
-    'radar_pip': hud.get_radar_pip(5, '#FF00FFFF')
+    'radar_pip': _.hud.get_radar_pip(5, '#FF00FFFF')
   };
 };
 
-export function npcSpawnerFactory(system, hud) {
+export function npcSpawnerFactory(system) {
   return {
     spawner: true,
     spawns_npc: true,
     min: system.npc_average || 1,
     types: system.npcs,
-    hud: hud //FIXME: Filthy no good very bad hack
-      // some way of getting radar pips without passing
-      // HUD around needs to exist, but not today.
   }
 }
 
@@ -101,7 +98,6 @@ export function npcSpawnerSystem(entMan) {
 		  let npc = npcShipFactory(
                                 random_type(group.ships),
                                 random_position(),
-                                spawner.hud,
                                 {state: 'passive'},
                                 group.govt
       );
