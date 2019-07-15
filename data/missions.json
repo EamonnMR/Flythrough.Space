@@ -39,7 +39,7 @@
     "dest": "random_same_gov_spob()",
     "target": {
       "type": "${npc_group('pirate_raid')}",
-      "name": "${random_choice(target.name_list)}",
+      "name": "${random_choice(target.names)}",
       "names": [
         "Ghost of a chance",
         "Miriam",

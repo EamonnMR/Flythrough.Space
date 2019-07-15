@@ -170,5 +170,10 @@ export class PlayerSave {
       this.govts[govt_id].reputation = delta;
     }
   }
+
+  can_accept_mission(mission){
+    // TODO: Mission acceptability criteria - check cargo, etc
+    return true;
+  }
 }
 

@@ -1,10 +1,6 @@
-import {
-  BaseLandingMenuView
-} from "./landing.js";
-
-
+import { _ } from "./singletons.js";
+import { BaseLandingMenuView } from "./landing.js";
 import { TextButton, TextBox, Image, Widget} from "./menu.js";
-
 import { tech_filter, is_cheat_enabled } from "./util.js";
 
 const LIST_SPACING = 7;
@@ -12,17 +8,16 @@ const QUALITY_BAR_SPACING = 5;
 const QUALITY_BAR_FIRST = -40;
 
 export class StoreMenu extends BaseLandingMenuView {
-  constructor(spobs, player_data, items){
+  constructor(items){
     super();
-    this.spobs = spobs;
-    this.player_data = player_data;
     this.selected = null;
     this.scroll_offset = 0;
     this.items = items; // Items should be the data set of the type
     // of item the store sells.
   }
   enter(){
-    this.spob = this.spobs[this.player_data.current_spob];
+    this.spob = _.data.spobs[_.player.current_spob];
+    debugger;
     this.setup_menu(
       this.get_detail_widgets().concat(
         this.get_list_widgets().concat(
@@ -52,11 +47,12 @@ export class StoreMenu extends BaseLandingMenuView {
       return this.items;
     }
 
-    let tech = this.spobs[this.player_data.current_spob].tech;
+    let tech = _.data.spobs[_.player.current_spob].tech;
+    //TODO: I'd like to turn this into something more generic
     let available_items = {}
     for (let key of Object.keys(this.items)){
       if(tech_filter(
-        this.spobs[this.player_data.current_spob].tech,
+        tech,
         this.items[key].tech
       )){
         available_items[key] = this.items[key];
@@ -64,8 +60,6 @@ export class StoreMenu extends BaseLandingMenuView {
     }
 
     return available_items;
-
-
   }
 
   can_purchase_item(){

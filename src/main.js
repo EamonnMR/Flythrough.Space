@@ -31,7 +31,7 @@ function init(game_canvas, scene, engine, data){
     'trade': new TradeMenu(),
     'shipyard': new ShipyardMenu(data.spobs, player_data, data.ships),
     'upgrades': new UpgradeMenu(data.spobs, player_data, data.upgrades, data),
-    'missions': new MissionsMenu(player_data, data.spobs, data.missions, data),
+    'missions': new MissionsMenu(),
   }, overridable_default("state", "gameplay"));
 
   _.state_manager = stateMgr;

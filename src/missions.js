@@ -29,6 +29,7 @@ export function bake_mission(mission){
 
   mission.desc = interpolate_mission_text(mission, mission.desc);
   mission.name = interpolate_mission_text(mission, mission.name);
+  mission.short_name = mission.name;
 
 }
 
@@ -60,5 +61,11 @@ function get_random_spob_in_system(system){
 }
 
 export function missions_for_spob(){
-  return []
+  // TODO: Replace with actual avail system
+  return {
+    "test_mission":{
+      "name": "Test Mission",
+      "desc": "Test Description",
+    }
+  }
 }
