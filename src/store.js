@@ -8,16 +8,15 @@ const QUALITY_BAR_SPACING = 5;
 const QUALITY_BAR_FIRST = -40;
 
 export class StoreMenu extends BaseLandingMenuView {
-  constructor(items){
+  constructor(){
     super();
     this.selected = null;
     this.scroll_offset = 0;
-    this.items = items; // Items should be the data set of the type
+    this.items = null; // Items should be the data set of the type
     // of item the store sells.
   }
   enter(){
     this.spob = _.data.spobs[_.player.current_spob];
-    debugger;
     this.setup_menu(
       this.get_detail_widgets().concat(
         this.get_list_widgets().concat(
@@ -105,7 +104,7 @@ export class StoreMenu extends BaseLandingMenuView {
     let detail_widgets = [
       new StoreitemName(),
       new StoreitemDesc(),
-      new BuyButton( () => { this.do_buy() } )
+      new BuyButton( () => { this.do_buy() }, this.buy_button_copy() )
     ]
     let quality_offset = QUALITY_BAR_FIRST;
 
@@ -138,6 +137,10 @@ export class StoreMenu extends BaseLandingMenuView {
       widgets.push(this.get_selection_tab_widget(key, this.items[key], offset));
     });
     return widgets;
+  }
+
+  buy_button_copy(){
+    return "buy";
   }
 }
 

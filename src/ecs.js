@@ -140,8 +140,7 @@ function delete_model (entity) {
       try{
         entity[attribute].dispose();
       } catch {
-        console.log("attribute");
-        debugger;
+        console.log("attribute could not be disposed");
       }
     }
   }
