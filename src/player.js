@@ -47,6 +47,7 @@ export class PlayerSave {
     this.fuel = this.ship_dat.max_fuel;
     this.bulk_cargo = {};
     this.mission_cargo = {};
+    this.active_missions = {};
 
     this.govts = {
       // TODO: Default rep?
@@ -110,6 +111,21 @@ export class PlayerSave {
     return price <= this.money + this.ship_value();
   }
 
+  add_mission_cargo(type, amount){
+    if (type in this.mission_cargo) {
+      this.mission_cargo[type] += amount;
+    } else {
+      this.mission_cargo[type] = amount;
+    }
+  }
+
+  remove_mission_cargo(type, amount){
+    this.mission_cargo[type] -= amount;
+    if(this.mission_cargo[type] === 0){
+      delete this.mission_cargo[type];
+    }
+  }
+
   buy_ship(type, new_ship){
     this.money += this.ship_value();
     this.ship_type = type;
@@ -171,9 +187,8 @@ export class PlayerSave {
     }
   }
 
-  can_accept_mission(mission){
-    // TODO: Mission acceptability criteria - check cargo, etc
-    return true;
+  accept_mission(mission){
+    accept_mission(mission);
   }
 }
 

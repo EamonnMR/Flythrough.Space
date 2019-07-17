@@ -1,8 +1,8 @@
 {
   "basic_cargo": {
     "name": "Transport ${cargo.type} to ${dest.spob}",
-    "desc": "A merchant vessel is needed to transport ${cargo.amount} tons of ${cargo.type} to ${dest.spob}} in the ${dest.sys} system. Payment upon arrival will be ${payout}",
-    "payout": 20000,
+    "desc": "A merchant vessel is needed to transport ${cargo.amount} tons of ${cargo.type} to ${dest.spob}} in the ${dest.sys} system. Payment upon arrival will be ${reward}",
+    "reward": 20000,
     "cargo": {
       "type": "${get_legal_cargo()}",
       "amount": "rand_int_range(5,10)"
@@ -10,12 +10,14 @@
     "dest": {
       "sys": "${sys_like_govt_with_spob()}",
       "spob": "${(dest.sys)}"
-    }
+    },
+    "offer_state": "missions",
+    "offer_if": "true"
   },
   "rideshare": {
     "name": "Ferry Passengers to ${dest.spob}",
-    "desc": "Passengers have hailed a ride to ${dest.spob} in the ${dest.sys} system. Safe passage will earn you ${payout} credcoin.",
-    "payout": 2000,
+    "desc": "Passengers have hailed a ride to ${dest.spob} in the ${dest.sys} system. Safe passage will earn you ${reward} credcoin.",
+    "reward": 2000,
     "cargo": {
       "type": "passengers",
       "amount": 1
@@ -30,11 +32,11 @@
       "amount": "rand_int_range(5,10)"
     },
     "dest": "random_same_gov_spob()", 
-    "payout": 14000
+    "reward": 14000
   },
   "bounty_direc": {
     "name": "Wanted: Dead or Alive",
-    "brief": "Reward: ${payout} credcoin. To be paid in full upon destruction of the pirate vessle \"${target.name}\". As usual, crew may surrender at any port for immediate sentencing. Last spotted near the ${dest.sys} system, raiding merchant vessles.",
+    "brief": "Reward: ${reward} credcoin. To be paid in full upon destruction of the pirate vessle \"${target.name}\". As usual, crew may surrender at any port for immediate sentencing. Last spotted near the ${dest.sys} system, raiding merchant vessles.",
     "availability": "${govt_is('direc')}",
     "dest": "random_same_gov_spob()",
     "target": {

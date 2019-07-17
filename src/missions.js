@@ -1,6 +1,11 @@
+import { _ } from "./singletons.js";
 import { choose } from "./util.js";
 
 /* Missions, or: why implement a DSL when `eval` exists!
+ *
+ * Key Terminology:
+ * Offer: Showing the mission to the player, either as a modal or in the menu
+ * Available: Player can accept the mission
  */
 
 export function bake_mission(mission){
@@ -27,6 +32,10 @@ export function bake_mission(mission){
     mission.target.name = interpolate_mission_text(mission, mission.target.name);
   }
 
+  if(mission.reward){
+    mission.reward = interpolate_mission_value(mission, mission.reward);
+  }
+
   mission.desc = interpolate_mission_text(mission, mission.desc);
   mission.name = interpolate_mission_text(mission, mission.name);
   mission.short_name = mission.name;
@@ -47,6 +56,13 @@ function interpolate_mission_value(mission, value){
   return eval(value);
 }
 
+function run_mission_trigger(mission, field){
+  for(let x in mission){ // Sadly, this needs to be copypasta
+    eval `let ${x} = ${mission[x]}`;
+  }
+  eval(field);
+}
+
 // Legal Cargos
 // TODO: Generate this
 let legal_cargo = ["water", "grain", "gas"]
@@ -57,15 +73,61 @@ function get_legal_cargo(){
 }
 
 function get_random_spob_in_system(system){
-  
+  return choose(_.data.systems[system].spobs);
 }
 
-export function missions_for_spob(){
-  // TODO: Replace with actual avail system
-  return {
-    "test_mission":{
-      "name": "Test Mission",
-      "desc": "Test Description",
-    }
+export function can_accept_mission(mission){
+  // Special case handling for cargo space availability because this
+  // is expected to be a very common case.
+  if(mission.cargo && !_.player.can_add_cargo(mission.cargo.amount)){
+    return false;
+  }
+  
+  if (mission.avail_if){
+    return interpolate_mission_value(mission, mission.avail_if);
   }
 }
+
+export function accept_mission(mission){
+  _.player.active_missions[mission.id] = mission;
+  if( 'cargo' in mission ){
+    _.player.add_mission_cargo(mission.cargo.type, mission.cargo.amount);
+  }
+}
+
+export function mission_success(mission){
+  if( "reward" in mission){
+    _.player.money += mission.reward;
+  }
+  resolve_mission(mission);
+}
+
+export function mission_failure(mission){
+  resolve_mission(mission);
+}
+
+export function resolve_mission(mission){
+  delete _.player.active_missions[mission.id];
+  if( cargo in mission ){
+    _.player.remove_mission_cargo(mission.cargo.type, mission.cargo.amount);
+  }
+}
+
+export function missions_for_state(state){
+  let available = {};
+  let missions = {basic_cargo: _.data.missions["basic_cargo"]};
+  for( let key in Object.keys( missions )){  // _.data.missions )){
+    debugger;
+    let mission = _.data.missions[key];
+    // TODO: Cache this
+    if(mission.offer_state === state){
+      if( ! mission.offer_if || interpolate_mission_value(mission, mission.offer_if) ){
+        available[key] = bake_mission(mission);
+      }
+    }
+  }
+  return available;
+  // TODO: Missions should note which state they offer during, in addition
+  // to availability criteria.
+}
+

@@ -229,8 +229,8 @@ export class StoreitemDesc extends TextBox {
 
 
 export class BuyButton extends TextButton {
-  constructor(callback){
-    super("Buy", callback,
+  constructor(callback, copy){
+    super(copy, callback,
       BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT,
       BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
       "-30%",

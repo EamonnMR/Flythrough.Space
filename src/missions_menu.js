@@ -1,7 +1,7 @@
 import { _ } from "./singletons.js";
 import { StoreMenu, StoreitemName, StoreitemDesc, BuyButton } from "./store.js";
 import { TextButton, TextBox } from "./menu.js";
-import { missions_for_spob } from "./missions.js";
+import { missions_for_state, can_accept_mission } from "./missions.js";
 
 export class MissionsMenu extends StoreMenu {
   constructor(){
@@ -9,12 +9,12 @@ export class MissionsMenu extends StoreMenu {
   }
 
   enter(){
-    this.items = missions_for_spob(_.data.spobs[_.player.current_spob]);
+    this.items = missions_for_state("missions");
     super.enter();
   }
 
   get_available_items(){
-    return missions_for_spob(_.player.current_spob);
+    return this.items;
   }
     
   do_buy(){
@@ -24,7 +24,7 @@ export class MissionsMenu extends StoreMenu {
   }
 
   can_purchase_item(item){
-    return _.player.can_accept_mission(this.current_item());
+    return can_accept_mission(mission);
   }
 
   can_sell_item(item){
@@ -36,9 +36,13 @@ export class MissionsMenu extends StoreMenu {
   }
 
   get_qualities(){ return [] }
+
+  buy_button_copy(){
+    return "accept";
+  }
 }
 
-class MissionTab extends StoreitemName {
+class MissionTab extends TextButton {
   constructor(item, name, top, callback){
     super(name, callback, 
       BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
@@ -54,7 +58,7 @@ class MissionTab extends StoreitemName {
     control.color = "White";
     control.height = "6%";
     control.cornerRadius = 1;
-    control.width = "40";
+    control.width = "40%";
     control.text = name;
     return control;
   }
