@@ -186,9 +186,5 @@ export class PlayerSave {
       this.govts[govt_id].reputation = delta;
     }
   }
-
-  accept_mission(mission){
-    accept_mission(mission);
-  }
 }
 

@@ -1,7 +1,7 @@
 import { _ } from "./singletons.js";
 import { StoreMenu, StoreitemName, StoreitemDesc, BuyButton } from "./store.js";
 import { TextButton, TextBox } from "./menu.js";
-import { missions_for_state, can_accept_mission } from "./missions.js";
+import { missions_for_state} from "./missions.js";
 
 export class MissionsMenu extends StoreMenu {
   constructor(){
@@ -18,13 +18,13 @@ export class MissionsMenu extends StoreMenu {
   }
     
   do_buy(){
-    if (_.player.can_accept_mission(this.current_item())){
+    if (this.current_item().can_accept()){
       _.player.accept_mission(this.current_item());
     }
   }
 
   can_purchase_item(item){
-    return can_accept_mission(mission);
+    this.items[item].can_accept()
   }
 
   can_sell_item(item){

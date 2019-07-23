@@ -1,21 +1,18 @@
 {
   "basic_cargo": {
-    "name": "Transport ${cargo.type} to ${dest.spob}",
-    "desc": "A merchant vessel is needed to transport ${cargo.amount} tons of ${cargo.type} to ${dest.spob}} in the ${dest.sys} system. Payment upon arrival will be ${reward}",
+    "short_name": "Transport ${this.cargo.type} to ${this.dest.spob}",
+    "desc": "A merchant vessel is needed to transport ${this.cargo.amount} tons of ${this.cargo.type} to ${this.dest.spob} in the ${this.dest.sys} system. Payment upon arrival will be ${this.reward}",
     "reward": 20000,
     "cargo": {
       "type": "${get_legal_cargo()}",
-      "amount": "rand_int_range(5,10)"
+      "amount": "randint(5,10)"
     },
-    "dest": {
-      "sys": "${sys_like_govt_with_spob()}",
-      "spob": "${(dest.sys)}"
-    },
+    "dest": "select_spob_same_govt();",
     "offer_state": "missions",
     "offer_if": "true"
   },
   "rideshare": {
-    "name": "Ferry Passengers to ${dest.spob}",
+    "short_name": "Ferry Passengers to ${dest.spob}",
     "desc": "Passengers have hailed a ride to ${dest.spob} in the ${dest.sys} system. Safe passage will earn you ${reward} credcoin.",
     "reward": 2000,
     "cargo": {
@@ -25,7 +22,7 @@
     "dest": "random_same_gov_spob()"
   },
   "smuggle": {
-    "name": "Smuggle {{ cargo.type }} to {{ dest.spob }}",
+    "short_name": "Smuggle {{ cargo.type }} to {{ dest.spob }}",
     "brief": "Some perhaps less than legal exporters need {{ cargo.amount }} tons of {{ cargo.type }} moved discretely.",
     "cargo": {
       "type": "get_illegal_cargo()",
@@ -35,13 +32,13 @@
     "reward": 14000
   },
   "bounty_direc": {
-    "name": "Wanted: Dead or Alive",
+    "short_name": "Wanted: Dead or Alive",
     "brief": "Reward: ${reward} credcoin. To be paid in full upon destruction of the pirate vessle \"${target.name}\". As usual, crew may surrender at any port for immediate sentencing. Last spotted near the ${dest.sys} system, raiding merchant vessles.",
     "availability": "${govt_is('direc')}",
     "dest": "random_same_gov_spob()",
     "target": {
       "type": "${npc_group('pirate_raid')}",
-      "name": "${random_choice(target.names)}",
+      "short_name": "${random_choice(target.names)}",
       "names": [
         "Ghost of a chance",
         "Miriam",
@@ -62,14 +59,14 @@
     }
   },
   "bounty_ne": {
-    "name": "Terrorist Watch List: Wanted",
+    "short_name": "Terrorist Watch List: Wanted",
     "brief": "Seditious and unworthy insurgents are operating a ship called {{ target.name }} in and around the {{ dest.sys }} system. Any captain who can eliminate this ship will be richly rewarded.",
     "offer": {
       "spob.govt": "drone"
     },
     "target": {
       "type": "${npc_group(baik_insur_raid)}",
-      "name": "${random_selection(target.names)}",
+      "short_name": "${random_selection(target.names)}",
       "dest": "random_same_gov_spob()",
       "names": [
         "Baikonour Forever",
@@ -105,5 +102,8 @@
   "itaskan_hook": {
     "offer": "As you sit down in the bar, electronic music from the dancefloor covers the sound of some flight-suited astronauts approaching your table. Two of them have the gleaming helmets of Itaskan flight crew, while the man in the middle carries his. His appearance is paradoxically youthful but with a few very clear markers of age.\n\"{{ player.name }}, would you be interested in a perilous journey across known and unknown space?\" the middle man asks.",
     "accept": "\"Wonderful\" says the well-preserved man \"My name is Professor Morton, but you can call me Tyrell. I've got a fairly sensative mission and your reputation precedes you. It's scientific in nature-natural history really. Our first stop will be nearby Baikon."
+  },
+  "loyal_suns_hook": {
+    "offer": "Though you scanned the landing pad before setting down, as soon as you step outside you are beset by a squad of grim-helmeted Loyal Suns marines. They're silent for a tense moment, and you're tempted to make a run for it, but out steps a shorter naval officer.\n\"You can feel it, can't you. You're caught here, on this dusty rock, subjected to the power of people. On the ground. You'll be happy to hear that you're not under arrest, I just happen to be fairly paranoid when I'm off my ship. Really, any time I'm not at the helm. ${_.player.name}, we've been watching your career develop. I think you understand what it means to be a spacefarer. To be constrained by those on the ground who think they know what's best for you and your crew. Join us, and live the life that spacefarers where meant to live!\""
   }
 }
