@@ -173,9 +173,11 @@ export class StoreitemName extends TextBox {
   }
 
   update(parent){
-    this.control.text = parent.current_item().short_name;
-    if (this.control.text === undefined){
-      this.control.text = parent.current_item().name;
+    let current_item = parent.current_item();
+    if(current_item){
+      this.control.text = current_item.short_name || current_item.name;
+    } else {
+      this.control.text = "---";
     }
   }
 }
@@ -223,7 +225,12 @@ export class StoreitemDesc extends TextBox {
   }
 
   update(parent){
-    this.control.text = parent.current_item().desc;
+    let current_item = parent.current_item();
+    if(current_item){
+      this.control.text = parent.current_item().desc;
+    } else {
+      this.control.text = " ";
+    }
   }
 };
 
@@ -248,7 +255,8 @@ export class BuyButton extends TextButton {
 
   update(parent){
     let color = "Gray";
-    if(parent.can_purchase_item(parent.current_item())){
+    let current_item = parent.current_item();
+    if(current_item && parent.can_purchase_item(current_item)){
       color = "Green";
     }
     this.control.color = color;

@@ -79,23 +79,27 @@ class Mission{
       return false;
     }
     
-    if (mission.accept_if){
-      return this.interpolate_value(mission.accept_if);
+    if (this.accept_if){
+      return this.interpolate_value(this.accept_if);
     }
+
+    return true;
   }
 
   can_offer(){
     /*
      * Handles the 'offer_if' field. Decides if a mission should be visible.
      */
+    if(this.name in _.player.active_missions){
+      return false;
+    }
     if('offer_if' in this){
       return this.interpolate_value(this.offer_if);
     }
-    return true
   }
   
   accept(){
-    _.player.active_missions[this.name] = mission;
+    _.player.active_missions[this.name] = this;
     if( 'cargo' in this ){
       _.player.add_mission_cargo(this.cargo.type, this.cargo.amount);
     }
@@ -103,7 +107,7 @@ class Mission{
 
   success(mission){
     if( "reward" in this){
-      _.player.money += mission.reward;
+      _.player.money += this.reward;
     }
     this.resolve();
   }

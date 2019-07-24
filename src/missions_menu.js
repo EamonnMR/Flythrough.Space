@@ -19,12 +19,12 @@ export class MissionsMenu extends StoreMenu {
     
   do_buy(){
     if (this.current_item().can_accept()){
-      _.player.accept_mission(this.current_item());
+      this.current_item().accept();
     }
   }
 
-  can_purchase_item(item){
-    this.items[item].can_accept()
+  can_purchase_item(mission){
+    return mission.can_accept()
   }
 
   can_sell_item(item){
