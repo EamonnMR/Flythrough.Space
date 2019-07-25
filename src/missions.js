@@ -1,15 +1,15 @@
-
-import { _ } from "./singletons.js";
-import { choose, randint, multiInherit } from "./util.js";
-
 /* Missions, or: why implement a DSL when `eval` exists!
  *
  * Key Terminology:
  * Offer: Showing the mission to the player, either as a modal or in the menu
  * Available: Player can accept the mission
+ * resolved: Mission is over, for better or worse
  */
 
-export function get_mission(name){
+import { _ } from "./singletons.js";
+import { choose, randint, multiInherit } from "./util.js";
+
+function get_mission(name){
   // This uses a little StackOverflow magic to inherit from Mission
   // but also the mission data.
   //
@@ -105,14 +105,16 @@ class Mission{
     }
   }
 
-  success(mission){
+  success(){
     if( "reward" in this){
       _.player.money += this.reward;
     }
+    console.log("Mission success!");
+    console.log(this)
     this.resolve();
   }
 
-  failure(mission){
+  failure(){
     // TODO: Run penalty, etc
     this.resolve();
   }
@@ -120,13 +122,15 @@ class Mission{
   resolve(mission){
     delete _.player.active_missions[this.name];
     // TODO: Different pickup/dropoff times, etc
-    if( cargo in this ){
+    if( "cargo" in this ){
       _.player.remove_mission_cargo(this.cargo.type, this.cargo.amount);
     }
   }
 }
 
-
+/*** Utility functions for use inside missions ***/
+// Left in the module scope to avoid excess this. for things
+// that only really use _.data or _.player
 
 // Legal Cargos
 // TODO: Generate this
@@ -149,6 +153,8 @@ function select_spob_same_govt(){
   }
 }
 
+/*** Exported Functions: the interface ***/
+
 export function missions_for_state(state){
   let available = {};
   let missions = {basic_cargo: _.data.missions["basic_cargo"]};
@@ -161,5 +167,34 @@ export function missions_for_state(state){
     }
   }
   return available;
+}
+
+export function resolve_for_state(state){
+  for (let mission_name of Object.keys(_.player.active_missions)){
+    let mission = _.player.active_missions[mission_name];
+// Special behavior for landing
+    let success = true;
+    let failure = false;
+
+    if(state === "landing" && "dest" in mission && "spob" in mission.dest){
+      success = success && 
+        mission.dest.spob === _.player.current_spob && 
+        mission.dest.sys === _.player.current_system;
+    }
+
+    if("succeed_if" in mission){
+      success = success && mission.interpolate_value(mission.succeed_if);
+    }
+
+    if("fail_if" in mission){
+      failure = failure && mission.interpolate_value(mission.fail_if);
+    }
+
+    if(success){
+      mission.success();
+    } else if (failure){
+      mission.failure();
+    }
+  }
 }
 
