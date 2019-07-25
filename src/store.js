@@ -17,6 +17,10 @@ export class StoreMenu extends BaseLandingMenuView {
   }
   enter(){
     this.spob = _.data.spobs[_.player.current_spob];
+    this.setup_widgets()
+  }
+
+  setup_widgets(){
     this.setup_menu(
       this.get_detail_widgets().concat(
         this.get_list_widgets().concat(

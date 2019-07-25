@@ -13,6 +13,10 @@ export class BaseMenuView extends ViewState {
   }
 
   exit(){
+    this.hide_widgets();
+  }
+
+  hide_widgets(){
     for(let widget of this.widgets){
       widget.hide(this);
     }

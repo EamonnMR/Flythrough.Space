@@ -20,6 +20,9 @@ export class MissionsMenu extends StoreMenu {
   do_buy(){
     if (this.current_item().can_accept()){
       this.current_item().accept();
+      // Refresh widgets to reflect new conditions
+      this.hide_widgets();
+      this.setup_widgets();
     }
   }
 
