@@ -219,14 +219,15 @@
   },
 
    "cas_frigate"  :{
+    "mesh"        : "freehold_frigate",
     "short_name"  : "Cas. Frig",
     "long_name"   : "Casamance Frigate",
     "full_name"   : "Accrs Starworks Type 1123 Ausf. R Frigate",
     "desc"       : "",
     "upgrades"    : {"plasma200":2},
-    "rotation"  : 0.008,
+    "rotation"  : 0.006,
     "accel"      : 0.000008,
-    "max_speed"   : 0.0007,
+    "max_speed"   : 0.0021,
     "space"      : 80,
     "cargo"      : 40,
     "price"      : 500000,
@@ -808,7 +809,7 @@
     "max_shields": 300
   },
   "tercel":{
-    "mesh": "sparrow",
+    "mesh": "tercel",
     "short_name"  : "Tercel",
     "long_name"   : "Baikonur Tercel",
     "full_name"   : "Baikonur Tercel Rev 902",

@@ -33,7 +33,9 @@
     "cas_corv": {"file": "casamance_corv.babylon"},
     "oxana": {"file": "oxana.babylon"},
     "courier": {"file": "courier.babylon"},
-    "plasma_cannon": {"file": "plasma_cannon.babylon"}
+    "plasma_cannon": {"file": "plasma_cannon.babylon"},
+    "freehold_frigate": {"file": "freehold_frigate.babylon"},
+    "tercel": {"file": "tercel.babylon"}
   },
   "sprites": {
     "plasma": {

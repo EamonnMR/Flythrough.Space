@@ -82,7 +82,7 @@ class ShipTab extends TextButton {
     let too_expensive = null;
     let current_selection = null;
     if(parent !== null){
-      too_expensive = parent.player_data.can_buy_new_ship(this.price);
+      too_expensive = _.player.can_buy_new_ship(this.price);
       current_selection = parent.selection == this.item; 
     }
 
