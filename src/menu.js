@@ -1,4 +1,4 @@
-import { ViewState } from "./states.js"
+import { ViewState } from "./view_state.js"
 import { get_text } from "./util.js"
 
 export class BaseMenuView extends ViewState {

@@ -1,5 +1,5 @@
 import { is_cheat_enabled } from "./util.js";
-import { ViewState } from "./states.js";
+import { ViewState } from "./view_state.js";
 import { bindInputFunctions, unbindInputFunctions } from "./input.js";
 import { _ } from "./singletons.js";
 

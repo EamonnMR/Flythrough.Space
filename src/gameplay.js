@@ -13,7 +13,7 @@ import { npcSpawnerSystem } from "./entities.js";
 import { modelPositionSystem, cameraFollowSystem } from "./graphics.js";
 import { collisionDetectionSystem } from "./collision.js";
 import { setup_system } from "./system.js";
-import { ViewState } from "./states.js";
+import { ViewState } from "./view_state.js";
 import { radarFollowSystem, hudUpdateSystem, HUD } from  "./hud.js";
 import { ai_system, turretPointSystem  } from "./ai.js";
 import { has_sufficient_distance, has_sufficient_fuel } from "./hyperspace.js"
