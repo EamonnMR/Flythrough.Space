@@ -874,5 +874,27 @@
       "ethyl": "high"
     },
     "tech": {"V": 5}
-  } 
+  },
+  "Petrov": {
+    "x": 14,
+    "y": 25,
+    "govt": "hex",
+    "trade": {
+      "ore": "low",
+      "food": "high",
+      "ethyl": "med"
+    },
+    "text": "Long before first contact, Petrov had a fairly well-off civilization going. Explorers arrived to find an irradiated, ruined world bearing the apparent scars of nuclear self-immolation, rendering the biosphere void of all vertibrate life. The spaceport here mostly serves 'Stalkers' or opportunistic adventurers, archeologists, and looters who scour the crumbling ruins and charred fields for evidence of what went so wrong, or just something valuable."
+  },
+  "Prokhoro": {
+    "x": 32,
+    "y": -3,
+    "govt": "hex",
+ 		"tech":{
+			"lg_ship":3,
+			"khanda":1,
+			"melkin":3
+    },
+    "text": "A backwater station kept on its toes by the occasional Fifth Fleet raid trying to pass through. Probably a better place to refuel in-system since the planet surface is still pretty irradiated."
+  }
 }

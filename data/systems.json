@@ -839,7 +839,7 @@
     "govt":"drone",
     "links":[
       "Nemesis",
-      ".265",
+      "Zorax",
       ".*31"
     ]
   },
@@ -975,12 +975,12 @@
   },
   "Unrelenting":{
     "x":808,
-    "y":265,
+    "y":256,
     "govt":"drone",
     "links":[
       "Nemesis",
       ".250",
-      ".265"
+      "Zorax"
     ]
   },
   "Victory":{
@@ -1599,7 +1599,7 @@
     "links":[
       ".264",
       ".267",
-      ".280",
+      "Uluru",
       ".*1",
       ".*2"
     ]
@@ -1723,7 +1723,7 @@
     "links":[
       ".250",
       ".262",
-      ".265",
+      "Zorax",
       ".277*"
     ]
   },
@@ -1759,7 +1759,7 @@
       ".*2"
     ]
   },
-  ".265":{
+  "Zorax":{
     "x":783,
     "y":193,
     "spobs": "Krysto",
@@ -1868,7 +1868,7 @@
       ".258",
       ".259",
       "Baikon",
-      ".280"
+      "Uluru"
     ]
   },
   ".275":{
@@ -1902,7 +1902,7 @@
     "links":[
       ".261",
       ".262",
-      ".265",
+      "Zorax",
       ".*5"
     ]
   },
@@ -1912,10 +1912,10 @@
     "links":[
       ".267",
       ".275",
-      ".280"
+      "Uluru"
     ]
   },
-  ".280":{
+  "Uluru":{
     "x":458,
     "y":566,
     "govt":"drone",
@@ -2206,7 +2206,7 @@
     "links":[
       "Marauder",
       ".309",
-      ".317",
+      "Stormgald",
       ".*18",
       "Argonne"
     ]
@@ -2236,7 +2236,7 @@
       "Peenemunde",
       "Covasna",
       "Chenab",
-      "Stormgald"
+      "Yevgraf"
     ]
   },
   "Peenemunde":{
@@ -2262,7 +2262,7 @@
     "links":[
       "Panaorios",
       "Peenemunde",
-      "Stormgald"
+      "Yevgraf"
     ]
   },
   ".316":{
@@ -2275,7 +2275,7 @@
       ".*19"
     ]
   },
-  ".317":{
+  "Stormgald":{
     "x":1909,
     "y":652,
     "links":[
@@ -2290,11 +2290,11 @@
     "y":735,
     "govt":"hex",
     "links":[
-      ".317",
+      "Stormgald",
       "Atlantico",
       "Solano",
       "Kirchner",
-      "Stormgald"
+      "Yevgraf"
     ]
   },
   "Correa":{
@@ -2302,7 +2302,7 @@
     "y":744,
     "govt":"hex",
     "links":[
-      ".317",
+      "Stormgald",
       "Atlantico"
     ]
   },
@@ -2895,7 +2895,7 @@
     "links":[
       ".252",
       ".253",
-      ".280",
+      "Uluru",
       "Woodstock",
       ".*2"
     ]
@@ -3081,15 +3081,27 @@
       ".*20"
     ]
   },
-  "Stormgald":{
+  "Yevgraf":{
     "x":1785,
     "y":597,
     "govt":"hex",
+    "lights": [
+      {
+        "position": [0, -1,-1],
+        "intensity": 0.2,
+        "diffuse": [0.4,1,0.4],
+        "specular": [0.2,1,0.2]
+      }
+    ],
     "links":[
       "Panaorios",
       "Covasna",
       "Guayas",
       "Argonne"
+    ],
+    "spobs": [
+      "Petrov",
+      "Prokhoro"
     ]
   },
   ".*18":{
@@ -3097,7 +3109,7 @@
     "y":594,
     "links":[
       ".310",
-      ".317"
+      "Stormgald"
     ]
   },
   ".*19":{
@@ -3217,8 +3229,8 @@
     ],
     "links":[
       ".310",
-      ".317",
       "Stormgald",
+      "Yevgraf",
       ".310"
     ]
   },
