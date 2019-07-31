@@ -201,7 +201,7 @@
 
   "cas_oe_fighter"   :{
     "short_name"  : "Cas. Fighter",
-    "long_name"   : "Casamance Fighter",
+    "long_name"   : "Freehold Fighter",
     "mesh": "cas_fighter",
     "full_name"   : "Casamance Starfighter Type 950 Ausf B",
     "desc"       : "Basically, this is a repainted Old Empire Type 950, barely improved with more modern weapons. It is a point of pride in the Casamance Directorate to still run these ships, and what they lack in power is made up for in numbers. And the build quality of Accra Starworks is certainly better than the dodgy backwater shipyards that crank out the more common variant.",
@@ -246,7 +246,7 @@
     "upgrades"    : {"plasma200": 3},
     "rotation"  : 0.0001,
     "accel"      : 0.0006,
-    "max_speed"  : 0.06,
+    "max_speed"  : 0.0018,
     "space"      : 100,
     "cargo"      : 60,
     "price"      : 80000000,
