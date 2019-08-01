@@ -9,7 +9,10 @@
     },
     "dest": "select_spob_same_govt();",
     "offer_state": "missions",
-    "offer_if": "true"
+    "offer_if": "true",
+    "accept_modal": {
+      "text": "hello world"
+    }
   },
   "rideshare": {
     "short_name": "Ferry Passengers to ${dest.spob}",

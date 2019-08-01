@@ -103,6 +103,9 @@ class Mission{
     if( 'cargo' in this ){
       _.player.add_mission_cargo(this.cargo.type, this.cargo.amount);
     }
+    if( "accept_modal" in this ){
+      _.state_manager.enter_modal(this.accept_modal);
+    }
   }
 
   success(){
