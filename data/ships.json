@@ -569,6 +569,7 @@
     "max_shields": 200
   },
    "ls_heavyfi"      :{
+    "mesh":         "tandem",
     "short_name"  : "Tandem",
     "long_name"   : "LS Tandem",
     "full_name"   : "Loyal Suns Heavy Starfighter Type 1153 rev C",
