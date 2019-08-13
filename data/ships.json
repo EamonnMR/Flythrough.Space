@@ -460,11 +460,11 @@
   },
 
   "league_argosy":{
-    "mesh"       : "argosy",
+    "mesh"       : "milspec_argosy",
     "short_name"  : "League Argosy",
     "long_name"   : "League Argosy",
     "full_name"   : "Khanda Mod. Lothal-type Argosy",
-    "desc"       : "Upgunned, this version argosy is closer to a battleship than a cargo ship. But besides the livery and missile racks, this is similar to the commercial version in most respects. Call it a trim level. It's every bit the workhorse the merchant version is.",
+    "desc"       : "Although built on the same platform and mostly parts-compatibloe this is closer to a battleship than a cargo ship. Call it a trim level. It's every bit the workhorse the merchant version is.",
     "upgrades"    : {"plasma200": 2, "ejectorrack": 4, "dumbfiremissile": 10},
     "rotation"  : 0.0065,
     "accel"      : 0.00001,

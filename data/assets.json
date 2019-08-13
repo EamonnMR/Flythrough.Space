@@ -17,6 +17,10 @@
       ]
     },
 
+    "milspec_argosy": {
+      "file": "milspec_argosy.babylon"
+    },
+
     "tandem": {
       "file": "tandem.babylon",
       "fixed": [
