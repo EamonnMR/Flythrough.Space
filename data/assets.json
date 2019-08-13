@@ -26,6 +26,19 @@
       ]
     },
 
+    "absolver": {
+      "file": "absolver.babylon",
+      "fixed": [
+        "weapon_1",
+        "weapon_2",
+        "weapon_3",
+        "weapon_4",
+        "weapon_5",
+        "weapon_6",
+        "weapon_7"
+      ]
+    },
+
     "oe_fi": {"file": "empfi.babylon"},
     "heavy_fi": {"file": "khanda_heavy.babylon"},
     "light_fi": {"file": "light_fighter.babylon"},

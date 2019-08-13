@@ -628,6 +628,7 @@
     "short_name"  : "Absolver",
     "long_name"   : "LS Absolver",
     "full_name"   : "Loyal Suns Type 1159 Heavy Battleship",
+    "mesh"        : "absolver",
     "desc"       : "The enormous Loyal Suns battlecruiser was built to replace the aging fleet of type 930s, which where barely large enough to accomodate the new heavy fighters. Though heavy fighters and battleships can operate deep in enemey territory for extended periods, the value of having a home base and firebase has been long recognized. Unfortunately, the price tag on an Absolver has scaled up with the size, and very few have been launched, which has drawn criticisim when it is compared to the widely deployed League carrier. The designers, however, maintain that this ship is in a tier of its own, and should not be compared to the vastly converted freighter. The Supreme Comissar of the Loyal Suns fleet herself commands one of these monsters, as does the current Clone-Prince.",
     "upgrades"    : {"ne_beam": 4, "plasma200":2, "antigun": 2},
     "rotation"  : 0.01,
