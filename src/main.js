@@ -24,7 +24,7 @@ function init(game_canvas, scene, engine, data){
 
   // start initial state
   
-  let player_data = new PlayerSave(data.ships, data.upgrades);
+  let player_data = new PlayerSave();
   _.player = player_data;
   let stateMgr = new StateManager({
     'gameplay': new GamePlayState(),

@@ -32,7 +32,7 @@ export class PlayerSave {
     localStorage.setItem( LAST_SAVE, key );
   }
 
-  constructor(ships, upgrades) {
+  constructor() {
     this.name = "Joe Bloggs"
     this.money = is_cheat_enabled("money") ? 100000000 : 5000;
     this.map_pos = {x: 0, y: 0};
@@ -42,7 +42,7 @@ export class PlayerSave {
     this.current_spob = overridable_default("spob", "Alluvium Fleet Yards");
     this.initial_position = {x: 0, y: 0};
     this.ship_type = overridable_default("ship", "shuttle");
-    this.ship_dat = Object.create(ships[this.ship_type]);
+    this.ship_dat = Object.create(_.data.ships[this.ship_type]);
     this.upgrades = this.ship_dat.upgrades;
     this.fuel = this.ship_dat.max_fuel;
     this.bulk_cargo = {};
