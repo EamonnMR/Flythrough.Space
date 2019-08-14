@@ -98,12 +98,23 @@ function mount_turreted_weapons(model_meta, ship, weapon_index){
   }
 } 
 
-export function create_composite_model(ship){
+export function create_composite_model(ship, govt){
   // Create a ship's model out of the base mesh of the ship
   // plus the meshes of any attached upgrades.
   //
   // Hurray for justifying the creation of this entire game!
   ship.model = _.data.get_mesh(ship.mesh);
+
+  if(govt){
+    // TODO: This would be the place to add per-faction textures
+    let material = new BABYLON.StandardMaterial(_.scene);
+    material.alpha = 1;
+    material.diffuseColor = BABYLON.Color3.FromHexString(
+      // For now we just dye ships the color of their faction
+      _.data.govts[govt].color.substring(0,7)
+    );
+    ship.model.material = material;
+  }
   let model_meta = _.data.get_mesh_meta(ship.mesh);
 
   let weapon_index = 0;  // Note that this index is used for both loops, not reset

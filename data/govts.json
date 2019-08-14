@@ -57,15 +57,18 @@
   },
   "merchant":{
     "name": "Merchents",
-    "short_name": "Merch"
+    "short_name": "Merch",
+    "color": "#C2B280FF"
   },
   "pirate": {
     "name": "Pirate",
     "short_name": "Pirate",
+    "color": "#51534AFF",
     "attack_default": true
   },
   "baik": {
     "name": "Baikonour Insurgents",
+    "color": "#51534AFF",
     "short_name": "Insur",
     "attack_default": true
   }

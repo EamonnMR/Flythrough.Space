@@ -6,15 +6,15 @@ import {
 } from "./graphics.js";
 
 export function npcShipFactory(type, position, ai, govt){
-  let ship = shipFactory(type, position);
+  let ship = shipFactory(type, position, govt);
   ship.ai = ai;
   ship.radar_pip = _.hud.get_radar_pip(4, '#FF0000FF');
-  ship.govt = govt;
   ship.overlay = _.hud.get_overlay_texture(ship);
   return ship;
 }
 
 export function playerShipFactory(type, position) {
+
 
   let ship = shipFactory(type, position);
 
@@ -28,8 +28,11 @@ export function playerShipFactory(type, position) {
   return ship;
 };
 
-export function shipFactory(type, position){
+export function shipFactory(type, position, govt=null){
   let ship = Object.create(type);
+  if(govt){
+    ship.govt = govt;
+  }
   ship.position = position;
   ship.direction = 0;
   ship.velocity = {x: 0, y: 0};
@@ -40,7 +43,7 @@ export function shipFactory(type, position){
   ship.collider = {radius: .5};
   ship.fuel = ship.max_fuel;
   apply_upgrades(ship, ship.upgrades);
-  create_composite_model(ship);
+  create_composite_model(ship, govt);
   return ship;
 };
 

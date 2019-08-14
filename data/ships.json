@@ -756,6 +756,7 @@
   },
   "pirate_sleeper"  :{
     "short_name"  : "Sleeper",
+    "mesh": "courier", 
     "long_name"   : "Pirate Sleeper",
     "full_name"   : "Accra Starworks Courier (Pirate \"Sleeper\" variant)",
     "desc"       : "Faster than it looks, tougher than it looks, and of course deadlier than it looks. Many a captain has been lured in by the benign appearance of a courier only to be surprise-attacked by one of these.",
