@@ -10,6 +10,7 @@ import { ShipyardMenu} from "./shipyard.js";
 import { load_all } from "./load.js";
 import { UpgradeMenu } from "./upgrade_store.js";
 import { MissionsMenu } from "./missions_menu.js";
+import { MainMenu } from "./main_menu.js";
 import { get_game_camera } from "./graphics.js";
 
 function init(game_canvas, scene, engine, data){
@@ -34,7 +35,8 @@ function init(game_canvas, scene, engine, data){
     'shipyard': new ShipyardMenu(),
     'upgrades': new UpgradeMenu(),
     'missions': new MissionsMenu(),
-  }, overridable_default("state", "gameplay"));
+    'main'    : new MainMenu(),
+  }, overridable_default("state", "main"));
 
   _.state_manager = stateMgr;
  

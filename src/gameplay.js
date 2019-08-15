@@ -46,9 +46,18 @@ export class GamePlayState extends ViewState {
 
   update(){
     this.entMan.update();
+    if(this.player_is_dead()){
+      this.player_dead_timer -= this.entMan.delta_time;
+      if(this.player_dead_timer < 0){
+        this.clear_world();
+        this.parent.enter_state('main');
+        // TODO: del _.player;
+      }
+    }
   }
 
   enter(){
+    this.player_dead_timer = 6000;
     if (this.empty){
       this.setup_world();
     }
@@ -181,6 +190,10 @@ export class GamePlayState extends ViewState {
   get_player_ent(){
     // TODO: I don't love this
     return this.entMan.get_with(['input'])[0];
+  }
+
+  player_is_dead(){
+    return this.get_player_ent() === undefined;
   }
 
   spob_is_landable(spob_name){
