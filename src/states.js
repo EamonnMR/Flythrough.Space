@@ -17,7 +17,8 @@ export class StateManager{
   }
 
   update(){
-    this.each_do((state) => { state.update() });
+    //this.each_do((state) => { state.update() });
+    this.current_state.update()
   }
 
   resize(){ // TODO: Figure out what we can provide for this
