@@ -201,7 +201,7 @@ export class GamePlayState extends ViewState {
   }
 
   player_is_dead(){
-    return this.get_player_ent() === undefined;
+    return this.empty === false && this.get_player_ent() === undefined;
   }
 
   spob_is_landable(spob_name){
