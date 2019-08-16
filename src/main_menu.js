@@ -11,13 +11,18 @@ import {
 } from "./menu.js"
 
 const MENU_COPY = "FLYTHROUGH.SPACE\n" +
-  "WASD to move. Be careful of inertia. L to select the nearest planet," +
+  "Arrow Keys to move. Be careful of inertia. L to select the nearest planet," +
   "then press L again when you're close enough to land. Press [ESC] to " +
   "open the map* and select an adjacent system to jump to. Close the " +
   "map with [esc], fly away from the center of the system, and press " +
   "J to jump. Press ` to select the closest target (to see its health " +
   "and press [LCTRL] to fire your weapon - but be careful, angry ships " +
-  "will shoot back!";
+  "will shoot back!\n" + 
+  "Oh and if you died, just refresh the page... known bug.;
+
+function pop_tab(url){
+  window.open(url, '_blank').focus();
+}
 
 export class MainMenu extends BaseMenuView {
   enter(){
@@ -25,11 +30,6 @@ export class MainMenu extends BaseMenuView {
   }
 
   get_widgets(){
-    // New Button
-    // Github Link
-    // Credits Link
-    //
-
     let widgets = [];
 
     /* Middle Widgets */
@@ -99,7 +99,7 @@ export class MainMenu extends BaseMenuView {
     widgets.push(new LandingMenuBigButton(
       'Source Code',
       () => {
-        // TODO: Open link to github
+        pop_tab("https://github.com/eamonnmr/Flythrough.Space", "_blank");
       },
       RIGHT,
       BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,

@@ -3,6 +3,7 @@
  * frame and will update some subset of entities.
  */
 
+
 import { _ } from "./singletons.js";
 import { distance, is_cheat_enabled } from "./util.js";
 import { speedLimitSystem, velocitySystem} from "./physics.js";
@@ -17,7 +18,6 @@ import { ViewState } from "./view_state.js";
 import { radarFollowSystem, hudUpdateSystem, HUD } from  "./hud.js";
 import { ai_system, turretPointSystem  } from "./ai.js";
 import { has_sufficient_distance, has_sufficient_fuel } from "./hyperspace.js"
-
 let MIN_LAND_DISTANCE = 50
 
 export class GamePlayState extends ViewState {
@@ -168,13 +168,16 @@ export class GamePlayState extends ViewState {
 
   exit(){
     unbindInputFunctions();
+    console.log("Unbound input");
   }
 
   clear_world(){
     _.camera.lockedTarget = null;
     this.entMan.clear();
     this.dispose_world_models();
-    _.hud.dispose();
+    if(_.hud){
+      _.hud.dispose();
+    }
     _.hud = null;
     this.empty = true;
   }
