@@ -770,7 +770,7 @@
   "Shepard":{
     "x":1423,
     "y":557,
-    "govt":"fifth",
+    "govt":"drone",
     "spobs":[
       "Frontier Outpost V"
     ],
@@ -1306,7 +1306,7 @@
     ]
 
   },
-  "Pavlichenko":{
+  "Locklear":{
     "x":545,
     "y":1148,
     "govt":"pen",
@@ -1393,7 +1393,7 @@
       "itaska"
     ],
     "links":[
-      "Pavlichenko",
+      "Locklear",
       "Amstrad"
     ]
   },
@@ -1412,12 +1412,12 @@
       "Trowel"
     ],
     "links":[
-      "Rublev",
+      "Harbi",
       "Straylight",
       "Pace"
     ]
   },
-  "Rublev":{
+  "Harbi":{
     "x":433,
     "y":1016,
     "govt":"pen",
@@ -1440,7 +1440,7 @@
       "Sinchenko"
     ],
     "links":[
-      "Rublev",
+      "Harbi",
       "McPherson"
     ]
   },
@@ -1467,7 +1467,7 @@
       "Angeles"
     ],
     "links":[
-      "Rublev",
+      "Harbi",
       "McPherson"
     ]
   },
@@ -1480,7 +1480,7 @@
       "Aralsk"
     ],
     "links":[
-      "Rublev",
+      "Harbi",
       "Albacore",
       "Burch",
       ".367"
@@ -1498,15 +1498,15 @@
     ],
     "links":[
       "Skovoroda",
-      "Balishkova"
+      "Balish"
     ]
   },
-  "Balishkova":{
+  "Balish":{
     "x":296,
     "y":1087,
     "govt":"pen",
     "spobs":[
-      "Pajitnov"
+      "Pajit"
     ],
     "links":[
       "Albacore",
@@ -1650,7 +1650,7 @@
     ],
     "links":[
       "Panfilov",
-      "Pavlichenko",
+      "Locklear",
       "Millwright",
       "Kharkov"
     ]
@@ -2086,15 +2086,6 @@
   "Ulam":{
     "x":1735,
     "y":356,
-    "govt":"fifth",
-    "npc_average": 3,
-    "spobs": [
-      "Orowan"
-    ],
-    "npcs":[
-      "ff_raid",
-      "ff_defense"
-    ], 
     "links":[
       "Kirrahe",
       ".302",
@@ -2105,7 +2096,6 @@
   "Kirrahe":{
     "x":1627,
     "y":360,
-    "govt":"fifth",
     "links":[
       "Ulam",
       "Normanz",
@@ -2144,7 +2134,6 @@
   "Marauder":{
     "x":1853,
     "y":368,
-    "govt":"fifth",
     "links":[
       "Ulam",
       ".303",
@@ -2156,10 +2145,6 @@
   "Normanz":{
     "x":1679,
     "y":464,
-    "govt":"fifth",
-    "spobs": ["Calvados"],
-    "npc_average": 2,
-    "npcs": ["ff_defense"],
     "links":[
       "Kirrahe",
       "Marauder",
@@ -3223,8 +3208,6 @@
     "npcs": [
       "league_cap",
       "trader_danger",
-      "ff_defense",
-      "ff_raid",
       "league_pt"
     ],
     "links":[

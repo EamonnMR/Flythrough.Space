@@ -346,11 +346,10 @@
 	},
 	"Frontier Outpost V":{
 		"sType":"oeStation",
-		"govt":"fifth",
-		"text":"The nearest Fifth Fleet outpost to other civilizations, this old frontier outpost now guards against incursions from inner worlds, marking the border to what the Fifth Fleet would describe as the \"last remnants of the empire\" (and what others would call \"A haven for ruthless pirate bastards\".",
+		"govt":"drone",
+		"text":"An old outpost on the edge of Loyal Suns territory, it is nonetheless a critical jumping-off point for raids on the Lothian, Peenemunde, and Ingolsdat systems, so it's been kept very much up to date.",
 		"tech":{
-			"oe_wep":3,
-			"V":3
+			"oe_wep":3
 		},
 		"x":0,
 		"y":0
@@ -403,7 +402,7 @@
 			"oe_wep":3,
 			"oe_ship":2,
 			"generic":1,
-			"wlkn":2
+			"itaskan":2
 		},
 		"text":"Vatsa's production capacity has always been stimied by mismanagement, and as a result abandoned OE factories rust in toxic fields, but enough still run for some starships to usually be available here."
 	},
@@ -428,7 +427,7 @@
 		"y":0,
 		"tech":{
 			"generic":3,
-			"wlkn":3
+			"itaskan":3
 		},
 		"trade":{
 			"water":"high",
@@ -511,13 +510,13 @@
 		"y":0,
 		"text":"Gas giant that almost made Albacore a double star system."
 	},
-	"Pajitnov":{
+	"Pajit":{
 		"sType":"onyxEarthlikeG",
 		"scape":"img/AVDezign/Fujin.jpg",
 		"govt":"pen",
 		"x":0,
 		"y":0,
-		"text":"Pajitnov is as aristocratic as you can really get in the peninsula, with high-tech and administrative activity during the day and lavish parties at stunning techno-villas at night. It helps that its nights last 36 hours."
+		"text":"Pajit is as aristocratic as you can really get in the peninsula, with high-tech and administrative activity during the day and lavish parties at stunning techno-villas at night. It helps that its nights last 36 hours."
 	},
 	"Tamt":{
 		"sType":"gnPlanet13Purple",
@@ -789,7 +788,11 @@
     "x": 30,
     "y": 10,
     "govt": "drone",
-    "text": "The capital of Loyalist space. Seat of the Clonelord, though it's considered poor form for them to be outside of a starship when there's conquest to be done. The current Clonelord of the Loyal Suns has chaffed at the idea of lasting peace and taken every opportunity to skirmish with pirates and freeholders, so while it is still the bearucratic heart of the Loyal Suns, it's become passe to actually be seen here."
+    "text": "The capital of Loyalist space. Seat of the Clone Prince, though it's considered poor form for them to be outside of a starship when there's conquest to be done. The current Clonelord of the Loyal Suns has chaffed at the idea of lasting peace and taken every opportunity to skirmish with pirates and freeholders, so while it is still the bearucratic heart of the Loyal Suns, it's become passe to actually be seen here.",
+    "tech": {
+      "ls_sh": 3,
+      "ls_w": 3
+    }
   },
   "Khadir": {
     "x": 0,
@@ -851,29 +854,6 @@
     "y": 0,
     "govt": "drone",
     "text": "There are two distinct civilizations on Morcia, frequently at each other's throats. One of them, the one you can land and trade at, has contact with the outside galaxy and is aligned with the Loyal Suns. The other, reclusive civilization has resisted direct dealings with spacefarers thus far."
-  },
-  "Calvados": {
-    "x": 0,
-    "y": 0,
-    "govt": "fifth",
-    "text": "The fifth fleet maintains a small trading post/supply depot here, for that rare trader that braves the journey.",
-    "trade": {
-      "water": "high",
-      "grain": "high",
-      "alloy": "high"
-    }
-  },
-  "Orowan": {
-    "x": 0,
-    "y": 0,
-    "govt": "fifth",
-    "text": "Deep in uncharted space orbits the base of operations of the Fifth Fleet, Orowan. The exact location on the surface is a closely guarded secret and the population of the planet (uncontacted until the Fifth Fleet arrived in its retreat during the collapse of imperial power) is complicit in this secrecy. In exchange they are treated to the spoils of fifth fleet raids.",
-    "trade": {
-      "ore": "med",
-      "food": "low",
-      "ethyl": "high"
-    },
-    "tech": {"V": 5}
   },
   "Petrov": {
     "x": 14,
