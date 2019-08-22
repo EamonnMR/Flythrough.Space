@@ -17,8 +17,7 @@ const MENU_COPY = "FLYTHROUGH.SPACE\n" +
   "map with [esc], fly away from the center of the system, and press " +
   "J to jump. Press ` to select the closest target (to see its health " +
   "and press [LCTRL] to fire your weapon - but be careful, angry ships " +
-  "will shoot back!\n" + 
-  "Oh and if you died, just refresh the page... known bug.";
+  "will shoot back!\n";
 
 function pop_tab(url){
   window.open(url, '_blank').focus();
