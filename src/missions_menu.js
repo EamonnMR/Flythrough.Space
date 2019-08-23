@@ -4,10 +4,6 @@ import { TextButton, TextBox } from "./menu.js";
 import { missions_for_state} from "./missions.js";
 
 export class MissionsMenu extends StoreMenu {
-  constructor(){
-    super(null);
-  }
-
   enter(){
     this.items = missions_for_state("missions");
     super.enter();
@@ -21,8 +17,6 @@ export class MissionsMenu extends StoreMenu {
     if (this.current_item().can_accept()){
       this.current_item().accept();
       // Refresh widgets to reflect new conditions
-      this.hide_widgets();
-      this.setup_widgets();
     }
   }
 

@@ -29,7 +29,25 @@ const DEFAULT_ACCPET_TEXT = "ok";
 const DEFAULT_CONTINUE_TEXT = "ok"
 const DEFAULT_REJECT_TEXT = "no";
 
+class ModalButton extends TextButton {
+  setup(){
+    // TODO: This is copypasta'd everywhere
+    let control = super.setup();
+    control.color = "White";
+    control.background = "Red";
+    control.height = "15%";
+    control.width = "19%";
+    control.paddingLeft = "3%";
+    control.paddingRight = "3%";
+    control.paddingBottom = "8%";
+    control.paddingTop = "0";
+    control.cornerRadius = 3;
+    return control;
+  }
+}
+
 class Modal extends BaseMenuView{
+
   enter(){
     this.setup_menu(this.get_widgets());
   }
@@ -57,7 +75,7 @@ class Modal extends BaseMenuView{
 
     if(this.on_reject){
       widgets.push(
-        new TextButton(
+        new ModalButton(
           this.accept_text || DEFAULT_ACCEPT_TEXT,
           accept_callback,
           BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
@@ -66,7 +84,7 @@ class Modal extends BaseMenuView{
         )
       )
       widgets.push(
-        new TextButton(
+        new ModalButton(
           this.reject_text || DEFAULT_REJECT_TEXT,
           reject_callback,
           BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT,
@@ -76,7 +94,7 @@ class Modal extends BaseMenuView{
       )
     } else {
       widgets.push(
-        new TextButton(
+        new ModalButton(
           this.accept_text || DEFAULT_CONTINUE_TEXT,
           accept_callback,
           BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_CENTER,

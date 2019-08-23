@@ -105,6 +105,7 @@ class Mission{
     }
     if( "accept_modal" in this ){
       _.state_manager.enter_modal(this.accept_modal);
+      console.log(this);
     }
   }
 

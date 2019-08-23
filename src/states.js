@@ -36,6 +36,7 @@ export class StateManager{
   // See modal.js
 
   enter_modal(modal){
+    this.current_state.exit();
     this.modal_stack.push(this.current_state);
     this.current_state = get_modal(modal);
     this.current_state.enter();
@@ -44,6 +45,7 @@ export class StateManager{
   exit_modal(){
     this.current_state.exit();
     this.current_state = this.modal_stack.pop()
+    this.current_state.enter();
     // It is an error to call this from anything other than a modal
   }
 }

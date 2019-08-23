@@ -50,7 +50,6 @@ export class GamePlayState extends ViewState {
   }
   
   playerLifecycleSystem(){
-    console.log("Checking Player Lifecycle");
     if(this.player_is_dead()){
       this.player_dead_timer -= this.entMan.delta_time;
       if(this.player_dead_timer < 0){
