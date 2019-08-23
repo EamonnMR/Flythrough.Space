@@ -1,7 +1,7 @@
 {
   "basic_cargo": {
     "short_name": "Transport ${this.cargo.type} to ${this.dest.spob}",
-    "desc": "A merchant vessel is needed to transport ${this.cargo.amount} tons of ${this.cargo.type} to ${this.dest.spob} in the ${this.dest.sys} system. Payment upon arrival will be ${this.reward}",
+    "desc": "A merchant vessel is needed to transport ${this.cargo.amount} tons of ${this.cargo.type} to ${this.dest.spob} in the ${this.dest.sys} system. Payment upon arrival will be ${this.reward} credcoin.",
     "reward": 20000,
     "cargo": {
       "type": "${get_legal_cargo()}",
@@ -11,7 +11,10 @@
     "offer_state": "missions",
     "offer_if": "true",
     "accept_modal": {
-      "text": "hello world"
+      "text": "The dockhands load the ${this.cargo.type} into your cargo bay"
+    },
+    "success_modal": {
+      "text": "The dockhands unload the ${this.cargo.type} from your cargo bay and hand off the payment of ${this.reward} credcoin."
     }
   },
   "rideshare": {

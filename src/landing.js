@@ -14,7 +14,7 @@ export class LandingMenu extends BaseMenuView {
     this.spob = _.data.spobs[_.player.current_spob];
     this.setup_menu(this.get_widgets_for_planet());
     // TODO: offer(missions_for_state("landing")
-    // resolve_for_state("landing"); 
+    resolve_for_state("landing"); 
   }
 
   get_widgets_for_planet(){

@@ -50,6 +50,15 @@ class Mission{
       this.reward = this.interpolate_value(this.reward);
     }
 
+    if(this.accept_modal){
+      this.accept_modal.text = this.interpolate_text(this.accept_modal.text);
+    }
+
+    if(this.success_modal){
+      this.success_modal.text = this.interpolate_text(this.success_modal.text);
+    }
+
+
     this.desc = this.interpolate_text(this.desc);
     // TODO: Better field names
     this.short_name = this.interpolate_text(this.short_name);
@@ -105,7 +114,6 @@ class Mission{
     }
     if( "accept_modal" in this ){
       _.state_manager.enter_modal(this.accept_modal);
-      console.log(this);
     }
   }
 
@@ -113,8 +121,9 @@ class Mission{
     if( "reward" in this){
       _.player.money += this.reward;
     }
-    console.log("Mission success!");
-    console.log(this)
+    if( "success_modal" in this ){
+      _.state_manager.enter_modal(this.success_modal);
+    }
     this.resolve();
   }
 
