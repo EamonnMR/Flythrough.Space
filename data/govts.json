@@ -41,18 +41,11 @@
     "color":"#FF0000FF",
     "dark_color":"#DD1010FF"
   },
-  "fifth":{
-    "name":"5th Fleet",
-    "short_name": "FL - V",
-    "color":"#A83838FF",
-    "dark_color":"#712020FF",
-    "attack_default": true
-  },
   "xic":{
     "name":"XIC Mining",
     "short_name": "XIC",
-    "color":"#F5B5C1FF",
-    "dark_color":"#F0B0BBFF",
+    "color":"#008F9B",
+    "dark_color":"#008F9B",
     "attack_asteroids": true
   },
   "merchant":{

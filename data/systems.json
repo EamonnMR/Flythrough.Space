@@ -323,6 +323,23 @@
       ".136",
       "Wijngaarden",
       "Khust"
+    ],
+    "npc_average": 5,
+    "npcs": [
+      "trader_bulk",
+      "cas_capital",
+      "cas_patrol",
+      "ls_raid",
+      "ls_pr",
+      "xic_presence"
+    ],
+    "lights": [
+      {
+        "position": [-1, -1,0],
+        "intensity": 0.8,
+        "diffuse": [0.2,0.8,0.1],
+        "specular": [0.3,0.7,0.2]
+      }
     ]
   },
   "Uttar":{
@@ -866,6 +883,12 @@
         "diffuse": [1,0,0],
         "specular": [1,0,0]
       }
+    ],
+    "npc_average": 5,
+    "npcs": [
+      "ls_boss",
+      "ls_raid",
+      "ls_noncom"
     ]
   },
   "Intrepid":{
@@ -946,6 +969,22 @@
   "Khust":{
     "x":914,
     "y":696,
+    "lights": [
+      {
+        "position": [-0, 1,-1],
+        "diffuse": [1, 0.8, 0.6],     
+        "intensity": 0.8
+      }
+    ],
+    "npc_average": 3,
+    "npcs": [
+      "trader_lowtech",
+      "western_trader",
+      "ls_pt",
+      "ls_raid",
+      "cas_patrol",
+      "cas_capital"
+    ],
     "links":[
       "Kiriyenko",
       "Steiner",
@@ -2868,6 +2907,15 @@
   "Kiriyenko*":{
     "x":1835,
     "y":1138,
+    "npc_average": 3,
+    "npcs": [
+      "trader_lowtech",
+      "league_pt",
+      "ls_pt",
+      "ls_raid",
+      "cas_patrol",
+      "cas_capital"
+    ],
     "links":[
       ".335",
       "Liu*"
