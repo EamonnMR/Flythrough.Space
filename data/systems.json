@@ -106,7 +106,7 @@
     "govt":"direc",
     "links":[
       "Rainsford",
-      "Pentecost",
+      "Terisiare",
       "Rimell",
       "Bluthgelt"
     ]
@@ -192,8 +192,8 @@
     ],
     "roidSet":"silicaFieldM",
     "spobs":[
-      "Cook",
-      "Dafydd"
+      "Lanner",
+      "Lanner Orbital"
     ],
     "links":[
       "Bluthgelt"
@@ -257,7 +257,7 @@
       "Wijngaarden"
     ]
   },
-  "Pentecost":{
+  "Terisiare":{
     "x":1027,
     "y":963,
     "govt":"direc",
@@ -268,7 +268,7 @@
     "links":[
       "Stavros",
       "Rossum",
-      "Cartwright"
+      "Inverness"
     ]
   },
   "Rossum":{
@@ -280,22 +280,22 @@
     ],
     "links":[
       "Carvajal",
-      "Pentecost",
+      "Terisiare",
       "Wirth",
       "Okocha"
     ]
   },
-  "Cartwright":{
+  "Inverness":{
     "x":1049,
     "y":886,
     "govt":"direc",
     "spobs":[
-      "Dogover",
-      "Zachit",
-      "Miranu"
+      "Skye Orbital",
+      "Inshes",
+      "Carnarc"
     ],
     "links":[
-      "Pentecost",
+      "Terisiare",
       "Wijngaarden",
       "Stroustrup"
     ]
@@ -309,7 +309,7 @@
     ],
     "links":[
       "Rainsford",
-      "Cartwright",
+      "Inverness",
       "Steiner",
       "Kiriyenko"
     ]
@@ -403,6 +403,12 @@
     "x":1276,
     "y":969,
     "govt":"hex",
+    "npc_average": 3,
+    "npcs": [
+      "trader_bulk",
+      "trader_danger",
+      "league_pt"
+    ],
     "links":[
       "Uttar",
       "Kuluene",
@@ -680,7 +686,7 @@
     ],
     "links":[
       "Wirth",
-      "Cartwright",
+      "Inverness",
       "Ishayev",
       "Pyatigorsk"
     ]

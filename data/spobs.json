@@ -36,9 +36,9 @@
 		"text":"Accra orbits this gas giant."
 	},
 	
-	"Dogover":{
+	"Carnarc":{
 		"sType":"gnPlanet12Marsh",
-		"text" :"Although the Cartwright system has been populated for all of recorded history, it was not on this planet, since its harsh environment makes living difficult. Though there are signifigant metal deposits here, it is deep in the crust so only the best veins are mined. So called 'wildcat' prospectors can be found deep in the interiors of the tectonic cratons looking for the next big score. More often than not, they come up empty handed though.",
+		"text" :"Although the Inverness system has been populated for all of recorded history, it was not on this planet, since its environment keeps all but the hardiest of settlers at bay. Though there are signifigant metal deposits here, it is deep in the crust so only the best veins are mined. So called 'wildcat' prospectors can be found deep in the interiors of the tectonic cratons looking for the next big score. More often than not, they come up empty handed.",
 		"x":100,
 		"y":300,
 		"govt":"direc",
@@ -50,9 +50,9 @@
       "ore":"low"
 		}
 	},
-	"Zachit":{
+	"Skye Orbital":{
 		"sType":"fourRingStation",
-		"text":"Population center of the Cartwright system, the massive Zachit station is home to millions. Though it can generate its own power and once had its own food supply, it has long since replaced its agracultural segments with living space, favoring imports (as it happens, vat grown yeast slurry isn't a popular dish after the first few decades.) As a result, traders favor the station as well.",
+		"text":"Population center of the Inverness system, the massive Skye orbital station is home to millions. Though it can generate its own power and once had its own food supply, it has long since replaced its agracultural segments with living space, favoring imports (as it happens, vat grown yeast slurry isn't a popular dish after the first few decades.) As a result, traders favor the station as well.",
 		"x":-100,
 		"y":-348,
 		"govt":"direc",
@@ -67,16 +67,16 @@
 			"direc":1
 		}
 	},
-	"Miranu":{
+	"Inshes":{
 		"sType":"onyxM4Earthlike",
 		"govt":"direc",
-		"text":"Orbiting opposite from Cartwright at Zachit's L3 Lagrangian Point, Miranu, a small world that is jealously guarded by the Zachit government as a premere vacation destination. Trips to it where largely kept secret from the public until 495 when the fact that the tiny planet that everyone could see was actually being landed on. It was the first step for the inhabitants of this system to the stars.",
+		"text":"Orbiting opposite from Carnarc's L3 Lagrangian Point, Inshes, a small world is jealously guarded by the Carnarc government as a premere vacation destination. Trips to it where largely kept secret from the public until 495 when the fact that the tiny planet that everyone could see was actually being landed on. It was the first step for the inhabitants of this system to the stars.",
 		"x":200,
 		"y":480
 	},
-	"Cook":{
+	"Lanner":{
 		"sType": "onyxRedQ",
-		"text" : "Cook's stark, reddish atmosphere is highly toxic due to its exotic composition of various heavy metals and deadly acids. However, beneth this harsh surface is a treasure trove of valuable minerals. Be sure to keep your shields up at all times, or the air will beign to corrode your hull.",
+		"text" : "Lanner's stark, reddish atmosphere is highly toxic due to its exotic composition of various heavy metals and deadly acids. However, beneth this harsh surface is a treasure trove of valuable minerals. Be sure to keep your shields up at all times, or the air will beign to corrode your hull.",
 		"x": 75,
 		"y": 150,
 		"govt":"direc",
@@ -85,10 +85,10 @@
 			"powerconv":"high"
 		}
 	},
-	"Dafydd":{
+	"Lanner Orbital":{
 		"sType": "aresSmallStation",
 		"govt":"direc",
-		"text" : "This station is jointly owned by the Freehold worlds, and administered by its navy. It supports the various mining intrests on the inhospitable surface of Cook from orbit. Asteroid miners tend to be tough and solitary people, and this station has developed an equally tough reputation.",
+		"text" : "This station is jointly owned by the Freehold worlds, and administered by its navy. It supports the various mining intrests on the inhospitable surface of Lanner from orbit. Asteroid miners tend to be tough and solitary people, and this station has developed an equally tough reputation.",
 		"trade":{
 			"carbon":"high"
 		},
@@ -101,7 +101,7 @@
 	},
 	"Encroachment Rein":{
 		"sType": "anonplan",
-		"text" : "Vast empty wasteland with a wispy xenon atmosphere and no apparent signs of inhabitence or reason to do so. There was once a colony here, but due to graft, mismanigment, and increasingly high costs, the colony was abandoned in disgust.",
+		"text" : "Vast empty wasteland with a wispy xenon atmosphere and no apparent signs of inhabitence or reason to do so. There was once a colony here, but due to graft, mismanigment, and increasingly high costs, it was abandoned in disgust.",
 		"x" :0,
 		"y" :0
 	},
