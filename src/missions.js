@@ -145,13 +145,11 @@ class Mission{
 // Left in the module scope to avoid excess this. for things
 // that only really use _.data or _.player
 
-// Legal Cargos
-// TODO: Generate this
-let legal_cargo = ["water", "grain", "gas"]
 
 function get_legal_cargo(){
-  // This is where having a DB would be very nice.
-  return choose(legal_cargo);
+  // TODO: Cargo should have some notion of legality.
+  // Maybe make this per-system?
+  return choose(Object.keys(_.data.trade));
 }
 
 function get_random_spob_in_system(system){
@@ -159,11 +157,33 @@ function get_random_spob_in_system(system){
 }
 
 function select_spob_same_govt(){
-  // TODO: Actually do this
-  return {
-    sys: "Casamance",
-    spob: "Wajir",
+  // TODO: Cache this for speed
+ 
+  let possibilities = [];
+  let same_govt = _.data.spobs[_.player.current_spob].govt;
+
+  for (let system of Object.keys(_.data.systems)){
+    let system_dat = _.data.systems[system]
+    if('govt' in system_dat
+      // && system_dat.govt === same_govt
+      && 'spobs' in system_dat){
+      for( let spob of system_dat.spobs ){
+        let spob_dat = _.data.spobs[spob];
+        if(spob_dat.govt === same_govt){
+          possibilities.push({
+            "spob": spob,
+            "sys": system
+          });
+        }
+      }
+    }
   }
+
+  // TODO: Exception handling
+  // if possibilities.length === 0{
+  //   raise NoDestinations
+  //   }
+  return choose(possibilities);
 }
 
 /*** Exported Functions: the interface ***/
