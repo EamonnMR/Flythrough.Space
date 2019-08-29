@@ -443,7 +443,10 @@
     "x":1128,
     "y":968,
     "govt":"direc",
-    "spobs": "Wieliczka",
+    "spobs": 
+    [
+        "Wieliczka"
+    ],
     "links":[
       "Rossum",
       "Holcomb",
@@ -1238,7 +1241,9 @@
       "caudron_gang",
       "pirate_expedition"
     ],
-    "spobs": "Nightside",
+    "spobs": [
+      "Nightside"
+    ],
     "links":[
       ".216",
       ".226"
@@ -1618,7 +1623,9 @@
     "x":693,
     "y":313,
     "govt":"drone",
-    "spobs": "Horizon",
+    "spobs":[
+      "Horizon"
+    ],
     "links":[
       ".202",
       "Unrelenting",
@@ -1807,7 +1814,9 @@
   "Zorax":{
     "x":783,
     "y":193,
-    "spobs": "Krysto",
+    "spobs": [
+      "Krysto"
+    ],
     "govt":"drone",
     "links":[
       ".191",
@@ -1964,7 +1973,9 @@
     "x":458,
     "y":566,
     "govt":"drone",
-    "spobs": "Broken Hill",
+    "spobs": [
+      "Broken Hill"
+    ],
     "links":[
       ".252",
       ".274",

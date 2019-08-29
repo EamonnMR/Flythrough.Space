@@ -189,7 +189,7 @@
 		"x":0,
 		"y":0
 	},
-	"Diemos":{
+	"Deimos":{
 		"sType":"Diemostype",
 		"text":"It looks like somebody tried to turn this small moon into a colony ship, but judging by the state of the thing, they where unsuccessful in some way or other. You decide that it's probably best left alone, and return to your ship rather than proceeding down the unlit corridors that lead deeper into the battered moon.",
 		"x":0,
@@ -782,9 +782,9 @@
     "x": 0,
     "y": 0,
     "govt": "drone",
-    "text": "A terrestrial world that may have been habitable before its parent star, Nemisis, went red-giant. Airtight stations look out over the scarred, red-bathed magma plains. What activity there is on the surface mostly work that is cheaper to do in a gravity well than in orbit, and mining the precious, heavier metals that are unusually rich on its stripped crust."
+    "text": "A terrestrial world that may have been habitable before its parent star, Nemesis, went red-giant. Airtight stations look out over the scarred, red-bathed magma plains. What activity there is on the surface mostly work that is cheaper to do in a gravity well than in orbit, and mining the precious, heavier metals that are unusually rich on its stripped crust."
   },
-  "Nemisis Orbital": {
+  "Nemesis Orbital": {
     "x": 30,
     "y": 10,
     "govt": "drone",
