@@ -10,7 +10,7 @@ import {
   TextButton
 } from "./menu.js"
 
-const MENU_COPY = "FLYTHROUGH.SPACE\n" +
+const MENU_COPY = "Welcome to FLYTHROUGH.SPACE, the Space Captain game!\n" +
   "Arrow Keys to move. Be careful of inertia. L to select the nearest planet," +
   "then press L again when you're close enough to land. Press [ESC] to " +
   "open the map* and select an adjacent system to jump to. Close the " +

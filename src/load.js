@@ -65,11 +65,26 @@ export class Data {
         }
       });
     }
-      
+
+    if("spobs" in this && "systems" in this){
+      Object.keys(this.systems).forEach( (name, index) => {
+        if("spobs" in this.systems[name] && this.systems[name].spobs){
+          for(let spob_name of this.systems[name].spobs){
+            if(typeof(this.systems[name].spobs) !== typeof([])){
+              console.log(`**Data Validation** Spob list for ${name} is not a list: ${this.systems[name].spobs}`);
+            } else if(spob_name in this.spobs ){
+              
+            } else {
+
+              console.log(`**Data Validation** Nonexistant spob ${spob_name} in the ${name} system`);
+            }
+          }
+        }
+      });
+    }
+  } 
 }
 
-
-}
 
 function load_assets( source_json, scene, data, finish_callback ){
 
