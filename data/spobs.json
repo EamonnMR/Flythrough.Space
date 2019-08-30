@@ -37,7 +37,7 @@
 	},
 	
 	"Carnarc":{
-		"sType":"gnPlanet12Marsh",
+		"sprite":"carnarc",
 		"text" :"Although the Inverness system has been populated for all of recorded history, it was not on this planet, since its environment keeps all but the hardiest of settlers at bay. Though there are signifigant metal deposits here, it is deep in the crust so only the best veins are mined. So called 'wildcat' prospectors can be found deep in the interiors of the tectonic cratons looking for the next big score. More often than not, they come up empty handed.",
 		"x":100,
 		"y":300,

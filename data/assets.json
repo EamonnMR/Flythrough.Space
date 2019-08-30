@@ -159,6 +159,11 @@
       "count": 1,
       "size": 236
     },
+    "carnarc": {
+      "img": "assets/planets/carnarc.png",
+      "count": 1,
+      "size": 328
+    },
     "asteroid": {
       "img": "assets/asteroid.png",
       "count": 10,
