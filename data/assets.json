@@ -172,7 +172,6 @@
     "nebule": "nebule.json",
     "upgrades": "upgrades.json",
     "ships": "ships.json",
-    "spobtypes": "spobtypes.json",
     "trade": "trade.json",
     "npc_groups": "npc_groups.json",
     "missions": "missions.json"
