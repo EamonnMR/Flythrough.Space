@@ -157,7 +157,7 @@ function get_legal_cargo(){
   }));
 }
 
-function get_ilegal_cargo(){
+function get_illegal_cargo(){
   return choose(Object.keys(_.data.trade).filter((key) => {
     return _.data.trade[key].illegal;
   }));
@@ -171,7 +171,7 @@ function chance(percent){
   return percent > Math.random();
 }
 
-function select_spob_same_govt(){
+function get_spob_same_govt(){
   // TODO: Cache this for speed
  
   let possibilities = [];
