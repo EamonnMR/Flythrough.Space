@@ -171,6 +171,16 @@ function chance(percent){
   return percent > Math.random();
 }
 
+function cgo(type){
+  // Get pretty cargo type name
+  if(_.data.trade[type]){
+    return _.data.trade[type].name;
+  } else {
+    console.log("Data issue: " + type + " is not a cargo type");
+    return type
+  }
+}
+
 function get_spob_same_govt(){
   // TODO: Cache this for speed
  

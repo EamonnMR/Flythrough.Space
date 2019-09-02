@@ -1,20 +1,20 @@
 {
   "basic_cargo": {
-    "short_name": "Transport ${this.cargo.type} to ${this.dest.spob}",
-    "desc": "A merchant vessel is needed to transport ${this.cargo.amount} tons of ${this.cargo.type} to ${this.dest.spob} in the ${this.dest.sys} system. Payment upon arrival will be ${this.reward} credcoin.",
+    "short_name": "Transport ${cgo(this.cargo.type)} to ${this.dest.spob}",
+    "desc": "A merchant vessel is needed to transport ${this.cargo.amount} tons of ${cgo(this.cargo.type)} to ${this.dest.spob} in the ${this.dest.sys} system. Payment upon arrival will be ${this.reward} credcoin.",
     "reward": 20000,
     "cargo": {
       "type": "${get_legal_cargo()}",
       "amount": "randint(5,10)"
     },
-    "dest": "select_spob_same_govt();",
+    "dest": "get_spob_same_govt();",
     "offer_state": "missions",
     "offer_if": "true",
     "accept_modal": {
-      "text": "The dockhands load the ${this.cargo.type} into your cargo bay"
+      "text": "The dockhands load the ${cgo(this.cargo.type)} into your cargo bay"
     },
     "success_modal": {
-      "text": "The dockhands unload the ${this.cargo.type} from your cargo bay and hand off the payment of ${this.reward} credcoin."
+      "text": "The dockhands unload the ${cgo(this.cargo.type)} from your cargo bay and hand off the payment of ${this.reward} credcoin."
     }
   },
   "rideshare": {
@@ -22,11 +22,12 @@
     "desc": "Passengers have hailed a ride to ${this.dest.spob} in the ${this.dest.sys} system. Safe passage will earn you ${this.reward} credcoin.",
     "reward": 2000,
     "offer_if": "true",
+    "offer_state": "missions",
     "cargo": {
       "type": "passengers",
       "amount": 1
     },
-    "dest": "random_same_gov_spob()",
+    "dest": "get_spob_same_govt()",
     "accept_modal": {
       "text": "The Passengers board your ship"
     },
@@ -35,17 +36,18 @@
     }
   },
   "smuggle": {
-    "short_name": "Smuggle ${this.cargo.type} to ${this.dest.spob}",
-    "brief": "Some shady exporters need ${this.cargo.amount} tons of ${this.cargo.type} moved discretely.",
+    "short_name": "Smuggle ${cgo(this.cargo.type)} to ${this.dest.spob}",
+    "desc": "Some shady exporters need ${this.cargo.amount} tons of ${cgo(this.cargo.type)} moved discretely.",
     "offer_if": "true",
+    "offer_state": "missions",
     "cargo": {
-      "type": "get_illegal_cargo()",
-      "amount": "rand_int_range(5,10)"
+      "type": "${get_illegal_cargo()}",
+      "amount": "randint(5,10)"
     },
-    "dest": "random_other_gov_spob()", 
+    "dest": "get_spob_same_govt()",
     "reward": 14000,
     "accept_modal": {
-      "text": "The dockhands quietly load the mislabeled containers of \"${get_legal_cargo()}\" into your hold."
+      "text": "The dockhands quietly load the mislabeled containers of \"${cgo(get_legal_cargo())}\" into your hold."
     }
   },
   "bounty_direc": {
