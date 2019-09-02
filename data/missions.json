@@ -18,24 +18,35 @@
     }
   },
   "rideshare": {
-    "short_name": "Ferry Passengers to ${dest.spob}",
-    "desc": "Passengers have hailed a ride to ${dest.spob} in the ${dest.sys} system. Safe passage will earn you ${reward} credcoin.",
+    "short_name": "Ferry Passengers to ${this.dest.spob}",
+    "desc": "Passengers have hailed a ride to ${this.dest.spob} in the ${this.dest.sys} system. Safe passage will earn you ${this.reward} credcoin.",
     "reward": 2000,
+    "offer_if": "true",
     "cargo": {
       "type": "passengers",
       "amount": 1
     },
-    "dest": "random_same_gov_spob()"
+    "dest": "random_same_gov_spob()",
+    "accept_modal": {
+      "text": "The Passengers board your ship"
+    },
+    "success_modal": {
+      "text": "The passengers disembark. You hope they leave you a good review."
+    }
   },
   "smuggle": {
-    "short_name": "Smuggle {{ cargo.type }} to {{ dest.spob }}",
-    "brief": "Some perhaps less than legal exporters need {{ cargo.amount }} tons of {{ cargo.type }} moved discretely.",
+    "short_name": "Smuggle ${this.cargo.type} to ${this.dest.spob}",
+    "brief": "Some shady exporters need ${this.cargo.amount} tons of ${this.cargo.type} moved discretely.",
+    "offer_if": "true",
     "cargo": {
       "type": "get_illegal_cargo()",
       "amount": "rand_int_range(5,10)"
     },
-    "dest": "random_same_gov_spob()", 
-    "reward": 14000
+    "dest": "random_other_gov_spob()", 
+    "reward": 14000,
+    "accept_modal": {
+      "text": "The dockhands quietly load the mislabeled containers of \"${get_legal_cargo()}\" into your hold."
+    }
   },
   "bounty_direc": {
     "short_name": "Wanted: Dead or Alive",
@@ -44,7 +55,7 @@
     "dest": "random_same_gov_spob()",
     "target": {
       "type": "${npc_group('pirate_raid')}",
-      "short_name": "${random_choice(target.names)}",
+      "short_name": "${random_choice(this.target.names)}",
       "names": [
         "Ghost of a chance",
         "Miriam",
@@ -111,5 +122,8 @@
   },
   "loyal_suns_hook": {
     "offer": "Though you scanned the landing pad before setting down, as soon as you step outside you are beset by a squad of grim-helmeted Loyal Suns marines. They're silent for a tense moment, and you're tempted to make a run for it, but out steps a shorter naval officer.\n\"You can feel it, can't you. You're caught here, on this dusty rock, subjected to the power of people. On the ground. You'll be happy to hear that you're not under arrest, I just happen to be fairly paranoid when I'm off my ship. Really, any time I'm not at the helm. ${_.player.name}, we've been watching your career develop. I think you understand what it means to be a spacefarer. To be constrained by those on the ground who think they know what's best for you and your crew. Join us, and live the life that spacefarers where meant to live!\""
+  },
+  "freehold_hook": {
+    "offer": "The sound of klaxons blairs through the spaceport, and everyone seems to know what to do. You can't catch exactly the fuss is about, or where everyone is running to, but they appear to be taking cover. You move to your ship (the only cover you've got as doors slam shut in every direction) when a firm grip on your shoulder pulls you out of the chaos.\n\"Hey, that's your ship, right?\" says the man in a Freehold pilot's jumpsuit \"We're scrambling to fight off a Loyal Suns raiding party. Can we count on you?\""
   }
 }

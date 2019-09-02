@@ -7,7 +7,7 @@
  */
 
 import { _ } from "./singletons.js";
-import { choose, randint, multiInherit } from "./util.js";
+import { choose, randint, multiInherit} from "./util.js";
 
 function get_mission(name){
   // This uses a little StackOverflow magic to inherit from Mission
@@ -31,17 +31,20 @@ class Mission{
         // Support arbitrary functions as well as interpolated objects
         this.dest = this.interpolate_value(this.dest);
       } else {
+        this.dest = Object.create(this.dest);
         this.dest.sys = this.interpolate_text(this.dest.sys);
         this.dest.spob = this.interpolate_text(this.dest.spob);
       }
     }
 
     if(this.cargo){
+      this.cargo = Object.create(this.cargo);
       this.cargo.type = this.interpolate_text(this.cargo.type);
       this.cargo.amount = this.interpolate_value(this.cargo.amount);
     }
 
     if(this.target){
+      this.cargo = Object.create(this.cargo);
       this.target.type = this.interpolate_text(this.target.type);
       this.target.name = this.interpolate_text(this.target.name);
     }
@@ -51,10 +54,12 @@ class Mission{
     }
 
     if(this.accept_modal){
+      this.accept_modal = Object.create(this.accept_modal);
       this.accept_modal.text = this.interpolate_text(this.accept_modal.text);
     }
 
     if(this.success_modal){
+      this.accept_modal = Object.create(this.success_modal);
       this.success_modal.text = this.interpolate_text(this.success_modal.text);
     }
 
@@ -147,13 +152,23 @@ class Mission{
 
 
 function get_legal_cargo(){
-  // TODO: Cargo should have some notion of legality.
-  // Maybe make this per-system?
-  return choose(Object.keys(_.data.trade));
+  return choose(Object.keys(_.data.trade).filter((key) => {
+    return _.data.trade[key].illegal !== true;
+  }));
+}
+
+function get_ilegal_cargo(){
+  return choose(Object.keys(_.data.trade).filter((key) => {
+    return _.data.trade[key].illegal;
+  }));
 }
 
 function get_random_spob_in_system(system){
   return choose(_.data.systems[system].spobs);
+}
+
+function chance(percent){
+  return percent > Math.random();
 }
 
 function select_spob_same_govt(){
@@ -190,8 +205,7 @@ function select_spob_same_govt(){
 
 export function missions_for_state(state){
   let available = {};
-  let missions = {basic_cargo: _.data.missions["basic_cargo"]};
-  for( let key of Object.keys( missions )){  // _.data.missions )){
+  for( let key of Object.keys( _.data.missions)){
     let mission = get_mission(key);
     // TODO: Cache this
     if(mission.offer_state === state && mission.can_offer()){
