@@ -23,6 +23,11 @@ export function playerShipFactory(type, position) {
   ship.player = true; // Is this a hack?
   ship.player_aligned = true; // Fake gov for player and minions
 
+  // TODO: Gate this behind a difficulty mode of some kind
+
+  ship.accel = ship.accel  * 1.25;
+  ship.max_speed = ship.max_speed * 1.25;
+
   ship.radar_pip = _.hud.get_radar_pip(4, '#00FF00FF');
   ship.fuel = _.player.fuel;
   return ship;
