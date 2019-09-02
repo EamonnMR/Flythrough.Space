@@ -29,7 +29,7 @@ export class MissionsMenu extends StoreMenu {
   }
 
   get_selection_tab_widget(key, item, offset){
-    return new MissionTab(item, item.name, offset);
+    return new MissionTab(item, item.name, offset, () => this.select(key));
   }
 
   get_qualities(){ return [] }
