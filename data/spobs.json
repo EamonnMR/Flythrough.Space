@@ -14,7 +14,8 @@
 	},
 	
 	"Alluvium Fleet Yards":{
-		"sType":"aresShipyard",
+    "sprite": "oe_station", 
+    "img": "assets/landing/oe_station_perspective.png",
 		"x"    : -200,
 		"y"    : -400,
 		"govt" : "direc",
@@ -51,7 +52,8 @@
 		}
 	},
 	"Skye Orbital":{
-		"sType":"fourRingStation",
+    "sprite": "oe_station", 
+    "img": "assets/landing/oe_station_perspective.png",
 		"text":"Population center of the Inverness system, the massive Skye orbital station is home to millions. Though it can generate its own power and once had its own food supply, it has long since replaced its agracultural segments with living space, favoring imports (as it happens, vat grown yeast slurry isn't a popular dish after the first few decades.) As a result, traders favor the station as well.",
 		"x":-100,
 		"y":-348,
@@ -86,6 +88,8 @@
 		}
 	},
 	"Lanner Orbital":{
+    "sprite": "oe_station", 
+    "img": "assets/landing/oe_station_perspective.png",
 		"sType": "aresSmallStation",
 		"govt":"direc",
 		"text" : "This station is jointly owned by the Freehold worlds, and administered by its navy. It supports the various mining intrests on the inhospitable surface of Lanner from orbit. Asteroid miners tend to be tough and solitary people, and this station has developed an equally tough reputation.",
@@ -132,6 +136,8 @@
 		"y":30
 	},
 	"Frontier Outpost IV":{
+    "sprite": "oe_station", 
+    "img": "assets/landing/oe_station_perspective.png",
 		"sType":"oeStation",
 		"govt":"pen",
 		"text":"This was once a border station, then later the jumping off point for the invasion of Itaska, and last home base of the 7th fleet. Now it's a border post facing the other way, and it's the main friendly contact point between the Itaskans and the rest of the galaxy. What little negotiation goes on tends to happen here.",
@@ -323,7 +329,8 @@
 	},
 	
 	"Union 1":{
-		"sType":"aresLargeStation",
+    "sprite": "oe_station", 
+    "img": "assets/landing/oe_station_perspective.png",
 		"govt":"hex",
 		"x":45,
 		"y":-30,
@@ -345,7 +352,8 @@
 		"text":"This remote, volcanic wasteland is where some of the greatest minds of the Loyal Suns strive to design next-generation weapons and starships. The sheer amount of antimatter here means that it is often incorrectly regarded as the \"most likley planet in the Free Suns to explode\"."
 	},
 	"Frontier Outpost V":{
-		"sType":"oeStation",
+    "sprite": "oe_station", 
+    "img": "assets/landing/oe_station_perspective.png",
 		"govt":"drone",
 		"text":"An old outpost on the edge of Loyal Suns territory, it is nonetheless a critical jumping-off point for raids on the Lothian, Peenemunde, and Ingolsdat systems, so it's been kept very much up to date.",
 		"tech":{
@@ -716,6 +724,8 @@
     }
   },
   "Frontier Outpost III": {
+    "sprite": "oe_station", 
+    "img": "assets/landing/oe_station_perspective.png",
     "govt": "direc",
     "x": 0,
     "y": 0,
@@ -785,6 +795,8 @@
     "text": "A terrestrial world that may have been habitable before its parent star, Nemesis, went red-giant. Airtight stations look out over the scarred, red-bathed magma plains. What activity there is on the surface mostly work that is cheaper to do in a gravity well than in orbit, and mining the precious, heavier metals that are unusually rich on its stripped crust."
   },
   "Nemesis Orbital": {
+    "sprite": "oe_station", 
+    "img": "assets/landing/oe_station_perspective.png",
     "x": 30,
     "y": 10,
     "govt": "drone",
@@ -829,6 +841,8 @@
     }
   },
   "Hoosac Orbital":{
+    "sprite": "oe_station", 
+    "img": "assets/landing/oe_station_perspective.png",
     "x": 10,
     "y": 3,
     "govt": "drone",
