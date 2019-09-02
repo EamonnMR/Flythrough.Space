@@ -164,6 +164,11 @@
       "count": 1,
       "size": 328
     },
+    "oe_station":{
+      "img": "assets/planets/oe_station.png",
+      "count": 5,
+      "size": 569
+    },
     "asteroid": {
       "img": "assets/asteroid.png",
       "count": 10,
