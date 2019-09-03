@@ -14,7 +14,8 @@
 	},
 	
 	"Alluvium Fleet Yards":{
-		"sType":"aresShipyard",
+    "sprite": "oe_station", 
+    "img": "assets/landing/oe_station_perspective.png",
 		"x"    : -200,
 		"y"    : -400,
 		"govt" : "direc",
@@ -36,9 +37,9 @@
 		"text":"Accra orbits this gas giant."
 	},
 	
-	"Dogover":{
-		"sType":"gnPlanet12Marsh",
-		"text" :"Although the Cartwright system has been populated for all of recorded history, it was not on this planet, since its harsh environment makes living difficult. Though there are signifigant metal deposits here, it is deep in the crust so only the best veins are mined. So called 'wildcat' prospectors can be found deep in the interiors of the tectonic cratons looking for the next big score. More often than not, they come up empty handed though.",
+	"Carnarc":{
+		"sprite":"carnarc",
+		"text" :"Although the Inverness system has been populated for all of recorded history, it was not on this planet, since its environment keeps all but the hardiest of settlers at bay. Though there are signifigant metal deposits here, it is deep in the crust so only the best veins are mined. So called 'wildcat' prospectors can be found deep in the interiors of the tectonic cratons looking for the next big score. More often than not, they come up empty handed.",
 		"x":100,
 		"y":300,
 		"govt":"direc",
@@ -50,9 +51,10 @@
       "ore":"low"
 		}
 	},
-	"Zachit":{
-		"sType":"fourRingStation",
-		"text":"Population center of the Cartwright system, the massive Zachit station is home to millions. Though it can generate its own power and once had its own food supply, it has long since replaced its agracultural segments with living space, favoring imports (as it happens, vat grown yeast slurry isn't a popular dish after the first few decades.) As a result, traders favor the station as well.",
+	"Skye Orbital":{
+    "sprite": "oe_station", 
+    "img": "assets/landing/oe_station_perspective.png",
+		"text":"Population center of the Inverness system, the massive Skye orbital station is home to millions. Though it can generate its own power and once had its own food supply, it has long since replaced its agracultural segments with living space, favoring imports (as it happens, vat grown yeast slurry isn't a popular dish after the first few decades.) As a result, traders favor the station as well.",
 		"x":-100,
 		"y":-348,
 		"govt":"direc",
@@ -67,16 +69,16 @@
 			"direc":1
 		}
 	},
-	"Miranu":{
+	"Inshes":{
 		"sType":"onyxM4Earthlike",
 		"govt":"direc",
-		"text":"Orbiting opposite from Cartwright at Zachit's L3 Lagrangian Point, Miranu, a small world that is jealously guarded by the Zachit government as a premere vacation destination. Trips to it where largely kept secret from the public until 495 when the fact that the tiny planet that everyone could see was actually being landed on. It was the first step for the inhabitants of this system to the stars.",
+		"text":"Orbiting opposite from Carnarc's L3 Lagrangian Point, Inshes, a small world is jealously guarded by the Carnarc government as a premere vacation destination. Trips to it where largely kept secret from the public until 495 when the fact that the tiny planet that everyone could see was actually being landed on. It was the first step for the inhabitants of this system to the stars.",
 		"x":200,
 		"y":480
 	},
-	"Cook":{
+	"Lanner":{
 		"sType": "onyxRedQ",
-		"text" : "Cook's stark, reddish atmosphere is highly toxic due to its exotic composition of various heavy metals and deadly acids. However, beneth this harsh surface is a treasure trove of valuable minerals. Be sure to keep your shields up at all times, or the air will beign to corrode your hull.",
+		"text" : "Lanner's stark, reddish atmosphere is highly toxic due to its exotic composition of various heavy metals and deadly acids. However, beneth this harsh surface is a treasure trove of valuable minerals. Be sure to keep your shields up at all times, or the air will beign to corrode your hull.",
 		"x": 75,
 		"y": 150,
 		"govt":"direc",
@@ -85,10 +87,12 @@
 			"powerconv":"high"
 		}
 	},
-	"Dafydd":{
+	"Lanner Orbital":{
+    "sprite": "oe_station", 
+    "img": "assets/landing/oe_station_perspective.png",
 		"sType": "aresSmallStation",
 		"govt":"direc",
-		"text" : "This station is jointly owned by the Freehold worlds, and administered by its navy. It supports the various mining intrests on the inhospitable surface of Cook from orbit. Asteroid miners tend to be tough and solitary people, and this station has developed an equally tough reputation.",
+		"text" : "This station is jointly owned by the Freehold worlds, and administered by its navy. It supports the various mining intrests on the inhospitable surface of Lanner from orbit. Asteroid miners tend to be tough and solitary people, and this station has developed an equally tough reputation.",
 		"trade":{
 			"carbon":"high"
 		},
@@ -101,7 +105,7 @@
 	},
 	"Encroachment Rein":{
 		"sType": "anonplan",
-		"text" : "Vast empty wasteland with a wispy xenon atmosphere and no apparent signs of inhabitence or reason to do so. There was once a colony here, but due to graft, mismanigment, and increasingly high costs, the colony was abandoned in disgust.",
+		"text" : "Vast empty wasteland with a wispy xenon atmosphere and no apparent signs of inhabitence or reason to do so. There was once a colony here, but due to graft, mismanigment, and increasingly high costs, it was abandoned in disgust.",
 		"x" :0,
 		"y" :0
 	},
@@ -132,6 +136,8 @@
 		"y":30
 	},
 	"Frontier Outpost IV":{
+    "sprite": "oe_station", 
+    "img": "assets/landing/oe_station_perspective.png",
 		"sType":"oeStation",
 		"govt":"pen",
 		"text":"This was once a border station, then later the jumping off point for the invasion of Itaska, and last home base of the 7th fleet. Now it's a border post facing the other way, and it's the main friendly contact point between the Itaskans and the rest of the galaxy. What little negotiation goes on tends to happen here.",
@@ -189,7 +195,7 @@
 		"x":0,
 		"y":0
 	},
-	"Diemos":{
+	"Deimos":{
 		"sType":"Diemostype",
 		"text":"It looks like somebody tried to turn this small moon into a colony ship, but judging by the state of the thing, they where unsuccessful in some way or other. You decide that it's probably best left alone, and return to your ship rather than proceeding down the unlit corridors that lead deeper into the battered moon.",
 		"x":0,
@@ -323,7 +329,8 @@
 	},
 	
 	"Union 1":{
-		"sType":"aresLargeStation",
+    "sprite": "oe_station", 
+    "img": "assets/landing/oe_station_perspective.png",
 		"govt":"hex",
 		"x":45,
 		"y":-30,
@@ -345,12 +352,12 @@
 		"text":"This remote, volcanic wasteland is where some of the greatest minds of the Loyal Suns strive to design next-generation weapons and starships. The sheer amount of antimatter here means that it is often incorrectly regarded as the \"most likley planet in the Free Suns to explode\"."
 	},
 	"Frontier Outpost V":{
-		"sType":"oeStation",
-		"govt":"fifth",
-		"text":"The nearest Fifth Fleet outpost to other civilizations, this old frontier outpost now guards against incursions from inner worlds, marking the border to what the Fifth Fleet would describe as the \"last remnants of the empire\" (and what others would call \"A haven for ruthless pirate bastards\".",
+    "sprite": "oe_station", 
+    "img": "assets/landing/oe_station_perspective.png",
+		"govt":"drone",
+		"text":"An old outpost on the edge of Loyal Suns territory, it is nonetheless a critical jumping-off point for raids on the Lothian, Peenemunde, and Ingolsdat systems, so it's been kept very much up to date.",
 		"tech":{
-			"oe_wep":3,
-			"V":3
+			"oe_wep":3
 		},
 		"x":0,
 		"y":0
@@ -403,7 +410,7 @@
 			"oe_wep":3,
 			"oe_ship":2,
 			"generic":1,
-			"wlkn":2
+			"itaskan":2
 		},
 		"text":"Vatsa's production capacity has always been stimied by mismanagement, and as a result abandoned OE factories rust in toxic fields, but enough still run for some starships to usually be available here."
 	},
@@ -428,7 +435,7 @@
 		"y":0,
 		"tech":{
 			"generic":3,
-			"wlkn":3
+			"itaskan":3
 		},
 		"trade":{
 			"water":"high",
@@ -511,13 +518,13 @@
 		"y":0,
 		"text":"Gas giant that almost made Albacore a double star system."
 	},
-	"Pajitnov":{
+	"Pajit":{
 		"sType":"onyxEarthlikeG",
 		"scape":"img/AVDezign/Fujin.jpg",
 		"govt":"pen",
 		"x":0,
 		"y":0,
-		"text":"Pajitnov is as aristocratic as you can really get in the peninsula, with high-tech and administrative activity during the day and lavish parties at stunning techno-villas at night. It helps that its nights last 36 hours."
+		"text":"Pajit is as aristocratic as you can really get in the peninsula, with high-tech and administrative activity during the day and lavish parties at stunning techno-villas at night. It helps that its nights last 36 hours."
 	},
 	"Tamt":{
 		"sType":"gnPlanet13Purple",
@@ -717,6 +724,8 @@
     }
   },
   "Frontier Outpost III": {
+    "sprite": "oe_station", 
+    "img": "assets/landing/oe_station_perspective.png",
     "govt": "direc",
     "x": 0,
     "y": 0,
@@ -783,13 +792,19 @@
     "x": 0,
     "y": 0,
     "govt": "drone",
-    "text": "A terrestrial world that may have been habitable before its parent star, Nemisis, went red-giant. Airtight stations look out over the scarred, red-bathed magma plains. What activity there is on the surface mostly work that is cheaper to do in a gravity well than in orbit, and mining the precious, heavier metals that are unusually rich on its stripped crust."
+    "text": "A terrestrial world that may have been habitable before its parent star, Nemesis, went red-giant. Airtight stations look out over the scarred, red-bathed magma plains. What activity there is on the surface mostly work that is cheaper to do in a gravity well than in orbit, and mining the precious, heavier metals that are unusually rich on its stripped crust."
   },
-  "Nemisis Orbital": {
+  "Nemesis Orbital": {
+    "sprite": "oe_station", 
+    "img": "assets/landing/oe_station_perspective.png",
     "x": 30,
     "y": 10,
     "govt": "drone",
-    "text": "The capital of Loyalist space. Seat of the Clonelord, though it's considered poor form for them to be outside of a starship when there's conquest to be done. The current Clonelord of the Loyal Suns has chaffed at the idea of lasting peace and taken every opportunity to skirmish with pirates and freeholders, so while it is still the bearucratic heart of the Loyal Suns, it's become passe to actually be seen here."
+    "text": "The capital of Loyalist space. Seat of the Clone Prince, though it's considered poor form for them to be outside of a starship when there's conquest to be done. The current Clonelord of the Loyal Suns has chaffed at the idea of lasting peace and taken every opportunity to skirmish with pirates and freeholders, so while it is still the bearucratic heart of the Loyal Suns, it's become passe to actually be seen here.",
+    "tech": {
+      "ls_sh": 3,
+      "ls_w": 3
+    }
   },
   "Khadir": {
     "x": 0,
@@ -826,6 +841,8 @@
     }
   },
   "Hoosac Orbital":{
+    "sprite": "oe_station", 
+    "img": "assets/landing/oe_station_perspective.png",
     "x": 10,
     "y": 3,
     "govt": "drone",
@@ -852,27 +869,26 @@
     "govt": "drone",
     "text": "There are two distinct civilizations on Morcia, frequently at each other's throats. One of them, the one you can land and trade at, has contact with the outside galaxy and is aligned with the Loyal Suns. The other, reclusive civilization has resisted direct dealings with spacefarers thus far."
   },
-  "Calvados": {
-    "x": 0,
-    "y": 0,
-    "govt": "fifth",
-    "text": "The fifth fleet maintains a small trading post/supply depot here, for that rare trader that braves the journey.",
+  "Petrov": {
+    "x": 14,
+    "y": 25,
+    "govt": "hex",
     "trade": {
-      "water": "high",
-      "grain": "high",
-      "alloy": "high"
-    }
-  },
-  "Orowan": {
-    "x": 0,
-    "y": 0,
-    "govt": "fifth",
-    "text": "Deep in uncharted space orbits the base of operations of the Fifth Fleet, Orowan. The exact location on the surface is a closely guarded secret and the population of the planet (uncontacted until the Fifth Fleet arrived in its retreat during the collapse of imperial power) is complicit in this secrecy. In exchange they are treated to the spoils of fifth fleet raids.",
-    "trade": {
-      "ore": "med",
-      "food": "low",
-      "ethyl": "high"
+      "ore": "low",
+      "food": "high",
+      "ethyl": "med"
     },
-    "tech": {"V": 5}
-  } 
+    "text": "Long before first contact, Petrov had a fairly well-off civilization going. Explorers arrived to find an irradiated, ruined world bearing the apparent scars of nuclear self-immolation, rendering the biosphere void of all vertibrate life. The spaceport here mostly serves 'Stalkers' or opportunistic adventurers, archeologists, and looters who scour the crumbling ruins and charred fields for evidence of what went so wrong, or just something valuable."
+  },
+  "Prokhoro": {
+    "x": 32,
+    "y": -3,
+    "govt": "hex",
+ 		"tech":{
+			"lg_ship":3,
+			"khanda":1,
+			"melkin":3
+    },
+    "text": "A backwater station kept on its toes by the occasional Fifth Fleet raid trying to pass through. Probably a better place to refuel in-system since the planet surface is still pretty irradiated."
+  }
 }

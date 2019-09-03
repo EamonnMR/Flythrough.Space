@@ -1,46 +1,13 @@
-/* ViewState - represents a mode of the game
- * such as menu, gameplay, etc.
- */
+import { get_modal } from "./modal.js"; // Circular?
 
-export class ViewState{
-  constructor(){
-    this.parent = null;
-  }
-
-  update(){
-    // This will be called to progress gameplay, animation, etc.
-  }
-
-  resize(){
-    // This will be called if the window is resized.
-  }
-
-  enter(){
-    // Initial setup.
-    //
-    // Since states persist beyond entering and exiting, you can cache
-    // what you'd like to and use enter/exit to explicitly create and
-    // destroy needed resources.
-	}
-
-  exit(){
-    // Cleanup
-  }
-}
-
-
-/* StateManager - FSM for game states
- * see states.js for more info on the state class.
- * If we ever move to typescript, we can enforce this.
- */
 export class StateManager{
-  // TODO: Player state needs to persist through this
   constructor(state_hash, initial_state){
     this.states = state_hash;
     this.current_state = state_hash[initial_state];
-    // Is this a poorly hatched scheme?
+    // TODO: Is this a poorly hatched scheme?
     this.each_do((state) => { state.parent = this; });
     this.current_state.enter();
+    this.modal_stack = [];
   }
 
   each_do(func){  // Still waiting on a saner way to do this
@@ -64,6 +31,22 @@ export class StateManager{
     this.current_state.exit();
     this.current_state = this.states[new_state];
     this.current_state.enter();
+  }
+
+  // See modal.js
+
+  enter_modal(modal){
+    this.current_state.exit();
+    this.modal_stack.push(this.current_state);
+    this.current_state = get_modal(modal);
+    this.current_state.enter();
+  }
+  
+  exit_modal(){
+    this.current_state.exit();
+    this.current_state = this.modal_stack.pop()
+    this.current_state.enter();
+    // It is an error to call this from anything other than a modal
   }
 }
 

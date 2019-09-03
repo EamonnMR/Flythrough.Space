@@ -17,6 +17,32 @@
       ]
     },
 
+    "milspec_argosy": {
+      "file": "milspec_argosy.babylon"
+    },
+
+    "tandem": {
+      "file": "tandem.babylon",
+      "fixed": [
+        "weapon_1",
+        "weapon_2",
+        "weapon_3"
+      ]
+    },
+
+    "absolver": {
+      "file": "absolver.babylon",
+      "fixed": [
+        "weapon_1",
+        "weapon_2",
+        "weapon_3",
+        "weapon_4",
+        "weapon_5",
+        "weapon_6",
+        "weapon_7"
+      ]
+    },
+
     "oe_fi": {"file": "empfi.babylon"},
     "heavy_fi": {"file": "khanda_heavy.babylon"},
     "light_fi": {"file": "light_fighter.babylon"},
@@ -33,7 +59,9 @@
     "cas_corv": {"file": "casamance_corv.babylon"},
     "oxana": {"file": "oxana.babylon"},
     "courier": {"file": "courier.babylon"},
-    "plasma_cannon": {"file": "plasma_cannon.babylon"}
+    "plasma_cannon": {"file": "plasma_cannon.babylon"},
+    "freehold_frigate": {"file": "freehold_frigate.babylon"},
+    "tercel": {"file": "tercel.babylon"}
   },
   "sprites": {
     "plasma": {
@@ -131,6 +159,16 @@
       "count": 1,
       "size": 236
     },
+    "carnarc": {
+      "img": "assets/planets/carnarc.png",
+      "count": 1,
+      "size": 328
+    },
+    "oe_station":{
+      "img": "assets/planets/oe_station.png",
+      "count": 5,
+      "size": 569
+    },
     "asteroid": {
       "img": "assets/asteroid.png",
       "count": 10,
@@ -144,8 +182,8 @@
     "nebule": "nebule.json",
     "upgrades": "upgrades.json",
     "ships": "ships.json",
-    "spobtypes": "spobtypes.json",
     "trade": "trade.json",
-    "npc_groups": "npc_groups.json"
+    "npc_groups": "npc_groups.json",
+    "missions": "missions.json"
   }
 }

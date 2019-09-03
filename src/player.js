@@ -1,5 +1,7 @@
 /* Player State - this is what's shared between game states, and also handles saving and loading */
 
+import { _ } from "./singletons.js";
+
 import {
   apply_upgrade,
   apply_upgrades,
@@ -30,7 +32,7 @@ export class PlayerSave {
     localStorage.setItem( LAST_SAVE, key );
   }
 
-  constructor(ships, upgrades) {
+  constructor() {
     this.name = "Joe Bloggs"
     this.money = is_cheat_enabled("money") ? 100000000 : 5000;
     this.map_pos = {x: 0, y: 0};
@@ -40,11 +42,12 @@ export class PlayerSave {
     this.current_spob = overridable_default("spob", "Alluvium Fleet Yards");
     this.initial_position = {x: 0, y: 0};
     this.ship_type = overridable_default("ship", "shuttle");
-    this.ship_dat = Object.create(ships[this.ship_type]);
+    this.ship_dat = Object.create(_.data.ships[this.ship_type]);
     this.upgrades = this.ship_dat.upgrades;
     this.fuel = this.ship_dat.max_fuel;
     this.bulk_cargo = {};
     this.mission_cargo = {};
+    this.active_missions = {};
 
     this.govts = {
       // TODO: Default rep?
@@ -108,6 +111,21 @@ export class PlayerSave {
     return price <= this.money + this.ship_value();
   }
 
+  add_mission_cargo(type, amount){
+    if (type in this.mission_cargo) {
+      this.mission_cargo[type] += amount;
+    } else {
+      this.mission_cargo[type] = amount;
+    }
+  }
+
+  remove_mission_cargo(type, amount){
+    this.mission_cargo[type] -= amount;
+    if(this.mission_cargo[type] === 0){
+      delete this.mission_cargo[type];
+    }
+  }
+
   buy_ship(type, new_ship){
     this.money += this.ship_value();
     this.ship_type = type;
@@ -116,12 +134,12 @@ export class PlayerSave {
     this.upgrades = this.ship_dat.upgrades;
   }
 
-  can_buy_upgrade(price, upgrade, quantity, data){
+  can_buy_upgrade(price, upgrade, quantity){
     let ship_if_bought = Object.create(this.ship_dat);
-    apply_upgrades(ship_if_bought, this.upgrades, data);
+    apply_upgrades(ship_if_bought, this.upgrades);
     
     for(let i = 0; i < quantity; i++){
-      apply_upgrade(ship_if_bought, upgrade, data);
+      apply_upgrade(ship_if_bought, upgrade);
     }
     return this.can_spend_money(upgrade.price * quantity)
       && this.validate_ship( ship_if_bought );
@@ -143,15 +161,12 @@ export class PlayerSave {
 
     this.ship_dat.upgrades = this.upgrades;
     this.money -= upgrade.price * quantity;
-    console.log(this);
   }
   
   explore_system(system_name){
-    console.log("System explored!");
     if(!this.explored.includes(system_name)){
       this.explored.push(system_name);
     }
-    console.log(this.explored);
   }
 
   system_explored(system_name){

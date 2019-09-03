@@ -77,21 +77,6 @@
       "cas_carrier"
     ]
   },
-  "ff_raid": {
-    "govt": "fifth",
-    "ships": [
-      "ff_oe_fighter",
-      "ff_oe_frig",
-      "ff_oe_corvette"
-    ]
-  },
-  "ff_defense": {
-    "govt": "fifth",
-    "ships": [
-      "ff_oe_frig",
-      "ff_oe_cru"
-    ]
-  },
   "league_cap": {
     "govt": "league",
     "ships": [
@@ -115,7 +100,7 @@
       "goshawk",
       "courier",
       "falcon",
-      "or_frigate"
+      "oe_frig"
     ]
   },
   "western_trader_small": {

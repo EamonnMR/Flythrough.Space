@@ -1,3 +1,4 @@
+import { _ } from "./singletons.js";
 import { get_text } from "./util.js"
 
 const DEFAULT_GOVT_NAME = "Independant";
@@ -19,6 +20,12 @@ export function radarFollowSystem(entMan){
   }
 };
 
+export function hudUpdateSystem(entMan){
+  if(_.hud){
+    _.hud.update(entMan);
+  }
+}
+
 
 // This is for drawing health bars over each entity. Not in the design atm.
 //export function healthBarSystem(entMan){
@@ -29,14 +36,9 @@ export function radarFollowSystem(entMan){
 //}
 
 export class HUD{
-  constructor(scene, entMan, player_data, govt_data){
-    // TODO: Singleton. 
+  constructor(){
     this.adt = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 
-    this.entMan = entMan; // TODO: Should we just pass this?
-    this.player_data = player_data;
-    this.gov_data = govt_data;
-    
     this.tmp_player = null; // Or: how I broke abstraction. This should only exist during update.
     this.fuel_status = this.get_status_bar(150, "10px", "green", () => {return this.tmp_player.fuel / this.tmp_player.max_fuel})
     this.health_status = this.get_status_bar(150, "10px", "blue", () => {return this.tmp_player.shields / this.tmp_player.max_shields})
@@ -180,14 +182,14 @@ export class HUD{
     return box;
   }
 
-  update(){
-    let possible_player = this.entMan.get_with(['input']);
+  update(entMan){
+    let possible_player = entMan.get_with(['input']);
     let player = possible_player[0];
     let planet_line = "In-System: ";
     let jump_line = "Galactic: ";
-    if (this.player_data.selected_spob){
-      planet_line += this.player_data.selected_spob;
-      let possible_spobs = this.entMan.get_with_exact("spob_name", this.player_data.selected_spob)
+    if (_.player.selected_spob){
+      planet_line += _.player.selected_spob;
+      let possible_spobs = entMan.get_with_exact("spob_name", _.player.selected_spob)
       if(possible_spobs.length > 0){
         let spob = possible_spobs[0];
         spob.model.isDisposed = () => { return false }; // Hack
@@ -205,7 +207,7 @@ export class HUD{
       this.health_status.update_func();
 
       if (player.target){
-        let possible_target = this.entMan.get(player.target);
+        let possible_target = entMan.get(player.target);
         if(possible_target){
           this.target_ent = possible_target;
           this.target_label.text = this.target_ent.short_name;
@@ -216,7 +218,7 @@ export class HUD{
           this.target_ent.overlay.addControl(this.target_pips.right);
 
           if( "govt" in this.target_ent ){
-            this.target_govt.text = this.gov_data[this.target_ent.govt].short_name;
+            this.target_govt.text = _.data.govts[this.target_ent.govt].short_name;
           } else {
             this.target_govt.text = DEFAULT_GOVT_NAME;
           }
@@ -233,8 +235,8 @@ export class HUD{
       this.tmp_player = null;
     }
 
-    if (this.player_data.selected_system){
-      jump_line += this.player_data.selected_system;
+    if (_.player.selected_system){
+      jump_line += _.player.selected_system;
     }
     this.nav_text.text = [planet_line, jump_line, ""].join("\n")
   }

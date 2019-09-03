@@ -1,7 +1,5 @@
 export class EntityManager {
-  constructor (player_data, data, systems, entities) {
-    this.data = data;
-    this.player_data = player_data;
+  constructor (systems, entities) {
     if (entities) {
       this.entities = entities;
     } else {
@@ -31,39 +29,20 @@ export class EntityManager {
      * This allows you to get a set of ents
      * that a system works on.
      */
-    let filtered_ents = [];
-    for (let id of Object.keys(this.entities)) {
-       
-      let ent = this.entities[id];
-      let add = true;
 
-      if (ent) {
-        for ( let component of components ){
-          if (! (component in ent) ){
-            add = false;
-            break;
-          }
-        }
-      } else {
-        add = false;
-      }
-      if ( add ){
-        filtered_ents.push( ent );
-      }
-      
-    }
-
-    return filtered_ents;
+    return Object.values(this.entities).filter((entity)=>{
+      return components.map(
+        (component) => { return component in entity }
+      ).reduce(
+        (accumulator, item) => { return item && accumulator;}
+      )
+    });
   }
 
   get_with_exact(member, value){
-    let filtered_ents = []
-    for(let ent of this.get_with([member])){
-      if(ent[member] === value){
-        filtered_ents.push( ent );
-      }
-    }
-    return filtered_ents;
+    return Object.values(this.entities).filter((entity)=>{
+      return entity[member] === value;
+    });
   }
 
   update () {
@@ -142,8 +121,7 @@ function delete_model (entity) {
       try{
         entity[attribute].dispose();
       } catch {
-        console.log("attribute");
-        debugger;
+        console.log("attribute could not be disposed");
       }
     }
   }

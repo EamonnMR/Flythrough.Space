@@ -1,4 +1,8 @@
 import { weapon_factory } from "./weapon.js";
+import { _ } from "./singletons.js";
+
+/* Use a library, or you'll end up cobbling together your own.
+ */
 
 const ARC = Math.PI * 2;
 
@@ -9,11 +13,11 @@ export function distance(l_pos, r_pos){
   );
 };
 
-export function apply_upgrade(ship, upgrade, data){
+export function apply_upgrade(ship, upgrade){
   for(let key of Object.keys(upgrade)){
     if(key === "weapon"){
       let weapon = upgrade.weapon;
-      ship.weapons.push( weapon_factory(weapon, data));
+      ship.weapons.push( weapon_factory(weapon, _.data));
     } else if (key === "price" || key === "tech" || key === "desc" || key === "name"){
       // TODO: Should ships auto-include the price of upgrades?
       // Would that make life easier or harder?
@@ -34,15 +38,15 @@ export function apply_upgrade(ship, upgrade, data){
   }
 }
 
-export function apply_upgrades(ship, upgrades, data){
+export function apply_upgrades(ship, upgrades){
   ship.weapons = [];
   for(let key of Object.keys(upgrades)){
     for(let i = 0; i < upgrades[key]; i++){
-      let upgrade = data.upgrades[key];
+      let upgrade = _.data.upgrades[key];
       if(upgrade === undefined){
         console.log("Invalid Upgrade: " + key);
       } else {
-        apply_upgrade(ship, data.upgrades[key], data);
+        apply_upgrade(ship, _.data.upgrades[key]);
       }
     }
   }
@@ -119,6 +123,15 @@ export function tech_filter(tech_had, tech_needed){
   return true;
 }
 
+export function randint(min, max){
+  return min + Math.floor(Math.random() * ((max + 1) - min));
+}
+
+export function choose(choices){
+  // Make a random choice between items in a list
+  return choices[randint(0, choices.length - 1)];
+}
+
 let url_params = new URLSearchParams(window.location.search);
 
 let all_cheats_enabled = url_params.has("all_cheats");
@@ -129,4 +142,54 @@ export function is_cheat_enabled(cheat){
 
 export function overridable_default(key, default_value){
   return url_params.get(key) || default_value;
+}
+
+// huge stackoverflow copypasta for multiple inheritance
+// https://stackoverflow.com/a/31236132/1048464
+
+function getDesc (obj, prop) {
+  var desc = Object.getOwnPropertyDescriptor(obj, prop);
+  return desc || (obj=Object.getPrototypeOf(obj) ? getDesc(obj, prop) : void 0);
+}
+
+export function multiInherit (...protos) {
+  return Object.create(new Proxy(Object.create(null), {
+    has: (target, prop) => protos.some(obj => prop in obj),
+    get (target, prop, receiver) {
+            var obj = protos.find(obj => prop in obj);
+            return obj ? Reflect.get(obj, prop, receiver) : void 0;
+          },
+    set (target, prop, value, receiver) {
+            var obj = protos.find(obj => prop in obj);
+            return Reflect.set(obj || Object.create(null), prop, value, receiver);
+          },
+    *enumerate (target) { yield* this.ownKeys(target); },
+    ownKeys(target) {
+            var hash = Object.create(null);
+            for(var obj of protos) for(var p in obj) if(!hash[p]) hash[p] = true;
+            return Object.getOwnPropertyNames(hash);
+          },
+    getOwnPropertyDescriptor(target, prop) {
+            var obj = protos.find(obj => prop in obj);
+            var desc = obj ? getDesc(obj, prop) : void 0;
+            if(desc) desc.configurable = true;
+            return desc;
+          },
+    preventExtensions: (target) => false,
+    defineProperty: (target, prop, desc) => false,
+  }));
+}
+
+export function filter(object, predicate){
+  // https://stackoverflow.com/a/5072145/1048464
+  let result = {};
+
+  for (let key of Object.keys(object)) {
+    debugger;
+    if (/*object.hasOwnProperty(key) && */predicate(object[key])) {
+      result[key] = object[key];
+    }
+  }
+
+  return result;
 }

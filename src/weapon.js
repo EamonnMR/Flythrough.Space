@@ -1,5 +1,6 @@
 import { accelerate } from "./physics.js";
- 
+import { _ } from "./singletons.js"; 
+
 export function decaySystem (entMan) {
   /* A system for adding expiration times to entities.
    * Used to make projectiles go away.
@@ -51,12 +52,12 @@ function bulletFactory(creator, position, sprite, direction, speed, initialVeloc
 
 };
 
-export function weapon_factory(proto, data) {
+export function weapon_factory(proto) {
   let weapon = Object.create(proto);
   weapon.timer = 0;
   weapon.burst_timer = 0;
   weapon.burst_counter = 0;
-  weapon.sprite_mgr = data.get_sprite_mgr(weapon.sprite);
+  weapon.sprite_mgr = _.data.get_sprite_mgr(weapon.sprite);
   weapon.model = null; // To be filled in elsewhere TODO: gross
   return weapon;
 }

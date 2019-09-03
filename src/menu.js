@@ -1,9 +1,9 @@
-import { ViewState } from "./states.js"
+import { ViewState } from "./view_state.js"
 import { get_text } from "./util.js"
 
 export class BaseMenuView extends ViewState {
   setup_menu(widgets){
-    this.adt = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
+    this.adt = this.get_base(); 
     this.widgets = widgets;
     for (let widget of widgets){
       let control = widget.get_control();
@@ -12,7 +12,16 @@ export class BaseMenuView extends ViewState {
     this.update_widgets();
   }
 
+  get_base(){
+    return BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI"); 
+  }
+
   exit(){
+    console.log("Exiting menu");
+    this.hide_widgets();
+  }
+
+  hide_widgets(){
     for(let widget of this.widgets){
       widget.hide(this);
     }

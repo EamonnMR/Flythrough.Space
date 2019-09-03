@@ -1,17 +1,24 @@
+import { _ } from "./singletons.js";
 import { StoreMenu, StoreitemName, StoreitemDesc, BuyButton, QuantBar, StoreQuantLabel } from "./store.js";
 
 import { TextButton, TextBox, Image} from "./menu.js";
 
 
 export class ShipyardMenu extends StoreMenu {
+
+  constructor(){
+    super();
+    this.items = _.data.ships;
+  }
+
   do_buy(){
-    if (this.player_data.can_buy_new_ship(this.current_item().price)){
-      this.player_data.buy_ship(this.selected, this.current_item());
+    if (_.player.can_buy_new_ship(this.current_item().price)){
+      _.player.buy_ship(this.selected, this.current_item());
     }
   }
 
   can_purchase_item(item){
-    return this.player_data.can_buy_new_ship(item.price)
+    return _.player.can_buy_new_ship(item.price)
   }
 
   can_sell_item(item){
@@ -75,7 +82,7 @@ class ShipTab extends TextButton {
     let too_expensive = null;
     let current_selection = null;
     if(parent !== null){
-      too_expensive = parent.player_data.can_buy_new_ship(this.price);
+      too_expensive = _.player.can_buy_new_ship(this.price);
       current_selection = parent.selection == this.item; 
     }
 

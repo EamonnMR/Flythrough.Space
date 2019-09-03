@@ -1,10 +1,6 @@
-import {
-  BaseLandingMenuView
-} from "./landing.js";
-
-
+import { _ } from "./singletons.js";
+import { BaseLandingMenuView } from "./landing.js";
 import { TextButton, TextBox, Image, Widget} from "./menu.js";
-
 import { tech_filter, is_cheat_enabled } from "./util.js";
 
 const LIST_SPACING = 7;
@@ -12,17 +8,19 @@ const QUALITY_BAR_SPACING = 5;
 const QUALITY_BAR_FIRST = -40;
 
 export class StoreMenu extends BaseLandingMenuView {
-  constructor(spobs, player_data, items){
+  constructor(){
     super();
-    this.spobs = spobs;
-    this.player_data = player_data;
     this.selected = null;
     this.scroll_offset = 0;
-    this.items = items; // Items should be the data set of the type
+    this.items = null; // Items should be the data set of the type
     // of item the store sells.
   }
   enter(){
-    this.spob = this.spobs[this.player_data.current_spob];
+    this.spob = _.data.spobs[_.player.current_spob];
+    this.setup_widgets()
+  }
+
+  setup_widgets(){
     this.setup_menu(
       this.get_detail_widgets().concat(
         this.get_list_widgets().concat(
@@ -52,11 +50,12 @@ export class StoreMenu extends BaseLandingMenuView {
       return this.items;
     }
 
-    let tech = this.spobs[this.player_data.current_spob].tech;
+    let tech = _.data.spobs[_.player.current_spob].tech;
+    //TODO: I'd like to turn this into something more generic
     let available_items = {}
     for (let key of Object.keys(this.items)){
       if(tech_filter(
-        this.spobs[this.player_data.current_spob].tech,
+        tech,
         this.items[key].tech
       )){
         available_items[key] = this.items[key];
@@ -64,8 +63,6 @@ export class StoreMenu extends BaseLandingMenuView {
     }
 
     return available_items;
-
-
   }
 
   can_purchase_item(){
@@ -111,7 +108,7 @@ export class StoreMenu extends BaseLandingMenuView {
     let detail_widgets = [
       new StoreitemName(),
       new StoreitemDesc(),
-      new BuyButton( () => { this.do_buy() } )
+      new BuyButton( () => { this.do_buy() }, this.buy_button_copy() )
     ]
     let quality_offset = QUALITY_BAR_FIRST;
 
@@ -145,6 +142,10 @@ export class StoreMenu extends BaseLandingMenuView {
     });
     return widgets;
   }
+
+  buy_button_copy(){
+    return "buy";
+  }
 }
 
 class StoreImage extends Image {
@@ -176,9 +177,11 @@ export class StoreitemName extends TextBox {
   }
 
   update(parent){
-    this.control.text = parent.current_item().short_name;
-    if (this.control.text === undefined){
-      this.control.text = parent.current_item().name;
+    let current_item = parent.current_item();
+    if(current_item){
+      this.control.text = current_item.short_name || current_item.name;
+    } else {
+      this.control.text = "---";
     }
   }
 }
@@ -226,14 +229,19 @@ export class StoreitemDesc extends TextBox {
   }
 
   update(parent){
-    this.control.text = parent.current_item().desc;
+    let current_item = parent.current_item();
+    if(current_item){
+      this.control.text = parent.current_item().desc;
+    } else {
+      this.control.text = " ";
+    }
   }
 };
 
 
 export class BuyButton extends TextButton {
-  constructor(callback){
-    super("Buy", callback,
+  constructor(callback, copy){
+    super(copy, callback,
       BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT,
       BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
       "-30%",
@@ -251,7 +259,8 @@ export class BuyButton extends TextButton {
 
   update(parent){
     let color = "Gray";
-    if(parent.can_purchase_item(parent.current_item())){
+    let current_item = parent.current_item();
+    if(current_item && parent.can_purchase_item(current_item)){
       color = "Green";
     }
     this.control.color = color;
