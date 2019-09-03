@@ -1,6 +1,9 @@
 import { weapon_factory } from "./weapon.js";
 import { _ } from "./singletons.js";
 
+/* Use a library, or you'll end up cobbling together your own.
+ */
+
 const ARC = Math.PI * 2;
 
 export function distance(l_pos, r_pos){
@@ -175,4 +178,18 @@ export function multiInherit (...protos) {
     preventExtensions: (target) => false,
     defineProperty: (target, prop, desc) => false,
   }));
+}
+
+export function filter(object, predicate){
+  // https://stackoverflow.com/a/5072145/1048464
+  let result = {};
+
+  for (let key of Object.keys(object)) {
+    debugger;
+    if (/*object.hasOwnProperty(key) && */predicate(object[key])) {
+      result[key] = object[key];
+    }
+  }
+
+  return result;
 }

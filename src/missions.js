@@ -7,7 +7,7 @@
  */
 
 import { _ } from "./singletons.js";
-import { choose, randint, multiInherit} from "./util.js";
+import { choose, randint, multiInherit, filter} from "./util.js";
 
 function get_mission(name){
   // This uses a little StackOverflow magic to inherit from Mission
@@ -224,6 +224,12 @@ export function missions_for_state(state){
     }
   }
   return available;
+}
+
+export function filter_offerable(missions){
+  return filter(missions, (mission) => {
+    return mission.can_offer();
+  });
 }
 
 export function resolve_for_state(state){

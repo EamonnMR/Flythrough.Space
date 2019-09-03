@@ -45,6 +45,9 @@ export class LandingMenu extends BaseMenuView {
     widgets.push(new LandingMenuBigButton(
       'Leave ' + _.player.current_spob,
       () => {
+        // TODO: This is an 8 on the hacky scale
+        // Reach into the missions state and clear the items.
+        this.parent.states.missions.items = null;
         this.parent.enter_state('gameplay');
       },
       LEFT,
@@ -183,12 +186,15 @@ export class LandingMenuBigButton extends TextButton {
 };
 
 export class BaseLandingMenuView extends BaseMenuView {
+  leave_button_press(){
+    this.parent.enter_state('landing');
+  }
   get_misc_widgets(){
     return  [
       new LandingMenuBigButton(
         "Return",
         () => {
-          this.parent.enter_state('landing');
+          this.leave_button_press();
         },
         BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT,
         BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,

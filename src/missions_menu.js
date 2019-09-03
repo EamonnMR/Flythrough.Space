@@ -1,13 +1,22 @@
 import { _ } from "./singletons.js";
 import { StoreMenu, StoreitemName, StoreitemDesc, BuyButton } from "./store.js";
 import { TextButton, TextBox } from "./menu.js";
-import { missions_for_state} from "./missions.js";
+import { missions_for_state, filter_offerable} from "./missions.js";
 
 export class MissionsMenu extends StoreMenu {
   enter(){
-    this.items = missions_for_state("missions");
+    if(!this.items){
+      this.items = missions_for_state("missions");
+    } else {
+      this.items = filter_offerable(this.items); 
+    }
     super.enter();
   }
+
+  //leave_button_press(){
+  //  this.items = null;
+  //  return super.leave_button_press();
+  //}
 
   get_available_items(){
     return this.items;
