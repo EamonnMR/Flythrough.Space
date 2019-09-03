@@ -122,15 +122,15 @@ export class GamePlayState extends ViewState {
         }
         else {
           if(this.spob_is_landable(_.player.selected_spob)){
-
+            _.player.initial_position =
+              this.entMan.get_with_exact(
+                "spob_name",
+                _.player.selected_spob,
+              )[0].position;
             this.clear_world();
             _.player.current_spob = _.player.selected_spob;
             _.player.selected_spob = null;
-            let spob_dat = _.data.spobs[_.player.current_spob];
-            let position = _.player.initial_position;
-
-            position.x = spob_dat.x;
-            position.y = spob_dat.y;
+            
             this.parent.enter_state('landing');
           } else {
             console.log("Player tried to land somewhere wrong");
