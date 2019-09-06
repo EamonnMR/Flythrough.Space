@@ -122,8 +122,9 @@ export class HUD{
     // Makes an overlay texture for the entity to draw target brackets,
     // health bars, etc.
     let overlay = this.get_box_generic("140px", "140px");
-    overlay.alpha = 0;
-    // overlay.alpha = 0;
+    // https://forum.babylonjs.com/t/the-other-upgrade-issue-may-actually-be-a-3-2-or-3-3-change-not-4-0/5486/4
+    overlay.background = "#0000";
+    overlay.color = "#0000";
     this.adt.addControl(overlay);
     overlay.linkWithMesh(entity.model);
     //if ("hitpoints" in entity){
