@@ -185,7 +185,6 @@ export function filter(object, predicate){
   let result = {};
 
   for (let key of Object.keys(object)) {
-    debugger;
     if (/*object.hasOwnProperty(key) && */predicate(object[key])) {
       result[key] = object[key];
     }
