@@ -24,7 +24,6 @@ export function decelerate(velocity, rate, curve=false){
   velocity.x = Math.cos(dir) * speed;
   velocity.y = Math.sin(dir) * speed;
 }
-  
 
 export function rotate(entity, delta) {
 	entity.direction = (entity.direction + delta) % (Math.PI * 2);
@@ -42,7 +41,6 @@ export function velocitySystem(entMan){
   }
 };
 
-
 export function speedLimitSystem(entMan) {
   // Enforces 'max speed' on entities.
   for (let entity of entMan.get_with(['velocity', 'max_speed'])) {
@@ -54,3 +52,19 @@ export function speedLimitSystem(entMan) {
   }
 };
 
+export function spaceFrictionSystem(entMan){
+  const DRIFT_CUTOFF = 0.001;
+  const FRICTION_AMOUNT = 0.001;
+
+  for(let entity of entMan.get_with_exact('disabled', true)){
+    let velocity = linear_vel(entity.velocity);
+    if(velocity < DRIFT_CUTOFF){
+      entity.velocity = {x: 0, y: 0};
+    } else {
+      entity.velocity = {
+        x: entity.velocity.x * FRICTION_AMOUNT,
+        y: entity.velocity.y * FRICTION_AMOUNT,
+      }
+    }
+  }
+};

@@ -6,7 +6,7 @@
 
 import { _ } from "./singletons.js";
 import { distance, is_cheat_enabled } from "./util.js";
-import { speedLimitSystem, velocitySystem} from "./physics.js";
+import { speedLimitSystem, velocitySystem, spaceFrictionSystem} from "./physics.js";
 import { weaponSystem, decaySystem} from "./weapon.js";
 import { EntityManager, deletionSystem} from "./ecs.js";
 import { inputSystem, bindInputFunctions, unbindInputFunctions} from "./input.js";
@@ -30,6 +30,7 @@ export class GamePlayState extends ViewState {
       ai_system,
       weaponSystem,
       speedLimitSystem,
+      spaceFrictionSystem,
       velocitySystem,
       modelPositionSystem,
       cameraFollowSystem,

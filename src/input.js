@@ -19,6 +19,9 @@ let no_op = () => {};
 
 export function inputSystem (entMan) {
   for (let entity of entMan.get_with(['input'])) {
+    if (entity.disabled){
+      continue;
+    }
     if ('velocity' in entity) {
       if (inputStates.forward) {
         accelerate(entity.velocity,
