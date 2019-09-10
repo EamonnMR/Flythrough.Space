@@ -243,16 +243,17 @@
     "price"          : 100000,
     "weapon"         : {
       "mesh":  "plasma_cannon",
-      "sprite":"degenerate",
-      "velocity":0.0035,
+      "sprite":"degenerate_matter",
+      "velocity":0.035,
       "inaccuracy":0.3,
       "period":25,
       "burstsize":20,
-      "burstperiod":10000,
+      "burstperiod":1000,
       "proj": {
         "max_age":700,
         "shield_damage":10,
-        "damage":25
+        "damage":25,
+        "collider": {"radius": 0.1}
       }
     },
     "tech"           : {"itaskan":1}
