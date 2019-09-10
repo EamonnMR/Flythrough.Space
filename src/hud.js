@@ -16,6 +16,7 @@ export function radarFollowSystem(entMan){
       // Position, relative to the player, inverted
       entity.radar_pip.left = (entity.position.x - player.position.x) / (-1 * scale_factor);
       entity.radar_pip.top = (entity.position.y - player.position.y) / scale_factor;
+      entity.radar_pip.color = color_for_entity(entity, player);
     }
   }
 };
@@ -26,6 +27,29 @@ export function hudUpdateSystem(entMan){
   }
 }
 
+export function color_for_entity(entity, player){
+  // For targeting purposes, what color to show the target as
+  if('ai' in entity && entity.ai.target && entity.ai.target === player.id){
+    return 'red';
+  }
+
+  if(entity.disabled){
+    return 'gray';
+  }
+  
+  if('spob_name' in entity){
+    if('govt' in entity){
+      if( _.player.is_govt_hostile(entity.govt) ){
+        return 'red';
+      } else {
+        return 'yellow';
+      }
+    } else {
+      return 'gray'
+    }
+  }
+  return 'yellow';
+}
 
 // This is for drawing health bars over each entity. Not in the design atm.
 //export function healthBarSystem(entMan){
@@ -89,9 +113,9 @@ export class HUD{
 
   deselect(entity){
     if(entity){
-      entity.overlay.removeControl(this.target_pips.bottom);
-      entity.overlay.removeControl(this.target_pips.left);
-      entity.overlay.removeControl(this.target_pips.right);
+      for(let pip of Object.values(this.target_pips)){
+        entity.overlay.removeControl(pip);
+      }
     }
   }
 
@@ -212,12 +236,18 @@ export class HUD{
         if(possible_target){
           this.target_ent = possible_target;
           this.target_label.text = this.target_ent.short_name;
-          this.target_subtitle.text = "" // TODO: Variants?
-          
-          this.target_ent.overlay.addControl(this.target_pips.bottom);
-          this.target_ent.overlay.addControl(this.target_pips.left);
-          this.target_ent.overlay.addControl(this.target_pips.right);
+          let pip_color = "yellow";
+          this.target_subtitle.text = "";
 
+          if(this.target_ent.disabled){
+            this.target_subtitle.text = "disabled" // TODO: Variants?
+          }
+
+          this.update_target_pips(
+            this.target_ent,
+            color_for_entity(this.target_ent, player)
+          );
+           
           if( "govt" in this.target_ent ){
             this.target_govt.text = _.data.govts[this.target_ent.govt].short_name;
           } else {
@@ -241,6 +271,16 @@ export class HUD{
     }
     this.nav_text.text = [planet_line, jump_line, ""].join("\n")
   }
+
+  update_target_pips(target, color){
+    for( let pip of Object.values(this.target_pips)){ 
+
+      pip.background = color;
+      this.target_ent.overlay.addControl(pip);
+    }
+  }
+
+
 
   dispose(){
     // Make sure we dispose everything we made and clear globals
