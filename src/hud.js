@@ -36,6 +36,10 @@ export function color_for_entity(entity, player){
   if(entity.disabled){
     return 'gray';
   }
+
+  if(entity.player_aligned){
+    return 'chartreuse';
+  }
   
   if('spob_name' in entity){
     if('govt' in entity){
