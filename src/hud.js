@@ -64,9 +64,27 @@ export class HUD{
     this.adt = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 
     this.tmp_player = null; // Or: how I broke abstraction. This should only exist during update.
-    this.fuel_status = this.get_status_bar(150, "10px", "green", () => {return this.tmp_player.fuel / this.tmp_player.max_fuel})
-    this.health_status = this.get_status_bar(150, "10px", "blue", () => {return this.tmp_player.shields / this.tmp_player.max_shields})
-    this.shield_status = this.get_status_bar(150, "10px", "red", () => {return this.tmp_player.hitpoints / this.tmp_player.max_hp})
+    this.fuel_status = this.get_status_bar(150, "10px", "green", () => {
+      if(this.tmp_player) {
+        return this.tmp_player.fuel / this.tmp_player.max_fuel
+      } else {
+        return 0
+      }
+    })
+    this.health_status = this.get_status_bar(150, "10px", "blue", () => {
+      if(this.tmp_player){
+        return this.tmp_player.shields / this.tmp_player.max_shields;
+      } else {
+        return 0
+      }
+    })
+    this.shield_status = this.get_status_bar(150, "10px", "red", () => {
+      if (this.tmp_player){
+        return this.tmp_player.hitpoints / this.tmp_player.max_hp
+      } else {
+        return 0
+      }
+    })
     this.nav_text = get_text();
     this.radar_box = this.get_radar_box();
     this.nav_box = this.get_nav_box();
@@ -227,9 +245,6 @@ export class HUD{
     if (player){
       // Gross: pipe this down to functions
       this.tmp_player = player
-      this.fuel_status.update_func();
-      this.shield_status.update_func();
-      this.health_status.update_func();
 
       if (player.target){
         let possible_target = entMan.get(player.target);
@@ -263,8 +278,13 @@ export class HUD{
         // Definitely don't keep a reference around. That would be bad.
         delete this.possible_target;
       }
-      this.tmp_player = null;
     }
+
+    this.fuel_status.update_func();
+    this.shield_status.update_func();
+    this.health_status.update_func();
+    
+    this.tmp_player = null;
 
     if (_.player.selected_system){
       jump_line += _.player.selected_system;
