@@ -6,12 +6,18 @@
 // y      --> Nothing
 // Z      --> Y
 import { _ } from "./singletons.js";
-import { to_radians } from "./util.js";
+import { to_radians, is_cheat_enabled } from "./util.js";
 
 const SHIP_Y = -2; // This might want to be imported from somewhere
 const PLANET_SCALE = 15;  // TODO: Noticing that differently sized planet sprites end up being the same screen-space size. Weird.
 const PLANET_Y = -10;  // TODO: Shots are still being drawn under planets for some reason
+
 let CAM_OFFSET = new BABYLON.Vector3(0, 40, 30);
+
+if (is_cheat_enabled("3dverse", false)){
+  CAM_OFFSET = new BABYLON.Vector3(0, 0, 30);
+}
+
 
 export function get_bone_group(skeleton, prefix){
   // Get a group of bones with the same prefix
@@ -199,4 +205,78 @@ export function create_planet_sprite(planet){
   sprite.parent = sphere;
   planet.sprite = sprite;
   return sphere;
+}
+
+export function get_engine_particle_systems(entity){
+  // TODO: This could probably be part of CCM
+  let particle_system = new BABYLON.ParticleSystem("particles", 2000, _.scene);
+
+	// Source: https://www.babylonjs-playground.com/#WBQ8EM
+
+	//Texture of each particle
+	particle_system.particleTexture = new BABYLON.Texture("assets/sprites/flare.png", _.scene);
+
+	// Where the particles come from
+	particle_system.minEmitBox = new BABYLON.Vector3(0, 0, 0); // Starting all from
+	particle_system.maxEmitBox = new BABYLON.Vector3(0, 0, 0); // To...
+
+
+	// Colors of all particles
+	particle_system.color1 = new BABYLON.Color4(1.0, 0.5, .5, 1.0);
+	particle_system.color2 = new BABYLON.Color4(0.5, 0.2, .2, .5);
+	particle_system.colorDead = new BABYLON.Color4(0.2, 0.2, 0.2, 0.0);
+
+	// Size of each particle (random between...
+	particle_system.minSize = 0.1;
+	particle_system.maxSize = 0.5;
+
+	// Life time of each particle (random between...
+
+	particle_system.minLifeTime = 0.015;
+	particle_system.maxLifeTime = .3;
+
+	// Emission rate
+	particle_system.emitRate = 1500;
+
+
+	// Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
+	particle_system.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+
+	// Direction of each particle after it has been emitted
+	particle_system.direction1 = new BABYLON.Vector3(0, 0, 0);
+	particle_system.direction2 = new BABYLON.Vector3(0, 0, 0);
+
+	// Angular speed, in radians
+	particle_system.minAngularSpeed = 0;
+	particle_system.maxAngularSpeed = Math.PI;
+
+	// Speed
+	particle_system.minEmitPower = 10;
+	particle_system.maxEmitPower = 12;
+	particle_system.updateSpeed = 0.01;
+
+  let emitter_node = new BABYLON.TransformNode(_.scene);
+ 
+  particle_system.emitter = emitter_node;
+
+  emitter_node.parent = entity.model;
+  
+  entity.model;
+  return [particle_system];
+}
+
+export function update_engine_glow(ent, new_thrust_status){
+  if(ent.engine_glows){
+    if(!ent.thrusting && new_thrust_status){
+      for(let particle_system of Object.values(ent.engine_glows)){
+        ent.thrusting = true;
+        particle_system.start();
+      }
+    } else if (ent.thrusting && ! new_thrust_status){
+      for(let particle_system of Object.values(ent.engine_glows)){
+        particle_system.stop();
+        ent.thrusting = false;
+      }
+    }
+  }
 }

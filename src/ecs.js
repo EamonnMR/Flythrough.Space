@@ -125,6 +125,12 @@ function delete_model (entity) {
       }
     }
   }
-
- };
+  if(entity.engine_glows){
+    for (let emitter of entity.engine_glows){
+      emitter.disposeOnStop = true;
+      emitter.targetStopDuration = 5;
+      emitter.stop();
+    }
+  }
+}
 
