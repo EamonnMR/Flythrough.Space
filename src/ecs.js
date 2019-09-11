@@ -100,7 +100,7 @@ export function deletionSystem (entMan) {
 
 function delete_model (entity) {
 
-   if ("weapons" in entity){
+  if ("weapons" in entity){
     for(let weapon of entity.weapons){
       if( "model" in weapon && weapon.model){
         weapon.model.dispose();
@@ -108,6 +108,14 @@ function delete_model (entity) {
     }
   }
 
+  if(entity.engine_glows){
+    for (let particle_system of entity.engine_glows){
+      particle_system.disposeOnStop = true;
+      particle_system.targetStopDuration = 5;
+      particle_system.stop();
+      particle_system.emitter.parent = null;
+    }
+  }
 
   const MODEL_ATTR = [
     'model',
@@ -123,13 +131,6 @@ function delete_model (entity) {
       } catch {
         console.log("attribute could not be disposed");
       }
-    }
-  }
-  if(entity.engine_glows){
-    for (let emitter of entity.engine_glows){
-      emitter.disposeOnStop = true;
-      emitter.targetStopDuration = 5;
-      emitter.stop();
     }
   }
 }
