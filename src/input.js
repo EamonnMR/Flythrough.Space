@@ -1,5 +1,4 @@
 import { accelerate, rotate } from "./physics.js";
-import { update_engine_glow } from "./graphics.js";
 
 /* Some slightly gross stuff here - 
  * Basically using the module as a singleton object to hold the current
@@ -25,12 +24,12 @@ export function inputSystem (entMan) {
     }
     if ('velocity' in entity) {
       if (inputStates.forward) {
-        update_engine_glow(entity, true);
+        entity.thrust_this_frame = true;
         accelerate(entity.velocity,
                                   entity.direction,
                                   entity.accel * entMan.delta_time)
       } else {
-        update_engine_glow(entity, false);
+        entity.thrust_this_frame = false;
       }
     }
     if ('direction' in entity) {

@@ -265,17 +265,19 @@ export function get_engine_particle_systems(entity){
   return [particle_system];
 }
 
-export function update_engine_glow(ent, new_thrust_status){
-  if(ent.engine_glows){
-    if(!ent.thrusting && new_thrust_status){
-      for(let particle_system of Object.values(ent.engine_glows)){
-        ent.thrusting = true;
-        particle_system.start();
-      }
-    } else if (ent.thrusting && ! new_thrust_status){
-      for(let particle_system of Object.values(ent.engine_glows)){
-        particle_system.stop();
-        ent.thrusting = false;
+export function shipAnimationSystem(entMan){
+  for(let ent of entMan.get_with(['thrust_this_frame'])){
+    if(ent.engine_glows){
+      if(!ent.thrusting && ent.thrust_this_frame){
+        for(let particle_system of Object.values(ent.engine_glows)){
+          ent.thrusting = true;
+          particle_system.start();
+        }
+      } else if (ent.thrusting && ! ent.thrust_this_frame){
+        for(let particle_system of Object.values(ent.engine_glows)){
+          particle_system.stop();
+          ent.thrusting = false;
+        }
       }
     }
   }
