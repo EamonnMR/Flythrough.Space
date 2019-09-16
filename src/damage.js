@@ -1,3 +1,5 @@
+import { do_explo } from "./graphics.js";
+
 const DISABLED_THRESHOLD = 0.15;
 
 export function shot_handler(shot, object){
@@ -55,6 +57,8 @@ export function damage_handler(damager, damaged){
         damaged.disabled = true;
       }
       if (new_hp <= 0){
+        // TODO: More elaborite death sequence
+        do_explo(damaged.position);
         damaged.remove = true;
       }
     }
