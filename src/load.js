@@ -85,18 +85,27 @@ export class Data {
     ];
     for(let particle_system of Object.values(this.particles)){
       for(let attr of COLOR_4_ATTRS){
-        particle_system[attr] = new BABYLON.Color4(...particle_system[attr]);
+        if (attr in particle_system){
+          particle_system[attr] = new BABYLON.Color4(...particle_system[attr]);
+        }
       }
       for(let attr of VECTOR_3_ATTRS){
-        particle_system[attr] = new BABYLON.Vector3(...particle_system[attr]);
+        if (attr in particle_system){
+          particle_system[attr] = new BABYLON.Vector3(...particle_system[attr]);
+        }
       }
       for(let attr of CONST_ATTRS){
-        particle_system[attr] = BABYLON.ParticleSystem[particle_system[attr]];
+        if (attr in particle_system){
+          particle_system[attr] = BABYLON.ParticleSystem[particle_system[attr]];
+        }
       }
       for(let attr of TEXTURE_ATTRS){
-        particle_system[attr] = new BABYLON.Texture(
-          "assets/sprites/" + particle_system[attr]
-        );
+
+        if (attr in particle_system){
+          particle_system[attr] = new BABYLON.Texture(
+            "assets/sprites/" + particle_system[attr]
+          );
+        }
       }
     }
   }

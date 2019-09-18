@@ -212,84 +212,22 @@ export function create_planet_sprite(planet){
 export function get_engine_particle_systems(entity){
   // TODO: This could probably be part of CCM
   let particle_system = _.data.get_particle_system("conventional_engine");
-
-	// Source: https://www.babylonjs-playground.com/#WBQ8EM
-
   let emitter_node = new BABYLON.TransformNode(_.scene);
- 
   particle_system.emitter = emitter_node;
-
   emitter_node.parent = entity.model;
-  
-  entity.model;
   return [particle_system];
 }
 
 export function do_explo(position){
   // TODO: This could probably be part of CCM
-  let particle_system = new BABYLON.ParticleSystem("particles", 2000, _.scene);
-
-	// Source: https://www.babylonjs-playground.com/#WBQ8EM
-
-	//Texture of each particle
-	particle_system.particleTexture = new BABYLON.Texture("assets/sprites/flare.png", _.scene);
-
-	// Where the particles come from
-	//particle_system.minEmitBox = new BABYLON.Vector3(0, 0, 0); // Starting all from
-	//particle_system.maxEmitBox = new BABYLON.Vector3(0, 0, 0); // To...
-
-
-	// Colors of all particles
-	particle_system.color1 = new BABYLON.Color4(1.0, 0.5, .5, 1.0);
-	particle_system.color2 = new BABYLON.Color4(0.6, 0.1, .1, .5);
-	particle_system.colorDead = new BABYLON.Color4(0.3, 0.2, 0.2, 0.0);
-
-	// Size of each particle (random between...
-	particle_system.minSize = 0.1;
-	particle_system.maxSize = 0.5;
-
-	// Life time of each particle (random between...
-
-	particle_system.minLifeTime = 0.04;
-	particle_system.maxLifeTime = .8;
-
-	// Emission rate
-	particle_system.emitRate = 1500;
-
-
-	// Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
-	particle_system.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
-
-	// Direction of each particle after it has been emitted
-	//particle_system.direction1 = new BABYLON.Vector3(0, 0, 0);
-	//particle_system.direction2 = new BABYLON.Vector3(0, 0, 0);
-  
-  particle_system.direction1 = new BABYLON.Vector3(1, 1, 1);
-
-  particle_system.direction2 = new BABYLON.Vector3(-1, -1, -1);
-
-	// Angular speed, in radians
-	particle_system.minAngularSpeed = 0;
-	particle_system.maxAngularSpeed = Math.PI;
-
-	// Speed
-	particle_system.minEmitPower = 10;
-	particle_system.maxEmitPower = 12;
-	particle_system.updateSpeed = 0.02;
- 
+  let particle_system = _.data.get_particle_system("explosion");
   particle_system.emitter = new BABYLON.TransformNode(_.scene);
   particle_system.emitter.position.x = position.x;
   particle_system.emitter.position.y = SHIP_Y;
   particle_system.emitter.position.z = position.y;
-
-  particle_system.preWarmCycles = 100;
-  particle_system.preWarmStepOffset = 5;
-
   particle_system.disposeOnStop = true;
-  particle_system.targetStopDuration = 50;
   particle_system.start();
   particle_system.stop();
-
 }
 
 export function shipAnimationSystem(entMan){
