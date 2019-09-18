@@ -1,4 +1,23 @@
 {
   "conventional_engine": {
+	  "particleTexture": "flare.png",
+    "minEmitBox": [0, 0, 0],
+	  "maxEmitBox": [0, 0, 0],
+    "color1": [1.0, 0.5, 0.5, 1.0],
+	  "color2": [0.5, 0.2, 0.2, 0.5],
+	  "colorDead": [0.2, 0.2, 0.2, 0.0],
+	  "minSize": 0.1,
+    "maxSize": 0.5,
+	  "minLifeTime": 0.015,
+    "maxLifeTime": 0.3,
+	  "emitRate": 1500,
+	  "blendMode": "BLENDMODE_ONEONE",
+    "direction1": [0,0,0],
+    "direction2": [0,0,0],
+    "minAngularSpeed": 0,
+    "maxAngularSpeed": 3.14159,
+    "minEmitPower": 10,
+    "maxEmitPower": 12,
+    "updateSpeed": 0.01
   }
 }

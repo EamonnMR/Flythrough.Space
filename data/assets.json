@@ -186,6 +186,6 @@
     "trade": "trade.json",
     "npc_groups": "npc_groups.json",
     "missions": "missions.json",
-    "particlesystems": "particles.json"
+    "particles": "particles.json"
   }
 }

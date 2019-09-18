@@ -186,11 +186,13 @@ export function create_planet_sprite(planet){
   // So we create an invisible mesh and attach the sprite to it.
   // Except it does not really attach so we need to move and dispose it
   // seperately. That's why we attach the sprite to the entity.
+  // TODO: Is any of this still true?
   let sprite = null; 
   if("sprite" in planet && planet.sprite){
     sprite = _.data.get_sprite(planet.sprite);
   } else {
     // TODO: Uglier default to make it clearer that missing sprites are bugs
+    // Maybe make it look like the amiga ball?
     sprite = _.data.get_sprite("redplanet")
   }
   sprite.size = PLANET_SCALE;  // TODO: Why aren't sizes more different?
@@ -209,51 +211,9 @@ export function create_planet_sprite(planet){
 
 export function get_engine_particle_systems(entity){
   // TODO: This could probably be part of CCM
-  let particle_system = new BABYLON.ParticleSystem("particles", 2000, _.scene);
+  let particle_system = _.data.get_particle_system("conventional_engine");
 
 	// Source: https://www.babylonjs-playground.com/#WBQ8EM
-
-	//Texture of each particle
-	particle_system.particleTexture = new BABYLON.Texture("assets/sprites/flare.png", _.scene);
-
-	// Where the particles come from
-	particle_system.minEmitBox = new BABYLON.Vector3(0, 0, 0); // Starting all from
-	particle_system.maxEmitBox = new BABYLON.Vector3(0, 0, 0); // To...
-
-
-	// Colors of all particles
-	particle_system.color1 = new BABYLON.Color4(1.0, 0.5, .5, 1.0);
-	particle_system.color2 = new BABYLON.Color4(0.5, 0.2, .2, .5);
-	particle_system.colorDead = new BABYLON.Color4(0.2, 0.2, 0.2, 0.0);
-
-	// Size of each particle (random between...
-	particle_system.minSize = 0.1;
-	particle_system.maxSize = 0.5;
-
-	// Life time of each particle (random between...
-
-	particle_system.minLifeTime = 0.015;
-	particle_system.maxLifeTime = .3;
-
-	// Emission rate
-	particle_system.emitRate = 1500;
-
-
-	// Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
-	particle_system.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
-
-	// Direction of each particle after it has been emitted
-	particle_system.direction1 = new BABYLON.Vector3(0, 0, 0);
-	particle_system.direction2 = new BABYLON.Vector3(0, 0, 0);
-
-	// Angular speed, in radians
-	particle_system.minAngularSpeed = 0;
-	particle_system.maxAngularSpeed = Math.PI;
-
-	// Speed
-	particle_system.minEmitPower = 10;
-	particle_system.maxEmitPower = 12;
-	particle_system.updateSpeed = 0.01;
 
   let emitter_node = new BABYLON.TransformNode(_.scene);
  
