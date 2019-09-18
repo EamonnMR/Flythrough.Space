@@ -317,6 +317,8 @@ export class MapView extends ViewState{
 
   setup_dragging(){
     this.dragging = false;
+
+    this.map_image.isPointerBlocker = true;
     
     bindInputFunctions({
       toggle_pause: () => {
@@ -357,7 +359,7 @@ export class MapView extends ViewState{
       }
     });
     this.map_image.onPointerMoveObservable.add( (event) => {
-      console.log(this.dragging);
+      console.log("dragging" + this.dragging);
       let coordinates = this.parse_event(event);  
       if ( this.dragging ) {
         this.offset.x +=  coordinates.x - this.mouse_pos.x;

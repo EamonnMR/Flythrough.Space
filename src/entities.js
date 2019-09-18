@@ -2,7 +2,8 @@ import { _ } from "./singletons.js";
 import { apply_upgrades, random_position, choose } from "./util.js";
 import {
   create_composite_model,
-  create_planet_sprite
+  create_planet_sprite,
+  get_engine_particle_systems,
 } from "./graphics.js";
 
 export function npcShipFactory(type, position, ai, govt){
@@ -47,8 +48,10 @@ export function shipFactory(type, position, govt=null){
   ship.shields = ship.max_shields;
   ship.collider = {radius: .5};
   ship.fuel = ship.max_fuel;
+  ship.thrusting = false;
   apply_upgrades(ship, ship.upgrades);
   create_composite_model(ship, govt);
+  ship.engine_glows = get_engine_particle_systems(ship);
   return ship;
 };
 

@@ -1,3 +1,5 @@
+import { _ } from "./singletons.js";
+
 /* The root of everything here is 'assets.json'.
  * It lists asset files/data for special assets - 
  * the ones created explicitly in the Data constructor.
@@ -47,6 +49,65 @@ export class Data {
   
   get_sprite(name){
     return new BABYLON.Sprite(name, this.get_sprite_mgr(name));
+  }
+
+  get_particle_system(type){
+    //particle_system = new BABYLON.ParticleSystem("particles", 2000, _.scene);
+    //proto = this.particles[type];
+    //for(let prop of Object.keys(proto)){
+    //  particle_system[prop] = proto[prop];
+    //}
+    return Object.assign(
+      new BABYLON.ParticleSystem("particles", 2000, _.scene),
+      this.particles[type],
+    );
+  }
+
+  preprocess(){
+    // Preprocess Particle systems
+    // Deserialize BABYLON classes from json
+    const COLOR_4_ATTRS = [
+      "color1",
+      "color2",
+      "colorDead"
+    ];
+    const VECTOR_3_ATTRS = [
+      "minEmitBox",
+      "maxEmitBox",
+      "direction1",
+      "direction2",
+    ];
+    const CONST_ATTRS = [
+      "blendMode"
+    ];
+    const TEXTURE_ATTRS = [
+      "particleTexture"
+    ];
+    for(let particle_system of Object.values(this.particles)){
+      for(let attr of COLOR_4_ATTRS){
+        if (attr in particle_system){
+          particle_system[attr] = new BABYLON.Color4(...particle_system[attr]);
+        }
+      }
+      for(let attr of VECTOR_3_ATTRS){
+        if (attr in particle_system){
+          particle_system[attr] = new BABYLON.Vector3(...particle_system[attr]);
+        }
+      }
+      for(let attr of CONST_ATTRS){
+        if (attr in particle_system){
+          particle_system[attr] = BABYLON.ParticleSystem[particle_system[attr]];
+        }
+      }
+      for(let attr of TEXTURE_ATTRS){
+
+        if (attr in particle_system){
+          particle_system[attr] = new BABYLON.Texture(
+            "assets/sprites/" + particle_system[attr]
+          );
+        }
+      }
+    }
   }
 
   validate(){
@@ -122,6 +183,10 @@ function load_assets( source_json, scene, data, finish_callback ){
     data_task.onSuccess = (task) => {
       data[key] = JSON.parse(task.text);
     }
+    data_task.onError = (task, message, exception) => {
+      console.log("Can't load " + key + " Data error: " + message);
+      console.log(exception);
+    }
   }
 
   for (let key in source_json.sprites){
@@ -144,6 +209,7 @@ export function load_all(engine, scene, done){
   xhr.onload = () => {
     if (xhr.status == 200){
       load_assets(JSON.parse(xhr.responseText), scene, data_mgr, () => {
+        data_mgr.preprocess();
         data_mgr.validate();
         done(data_mgr);
       });

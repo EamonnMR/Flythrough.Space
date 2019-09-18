@@ -19,6 +19,10 @@ const AI_IDLE_COAST = 0.01;
 
 export function ai_system(entMan){
   for (let entity of entMan.get_with(['ai'])) {
+    entity.thrust_this_frame = false;
+    if(entity.disabled){
+      continue;
+    }
     let ai = entity.ai;
     if (ai.state === 'violent'){
       if ('target' in ai){
@@ -121,6 +125,7 @@ function idle(entity, ai, delta_time){
       if(linear_vel(entity.velocity) < AI_IDLE_COAST){
         // Ships shouldn't race around if they're idling
         accelerate(entity.velocity, entity.direction, entity.accel * delta_time);
+        entity.thrust_this_frame = true;
       }
     }
   } else {
@@ -261,6 +266,7 @@ function engage(entity, target, delta_time, entMan){
   if(dist > ACCEL_DISTANCE){
     accelerate(entity.velocity, entity.direction,
        entity.accel * delta_time); 
+    entity.thrust_this_frame = true;
   } else {
     // decelerate(entity.velocity, (entity.accel / 2) * delta_time)
   }

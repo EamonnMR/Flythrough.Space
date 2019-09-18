@@ -6,12 +6,18 @@
 // y      --> Nothing
 // Z      --> Y
 import { _ } from "./singletons.js";
-import { to_radians } from "./util.js";
+import { to_radians, is_cheat_enabled } from "./util.js";
 
 const SHIP_Y = -2; // This might want to be imported from somewhere
 const PLANET_SCALE = 15;  // TODO: Noticing that differently sized planet sprites end up being the same screen-space size. Weird.
 const PLANET_Y = -10;  // TODO: Shots are still being drawn under planets for some reason
+
 let CAM_OFFSET = new BABYLON.Vector3(0, 40, 30);
+
+if (is_cheat_enabled("3dverse", false)){
+  CAM_OFFSET = new BABYLON.Vector3(0, 0, 30);
+}
+
 
 export function get_bone_group(skeleton, prefix){
   // Get a group of bones with the same prefix
@@ -180,11 +186,13 @@ export function create_planet_sprite(planet){
   // So we create an invisible mesh and attach the sprite to it.
   // Except it does not really attach so we need to move and dispose it
   // seperately. That's why we attach the sprite to the entity.
+  // TODO: Is any of this still true?
   let sprite = null; 
   if("sprite" in planet && planet.sprite){
     sprite = _.data.get_sprite(planet.sprite);
   } else {
     // TODO: Uglier default to make it clearer that missing sprites are bugs
+    // Maybe make it look like the amiga ball?
     sprite = _.data.get_sprite("redplanet")
   }
   sprite.size = PLANET_SCALE;  // TODO: Why aren't sizes more different?
@@ -199,4 +207,43 @@ export function create_planet_sprite(planet){
   sprite.parent = sphere;
   planet.sprite = sprite;
   return sphere;
+}
+
+export function get_engine_particle_systems(entity){
+  // TODO: This could probably be part of CCM
+  let particle_system = _.data.get_particle_system("conventional_engine");
+  let emitter_node = new BABYLON.TransformNode(_.scene);
+  particle_system.emitter = emitter_node;
+  emitter_node.parent = entity.model;
+  return [particle_system];
+}
+
+export function do_explo(position){
+  // TODO: This could probably be part of CCM
+  let particle_system = _.data.get_particle_system("explosion");
+  particle_system.emitter = new BABYLON.TransformNode(_.scene);
+  particle_system.emitter.position.x = position.x;
+  particle_system.emitter.position.y = SHIP_Y;
+  particle_system.emitter.position.z = position.y;
+  particle_system.disposeOnStop = true;
+  particle_system.start();
+  particle_system.stop();
+}
+
+export function shipAnimationSystem(entMan){
+  for(let ent of entMan.get_with(['thrust_this_frame'])){
+    if(ent.engine_glows){
+      if(!ent.thrusting && ent.thrust_this_frame){
+        for(let particle_system of Object.values(ent.engine_glows)){
+          ent.thrusting = true;
+          particle_system.start();
+        }
+      } else if (ent.thrusting && ! ent.thrust_this_frame){
+        for(let particle_system of Object.values(ent.engine_glows)){
+          particle_system.stop();
+          ent.thrusting = false;
+        }
+      }
+    }
+  }
 }

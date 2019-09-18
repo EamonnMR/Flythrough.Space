@@ -6,12 +6,12 @@
 
 import { _ } from "./singletons.js";
 import { distance, is_cheat_enabled } from "./util.js";
-import { speedLimitSystem, velocitySystem} from "./physics.js";
+import { speedLimitSystem, velocitySystem, spaceFrictionSystem} from "./physics.js";
 import { weaponSystem, decaySystem} from "./weapon.js";
 import { EntityManager, deletionSystem} from "./ecs.js";
 import { inputSystem, bindInputFunctions, unbindInputFunctions} from "./input.js";
 import { npcSpawnerSystem } from "./entities.js";
-import { modelPositionSystem, cameraFollowSystem } from "./graphics.js";
+import { modelPositionSystem, cameraFollowSystem, shipAnimationSystem } from "./graphics.js";
 import { collisionDetectionSystem } from "./collision.js";
 import { setup_system } from "./system.js";
 import { ViewState } from "./view_state.js";
@@ -30,16 +30,18 @@ export class GamePlayState extends ViewState {
       ai_system,
       weaponSystem,
       speedLimitSystem,
+      spaceFrictionSystem,
       velocitySystem,
       modelPositionSystem,
       cameraFollowSystem,
+      shipAnimationSystem,
       turretPointSystem,
       decaySystem,
       collisionDetectionSystem,
       radarFollowSystem,
       deletionSystem,
       hudUpdateSystem,
-      (entMan) => {this.playerLifecycleSystem() }, // Yeah this is kinda stateful.
+      // (entMan) => {this.playerLifecycleSystem() }, // Yeah this is kinda stateful.
     ]);
     this.empty = true;
     this.world_models = [];

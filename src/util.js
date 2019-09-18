@@ -136,8 +136,8 @@ let url_params = new URLSearchParams(window.location.search);
 
 let all_cheats_enabled = url_params.has("all_cheats");
 
-export function is_cheat_enabled(cheat){
-  return all_cheats_enabled || url_params.has(cheat);
+export function is_cheat_enabled(cheat, is_global_cheat=true){
+  return (all_cheats_enabled && is_global_cheat) || url_params.has(cheat);
 }
 
 export function overridable_default(key, default_value){
@@ -185,7 +185,6 @@ export function filter(object, predicate){
   let result = {};
 
   for (let key of Object.keys(object)) {
-    debugger;
     if (/*object.hasOwnProperty(key) && */predicate(object[key])) {
       result[key] = object[key];
     }
