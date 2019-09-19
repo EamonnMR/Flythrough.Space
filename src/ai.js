@@ -10,11 +10,12 @@ const ARC = Math.PI * 2;  // I don't want to make a political statement by using
 // For a more interesting game, these should probably be ship properties.
 // Might not be crazy to calculate them based on the ship's stats and allow
 // for an override in the data
-const ENGAGE_DISTANCE = 100;
-const ENGAGE_ANGLE = Math.PI / 8;
-const ACCEL_DISTANCE = 10;
+const ENGAGE_DISTANCE = 100;       // How close to a target before firing weapons
+const ENGAGE_ANGLE = Math.PI / 8;  // How far off of target to be when taking a shot
+const TURN_FLOOR = Math.PI / 12;   // How small a turn is too small?
+const ACCEL_DISTANCE = 10;         // How far from a target before firing thrusters
 const IDLE_ARRIVAL_THRESH = 50;
-const AI_DWELL_MAX = 1000;
+const AI_DWELL_MAX = 1000;         // How long to wait around
 const AI_IDLE_COAST = 0.01;
 
 export function ai_system(entMan){
@@ -221,6 +222,7 @@ function constrained_point(
   to_vel,
   from_vel,
   proj_vel,
+  turn_floor=TURN_FLOOR
 ){
   // point_at but with a rotation speed limit (which is most things that point)
 	let goal_turn = point_at(target, start_angle, position, to_vel, from_vel, proj_vel);
@@ -238,7 +240,9 @@ function constrained_point(
 			final_turn = goal_turn;
 		}
 	}
-
+  if (Math.abs(final_turn) < TURN_FLOOR){
+    return 0;
+  }
   return final_turn;
 
 }
