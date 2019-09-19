@@ -8,6 +8,12 @@ import { _ } from "./singletons.js";
  * directly into the data object under the key in "data".
  */
 
+// TODO: Play around with these and find the actual maxes and mins.
+const SHIP_CONSTRAINTS = {
+  rotation: {max: 0.9, min: 0.0001},
+  accel: {max: 0.002, min: 0.00001},
+  max_speed: {max: 0.04, min: 0.0001},
+}
 
 export class Data {
   constructor (){
@@ -142,6 +148,25 @@ export class Data {
           }
         }
       });
+    } else {
+      console.log("** Data Validation ** Missing spobs or systems.");
+    }
+
+    if("ships" in this){
+      Object.keys(this.ships).forEach((ship_name) => {
+        Object.keys(SHIP_CONSTRAINTS).forEach( (attr) => {
+          let ship = this.ships[ship_name];
+          let constr = SHIP_CONSTRAINTS[attr];
+          if( ship[attr] > constr.max ){
+            console.log(`**Gameplay Warning** ${ship_name}.${attr} is ${ship[attr]} which is larger than the max, ${constr.max}`);
+          }
+          if( ship[attr] < constr.min ){
+            console.log(`**Gameplay Warning** ${ship_name}.${attr} is ${ship[attr]} which is smaller than the min, ${constr.min}`);
+          }
+       });
+      });
+    } else {
+      console.log("** Data Validation ** Ships data missing.");
     }
   } 
 }
@@ -194,7 +219,6 @@ function load_assets( source_json, scene, data, finish_callback ){
     data.sprites[key] = new BABYLON.SpriteManager(key + "_sprmgr",
         datum.img, datum.count, datum.size, scene);
   }
-
 
   manager.onFinish = finish_callback;
 
