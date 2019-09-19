@@ -10,8 +10,8 @@ import { _ } from "./singletons.js";
 
 // TODO: Play around with these and find the actual maxes and mins.
 const SHIP_CONSTRAINTS = {
-  rotation: {max: 0.9, min: 0.0001},
-  accel: {max: 0.002, min: 0.00001},
+  rotation: {max: 0.003, min: 0.001},
+  accel: {max: 0.001, min: 0.00001},
   max_speed: {max: 0.04, min: 0.0001},
 }
 
