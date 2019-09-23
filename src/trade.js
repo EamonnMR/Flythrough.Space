@@ -134,7 +134,7 @@ class QuantityLabel extends TextBox {
   }
   
   update( parent ){
-    this.control.text = "" + parent.player_data.bulk_cargo_of_type(
+    this.control.text = "" + _.player.bulk_cargo_of_type(
         this.comodity
     );
   }
@@ -178,8 +178,8 @@ class CargoIndicator extends TextBox {
 
   update( parent ){
     this.control.text = "Cargo Space "
-      + parent.player_data.total_cargo()
-      + "/" + parent.player_data.max_cargo() + " Kg"; 
+      + _.player.total_cargo()
+      + "/" + _.player.max_cargo() + " Kg"; 
   }
 };
 
@@ -201,7 +201,7 @@ class MoneyIndicator extends TextBox {
   }
 
   update( parent ){
-    this.control.text = "" + parent.player_data.money + " Coins";
+    this.control.text = "" + _.player.money + " Coins";
   }
 };
 
