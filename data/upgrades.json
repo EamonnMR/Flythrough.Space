@@ -23,9 +23,9 @@
     "weapon"      : {
       "mesh":  "plasma_cannon",
       "sprite": "plasma",
-      "inaccuracy": 0.1,
+      "inaccuracy": 0.09,
       "period": 500,
-      "velocity": 0.01,
+      "velocity": 0.04,
       "proj": {
         "damage": 10,
         "shield_damage": 20,
@@ -43,9 +43,9 @@
     "weapon"         : {
       "mesh":  "plasma_cannon",
       "sprite": "plasma_large",
-      "inaccuracy": 0.05,
+      "inaccuracy": 0.08,
       "period": 2000,
-      "velocity":0.01,
+      "velocity":0.04,
       "proj": {
         "shield_damage": 60,
         "damage": 30,
@@ -64,7 +64,7 @@
     "tech"           : {"itaskan_wep":2}
   },
   "autocannon":{
-    "name"           : "20mm Autocannon",
+    "name"           : "25mm Autocannon",
     "space"          : -3,
     "desc"           : "An elegant weapon, from a less civilized age. Similar arms have been used since before modern spaceflight, and if it isn't broken, don't fix it. The 20mm autocannon is a close combat weapon due mainly to its inaccuracy. It is often used as a cheap close-in weapon, after plasma cannons have been used to strip away shields, as it is more efficient at busting armor (having been perfected long before energy shields ever where.)",
     "price"          : 500,
@@ -73,14 +73,14 @@
       "mesh":  "plasma_cannon",
       "sprite":"autocannon",
       "velocity":0.035,
-      "inaccuracy":0.5,
+      "inaccuracy":0.3,
       "period":100,
       "burst_size":5,
       "burst_period":1000,
       "ammo":"autocannonammo",
       "proj": {
-        "shield_damage":1,
-        "damage":5,
+        "shield_damage":5,
+        "damage":15,
         "max_age":1000,
         "collider": {"radius": 0.1}
       }
@@ -88,7 +88,7 @@
     "tech"           : {"oe_wep":1}
   },
   "autocannonammo":{
-    "name"           : "20mm Shells",
+    "name"           : "25mm Shells",
     "space"          : -0.01,
     "desc"           : "Autocannon shells are compact containers for an explosive warhead and propellant. The propellant is ignited inside the barrel by electromagnetic induction outside it, leaving behind no case to eject (or make the ammo heavier.)",
     "price"          : 10,
@@ -104,7 +104,7 @@
     "weapon"      : {
       "mesh":  "plasma_cannon",
       "sprite":"missile",
-      "velocity":0.035,
+      "velocity":0.35,
       "inaccuracy":0.01,
       "period": 500,
       "ammo":"dumbfiremissile",
