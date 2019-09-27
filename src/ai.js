@@ -1,5 +1,11 @@
 import { _ } from "./singletons.js";
-import { distance, random_position, in_firing_arc, angle_mod } from "./util.js";
+import {
+  distance,
+  random_position,
+  in_firing_arc,
+  angle_mod,
+  overridable_default
+} from "./util.js";
 import { rotate, accelerate, decelerate, linear_vel } from "./physics.js";
 import { get_bone_group } from "./graphics.js";
 
@@ -174,7 +180,9 @@ function find_closest_target(position, entMan, criteria){
 }
 
 function point_directly_at(to, from){
-  
+  /*
+   * Calculate the turn (always clockwise) to point at a target
+   */
   let dx = to.x - from.x;
   let dy = to.y - from.y;
 
@@ -183,11 +191,14 @@ function point_directly_at(to, from){
   
 
 function point_at(to, startangle, from, lead, to_vel=null, from_vel=null, proj_vel=null){
+  /*
+   * Calculate the shortest turn to point at a moving target
+   */
   let cw = point_directly_at(from, to) - startangle;
-  if(lead && to_vel && from_vel && proj_vel){
+  // A/B/C Test: Is target leading good? Should we do it?
+  if(lead === "basic" && to_vel && from_vel && proj_vel){
     cw = find_firing_solution(to, to_vel, from, from_vel, proj_vel) - startangle;
   }
-  // If lead data is provided, use find firing solution instead
   let ccw = ARC;
   //let ccw = (Math.atan2(dy, dx) - startangle);
   if (cw > 0){
@@ -225,7 +236,7 @@ function constrained_point(
   to_vel,
   from_vel,
   proj_vel,
-  lead=false,
+  lead="none",
 ){
   // point_at but with a rotation speed limit (which is most things that point)
 	let goal_turn = point_at(target, start_angle, position, lead, to_vel, from_vel, proj_vel);
@@ -258,7 +269,7 @@ function engage(entity, target, delta_time, entMan){
     target.velocity,
     entity.velocity,
     0.01,
-    false,
+    overridable_default("ai_leading", "none"),
   );
 
   /* Anti Jitter
