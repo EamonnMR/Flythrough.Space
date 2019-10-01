@@ -345,11 +345,12 @@
 		"sType":"gnPlanet5Red",
 		"govt":"drone",
 		"tech":{
-			"generic":3
+			"generic":3,
+      "ls": 3
 			},
 		"x":0,
 		"y":0,
-		"text":"This remote, volcanic wasteland is where some of the greatest minds of the Loyal Suns strive to design next-generation weapons and starships. The sheer amount of antimatter here means that it is often incorrectly regarded as the \"most likley planet in the Free Suns to explode\"."
+		"text":"This remote, volcanic wasteland is where some of the greatest minds of the Loyal Suns strive to design next-generation weapons and starships. The sheer amount of antimatter here means that it is often incorrectly regarded as the \"most likley planet in the Loyal Suns to explode\". In fact, many other planets are much more likley to explode, but that's entirely due to risk incurred by their rebellious nature."
 	},
 	"Frontier Outpost V":{
     "sprite": "oe_station", 

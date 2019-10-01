@@ -1,20 +1,4 @@
 {
-  "nocargoexp":{
-    "name"           : "Optimal Cargo Space",
-    "space"          : 0,
-    "desc"           : "This ship is already optomized for cargo room; no more space can be converted to cargo capacity.",
-    "price"          : 0,
-    "exclass"        : "nocargoexp",
-    "locked"         : true
-  },
-  "nospaceexp":{
-    "name"           : "Optimal Upgrade Space",
-    "space"          : 0,
-    "desc"           : "This ship is already optomized for upgrade space; no more cargo room can be converted to free space.",
-    "price"          : 0,
-    "exclass"        : "nospaceexp",
-    "locked"         : true
-  },
   "plasma50": {
     "name"           : "Plasma Cannon 50kj",
     "space"          : -5,
@@ -66,7 +50,7 @@
   "autocannon":{
     "name"           : "25mm Autocannon",
     "space"          : -3,
-    "desc"           : "An elegant weapon, from a less civilized age. Similar arms have been used since before modern spaceflight, and if it isn't broken, don't fix it. The 20mm autocannon is a close combat weapon due mainly to its inaccuracy. It is often used as a cheap close-in weapon, after plasma cannons have been used to strip away shields, as it is more efficient at busting armor (having been perfected long before energy shields ever where.)",
+    "desc"           : "An elegant weapon, from a less civilized age. Similar arms have been used since before modern spaceflight, and if it isn't broken, don't fix it. The 25mm autocannon is a close combat weapon due mainly to its inaccuracy. It is often used as a cheap close-in weapon, after plasma cannons have been used to strip away shields, as it is more efficient at busting armor (having been perfected long before energy shields ever where.)",
     "price"          : 500,
     "exclass"        : "autocannon",
     "weapon"      : {
@@ -98,7 +82,7 @@
   "ejectorrack":{
     "name"           : "Missile Ejector Rack",
     "space"          : -0.1,
-    "desc"           : "Ejector rack and pylon for basic missiles, various types of which are sold throughout the sector, mounted standard on Emperial fighters since 400. The mount is simple enough to have changed little in the interviening years, though the missiles have become more powerful and sophisticated.",
+    "desc"           : "Ejector rack and pylon for basic missiles, various types of which are sold throughout the sector, mounted standard on Starfighters as far back as the year 400. The mount is simple enough to have changed little in the interviening years, though the missiles themselves have become more powerful and sophisticated.",
     "price"          : 1000,
     "exclass"        : "ejectorrack",
     "weapon"      : {
@@ -120,7 +104,7 @@
   "dumbfiremissile":{
     "name"           : "Dumb fire missile",
     "space"          : -1,
-    "desc"           : "Attaches to a standard ejector missile rack, and totally unguided. A simple missile design used to give small ships that extra punch.",
+    "desc"           : "Attaches to a standard ejector rack, and totally unguided. A simple missile design used to give small ships the ability to punch up, and hit (slow) targets at long range.",
     "price"          : 100,
     "require"        : "ejectorrack",
     "tech"           : {"oe_wep":1}
@@ -137,7 +121,7 @@
   "dragnet":{
     "name"           : "Dragnet Antifighter",
     "space"          : -6,
-    "desc"           : "The \"Dragnet\" point defense solution is used almost exclusively by pirates. It consists of a light tractor beam, able only to do non-lethal damage to hulls (but stronger against shields). Pirate warshis can then steal the fighters captured by the turrets. As a point defense weapon, however, it has one critical flaw-it cannot destroy incoming projectiles, and isn't even configured to fire on them-it would simply pull them towards the ship.",
+    "desc"           : "The \"Dragnet\" point defense solution is used almost exclusively by pirates. It consists of a light tractor beam, able only to do non-lethal damage to hulls (but stronger against shields). Pirate warshis can then steal the fighters captured by the turrets. As a point defense weapon, however, it has one critical flaw-it cannot destroy incoming projectiles, and isn't even configured to fire on them-it would only make matters worse by dragging projectiles towards the ship!",
     "price"          : 25000,
     "weapon"         : {
       "mesh":  "plasma_cannon",
@@ -163,7 +147,7 @@
   "jammer":{
     "name"           : "Missile Jammer",
     "space"          : -1,
-    "desc"           : "A powerful radio dish that confuses incoming missiles by flooding the area with radiation.",
+    "desc"           : "A powerful radio dish that confuses incoming missiles by flooding the area with distracting signals.",
     "price"          : 30000,
     "missile_jam_factor": 10,
     "tech"           : {"generic":3}
@@ -189,7 +173,7 @@
   "antigun":{
     "name"           : "Antimatter Autocannon",
     "space"          : -8,
-    "desc"           : "The propulsion for this cannon is generated entirely by forcefields, because it is critical that the ammunition never actually touch the barrel. When the projectiles strike a ship's hull, they annhilate it, carving a hole and melting the surrounding plating with intense radiation. Unfortunately, the weapon is useless against shields because its velocity and weight aren't high enough to make a dent (prescisely why sheilds are used to protect the barrel!)",
+    "desc"           : "This deadly variation on the autocannon concept fires minute globs of antimatter, the inverse-charged counterpart to the matter that makes up most of the galaxy. When the projectiles strike a ship's hull (as goes any matter/antimatter contact), they annhilate, carving a hole and melting the surrounding plating with intense radiation. Unfortunately, the weapon is ineffective against shielded targets-in fact, a shield is used inside the barrel to prevent any contact between the weapon and the ammunition.",
     "price"          : 100000,
     "weapon"         : {
       "mesh":  "plasma_cannon",
@@ -214,7 +198,7 @@
   "antigunammo":{
     "name"           : "0.01mm AM Shells",
     "space"          : -0.02,
-    "desc"           : "The shells fired by antimatter autocannons are generally formed out of antilead (for density and stability). The ammo is stored in shielded shell casings which also store enough power to propel the projectile and are discareded out the end of the barrel like sabots.",
+    "desc"           : "The shells fired by antimatter autocannons are generally formed out of antilead (for density and stability.) The process is very expensive and the power/space requirements ensure that it will be mostly done planetside for some time to come. The ammo is stored in shielded shell casings which also store enough power to propel the projectile and are discareded out the end of the barrel like sabots.",
     "price"          : 10,
     "require"        : "antigun",
     "tech"           : {"antimatter":1}
@@ -222,7 +206,7 @@
   "fuelpod":{
     "name"           : "Fuel Pod",
     "space"          : -2,
-    "desc"           : "A fuel tank that can carry enough fuel for another jump. Excellent for ships using weapons that draw from the main power supply?",
+    "desc"           : "You can think of the galaxy and everything in 3d space as sitting on a soap bubble. Higher dimensions are outside the bubble, lower dimensions are inside the bubble. In order to move faster than light, you push yourself lower, go somewhere, then push yourself back up. But you can't just fling any old matter out into 5d space-it needs to be specially entangled and stored with care in a properly shielded tesseract.",
     "price"          : 3000,
     "max_fuel"       : 1,
     "tech"           :{"generic":1}
@@ -230,7 +214,7 @@
   "fighterbay":{
     "name"           : "Fighter Launch Bay",
     "space"          : -20,
-    "desc"           : "The key component of this upgrade is an enormous airlock for launching ships, and an area large enough to house them. Areas to store and service the ships are added seperately, and additional launch bays can be added to facilitate faster launching.",
+    "desc"           : "This upgrade includes massive airlocks, hangers, and associated kit to keep and launch a squadron of spacefighters.",
     "price"          : 10000,
     "fighterbay"     : true,
     "fighterperiod": 1,
@@ -239,7 +223,7 @@
   "degengun":{
     "name"           : "0.0001mm Degenerate Matter Cannon",
     "space"          : -6,
-    "desc"           : "Degenerate matter projectiles are favored for various reasons-especially that they can be formed out of space dust. The Original intention was to fire a super-dense projectile in an effort to penitrate shields, forcing the shield to concentrate its energy in a very small area to defeat the projectile, which is damaging to them. It is also able to hold massive amounts of heat for its volume, and releases irradiating nutrons and alpha particles as it dissipates. The drawback is that coalescion fields (similar to the ones employed by plasma guns) cannot contain the degenerate matter for long, so the cannon's range is severely limited.",
+    "desc"           : "Sort of the ideal blend of plasma cannon and autocannon. The projectile is held together by a self-sustained field, (like a plasma weapon) but is itself solid and prone explode on impact (like an autocannon.) The field holding it together is so tight that the only thing keeping it from getting smaller is 'degeneracy pressure' - the inability of identical particles to occupy the same space at the same time. An edge case in the universe, some might say.",
     "price"          : 100000,
     "weapon"         : {
       "mesh":  "plasma_cannon",
@@ -263,7 +247,7 @@
     "space"          : -10,
     "price"          : 10000,
     "tech"          : {"wsc": 1},
-    "desc"          : "Using a stabilized payload of like-colored quarks, the projectile from this weapon is attached to the target by gluons, which singshot it with devastating force. If it manages to make contact with a target's hull, the now free quarks will play havoc with its atomic structure, causing unpredictable (but always devastating) damage. A curious side effect of the strong-force \"guidance\" is that the further away the target is when the projectile is launched, the more damage it will do.",
+    "desc"          : "Using a stabilized payload of like-colored quarks, the projectile from this weapon is attached to the target by gluons, which singshot it with devastating force. If it manages to make contact with a target's hull, the now free quarks will play havoc with its atomic structure, causing unpredictable (but always devastating) damage. A curious side effect of the strong-force \"guidance\" is that the further away the target is when the projectile is launched, the more damage it will do on impact.",
     "weapon"        : {
       "mesh":  "plasma_cannon",
       "sprite": "gluon",
@@ -313,7 +297,7 @@
     "price"          : 10000,
     "space"          : -5,
     "blink"          : 1,
-    "desc"           : "Groundbreaking research has unlocked the secret of in-system jumps for dogfighting"
+    "desc"           : "Everyone knows that cross-dimensional, faster-than-light navigation is only possible when three conditions are met: the ship is free from nearby stellar-scale gravity wells ('flat space') the exit point into reality is close to a gravity well ('falling out') and, the most enigmatic constraint, the 'sidreal effect' or 'chasing your tail', you need to be well outside of your own original lightcone or Very Bad Things happen. It seemed like a constant of the universe, and that cause and effect may prove violable if it where broken. Provocatively, the scientists at Alluvium called it the 'sidreal barrier' and set to work on it. This is the result - the microdrive will let you instantaniously jump through a system, avoiding projectiles and confusing your enemies. Impressive amount of work for what amounts to a parlor trick."
   },
   "ne_beam":{
     "name"           : "Induction Beam",
@@ -331,7 +315,7 @@
         "reflect": true
       }
     },
-    "desc"           : "Your standard electrostatic discharge which overwhelms shields by cooking the generator. Simple, right? Wrong-a happy accident, it turns out that it can essentially turn the target's shields into a projector for the same sort of beam. With careful tuning, this lead to the capability of bouncing the beam off the initial target and on to further targets. This acts as a force multiplier, allowing a smaller number of fighters to face down more numerous foes."
+    "desc"           : "Your standard electrostatic discharge which overwhelms shields by cooking the generator. Simple, right? Wrong-a happy accident, it turns out that it can essentially turn the target's shields into a projector for the same sort of beam. With careful tuning, this lead to the capability of bouncing the beam off the initial target and on to further targets. This acts as a force multiplier, allowing a smaller number of fighters to face down more numerous foes-exactly how Loyal Suns pilots like it."
   },
   "ion_cannon_50":{
     "name"          : "Ion cannon, 50 Coulomb",
@@ -353,7 +337,7 @@
       }
     },
 
-    "desc"           : "Designed to disrupt a ship's critical systems, ion weapons are a favorite of discriminating pirates. A high risk/high reward play, an ion weapon won't take a foe out of the fight nearly as quickly as, say, hot plasma. It will, however, ionize the target ship, which will trash a ship's reactors, some engines and weapons, leaving them dead in the water-perfect prey for pirates."
+    "desc"           : "Designed to disrupt a ship's critical systems, ion weapons are a favorite of discriminating pirates. A high risk/high reward play, an ion weapon won't take a foe out of the fight nearly as quickly as, say, hot plasma. It will, however, ionize the target ship, which will trash a ship's reactors, some engines and weapons, leaving them dead in the water-perfect prey" 
   },
   "ion_cannon_200":{
     "name"           : "Ion Cannon, 200 Coulomb",
@@ -374,7 +358,7 @@
       }
     },
 
-    "desc"           : "A turreted, large bore version of the ion cannon. Its operation is similar to a plasma cannon of similar description, but rather than superheating the plasma in the chamber, it's modified to ionize the plasmaas much as possible."
+    "desc"           : "A scaled-up ion cannon. Its operation is similar to a plasma cannon of similar description, but rather than superheating the plasma in the chamber, it's modified to ionize the plasmas much as possible. One of the challenges with this technology is ditching the extra electrons stripped from the plasma. They're ferociously attracted to the now ionized target, so they need to be carefully managed."
   },
   "mining_laser":{
     "name"           : "Mining Laser, 50gw",
@@ -392,6 +376,58 @@
       }
     },
     "desc"           : "A core component of the XIC drillship is its powerful mining laser. It can be tuned specifilly to maximize energy delivery to the target asteroid. As always, excercise caution while mining operations are being conducted. Eye protection suggested."
+  },
+  "casuba_howitzer":{
+    "name"           : "4m Casuba Howitzer",
+    "space"          : -20,
+    "desc"           : "Nuclear weapons, while very effective in terrestrial operations (as many planets scarred from the Empire's conquest will attest) without a medium to propagate their shock wave, and ever-present shields adept at dissipating their X-Ray emissions, they are a rare sight in space combat. The bright, shining exception is the Casuba Howitzer-it fires shaped detonators which focus the plasma into a devastating jet.",
+    "price"          : 500,
+    "exclass"        : "autocannon",
+    "weapon"      : {
+      "mesh":  "plasma_cannon",
+      "inaccuracy":0,
+      "period":1000,
+      "ammo":"howitzer_ammo",
+      "beam": {
+        "shield_damage":1000,
+        "damage":1000,
+        "length":300
+      }
+    },
+    "tech"           : {"league":3}
+  },
+  "autocannonammo":{
+    "name"           : "Casuba Howitzer Charges",
+    "space"          : -5,
+    "desc"           : "Similar in design in function to the much feared atomic bomb, the precsisely machined shape (not dissimilar to the explosively formed penitrators used in autocannon ammo) absorbs the X Rays from the explosion to heat what becomes the plasma jet. One notible feature of these shaped charges is their price - because they use fissile material which has to be mined (it's rare) and dragged into orbit (it's heavy) and must be made with great skill and precision, it's the most expensive shot you can possibly take. Make it count.",
+    "price"          : 10000,
+    "require"        : "autocannon",
+    "tech"           : {"league":3}
+  },
+  "fleetbreaker": {
+    "name"           : "Fleetbreaker",
+    "space"          : -30,
+    "desc"           : "The scientists on Kalush have outdone themselves. Gravity, long their reviled foe, has become their greatest ally. Partially inspired by degenerate matter weapons employed by their Itaskan foes, and fueled by the ever-enegmatic engangled matter, they present: the fleet breaker, a weapon that can create a micro-scale black hole. If left to its own devices, it will decay into hawking radiation fairly quickly. If, however, it should have the opportunity to crush a target, it'll have that much more mass and stick around that much longer. Best used alone, directly in the middle of an enemy formation. But I'm sure you wouldn't have it any other way.",
+    "price"          : 500,
+    "weapon"      : {
+      "mesh":  "plasma_cannon",
+      "sprite": "plasma",
+      "inaccuracy": 0.09,
+      "period": 500,
+      "velocity": 0.04,
+      "consume_fuel": 1,
+      "proj": {
+        "damage": 100,
+        "shield_damage": 50,
+        "max_age": 50000,
+        "collider": {"radius": 0.3},
+        "persist": true,
+        "attract": 10,
+        "damage_done_increases_lifetime": true
+      }
+      }
+    },
+    "tech"           : {"ls":3}
   }
 }  
 
