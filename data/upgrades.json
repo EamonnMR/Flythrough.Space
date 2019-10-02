@@ -292,7 +292,7 @@
     "explodamage"    : 1000
   },
   "cas_blink":{
-    "name"           : "Casamance Microdrive",
+    "name"           : "Freehold Microdrive",
     "tech"           : {"cas": 6},
     "price"          : 10000,
     "space"          : -5,
