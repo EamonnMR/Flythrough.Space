@@ -425,7 +425,6 @@
         "attract": 10,
         "damage_done_increases_lifetime": true
       }
-      }
     },
     "tech"           : {"ls":3}
   }
