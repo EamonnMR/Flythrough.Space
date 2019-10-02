@@ -4,7 +4,7 @@
 		"x"    : 250,
 		"y"    : 140,
 		"govt" : "direc",
-		"text": "The birthplace of the modern FTL drive, and as a result the capital of the Old Empire, a galaxy-spanning civilization that collapsed a generation ago. It was these shipyards that built the first wave of ships that crossed the sector, and is still a hub for ship construction. After the empire's collapse, most of the government fled, leaving the terrestrials in charge, many of them expert starship builders. They ultimately formed Accra Drive Systems, a successful manufacturer of modern starships, and an alliance of surrounding worlds called the Casamance Freehold.",
+		"text": "The birthplace of the modern FTL drive, and as a result the capital of the Old Empire, a galaxy-spanning civilization that collapsed a generation ago. It was these shipyards that built the first wave of ships that crossed the sector, and is still a hub for ship construction. After the empire's collapse, the spacefarer upper-class was driven out, forming the Loyal Suns to the north and leaving the terrestrials in charge. The inhaibtants of Accra They ultimately formed Accra Stardrives, a shipbuilder that focuses on large vessles and an alliance of surrounding worlds called the Casamance Freehold.",
 		"trade":{
 			"alloy":"high",
 			"grain":"high",
@@ -19,7 +19,7 @@
 		"x"    : -200,
 		"y"    : -400,
 		"govt" : "direc",
-		"text": "Alluvium Fleet Yards is the flagship starship building site of Accra Stardrives. Every corridor you go down is bustling with activity - engineneers in animated discussion about robotic assembly, mechanics lugging exotic tools, and even sales people for Accra Drive Systems who, occasionally, realize that you're a starship captain and try to make a sale.",
+		"text": "Alluvium Fleet Yards is the flagship starship building site of Accra Stardrives. Every corridor you go down is bustling with activity - engineneers in animated discussion about robotic assembly, mechanics lugging exotic tools, and even sales people who, occasionally, realize that you're a starship captain and try to make a sale.",
 		"tech":{
 			"accra":4,
 			"generic":3,
@@ -39,7 +39,7 @@
 	
 	"Carnarc":{
 		"sprite":"carnarc",
-		"text" :"Although the Inverness system has been populated for all of recorded history, it was not on this planet, since its environment keeps all but the hardiest of settlers at bay. Though there are signifigant metal deposits here, it is deep in the crust so only the best veins are mined. So called 'wildcat' prospectors can be found deep in the interiors of the tectonic cratons looking for the next big score. More often than not, they come up empty handed.",
+		"text" :"Although the Inverness system has been populated for all of recorded history, it was not on this planet, since its environment keeps all but the hardiest of settlers at bay. Though there are signifigant metal deposits here, it is deep in the crust so only the best veins are mined. So-called 'wildcat' prospectors can be found deep in the interiors of the tectonic cratons looking for the next big score. More often than not, they come up empty handed.",
 		"x":100,
 		"y":300,
 		"govt":"direc",
@@ -54,7 +54,7 @@
 	"Skye Orbital":{
     "sprite": "oe_station", 
     "img": "assets/landing/oe_station_perspective.png",
-		"text":"Population center of the Inverness system, the massive Skye orbital station is home to millions. Though it can generate its own power and once had its own food supply, it has long since replaced its agracultural segments with living space, favoring imports (as it happens, vat grown yeast slurry isn't a popular dish after the first few decades.) As a result, traders favor the station as well.",
+		"text":"Population center of the Inverness system, the massive Skye orbital station is home to millions. Though it can generate its own power and once had its own food supply, it has long since replaced its agracultural segments with living space, favoring imports. As it happens, vat grown yeast slurry isn't a popular dish after the first few decades. As a result, merchants from across the Freehold make this their port of call.",
 		"x":-100,
 		"y":-348,
 		"govt":"direc",
@@ -72,7 +72,7 @@
 	"Inshes":{
 		"sType":"onyxM4Earthlike",
 		"govt":"direc",
-		"text":"Orbiting opposite from Carnarc's L3 Lagrangian Point, Inshes, a small world is jealously guarded by the Carnarc government as a premere vacation destination. Trips to it where largely kept secret from the public until 495 when the fact that the tiny planet that everyone could see was actually being landed on. It was the first step for the inhabitants of this system to the stars.",
+		"text":"Orbiting opposite from Carnarc's L3 Lagrangian Point, Inshes, a small world is jealously guarded by the Carnarc government as a premere vacation destination. Trips to it where largely kept secret from the public until 495 when the fact that the tiny dot visible in the sky was actually being landed on. It was the first step for the inhabitants of this system to the stars.",
 		"x":200,
 		"y":480
 	},
@@ -92,7 +92,7 @@
     "img": "assets/landing/oe_station_perspective.png",
 		"sType": "aresSmallStation",
 		"govt":"direc",
-		"text" : "This station is jointly owned by the Freehold worlds, and administered by its navy. It supports the various mining intrests on the inhospitable surface of Lanner from orbit. Asteroid miners tend to be tough and solitary people, and this station has developed an equally tough reputation.",
+		"text" : "This station is jointly owned by the Freehold worlds, and administered by its navy. It supports the various mining intrests on the inhospitable surface of Lanner from orbit. Vac-suit miners tend to be tough and solitary people, and this station has developed an equally tough reputation.",
 		"trade":{
 			"carbon":"high"
 		},
@@ -112,7 +112,7 @@
 	"Thrace":{
 		"sType": "onyxRedU",
 		"govt":"direc",
-		"text": "A heavly populated (some would say overpopulated) world. Ostensably a major voting member of the Freehold (proportional representaiton and all), with representatives converging yearly to decide matters of interplanetary importance. However, the planet is largely populated with the poor, as its climate is less than ideal, so most of its ruling class live off-world and only maintain addresses here for legal reasons.",
+		"text": "A densely populated world. Ostensably a major voting member of the Freehold (proportional representaiton and all), with representatives converging yearly to decide matters of interplanetary importance. However, the planet's wealth is not proportional to its population, as its climate and pollution levels is less than ideal, so most of its ruling class live off-world and only maintain addresses here for legal reasons.",
 		"x" :24,
 		"y" :-45,
 		"tech":{
@@ -140,7 +140,7 @@
     "img": "assets/landing/oe_station_perspective.png",
 		"sType":"oeStation",
 		"govt":"pen",
-		"text":"This was once a border station, then later the jumping off point for the invasion of Itaska, and last home base of the 7th fleet. Now it's a border post facing the other way, and it's the main friendly contact point between the Itaskans and the rest of the galaxy. What little negotiation goes on tends to happen here.",
+		"text":"This was once a border station, then later the jumping off point for the invasion of Itaska, the final home base of the 7th fleet. Now it's a border post facing the other way, and it's the main friendly contact point between the Itaskans and the rest of the galaxy.",
 		"x":98,
 		"y":15,
 		"tech":{
@@ -157,7 +157,7 @@
 	"DI - Lyrell":{
 		"sType":"avJuno",
 		"govt":"pen",
-		"text" : "The last line of defense that the 7th fleet has, protecting Itaska. The guard here is largely cerimonial, generally to be found in stylish dress uniforms, as enemey ships have not been seen this deep into Itaskan terratory for hundreds of years. Still, it is a sign of reassurance to the Itaksans that the 7th fleet is there for them.",
+		"text" : "The 7th fleet's last line of defense. The guard here is largely cerimonial, generally to be found in stylish dress uniforms, as enemey ships have not been seen this deep into Itaskan territory for hundreds of years. Still, it is a sign of reassurance to the Itaksans that the 7th fleet is there for them.",
 		"x":139,
 		"y":78,
 		"tech":{
@@ -167,14 +167,14 @@
 	},
 	"Trowel":{
 		"sType":"gnPlanet12Marsh",
-		"text":"A terraforming success story, Trowel was abandoned in favor of more densely populated worlds around 450, and has since been sparsely populated, mostly by vacationing Itaskans. Handcrafted waterfalls and pristine minerally-altered waters as far as the eye can see.",
+		"text":"A terraforming success story, Trowel was abandoned in favor of more densely populated worlds around 450, and has since been sparsely populated, mostly by tourists. Handcrafted waterfalls and pristine minerally-altered waters as far as the eye can see.",
 		"x":0,
 		"y":0
 	},
 	"Kennerud":{
     "govt": "direc",
 		"sType":"onyxEarthlikeB",
-		"text":"A major industrial world, Kennerud has been slowly optomized over hundreds of years to turn out weapons and reactors, first for the Empire, and now, as a member of the Freehold, for competing continent-spanning companies on the surface. The most powerful of all is KPS (Kennerud Power Systems) the universe's leading manufacturer of next-gen plasma weapons (according to KPS marketing.)",
+		"text":"A major industrial hub, Kennerud has been slowly optomized over hundreds of years to turn out weapons and reactors, first for the Empire, and now, as a member of the Freehold, for competing continent-spanning companies on the surface. The most powerful of all is KPS (Kennerud Power Systems) chief supplier of both legacy and next-gen plasma cannons.",
 		"tech":{
 			"accra":1,
 			"oe_wep":3,
@@ -203,7 +203,7 @@
 	},
 	"Phobos":{
 		"sType":"Phobostype",
-		"text":"It looks like there might have been a colony on the surface of this planet at some point, but not recently. Scans would indicate that several displacer-tech accidents happened here. Judging by the scarring on the walls, somebody with a rocket launcher shot the place up pretty well. You decide not to go any deeper, in case they're still around.",
+		"text":"It looks like there might have been a colony on the surface of this planet at some point, but not recently. Scans would indicate that several entangled-matter accidents happened here. Additionally, judging by the scarring on the walls, somebody with a rocket launcher shot the place up pretty good. You decide not to go any deeper, in case they're still around.",
 		"trade":{
 			"uacbarrels":"low"
 		},
@@ -212,7 +212,7 @@
 	},
 	"Harcourt":{
 		"sType":"gnPlanet2Lunar",
-		"text":"This lonely planet is deep inside the Reacher field, and rendered uninhabitable by alarmingly regular asteroid bombardment and nebular radiation. Perhaps in a million years, when the force that formed the dust field is spent and every asteroid has had its turn making a crater, it will be ready for exploitation. But probably no sooner.",
+		"text":"This lonely planet is deep inside the Reacher field, and rendered uninhabitable by alarmingly regular asteroid bombardment and nebular radiation. Perhaps in a million years, when the force that formed the dust field is spent and every asteroid has had its turn making a crater, it will be ready for exploitation. But no sooner.",
 		"x":0,
 		"y":0
 	},
@@ -273,7 +273,7 @@
 	"Kosach":{
     "sprite": "kosach",
 		"govt":"drone",
-		"text":"An industrialized world with a large population and matching production output. Factories run around the clock, building everything from starships to Rotovators.",
+		"text":"An industrialized world with a large population and matching production output. Factories run around the clock, building everything from starships to Rotovators. They're so productive here that the Loyal Suns even let them keep a portion of the profits, which is a source of great pride.",
 		"tech":{
 			"generic":1
 		},
@@ -325,7 +325,7 @@
 		"sType":"gnPlanet1Lunar",
 		"x":0,
 		"y":0,
-		"text":"Once the home of the epinomous Meklin Design Bearu, this barren rock was picked for its isolation. However, during the schism, the system became a battleground between the Loyalists and the League, so the planet was evacuated in 1100. The facilities remain, but anything of value has been removed or sabatoged to prevent capture. Most of the Meklin staff (and the title \"Meklin Design Bureau\") relocated to Tine the Peenemunde system, but some defected to the Loyalists, forming the Kalush DB."
+		"text":"Once the home of the eponymous Meklin Design Bureau, this barren rock was picked for its isolation and lack of real estate value. However, during the schism, the system became a battleground between the Loyalists and the League, so the planet was evacuated in 1100. The facilities remain, but anything of value has been removed or sabatoged to prevent capture. Most of the Meklin staff (and the title \"Meklin Design Bureau\") relocated to Tine the Peenemunde system, but some defected to the Loyalists, forming the Kalush DB."
 	},
 	
 	"Union 1":{
@@ -334,7 +334,7 @@
 		"govt":"hex",
 		"x":45,
 		"y":-30,
-		"text":"Defending the League's northern border (and staking a permanent claim on Pyatigorsk), Union 1 is the first such station built, a symbol of cooperation between the subsidiary companies of the League.",
+		"text":"Defending the League's northern border (and staking a permanent claim on Pyatigorsk), Union 1 is the first such station built, a symbol of cooperation between the subsidiary companies of the League. Its early construction, however, means it's amenities are a bit spartan compared to the more decadent stations of recent construction.",
 		"tech":{
 			"lg_ship":3,
 			"khanda":1,
@@ -350,7 +350,7 @@
 			},
 		"x":0,
 		"y":0,
-		"text":"This remote, volcanic wasteland is where some of the greatest minds of the Loyal Suns strive to design next-generation weapons and starships. The sheer amount of antimatter here means that it is often incorrectly regarded as the \"most likley planet in the Loyal Suns to explode\". In fact, many other planets are much more likley to explode, but that's entirely due to risk incurred by their rebellious nature."
+		"text":"This remote, volcanic wasteland is where some of the greatest minds of the Loyal Suns strive to design ever deadlier weapons and starships. The sheer amount of antimatter here means that it is often incorrectly regarded as the \"most likley planet in the Loyal Suns to explode\". In fact, many other planets are much more likley to explode, but that's entirely due to risk incurred by their rebellious nature."
 	},
 	"Frontier Outpost V":{
     "sprite": "oe_station", 
@@ -368,25 +368,19 @@
 		"x":100,
 		"y":123,
 		"govt":"direc",
-		"text":"Despite its appearance, Ubuntu is actually a very habitable planet once you get used to the environment. It specializes in manufacturing computer components, and providing support. Because faster than light radio is impossible, support generally consists of flying an engieneer out to the installation site.",
+		"text":"Despite its appearance, Ubuntu is actually a very habitable planet once you get used to the environment. It specializes in computer software and providing support. Because faster than light communication is impossible except by delivery (which residents deride as 'sneakernet'), support generally consists of flying an engieneer out to the installation site.",
 		"trade":{
 			"compu":"low",
 			"pure":"high",
 			"powerconv":"med"
 		}
 	},
-	"Mint":{
-		"sType":"gnPlanet10Green",
-		"x":30,
-		"y":-25,
-		"text":"It is theorized that Mint spun off of Ubuntu some time in the unfathomable past."
-	},
 	"Tyne":{
 		"sType":"rwH00",
 		"x":0,
 		"y":0,
 		"govt":"hex",
-		"text":"The current home of the Meklin Design Bureau, Tyne is a major hub of equipment production for the League generally, and Meklin specifically. The Bureau is especially known for its large starships, the Oxana and Vera, \"The Best Money Alone can buy\".",
+		"text":"Home of the Meklin Design Bureau, Tyne is a hub of equipment production for the League generally, and Meklin specifically. The Bureau is especially known for starships on its \"500\" platform, the Oxana and Vera, sold under the slogan \"The Best Money Alone can buy\".",
 		"tech":{
 			"melkin":3,
 			"lg_ship":3,
@@ -413,13 +407,13 @@
 			"generic":1,
 			"itaskan":2
 		},
-		"text":"Vatsa's production capacity has always been stimied by mismanagement, and as a result abandoned OE factories rust in toxic fields, but enough still run for some starships to usually be available here."
+		"text":"Vatsa's development has always been stimied by mismanagement, and as a result abandoned old-empire factories rust in fields across its temperate surface. Enough are still operated for some starships to usually be available here."
 	},
 	"Kopachy":{
 		"sType":"onyxM1Lunar",
 		"x":0,
 		"y":0,
-		"text":"Kopatchy was a moderately populous world before the empire burned off its atmosphere in 934 in the last, desperate years of its conflict with the Peninsula. Since then the spoiled globe has stood as a memorial to the conflict which many Itaskans consider un-finished."
+		"text":"Kopatchy was a moderately populous world before the empire burned off its atmosphere in 934 in the last, desperate years of its conflict with the Itaskan Peninsula. Since then the spoiled globe has stood as a memorial to the conflict which many Itaskans consider unfinished."
 	},
 	"DVI - Strelok":{
 		"sType":"avGaruda",
@@ -464,7 +458,7 @@
 		"x":0,
 		"y":0,
 		"govt":"pen",
-		"text":"A lonely outpost on the NE border, Cobb has many old bases but most navy activity takes place in orbit on the DIII. It is mostly a warehouse for parts, but even that function as waning as the economic realities of neeting to launch and land large pieces of equipment sink in."
+		"text":"A lonely outpost on the border with the Loyal Suns, Cobb has many old bases but most navy activity takes place in orbit on the DIII. It is mostly a warehouse for parts, but even that function as waning as the realities of needing to launch and land large pieces of equipment sink in."
 	},
 	
 	"DIII - Loneozner":{
@@ -485,7 +479,7 @@
 		"govt":"pen",
 		"x":295,
 		"y":-125,
-		"text":"The population center of the Albacore system. Mariposa's small size (and large oceans) lead to its population density quickly overwhelming its resources early in its history, and lead to much movement off-world. In the years since, it has been a priority of the planet's government to repair the damage done to its environment before the invention of fusion power.",
+		"text":"The population center of the Albacore system. Mariposa's small size (and large oceans) lead to its population density quickly overwhelming its resources early in its history, and lead to much movement off-world. In the years since, it has been a priority of the planet's government to repair the damage done to its environment before the introduction of clean energy.",
 		"tech":{
 			"generic":2,
 			"itaskan_wep":2,
@@ -502,7 +496,7 @@
 		"sType":"onyxM8Red",
 		"x":184,
 		"y":203,
-		"text":"This unremarkable moon has only one feature of interplanetary intrest-it is one of the few known sources of 'Xerum', also known as red mercury",
+		"text":"This unremarkable moon has only one feature of interplanetary intrest-it is one of the few known sources of 'Xerum', also known as red mercury. The purpose of this substance is supposed to be highly classified, but to you it's just more tonnage in the cargo bay as long as someone's buying.",
 		"trade":{
 			"xerum":"low"
 		}
@@ -511,7 +505,7 @@
     "sprite": "tolumne",
 		"x":-225,
 		"y":-318,
-		"text":"Forsaken Desert"
+		"text":"Forsaken (long, meaningful pause as the sound of the thin atmosphere whistles against your helmet) Desert"
 	},
 	"Yosemite":{
 		"sType":"sgDrye",
@@ -573,7 +567,7 @@
 		"govt":"pen",
 		"x":-10,
 		"y":20,
-		"text":"The methane atmosphere makes the planet unattractive except for mining operations.",
+		"text":"The methane atmosphere makes the planet unattractive except for gas mining operations. There's supposed to be enough carbon here for another trillion humans.",
 		"trade":{
 			"alloy":"low",
 			"pure":"med",
@@ -595,7 +589,7 @@
 		"govt":"pen",
 		"x":0,
 		"y":0,
-		"text":"The center of Itaskan civilization, Itaskana is the namesake of the 'peninsula' of isolated stars that the Itaskans call home. Schoolchildren are shuttled here to see the famous parlament chambers the great treaties creating Itaska's government where signed, and the labs shield technology that enabled it matured. Sadly it is one of the few worlds in the peninsula so environmentally ruined that it is considered a lost cause, a victim of centuries of rapid technological progress and unchecked plasma experiments."
+		"text":"The center of Itaskan civilization, Itaskana is the namesake of the 'peninsula' of nebula-isolated stars that the Itaskans call home. Schoolchildren are shuttled here to see the famous parlament chambers the great stone treaties creating Itaska's government where signed, and the labs shield technology that enabled it matured. The ones that aren't irreparably irradiated anyway, because it is one of the few worlds in the peninsula so environmentally ruined that it is considered a lost cause, a victim of centuries of rapid technological progress and unchecked experiments."
 	},
 	"Gillespie":{
 		"sType":"onyxM7Desert",
@@ -603,7 +597,7 @@
 		"govt":"pen",
 		"x":-38,
 		"y":49,
-		"text":"Populated since at least 200, Gillespie was a very attractive target for off-world colonization, so the lanscape is a patchwork of different visions of extraplanetary utopia. It has been called the 'mother of itaskan spaceflight' since if it wasn't so close to Itaskana, they might have never had a reason to develop starship technology. Though it's speculated that people arrived on every planet by spaceflight in the first place.",
+		"text":"Populated since at least 200, Gillespie was a very attractive target for off-world colonization, so the lanscape is a patchwork of different visions of extraplanetary utopia. Known as the 'Great Aunt of itaskan spaceflight' since if it wasn't so close to Itaskana, they might have never had a reason to develop launch. That's got to be backwards though, because however people arrived on all of these different planets, it was by spaceflight of some description.",
     "trade": {
       "food": "high",
       "kombucha": "high"
@@ -638,7 +632,7 @@
 		"govt":"pen",
 		"x":300,
 		"y":450,
-		"text":"A middling planet in most respects, Sinchenko is the cultural heart of the peninsula, hosting epic concerts that draw crowds of millions on a regular basis.",
+		"text":"A middling planet in most respects, Sinchenko is the cultural heart of the peninsula, hosting epic concerts that draw crowds of millions on a regular basis. Entire flash-cities will show up and collectively experience the show through their Virtual Reality implants.",
 		"trade":{
 			"ethyl":"high",
 			"spice":"high",
@@ -666,7 +660,7 @@
       "water": "low",
       "grain": "high"
     },
-    "text": "Settled, if the histories are to be believed, by spacefarers from Itaskana, Baikonur was once the heart of a spacefaring civlization of its own, before it became the final conquest of the empire, and now cherished posession of the Northern Empire. Perhaps as a last act of defiance, shipyards here producing old Baikonur craft still operate, and are well regarded civilian vessels."
+    "text": "Settled, if the histories are to be believed, by spacefarers from Itaskana, Baikonur was once the heart of a spacefaring civlization of its own, before it became the final conquest of the empire, and now cherished posession of the Loyal Suns. Perhaps as a last act of defiance, shipyards here producing old Baikonur craft still operate, and are well regarded civilian vessels."
   },
   "Nightside": {
     "govt": "orasos",
@@ -677,7 +671,7 @@
       "grain": "high",
       "gas": "high"
     },
-    "text": "As with any tidally locked world, Nightside rotates very slowly in relation to its parent star-in this case less than once per million years. This means that only one side of the planet has a tolerable climate-leading to its name. Far from civilization and deep in a pirate infested nebula, Nightside is a hub of illegal activity. You can get anything here for the right price, but nobody can pay as much as the Caudron family, so they're in charge."
+    "text": "As with any tidally locked world, Nightside rotates very slowly in relation to its parent star-in this case less than once per million years. This means that only one side of the planet has a tolerable climate-leading to its name. Far from civilization and deep in a pirate infested nebula, Nightside is the place to be if you can't be anywhere else. You can get anything here for the right price, but nobody can pay as much as the Caudron family, so they're in charge."
   },
   "Horizon": {
     "govt": "drone",
@@ -686,13 +680,13 @@
     "text": "Horizon is tidally locked such that a \"day\" lasts about a hundred years, most of which is in punishing cold and darnkess or unbearable heat and light. This has pushed the civilization here to adopt a nomadic lifestyle, building elaborite (and enormous) land vehicles which can relocate as the terminator moves across the surface."
   },
   "Broken Hill": {
-    "text": "A warm, dry, dusty planet where you wouldn't expect too much wildlife. However, it's teeming with some of the deadliest creatures in the galaxy. An evolutionary arms race has lead to the development of increasingly deadly venoms and antivenims, toxins and antidotes. It is advised that you take care while traveling here."
+    "text": "A warm, dry, dusty planet where you wouldn't expect too much wildlife. However, it's teeming with some of the deadliest creatures in the galaxy. An evolutionary arms race has lead to the development of increasingly deadly venoms and antivenoms, toxins and antidotes. It is advised that you take care while traveling here."
   },
   "Wieliczka": {
     "text": "Though the surface of Wieliczka is arid, its appearance is deceptive-its oceans are all under ground. Though not especially dense, and permiable enough for the roots of mighty trees to reach down into the brine, the surface is enough to shield the cities of Wieliczka from the harsh glare of its parent star, Rainsford."
   },
   "Krysto": {
-    "text": "The low gravity of this remote, small planet is the ideal condition for propulsion research (and, incidentally, long jump.) The world is more agglomeration of comets than terrestrial planet, though bitter winds powered by tidal forces from its dim star have long since erased evidence of the anchinent impacts. Extensive ice tunnels and secret bases are supposedly just below the rough, spiky surface."
+    "text": "The low gravity of this remote, small planet is the ideal condition for propulsion research. The world is more agglomeration of comets than terrestrial planet, though bitter winds powered by tidal forces from its dim star have long since erased evidence of the anchient impacts. Extensive ice tunnels and secret bases are supposedly just below the rough, spiky surface."
   },
   "Bukov":{
     "govt": "drone",
