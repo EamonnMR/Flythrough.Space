@@ -62,7 +62,9 @@
     "courier": {"file": "courier.babylon"},
     "plasma_cannon": {"file": "plasma_cannon.babylon"},
     "freehold_frigate": {"file": "freehold_frigate.babylon"},
-    "tercel": {"file": "tercel.babylon"}
+    "tercel": {"file": "tercel.babylon"},
+    "prospector": {"file": "xic_prospector.babylon"},
+    "drillship": {"file": "xic_drillship.babylon"}
   },
   "sprites": {
     "plasma": {

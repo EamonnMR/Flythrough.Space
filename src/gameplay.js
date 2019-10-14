@@ -28,9 +28,9 @@ export class GamePlayState extends ViewState {
       npcSpawnerSystem,
       inputSystem,
       ai_system,
-      weaponSystem,
       speedLimitSystem,
       spaceFrictionSystem,
+      weaponSystem,
       velocitySystem,
       modelPositionSystem,
       cameraFollowSystem,
@@ -41,7 +41,7 @@ export class GamePlayState extends ViewState {
       radarFollowSystem,
       deletionSystem,
       hudUpdateSystem,
-      // (entMan) => {this.playerLifecycleSystem() }, // Yeah this is kinda stateful.
+      (entMan) => {this.playerLifecycleSystem() }, // Yeah this is kinda stateful.
     ]);
     this.empty = true;
     this.world_models = [];

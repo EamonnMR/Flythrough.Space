@@ -1,5 +1,11 @@
 import { _ } from "./singletons.js";
-import { distance, random_position, in_firing_arc, angle_mod } from "./util.js";
+import {
+  distance,
+  random_position,
+  in_firing_arc,
+  angle_mod,
+  overridable_default
+} from "./util.js";
 import { rotate, accelerate, decelerate, linear_vel } from "./physics.js";
 import { get_bone_group } from "./graphics.js";
 
@@ -10,11 +16,12 @@ const ARC = Math.PI * 2;  // I don't want to make a political statement by using
 // For a more interesting game, these should probably be ship properties.
 // Might not be crazy to calculate them based on the ship's stats and allow
 // for an override in the data
-const ENGAGE_DISTANCE = 100;
-const ENGAGE_ANGLE = Math.PI / 8;
-const ACCEL_DISTANCE = 10;
+const ENGAGE_DISTANCE = 100;       // How close to a target before firing weapons
+const ENGAGE_ANGLE = Math.PI / 8;  // How far off of target to be when taking a shot
+const TURN_FLOOR = Math.PI / 12;   // How small a turn is too small?
+const ACCEL_DISTANCE = 10;         // How far from a target before firing thrusters
 const IDLE_ARRIVAL_THRESH = 50;
-const AI_DWELL_MAX = 1000;
+const AI_DWELL_MAX = 1000;         // How long to wait around
 const AI_IDLE_COAST = 0.01;
 
 export function ai_system(entMan){
@@ -36,6 +43,7 @@ export function ai_system(entMan){
       }
     } else if (ai.state == 'asteroid_hate'){
       let target = find_closest_target(entity.position, entMan, ['team-asteroids']);
+      // TODO: Really rework how Asteroids are handled.
       if(target){
         set_target(ai, target);
       } else {
@@ -44,7 +52,7 @@ export function ai_system(entMan){
     } else if (ai.state == 'passive') {
       // This is sort of the hub behavior - select a new thing to do
       if ('aggro' in ai){
-        // TODO: Somehow prioritize this?
+        // It's personal. Some ship has angered this specific ship.
         for( let possible_target_id of ai.aggro ){
           let possible_target = entMan.get(possible_target_id);
           if(possible_target){
@@ -172,7 +180,9 @@ function find_closest_target(position, entMan, criteria){
 }
 
 function point_directly_at(to, from){
-  
+  /*
+   * Calculate the turn (always clockwise) to point at a target
+   */
   let dx = to.x - from.x;
   let dy = to.y - from.y;
 
@@ -180,12 +190,15 @@ function point_directly_at(to, from){
 }
   
 
-function point_at(to, startangle, from, to_vel=null, from_vel=null, proj_vel=null){
-  let cw = point_directly_at(to, from) - startangle;
-  if(to_vel && from_vel && proj_vel){
+function point_at(to, startangle, from, lead, to_vel=null, from_vel=null, proj_vel=null){
+  /*
+   * Calculate the shortest turn to point at a moving target
+   */
+  let cw = point_directly_at(from, to) - startangle;
+  // A/B/C Test: Is target leading good? Should we do it?
+  if(lead === "basic" && to_vel && from_vel && proj_vel){
     cw = find_firing_solution(to, to_vel, from, from_vel, proj_vel) - startangle;
   }
-  // If lead data is provided, use find firing solution instead
   let ccw = ARC;
   //let ccw = (Math.atan2(dy, dx) - startangle);
   if (cw > 0){
@@ -203,6 +216,8 @@ function point_at(to, startangle, from, to_vel=null, from_vel=null, proj_vel=nul
 }
 
 function find_firing_solution(to, to_velocity, from, from_velocity, projectile_velocity){
+  // TODO: This is a flawed algo and they AI looks stupid for constantly missing.
+  // Maybe don't lead at all and just make shots go faster?
   let velocity_difference = {x: to_velocity.x - from_velocity.x, y: to_velocity.y - from_velocity.y};
   let estimated_impact_time = distance(from, to) / projectile_velocity;
   return point_directly_at(from, {
@@ -221,9 +236,10 @@ function constrained_point(
   to_vel,
   from_vel,
   proj_vel,
+  lead="none",
 ){
   // point_at but with a rotation speed limit (which is most things that point)
-	let goal_turn = point_at(target, start_angle, position, to_vel, from_vel, proj_vel);
+	let goal_turn = point_at(target, start_angle, position, lead, to_vel, from_vel, proj_vel);
   let final_turn = 0;
 	if(goal_turn > 0){
 		if(goal_turn > possible_turn){
@@ -238,7 +254,6 @@ function constrained_point(
 			final_turn = goal_turn;
 		}
 	}
-
   return final_turn;
 
 }
@@ -254,7 +269,33 @@ function engage(entity, target, delta_time, entMan){
     target.velocity,
     entity.velocity,
     0.01,
+    overridable_default("ai_leading", "none"),
   );
+
+  /* Anti Jitter
+   * Because it's constantly trying to find the best firing solution and track moving targets,
+   * the AI has a tendency to flap back and fourth on targets.
+   *
+   * This anti-jitter code adds a threshold for reversing turn direction or starting to turn.
+   * If already turning in a particular direction, it will allow that turn to continue... the
+   * purpose of this is to prevent quantizing turns, which is what we saw before, and jittering
+   * at the edge of the threshold.
+   */
+  if(
+      (
+        !entity.previous_turn || // If we're not already turning, or...
+        !( // We're changing direction
+          (final_turn > 0 && entity.previous_turn > 0)
+          ||
+          (final_turn < 0 && entity.previous_turn < 0)
+        )
+      ) 
+      && Math.abs(final_turn) < TURN_FLOOR  // Then only execute the turn if it's larger than a floor
+    ){
+    return 0;
+  }
+
+  entity.previous_turn = final_turn;
 
 	let dist = distance(entity.position, target.position);
 
