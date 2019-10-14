@@ -104,12 +104,11 @@ export class MainMenu extends BaseMenuView {
       BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,
       "0%", "0%")
     );
-    // TODO: Options, about, etc
-    /* 
 
     widgets.push(new LandingMenuBigButton(
-      'Shipyard',
+      'About',
       () => {
+        pop_tab("http://blog.eamonnmr.com/2019/10/flythrough-space-alpha-release/", "_blank");
         this.parent.enter_state('shipyard');
       },
       RIGHT,
@@ -117,6 +116,8 @@ export class MainMenu extends BaseMenuView {
       "0%", "-10%")
     );
 
+    /* 
+     * TODO: Options, etc
     widgets.push(new LandingMenuBigButton(
       'Customize',
       () => {
