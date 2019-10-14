@@ -10,3 +10,5 @@ The code is all front-end so you can host it on your favorite server (Nginx, Apa
 
 `python -m SimpleHTTPServer 8000`
 
+# License
+The code (/src) is released under the [GNU GPL 2.0](https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt). Assets (/data, /assets and, where applicable, /asset_sources) are covered by the  Creative Commons Attribution-ShareAlike 2.0 Generic ([CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/))
