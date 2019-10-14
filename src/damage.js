@@ -1,3 +1,7 @@
+import { do_explo } from "./graphics.js";
+
+const DISABLED_THRESHOLD = 0.15;
+
 export function shot_handler(shot, object){
   if ( 'damage' in shot ){
     damage_handler(shot, object);
@@ -34,13 +38,30 @@ export function damage_handler(damager, damaged){
   }
 
   if ('damage' in damager && 'hitpoints' in damaged){
-    }
     // Remove hitpoints equal to the damage done
-    damaged.hitpoints -= damager.damage;
 
-    // If an entity's hitpoints are gone, destroy it
-    if (damaged.hitpoints <= 0){
-      damaged.remove = true;
+    let new_hp = damaged.hitpoints - damager.damage;
+    let disabled_thresh = DISABLED_THRESHOLD * damaged.max_hp;  // TODO: Cache per ent
+    
+    if ("nonlethal" in damager){
+      if(new_hp < disabled_thresh){
+        damaged.hitpoints = disabled_thresh; 
+        damaged.disabled = true;
+      }
+    } else {
+
+      damaged.hitpoints = new_hp;
+
+      // If an entity's hitpoints are gone, destroy it
+      if(new_hp < disabled_thresh){
+        damaged.disabled = true;
+      }
+      if (new_hp <= 0){
+        // TODO: More elaborite death sequence
+        do_explo(damaged.position);
+        damaged.remove = true;
+      }
+    }
   }
 }
 

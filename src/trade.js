@@ -1,3 +1,5 @@
+import { _ } from "./singletons.js";
+
 import { BaseLandingMenuView } from "./landing.js";
 import { TextBox, TextButton } from "./menu.js";
 
@@ -18,42 +20,36 @@ const SELL_LEFT = "50%";
 
 
 export class TradeMenu extends BaseLandingMenuView {
-  constructor( spobs, player_data, trade_data ){
-    super();
-    this.spobs = spobs;
-    this.player_data = player_data;
-    this.trade_data = trade_data;
-  }
   enter(){
-    this.spob = this.spobs[this.player_data.current_spob];
+    this.spob = _.data.spobs[_.player.current_spob];
     this.trade_widgets = this.get_trade_widgets();
     this.setup_menu(this.get_misc_widgets().concat(this.trade_widgets));
   }
 
   get_local_price(commodity){
-    return this.trade_data[commodity].price * PRICE_FACTORS[
+    return _.data.trade[commodity].price * PRICE_FACTORS[
       this.spob.trade[commodity]
     ];
   }
 
   buy(item, amount){
     let money =  this.get_local_price(item) * amount;
-    if(this.player_data.can_add_cargo(amount) &&
-        this.player_data.can_spend_money(money)){
-      this.player_data.money -= money;
-      if (item in this.player_data.bulk_cargo){
-        this.player_data.bulk_cargo[item] += amount;
+    if(_.player.can_add_cargo(amount) &&
+        _.player.can_spend_money(money)){
+      _.player.money -= money;
+      if (item in _.player.bulk_cargo){
+        _.player.bulk_cargo[item] += amount;
       } else {
-        this.player_data.bulk_cargo[item] = amount;
+        _.player.bulk_cargo[item] = amount;
       }
       this.update_widgets();
     }
   }
 
   sell(item, amount){
-    if(this.player_data.can_sell_cargo(item, amount)){
-      this.player_data.money += this.get_local_price(item) * amount;
-      this.player_data.bulk_cargo[item] -= amount;
+    if(_.player.can_sell_cargo(item, amount)){
+      _.player.money += this.get_local_price(item) * amount;
+      _.player.bulk_cargo[item] -= amount;
       this.update_widgets();
     }
   }
@@ -61,11 +57,11 @@ export class TradeMenu extends BaseLandingMenuView {
     let widgets = []
     let running_offset_total = 0;
     Object.keys(this.spob.trade).forEach( (key )  => {
-      if (key in this.trade_data){
+      if (key in _.data.trade){
         running_offset_total += 5;
         let offset = "" + running_offset_total + "%";
         widgets.push(
-          new CommodityLabel(this.trade_data[key].name, "15%", LABEL_LEFT, offset)
+          new CommodityLabel(_.data.trade[key].name, "15%", LABEL_LEFT, offset)
         );
         widgets.push(
           new QuantityLabel(key, offset)
@@ -138,7 +134,7 @@ class QuantityLabel extends TextBox {
   }
   
   update( parent ){
-    this.control.text = "" + parent.player_data.bulk_cargo_of_type(
+    this.control.text = "" + _.player.bulk_cargo_of_type(
         this.comodity
     );
   }
@@ -182,8 +178,8 @@ class CargoIndicator extends TextBox {
 
   update( parent ){
     this.control.text = "Cargo Space "
-      + parent.player_data.total_cargo()
-      + "/" + parent.player_data.max_cargo() + " Kg"; 
+      + _.player.total_cargo()
+      + "/" + _.player.max_cargo() + " Kg"; 
   }
 };
 
@@ -205,7 +201,7 @@ class MoneyIndicator extends TextBox {
   }
 
   update( parent ){
-    this.control.text = "" + parent.player_data.money + " Coins";
+    this.control.text = "" + _.player.money + " Coins";
   }
 };
 

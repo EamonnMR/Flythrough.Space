@@ -1,3 +1,7 @@
+import { _ } from "./singletons.js";
+import { missions_for_state, resolve_for_state } from "./missions.js";
+
+
 import {
   BaseMenuView,
   Image,
@@ -6,15 +10,11 @@ import {
   } from "./menu.js";
 
 export class LandingMenu extends BaseMenuView {
-  constructor(spobs, spob_types, player_data){
-    super();
-    this.spobs = spobs;
-    this.spob_types = spob_types;
-    this.player_data = player_data;
-  }
   enter(){
-    this.spob = this.spobs[this.player_data.current_spob];
+    this.spob = _.data.spobs[_.player.current_spob];
     this.setup_menu(this.get_widgets_for_planet());
+    // TODO: offer(missions_for_state("landing")
+    resolve_for_state("landing"); 
   }
 
   get_widgets_for_planet(){
@@ -22,7 +22,7 @@ export class LandingMenu extends BaseMenuView {
 
     /* Middle Widgets */
     const CENTER = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_CENTER;
-    let image = "assets/rustscape.png";
+    let image = "assets/icescape.png";
     if( "img" in this.spob ){
       image = this.spob.img;
     }
@@ -43,8 +43,11 @@ export class LandingMenu extends BaseMenuView {
     /* LEFT WIDGETS */
     const LEFT = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
     widgets.push(new LandingMenuBigButton(
-      'Leave ' + this.player_data.current_spob,
+      'Leave ' + _.player.current_spob,
       () => {
+        // TODO: This is an 8 on the hacky scale
+        // Reach into the missions state and clear the items.
+        this.parent.states.missions.items = null;
         this.parent.enter_state('gameplay');
       },
       LEFT,
@@ -66,7 +69,7 @@ export class LandingMenu extends BaseMenuView {
 
     if (this.spob.explore){
       widgets.push(new LandingMenuBigButton(
-        'Explore ' + this.player_data.current_spob,
+        'Explore ' + _.player.current_spob,
         () => {
           //this.parent.enter_state('explore');
         },
@@ -76,11 +79,11 @@ export class LandingMenu extends BaseMenuView {
       );
     }
 
-    if (this.spob.missions){
+    if (true){ // TODO: If missions_available()
       widgets.push(new LandingMenuBigButton(
         'Open Contracts',
         () => {
-          //this.parent.enter_state('missions');
+          this.parent.enter_state('missions');
         },
         LEFT,
         BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,
@@ -90,11 +93,11 @@ export class LandingMenu extends BaseMenuView {
    
     /* Righthand buttons */
     const RIGHT = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-    if (this.spob.govt && this.player_data.can_refuel()){  // If a planet is civilized at all, they can refuel you
+    if (this.spob.govt && _.player.can_refuel()){  // If a planet is civilized at all, they can refuel you
       let refuel_button = new LandingMenuBigButton(
         'Refuel',
         () => {
-          this.player_data.refuel() // TODO: Get player ship type!
+          _.player.refuel() // TODO: Get player ship type!
           console.log("refuel")
           refuel_button.hide(this);
         },
@@ -144,32 +147,6 @@ export class LandingMenu extends BaseMenuView {
   }
 };
 
-export class TradeMenu extends BaseMenuView {
-  constructor( spobs, player_data ){
-    super();
-    this.spobs = spobs;
-    this.player_data = player_data;
-  }
-  enter(){
-    this.spob = this.spobs[this.player_data.current_spob];
-    this.setup_menu(this.get_trade_widgets());
-  }
-
-  get_trade_widgets(){
-    return [
-      new LandingMenuBigButton(
-        "Return",
-        () => {
-          this.parent.enter_state('landing');
-        },
-        BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT,
-        BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,
-        "0%","0%"
-      )
-    ]
-  }
-}
-
 class HeroImage extends Image {
   setup(){
     let control = super.setup();
@@ -209,12 +186,15 @@ export class LandingMenuBigButton extends TextButton {
 };
 
 export class BaseLandingMenuView extends BaseMenuView {
+  leave_button_press(){
+    this.parent.enter_state('landing');
+  }
   get_misc_widgets(){
     return  [
       new LandingMenuBigButton(
         "Return",
         () => {
-          this.parent.enter_state('landing');
+          this.leave_button_press();
         },
         BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT,
         BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,

@@ -1,30 +1,59 @@
-/* Player State - this is what's shared between game states. */
+/* Player State - this is what's shared between game states, and also handles saving and loading */
 
-import { apply_upgrade, apply_upgrades } from "./util.js";
+import { _ } from "./singletons.js";
+
+import {
+  apply_upgrade,
+  apply_upgrades,
+  is_cheat_enabled,
+  overridable_default,
+} from "./util.js";
+
+const PREFIX = "savefile_"  // Prefix for player saves in local storage.
+const LAST_SAVE = "last_save"  // Stores the key for the last used save file
+
+export function load_save(save_name){
+  return JSON.parse(localStorage.getItem( key ));
+}
+
+export function load_saves(){
+  return Object.keys( localStorage ).filter( (key) => key.startsWith(PREFIX)).map( load_save )
+}
+
+export function resume(){
+  return load_save( localStorage.getItem( LAST_SAVE ));
+}
 
 export class PlayerSave {
-  constructor(ships, upgrades) {
-    // TODO: Load this from some sort of backing store / DB / etc
-    this.money = 100000000;
+
+  save(){
+    let key = PREFIX + this.name;
+    localStorage.setItem( key, JSON.stringify( this ) );
+    localStorage.setItem( LAST_SAVE, key );
+  }
+
+  constructor() {
+    this.name = "Joe Bloggs"
+    this.money = is_cheat_enabled("money") ? 100000000 : 5000;
     this.map_pos = {x: 0, y: 0};
     this.selected_system = "Casamance";
     this.selected_spob = null;
-    this.current_system = "Casamance";
-    this.current_spob = "Alluvium Fleet Yards";
+    this.current_system = overridable_default("system", "Casamance");
+    this.current_spob = overridable_default("spob", "Alluvium Fleet Yards");
     this.initial_position = {x: 0, y: 0};
-    this.ship_type = "shuttle";
-    this.upgrades = {"autocannon": 1, "autocannonammo": 5};
-    this.fuel = 3; // They start out with a full tank of gas (for a shuttle)
-
+    this.ship_type = overridable_default("ship", "shuttle");
+    this.ship_dat = Object.create(_.data.ships[this.ship_type]);
+    this.upgrades = this.ship_dat.upgrades;
+    this.fuel = this.ship_dat.max_fuel;
     this.bulk_cargo = {};
     this.mission_cargo = {};
+    this.active_missions = {};
 
     this.govts = {
       // TODO: Default rep?
       orasos: {reputation: -1}
     }
-    this.ship_dat = Object.create(ships[this.ship_type]);
-    this.ship_dat.upgrades = this.upgrades;
+    this.explored = []
   }
 
   total_cargo(){
@@ -82,6 +111,21 @@ export class PlayerSave {
     return price <= this.money + this.ship_value();
   }
 
+  add_mission_cargo(type, amount){
+    if (type in this.mission_cargo) {
+      this.mission_cargo[type] += amount;
+    } else {
+      this.mission_cargo[type] = amount;
+    }
+  }
+
+  remove_mission_cargo(type, amount){
+    this.mission_cargo[type] -= amount;
+    if(this.mission_cargo[type] === 0){
+      delete this.mission_cargo[type];
+    }
+  }
+
   buy_ship(type, new_ship){
     this.money += this.ship_value();
     this.ship_type = type;
@@ -90,12 +134,12 @@ export class PlayerSave {
     this.upgrades = this.ship_dat.upgrades;
   }
 
-  can_buy_upgrade(price, upgrade, quantity, data){
+  can_buy_upgrade(price, upgrade, quantity){
     let ship_if_bought = Object.create(this.ship_dat);
-    apply_upgrades(ship_if_bought, this.upgrades, data);
+    apply_upgrades(ship_if_bought, this.upgrades);
     
     for(let i = 0; i < quantity; i++){
-      apply_upgrade(ship_if_bought, upgrade, data);
+      apply_upgrade(ship_if_bought, upgrade);
     }
     return this.can_spend_money(upgrade.price * quantity)
       && this.validate_ship( ship_if_bought );
@@ -117,7 +161,30 @@ export class PlayerSave {
 
     this.ship_dat.upgrades = this.upgrades;
     this.money -= upgrade.price * quantity;
-    console.log(this);
+  }
+  
+  explore_system(system_name){
+    if(!this.explored.includes(system_name)){
+      this.explored.push(system_name);
+    }
+  }
+
+  system_explored(system_name){
+    return system_name in this.explored;
+  }
+
+  // TODO: Clean this up. All govts should be initialized with a default
+  // reputation level as defined in data/govts.json
+  is_govt_hostile(govt_id){
+    return govt_id in this.govts && this.govts[govt_id].reputation < 0;
+  }
+
+  change_govt_reputation(govt_id, delta){
+    if(govt_id in this.govts){
+      this.govts[govt_id].reputation += delta;
+    } else {
+      this.govts[govt_id].reputation = delta;
+    }
   }
 }
 

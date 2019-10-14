@@ -19,11 +19,17 @@ let no_op = () => {};
 
 export function inputSystem (entMan) {
   for (let entity of entMan.get_with(['input'])) {
+    if (entity.disabled){
+      continue;
+    }
     if ('velocity' in entity) {
       if (inputStates.forward) {
+        entity.thrust_this_frame = true;
         accelerate(entity.velocity,
                                   entity.direction,
                                   entity.accel * entMan.delta_time)
+      } else {
+        entity.thrust_this_frame = false;
       }
     }
     if ('direction' in entity) {

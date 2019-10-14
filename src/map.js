@@ -1,5 +1,7 @@
-import { ViewState } from "./states.js";
+import { is_cheat_enabled } from "./util.js";
+import { ViewState } from "./view_state.js";
 import { bindInputFunctions, unbindInputFunctions } from "./input.js";
+import { _ } from "./singletons.js";
 
 // Z indices:
 
@@ -29,29 +31,34 @@ const SPACELANE_COLOR = "Gray";
 
 const nogov_color = '#AFAFAF';
 const nogov_dark = '#494949';
+const UNEXPLORED_COLOR = nogov_dark;
 
 export class MapView extends ViewState{
-  constructor(data, position, game_canvas, player){
+  constructor(position){
     super();
 
-    this.player = player;
-    this.data = data;
     this.scale_factor = 1;
-    //this.diff = {x: game_canvas.width() / 2, y: game_canvas.height() / 2};
+    //this.diff = {x: _.canvas.width() / 2, y: _.canvas.height() / 2};
 
-    this.offset = { x: position.x,
-                    y: position.y};
+    this.offset = {x: -600, y: -1000}; //{ x: position.x,
+                  //  y: position.y};
     this.scrollables = [];
-    this.game_canvas = game_canvas;
 
-    this.selection = player.selected_system;
+    this.selection = _.player.selected_system;
+    // Faction colors
+    this.govt_colors = {};
+    this.govt_dark_colors = {};
+    for (let name of Object.keys(_.data.govts)){
+      this.govt_colors[ name ] = _.data.govts[ name ].color;
+      this.govt_dark_colors[ name ] = _.data.govts[ name ].dark_color;
+    }
   }
 
   enter(){
     this.dragging = false;
     console.log("Entering map state")
 
-    let current = this.data.systems[this.selection];
+    let current = _.data.systems[this.selection];
 
     this.adt =  BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 
@@ -63,23 +70,29 @@ export class MapView extends ViewState{
 
     this.adt.addControl(this.map_image);
 
+    this.calculate_visible_systems();
+
     this.create_spacelanes();
     
     this.make_in_system_dot();
 
     this.make_selection_circle();
-    // Set up color fills for map drawing
-    let govt_colors = {};
-    let govt_dark_colors = {};
 
-    for (let name of Object.keys(this.data.govts)){
-      govt_colors[ name ] = this.data.govts[ name ].color;
-      // TODO: Why aren't dark colors working?
-      govt_dark_colors[ name ] = this.data.govts[ name ].dark_color;
-    }
+    this.create_unexplored_systems();
 
-    for ( let system_name of Object.keys(this.data.systems)) {
-      let system_dat = this.data.systems[system_name];
+    this.create_explored_systems();
+
+    this.map_sub = null;
+
+    this.setup_dragging();
+
+    console.log("Finished entering map");
+
+  }
+
+  create_explored_systems(){
+    for ( let system_name of this.explored_systems) {
+      let system_dat = _.data.systems[system_name];
 
       let sys_text = new BABYLON.GUI.TextBlock();
       sys_text.color = "White";
@@ -100,50 +113,61 @@ export class MapView extends ViewState{
       sys_text.zIndex = Z_SYSTEXT;
       
       
+      this.make_sys_circle(system_dat, true);
 
-      // Determine the color of the circle based on government, if its empty
-      let color = null;
-      let is_light = 'spobs' in system_dat;
-      
-      if( "govt" in system_dat ){
-        color = is_light ? govt_colors[system_dat.govt] : govt_dark_colors[system_dat.govt];
-      } else {
-        color = is_light ? nogov_color : nogov_dark;
-      }
-
-      let sys_circle = this.get_circle(
-          system_dat.x,
-          system_dat.y,
-          CIRCLE_SIZE_INT,
-          color,
-          CIRCLE_THICKNESS,
-          Z_SYSCIRCLE,
-      )
       /*
        * This ought to work. What's more, it should be nicer
        * than brute forcing all of the circles.
        * 
-       * But try, comment this out - it won't work. Or, rather
+       * But try and comment this in - it won't work. Or, rather
        * it will work on the first four or so systems you
        * assign a listener to and nothing else.
       sys_circle.onPointerDownObservable.add((event) => {
-        console.log(event);
         this.update_selection(system_name);
       });
       */
-      this.map_image.addControl(sys_circle);
     }
-    this.map_sub = null;
+  }
 
-    this.setup_dragging();
-    console.log("Finished entering map");
+  create_unexplored_systems(){
+    for (let system_name of this.unexplored_systems){
+      this.make_sys_circle(_.data.systems[system_name], false);
+    }
+  }
 
+  make_sys_circle(system_dat, explored){
+    if (! system_dat){
+      console.log("Error: system does not exist")
+      return;
+    }
+    let color = UNEXPLORED_COLOR;
+    
+    let is_light = 'spobs' in system_dat;
+    if (is_cheat_enabled("show_npcs")){
+      is_light = 'npc_average' in system_dat && 'npcs' in system_dat;
+    }
+    if(explored){  
+      if( "govt" in system_dat ){
+        color = is_light ? this.govt_colors[system_dat.govt] : this.govt_dark_colors[system_dat.govt];
+      } else {
+        color = is_light ? nogov_color : nogov_dark;
+      }
+    }
+    let sys_circle = this.get_circle(
+        system_dat.x,
+        system_dat.y,
+        CIRCLE_SIZE_INT,
+        color,
+        CIRCLE_THICKNESS,
+        Z_SYSCIRCLE,
+    )
+    this.map_image.addControl(sys_circle);
   }
 
   update_selection( system_name ){
     this.selection = system_name;
     console.log( "Selected: " + this.selection );
-    let sel_system = this.data.systems[system_name];
+    let sel_system = _.data.systems[system_name];
     if(sel_system !== undefined){
       this.selection_circle.base_left = sel_system.x - (SELECTED_CIRCLE_SIZE / 2);
       this.selection_circle.base_top = sel_system.y - (SELECTED_CIRCLE_SIZE / 2);
@@ -187,10 +211,8 @@ export class MapView extends ViewState{
   }
 
   make_in_system_dot(){
-    // Expects this.data and this.map_image
-    let in_system = this.data.systems[this.player.current_system];
-    console.log(Object.keys(this.data.systems));
-    console.log(this.player);
+    // Expects _.data and this.map_image
+    let in_system = _.data.systems[_.player.current_system];
     let in_system_dot = this.get_circle(
         in_system.x, in_system.y,
         IN_SYS_CIRCLE_SIZE,
@@ -202,7 +224,7 @@ export class MapView extends ViewState{
   }
 
   make_selection_circle(){
-    let sel_system = this.data.systems[this.selection];
+    let sel_system = _.data.systems[this.selection];
     this.selection_circle = this.get_circle(
        sel_system.y, sel_system.x,
        SELECTED_CIRCLE_SIZE,
@@ -219,13 +241,13 @@ export class MapView extends ViewState{
   create_spacelanes(){
     let already_done = []; // Any system which already has its lines drawn should have no further lines drawn
     this.spacelanes = []; // These will be moved later, so we need a pointer to them
-    for ( let system_name of Object.keys(this.data.systems)) {
-      let system_dat = this.data.systems[system_name];
+    for ( let system_name of this.explored_systems) {
+      let system_dat = _.data.systems[system_name];
       for (let other_system_id of system_dat.links ){
-        if (!(other_system_id in this.data.systems)) {
+        if (!(other_system_id in _.data.systems)) {
           console.log('bad link: ' + system_name + ' -> ' + other_system_id);
         } else if (!(other_system_id in already_done)){
-          let other_system = this.data.systems[other_system_id];
+          let other_system = _.data.systems[other_system_id];
           // TODO: Add a line
           let spacelane = new BABYLON.GUI.Line();
           spacelane.color = SPACELANE_COLOR;
@@ -257,6 +279,26 @@ export class MapView extends ViewState{
     }
   }
 
+  calculate_visible_systems(){
+    if (is_cheat_enabled("reveal_map")){
+      this.explored_systems = Object.keys( _.data.systems);
+    } else {
+      this.explored_systems = _.player.explored;
+    }
+    console.log("Explored: ");
+    console.log(this.explored_systems);
+    this.unexplored_systems = [];
+    for( let system of this.explored_systems ){
+      for( let link of _.data.systems[system].links ){
+        if (!this.explored_systems.includes(link) && !this.unexplored_systems.includes(link)){
+          this.unexplored_systems.push( link );
+        }
+      }
+    }
+    this.visible_systems = this.explored_systems.concat(this.unexplored_systems);
+    console.log("Unexplored Systems: " + this.unexplored_systems);
+  }
+
   move_spacelanes(){
     for(let line of this.spacelanes){
       line.x1 = line.base_x1 + this.offset.x;
@@ -275,6 +317,8 @@ export class MapView extends ViewState{
 
   setup_dragging(){
     this.dragging = false;
+
+    this.map_image.isPointerBlocker = true;
     
     bindInputFunctions({
       toggle_pause: () => {
@@ -297,8 +341,8 @@ export class MapView extends ViewState{
       // Original map code
       // TODO: Replace this with the above nice code...
       // if it can be made to, like, work.
-      for ( let system_name of Object.keys(this.data.systems)) {
-        let system_dat = this.data.systems[system_name];
+      for ( let system_name of this.visible_systems) {
+        let system_dat = _.data.systems[system_name];
         //Ugly brute force clicking-on-system check
         //Treats the map circles as squares
         if(
@@ -315,7 +359,7 @@ export class MapView extends ViewState{
       }
     });
     this.map_image.onPointerMoveObservable.add( (event) => {
-      console.log(this.dragging);
+      console.log("dragging" + this.dragging);
       let coordinates = this.parse_event(event);  
       if ( this.dragging ) {
         this.offset.x +=  coordinates.x - this.mouse_pos.x;
@@ -327,7 +371,6 @@ export class MapView extends ViewState{
       }
     });
 
-    
   }
 
   parse_event(event){
@@ -340,7 +383,7 @@ export class MapView extends ViewState{
 
   exit(){
     unbindInputFunctions();
-    this.player.selected_system = this.selection
+    _.player.selected_system = this.selection
     this.adt.removeControl(this.map_image);
     this.map_image.dispose();
   }

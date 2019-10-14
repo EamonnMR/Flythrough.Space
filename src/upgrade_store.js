@@ -1,36 +1,24 @@
+import { _ } from "./singletons.js";
 import { StoreMenu, StoreitemName, StoreitemDesc, BuyButton, QuantBar, StoreQuantLabel } from "./store.js";
 
 import { TextButton, TextBox, Image} from "./menu.js";
 
 
 export class UpgradeMenu extends StoreMenu {
-  constructor(spobs, player_data, items, data){
+  constructor(){
     super();
-    this.spobs = spobs;
-    this.player_data = player_data;
-    this.selected = null;
-    this.scroll_offset = 0;
-    this.items = items; // Items should be the data set of the type
-    // of item the store sells.
-    this.data = data;
+    this.items = _.data.upgrades;
   }
-
   
   do_buy(){
     let item = this.current_item();
     if (this.can_purchase_item(item)){
-      console.log("bought the " + this.selected);
-      this.player_data.buy_upgrade(this.selected, item, 1);
+      _.player.buy_upgrade(this.selected, item, 1);
     }
   }
 
-  get_available_items(){
-    // TODO: Filter by tech
-    return this.items;
-  }
-
   can_purchase_item(item){
-    return this.player_data.can_buy_upgrade(item.price, item, 1, this.data)
+    return _.player.can_buy_upgrade(item.price, item, 1)
   }
 
   get_selection_tab_widget(key, item, offset){
@@ -58,11 +46,7 @@ export class UpgradeMenu extends StoreMenu {
       }},
     ]
   }
-
-
 }
-
-// TODO: This really needs a refactor
 
 class UpgradeTab extends TextButton {
   constructor(item, name, price, top, callback){

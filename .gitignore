@@ -4,4 +4,4 @@ ngrok
 *.swp
 node_modules/*
 /assets/*.log
-
+/asset_sources/*.blend[0-9*]

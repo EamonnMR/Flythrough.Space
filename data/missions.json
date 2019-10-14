@@ -1,53 +1,64 @@
 {
   "basic_cargo": {
-    "name": "Transport {{ cargo.type }} to {{ dest.spob }}",
-    "brief": "A merchant vessel is needed to transport {{ cargo.amount }} tons of {{ cargo.type }} to {{ dest.spob}} in the {{ dest.sys }} system. Payment upon arrival will be {{ payout }}",
-    "payout": 20000,
+    "short_name": "Transport ${cgo(this.cargo.type)} to ${this.dest.spob}",
+    "desc": "A merchant vessel is needed to transport ${this.cargo.amount} tons of ${cgo(this.cargo.type)} to ${this.dest.spob} in the ${this.dest.sys} system. Payment upon arrival will be ${this.reward} credcoin.",
+    "reward": 20000,
     "cargo": {
-      "type": "*legal",
-      "amount": "5-10"
+      "type": "${get_legal_cargo()}",
+      "amount": "randint(5,10)"
     },
-    "dest": {
-      "sys": "*samegov",
-      "spob": "*"
+    "dest": "get_spob_same_govt();",
+    "offer_state": "missions",
+    "offer_if": "true",
+    "accept_modal": {
+      "text": "The dockhands load the ${cgo(this.cargo.type)} into your cargo bay"
+    },
+    "success_modal": {
+      "text": "The dockhands unload the ${cgo(this.cargo.type)} from your cargo bay and hand off the payment of ${this.reward} credcoin."
     }
   },
   "rideshare": {
-    "name": "Ferry Passengers to {{ dest.spob }}",
-    "brief": "Passengers have hailed a ride to {{ dest.spob }} in the {{dest.sys}} system.",
-    "payout": 2000,
+    "short_name": "Ferry Passengers to ${this.dest.spob}",
+    "desc": "Passengers have hailed a ride to ${this.dest.spob} in the ${this.dest.sys} system. Safe passage will earn you ${this.reward} credcoin.",
+    "reward": 2000,
+    "offer_if": "true",
+    "offer_state": "missions",
     "cargo": {
       "type": "passengers",
       "amount": 1
     },
-    "dest": {
-      "sys": "*samegov",
-      "spob": "*"
+    "dest": "get_spob_same_govt()",
+    "accept_modal": {
+      "text": "The Passengers board your ship"
+    },
+    "success_modal": {
+      "text": "The passengers disembark. You hope they leave you a good review."
     }
   },
   "smuggle": {
-    "name": "Smuggle {{ cargo.type }} to {{ dest.spob }}",
-    "brief": "Some perhaps less than legal exporters need {{ cargo.amount }} tons of {{ cargo.type }} moved discretely.",
+    "short_name": "Smuggle ${cgo(this.cargo.type)} to ${this.dest.spob}",
+    "desc": "Some shady exporters need ${this.cargo.amount} tons of ${cgo(this.cargo.type)} moved discretely.",
+    "offer_if": "true",
+    "offer_state": "missions",
     "cargo": {
-      "type": "*illegal",
-      "amount": "10-20",
-      "illegal": true
+      "type": "${get_illegal_cargo()}",
+      "amount": "randint(5,10)"
     },
-    "dest": {
-      "sys": "*samegov",
-      "spob": "*"
-    },
-    "payout": 14000
+    "dest": "get_spob_same_govt()",
+    "reward": 14000,
+    "accept_modal": {
+      "text": "The dockhands quietly load the mislabeled containers of \"${cgo(get_legal_cargo())}\" into your hold."
+    }
   },
   "bounty_direc": {
-    "name": "Wanted: Dead or Alive",
-    "brief": "Reward: 20000 credcoin. To be paid in full upon destruction of the pirate vessle \"{{ target.name }}\". As usual, crew may surrender at any port for immediate sentencing. Last spotted near the {{ dest.sys }} system, raiding merchant vessles.",
-    "offer": {
-      "spob.govt": "=direc"
-    },
+    "short_name": "Wanted: Dead or Alive",
+    "brief": "Reward: ${reward} credcoin. To be paid in full upon destruction of the pirate vessle \"${target.name}\". As usual, crew may surrender at any port for immediate sentencing. Last spotted near the ${dest.sys} system, raiding merchant vessels.",
+    "availability": "${govt_is('direc')}",
+    "dest": "random_same_gov_spob()",
     "target": {
-      "group": "pirate_raid",
-      "random_name": [
+      "type": "${npc_group('pirate_raid')}",
+      "short_name": "${random_choice(this.target.names)}",
+      "names": [
         "Ghost of a chance",
         "Miriam",
         "Indrid",
@@ -67,23 +78,28 @@
     }
   },
   "bounty_ne": {
-    "name": "Terrorist Watch List: Wanted",
-    "brief": "Seditious and unworthy pirates are operating a ship called {{ target.name }} in and around the {{ dest.sys }} system. Any captain who can eliminate this ship will be richly rewarded.",
+    "short_name": "Terrorist Watch List: Wanted",
+    "brief": "Seditious and unworthy insurgents are operating a ship called {{ target.name }} in and around the {{ dest.sys }} system. Any captain who can eliminate this ship will be richly rewarded.",
     "offer": {
       "spob.govt": "drone"
     },
     "target": {
-      "group": "baik_pirates",
+      "type": "${npc_group(baik_insur_raid)}",
+      "short_name": "${random_selection(target.names)}",
+      "dest": "random_same_gov_spob()",
       "names": [
         "Baikonour Forever",
         "Invictus",
         "Novochock",
-        "Radio Free Baikonour"
+        "Radio Free Baikonour",
+        "Big K-T",
+        "Unbowed",
+        "Unbroken"
       ]
     }
   },
   "caudron1":{
-    "offer": "You're met at the spaceport by a hulking cyborg in business attire who introduces himself as Julien.\n \"You'd better come with me\" he says, and eyeing his metallic hands you realize you should probably comply, at least until you figure out who he is. He does not pat you down for weapons, which is almost more intimidating. You end up in an upscale nightclub, where Julien orders a lavish plate of Bjarnean Scrod. \"What's this about?\" you ask.\nThe cyborg takes his time to reply \"You've been raiding merchant ships, yes?\" You reach for your pistol, and he smiles \"calm down, I'm not a secret agent. I'm not here to stop you from engaging in piracy. What I am here to do is make sure you follow the rules.\"\n\"Rules? What rules?\"\n\"Rules like... the family gets a cut. That you don't shake down any merchents who have paid their protection money. Paying your own protection money. I represent the Caudron Family.\" around your booth, four more cyborgs shimmer into view, as if from nowhere. Eachh one locks eyes with you and then disappears again. You unhand your pistol. This \"Family\" seems to mean business.",
+    "offer": "You're met at the spaceport by a hulking cyborg in business attire who introduces himself as Julien.\n \"You'd better come with me\" he says, and eyeing his metallic hands you realize you should probably comply, at least until you figure out who he is. He does not pat you down for weapons, which is almost more intimidating. You end up in an upscale nightclub, where Julien orders a lavish plate of Bjarnean Scrod. \"What's this about?\" you ask.\nThe cyborg takes his time to reply \"You've been raiding merchant ships, yes?\" You reach for your pistol, and he smiles \"calm down, I'm not a secret agent. I'm not here to stop you from engaging in piracy. What I am here to do is make sure you follow the rules.\"\n\"Rules? What rules?\"\n\"Rules like... the family gets a cut. That you don't shake down any merchants who have paid their protection money. Paying your own protection money. I represent the Caudron Family.\" around your booth, four more cyborgs shimmer into view, as if from nowhere. Each one locks eyes with you and then disappears again. You unhand your pistol. This \"Family\" seems to mean business.",
     "accept": "\"I'm glad we could come to an understanding, for now\" says Jilien, his cybernetic eye scanning the scrod on his fork \"There's a planet deep in the Orasos nebula, called Nightside. We're loading your ship right now with a cargo of this stuff\" he indicates the Scrod on his plate. \"If you're the sort of captain we think you are, you won't have any trouble bringing this into the nebula without attracting too much attention from the authorities.\"\n\"The nebula is a deathtrap, full of pirates\" you mention, trying to sound casual.\n\"An excellent way to earn the respect of criminals, I've found\" Julien responds, now making eye contact \"is to show that you don't fear them. Now, please, your meal is getting cold. I'd hate to see it go to waste.",
     "cargo": {
       "type": "scrod",
@@ -96,10 +112,20 @@
       "sys": "baikon",
       "spob": "bukov"
     },
-    "pickup": "You touch down far outside of the fortress-spaceport that usually controls all traffic to and from this forsaken rock. Prisoners swarm into your hold, and a few are even clinging to the side of the ship as you take off. You hope they have the good sense to jump before you reach orbit. As you scream out of the atmosphere, you recieve a transmission.\n\"{{ player.ship_name }}, takeoff was not authorized. Power down your shields and prepare to be boarded.\" Your radar indicates that several imperial vessles are in high orbit, and if radar dots could look spoiling for a fight, they would.",
+    "pickup": "You touch down far outside of the fortress-spaceport that usually controls all traffic to and from this forsaken rock. Prisoners swarm into your hold, and a few are even clinging to the side of the ship as you take off. You hope they have the good sense to let go before you reach orbit. As you scream out of the atmosphere, you receive a transmission.\n\"${player.ship_name}, takeoff was not authorized. Power down your shields and prepare to be boarded.\" Your radar indicates that several imperial vessels are in high orbit, and if radar dots could look spoiling for a fight, they would.",
     "cargo": {
       "type": "prisoners",
       "amount": 20
     }
+  },
+  "itaskan_hook": {
+    "offer": "As you sit down in the bar, electronic music from the dancefloor covers the sound of some flight-suited astronauts approaching your table. Two of them have the gleaming helmets of Itaskan flight crew, while the man in the middle carries his. His appearance is paradoxically youthful but with a few very clear markers of age.\n\"{{ player.name }}, would you be interested in a perilous journey across known and unknown space?\" the middle man asks.",
+    "accept": "\"Wonderful\" says the well-preserved man \"My name is Professor Morton, but you can call me Tyrell. I've got a fairly sensitive mission and your reputation precedes you. It's scientific in nature-natural history really. Our first stop will be nearby Baikon."
+  },
+  "loyal_suns_hook": {
+    "offer": "Though you scanned the landing pad before setting down, as soon as you step outside you are beset by a squad of grim-helmeted Loyal Suns marines. They're silent for a tense moment, and you're tempted to make a run for it, but out steps a shorter naval officer.\n\"You can feel it, can't you. You're caught here, on this dusty rock, subjected to the power of people. On the ground. You'll be happy to hear that you're not under arrest, I just happen to be fairly paranoid when I'm off my ship. Really, any time I'm not at the helm. ${_.player.name}, we've been watching your career develop. I think you understand what it means to be a spacefarer. To be constrained by those on the ground who think they know what's best for you and your crew. Join us, and live the life that spacefarers where meant to live!\""
+  },
+  "freehold_hook": {
+    "offer": "The sound of klaxons blares through the spaceport, and everyone seems to know what to do. You can't catch exactly the fuss is about, or where everyone is running to, but they appear to be taking cover. You move to your ship (the only cover you've got as doors slam shut in every direction) when a firm grip on your shoulder pulls you out of the chaos.\n\"Hey, that's your ship, right?\" says the man in a Freehold pilot's jumpsuit \"We're scrambling to fight off a Loyal Suns raiding party. Can we count on you?\""
   }
 }

@@ -85,6 +85,12 @@
     "y":965,
     "govt":"direc",
     "roidSet":"silicaFieldH",
+    "npc_average": 5,
+    "npcs": [
+      "xic_presence",
+      "trader_lowtech",
+      "cas_patrol"
+    ],
     "spobs":[
       "Harcourt",
       "XIC - Bluthgelt"
@@ -100,7 +106,7 @@
     "govt":"direc",
     "links":[
       "Rainsford",
-      "Pentecost",
+      "Terisiare",
       "Rimell",
       "Bluthgelt"
     ]
@@ -136,6 +142,12 @@
       "Carvajal",
       "Enyeama",
       "Yekini"
+    ],
+    "lights": [
+      {
+        "position": [0, 1,-1],
+        "intensity": 0.5
+      }
     ]
   },
   "Carvajal":{
@@ -172,10 +184,16 @@
     "x":885,
     "y":859,
     "govt":"direc",
+    "npc_average": 3,
+    "npcs": [
+      "xic_presence",
+      "trader_lowtech",
+      "cas_patrol"
+    ],
     "roidSet":"silicaFieldM",
     "spobs":[
-      "Cook",
-      "Dafydd"
+      "Lanner",
+      "Lanner Orbital"
     ],
     "links":[
       "Bluthgelt"
@@ -206,6 +224,13 @@
     "x":685,
     "y":933,
     "govt":"pen",
+    "npc_average": 4,
+    "npcs": [
+      "western_trader",
+      "itaska",
+      "ls_raid"
+    ],
+
     "spobs":[
       "Cobb",
       "DIII - Loneozner"
@@ -232,7 +257,7 @@
       "Wijngaarden"
     ]
   },
-  "Pentecost":{
+  "Terisiare":{
     "x":1027,
     "y":963,
     "govt":"direc",
@@ -243,7 +268,7 @@
     "links":[
       "Stavros",
       "Rossum",
-      "Cartwright"
+      "Inverness"
     ]
   },
   "Rossum":{
@@ -255,22 +280,22 @@
     ],
     "links":[
       "Carvajal",
-      "Pentecost",
+      "Terisiare",
       "Wirth",
       "Okocha"
     ]
   },
-  "Cartwright":{
+  "Inverness":{
     "x":1049,
     "y":886,
     "govt":"direc",
     "spobs":[
-      "Dogover",
-      "Zachit",
-      "Miranu"
+      "Skye Orbital",
+      "Inshes",
+      "Carnarc"
     ],
     "links":[
-      "Pentecost",
+      "Terisiare",
       "Wijngaarden",
       "Stroustrup"
     ]
@@ -284,7 +309,7 @@
     ],
     "links":[
       "Rainsford",
-      "Cartwright",
+      "Inverness",
       "Steiner",
       "Kiriyenko"
     ]
@@ -298,12 +323,33 @@
       ".136",
       "Wijngaarden",
       "Khust"
+    ],
+    "npc_average": 5,
+    "npcs": [
+      "trader_bulk",
+      "cas_capital",
+      "cas_patrol",
+      "ls_raid",
+      "ls_pr",
+      "xic_presence"
+    ],
+    "lights": [
+      {
+        "position": [-1, -1,0],
+        "intensity": 0.8,
+        "diffuse": [0.2,0.8,0.1],
+        "specular": [0.3,0.7,0.2]
+      }
     ]
   },
   "Uttar":{
     "x":1264,
     "y":903,
     "govt":"hex",
+    "spobs": [
+      "Agra",
+      "Reddy"
+    ],
     "links":[
       "Holcomb",
       "Pyatigorsk",
@@ -331,6 +377,13 @@
     "x":860,
     "y":1211,
     "govt":"direc",
+    "npc_average": 4,
+    "npcs": [
+      "pirate_raid",
+      "trader_bulk",
+      "cas_capital",
+      "cas_patrol"
+    ],
     "links":[
       "Casamance",
       "Kilwa"
@@ -350,6 +403,12 @@
     "x":1276,
     "y":969,
     "govt":"hex",
+    "npc_average": 3,
+    "npcs": [
+      "trader_bulk",
+      "trader_danger",
+      "league_pt"
+    ],
     "links":[
       "Uttar",
       "Kuluene",
@@ -384,7 +443,10 @@
     "x":1128,
     "y":968,
     "govt":"direc",
-    "spobs": "Wieliczka",
+    "spobs": 
+    [
+        "Wieliczka"
+    ],
     "links":[
       "Rossum",
       "Holcomb",
@@ -414,8 +476,7 @@
     "y":1231,
     "govt":"direc",
     "spobs":[
-      "Ubuntu",
-      "Mint"
+      "Ubuntu"
     ],
     "links":[
       "Sipali",
@@ -474,6 +535,15 @@
     "x":954,
     "y":1393,
     "govt":"direc",
+    "npc_average": 2,
+    "npcs": [
+      "pirate_raid",
+      "pirate_expedition",
+      "trader_danger",
+      "cas_patrol",
+      "cas_capital"
+    ],
+
     "links":[
       "Ibadan",
       "Mideska",
@@ -618,7 +688,7 @@
     ],
     "links":[
       "Wirth",
-      "Cartwright",
+      "Inverness",
       "Ishayev",
       "Pyatigorsk"
     ]
@@ -664,7 +734,7 @@
     "links":[
       "Kiriyenko",
       "Rybak",
-      "Dnipropetrovsk"
+      "Contra Costa"
     ]
   },
   "Rybak":{
@@ -687,10 +757,10 @@
     ],
     "links":[
       "Novosibirsk",
-      ".193"
+      "Intrepid"
     ]
   },
-  "Dnipropetrovsk":{
+  "Contra Costa":{
     "x":1017,
     "y":588,
     "govt":"drone",
@@ -707,7 +777,7 @@
     "govt":"drone",
     "links":[
       ".181",
-      "Dnipropetrovsk",
+      "Contra Costa",
       ".*11",
       ".*12"
     ]
@@ -725,7 +795,7 @@
   "Shepard":{
     "x":1423,
     "y":557,
-    "govt":"fifth",
+    "govt":"drone",
     "spobs":[
       "Frontier Outpost V"
     ],
@@ -793,41 +863,59 @@
     "y":220,
     "govt":"drone",
     "links":[
-      ".192",
-      ".265",
+      "Nemesis",
+      "Zorax",
       ".*31"
     ]
   },
-  ".192":{
+  "Nemesis":{
     "x":897,
     "y":320,
     "govt":"drone",
     "links":[
       ".191",
-      ".193",
-      ".194",
-      ".203",
-      ".204",
-      ".205"
+      "Intrepid",
+      "Resolute",
+      "Unrelenting",
+      "Victory",
+      "Defiance"
+    ],
+    "spobs": [
+      "Prospero",
+      "Nemesis Orbital"
+    ],
+    "lights": [
+      {
+        "position": [0, 1,-1],
+        "intensity": 0.5,
+        "diffuse": [1,0,0],
+        "specular": [1,0,0]
+      }
+    ],
+    "npc_average": 5,
+    "npcs": [
+      "ls_boss",
+      "ls_raid",
+      "ls_noncom"
     ]
   },
-  ".193":{
+  "Intrepid":{
     "x":912,
     "y":435,
     "govt":"drone",
     "links":[
       ".181",
-      ".192",
-      ".194"
+      "Nemesis",
+      "Resolute"
     ]
   },
-  ".194":{
+  "Resolute":{
     "x":1010,
     "y":334,
     "govt":"drone",
     "links":[
-      ".192",
-      ".193",
+      "Nemesis",
+      "Intrepid",
       ".195",
       ".196",
       ".197"
@@ -838,7 +926,7 @@
     "y":412,
     "govt":"drone",
     "links":[
-      ".194"
+      "Resolute"
     ]
   },
   ".196":{
@@ -846,8 +934,8 @@
     "y":297,
     "govt":"drone",
     "links":[
-      ".194",
-      ".198",
+      "Resolute",
+      "Housatonic",
       ".*31"
     ]
   },
@@ -857,11 +945,11 @@
     "govt":"drone",
     "links":[
       ".195",
-      ".198",
+      "Housatonic",
       "Khabarovsk"
     ]
   },
-  ".198":{
+  "Housatonic":{
     "x":1211,
     "y":365,
     "govt":"drone",
@@ -870,6 +958,10 @@
       ".197",
       "Latyshev",
       ".*20"
+    ],
+    "spobs":[
+      "Hoosac",
+      "Hoosac Orbital"
     ]
   },
   ".199":{
@@ -885,6 +977,22 @@
   "Khust":{
     "x":914,
     "y":696,
+    "lights": [
+      {
+        "position": [-0, 1,-1],
+        "diffuse": [1, 0.8, 0.6],     
+        "intensity": 0.8
+      }
+    ],
+    "npc_average": 3,
+    "npcs": [
+      "trader_lowtech",
+      "western_trader",
+      "ls_pt",
+      "ls_raid",
+      "cas_patrol",
+      "cas_capital"
+    ],
     "links":[
       "Kiriyenko",
       "Steiner",
@@ -898,7 +1006,7 @@
     "y":623,
     "govt":"drone",
     "links":[
-      "Dnipropetrovsk",
+      "Contra Costa",
       "Khust"
     ]
   },
@@ -912,31 +1020,31 @@
       ".*11"
     ]
   },
-  ".203":{
+  "Unrelenting":{
     "x":808,
-    "y":265,
+    "y":256,
     "govt":"drone",
     "links":[
-      ".192",
+      "Nemesis",
       ".250",
-      ".265"
+      "Zorax"
     ]
   },
-  ".204":{
+  "Victory":{
     "x":800,
     "y":344,
     "govt":"drone",
     "links":[
-      ".192",
+      "Nemesis",
       ".250"
     ]
   },
-  ".205":{
+  "Defiance":{
     "x":815,
     "y":423,
     "govt":"drone",
     "links":[
-      ".192",
+      "Nemesis",
       ".250",
       ".*11"
     ]
@@ -949,6 +1057,14 @@
     "spobs":[
       "Vatsa"
     ],
+    "npc_average": 3,
+    "npcs": [
+      "cas_capital",
+      "cas_patrol",
+      "trader_danger",
+      "trader_bulk",
+      "trader_lowtech"
+    ],
     "links":[
       "Enyeama",
       "Ibadan",
@@ -959,6 +1075,13 @@
     "x":785,
     "y":1444,
     "govt":"direc",
+    "npc_average": 2,
+    "npcs": [
+      "trader_danger",
+      "trader_lowtech",
+      "pirate_raid",
+      "cas_patrol"
+    ],
     "links":[
       "Nowra",
       ".*23",
@@ -969,6 +1092,15 @@
     "x":955,
     "y":1496,
     "govt":"direc",
+    "npc_average": 2,
+    "npcs": [
+      "caudron_gang",
+      "pirate_raid",
+      "pirate_expedition",
+      "trader_danger",
+      "cas_patrol",
+      "cas_capital"
+    ],
     "links":[
       "Minna",
       ".343",
@@ -1103,7 +1235,14 @@
     "x":1529,
     "y":1581,
     "govt":"orasos",
-    "spobs": "Nightside",
+    "npc_average": 5,
+    "npcs": [
+      "caudron_gang",
+      "pirate_expedition"
+    ],
+    "spobs": [
+      "Nightside"
+    ],
     "links":[
       ".216",
       ".226"
@@ -1205,9 +1344,18 @@
     "links":[
       "Akure",
       "Azuay"
+    ],
+    "lights": [
+      {
+        "position": [0, 1,-1],
+        "intensity": 0.5,
+        "diffuse": [1,0,0],
+        "specular": [1,0,0]
+      }
     ]
+
   },
-  "Pavlichenko":{
+  "Locklear":{
     "x":545,
     "y":1148,
     "govt":"pen",
@@ -1227,6 +1375,15 @@
   "Amstrad":{
     "x":485,
     "y":1323,
+    "npc_average": 1,
+    "npcs": [
+      "western_trader_small",
+      "western_trader",
+      "trader_lowtech",
+      "trader_danger",
+      "pirate_expedition",
+      "itaska"
+    ],
     "links":[
       "Asuangate",
       "Misiones",
@@ -1238,6 +1395,22 @@
     "x":588,
     "y":1383,
     "govt":"direc",
+    "npc_average": 5,
+    "npcs": [
+      "trader_bulk",
+      "western_trader",
+      "cas_capital",
+      "cas_patrol"
+    ],
+    "npc_average": 3,
+    "npcs": [
+      "trader_bulk",
+      "western_trader",
+      "cas_capital",
+      "cas_patrol",
+      "pirate_raid"
+    ],
+
     "spobs":[
       "Sinaqara"
     ],
@@ -1262,8 +1435,14 @@
   "Misiones":{
     "x":479,
     "y":1229,
+    "npc_average": 1,
+    "nocs": [
+      "trader_lowtech",
+      "western_trader_small",
+      "itaska"
+    ],
     "links":[
-      "Pavlichenko",
+      "Locklear",
       "Amstrad"
     ]
   },
@@ -1271,17 +1450,23 @@
     "x":528,
     "y":1066,
     "govt":"pen",
+    "npc_average": 3,
+    "npcs": [
+      "itaska",
+      "western_trader",
+      "western_trader_small"
+    ],
     "spobs":[
       "DI - Lyrell",
       "Trowel"
     ],
     "links":[
-      "Rublev",
+      "Harbi",
       "Straylight",
       "Pace"
     ]
   },
-  "Rublev":{
+  "Harbi":{
     "x":433,
     "y":1016,
     "govt":"pen",
@@ -1304,7 +1489,7 @@
       "Sinchenko"
     ],
     "links":[
-      "Rublev",
+      "Harbi",
       "McPherson"
     ]
   },
@@ -1312,6 +1497,12 @@
     "x":530,
     "y":953,
     "govt":"pen",
+    "npc_average": 4,
+    "npcs": [
+      "western_trader",
+      "itaska",
+      "ls_raid"
+    ],
     "links":[
       "Millwright",
       ".258"
@@ -1325,7 +1516,7 @@
       "Angeles"
     ],
     "links":[
-      "Rublev",
+      "Harbi",
       "McPherson"
     ]
   },
@@ -1338,7 +1529,7 @@
       "Aralsk"
     ],
     "links":[
-      "Rublev",
+      "Harbi",
       "Albacore",
       "Burch",
       ".367"
@@ -1356,15 +1547,15 @@
     ],
     "links":[
       "Skovoroda",
-      "Balishkova"
+      "Balish"
     ]
   },
-  "Balishkova":{
+  "Balish":{
     "x":296,
     "y":1087,
     "govt":"pen",
     "spobs":[
-      "Pajitnov"
+      "Pajit"
     ],
     "links":[
       "Albacore",
@@ -1402,7 +1593,7 @@
       ".372"
     ]
   },
-  ".247":{
+  "Androscoggin":{
     "x":347,
     "y":744,
     "links":[
@@ -1414,8 +1605,8 @@
     "x":425,
     "y":782,
     "links":[
-      ".247",
-      ".276"
+      "Androscoggin",
+      "Lemuel"
     ]
   },
   "Azuay":{
@@ -1431,12 +1622,14 @@
     "x":693,
     "y":313,
     "govt":"drone",
-    "spobs": "Horizon",
+    "spobs":[
+      "Horizon"
+    ],
     "links":[
       ".202",
-      ".203",
-      ".204",
-      ".205",
+      "Unrelenting",
+      "Victory",
+      "Defiance",
       ".261"
     ]
   },
@@ -1457,7 +1650,7 @@
     "links":[
       ".264",
       ".267",
-      ".280",
+      "Uluru",
       ".*1",
       ".*2"
     ]
@@ -1466,6 +1659,7 @@
     "x":676,
     "y":507,
     "govt":"drone",
+    "spobs": ["Morcia"],
     "links":[
       ".268",
       ".*1",
@@ -1496,12 +1690,18 @@
     "x":628,
     "y":1058,
     "govt":"pen",
+    "npc_average": 4,
+    "npcs": [
+      "itaska",
+      "western_trader",
+      "western_trader_small"
+    ],
     "spobs":[
       "Frontier Outpost IV"
     ],
     "links":[
       "Panfilov",
-      "Pavlichenko",
+      "Locklear",
       "Millwright",
       "Kharkov"
     ]
@@ -1514,6 +1714,14 @@
       "Broken Arrow",
       "Frontier Outpost III"
     ],
+    "npc_average": 2,
+    "npcs": [
+      "cas_capital",
+      "cas_patrol",
+      "trader_danger",
+      "trader_lowtech",
+      "pirate_raid"
+    ],
     "links":[
       "Kagame",
       "Asuangate",
@@ -1523,12 +1731,20 @@
   ".258":{
     "x":557,
     "y":821,
+    "npc_average": 4,
+    "npcs": [
+      "western_trader",
+      "itaska",
+      "ls_raid",
+      "ls_boss"
+    ],
+
     "links":[
       "Straylight",
       ".255",
       "Kharkov",
       ".274",
-      ".276"
+      "Lemuel"
     ]
   },
   ".259":{
@@ -1536,19 +1752,19 @@
     "y":683,
     "govt":"drone",
     "links":[
-      ".247",
-      ".260",
+      "Androscoggin",
+      "Cordova",
       ".274",
       ".275"
     ]
   },
-  ".260":{
+  "Cordova":{
     "x":501,
     "y":756,
     "govt":"drone",
     "links":[
       ".259",
-      ".276"
+      "Lemuel"
     ]
   },
   ".261":{
@@ -1558,7 +1774,7 @@
     "links":[
       ".250",
       ".262",
-      ".265",
+      "Zorax",
       ".277*"
     ]
   },
@@ -1594,14 +1810,16 @@
       ".*2"
     ]
   },
-  ".265":{
+  "Zorax":{
     "x":783,
     "y":193,
-    "spobs": "Krysto",
+    "spobs": [
+      "Krysto"
+    ],
     "govt":"drone",
     "links":[
       ".191",
-      ".203",
+      "Unrelenting",
       ".261",
       ".277*"
     ]
@@ -1679,6 +1897,13 @@
     "x":596,
     "y":941,
     "govt":"pen",
+    "npc_average": 4,
+    "npcs": [
+      "western_trader",
+      "itaska",
+      "ls_raid"
+    ],
+
     "spobs":[
       "Kopachy",
       "DVI - Strelok"
@@ -1696,7 +1921,7 @@
       ".258",
       ".259",
       "Baikon",
-      ".280"
+      "Uluru"
     ]
   },
   ".275":{
@@ -1707,13 +1932,21 @@
       ".278"
     ]
   },
-  ".276":{
+  "Lemuel":{
     "x":479,
     "y":901,
+    "npc_average": 2,
+    "npcs": [
+      "trader_lowtech",
+      "western_trader",
+      "itaska",
+      "ls_raid"
+    ],
+
     "links":[
       ".248",
       ".258",
-      ".260"
+      "Cordova"
     ]
   },
   ".277*":{
@@ -1722,7 +1955,7 @@
     "links":[
       ".261",
       ".262",
-      ".265",
+      "Zorax",
       ".*5"
     ]
   },
@@ -1732,14 +1965,16 @@
     "links":[
       ".267",
       ".275",
-      ".280"
+      "Uluru"
     ]
   },
-  ".280":{
+  "Uluru":{
     "x":458,
     "y":566,
     "govt":"drone",
-    "spobs": "Broken Hill",
+    "spobs": [
+      "Broken Hill"
+    ],
     "links":[
       ".252",
       ".274",
@@ -1903,10 +2138,9 @@
       ".*6"
     ]
   },
-  "Vakarian":{
+  "Ulam":{
     "x":1735,
     "y":356,
-    "govt":"fifth",
     "links":[
       "Kirrahe",
       ".302",
@@ -1917,10 +2151,9 @@
   "Kirrahe":{
     "x":1627,
     "y":360,
-    "govt":"fifth",
     "links":[
-      "Vakarian",
-      "Normandy",
+      "Ulam",
+      "Normanz",
       ".*26"
     ]
   },
@@ -1928,7 +2161,7 @@
     "x":1605,
     "y":228,
     "links":[
-      "Vakarian",
+      "Ulam",
       ".306",
       ".*26"
     ]
@@ -1937,7 +2170,7 @@
     "x":1803,
     "y":234,
     "links":[
-      "Vakarian",
+      "Ulam",
       ".303",
       ".306",
       ".309"
@@ -1947,7 +2180,7 @@
     "x":1845,
     "y":302,
     "links":[
-      "Vakarian",
+      "Ulam",
       ".302",
       "Marauder",
       ".309"
@@ -1956,19 +2189,17 @@
   "Marauder":{
     "x":1853,
     "y":368,
-    "govt":"fifth",
     "links":[
-      "Vakarian",
+      "Ulam",
       ".303",
-      "Normandy",
+      "Normanz",
       ".310",
       ".312"
     ]
   },
-  "Normandy":{
+  "Normanz":{
     "x":1679,
     "y":464,
-    "govt":"fifth",
     "links":[
       "Kirrahe",
       "Marauder",
@@ -2015,16 +2246,16 @@
     "links":[
       "Marauder",
       ".309",
-      ".317",
+      "Stormgald",
       ".*18",
-      ".*27"
+      "Argonne"
     ]
   },
   ".311":{
     "x":1708,
     "y":517,
     "links":[
-      "Normandy",
+      "Normanz",
       ".312"
     ]
   },
@@ -2034,7 +2265,7 @@
     "links":[
       "Marauder",
       ".311",
-      ".*27"
+      "Argonne"
     ]
   },
   "Panaorios":{
@@ -2045,7 +2276,7 @@
       "Peenemunde",
       "Covasna",
       "Chenab",
-      "Stormgald"
+      "Yevgraf"
     ]
   },
   "Peenemunde":{
@@ -2071,7 +2302,7 @@
     "links":[
       "Panaorios",
       "Peenemunde",
-      "Stormgald"
+      "Yevgraf"
     ]
   },
   ".316":{
@@ -2084,7 +2315,7 @@
       ".*19"
     ]
   },
-  ".317":{
+  "Stormgald":{
     "x":1909,
     "y":652,
     "links":[
@@ -2099,11 +2330,11 @@
     "y":735,
     "govt":"hex",
     "links":[
-      ".317",
+      "Stormgald",
       "Atlantico",
       "Solano",
       "Kirchner",
-      "Stormgald"
+      "Yevgraf"
     ]
   },
   "Correa":{
@@ -2111,7 +2342,7 @@
     "y":744,
     "govt":"hex",
     "links":[
-      ".317",
+      "Stormgald",
       "Atlantico"
     ]
   },
@@ -2140,6 +2371,9 @@
     "x":1395,
     "y":654,
     "govt":"hex",
+    "spobs": [
+      "Traprain"
+    ],
     "links":[
       "Kazanlak",
       "Ingolstadt",
@@ -2175,12 +2409,16 @@
       "Kazanlak",
       "Madhya",
       "Ravi"
+    ],
+    "spobs": [
+      "Khadir"
     ]
   },
   "Ravi":{
     "x":1481,
     "y":806,
     "govt":"hex",
+    "spobs": [ "Jagran" ],
     "links":[
       "Jhelum",
       "Ludhiana",
@@ -2255,8 +2493,8 @@
     ]
   },
   "Horace-Mann":{
-    "x":1983,
-    "y":1011,
+    "x": 1983,
+    "y": 1011,
     "spobs":[
       "Encroachment Rein"
     ],
@@ -2270,6 +2508,7 @@
     "x":1811,
     "y":991,
     "govt":"hex",
+    "spobs": [ "Zhongshan" ],
     "links":[
       "Anyuan",
       "Kirchner",
@@ -2351,6 +2590,9 @@
   ".343":{
     "x":981,
     "y":1592,
+    "npcs": [
+      "pirate_expedition"
+    ],
     "links":[
       "Mideska",
       ".344",
@@ -2450,7 +2692,7 @@
   },
   ".354":{
     "x":393,
-    "y":1988,
+    "y": 1988,
     "spobs":[
       "Deimos"
     ],
@@ -2681,6 +2923,15 @@
   "Kiriyenko*":{
     "x":1835,
     "y":1138,
+    "npc_average": 3,
+    "npcs": [
+      "trader_lowtech",
+      "league_pt",
+      "ls_pt",
+      "ls_raid",
+      "cas_patrol",
+      "cas_capital"
+    ],
     "links":[
       ".335",
       "Liu*"
@@ -2693,7 +2944,7 @@
     "links":[
       ".252",
       ".253",
-      ".280",
+      "Uluru",
       "Woodstock",
       ".*2"
     ]
@@ -2771,6 +3022,12 @@
   "Distrito":{
     "x":485,
     "y":1391,
+    "npc_average": 2,
+    "npcs": [
+      "western_trader",
+      "trader_danger",
+      "pirate_raid"
+    ],
     "links":[
       "Amstrad",
       "Asuangate",
@@ -2781,6 +3038,15 @@
     "x":540,
     "y":1492,
     "govt":"direc",
+    "npc_average": 4,
+    "npcs": [
+      "trader_bulk",
+      "western_trader",
+      "cas_capital",
+      "cas_patrol",
+      "pirate_expedition"
+    ],
+
     "spobs": [
       "Vasconcells",
       "Arruda"
@@ -2805,7 +3071,7 @@
     "links":[
       "Novosibirsk",
       ".202",
-      ".205",
+      "Defiance",
       ".253",
       ".*12"
     ]
@@ -2826,7 +3092,7 @@
     "govt":"drone",
     "links":[
       "Rybak",
-      "Dnipropetrovsk",
+      "Contra Costa",
       ".197",
       "Latyshev"
     ]
@@ -2839,7 +3105,7 @@
       "Kalush"
     ],
     "links":[
-      ".198",
+      "Housatonic",
       ".199",
       "Khabarovsk",
       "Khloponin"
@@ -2864,15 +3130,27 @@
       ".*20"
     ]
   },
-  "Stormgald":{
+  "Yevgraf":{
     "x":1785,
     "y":597,
     "govt":"hex",
+    "lights": [
+      {
+        "position": [0, -1,-1],
+        "intensity": 0.2,
+        "diffuse": [0.4,1,0.4],
+        "specular": [0.2,1,0.2]
+      }
+    ],
     "links":[
       "Panaorios",
       "Covasna",
       "Guayas",
-      ".*27"
+      "Argonne"
+    ],
+    "spobs": [
+      "Petrov",
+      "Prokhoro"
     ]
   },
   ".*18":{
@@ -2880,7 +3158,7 @@
     "y":594,
     "links":[
       ".310",
-      ".317"
+      "Stormgald"
     ]
   },
   ".*19":{
@@ -2895,7 +3173,7 @@
     "x":1292,
     "y":309,
     "links":[
-      ".198",
+      "Housatonic",
       ".307",
       ".*16"
     ]
@@ -2915,6 +3193,15 @@
       "Kejetia"
     ],
     "govt":"direc",
+    "npc_average": 3,
+    "npcs": [
+      "caudron_gang",
+      "pirate_raid",
+      "pirate_expedition",
+      "trader_danger",
+      "cas_patrol",
+      "cas_capital"
+    ],
     "links":[
       "Illorin",
       "Minna",
@@ -2935,6 +3222,14 @@
     "x":744,
     "y":1371,
     "govt":"direc",
+    "npc_average": 3,
+    "npcs": [
+      "cas_capital",
+      "cas_patrol",
+      "trader_danger",
+      "trader_bulk",
+      "trader_lowtech"
+    ],
     "links":[
       "Kilwa",
       "Kagame",
@@ -2945,6 +3240,14 @@
   "Zenawi":{
     "x":891,
     "y":1431,
+    "npc_average": 1,
+    "npcs": [
+      "xic_presence",
+      "cas_patrol",
+      "trader_danger",
+      "pirate_expedition",
+      "pirate_raid"
+    ],
     "links":[
       "Minna",
       "Kilwa",
@@ -2962,12 +3265,20 @@
       ".308"
     ]
   },
-  ".*27":{
+  "Argonne":{
     "x":1906,
     "y":535,
+    "npc_average": 2,
+    "npcs": [
+      "league_cap",
+      "trader_danger",
+      "league_pt"
+    ],
     "links":[
       ".310",
-      ".317"
+      "Stormgald",
+      "Yevgraf",
+      ".310"
     ]
   },
   ".*28":{

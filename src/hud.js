@@ -1,3 +1,4 @@
+import { _ } from "./singletons.js";
 import { get_text } from "./util.js"
 
 const DEFAULT_GOVT_NAME = "Independant";
@@ -15,10 +16,44 @@ export function radarFollowSystem(entMan){
       // Position, relative to the player, inverted
       entity.radar_pip.left = (entity.position.x - player.position.x) / (-1 * scale_factor);
       entity.radar_pip.top = (entity.position.y - player.position.y) / scale_factor;
+      entity.radar_pip.color = color_for_entity(entity, player);
     }
   }
 };
 
+export function hudUpdateSystem(entMan){
+  if(_.hud){
+    _.hud.update(entMan);
+  }
+}
+
+export function color_for_entity(entity, player){
+  // For targeting purposes, what color to show the target as
+  if('ai' in entity && entity.ai.target && entity.ai.target === player.id){
+    return 'red';
+  }
+
+  if(entity.disabled){
+    return 'gray';
+  }
+
+  if(entity.player_aligned){
+    return 'chartreuse';
+  }
+  
+  if('spob_name' in entity){
+    if('govt' in entity){
+      if( _.player.is_govt_hostile(entity.govt) ){
+        return 'red';
+      } else {
+        return 'yellow';
+      }
+    } else {
+      return 'gray'
+    }
+  }
+  return 'yellow';
+}
 
 // This is for drawing health bars over each entity. Not in the design atm.
 //export function healthBarSystem(entMan){
@@ -29,15 +64,31 @@ export function radarFollowSystem(entMan){
 //}
 
 export class HUD{
-  constructor(scene, entMan, player_data, govt_data){
-    // TODO: Singleton. 
+  constructor(){
     this.adt = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 
-    this.entMan = entMan; // TODO: Should we just pass this?
-    this.player_data = player_data;
-    this.gov_data = govt_data;
-    
-    this.fuel_status = this.get_status_bar(150, "10px", "blue", () => {return player_data.fuel / player_data.max_fuel()} )
+    this.tmp_player = null; // Or: how I broke abstraction. This should only exist during update.
+    this.fuel_status = this.get_status_bar(150, "10px", "green", () => {
+      if(this.tmp_player) {
+        return this.tmp_player.fuel / this.tmp_player.max_fuel
+      } else {
+        return 0
+      }
+    })
+    this.health_status = this.get_status_bar(150, "10px", "blue", () => {
+      if(this.tmp_player){
+        return this.tmp_player.shields / this.tmp_player.max_shields;
+      } else {
+        return 0
+      }
+    })
+    this.shield_status = this.get_status_bar(150, "10px", "red", () => {
+      if (this.tmp_player){
+        return this.tmp_player.hitpoints / this.tmp_player.max_hp
+      } else {
+        return 0
+      }
+    })
     this.nav_text = get_text();
     this.radar_box = this.get_radar_box();
     this.nav_box = this.get_nav_box();
@@ -84,9 +135,9 @@ export class HUD{
 
   deselect(entity){
     if(entity){
-      entity.overlay.removeControl(this.target_pips.bottom);
-      entity.overlay.removeControl(this.target_pips.left);
-      entity.overlay.removeControl(this.target_pips.right);
+      for(let pip of Object.values(this.target_pips)){
+        entity.overlay.removeControl(pip);
+      }
     }
   }
 
@@ -117,8 +168,9 @@ export class HUD{
     // Makes an overlay texture for the entity to draw target brackets,
     // health bars, etc.
     let overlay = this.get_box_generic("140px", "140px");
-    overlay.alpha = 0;
-    // overlay.alpha = 0;
+    // https://forum.babylonjs.com/t/the-other-upgrade-issue-may-actually-be-a-3-2-or-3-3-change-not-4-0/5486/4
+    overlay.background = "#0000";
+    overlay.color = "#0000";
     this.adt.addControl(overlay);
     overlay.linkWithMesh(entity.model);
     //if ("hitpoints" in entity){
@@ -129,12 +181,19 @@ export class HUD{
   }
 
   get_nav_box(){
-    let box = this.get_box_generic("200px", "80px");
+    let box = this.get_box_generic("200px", "200px");
 
     box.addControl(this.nav_text);
     box.addControl(this.fuel_status);
-    this.nav_text.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT
+    box.addControl(this.shield_status);
+    box.addControl(this.health_status);
+    
+    this.shield_status.top = 20
+    this.health_status.top = 40
 
+    this.nav_text.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT
+    
+    this.nav_text.top = 40
     this.adt.addControl(box); 
     box.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
     box.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
@@ -170,15 +229,14 @@ export class HUD{
     return box;
   }
 
-  update(){
-    let possible_player = this.entMan.get_with(['input']);
+  update(entMan){
+    let possible_player = entMan.get_with(['input']);
     let player = possible_player[0];
     let planet_line = "In-System: ";
     let jump_line = "Galactic: ";
-    this.fuel_status.update_func();
-    if (this.player_data.selected_spob){
-      planet_line += this.player_data.selected_spob;
-      let possible_spobs = this.entMan.get_with_exact("spob_name", this.player_data.selected_spob)
+    if (_.player.selected_spob){
+      planet_line += _.player.selected_spob;
+      let possible_spobs = entMan.get_with_exact("spob_name", _.player.selected_spob)
       if(possible_spobs.length > 0){
         let spob = possible_spobs[0];
         spob.model.isDisposed = () => { return false }; // Hack
@@ -188,40 +246,65 @@ export class HUD{
         this.spob_label.text = "";
       }
     }
+    if (player){
+      // Gross: pipe this down to functions
+      this.tmp_player = player
 
-    if (player && player.target){
-      let possible_target = this.entMan.get(player.target);
-      if(possible_target){
-        this.target_ent = possible_target;
-        this.target_label.text = this.target_ent.short_name;
-        this.target_subtitle.text = "" // TODO: Variants?
-        
-        this.target_ent.overlay.addControl(this.target_pips.bottom);
-        this.target_ent.overlay.addControl(this.target_pips.left);
-        this.target_ent.overlay.addControl(this.target_pips.right);
+      if (player.target){
+        let possible_target = entMan.get(player.target);
+        if(possible_target){
+          this.target_ent = possible_target;
+          this.target_label.text = this.target_ent.short_name;
+          let pip_color = "yellow";
+          this.target_subtitle.text = "";
 
-        if( "govt" in this.target_ent ){
-          this.target_govt.text = this.gov_data[this.target_ent.govt].short_name;
+          if(this.target_ent.disabled){
+            this.target_subtitle.text = "disabled" // TODO: Variants?
+          }
+
+          this.update_target_pips(
+            this.target_ent,
+            color_for_entity(this.target_ent, player)
+          );
+           
+          if( "govt" in this.target_ent ){
+            this.target_govt.text = _.data.govts[this.target_ent.govt].short_name;
+          } else {
+            this.target_govt.text = DEFAULT_GOVT_NAME;
+          }
         } else {
-          this.target_govt.text = DEFAULT_GOVT_NAME;
+          this.target_label.text = "<No Target>";
+          this.target_subtitle.text = " ";
+          this.target_govt.text = " ";
         }
-      } else {
-        this.target_label.text = "<No Target>";
-        this.target_subtitle.text = " ";
-        this.target_govt.text = " ";
+        this.target_health_bar.update_func();
+        this.target_shield_bar.update_func();
+        // Definitely don't keep a reference around. That would be bad.
+        delete this.possible_target;
       }
-      this.target_health_bar.update_func();
-      this.target_shield_bar.update_func();
-      // Definitely don't keep a reference around. That would be bad.
-      delete this.possible_target;
     }
 
+    this.fuel_status.update_func();
+    this.shield_status.update_func();
+    this.health_status.update_func();
+    
+    this.tmp_player = null;
 
-    if (this.player_data.selected_system){
-      jump_line += this.player_data.selected_system;
+    if (_.player.selected_system){
+      jump_line += _.player.selected_system;
     }
     this.nav_text.text = [planet_line, jump_line, ""].join("\n")
   }
+
+  update_target_pips(target, color){
+    for( let pip of Object.values(this.target_pips)){ 
+
+      pip.background = color;
+      this.target_ent.overlay.addControl(pip);
+    }
+  }
+
+
 
   dispose(){
     // Make sure we dispose everything we made and clear globals

@@ -1,34 +1,44 @@
-import { apply_upgrades, random_position } from "./util.js";
+import { _ } from "./singletons.js";
+import { apply_upgrades, random_position, choose } from "./util.js";
 import {
   create_composite_model,
-  create_planet_sprite
+  create_planet_sprite,
+  get_engine_particle_systems,
 } from "./graphics.js";
 
-export function npcShipFactory(data, type, position, hud, ai, govt){
-  let ship = shipFactory(data, type, position);
+export function npcShipFactory(type, position, ai, govt){
+  let ship = shipFactory(type, position, govt);
   ship.ai = ai;
-  ship.radar_pip = hud.get_radar_pip(4, '#FF0000FF');
-  ship.govt = govt;
-  ship.overlay = hud.get_overlay_texture(ship);
+  ship.radar_pip = _.hud.get_radar_pip(4, '#FF0000FF');
+  ship.overlay = _.hud.get_overlay_texture(ship);
   return ship;
 }
 
-export function playerShipFactory(data, type, position, camera, hud, player) {
+export function playerShipFactory(type, position) {
 
-  let ship = shipFactory(data, type, position);
 
-  ship.camera = camera;
+  let ship = shipFactory(type, position);
+
+  ship.camera = true;
   ship.input = true;
   ship.player = true; // Is this a hack?
   ship.player_aligned = true; // Fake gov for player and minions
 
-  ship.radar_pip = hud.get_radar_pip(4, '#00FF00FF');
-  ship.fuel = player.fuel;
+  // TODO: Gate this behind a difficulty mode of some kind
+
+  ship.accel = ship.accel  * 1.25;
+  ship.max_speed = ship.max_speed * 1.25;
+
+  ship.radar_pip = _.hud.get_radar_pip(4, '#00FF00FF');
+  ship.fuel = _.player.fuel;
   return ship;
 };
 
-export function shipFactory(data, type, position){
+export function shipFactory(type, position, govt=null){
   let ship = Object.create(type);
+  if(govt){
+    ship.govt = govt;
+  }
   ship.position = position;
   ship.direction = 0;
   ship.velocity = {x: 0, y: 0};
@@ -38,20 +48,25 @@ export function shipFactory(data, type, position){
   ship.shields = ship.max_shields;
   ship.collider = {radius: .5};
   ship.fuel = ship.max_fuel;
-  apply_upgrades(ship, ship.upgrades, data);
-  create_composite_model(ship, data);
+  ship.thrusting = false;
+  apply_upgrades(ship, ship.upgrades);
+  create_composite_model(ship, govt);
+  ship.engine_glows = get_engine_particle_systems(ship);
   return ship;
 };
 
 
-export function planetFactory (data, name, hud, scene, index){
-  let planet = Object.create(data.spobs[name]);
+export function planetFactory (name, index){
+  let planet = Object.create(_.data.spobs[name]);
+  // Scale
+  planet.x = planet.x / 3;
+  planet.y = planet.y / 3;
   
   planet.position = {x: planet.x, y: planet.y};
-  planet.model = create_planet_sprite(data, planet, scene); 
+  planet.model = create_planet_sprite(planet); 
   planet.spob_name = name;
   // TODO: Change pip color based on landability status
-  planet.radar_pip = hud.get_radar_pip(15, "Yellow");
+  planet.radar_pip = _.hud.get_radar_pip(10, "Yellow");
   
   // For number-key auto selection purposes
   planet.spob_index = index;
@@ -60,7 +75,7 @@ export function planetFactory (data, name, hud, scene, index){
 };
 
 
-export function asteroidFactory (position, velocity, sprite, hud) {
+export function asteroidFactory (position, velocity, sprite) {
   // TODO: Asteroids should have some sort of data
   sprite.position.x = position.x;
   sprite.position.y = position.y;
@@ -73,19 +88,16 @@ export function asteroidFactory (position, velocity, sprite, hud) {
     'hitpoints': 10,
     'collider': {'radius': .5},
     'hittable': true,
-    'radar_pip': hud.get_radar_pip(5, '#FF00FFFF')
+    'radar_pip': _.hud.get_radar_pip(5, '#FF00FFFF')
   };
 };
 
-export function npcSpawnerFactory(data, system, hud) {
+export function npcSpawnerFactory(system) {
   return {
     spawner: true,
     spawns_npc: true,
     min: system.npc_average || 1,
     types: system.npcs,
-    hud: hud //FIXME: Filthy no good very bad hack
-      // some way of getting radar pips without passing
-      // HUD around needs to exist, but not today.
   }
 }
 
@@ -95,12 +107,11 @@ export function npcSpawnerSystem(entMan) {
       // TODO: Set timer to make this feel more natural
 			// TODO: Spawn ships in with a warp transition for coolness
 
-      let group = random_group(spawner.types, entMan.data);
+      let group = _.data.npc_groups[choose(spawner.types)];
+      console.log(group);
 		  let npc = npcShipFactory(
-                                entMan.data,
-                                random_type(group.ships, entMan.data),
+                                random_type(group.ships),
                                 random_position(),
-                                spawner.hud,
                                 {state: 'passive'},
                                 group.govt
       );
@@ -122,15 +133,17 @@ function count_npcs(entMan){
   return entMan.get_with(['ai']).length;
 }
 
-function random_type(npcs, data){
+function random_type(npcs){
   // A fun StackOverflow post for sure:
   // https://stackoverflow.com/questions/5915096/get-random-item-from-javascript-array	
-  let type = npcs[Math.floor(Math.random() * npcs.length)];
-  return data.ships[type];
-};
-
-function random_group(groups, data){
-  return data.npc_groups[groups[Math.floor(Math.random() * groups.length)]]; 
+  let type = choose(npcs);
+  if (type in _.data.ships){
+    return _.data.ships[type];
+  } else {
+    console.log("Data Error: Ship '" + type + "' does not exist.");
+    // Yeah, this will go infinite if you've got all undefined ships in a group
+    return random_type(npcs);
+  }
 };
 
 

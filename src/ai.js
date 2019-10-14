@@ -1,23 +1,35 @@
-import { distance, random_position } from "./util.js";
+import { _ } from "./singletons.js";
+import {
+  distance,
+  random_position,
+  in_firing_arc,
+  angle_mod,
+  overridable_default
+} from "./util.js";
 import { rotate, accelerate, decelerate, linear_vel } from "./physics.js";
 import { get_bone_group } from "./graphics.js";
 
-const ARC = Math.PI * 2;
+const ARC = Math.PI * 2;  // I don't want to make a political statement by using TAU
 
-const TURN_MIN = Math.PI / 25;
+// const TURN_MIN = Math.PI / 75;
 
 // For a more interesting game, these should probably be ship properties.
 // Might not be crazy to calculate them based on the ship's stats and allow
 // for an override in the data
-const ENGAGE_DISTANCE = 50;
-const ENGAGE_ANGLE = Math.PI / 8;
-const ACCEL_DISTANCE = 10;
+const ENGAGE_DISTANCE = 100;       // How close to a target before firing weapons
+const ENGAGE_ANGLE = Math.PI / 8;  // How far off of target to be when taking a shot
+const TURN_FLOOR = Math.PI / 12;   // How small a turn is too small?
+const ACCEL_DISTANCE = 10;         // How far from a target before firing thrusters
 const IDLE_ARRIVAL_THRESH = 50;
-const AI_DWELL_MAX = 1000;
+const AI_DWELL_MAX = 1000;         // How long to wait around
 const AI_IDLE_COAST = 0.01;
 
 export function ai_system(entMan){
   for (let entity of entMan.get_with(['ai'])) {
+    entity.thrust_this_frame = false;
+    if(entity.disabled){
+      continue;
+    }
     let ai = entity.ai;
     if (ai.state === 'violent'){
       if ('target' in ai){
@@ -25,24 +37,22 @@ export function ai_system(entMan){
         if(target){
           engage(entity, target, entMan.delta_time, entMan);
         } else {
-          console.log("Target gone");
           delete ai.target;
           ai.state = "passive";
         }
       }
     } else if (ai.state == 'asteroid_hate'){
       let target = find_closest_target(entity.position, entMan, ['team-asteroids']);
+      // TODO: Really rework how Asteroids are handled.
       if(target){
         set_target(ai, target);
       } else {
-        console.log("No more asteroids to hate");
         ai.state = 'passive';
       }
     } else if (ai.state == 'passive') {
       // This is sort of the hub behavior - select a new thing to do
       if ('aggro' in ai){
-        console.log("Checking aggro");
-        // TODO: Somehow prioritize this?
+        // It's personal. Some ship has angered this specific ship.
         for( let possible_target_id of ai.aggro ){
           let possible_target = entMan.get(possible_target_id);
           if(possible_target){
@@ -54,11 +64,10 @@ export function ai_system(entMan){
           }
         }
       } else if ('govt' in entity){
-        let govt = entMan.data.govts[entity.govt];
+        let govt = _.data.govts[entity.govt];
         // TODO: Really this should look at the closest hittable target
         // and integrate the player / govt logic together
-        if (govt.attack_default || (entity.govt in entMan.player_data.govts
-            && entMan.player_data.govts[entty.govt].reputation < 0)){
+        if (govt.attack_default || _.player.is_govt_hostile(entity.govt)){
           let target = find_closest_target(entity.position, entMan, ['hittable', 'player_aligned']); 
           if(target){
             set_target(ai, target);
@@ -75,24 +84,19 @@ export function ai_system(entMan){
               }
             }
           } else if ('player_aligned' in foe && 
-            (govt.attack_default || 
-              (entity.govt in entMan.player_data.govts &&
-                 entMan.player_data.govts[entty.govt].reputation < 0
-              )
-            )
+            (govt.attack_default || _.player.is_govt_hostile(entity.govt))
           ){
             set_target(ai, foe);
             return;
           } 
         }
 
-        if ("attacks_asteroids" in govt){
+        if ("attacks_asteroids" in govt){ 
           ai.state = 'asteroid_hate';
         }
       }
 
-      // Do neautral passive things such as fly to planets or leave the system
-      console.log("Nothing to do; idle");
+      // Do neutral passive things such as fly to planets or leave the system
       idle(entity, ai, entMan.delta_time);
       
     }
@@ -129,11 +133,11 @@ function idle(entity, ai, delta_time){
       if(linear_vel(entity.velocity) < AI_IDLE_COAST){
         // Ships shouldn't race around if they're idling
         accelerate(entity.velocity, entity.direction, entity.accel * delta_time);
+        entity.thrust_this_frame = true;
       }
     }
   } else {
     ai.destination = random_position()
-    console.log("Flying aimlessly to:");
     console.log(ai.destination);
   }
 }
@@ -175,13 +179,26 @@ function find_closest_target(position, entMan, criteria){
   }
 }
 
-
-function point_at(to, startangle, from){
+function point_directly_at(to, from){
+  /*
+   * Calculate the turn (always clockwise) to point at a target
+   */
   let dx = to.x - from.x;
   let dy = to.y - from.y;
+
+  return Math.atan2(dy, dx) - Math.PI;
+}
   
-  // console.log(("dx " + dx) + ", dy " + dy);
-  let cw = (Math.atan2(dy, dx) - startangle);
+
+function point_at(to, startangle, from, lead, to_vel=null, from_vel=null, proj_vel=null){
+  /*
+   * Calculate the shortest turn to point at a moving target
+   */
+  let cw = point_directly_at(from, to) - startangle;
+  // A/B/C Test: Is target leading good? Should we do it?
+  if(lead === "basic" && to_vel && from_vel && proj_vel){
+    cw = find_firing_solution(to, to_vel, from, from_vel, proj_vel) - startangle;
+  }
   let ccw = ARC;
   //let ccw = (Math.atan2(dy, dx) - startangle);
   if (cw > 0){
@@ -189,8 +206,6 @@ function point_at(to, startangle, from){
   } else {
     ccw = ARC + cw;
   }
-  // console.log("cw:  " + cw);
-  // console.log("ccw: " + ccw);
   
   if(Math.abs(cw) < Math.abs(ccw)){
     return -1 * cw;
@@ -200,9 +215,31 @@ function point_at(to, startangle, from){
   
 }
 
-function constrained_point(target, start_angle, position, possible_turn){
+function find_firing_solution(to, to_velocity, from, from_velocity, projectile_velocity){
+  // TODO: This is a flawed algo and they AI looks stupid for constantly missing.
+  // Maybe don't lead at all and just make shots go faster?
+  let velocity_difference = {x: to_velocity.x - from_velocity.x, y: to_velocity.y - from_velocity.y};
+  let estimated_impact_time = distance(from, to) / projectile_velocity;
+  return point_directly_at(from, {
+    x: to.x + velocity_difference.x * estimated_impact_time,
+    y: to.y + velocity_difference.y * estimated_impact_time,
+  })
+}
+
+  
+
+function constrained_point(
+  target,
+  start_angle,
+  position,
+  possible_turn,
+  to_vel,
+  from_vel,
+  proj_vel,
+  lead="none",
+){
   // point_at but with a rotation speed limit (which is most things that point)
-	let goal_turn = point_at(target, start_angle, position);
+	let goal_turn = point_at(target, start_angle, position, lead, to_vel, from_vel, proj_vel);
   let final_turn = 0;
 	if(goal_turn > 0){
 		if(goal_turn > possible_turn){
@@ -217,7 +254,6 @@ function constrained_point(target, start_angle, position, possible_turn){
 			final_turn = goal_turn;
 		}
 	}
-
   return final_turn;
 
 }
@@ -229,8 +265,37 @@ function engage(entity, target, delta_time, entMan){
     target.position, 
     entity.direction,
     entity.position,
-    entity.rotation * delta_time
+    entity.rotation * delta_time,
+    target.velocity,
+    entity.velocity,
+    0.01,
+    overridable_default("ai_leading", "none"),
   );
+
+  /* Anti Jitter
+   * Because it's constantly trying to find the best firing solution and track moving targets,
+   * the AI has a tendency to flap back and fourth on targets.
+   *
+   * This anti-jitter code adds a threshold for reversing turn direction or starting to turn.
+   * If already turning in a particular direction, it will allow that turn to continue... the
+   * purpose of this is to prevent quantizing turns, which is what we saw before, and jittering
+   * at the edge of the threshold.
+   */
+  if(
+      (
+        !entity.previous_turn || // If we're not already turning, or...
+        !( // We're changing direction
+          (final_turn > 0 && entity.previous_turn > 0)
+          ||
+          (final_turn < 0 && entity.previous_turn < 0)
+        )
+      ) 
+      && Math.abs(final_turn) < TURN_FLOOR  // Then only execute the turn if it's larger than a floor
+    ){
+    return 0;
+  }
+
+  entity.previous_turn = final_turn;
 
 	let dist = distance(entity.position, target.position);
 
@@ -242,6 +307,7 @@ function engage(entity, target, delta_time, entMan){
   if(dist > ACCEL_DISTANCE){
     accelerate(entity.velocity, entity.direction,
        entity.accel * delta_time); 
+    entity.thrust_this_frame = true;
   } else {
     // decelerate(entity.velocity, (entity.accel / 2) * delta_time)
   }
@@ -253,23 +319,53 @@ function engage(entity, target, delta_time, entMan){
 };
 
 export function turretPointSystem (entMan) {
-  // TODO: 
-  const TURRET_ROT_SPEED = Math.PI / 50; // TODO: Make attribute of ship
-  for(let entity of entMan.get_with(['model'])) {
+  // Code to actually rotate the turret graphic should live in graphics.js
+  // Torn about where to keep the rotation state.
+  const TURRET_ROT_SPEED = Math.PI / 3100; // TODO: Make attribute of ship
+  for(let entity of entMan.get_with(['model', 'turrets'])) {
     if(entity.model.skeleton){
       if(entity.target){
         // In this case we want to track the target
         let target = entMan.get(entity.target);
-        if(target){
-          for(let bone of get_bone_group(entity.model.skeleton, "turret")){
-            // Crude method: point all turrets at the same angle
-            // (ie no convergence)
-            let current_angle = (entity.direction - bone.rotation.y ) % ARC; 
-            let turn = constrained_point(target.position, current_angle, entity.position, TURRET_ROT_SPEED); 
-            // Small amount of dampening to prevent jitter
-            //if( Math.abs(turn) > TURN_MIN ){
-              bone.rotate(BABYLON.Axis.Y, -1 *  turn, BABYLON.Space.LOCAL);
-            //}
+        for(let turret of entity.turrets){
+          if(target){
+            let current_angle = angle_mod(entity.direction + turret.bone.rotation.y); 
+            let turn = constrained_point(
+              target.position,
+              current_angle,
+              {x: entity.position.x + turret.offset.x, y: entity.position.y + turret.offset.y},
+              TURRET_ROT_SPEED * entMan.delta_time, // TODO: turret.speed * delta_time
+              target.velocity,
+              entity.velocity,
+              0.01,
+            ); 
+            // Constrain turret to firing arc if applicable 
+            let current_rel_angle = angle_mod(turret.bone.rotation.y);
+            let new_angle = angle_mod(turret.bone.rotation.y - turn);
+
+            let do_turn = false;
+            if (turret.traverse){
+              if( in_firing_arc( new_angle, turret.facing, turret.traverse)){
+                do_turn = true;
+              } else {
+              }
+            } else {
+              do_turn = true;
+            }
+
+            if(do_turn){
+              // turret.bone.rotation.y = angle_mod(turret.bone.rotation.y - turn); 
+              turret.bone.rotate(BABYLON.Axis.Y, -1 * turn, BABYLON.Space.LOCAL);
+            } else {
+              turret.bone.rotate(BABYLON.Axis.Y, 0, BABYLON.Space.LOCAL)
+            }
+          }
+          else{
+            // Move zero to force attachment
+            // This is such a hack
+            // And isn't working anyway
+            console.log("No target");
+            turret.bone.rotation.y = turret.facing; // Return to rest position
           }
         }
       }

@@ -31,12 +31,14 @@
   
   "xerum":{
     "name":"Red Mecrury",
-    "price":40
+    "price":40,
+    "illegal": true
   },
   
   "dark":{
     "name":"Dark Steel",
-    "price":80
+    "price":80,
+    "illegal": true
   },
   "scrith":{
     "name":"Scrith",
@@ -57,7 +59,8 @@
   },
   "uacbarrels":{
     "name" : "Volatile Barrels",
-    "price" : 100
+    "price" : 100,
+    "illegal": true
   },
   "gas":{
     "name":"Vespine Gas",
@@ -85,7 +88,8 @@
   },
   "ice9":{
     "name": "Ice Nine",
-    "price": 250
+    "price": 250,
+    "illegal": true
   },
   "kombucha":{
     "name": "Kombucha",
