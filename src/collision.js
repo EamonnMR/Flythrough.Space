@@ -7,8 +7,7 @@ export function collisionDetectionSystem(entMan){
   while (colliders.length > 1) {
     let current = colliders.pop();
     for (let other of colliders) {
-      let dist = distance(current.position, other.position);
-      if ( dist < current.collider.radius + other.collider.radius) {
+      if ( is_colliding( current, other)){
         if ( filter_collisions(current, other)){
           shot_handler(current, other );
         }
@@ -19,6 +18,17 @@ export function collisionDetectionSystem(entMan){
     }
   }
 };
+
+function is_colliding(l, r){
+  if('radius' in l.collider && 'radius' in r.collider){
+    return circle_circle_collision(l, r);
+  } // TODO: else: handle circle/line
+}
+
+function circle_circle_collision(l, r){
+  let dist = distance(l.position, r.position);
+  return dist < l.collider.radius + r.collider.radius
+}
 
 function real_player_agent_test(shot, entity){
   return shot.ignore_player && 'player_aligned' in entity;
