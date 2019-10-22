@@ -14,7 +14,7 @@
         "damage": 10,
         "shield_damage": 20,
         "max_age": 5000,
-        "collider": {"radius": 0.3}
+        "collider": {"notunnel": true}
       }
     },
     "tech"           : {"oe_wep":1}
@@ -34,7 +34,7 @@
         "shield_damage": 60,
         "damage": 30,
         "max_age": 4000,
-        "collider": {"radius": 1.2}
+        "collider": {"notunnel": true}
       }
     },
     "tech"           : {"oe_wep":2}
@@ -66,7 +66,7 @@
         "shield_damage":5,
         "damage":15,
         "max_age":1000,
-        "collider": {"radius": 0.1}
+        "collider": {"notunnel":true}
       }
     },
     "tech"           : {"oe_wep":1}
@@ -96,7 +96,7 @@
         "shield_damage":10,
         "damage":10,
         "max_age":4000,
-        "collider": {"radius": 0.2}
+        "collider": {"notunnel": true}
       }
     },
     "tech"           : {"oe_wep":2}
@@ -158,7 +158,6 @@
     "cargo"          : 10,
     "desc"           : "Weapons space can be retooled into cargo space, but with a slight (20%) loss.",
     "price"          : 15000,
-    "require"        : "!nocargoexp",
     "tech"           : {"generic":2}
   },
   "spaceupg":{
@@ -167,7 +166,6 @@
     "space"          : 10,
     "desc"           : "Cargo space can be retooled into weapons and outfit space, but with a slight (20%) loss.",
     "price"          : 15000,
-    "require"        : "!nospaceexp",
     "tech"           : {"generic":2}
   },
   "antigun":{
@@ -190,7 +188,7 @@
         "damage":25,
         "max_age":100000,
         "bounce_off_shields": true,
-        "collider": {"radius": 1.2}
+        "collider": {"notunnel": true}
       }
     },
     "tech"           : {"antimatter":2}
@@ -237,7 +235,7 @@
         "max_age":700,
         "shield_damage":10,
         "damage":25,
-        "collider": {"radius": 0.1}
+        "collider": {"notunnel": true}
       }
     },
     "tech"           : {"itaskan":1}
@@ -261,7 +259,7 @@
         "shield_damage": 60,
         "damage": 30,
         "max_age":8000,
-        "collider": {"radius": 1.2}
+        "collider": {"notunnel":true}
       }
     }
   },
@@ -324,7 +322,7 @@
         "damage": 1,
         "shield_damage": 2,
         "max_age": 5000,
-        "collider": {"radius": 0.3},
+        "collider": {"notunnel": true},
         "ionize": 1
       }
     },
@@ -346,7 +344,7 @@
         "shield_damage": 60,
         "damage": 30,
         "max_age":8000,
-        "collider": {"radius": 1.2}
+        "collider": {"notunnel": true}
       }
     },
 
@@ -412,7 +410,7 @@
         "damage": 100,
         "shield_damage": 50,
         "max_age": 50000,
-        "collider": {"radius": 0.3},
+        "collider": {"radius": 1},
         "persist": true,
         "attract": 10,
         "damage_done_increases_lifetime": true
@@ -425,6 +423,7 @@
     "space": -5,
     "price": 1000,
     "max_hull": 100,
+    "tech": {"generic": 1},
     "desc": "Survival in space depends on keeping space on the outside and air on the inside. Sure, everyone drills for hull breach - reach for masks and gloves, don helmets, communicate by radio and hand sign. But at the end of the day, the ship that keeps its atmosphere usually wins the fight. Sometimes that means welding on additional pieces of armor over weak spots, even if the design does not call for them."
   }
 }  
