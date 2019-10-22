@@ -1,4 +1,6 @@
 import { _ } from "./singletons.js";
+import { overridable_default } from "./util.js";
+import { collision_unit_tests } from "./collision.js";
 
 /* The root of everything here is 'assets.json'.
  * It lists asset files/data for special assets - 
@@ -234,7 +236,10 @@ export function load_all(engine, scene, done){
     if (xhr.status == 200){
       load_assets(JSON.parse(xhr.responseText), scene, data_mgr, () => {
         data_mgr.preprocess();
-        data_mgr.validate();
+        if(overridable_default("test", false)){
+          data_mgr.validate();
+          collision_unit_tests();
+        }
         done(data_mgr);
       });
     }
