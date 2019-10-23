@@ -43,9 +43,49 @@ function circle_circle_collision(l, r){
 
 function circle_line_collision(l, [start, end]){
   //TODO: http://www.jeffreythompson.org/collision-detection/line-circle.php
-  console.log(start);
-  console.log(end);
-  return true;
+  if(
+    // Short circuit if start or end points are inside
+    distance(start, l.position) < l.collider.radius ||
+    distance(end, l.position) < l.collider.radius
+  ){
+    return true;
+  }
+
+  let len = distance(start, end);
+  
+  let dot_product = (
+    (
+      (l.position.x-start.x) * (end.x-start.x)
+    ) + (
+      (l.position.y-start.y) * (end.y-start.y)
+    )
+  ) / Math.pow(len, 2);
+
+  let intersection_point = {
+    x: start.x + dot_product * (end.x - start.x),
+    y: start.y + dot_product * (end.y - start.y)
+  }
+  
+  // Is the closest point inside the circle?
+  if(distance(intersection_point, l.position) > l.collider.radius){
+    return false;
+  }
+
+  // Line / Point
+  // This measures the distance between the collision point
+  // and the two ends of the line. If the sum of those
+  // distances is the same as the line length (modulo a small
+  // buffer to deal with floatyness) then we're colliding
+  // with the line segment!
+  let total_distance = distance(intersection_point, start)
+    + distance(intersection_point, end);
+  // Allow for slight inaccuracy.
+  const BUFFER = 0.1
+
+  // TODO: Test a version of this that uses math.abs for speed
+  debugger;
+  return total_distance >= len - BUFFER
+    && total_distance <= len + BUFFER;
 }
 
 function real_player_agent_test(shot, entity){
@@ -55,6 +95,7 @@ function real_player_agent_test(shot, entity){
 function godmode_player_agent_test(shot, entity){
   return 'player_aligned' in entity;
 }
+
 let player_agent_test = real_player_agent_test;
 if(is_cheat_enabled("noclip")){
   player_agent_test = godmode_player_agent_test;
@@ -72,6 +113,12 @@ function gov_test(shot, entity){
   return 'ignoregov' in shot && 'govt' in entity && shot.ignoregov === entity.govt;
 }
 
+/* Unit tests
+ *
+ * Right in the same file because I want to keep the module
+ * interface clean.
+ */
+
 export function collision_unit_tests(){
   assert_true(
     circle_circle_collision(
@@ -83,7 +130,8 @@ export function collision_unit_tests(){
       }
     ),
     "Overlapping circles collide"
-  )
+  );
+
   assert_false(
     circle_circle_collision(
       {position: {x: 0, y: 0},
@@ -94,5 +142,45 @@ export function collision_unit_tests(){
       }
     ),
     "Non-Overlapping circles don't collide"
-  )
+  );
+  assert_true(
+    circle_line_collision(
+      {position: {x: 1, y: 1},
+       collider: {radius: 2}
+      },
+      [{x: 1, y: 1}, {x: 100, y: 100}]
+    ),
+    "Line start point inside circle collides"
+  );
+
+
+  assert_true(
+    circle_line_collision(
+      {position: {x: 1, y: 1},
+       collider: {radius: 2}
+      },
+      [{x: 100, y: 100}, {x: 1, y: 1}]
+    ),
+    "Line end point inside circle collides"
+  );
+
+
+  assert_true(
+    circle_line_collision(
+      {position: {x: 0, y: 1},
+       collider: {radius: 3}
+      },
+      [{x: 0, y: -100}, {x: 0, y: 100}]
+    ),
+    "Circle collides with middle of line"
+  );
+  assert_false(
+    circle_line_collision(
+      {position: {x: 4, y: 3},
+       collider: {radius: 1}
+      },
+      [{x: 0, y: -100}, {x: 0, y: 100}]
+    ),
+    "Circle does not collide with distant line"
+  );
 }
