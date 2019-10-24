@@ -192,3 +192,17 @@ export function filter(object, predicate){
 
   return result;
 }
+
+export function assert_true(value, desc){
+  if (!value){
+    console.log(`TEST FAILURE: ${desc}`);
+    console.log(`Expected true, got ${value}`);
+  }
+}
+
+export function assert_false(value, desc){
+  if (value){
+    console.log(`TEST FAILURE: ${desc}`);
+    console.log(`Expected false, got ${value}`);
+  }
+}

@@ -36,6 +36,9 @@ export function rotate(entity, delta) {
 export function velocitySystem(entMan){
   // Provides inertia.
   for (let ent of entMan.get_with(['velocity', 'position'])) {
+    if('previous_position' in ent){
+      ent.previous_position = {x: ent.position.x, y: ent.position.y};
+    }
     ent.position.x += ent.velocity.x * entMan.delta_time;
     ent.position.y += ent.velocity.y * entMan.delta_time;
   }
@@ -68,3 +71,4 @@ export function spaceFrictionSystem(entMan){
     }
   }
 };
+

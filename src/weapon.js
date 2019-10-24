@@ -25,6 +25,7 @@ function bulletFactory(creator, position, sprite, direction, speed, initialVeloc
   shot.creator = creator;
 
   shot.position = {x: position.x, y: position.y}; // TODO: es6 clone?
+  shot.previous_position = shot.position;
   shot.model = sprite;
   shot.velocity = velocity;
   shot.age = 0.0;
