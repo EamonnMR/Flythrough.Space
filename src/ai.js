@@ -138,7 +138,6 @@ function idle(entity, ai, delta_time){
     }
   } else {
     ai.destination = random_position()
-    console.log(ai.destination);
   }
 }
   
