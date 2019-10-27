@@ -5,6 +5,7 @@ import { _ } from "./singletons.js";
  */
 
 const ARC = Math.PI * 2;
+const SETTING_PREFIX = "_setting:";
 
 export function distance(l_pos, r_pos){
   return Math.sqrt(
@@ -193,6 +194,22 @@ export function filter(object, predicate){
   return result;
 }
 
+function setting_key(key){
+  return SETTING_PREFIX + key;
+}
+
+export function set_setting(key, value){
+  window.localStorage.setItem(setting_key(key), value);
+}
+
+export function clear_setting(key){
+  window.localStorage.removeItem(setting_key(key));
+}
+
+export function get_setting(key, default_value){
+  return url_params.get(key) || window.localStorage.getItem(setting_key(key)) || default_value;
+}
+
 export function assert_true(value, desc){
   if (!value){
     console.log(`TEST FAILURE: ${desc}`);
@@ -205,4 +222,15 @@ export function assert_false(value, desc){
     console.log(`TEST FAILURE: ${desc}`);
     console.log(`Expected false, got ${value}`);
   }
+}
+
+export function utils_unit_tests(){
+  // Test local storage for settings
+  set_setting("foo", "bar");
+  assert_true(get_setting("foo", "baz") === "bar",
+    "Can save settings in local storage");
+  clear_setting("foo");
+  assert_true(get_setting("foo", "baz") === "baz",
+    "Can clear settings and get default values"
+  );
 }

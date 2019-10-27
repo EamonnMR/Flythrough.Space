@@ -1,5 +1,5 @@
 import { _ } from "./singletons.js";
-import { overridable_default } from "./util.js";
+import { overridable_default, utils_unit_tests } from "./util.js";
 import { collision_unit_tests } from "./collision.js";
 
 /* The root of everything here is 'assets.json'.
@@ -239,6 +239,7 @@ export function load_all(engine, scene, done){
         if(overridable_default("test", false)){
           data_mgr.validate();
           collision_unit_tests();
+          utils_unit_tests();
         }
         done(data_mgr);
       });
