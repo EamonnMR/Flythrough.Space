@@ -109,25 +109,22 @@ export class MainMenu extends BaseMenuView {
       'About',
       () => {
         pop_tab("http://blog.eamonnmr.com/2019/10/flythrough-space-alpha-release/", "_blank");
-        this.parent.enter_state('shipyard');
       },
       RIGHT,
       BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,
       "0%", "-10%")
     );
 
-    /* 
-     * TODO: Options, etc
     widgets.push(new LandingMenuBigButton(
-      'Customize',
+      'Settings',
       () => {
-        this.parent.enter_state('upgrades');
+        this.parent.enter_state('settings');
       },
       RIGHT,
       BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,
       "0%", "-20%")
     );
-
+    /* TODO: Never enough buttons
     widgets.push(new LandingMenuBigButton(
       'Exciting New Option',
       () => {

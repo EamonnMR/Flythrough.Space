@@ -11,6 +11,7 @@ import { load_all } from "./load.js";
 import { UpgradeMenu } from "./upgrade_store.js";
 import { MissionsMenu } from "./missions_menu.js";
 import { MainMenu } from "./main_menu.js";
+import { SettingsMenu } from "./settings.js";
 import { get_game_camera } from "./graphics.js";
 
 function init(game_canvas, scene, engine, data){
@@ -36,6 +37,7 @@ function init(game_canvas, scene, engine, data){
     'upgrades': new UpgradeMenu(),
     'missions': new MissionsMenu(),
     'main'    : new MainMenu(),
+    'settings': new SettingsMenu(),
   }, overridable_default("state", "main"));
 
   _.state_manager = stateMgr;
