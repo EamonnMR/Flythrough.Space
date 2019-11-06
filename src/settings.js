@@ -1,8 +1,10 @@
 import { _ } from "./singletons.js";
+import { DEFAULT_SETTINGS } from "./default_settings.js";
 import {
   set_setting,
   clear_setting,
-  get_setting
+  get_setting,
+  update_settings,
 } from "./util.js";
 
 import {
@@ -22,14 +24,17 @@ export class SettingsMenu extends BaseMenuView {
   //}
 
   get_widgets(){
-    return [
-      new BooleanSetting("starfield"),
-      new BooleanSetting("parallax_starfield"),
-      new BooleanSetting("light_effects"),
-      new BooleanSetting("pervasive_particles"),
-      new BooleanSetting("ai_leading"),
-      new BooleanSetting("mobile_controls"),
-    ]
+    // TODO: Keep track of layout, offsets
+    let widgets = Object.keys( DEFAULT_SETTINGS ).map( (key) => {
+      return new BooleanSetting(key);
+    });
+    
+    // TODO: Return to menu button 
+    return widgets;
+  }
+  exit(){
+    update_settings();
+    super().exit();
   }
 }
 

@@ -10,6 +10,7 @@ export var _ = {
   player: null,
   canvas: null,
   hud: null,
-  camera: null
+  camera: null,
+  settings: null,
 };
 

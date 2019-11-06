@@ -1,5 +1,6 @@
 import { weapon_factory } from "./weapon.js";
 import { _ } from "./singletons.js";
+import { DEFAULT_SETTINGS } from "./default_settings.js";
 
 /* Use a library, or you'll end up cobbling together your own.
  */
@@ -222,6 +223,12 @@ export function assert_false(value, desc){
     console.log(`TEST FAILURE: ${desc}`);
     console.log(`Expected false, got ${value}`);
   }
+}
+
+export function update_settings(){
+  Object.keys(DEFAULT_SETTINGS).forEach( (key) => {
+    _.settings[key] = get_setting(key, DEFAULT_SETTINGS[key]);
+  })
 }
 
 export function utils_unit_tests(){

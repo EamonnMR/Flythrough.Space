@@ -1,4 +1,4 @@
-import { overridable_default } from "./util.js";
+import { overridable_default, update_settings } from "./util.js";
 import { _ } from "./singletons.js";
 import { GamePlayState } from "./gameplay.js";
 import { PlayerSave } from  "./player.js";
