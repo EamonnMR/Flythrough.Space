@@ -11,6 +11,6 @@ export var _ = {
   canvas: null,
   hud: null,
   camera: null,
-  settings: null,
+  settings: {},
 };
 
