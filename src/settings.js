@@ -13,6 +13,7 @@ import {
   clear_setting,
   get_setting,
   update_settings,
+  restore_default_settings,
 } from "./util.js";
 
 import {
@@ -56,6 +57,18 @@ export class SettingsMenu extends BaseMenuView {
       '0%',
       '0%',
     ));
+    widgets.push( new LandingMenuBigButton(
+      'Reset',
+      () => {
+        restore_default_settings();
+        this.update_widgets();
+      },
+      BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT,
+      BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,
+      '0%',
+      '0%',
+    ));
+
 
     return widgets;
   }
@@ -71,6 +84,10 @@ class BooleanSetting extends Widget{
     this.left = left;
     this.top = top;
     this.setting = setting_name;
+  }
+
+  update(){
+    this.checkbox.isChecked = get_setting(this.setting);
   }
 
   setup(){
@@ -91,15 +108,16 @@ class BooleanSetting extends Widget{
     this.panel.top = this.top;
     this.panel.left = this.left;
 
-    this.checkbox.isChecked = get_setting(this.setting)
+    this.update();
+
     this.checkbox.width = "20px";
     this.checkbox.height = "20px";
     this.checkbox.color = "red";
     this.checkbox.onIsCheckedChangedObservable.add((value) => {
       if (value) {
-        clear_setting(this.setting);
-      } else {
         set_setting(this.setting, true);
+      } else {
+        clear_setting(this.setting);
       }
     });
 

@@ -5,5 +5,7 @@ export const DEFAULT_SETTINGS = {
   pervasive_particles: true,
   ai_leading: false,
   mobile_controls: false,
+}.map((k, v) => {
+  [k, v ? "true", ""]  // Localstorage pretending to be redis
 }
 

@@ -200,15 +200,17 @@ function setting_key(key){
 }
 
 export function set_setting(key, value){
+  console.log("set_setting: " + key + "to: " + value);
   window.localStorage.setItem(setting_key(key), value);
 }
 
 export function clear_setting(key){
-  window.localStorage.removeItem(setting_key(key));
+  set_setting(key, ""); // We want it falsey
 }
 
-export function get_setting(key, default_value){
-  return url_params.get(key) || window.localStorage.getItem(setting_key(key)) || default_value;
+export function get_setting(key){
+  // TODO: yes, this is ORing them. So yes, this is kinda broken.
+  return url_params.get(key) || window.localStorage.getItem(setting_key(key));
 }
 
 export function assert_true(value, desc){
@@ -226,8 +228,16 @@ export function assert_false(value, desc){
 }
 
 export function update_settings(){
+  console.log("update_settings");
   Object.keys(DEFAULT_SETTINGS).forEach( (key) => {
     _.settings[key] = get_setting(key, DEFAULT_SETTINGS[key]);
+  })
+}
+
+export function restore_default_settings(){
+  console.log("restore_default_settings");
+  Object.keys(DEFAULT_SETTINGS).forEach( (key) => {
+    set_setting(key, DEFAULT_SETTINGS[key]);
   })
 }
 
