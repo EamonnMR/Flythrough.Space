@@ -268,7 +268,7 @@ function engage(entity, target, delta_time, entMan){
     target.velocity,
     entity.velocity,
     0.01,
-    overridable_default("ai_leading", "none"),
+    _.settings.ai_leading ? "basic" : "none",
   );
 
   /* Anti Jitter
