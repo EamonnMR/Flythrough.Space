@@ -42,7 +42,7 @@ function circle_circle_collision(l, r){
 }
 
 function circle_line_collision(l, [start, end]){
-  //TODO: http://www.jeffreythompson.org/collision-detection/line-circle.php
+  //Ref: http://www.jeffreythompson.org/collision-detection/line-circle.php
   if(
     // Short circuit if start or end points are inside
     distance(start, l.position) < l.collider.radius ||
@@ -83,7 +83,6 @@ function circle_line_collision(l, [start, end]){
   const BUFFER = 0.1
 
   // TODO: Test a version of this that uses math.abs for speed
-  debugger;
   return total_distance >= len - BUFFER
     && total_distance <= len + BUFFER;
 }

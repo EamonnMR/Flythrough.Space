@@ -1,10 +1,12 @@
 import { weapon_factory } from "./weapon.js";
 import { _ } from "./singletons.js";
+import { DEFAULT_SETTINGS } from "./default_settings.js";
 
 /* Use a library, or you'll end up cobbling together your own.
  */
 
 const ARC = Math.PI * 2;
+const SETTING_PREFIX = "_setting:";
 
 export function distance(l_pos, r_pos){
   return Math.sqrt(
@@ -193,6 +195,24 @@ export function filter(object, predicate){
   return result;
 }
 
+function setting_key(key){
+  return SETTING_PREFIX + key;
+}
+
+export function set_setting(key, value){
+  console.log("set_setting: " + key + "to: " + value);
+  window.localStorage.setItem(setting_key(key), value);
+}
+
+export function clear_setting(key){
+  set_setting(key, ""); // We want it falsey
+}
+
+export function get_setting(key){
+  // TODO: yes, this is ORing them. So yes, this is kinda broken.
+  return url_params.get(key) || window.localStorage.getItem(setting_key(key));
+}
+
 export function assert_true(value, desc){
   if (!value){
     console.log(`TEST FAILURE: ${desc}`);
@@ -205,4 +225,29 @@ export function assert_false(value, desc){
     console.log(`TEST FAILURE: ${desc}`);
     console.log(`Expected false, got ${value}`);
   }
+}
+
+export function update_settings(){
+  console.log("update_settings");
+  Object.keys(DEFAULT_SETTINGS).forEach( (key) => {
+    _.settings[key] = get_setting(key, DEFAULT_SETTINGS[key]);
+  })
+}
+
+export function restore_default_settings(){
+  console.log("restore_default_settings");
+  Object.keys(DEFAULT_SETTINGS).forEach( (key) => {
+    set_setting(key, DEFAULT_SETTINGS[key]);
+  })
+}
+
+export function utils_unit_tests(){
+  // Test local storage for settings
+  set_setting("foo", "bar");
+  assert_true(get_setting("foo", "baz") === "bar",
+    "Can save settings in local storage");
+  clear_setting("foo");
+  assert_true(get_setting("foo", "baz") === "baz",
+    "Can clear settings and get default values"
+  );
 }
