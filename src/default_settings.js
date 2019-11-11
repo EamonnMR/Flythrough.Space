@@ -12,6 +12,7 @@ export const DEFAULT_SETTINGS = {
   // light_effects: TRUE,
   // pervasive_particles: FALSE,
   ai_leading: TRUE,
+  ortho_cam: FALSE,
   // mobile_controls: FALSE,
 }
 

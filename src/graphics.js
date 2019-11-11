@@ -12,7 +12,7 @@ const SHIP_Y = -2; // This might want to be imported from somewhere
 const PLANET_SCALE = 15;  // TODO: Noticing that differently sized planet sprites end up being the same screen-space size. Weird.
 const PLANET_Y = -10;  // TODO: Shots are still being drawn under planets for some reason
 
-let CAM_OFFSET = new BABYLON.Vector3(0, 40, 30);
+let CAM_OFFSET = new BABYLON.Vector3(0, 0.002, 0.001);
 
 if (is_cheat_enabled("3dverse", false)){
   CAM_OFFSET = new BABYLON.Vector3(0, 0, 30);
@@ -40,16 +40,33 @@ export function get_chase_camera(){
   camera.rotationOffset = 0;
   camera.cameraAcceleration = .1;
   camera.maxCameraSpeed = 100;
+  //camera.mode = _.settings.ortho_cam ?
+  //   BABYLON.Camera.ORTHOGRAPHIC_CAMERA :
+  //   BABYLON.Camera.PERSPECTIVE_CAMERA;
+
   return camera;
 };
 
 export function uni_game_camera(){
   let camera = new BABYLON.UniversalCamera("uni_cam", CAM_OFFSET, _.scene); 
+  //camera.mode = _.settings.ortho_cam ?
+  //   BABYLON.Camera.ORTHOGRAPHIC_CAMERA :
+  //   BABYLON.Camera.PERSPECTIVE_CAMERA;
   camera.setTarget(new BABYLON.Vector3(0,0,0));
+  console.log(camera);
   return camera;
 };
 
-export let get_game_camera = uni_game_camera;
+export function ortho_game_camera(){
+  let camera = uni_game_camera();
+  camera.mode = BABYLON.Camera.ORTHOGRAPHIC_CAMERA;
+  camera.fov = camera.fov / 10;
+  return camera;
+}
+
+export let get_game_camera = ortho_game_camera; // get_game_camera = _.settings.ortho_cam ? 
+  //ortho_game_camera :
+  //uni_game_camera;
 
 function mount_weapon_on_bone(weapon_model, parent_model, bone_index){
   // Translate to the bone's offset
