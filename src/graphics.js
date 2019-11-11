@@ -121,6 +121,7 @@ export function create_composite_model(ship, govt){
     );
     ship.model.material = material;
   }
+
   let model_meta = _.data.get_mesh_meta(ship.mesh);
 
   let weapon_index = 0;  // Note that this index is used for both loops, not reset
@@ -247,3 +248,35 @@ export function shipAnimationSystem(entMan){
     }
   }
 }
+
+export function create_starfield_background(){
+  let plane = BABYLON.MeshBuilder.CreatePlane("starfield", {
+    width: 10000,
+    height: 10000,
+    // sideOrientation: BABYLON.Mesh.DOUBLESIDE
+    sideOrientation: BABYLON.Mesh.BACKSIDE,
+  },_.scene); // default plane
+  plane.material = get_starfield_shader();
+  return plane;
+}
+
+function get_starfield_shader(){
+  let shaderMaterial = new BABYLON.ShaderMaterial(
+		"shader",
+		_.scene,
+		{
+			vertexElement: "starfield_vertex_shader",
+			fragmentElement: "starfield_fragment_shader",
+		},
+		{
+			attributes: ["position", "normal", "uv"],
+			uniforms: ["world", "worldView", "worldViewProjection", "view", "projection"]
+		}
+	);
+
+  shaderMaterial.diffuseTexture = new BABYLON.Texture("/assets/planets/carnarc.png", _.scene);
+  return shaderMaterial;
+}
+
+
+

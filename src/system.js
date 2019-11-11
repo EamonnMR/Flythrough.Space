@@ -14,6 +14,10 @@ import {
   planetFactory
 } from "./entities.js"; 
 
+import {
+  create_starfield_background
+} from "./graphics.js";
+
 export function setup_system(entMan, system){
   _.player.explore_system(system);
   let system_dat = _.data.systems[system];
@@ -71,6 +75,10 @@ function enter_system(entMan, planets, lights, ents) {
   for (let light of lights) {
     world_models.push(lightFactory(light));
   }
+
+  world_models.push(
+    create_starfield_background()
+  );
 
   for (let ent of ents) {
     entMan.insert( ent );
