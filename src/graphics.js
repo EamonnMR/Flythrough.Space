@@ -11,11 +11,16 @@ import { to_radians, is_cheat_enabled } from "./util.js";
 const SHIP_Y = -2; // This might want to be imported from somewhere
 const PLANET_SCALE = 15;  // TODO: Noticing that differently sized planet sprites end up being the same screen-space size. Weird.
 const PLANET_Y = -10;  // TODO: Shots are still being drawn under planets for some reason
+const STARFIELD_Y = -100;
 
 let CAM_OFFSET = new BABYLON.Vector3(0, 40, 30);
 
+if (_.settings.no_offset){
+  let CAM_OFFSET = new BABYLON.Vector3(0, 40, 0);
+}
+
 if (is_cheat_enabled("3dverse", false)){
-  CAM_OFFSET = new BABYLON.Vector3(0, 0, 30);
+  // CAM_OFFSET = new BABYLON.Vector3(0, 0, 30);
 }
 
 
@@ -250,13 +255,18 @@ export function shipAnimationSystem(entMan){
 }
 
 export function create_starfield_background(){
+
   let plane = BABYLON.MeshBuilder.CreatePlane("starfield", {
-    width: 10000,
-    height: 10000,
-    // sideOrientation: BABYLON.Mesh.DOUBLESIDE
-    sideOrientation: BABYLON.Mesh.BACKSIDE,
+    width: 1028,
+    height: 1028,
+    sourcePlane: new BABYLON.Plane(0, 1, 0, 0),
+    sideOrientation: BABYLON.Mesh.DOUBLESIDE
+    //sideOrientation: BABYLON.Mesh.BACKSIDE,
   },_.scene); // default plane
+ 
+ 
   plane.material = get_starfield_shader();
+  plane.position.y = STARFIELD_Y;
   return plane;
 }
 
@@ -274,7 +284,6 @@ function get_starfield_shader(){
 		}
 	);
 
-  shaderMaterial.diffuseTexture = new BABYLON.Texture("/assets/planets/carnarc.png", _.scene);
   return shaderMaterial;
 }
 
