@@ -1,5 +1,4 @@
 // This handles, among other things, the translation between "game" coordinates
-// (which are top down, X, Y) into engine coordinates. The rest of the game
 // can deal with 2d coordinates.
 // Engine --> Game
 // x      --> X
@@ -11,7 +10,7 @@ import { to_radians, is_cheat_enabled } from "./util.js";
 const SHIP_Y = -2; // This might want to be imported from somewhere
 const PLANET_SCALE = 15;  // TODO: Noticing that differently sized planet sprites end up being the same screen-space size. Weird.
 const PLANET_Y = -10;  // TODO: Shots are still being drawn under planets for some reason
-const STARFIELD_Y = -100;
+const STARFIELD_Y = -50;
 
 let CAM_OFFSET = new BABYLON.Vector3(0, 40, 30);
 
@@ -257,16 +256,22 @@ export function shipAnimationSystem(entMan){
 export function create_starfield_background(){
 
   let plane = BABYLON.MeshBuilder.CreatePlane("starfield", {
-    width: 1028,
-    height: 1028,
-    sourcePlane: new BABYLON.Plane(0, 1, 0, 0),
+    width: 512,
+    height: 512,
+    sourcePlane: new BABYLON.Plane(
+      0,
+      1,
+      0, 
+      0
+    ),
     sideOrientation: BABYLON.Mesh.DOUBLESIDE
     //sideOrientation: BABYLON.Mesh.BACKSIDE,
   },_.scene); // default plane
  
- 
+  // Maybe: https://www.babylonjs-playground.com/#1CSVHO%2311 
   plane.material = get_starfield_shader();
   plane.position.y = STARFIELD_Y;
+  plane.setParent(_.camera);
   return plane;
 }
 
@@ -275,17 +280,32 @@ function get_starfield_shader(){
 		"shader",
 		_.scene,
 		{
-			vertexElement: "starfield_vertex_shader",
-			fragmentElement: "starfield_fragment_shader",
+			vertexElement: "starfield",
+			fragmentElement: "starfield",
 		},
 		{
 			attributes: ["position", "normal", "uv"],
 			uniforms: ["world", "worldView", "worldViewProjection", "view", "projection"]
 		}
 	);
-
   return shaderMaterial;
 }
 
+export function global_position(mesh){
+  mesh.computeWorldMatrix();
+  return BABYLON.Vector3.TransformCoordinates(
+    mesh.position,
+    mesh.getWorldMatrix()
+  );
+}
 
+export function global_rotation(mesh){
+  // https://forum.babylonjs.com/t/finding-rotation-of-child-why-is-there-no-absoluterotation-or-locallyrotate-methods/3595/2
+    let scale = new BABYLON.Vector3(0, 0, 0);
+    let rotation = new BABYLON.Quaternion();
+    let translation = new BABYLON.Vector3(0,0,0);
 
+    let tempWorldMatrix = mesh.getWorldMatrix();
+    tempWorldMatrix.decompose(scale, rotation, translation);
+    return rotation;
+  }

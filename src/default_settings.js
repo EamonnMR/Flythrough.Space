@@ -7,7 +7,7 @@ const TRUE = "true"
 const FALSE = ""
 
 export const DEFAULT_SETTINGS = {
-  // starfield: TRUE,
+  starfield: TRUE,
   // parallax_starfield: FALSE,
   // light_effects: TRUE,
   // pervasive_particles: FALSE,

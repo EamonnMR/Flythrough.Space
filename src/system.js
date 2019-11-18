@@ -76,9 +76,11 @@ function enter_system(entMan, planets, lights, ents) {
     world_models.push(lightFactory(light));
   }
 
-  world_models.push(
-    create_starfield_background()
-  );
+  if (_.settings.starfield){
+    world_models.push(
+      create_starfield_background()
+    );
+  }
 
   for (let ent of ents) {
     entMan.insert( ent );
