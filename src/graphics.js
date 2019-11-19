@@ -164,6 +164,7 @@ export function chaseCameraFollowSystem (entMan) {
 export function uniCameraFollowSystem(entMan){
   for (let entity of entMan.get_with(['model', 'camera'])) {
     _.camera.position = entity.model.position.add(CAM_OFFSET);
+    _.starfield.material.setFloat("time", entity.model.position.x);
   }
 };
 
@@ -272,6 +273,7 @@ export function create_starfield_background(){
   plane.material = get_starfield_shader();
   plane.position.y = STARFIELD_Y;
   plane.setParent(_.camera);
+  _.starfield = plane;
   return plane;
 }
 
@@ -285,9 +287,10 @@ function get_starfield_shader(){
 		},
 		{
 			attributes: ["position", "normal", "uv"],
-			uniforms: ["world", "worldView", "worldViewProjection", "view", "projection"]
+			uniforms: ["world", "worldView", "worldViewProjection", "view", "projection", "time"]
 		}
 	);
+  // shaderMaterial.setFloat("time", 1.0);
   return shaderMaterial;
 }
 

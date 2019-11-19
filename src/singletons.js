@@ -12,5 +12,6 @@ export var _ = {
   hud: null,
   camera: null,
   settings: {},
+  starfield: null,
 };
 

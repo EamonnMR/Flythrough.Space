@@ -1,4 +1,6 @@
 precision highp float;
+// uniforms
+uniform float time;
 
 // https://shaderfrog.com/app/view/25?view=shader
 
@@ -49,8 +51,8 @@ float PerlinNoise(vec2 UV, float Seed){
 void main(void)
 {
   vec2 iResolution = vec2(620, 480);
-  float time = 0.0;
-  float iTime = 0.0;
+  // float time = 0.0;
+  float iTime = time;
     vec2 UV = ( gl_FragCoord.xy / iResolution.y ) / iResolution.y;
 	UV *= vec2(2.1);	
 	
@@ -71,6 +73,6 @@ void main(void)
 	RetVal.xyz = max(vec3(TempVec2C.x * pow(TempVec2C.y, 10.0) * pow(PowIn, 2.0) * 1.0), vec3(0.0)); 
 	RetVal.xyz += TempVec3A;
 
-	gl_FragColor = RetVal;
+	gl_FragColor = vec4(time, 0, 0, 1);
 }
 
