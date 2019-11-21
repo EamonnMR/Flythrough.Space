@@ -14,10 +14,10 @@ export function collisionDetectionSystem(entMan){
     for (let other of colliders) {
       if ( is_colliding( current, other)){
         if ( filter_collisions(current, other)){
-          shot_handler(current, other );
+          shot_handler(current, other, entMan);
         }
         if ( filter_collisions(other, current)){
-          shot_handler(other, current);
+          shot_handler(other, current, entMan);
         }
       }
     }

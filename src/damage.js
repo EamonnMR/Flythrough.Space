@@ -1,10 +1,10 @@
-import { do_explo } from "./graphics.js";
+import { do_explo, flash_factory } from "./graphics.js";
 
 const DISABLED_THRESHOLD = 0.15;
 
-export function shot_handler(shot, object){
+export function shot_handler(shot, object, entMan){
   if ( 'damage' in shot ){
-    damage_handler(shot, object);
+    damage_handler(shot, object, entMan);
   }
 
   if ('remove_on_contact' in shot){
@@ -25,7 +25,7 @@ function draw_aggro(damager, damaged){
   }
 }
 
-export function damage_handler(damager, damaged){
+export function damage_handler(damager, damaged, entMan){
   draw_aggro(damager, damaged);
   // A projectile or some such has hit something hittable
   if ('shield_damage' in damager && 'shields' in damaged){
@@ -58,10 +58,16 @@ export function damage_handler(damager, damaged){
       }
       if (new_hp <= 0){
         // TODO: More elaborite death sequence
-        do_explo(damaged.position);
-        damaged.remove = true;
+        destroyed(damaged, entMan);
       }
     }
   }
 }
 
+function destroyed(entity, entMan){
+  // TODO: Slow explosion filled demise
+  // TODO: Size-proportional explosions
+  entity.remove = true;
+  do_explo(entity.position);
+  entMan.insert( flash_factory( entity.position, 1, 300, 750));
+}
