@@ -259,7 +259,7 @@ export function flashSystem(entMan){
   }
 }
 
-export function flash_factory(position, peak_intensity, attack, decay){
+export function flash_factory(position, peak_intensity, attack, decay, entMan){
   // Should be a point light?
   let light = new BABYLON.PointLight(
     "flash",
@@ -269,11 +269,22 @@ export function flash_factory(position, peak_intensity, attack, decay){
   // TODO: Parameterize this
   light.specular = new BABYLON.Color3(1,1,1);
   light.diffuse = new BABYLON.Color3(1,1,1);
-  return {
+  let light_ent = {
     "flash_light": light,
     "attack": attack,
     "max_age": attack + decay,
     "peak": peak_intensity,
     "age": 0,
   }
+  if (_.settings.shadows){
+    debugger;
+    light_ent.shadow_caster = new BABYLON.ShadowGenerator(1024, light);
+    light_ent.shadow_caster.bias = 0.00001;
+    light_ent.shadow_caste.rnormalBias = 0.01;
+    for( let ent of entMan.get_with['mesh']){
+      light_ent.shadow_caster.addShadowCaster(ent.mesh); // TODO: Children of mesh?
+      ent.mesh.receiveShadows = true;
+    }
+  }
+  return light_ent;
 }

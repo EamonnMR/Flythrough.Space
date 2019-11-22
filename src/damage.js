@@ -69,8 +69,9 @@ function destroyed(entity, entMan){
   // TODO: Slow explosion filled demise
   // TODO: Size-proportional explosions
   entity.remove = true;
+  debugger;
   do_explo(entity.position);
   if( _.settings.light_effects ){ 
-    entMan.insert( flash_factory( entity.position, 1, 300, 750));
+    entMan.insert( flash_factory( entity.position, 1, 300, 2000 /*750*/, entMan));
   }
 }

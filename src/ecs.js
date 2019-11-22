@@ -123,6 +123,7 @@ function delete_model (entity) {
     'sprite',
     'overlay',
     'flash_light',
+    'shadow_caster',
   ];
 
   for(let attribute of MODEL_ATTR ){
