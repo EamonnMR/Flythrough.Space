@@ -9,7 +9,7 @@ const FALSE = ""
 export const DEFAULT_SETTINGS = {
   // starfield: TRUE,
   // parallax_starfield: FALSE,
-  // light_effects: TRUE,
+  light_effects: TRUE,
   // pervasive_particles: FALSE,
   ai_leading: TRUE,
   // mobile_controls: FALSE,

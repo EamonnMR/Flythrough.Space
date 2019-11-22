@@ -1,3 +1,4 @@
+import { _ } from "./singletons.js";
 import { do_explo, flash_factory } from "./graphics.js";
 
 const DISABLED_THRESHOLD = 0.15;
@@ -69,5 +70,7 @@ function destroyed(entity, entMan){
   // TODO: Size-proportional explosions
   entity.remove = true;
   do_explo(entity.position);
-  entMan.insert( flash_factory( entity.position, 1, 300, 750));
+  if( _.settings.light_effects ){ 
+    entMan.insert( flash_factory( entity.position, 1, 300, 750));
+  }
 }
