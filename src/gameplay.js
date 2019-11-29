@@ -11,7 +11,12 @@ import { weaponSystem, decaySystem} from "./weapon.js";
 import { EntityManager, deletionSystem} from "./ecs.js";
 import { inputSystem, bindInputFunctions, unbindInputFunctions} from "./input.js";
 import { npcSpawnerSystem } from "./entities.js";
-import { modelPositionSystem, cameraFollowSystem, shipAnimationSystem } from "./graphics.js";
+import {
+  modelPositionSystem,
+  cameraFollowSystem,
+  shipAnimationSystem,
+  flashSystem
+} from "./graphics.js";
 import { collisionDetectionSystem } from "./collision.js";
 import { setup_system } from "./system.js";
 import { ViewState } from "./view_state.js";
@@ -37,6 +42,7 @@ export class GamePlayState extends ViewState {
       shipAnimationSystem,
       turretPointSystem,
       decaySystem,
+      flashSystem,
       collisionDetectionSystem,
       radarFollowSystem,
       deletionSystem,

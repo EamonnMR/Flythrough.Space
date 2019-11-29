@@ -247,3 +247,33 @@ export function shipAnimationSystem(entMan){
     }
   }
 }
+
+export function flashSystem(entMan){
+  for(let ent of entMan.get_with(['flash_light', 'attack', 'age', 'peak', "max_age"])){
+    if(ent.age < ent.attack){
+      ent.flash_light.intensity = ent.peak * (ent.age / ent.attack)
+    } else {
+      ent.flash_light.intensity = ent.peak * 1 - ((ent.age - ent.attack) / (ent.max_age - ent.attack)); 
+    }
+    console.log(ent.flash_light.intensity)
+  }
+}
+
+export function flash_factory(position, peak_intensity, attack, decay){
+  // Should be a point light?
+  let light = new BABYLON.PointLight(
+    "flash",
+    new BABYLON.Vector3(position.x, SHIP_Y, position.y),
+    _.scene,
+  );
+  // TODO: Parameterize this
+  light.specular = new BABYLON.Color3(1,1,1);
+  light.diffuse = new BABYLON.Color3(1,1,1);
+  return {
+    "flash_light": light,
+    "attack": attack,
+    "max_age": attack + decay,
+    "peak": peak_intensity,
+    "age": 0,
+  }
+}
