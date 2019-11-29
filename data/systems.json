@@ -524,6 +524,16 @@
     "x":954,
     "y":1284,
     "govt":"direc",
+    "spobs": [
+      "Akindele"
+    ],
+    "npc_average": 4,
+    "npcs": [
+      "bank", 
+      "trader_bulk",
+      "caudron_gang",
+      "cas_capital"
+    ],
     "links":[
       "Yekini",
       "Illorin",

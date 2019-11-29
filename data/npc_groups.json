@@ -155,5 +155,13 @@
       "itaska_hemlock",
       "itaska_nightshade"
     ]
+  },
+  "bank": {
+    "govt": "galbank",
+    "ships": [
+      "courier",
+      "argosy",
+      "civ_corvette"
+    ]
   }
 }

@@ -64,5 +64,11 @@
     "color": "#51534AFF",
     "short_name": "Insur",
     "attack_default": true
+  },
+  "galbank": {
+    "name": "Galactic Bank",
+    "color": "#AA00AAFF",
+    "dark_color": "#AA00AAFF",
+    "short_name": "Bank"
   }
 }
