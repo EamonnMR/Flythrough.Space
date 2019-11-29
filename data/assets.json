@@ -176,6 +176,11 @@
       "img": "assets/asteroid.png",
       "count": 10,
       "size": 296 
+    },
+    "star": {
+      "img": "assets/sprites/flare.png",
+      "count": 10000,
+      "size": 256
     }
   },
   "data": {

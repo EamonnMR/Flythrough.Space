@@ -14,6 +14,8 @@ import {
   planetFactory
 } from "./entities.js"; 
 
+import { random_position } from "./util.js";
+
 export function setup_system(entMan, system){
   _.player.explore_system(system);
   let system_dat = _.data.systems[system];
@@ -64,6 +66,27 @@ export function setup_system(entMan, system){
   return enter_system(entMan, planets, lights, ents);
 };
 
+function create_starfield(){
+  const STAR_COUNT = 10000;
+  const MAX_SIZE = 1000;
+  const MAX_DEPTH = -10;
+  const STAR_Y = -11;
+  let stars = []
+  let sprite_mgr = _.data.get_sprite_mgr("star");
+  function random_axis(){
+    return Math.round((Math.random() - .5) * MAX_SIZE * 2);
+  }
+  for(let i = 0; i < STAR_COUNT; i++){
+    let star = new BABYLON.Sprite("star", sprite_mgr)
+    let rand_pos = random_position(100);
+    star.position.x = random_axis()
+    star.position.y = Math.round(Math.random() * MAX_DEPTH) + STAR_Y;
+    star.position.z = random_axis() 
+    stars.push(star);
+  }
+  return stars;
+}
+
 
 function enter_system(entMan, planets, lights, ents) {
   let world_models = []
@@ -71,6 +94,8 @@ function enter_system(entMan, planets, lights, ents) {
   for (let light of lights) {
     world_models.push(lightFactory(light));
   }
+
+  world_models = world_models.concat(create_starfield());
 
   for (let ent of ents) {
     entMan.insert( ent );
