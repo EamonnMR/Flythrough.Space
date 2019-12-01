@@ -21,6 +21,9 @@ This is like a Z index for objects on screen.
 
 (Where do explosions fit into this?)
 
+(Maybe make the star offset as high as the ship offset, since they'll always be drawn below?
+(Ditto for planets???)
+
 ===================
 Beams:
 
@@ -40,3 +43,18 @@ Is a birds-eye camera good enough?
 https://www.html5gamedevs.com/topic/36952-zoom-issue-in-orthographic-camera/
 
 =================
+FTL Effects
+
+Figure out how to hand off control to the autopilot
+
+Figure out how to affect all star sprites at once
+
+Autopilot player to right direction
+
+Rotate stars to match player movement
+
+Stretch stars
+
+Change background color or add other effects (fullscreen shader?)
+
+
