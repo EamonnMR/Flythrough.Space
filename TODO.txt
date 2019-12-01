@@ -1,0 +1,42 @@
+=====================
+Shadows: https://doc.babylonjs.com/babylon101/shadows
+
+Whenever a light appears, add a shadow caster. Add all objects as shadow casters.
+
+Whenever an object appears, add it to the shadow caster.
+
+How do I manage this?
+
+====================
+Sprites:
+
+Make stars, planets, and projectiles never overlap with renderingGroupId
+
+This is like a Z index for objects on screen.
+
+0: Stars
+1: Planets
+3: Default (?)
+4: Player Ship(?)
+
+(Where do explosions fit into this?)
+
+===================
+Beams:
+
+Draw as a line?
+https://doc.babylonjs.com/babylon101/parametric_shapes#lines
+
+Draw as a particle system?
+
+How to keep track of the mesh between shots? (attach mesh to weapon rather than projectile?)
+(what to do about collider?)
+
+==================
+Ortho Cam:
+Is this even a good idea?
+Is a birds-eye camera good enough?
+
+https://www.html5gamedevs.com/topic/36952-zoom-issue-in-orthographic-camera/
+
+=================
