@@ -18,13 +18,6 @@ Draw as a particle system?
 How to keep track of the mesh between shots? (attach mesh to weapon rather than projectile?)
 (what to do about collider?)
 
-==================
-Ortho Cam:
-Is this even a good idea?
-Is a birds-eye camera good enough?
-
-https://www.html5gamedevs.com/topic/36952-zoom-issue-in-orthographic-camera/
-
 =================
 FTL Effects
 
@@ -40,4 +33,7 @@ Stretch stars
 
 Change background color or add other effects (fullscreen shader?)
 
+================
+Map Markers
 
+Show systems that are mission destinations on the map somehow
