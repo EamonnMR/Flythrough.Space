@@ -54,10 +54,6 @@ export class Data {
     }
     return this.sprites[sprname];
   }
-  
-  get_sprite(name){
-    return new BABYLON.Sprite(name, this.get_sprite_mgr(name));
-  }
 
   get_particle_system(type){
     //particle_system = new BABYLON.ParticleSystem("particles", 2000, _.scene);

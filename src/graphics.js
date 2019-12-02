@@ -8,15 +8,22 @@
 import { _ } from "./singletons.js";
 import { to_radians, is_cheat_enabled } from "./util.js";
 
-const SHIP_Y = -2; // This might want to be imported from somewhere
+const SHIP_Y = 0; // This might want to be imported from somewhere
 const PLANET_SCALE = 15;  // TODO: Noticing that differently sized planet sprites end up being the same screen-space size. Weird.
-const PLANET_Y = -10;  // TODO: Shots are still being drawn under planets for some reason
+const PLANET_Y = 0;  // TODO: Shots are still being drawn under planets for some reason
 
-let CAM_OFFSET = new BABYLON.Vector3(0, 40, 30);
+const STAR_Y = 0;
 
-if (is_cheat_enabled("3dverse", false)){
-  CAM_OFFSET = new BABYLON.Vector3(0, 0, 30);
-}
+const BG_LAYER = 0
+const SPOB_LAYER = 1
+const DEFAULT_LAYER = 2
+// const PLAYER_LAYER = 3
+
+let CAM_OFFSET = new BABYLON.Vector3(0, 42, 30);
+
+// if (is_cheat_enabled("3dverse", false)){
+//   CAM_OFFSET = new BABYLON.Vector3(0, 0, 30);
+// }
 
 
 export function get_bone_group(skeleton, prefix){
@@ -84,6 +91,7 @@ function mount_turreted_weapons(model_meta, ship, weapon_index){
 
         weapon.model.attachToBone(bone, ship.model);
         weapon.model.visibility = 1;
+        weapon.model.renderingGroupId = DEFAULT_LAYER;
         associated_weapons.push(weapon_index);
         weapon.turret_index = turret_index;
         weapon_index ++;
@@ -137,6 +145,7 @@ export function create_composite_model(ship, govt){
         }
         let weapon = ship.weapons[weapon_index] 
         weapon.model = _.data.get_mesh(weapon.mesh);
+        weapon.model.renderingGroupId = DEFAULT_LAYER;
         mount_weapon_on_bone(weapon.model, ship.model, model_meta.bone_map[bone_name]);
         weapon.model.visibility = 1;
         weapon_index ++;
@@ -146,6 +155,7 @@ export function create_composite_model(ship, govt){
     // TODO: Turreted
     // mount_turreted_weapons(model_meta, data, ship, weapon_index)
   }
+  ship.model.renderingGroupId = DEFAULT_LAYER;
   ship.model.visibility = 1;
 };
 
@@ -189,11 +199,11 @@ export function create_planet_sprite(planet){
   // TODO: Is any of this still true?
   let sprite = null; 
   if("sprite" in planet && planet.sprite){
-    sprite = _.data.get_sprite(planet.sprite);
+    sprite = get_sprite(planet.sprite, SPOB_LAYER);
   } else {
     // TODO: Uglier default to make it clearer that missing sprites are bugs
     // Maybe make it look like the amiga ball?
-    sprite = _.data.get_sprite("redplanet")
+    sprite = get_sprite("redplanet", SPOB_LAYER)
   }
   sprite.size = PLANET_SCALE;  // TODO: Why aren't sizes more different?
   // ie it appears that no matter how big I make a sprite, the planet
@@ -214,6 +224,7 @@ export function get_engine_particle_systems(entity){
   let particle_system = _.data.get_particle_system("conventional_engine");
   let emitter_node = new BABYLON.TransformNode(_.scene);
   particle_system.emitter = emitter_node;
+  particle_system.renderingGroupId = DEFAULT_LAYER;
   emitter_node.parent = entity.model;
   return [particle_system];
 }
@@ -226,6 +237,7 @@ export function do_explo(position){
   particle_system.emitter.position.y = SHIP_Y;
   particle_system.emitter.position.z = position.y;
   particle_system.disposeOnStop = true;
+  particle_system.renderingGroupId = DEFAULT_LAYER;
   particle_system.start();
   particle_system.stop();
 }
@@ -276,4 +288,33 @@ export function flash_factory(position, peak_intensity, attack, decay){
     "peak": peak_intensity,
     "age": 0,
   }
+}
+
+export function create_starfield(){
+  const STAR_COUNT = 10000;
+  const MAX_SIZE = 1000;
+  const MAX_DEPTH = -100;
+  let stars = []
+  let sprite_mgr = get_sprite_manager("star", BG_LAYER);
+  function random_axis(){
+    return Math.round((Math.random() - .5) * MAX_SIZE * 2);
+  }
+  for(let i = 0; i < STAR_COUNT; i++){
+    let star = new BABYLON.Sprite("star", sprite_mgr)
+    star.position.x = random_axis()
+    star.position.y = Math.round(Math.random() * MAX_DEPTH) + STAR_Y;
+    star.position.z = random_axis() 
+    stars.push(star);
+  }
+  return stars;
+}
+
+export function get_sprite_manager(sprite, layer=DEFAULT_LAYER){
+  let sprite_mgr = _.data.get_sprite_mgr(sprite);
+  sprite_mgr.renderingGroupId = layer;
+  return sprite_mgr;
+}
+
+export function get_sprite(sprite, layer=DEFAULT_LAYER){
+  return new BABYLON.Sprite(sprite, get_sprite_manager(sprite, layer));
 }

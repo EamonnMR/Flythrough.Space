@@ -7,6 +7,7 @@
  */
 
 import { _ } from "./singletons.js";
+import { create_starfield } from "./graphics.js"; 
 
 import {
   playerShipFactory,
@@ -66,26 +67,7 @@ export function setup_system(entMan, system){
   return enter_system(entMan, planets, lights, ents);
 };
 
-function create_starfield(){
-  const STAR_COUNT = 10000;
-  const MAX_SIZE = 1000;
-  const MAX_DEPTH = -10;
-  const STAR_Y = -11;
-  let stars = []
-  let sprite_mgr = _.data.get_sprite_mgr("star");
-  function random_axis(){
-    return Math.round((Math.random() - .5) * MAX_SIZE * 2);
-  }
-  for(let i = 0; i < STAR_COUNT; i++){
-    let star = new BABYLON.Sprite("star", sprite_mgr)
-    let rand_pos = random_position(100);
-    star.position.x = random_axis()
-    star.position.y = Math.round(Math.random() * MAX_DEPTH) + STAR_Y;
-    star.position.z = random_axis() 
-    stars.push(star);
-  }
-  return stars;
-}
+
 
 
 function enter_system(entMan, planets, lights, ents) {

@@ -7,23 +7,6 @@ Whenever an object appears, add it to the shadow caster.
 
 How do I manage this?
 
-====================
-Sprites:
-
-Make stars, planets, and projectiles never overlap with renderingGroupId
-
-This is like a Z index for objects on screen.
-
-0: Stars
-1: Planets
-3: Default (?)
-4: Player Ship(?)
-
-(Where do explosions fit into this?)
-
-(Maybe make the star offset as high as the ship offset, since they'll always be drawn below?
-(Ditto for planets???)
-
 ===================
 Beams:
 
