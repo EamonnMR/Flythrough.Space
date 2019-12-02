@@ -10,9 +10,9 @@ import { to_radians, is_cheat_enabled } from "./util.js";
 
 const SHIP_Y = -2; // This might want to be imported from somewhere
 const PLANET_SCALE = 15;  // TODO: Noticing that differently sized planet sprites end up being the same screen-space size. Weird.
-const PLANET_Y = -10;  // TODO: Shots are still being drawn under planets for some reason
+const PLANET_Y = -2;  // TODO: Shots are still being drawn under planets for some reason
 
-const STAR_Y = -11;
+const STAR_Y = -2;
 
 const BG_LAYER = 0
 const SPOB_LAYER = 1
