@@ -37,6 +37,11 @@ function cam_offset(){
   }
 }
 
+export function camera_ready(){
+  _.camera.position = cam_offset();
+  _.camera.setTarget(new BABYLON.Vector3(0,0,0));
+}
+
 export function get_bone_group(skeleton, prefix){
   // Get a group of bones with the same prefix
   let bone_group = [];
@@ -62,8 +67,7 @@ export function get_chase_camera(){
 };
 
 export function uni_game_camera(){
-  let camera = new BABYLON.UniversalCamera("uni_cam", CAM_OFFSET_PERSPECTIVE, _.scene); 
-  camera.setTarget(new BABYLON.Vector3(0,0,0));
+  let camera = new BABYLON.UniversalCamera("uni_cam", new BABYLON.Vector3(0,0,0), _.scene); 
   return camera;
 };
 
