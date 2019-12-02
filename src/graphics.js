@@ -8,18 +8,18 @@
 import { _ } from "./singletons.js";
 import { to_radians, is_cheat_enabled } from "./util.js";
 
-const SHIP_Y = -2; // This might want to be imported from somewhere
+const SHIP_Y = 0; // This might want to be imported from somewhere
 const PLANET_SCALE = 15;  // TODO: Noticing that differently sized planet sprites end up being the same screen-space size. Weird.
-const PLANET_Y = -2;  // TODO: Shots are still being drawn under planets for some reason
+const PLANET_Y = 0;  // TODO: Shots are still being drawn under planets for some reason
 
-const STAR_Y = -2;
+const STAR_Y = 0;
 
 const BG_LAYER = 0
 const SPOB_LAYER = 1
 const DEFAULT_LAYER = 2
 // const PLAYER_LAYER = 3
 
-let CAM_OFFSET = new BABYLON.Vector3(0, 40, 30);
+let CAM_OFFSET = new BABYLON.Vector3(0, 42, 30);
 
 // if (is_cheat_enabled("3dverse", false)){
 //   CAM_OFFSET = new BABYLON.Vector3(0, 0, 30);
@@ -293,7 +293,7 @@ export function flash_factory(position, peak_intensity, attack, decay){
 export function create_starfield(){
   const STAR_COUNT = 10000;
   const MAX_SIZE = 1000;
-  const MAX_DEPTH = -10;
+  const MAX_DEPTH = -100;
   let stars = []
   let sprite_mgr = get_sprite_manager("star", BG_LAYER);
   function random_axis(){
