@@ -40,7 +40,7 @@ export class MapView extends ViewState{
     this.scale_factor = 1;
     //this.diff = {x: _.canvas.width() / 2, y: _.canvas.height() / 2};
 
-    this.offset = {x: -600, y: -1000}; //{ x: position.x,
+    this.offset = {x: -450, y: -700}; //{ x: position.x,
                   //  y: position.y};
     this.scrollables = [];
 
@@ -85,6 +85,8 @@ export class MapView extends ViewState{
     this.map_sub = null;
 
     this.setup_dragging();
+    this.move_spacelanes();
+    this.move_scrollables();
 
     console.log("Finished entering map");
 
@@ -368,6 +370,7 @@ export class MapView extends ViewState{
         this.mouse_pos.y = coordinates.y;
         this.move_spacelanes();
         this.move_scrollables();
+        console.log(this.offset);
       }
     });
 

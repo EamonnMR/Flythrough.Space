@@ -25,14 +25,11 @@ let CAM_OFFSET_BIRDSEYE = new BABYLON.Vector3(0, 42, 0);
 
 function cam_offset(){
   if (is_cheat_enabled("3dverse", false)){
-    console.log("3dV")
     return CAM_OFFSET_3DV;
   }
   if(_.settings.perspective){
-    console.log("PERSPECT")
     return CAM_OFFSET_PERSPECTIVE;
   } else {
-    console.log("BIRDEYE")
     return CAM_OFFSET_BIRDSEYE;
   }
 }
