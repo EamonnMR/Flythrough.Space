@@ -19,12 +19,28 @@ const SPOB_LAYER = 1
 const DEFAULT_LAYER = 2
 // const PLAYER_LAYER = 3
 
-let CAM_OFFSET = new BABYLON.Vector3(0, 42, 30);
+let CAM_OFFSET_3DV = new BABYLON.Vector3(0, 0, 30);
+let CAM_OFFSET_PERSPECTIVE = new BABYLON.Vector3(0, 42, 30);
+let CAM_OFFSET_BIRDSEYE = new BABYLON.Vector3(0, 42, 0);
 
-// if (is_cheat_enabled("3dverse", false)){
-//   CAM_OFFSET = new BABYLON.Vector3(0, 0, 30);
-// }
+function cam_offset(){
+  if (is_cheat_enabled("3dverse", false)){
+    console.log("3dV")
+    return CAM_OFFSET_3DV;
+  }
+  if(_.settings.perspective){
+    console.log("PERSPECT")
+    return CAM_OFFSET_PERSPECTIVE;
+  } else {
+    console.log("BIRDEYE")
+    return CAM_OFFSET_BIRDSEYE;
+  }
+}
 
+export function camera_ready(){
+  _.camera.position = cam_offset();
+  _.camera.setTarget(new BABYLON.Vector3(0,0,0));
+}
 
 export function get_bone_group(skeleton, prefix){
   // Get a group of bones with the same prefix
@@ -51,8 +67,7 @@ export function get_chase_camera(){
 };
 
 export function uni_game_camera(){
-  let camera = new BABYLON.UniversalCamera("uni_cam", CAM_OFFSET, _.scene); 
-  camera.setTarget(new BABYLON.Vector3(0,0,0));
+  let camera = new BABYLON.UniversalCamera("uni_cam", new BABYLON.Vector3(0,0,0), _.scene); 
   return camera;
 };
 
@@ -168,7 +183,7 @@ export function chaseCameraFollowSystem (entMan) {
 
 export function uniCameraFollowSystem(entMan){
   for (let entity of entMan.get_with(['model', 'camera'])) {
-    _.camera.position = entity.model.position.add(CAM_OFFSET);
+    _.camera.position = entity.model.position.add(cam_offset());
   }
 };
 

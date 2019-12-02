@@ -7,7 +7,7 @@
  */
 
 import { _ } from "./singletons.js";
-import { create_starfield } from "./graphics.js"; 
+import { create_starfield, camera_ready } from "./graphics.js"; 
 
 import {
   playerShipFactory,
@@ -18,6 +18,7 @@ import {
 import { random_position } from "./util.js";
 
 export function setup_system(entMan, system){
+  camera_ready(); 
   _.player.explore_system(system);
   let system_dat = _.data.systems[system];
 
