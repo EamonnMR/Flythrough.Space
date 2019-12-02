@@ -8,6 +8,11 @@ import { DEFAULT_SETTINGS } from "./default_settings.js";
 const ARC = Math.PI * 2;
 const SETTING_PREFIX = "_setting:";
 
+let url_params = new URLSearchParams(window.location.search);
+
+let all_cheats_enabled = url_params.has("all_cheats");
+
+
 export function distance(l_pos, r_pos){
   return Math.sqrt(
       Math.pow(l_pos.x - r_pos.x, 2) +
@@ -132,11 +137,6 @@ export function choose(choices){
   // Make a random choice between items in a list
   return choices[randint(0, choices.length - 1)];
 }
-
-let url_params = new URLSearchParams(window.location.search);
-
-let all_cheats_enabled = url_params.has("all_cheats");
-
 export function is_cheat_enabled(cheat, is_global_cheat=true){
   return (all_cheats_enabled && is_global_cheat) || url_params.has(cheat);
 }

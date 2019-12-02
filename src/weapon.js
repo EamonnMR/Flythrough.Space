@@ -1,5 +1,6 @@
 import { accelerate } from "./physics.js";
 import { _ } from "./singletons.js"; 
+import { get_sprite_manager } from "./graphics.js";
 
 export function decaySystem (entMan) {
   /* A system for adding expiration times to entities.
@@ -58,7 +59,7 @@ export function weapon_factory(proto) {
   weapon.timer = 0;
   weapon.burst_timer = 0;
   weapon.burst_counter = 0;
-  weapon.sprite_mgr = _.data.get_sprite_mgr(weapon.sprite);
+  weapon.sprite_mgr = get_sprite_manager(weapon.sprite);
   weapon.model = null; // To be filled in elsewhere TODO: gross
   return weapon;
 }
