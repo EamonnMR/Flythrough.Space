@@ -19,7 +19,6 @@ import { random_position } from "./util.js";
 
 export function setup_system(entMan, system){
   camera_ready(); 
-  _.player.explore_system(system);
   let system_dat = _.data.systems[system];
 
   let lights = [
@@ -78,7 +77,8 @@ function enter_system(entMan, planets, lights, ents) {
     world_models.push(lightFactory(light));
   }
 
-  world_models = world_models.concat(create_starfield());
+  let [starfield, stars] = create_starfield()
+  world_models = world_models.concat(stars);
 
   for (let ent of ents) {
     entMan.insert( ent );
@@ -89,7 +89,7 @@ function enter_system(entMan, planets, lights, ents) {
     entMan.insert( planet );
   }
 
-  return world_models;
+  return [world_models, [starfield]];
 };
 
 function lightFactory(data){

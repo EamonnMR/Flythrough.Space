@@ -28,6 +28,7 @@ function cam_offset(){
     return CAM_OFFSET_3DV;
   }
   if(_.settings.perspective){
+    console.log(_.settings);
     return CAM_OFFSET_PERSPECTIVE;
   } else {
     return CAM_OFFSET_BIRDSEYE;
@@ -318,7 +319,7 @@ export function create_starfield(){
     star.position.z = random_axis() 
     stars.push(star);
   }
-  return stars;
+  return [sprite_mgr, stars];
 }
 
 export function get_sprite_manager(sprite, layer=DEFAULT_LAYER){

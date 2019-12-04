@@ -47,10 +47,12 @@ export class GamePlayState extends ViewState {
       radarFollowSystem,
       deletionSystem,
       hudUpdateSystem,
-      (entMan) => {this.playerLifecycleSystem() }, // Yeah this is kinda stateful.
+      (entMan) => {this.playerLifecycleSystem() },
+      (entMan) => {this.warpSystem() },
     ]);
     this.empty = true;
     this.world_models = [];
+    this.starfields = [];
   }
 
   update(){
@@ -164,7 +166,7 @@ export class GamePlayState extends ViewState {
   }
 
   create_world_models( system_name ){
-    this.world_models = setup_system(
+    [this.world_models, this.starfields] = setup_system(
 			this.entMan,
    		system_name,
   	);
@@ -198,6 +200,7 @@ export class GamePlayState extends ViewState {
     _.hud = new HUD(
         this.entMan,
     );
+    _.player.explore_system(_.player.current_system);
     this.create_world_models(_.player.current_system);
     this.empty = false;
   }
@@ -246,5 +249,35 @@ export class GamePlayState extends ViewState {
 
   find_closest_target(targeter){
     return this.get_closest_thing(targeter, this.entMan.get_with(["ai"]));
+  }
+
+  warpSystem(){
+    let possible_player = this.get_player_ent();
+    // if (possible_player && possible_player.warping){
+    this.set_warp_factor(2);
+    //  this.rotate_stars(10);
+    // }
+  }
+
+  set_warp_factor(warp_factor){
+    if(this.get_stars()){
+      this.get_stars().forEach( star => star.width = warp_factor);
+    }
+  }
+  
+  rotate_stars(rotation){
+    this.get_stars().forEach( (star) => {
+      star.rotate(rotation)
+    });
+  }
+
+  get_stars(){
+    if(this.starfields.length){
+      return this.starfields.map((sprite_manager) => {
+        return sprite_manager.sprites
+      }).flat(1);
+    } else {
+      return [];
+    }
   }
 }
