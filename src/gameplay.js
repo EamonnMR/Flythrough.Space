@@ -47,8 +47,8 @@ export class GamePlayState extends ViewState {
       radarFollowSystem,
       deletionSystem,
       hudUpdateSystem,
-      (entMan) => {this.playerLifecycleSystem() },
-      (entMan) => {this.warpSystem() },
+      entMan => this.playerLifecycleSystem(),
+      entMan => this.warpSystem(entMan),
     ]);
     this.empty = true;
     this.world_models = [];
@@ -94,6 +94,10 @@ export class GamePlayState extends ViewState {
       */
 
       hyper_jump: () => {
+        let player_ent = this.get_player_ent();
+        player_ent.warping = true;
+      },
+      hyper_jump_old: () => {
 			  if ( _.player.current_system
             != _.player.selected_system
         ) {
@@ -251,12 +255,19 @@ export class GamePlayState extends ViewState {
     return this.get_closest_thing(targeter, this.entMan.get_with(["ai"]));
   }
 
-  warpSystem(){
-    let possible_player = this.get_player_ent();
-    // if (possible_player && possible_player.warping){
-    this.set_warp_factor(2);
-    //  this.rotate_stars(10);
-    // }
+  warpSystem(entMan){
+    const NORMAL_WARP_FACTOR = .05;
+    let player = this.get_player_ent();
+    if (player && player.warping){
+      if(player.warp_timer){
+        player.warp_timer += entMan.delta_time;
+      } else {
+        player.warp_timer = entMan.delta_time;
+        this.rotate_stars(player.direction);
+      }
+
+      this.set_warp_factor(1 + (NORMAL_WARP_FACTOR * player.warp_timer));
+    }
   }
 
   set_warp_factor(warp_factor){
@@ -265,10 +276,12 @@ export class GamePlayState extends ViewState {
     }
   }
   
-  rotate_stars(rotation){
+  rotate_stars(direction){
+    console.log(direction)
     this.get_stars().forEach( (star) => {
-      star.rotate(rotation)
+      star.angle = direction;
     });
+
   }
 
   get_stars(){
