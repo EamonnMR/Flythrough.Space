@@ -5,7 +5,11 @@
 
 
 import { _ } from "./singletons.js";
-import { distance, is_cheat_enabled } from "./util.js";
+import {
+  distance,
+  is_cheat_enabled,
+  get_direction,
+} from "./util.js";
 import { speedLimitSystem, velocitySystem, spaceFrictionSystem} from "./physics.js";
 import { weaponSystem, decaySystem} from "./weapon.js";
 import { EntityManager, deletionSystem} from "./ecs.js";
@@ -92,24 +96,15 @@ export class GamePlayState extends ViewState {
         this.setup_world();  
       },
       */
-
       hyper_jump: () => {
-        let player_ent = this.get_player_ent();
-        player_ent.warping = true;
-      },
-      hyper_jump_old: () => {
 			  if ( _.player.current_system
             != _.player.selected_system
         ) {
           let player_ent = this.get_player_ent();
           if (has_sufficient_fuel(player_ent) || is_cheat_enabled("infinite_fuel")){ 
             if(has_sufficient_distance(player_ent || is_cheat_enabled("jump_anywhere"))){
-              // TODO: Remove control, add hyperjump AI, play some sort of light show ala 2001 space odyssey
-              _.player.current_system = _.player.selected_system;
-              _.player.selected_spob = null;  // Can't have people landing on spobs out of the system
-              this.clear_world();
-              _.player.fuel -= 1;
-              this.setup_world();
+              let player_ent = this.get_player_ent();
+              player_ent.warping_out = true;
             } else {
               // TODO: Add visible warnings for these so players aren't confused
               console.log("Tried to hyperjump too close to a star");
@@ -256,21 +251,40 @@ export class GamePlayState extends ViewState {
   }
 
   warpSystem(entMan){
-    const NORMAL_WARP_FACTOR = .05;
+    const WARP_DURATION = 3000;
     let player = this.get_player_ent();
-    if (player && player.warping){
+    if(!player){
+      return;
+    }
+    if (player.warping_out){
       if(player.warp_timer){
         player.warp_timer += entMan.delta_time;
+        if(player.warp_timer >= WARP_DURATION){
+          delete player.warping_out;
+          this.change_system();
+          player = this.get_player_ent();
+          this.rotate_stars(get_direction(player.velocity));
+          player.warping_in = true;
+        }
       } else {
         player.warp_timer = entMan.delta_time;
-        this.rotate_stars(Math.atan2(player.velocity.y, player.velocity.x));
+        this.rotate_stars(get_direction(player.velocity));
       }
-
-      this.set_warp_factor(1 + (NORMAL_WARP_FACTOR * player.warp_timer));
+      this.set_warp_factor(player.warp_timer);
+    } else if ( player.warping_in ){
+      if(player.warp_timer > 0){
+        player.warp_timer -= entMan.delta_time;
+        this.set_warp_factor(player.warp_timer);
+      } else {
+        delete player.warp_timer;
+        delete player.warping_in;
+      } 
     }
   }
 
   set_warp_factor(warp_factor){
+    const STRETCH = 0.05;
+    let star_stretch = 1 + (STRETCH * warp_factor);
     if(this.get_stars()){
       this.get_stars().forEach( star => star.width = warp_factor);
     }
@@ -293,4 +307,15 @@ export class GamePlayState extends ViewState {
       return [];
     }
   }
+
+  change_system(){
+    // TODO: More of a light show
+    _.player.current_system = _.player.selected_system;
+    _.player.selected_spob = null;  // Can't have people landing on spobs out of the system
+    this.clear_world();
+    _.player.fuel -= 1;
+    this.setup_world();
+  }
+
 }
+
