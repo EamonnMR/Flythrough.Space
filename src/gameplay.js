@@ -263,7 +263,7 @@ export class GamePlayState extends ViewState {
         player.warp_timer += entMan.delta_time;
       } else {
         player.warp_timer = entMan.delta_time;
-        this.rotate_stars(player.direction);
+        this.rotate_stars(Math.atan2(player.velocity.y, player.velocity.x));
       }
 
       this.set_warp_factor(1 + (NORMAL_WARP_FACTOR * player.warp_timer));
