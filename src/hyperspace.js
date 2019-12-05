@@ -11,5 +11,6 @@ export function has_sufficient_fuel(entity){
 
 export function has_sufficient_distance(entity){
   // TODO: Add an attribute to entities that allows you to change distance
+  // TODO: Check system for massive objects?
   return distance({x:0, y:0}, entity.position) > HYPERJUMP_DISTANCE;
 }

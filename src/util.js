@@ -20,6 +20,10 @@ export function distance(l_pos, r_pos){
   );
 };
 
+export function get_direction(vector){
+  return Math.atan2(vector.y, vector.x);
+}
+
 export function apply_upgrade(ship, upgrade){
   for(let key of Object.keys(upgrade)){
     if(key === "weapon"){

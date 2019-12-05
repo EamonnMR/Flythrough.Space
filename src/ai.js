@@ -4,7 +4,7 @@ import {
   random_position,
   in_firing_arc,
   angle_mod,
-  overridable_default
+  overridable_default,
 } from "./util.js";
 import { rotate, accelerate, decelerate, linear_vel } from "./physics.js";
 import { get_bone_group } from "./graphics.js";
