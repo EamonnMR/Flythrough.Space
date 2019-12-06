@@ -283,10 +283,10 @@ export class GamePlayState extends ViewState {
   }
 
   set_warp_factor(warp_factor){
-    const STRETCH = 0.05;
+    const STRETCH = 0.005;
     let star_stretch = 1 + (STRETCH * warp_factor);
     if(this.get_stars()){
-      this.get_stars().forEach( star => star.width = warp_factor);
+      this.get_stars().forEach( star => star.width = star_stretch);
     }
   }
   
