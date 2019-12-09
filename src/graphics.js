@@ -306,7 +306,7 @@ export function flash_factory(position, peak_intensity, attack, decay){
 export function create_starfield(){
   const STAR_COUNT = 10000;
   const MAX_SIZE = 1000;
-  const MAX_DEPTH = -100;
+  let max_depth = _.settings.parallax_starfield ? -100 : 0;
   let stars = []
   let sprite_mgr = get_sprite_manager("star", BG_LAYER);
   function random_axis(){
@@ -315,7 +315,7 @@ export function create_starfield(){
   for(let i = 0; i < STAR_COUNT; i++){
     let star = new BABYLON.Sprite("star", sprite_mgr)
     star.position.x = random_axis()
-    star.position.y = Math.round(Math.random() * MAX_DEPTH) + STAR_Y;
+    star.position.y = Math.round(Math.random() * max_depth) + STAR_Y;
     star.position.z = random_axis() 
     stars.push(star);
   }

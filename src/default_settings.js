@@ -13,6 +13,8 @@ export const DEFAULT_SETTINGS = {
   // pervasive_particles: FALSE,
   ai_leading: TRUE,
   perspective: TRUE,
+  star_stretching: TRUE,
+  parallax_starfield: TRUE,
   // mobile_controls: FALSE,
 }
 
