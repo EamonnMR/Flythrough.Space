@@ -12,7 +12,10 @@ import {
 } from "./util.js";
 import { speedLimitSystem, velocitySystem, spaceFrictionSystem} from "./physics.js";
 import { weaponSystem, decaySystem} from "./weapon.js";
-import { EntityManager, deletionSystem} from "./ecs.js";
+import {
+  SinglePlayerEntityManager,
+  deletionSystem
+} from "./ecs.js";
 import { inputSystem, bindInputFunctions, unbindInputFunctions} from "./input.js";
 import { npcSpawnerSystem } from "./entities.js";
 import {
@@ -33,7 +36,7 @@ export class GamePlayState extends ViewState {
 
   constructor() {
     super();
-    this.entMan = new EntityManager([
+    this.entMan = new SinglePlayerEntityManager([
       npcSpawnerSystem,
       inputSystem,
       ai_system,
@@ -100,7 +103,7 @@ export class GamePlayState extends ViewState {
 			  if ( _.player.current_system
             != _.player.selected_system
         ) {
-          let player_ent = this.get_player_ent();
+          let player_ent = this.entMan.get_player_ent();
           if (has_sufficient_fuel(player_ent) || is_cheat_enabled("infinite_fuel")){ 
             if(has_sufficient_distance(player_ent || is_cheat_enabled("jump_anywhere"))){
               let player_ent = this.get_player_ent();
@@ -210,11 +213,11 @@ export class GamePlayState extends ViewState {
   }
 
   player_is_dead(){
-    return this.empty === false && this.get_player_ent() === undefined;
+    return this.empty === false && this.entMan.get_player_ent() === undefined;
   }
 
   spob_is_landable(spob_name){
-    let player = this.get_player_ent();
+    let player = this.entMan.get_player_ent();
     let spob = this.entMan.get_with_exact("spob_name", spob_name)[0];
     return (
       spob && (
@@ -241,7 +244,7 @@ export class GamePlayState extends ViewState {
   }
 
   find_closest_landable_to_player(spobs){
-    let player = this.get_player_ent();
+    let player = this.entMan.get_player_ent();
 
     return this.get_closest_thing(player, spobs)
   }
@@ -252,7 +255,7 @@ export class GamePlayState extends ViewState {
 
   warpSystem(entMan){
     const WARP_DURATION = 3000;
-    let player = this.get_player_ent();
+    let player = entMan.get_player_ent();
     if(!player){
       return;
     }
@@ -262,7 +265,7 @@ export class GamePlayState extends ViewState {
         if(player.warp_timer >= WARP_DURATION){
           delete player.warping_out;
           this.change_system();
-          player = this.get_player_ent();
+          player = entMan.get_player_ent();
           this.rotate_stars(get_direction(player.velocity));
           player.warping_in = true;
         }
