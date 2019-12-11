@@ -99,9 +99,6 @@ function handleKeyUp ( event ){
         game_ctrl.toggle_pause();
       }
       break;
-    case 82: // 'r'
-      game_ctrl.reset_game();
-      break;
     case 74: // 'j'
       game_ctrl.hyper_jump();
       break;
