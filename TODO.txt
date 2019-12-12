@@ -1,3 +1,7 @@
+SETTING IS NOT GETTING UPDATED
+
+This is why defaults aren't being enforced.
+
 =====================
 Shadows: https://doc.babylonjs.com/babylon101/shadows
 

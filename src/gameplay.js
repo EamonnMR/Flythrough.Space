@@ -9,6 +9,7 @@ import {
   distance,
   is_cheat_enabled,
   get_direction,
+  closest,
 } from "./util.js";
 import { speedLimitSystem, velocitySystem, spaceFrictionSystem} from "./physics.js";
 import { weaponSystem, decaySystem} from "./weapon.js";
@@ -29,7 +30,11 @@ import { setup_system } from "./system.js";
 import { ViewState } from "./view_state.js";
 import { radarFollowSystem, hudUpdateSystem, HUD } from  "./hud.js";
 import { ai_system, turretPointSystem  } from "./ai.js";
-import { has_sufficient_distance, has_sufficient_fuel } from "./hyperspace.js"
+import {
+  has_sufficient_distance,
+  has_sufficient_fuel,
+  warpSystemFactory,
+} from "./hyperspace.js"
 let MIN_LAND_DISTANCE = 50
 
 export class GamePlayState extends ViewState {
@@ -54,8 +59,8 @@ export class GamePlayState extends ViewState {
       radarFollowSystem,
       deletionSystem,
       hudUpdateSystem,
+      warpSystemFactory(this),
       entMan => this.playerLifecycleSystem(),
-      entMan => this.warpSystem(entMan),
     ]);
     this.empty = true;
     this.world_models = [];
@@ -106,7 +111,6 @@ export class GamePlayState extends ViewState {
           let player_ent = this.entMan.get_player_ent();
           if (has_sufficient_fuel(player_ent) || is_cheat_enabled("infinite_fuel")){ 
             if(has_sufficient_distance(player_ent || is_cheat_enabled("jump_anywhere"))){
-              let player_ent = this.get_player_ent();
               player_ent.warping_out = true;
             } else {
               // TODO: Add visible warnings for these so players aren't confused
@@ -150,7 +154,7 @@ export class GamePlayState extends ViewState {
         }
       },
       select_closest: () => {
-        let player = this.get_player_ent();
+        let player = this.entMen.get_player_ent();
         let target = this.find_closest_target(player);
         if(target){
           _.hud.deselect(this.entMan.get(player.target));
@@ -179,7 +183,9 @@ export class GamePlayState extends ViewState {
        world_model.dispose();
     }
 
-		this.world_models = [];
+    for (let starfield of this.starfields){
+      starfield.dispose();
+    }
   }
 
   exit(){
@@ -207,11 +213,6 @@ export class GamePlayState extends ViewState {
     this.empty = false;
   }
 
-  get_player_ent(){
-    // TODO: I don't love this
-    return this.entMan.get_with(['input'])[0];
-  }
-
   player_is_dead(){
     return this.empty === false && this.entMan.get_player_ent() === undefined;
   }
@@ -230,75 +231,14 @@ export class GamePlayState extends ViewState {
     );
   }
 
-  get_closest_thing(middle_thing, other_things){
-    let min_distance = Number.POSITIVE_INFINITY;
-    let choice = null;
-    for( let other of other_things){
-      let dist = distance(middle_thing.position, other.position);
-      if(min_distance > dist){
-        min_distance = dist;
-        choice = other;
-      }
-    }
-    return choice;
-  }
-
   find_closest_landable_to_player(spobs){
     let player = this.entMan.get_player_ent();
 
-    return this.get_closest_thing(player, spobs)
+    return closest(player, spobs)
   }
 
   find_closest_target(targeter){
-    return this.get_closest_thing(targeter, this.entMan.get_with(["ai"]));
-  }
-
-  warpSystem(entMan){
-    const WARP_DURATION = 3000;
-    let player = entMan.get_player_ent();
-    if(!player){
-      return;
-    }
-    if (player.warping_out){
-      if(player.warp_timer){
-        player.warp_timer += entMan.delta_time;
-        if(player.warp_timer >= WARP_DURATION){
-          delete player.warping_out;
-          this.change_system();
-          player = entMan.get_player_ent();
-          this.rotate_stars(get_direction(player.velocity));
-          player.warping_in = true;
-        }
-      } else {
-        player.warp_timer = entMan.delta_time;
-        this.rotate_stars(get_direction(player.velocity));
-      }
-      this.set_warp_factor(player.warp_timer);
-    } else if ( player.warping_in ){
-      if(player.warp_timer > 0){
-        player.warp_timer -= entMan.delta_time;
-        this.set_warp_factor(player.warp_timer);
-      } else {
-        delete player.warp_timer;
-        delete player.warping_in;
-      } 
-    }
-  }
-
-  set_warp_factor(warp_factor){
-    const STRETCH = 0.005;
-    let star_stretch = 1 + (STRETCH * warp_factor);
-    if(this.get_stars()){
-      this.get_stars().forEach( star => star.width = star_stretch);
-    }
-  }
-  
-  rotate_stars(direction){
-    console.log(direction)
-    this.get_stars().forEach( (star) => {
-      star.angle = direction;
-    });
-
+    return closest(targeter, this.entMan.get_with(["ai"]));
   }
 
   get_stars(){
@@ -312,7 +252,6 @@ export class GamePlayState extends ViewState {
   }
 
   change_system(){
-    // TODO: More of a light show
     _.player.current_system = _.player.selected_system;
     _.player.selected_spob = null;  // Can't have people landing on spobs out of the system
     this.clear_world();

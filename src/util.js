@@ -20,6 +20,19 @@ export function distance(l_pos, r_pos){
   );
 };
 
+export function closest(middle_thing, other_things){
+  let min_distance = Number.POSITIVE_INFINITY;
+  let choice = null;
+  for( let other of other_things){
+    let dist = distance(middle_thing.position, other.position);
+    if(min_distance > dist){
+      min_distance = dist;
+      choice = other;
+    }
+  }
+  return choice;
+}
+
 export function get_direction(vector){
   return Math.atan2(vector.y, vector.x);
 }
@@ -254,3 +267,4 @@ export function utils_unit_tests(){
     "Can clear settings and get default values"
   );
 }
+

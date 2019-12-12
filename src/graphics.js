@@ -308,7 +308,8 @@ export function create_starfield(){
   const MAX_SIZE = 1000;
   let max_depth = _.settings.parallax_starfield ? -100 : 0;
   let stars = []
-  let sprite_mgr = get_sprite_manager("star", BG_LAYER);
+  console.log(_.data);
+  let sprite_mgr = _.data.new_sprite_manager("star", BG_LAYER);
   function random_axis(){
     return Math.round((Math.random() - .5) * MAX_SIZE * 2);
   }
@@ -323,11 +324,15 @@ export function create_starfield(){
 }
 
 export function get_sprite_manager(sprite, layer=DEFAULT_LAYER){
-  let sprite_mgr = _.data.get_sprite_mgr(sprite);
-  sprite_mgr.renderingGroupId = layer;
+  /* TODO: This isn't good.
+   * What this is doing is getting the global, shared sprite
+   * manager for a given sprite and setting its rendering group
+   * ID. As long as no sprites are used across rendering groups
+   * this is fine. */
+  let sprite_mgr = _.data.get_sprite_mgr(sprite, layer);
   return sprite_mgr;
 }
 
 export function get_sprite(sprite, layer=DEFAULT_LAYER){
-  return new BABYLON.Sprite(sprite, get_sprite_manager(sprite, layer));
+  return new BABYLON.Sprite(sprite, _.data.get_sprite_mgr(sprite, layer));
 }
