@@ -1,5 +1,6 @@
 import { _ } from "./singletons.js";
 import { distance, get_direction } from "./util.js";
+import { rotate } from "./physics.js";
 
 const HYPERJUMP_COST = 1.0;
 const HYPERJUMP_DISTANCE = 100;
@@ -32,16 +33,21 @@ export function warpSystemFactory(gameplay){
         set_warp_factor(() => gameplay.get_stars(), player.warp_timer);
         player.warp_timer += entMan.delta_time;
         if(player.warp_timer >= WARP_DURATION){
+          // CHANGE SYSTEM
           delete player.warping_out;
+          let warp_vel = player.velocity;
+          let rotation = player.direction;
           gameplay.change_system();
           player = entMan.get_player_ent();
+          player.velocity = warp_vel;
+          player.position = {x: HYPERJUMP_DISTANCE, y: HYPERJUMP_DISTANCE}
+          player.warp_timer = WARP_DURATION;
+          // TODO: Rotate player to face direction of travel
           rotate_stars(
             () => gameplay.get_stars(),
             get_direction(player.velocity)
           );
           player.warping_in = true;
-        } else {
-          debugger;
         }
       } else {
         player.warp_timer = entMan.delta_time;
@@ -55,6 +61,7 @@ export function warpSystemFactory(gameplay){
         player.warp_timer -= entMan.delta_time;
         set_warp_factor(() => gameplay.get_stars(), player.warp_timer);
       } else {
+        // DONE WARPING
         delete player.warp_timer;
         delete player.warping_in;
         set_warp_factor(() => gameplay.get_stars(), 0);
