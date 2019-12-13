@@ -69,7 +69,6 @@ export class Data {
   }
   
   new_sprite_manager(name, layer=null){
-    debugger;
     let datum = this.sprites[name]
     let mgr = new BABYLON.SpriteManager(
       name + "_sprmgr",
