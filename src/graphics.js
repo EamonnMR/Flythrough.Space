@@ -28,7 +28,6 @@ function cam_offset(){
     return CAM_OFFSET_3DV;
   }
   if(_.settings.perspective){
-    console.log(_.settings);
     return CAM_OFFSET_PERSPECTIVE;
   } else {
     return CAM_OFFSET_BIRDSEYE;

@@ -5,6 +5,7 @@ import {
   in_firing_arc,
   angle_mod,
   overridable_default,
+  point_directly_at,
 } from "./util.js";
 import { rotate, accelerate, decelerate, linear_vel } from "./physics.js";
 import { get_bone_group } from "./graphics.js";
@@ -176,16 +177,6 @@ function find_closest_target(position, entMan, criteria){
   } else {
     return null;
   }
-}
-
-function point_directly_at(to, from){
-  /*
-   * Calculate the turn (always clockwise) to point at a target
-   */
-  let dx = to.x - from.x;
-  let dy = to.y - from.y;
-
-  return Math.atan2(dy, dx) - Math.PI;
 }
   
 
