@@ -120,10 +120,10 @@ function fire_weapon(weapon, entity, entMan) {
     if(weapon.model){
       // direction = ((1 * Math.PI)    // Code to actually rotate the turret graphic should live in graphics.js
       // + entity.direction - entity.turrets[weapon.turret_index].bone.rotation.y) % (Math.PI  *2);
-      let _ = BABYLON.Quaternion.Identity()
+      let identity = BABYLON.Quaternion.Identity()
       let position = BABYLON.Vector3.Zero()
       // http://www.html5gamedevs.com/topic/31288-get-absolute-rotation-of-child-mesh/ 
-      weapon.model.getWorldMatrix().decompose(BABYLON.Vector3.Zero(), _, position)
+      weapon.model.getWorldMatrix().decompose(BABYLON.Vector3.Zero(), identity, position)
 
       origin = {x: position.x, y: position.z} 
       depth = entity.model.position.y;

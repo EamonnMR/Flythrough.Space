@@ -24,6 +24,7 @@ export class Data {
     this.images = {};
     this.textures = {};
     this.sprites = {}
+    this.sprite_mgrs = {}
   }
 
   get_mesh(name){
@@ -46,14 +47,42 @@ export class Data {
     return this.models[name];
   }
 
-  get_sprite_mgr(name){
+  get_sprite_mgr(name, layer=null){
+    /* REMINDER: This returns a single object for a given name
+     *
+     * Does NOT create a new sprite manager.
+     * DO NOT DISPOSE OF IT!
+     *
+     * (if you need a fresh sprite MGR, use new_sprite_manager)
+     */
     // TODO: Better default
     let sprname = "redplanet";
-    if (name in this.sprites){
+    if (name in this.sprite_mgrs){
       sprname = name;
     }
-    return this.sprites[sprname];
+    if(layer){
+      /* SIDE EFFECTS!!! */
+      this.sprite_mgrs[sprname].renderingGroupId = layer;
+    }
+
+    return this.sprite_mgrs[sprname];
   }
+  
+  new_sprite_manager(name, layer=null){
+    let datum = this.sprites[name]
+    let mgr = new BABYLON.SpriteManager(
+      name + "_sprmgr",
+      datum.img,
+      datum.count,
+      datum.size,
+      _.scene
+    );
+    if(layer){
+      mgr.renderingGroupId = layer;
+    }
+    return mgr;
+  }
+
 
   get_particle_system(type){
     //particle_system = new BABYLON.ParticleSystem("particles", 2000, _.scene);
@@ -104,7 +133,6 @@ export class Data {
         }
       }
       for(let attr of TEXTURE_ATTRS){
-
         if (attr in particle_system){
           particle_system[attr] = new BABYLON.Texture(
             "assets/sprites/" + particle_system[attr]
@@ -211,15 +239,20 @@ function load_assets( source_json, scene, data, finish_callback ){
       console.log(exception);
     }
   }
-
+  data.sprites = source_json.sprites;
   for (let key in source_json.sprites){
+    // TODO: Fix Copypasta
     let datum = source_json.sprites[key]
-    data.sprites[key] = new BABYLON.SpriteManager(key + "_sprmgr",
-        datum.img, datum.count, datum.size, scene);
+    data.sprite_mgrs[key] = new BABYLON.SpriteManager(
+      key + "_sprmgr",
+      datum.img,
+      datum.count,
+      datum.size,
+      scene
+    );
   }
-
+  
   manager.onFinish = finish_callback;
-
   manager.load();
 }
 

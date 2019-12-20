@@ -10,7 +10,7 @@ export function radarFollowSystem(entMan){
   // TODO: Color pips based on AI status towards player.
   let scale_factor = 5;
   let offset = {x: 100, y:100};
-  let player = entMan.get_with(['input'])[0];
+  let player = entMan.get_player_ent();
   if(player && player.position){
     for (let entity of entMan.get_with(['position', 'radar_pip'])){
       // Position, relative to the player, inverted
@@ -230,8 +230,7 @@ export class HUD{
   }
 
   update(entMan){
-    let possible_player = entMan.get_with(['input']);
-    let player = possible_player[0];
+    let player = entMan.get_player_ent();
     let planet_line = "In-System: ";
     let jump_line = "Galactic: ";
     if (_.player.selected_spob){
@@ -303,8 +302,6 @@ export class HUD{
       this.target_ent.overlay.addControl(pip);
     }
   }
-
-
 
   dispose(){
     // Make sure we dispose everything we made and clear globals

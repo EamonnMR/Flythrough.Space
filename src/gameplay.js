@@ -5,10 +5,18 @@
 
 
 import { _ } from "./singletons.js";
-import { distance, is_cheat_enabled } from "./util.js";
+import {
+  distance,
+  is_cheat_enabled,
+  get_direction,
+  closest,
+} from "./util.js";
 import { speedLimitSystem, velocitySystem, spaceFrictionSystem} from "./physics.js";
 import { weaponSystem, decaySystem} from "./weapon.js";
-import { EntityManager, deletionSystem} from "./ecs.js";
+import {
+  SinglePlayerEntityManager,
+  deletionSystem
+} from "./ecs.js";
 import { inputSystem, bindInputFunctions, unbindInputFunctions} from "./input.js";
 import { npcSpawnerSystem } from "./entities.js";
 import {
@@ -22,14 +30,18 @@ import { setup_system } from "./system.js";
 import { ViewState } from "./view_state.js";
 import { radarFollowSystem, hudUpdateSystem, HUD } from  "./hud.js";
 import { ai_system, turretPointSystem  } from "./ai.js";
-import { has_sufficient_distance, has_sufficient_fuel } from "./hyperspace.js"
+import {
+  has_sufficient_distance,
+  has_sufficient_fuel,
+  warpSystemFactory,
+} from "./hyperspace.js"
 let MIN_LAND_DISTANCE = 50
 
 export class GamePlayState extends ViewState {
 
   constructor() {
     super();
-    this.entMan = new EntityManager([
+    this.entMan = new SinglePlayerEntityManager([
       npcSpawnerSystem,
       inputSystem,
       ai_system,
@@ -47,10 +59,12 @@ export class GamePlayState extends ViewState {
       radarFollowSystem,
       deletionSystem,
       hudUpdateSystem,
-      (entMan) => {this.playerLifecycleSystem() }, // Yeah this is kinda stateful.
+      warpSystemFactory(this),
+      entMan => this.playerLifecycleSystem(),
     ]);
     this.empty = true;
     this.world_models = [];
+    this.starfields = [];
   }
 
   update(){
@@ -90,20 +104,14 @@ export class GamePlayState extends ViewState {
         this.setup_world();  
       },
       */
-
       hyper_jump: () => {
 			  if ( _.player.current_system
             != _.player.selected_system
         ) {
-          let player_ent = this.get_player_ent();
+          let player_ent = this.entMan.get_player_ent();
           if (has_sufficient_fuel(player_ent) || is_cheat_enabled("infinite_fuel")){ 
             if(has_sufficient_distance(player_ent || is_cheat_enabled("jump_anywhere"))){
-              // TODO: Remove control, add hyperjump AI, play some sort of light show ala 2001 space odyssey
-              _.player.current_system = _.player.selected_system;
-              _.player.selected_spob = null;  // Can't have people landing on spobs out of the system
-              this.clear_world();
-              _.player.fuel -= 1;
-              this.setup_world();
+              player_ent.warping_out = true;
             } else {
               // TODO: Add visible warnings for these so players aren't confused
               console.log("Tried to hyperjump too close to a star");
@@ -146,7 +154,7 @@ export class GamePlayState extends ViewState {
         }
       },
       select_closest: () => {
-        let player = this.get_player_ent();
+        let player = this.entMan.get_player_ent();
         let target = this.find_closest_target(player);
         if(target){
           _.hud.deselect(this.entMan.get(player.target));
@@ -164,18 +172,20 @@ export class GamePlayState extends ViewState {
   }
 
   create_world_models( system_name ){
-    this.world_models = setup_system(
+    [this.world_models, this.starfields] = setup_system(
 			this.entMan,
    		system_name,
   	);
   }
 
 	dispose_world_models(){
-		for (let world_model of this.world_models){
-       world_model.dispose();
-    }
+    for(let model_group of ["starfields", "world_models"] ){
+      for (let world_model of this[model_group]){
+         world_model.dispose();
+      }
 
-		this.world_models = [];
+      this[model_group] = [];
+    }
   }
 
   exit(){
@@ -198,21 +208,17 @@ export class GamePlayState extends ViewState {
     _.hud = new HUD(
         this.entMan,
     );
+    _.player.explore_system(_.player.current_system);
     this.create_world_models(_.player.current_system);
     this.empty = false;
   }
 
-  get_player_ent(){
-    // TODO: I don't love this
-    return this.entMan.get_with(['input'])[0];
-  }
-
   player_is_dead(){
-    return this.empty === false && this.get_player_ent() === undefined;
+    return this.empty === false && this.entMan.get_player_ent() === undefined;
   }
 
   spob_is_landable(spob_name){
-    let player = this.get_player_ent();
+    let player = this.entMan.get_player_ent();
     let spob = this.entMan.get_with_exact("spob_name", spob_name)[0];
     return (
       spob && (
@@ -225,26 +231,33 @@ export class GamePlayState extends ViewState {
     );
   }
 
-  get_closest_thing(middle_thing, other_things){
-    let min_distance = Number.POSITIVE_INFINITY;
-    let choice = null;
-    for( let other of other_things){
-      let dist = distance(middle_thing.position, other.position);
-      if(min_distance > dist){
-        min_distance = dist;
-        choice = other;
-      }
-    }
-    return choice;
-  }
-
   find_closest_landable_to_player(spobs){
-    let player = this.get_player_ent();
+    let player = this.entMan.get_player_ent();
 
-    return this.get_closest_thing(player, spobs)
+    return closest(player, spobs)
   }
 
   find_closest_target(targeter){
-    return this.get_closest_thing(targeter, this.entMan.get_with(["ai"]));
+    return closest(targeter, this.entMan.get_with(["ai"]));
   }
+
+  get_stars(){
+    if(this.starfields.length){
+      return this.starfields.map((sprite_manager) => {
+        return sprite_manager.sprites
+      }).flat(1);
+    } else {
+      return [];
+    }
+  }
+
+  change_system(){
+    _.player.current_system = _.player.selected_system;
+    _.player.selected_spob = null;  // Can't have people landing on spobs out of the system
+    this.clear_world();
+    _.player.fuel -= 1;
+    this.setup_world();
+  }
+
 }
+

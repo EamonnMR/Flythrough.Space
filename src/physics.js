@@ -1,3 +1,5 @@
+import { get_direction } from "./util.js";
+
 export function linear_vel(velocity){
   return Math.sqrt( Math.pow(velocity.x, 2) + Math.pow(velocity.y, 2));
 }
@@ -8,7 +10,7 @@ export function accelerate(velocity, direction, magnitude){
 };
 
 export function decelerate(velocity, rate, curve=false){
-  let dir = Math.atan2(velocity.y, velocity.x);
+  let dir = get_direction(velocity);
   let speed = linear_vel(velocity);
   if(curve){
     speed = Math.sqrt( speed );
@@ -47,7 +49,7 @@ export function velocitySystem(entMan){
 export function speedLimitSystem(entMan) {
   // Enforces 'max speed' on entities.
   for (let entity of entMan.get_with(['velocity', 'max_speed'])) {
-    let dir = Math.atan2(entity.velocity.y, entity.velocity.x);
+    let dir = get_direction(entity.velocity);
     if(linear_vel(entity.velocity) > entity.max_speed ){
       entity.velocity.x = Math.cos(dir) * entity.max_speed;
       entity.velocity.y = Math.sin(dir) * entity.max_speed; 

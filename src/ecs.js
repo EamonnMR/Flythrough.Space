@@ -82,6 +82,13 @@ export class EntityManager {
 
 };
 
+export class SinglePlayerEntityManager extends EntityManager{
+  get_player_ent(){
+    // TODO: Cache this, use better source of truth
+    return this.get_with(['input'])[0];
+  }
+};
+
 export function deletionSystem (entMan) {
   let deleteList = [];
   for (let id in entMan.entities) {

@@ -20,6 +20,40 @@ export function distance(l_pos, r_pos){
   );
 };
 
+export function rect_from_polar(angle, magnitude){
+  return {
+    x: Math.cos(angle) * magnitude,
+    y: Math.sin(angle) * magnitude,
+  };
+}
+
+export function point_directly_at(to, from){
+  /*
+   * Calculate the turn (always clockwise) to point at a target
+   */
+  let dx = to.x - from.x;
+  let dy = to.y - from.y;
+
+  return Math.atan2(dy, dx) - Math.PI;
+}
+
+export function closest(middle_thing, other_things){
+  let min_distance = Number.POSITIVE_INFINITY;
+  let choice = null;
+  for( let other of other_things){
+    let dist = distance(middle_thing.position, other.position);
+    if(min_distance > dist){
+      min_distance = dist;
+      choice = other;
+    }
+  }
+  return choice;
+}
+
+export function get_direction(vector){
+  return Math.atan2(vector.y, vector.x);
+}
+
 export function apply_upgrade(ship, upgrade){
   for(let key of Object.keys(upgrade)){
     if(key === "weapon"){
@@ -72,11 +106,8 @@ export function random_position(max_dist=200){
   // Pick a regular old position in a system.
   let distance = Math.random() * max_dist;
   let angle = Math.random() * 2 * Math.PI;
+  return rect_from_polar(angle, distance);
 
-  return {
-    x: Math.cos(angle) * distance,
-    y: Math.sin(angle) * distance,
-  };
 };
 
 export function angle_mod(angle){
@@ -250,3 +281,4 @@ export function utils_unit_tests(){
     "Can clear settings and get default values"
   );
 }
+
