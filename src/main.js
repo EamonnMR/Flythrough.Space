@@ -23,6 +23,7 @@ function init(game_canvas, scene, engine, data){
 
   scene.clearColor = new BABYLON.Color3(0, 0, 0);
   _.camera = get_game_camera();
+  update_settings();
 
   // start initial state
   
