@@ -1,8 +1,3 @@
-SETTING IS NOT GETTING UPDATED
-
-This is why defaults aren't being enforced.
-
-=====================
 Shadows: https://doc.babylonjs.com/babylon101/shadows
 
 Whenever a light appears, add a shadow caster. Add all objects as shadow casters.
@@ -27,13 +22,7 @@ FTL Effects
 
 Figure out how to hand off control to the autopilot
 
-Figure out how to affect all star sprites at once
-
 Autopilot player to right direction
-
-Rotate stars to match player movement
-
-Stretch stars
 
 Change background color or add other effects (fullscreen shader?)
 
@@ -41,3 +30,8 @@ Change background color or add other effects (fullscreen shader?)
 Map Markers
 
 Show systems that are mission destinations on the map somehow
+
+===============
+AI/ Turrets
+
+Add unit tests, figure out just how wrong the math is
