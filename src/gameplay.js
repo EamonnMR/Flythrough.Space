@@ -179,12 +179,12 @@ export class GamePlayState extends ViewState {
   }
 
 	dispose_world_models(){
-		for (let world_model of this.world_models){
-       world_model.dispose();
-    }
+    for(let model_group of ["starfields", "world_models"] ){
+      for (let world_model of this[model_group]){
+         world_model.dispose();
+      }
 
-    for (let starfield of this.starfields){
-      starfield.dispose();
+      this[model_group] = [];
     }
   }
 
