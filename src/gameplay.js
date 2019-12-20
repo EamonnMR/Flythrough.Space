@@ -154,7 +154,7 @@ export class GamePlayState extends ViewState {
         }
       },
       select_closest: () => {
-        let player = this.entMen.get_player_ent();
+        let player = this.entMan.get_player_ent();
         let target = this.find_closest_target(player);
         if(target){
           _.hud.deselect(this.entMan.get(player.target));
