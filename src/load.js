@@ -90,9 +90,14 @@ export class Data {
     //for(let prop of Object.keys(proto)){
     //  particle_system[prop] = proto[prop];
     //}
+    this.particles[type]
+    debugger;
     return Object.assign(
       new BABYLON.ParticleSystem("particles", 2000, _.scene),
-      this.particles[type],
+      // TODO: HACK HACK HACK
+      // This does a very slow deep copy to make sure we aren't
+      // side-effecting stuff.
+      JSON.parse(JSON.stringify(this.particles[type])),
     );
   }
 

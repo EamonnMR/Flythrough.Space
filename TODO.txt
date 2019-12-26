@@ -1,3 +1,14 @@
+===================
+Disappearing Particles
+
+So I tried to use JSON transerialize to deepcopy the prototype
+objects for particles, and realized that it can't be marshalled
+because it's got a cyclic object reference. This apprears to be
+from particleTexture. It's possible that the particleTexture
+is what's being disposed, or otherwise messed up?
+
+==================
+
 Shadows: https://doc.babylonjs.com/babylon101/shadows
 
 Whenever a light appears, add a shadow caster. Add all objects as shadow casters.
@@ -34,4 +45,5 @@ Show systems that are mission destinations on the map somehow
 ===============
 AI/ Turrets
 
-Add unit tests, figure out just how wrong the math is
+Add unit tests, figure out just how wrong the math is (and it
+seems pretty well wrong)

@@ -258,7 +258,6 @@ export function assert_false(value, desc){
 }
 
 export function update_settings(){
-  console.log("update_settings");
   Object.keys(DEFAULT_SETTINGS).forEach( (key) => {
     _.settings[key] = get_setting(key, DEFAULT_SETTINGS[key]);
   })
