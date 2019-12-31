@@ -22,8 +22,12 @@ function init(game_canvas, scene, engine, data){
   _.canvas = game_canvas;
 
   scene.clearColor = new BABYLON.Color3(0, 0, 0);
-  _.camera = get_game_camera();
   update_settings();
+  _.camera = get_game_camera();
+  if(_.settings.glow){
+    let glow_layer = new BABYLON.GlowLayer("glow", scene);
+    glow_layer.intensity = .5;
+  }
 
   // start initial state
   
