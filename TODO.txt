@@ -1,8 +1,11 @@
 Textures:
 https://doc.babylonjs.com/babylon101/materials#texture
-Enumerate textures in model metadata
 
-Inside graphics.js set textures directly when initializing an object's material
+Add method to pull texture materials out of data
+
+Use default skin for player, govt skins for govts
+
+Make examples out of a few ships to make sure it works
 
 ==================
 Shadows: https://doc.babylonjs.com/babylon101/shadows

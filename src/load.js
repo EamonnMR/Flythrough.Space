@@ -23,8 +23,9 @@ export class Data {
     this.model_metadata = {};
     this.images = {};
     this.textures = {};
-    this.sprites = {}
-    this.sprite_mgrs = {}
+    this.sprites = {};
+    this.sprite_mgrs = {};
+    this.materials = {};
   }
 
   get_mesh(name){
@@ -197,7 +198,18 @@ export class Data {
   } 
 }
 
+function material_from_skin(skin_data){
+  function path(texture_file){
+    return `/assets/textures/${texture_file}`;
+  }
 
+  let mat = new BABYLON.StandardMaterial(_.scene);
+  mat.diffuseTexture = new BABYLON.Texture(
+    path(skin_data.diffuse),
+    _.scene,
+  );
+  return mat
+}
 function load_assets( source_json, scene, data, finish_callback ){
 
   let manager = new BABYLON.AssetsManager(scene);
@@ -207,6 +219,14 @@ function load_assets( source_json, scene, data, finish_callback ){
     let model_task = manager.addMeshTask(key + '_task',
         "", "assets/",  meta_blob.file);
     data.models[key] = meta_blob;
+
+    if(meta_blob.skins){
+      for(let skin of meta_blob.skins){
+        // https://stackoverflow.com/a/16107725
+        (data.materials[key] || (data.materials[key] = {}))[skin] = material_from_skin(meta_blob.skins[key]);
+      }
+    }
+
     model_task.onSuccess = (task) => {
       let mesh = task.loadedMeshes[0]; // TODO: Multimesh files
       mesh.visibility = 0; // Make the clone visible when you're ready for it

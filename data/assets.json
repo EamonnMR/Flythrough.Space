@@ -62,7 +62,24 @@
     "courier": {"file": "courier.babylon"},
     "plasma_cannon": {"file": "plasma_cannon.babylon"},
     "freehold_frigate": {"file": "freehold_frigate.babylon"},
-    "tercel": {"file": "tercel.babylon"},
+    "tercel": {
+      "file": "tercel.babylon"
+      "fixed": [
+          "weapon_1",
+          "weapon_2",
+          "weapon_3",
+          "weapon_4"
+      ],
+      "default_skin": "baik",
+      "skins": {
+        "baik": {
+          "diffuse": "tercel_baik.jpg"
+        },
+        "pirate": {
+          "diffuse": "tercel_pirate.jpg"
+        }
+      }
+    },
     "prospector": {"file": "xic_prospector.babylon"},
     "drillship": {"file": "xic_drillship.babylon"}
   },

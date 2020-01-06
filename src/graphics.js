@@ -144,7 +144,7 @@ export function create_composite_model(ship, govt){
     ship.model.material = material;
   } else {
     let material = new BABYLON.StandardMaterial(_.scene);
-    material.diffuseTexture = new BABYLON.Texture("assets/tercel_texture.jpg", _.scene);
+    material.diffuseTexture = new BABYLON.Texture("/assets/textures/tercel_pirate.jpg", _.scene);
     material.alpha=1;
     ship.model.material = material;
   }
