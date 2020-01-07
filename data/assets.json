@@ -63,7 +63,7 @@
     "plasma_cannon": {"file": "plasma_cannon.babylon"},
     "freehold_frigate": {"file": "freehold_frigate.babylon"},
     "tercel": {
-      "file": "tercel.babylon"
+      "file": "tercel.babylon",
       "fixed": [
           "weapon_1",
           "weapon_2",

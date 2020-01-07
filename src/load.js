@@ -48,6 +48,19 @@ export class Data {
     return this.models[name];
   }
 
+  get_material(mesh, name){
+    if(!name){
+      name = this.get_mesh_meta(mesh).default_skin;
+    }
+    if (!(mesh in this.materials)){
+      return undefined;
+    }
+    if (!(name in this.materials[mesh])){
+      return undefined;
+    }
+    return this.materials[mesh][name];
+  }
+
   get_sprite_mgr(name, layer=null){
     /* REMINDER: This returns a single object for a given name
      *
@@ -221,10 +234,12 @@ function load_assets( source_json, scene, data, finish_callback ){
     data.models[key] = meta_blob;
 
     if(meta_blob.skins){
-      for(let skin of meta_blob.skins){
+      let skins = {}
+      for(let skin of Object.keys(meta_blob.skins)){
         // https://stackoverflow.com/a/16107725
-        (data.materials[key] || (data.materials[key] = {}))[skin] = material_from_skin(meta_blob.skins[key]);
+        skins[skin] = material_from_skin(meta_blob.skins[skin]);
       }
+      data.materials[key] = skins;
     }
 
     model_task.onSuccess = (task) => {

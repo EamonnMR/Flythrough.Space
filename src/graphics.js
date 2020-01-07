@@ -131,26 +131,27 @@ export function create_composite_model(ship, govt){
   // Hurray for justifying the creation of this entire game!
   ship.model = _.data.get_mesh(ship.mesh);
 
+  let model_meta = _.data.get_mesh_meta(ship.mesh);
   if(govt){
-    // TODO: This would be the place to add per-faction textures
-    // TODO: Move this into a function called by loader, so that
-    // each mesh can have a cached material set.
-    let material = new BABYLON.StandardMaterial(_.scene);
-    material.alpha = 1;
-    material.diffuseColor = BABYLON.Color3.FromHexString(
-      // For now we just dye ships the color of their faction
-       _.data.govts[govt].color.substring(0,7)
-    );
+    let material = _.data.get_material(ship.mesh, govt);
+    if(!material){
+      // Ships without textures just get a dye
+      material = new BABYLON.StandardMaterial(_.scene);
+      material.alpha = 1;
+      material.diffuseColor = BABYLON.Color3.FromHexString(
+         _.data.govts[govt].color.substring(0,7)
+      );
+    }
     ship.model.material = material;
   } else {
-    let material = new BABYLON.StandardMaterial(_.scene);
-    material.diffuseTexture = new BABYLON.Texture("/assets/textures/tercel_pirate.jpg", _.scene);
-    material.alpha=1;
-    ship.model.material = material;
+    // TODO: Let player choose skin - cool!
+    let material = _.data.get_material(ship.mesh, model_meta.default_skin);
+    if(material){
+      ship.model.material = material;
+    }
   }
 
 
-  let model_meta = _.data.get_mesh_meta(ship.mesh);
 
   let weapon_index = 0;  // Note that this index is used for both loops, not reset
 
