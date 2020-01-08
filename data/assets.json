@@ -73,10 +73,12 @@
       "default_skin": "baik",
       "skins": {
         "baik": {
-          "diffuse": "tercel_baik.jpg"
+          "diffuse": "tercel_baik.jpg",
+          "emissive": "tercel_baik_emissive.png"
         },
         "pirate": {
-          "diffuse": "tercel_pirate.jpg"
+          "diffuse": "tercel_pirate.jpg",
+          "emissive": "tercel_baik_emissive.png"
         }
       }
     },

@@ -217,10 +217,19 @@ function material_from_skin(skin_data){
   }
 
   let mat = new BABYLON.StandardMaterial(_.scene);
-  mat.diffuseTexture = new BABYLON.Texture(
-    path(skin_data.diffuse),
-    _.scene,
-  );
+  if(skin_data.diffuse){
+    mat.diffuseTexture = new BABYLON.Texture(
+      path(skin_data.diffuse),
+      _.scene,
+    );
+  }
+  if(skin_data.emissive){
+    mat.emissiveTexture = new BABYLON.Texture(
+      path(skin_data.emissive),
+      _.scene,
+    );
+  }
+  mat.emissiveColor = BABYLON.Color3.FromHexString("#FF0000");
   return mat
 }
 function load_assets( source_json, scene, data, finish_callback ){
@@ -237,6 +246,7 @@ function load_assets( source_json, scene, data, finish_callback ){
       let skins = {}
       for(let skin of Object.keys(meta_blob.skins)){
         // https://stackoverflow.com/a/16107725
+        console.log(key);
         skins[skin] = material_from_skin(meta_blob.skins[skin]);
       }
       data.materials[key] = skins;

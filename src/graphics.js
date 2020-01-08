@@ -145,7 +145,7 @@ export function create_composite_model(ship, govt){
     ship.model.material = material;
   } else {
     // TODO: Let player choose skin - cool!
-    let material = _.data.get_material(ship.mesh, model_meta.default_skin);
+    let material = _.data.get_material(ship.mesh, "baik" /*model_meta.default_skin*/);
     if(material){
       ship.model.material = material;
     }

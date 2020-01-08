@@ -24,7 +24,7 @@ function init(game_canvas, scene, engine, data){
   scene.clearColor = new BABYLON.Color3(0, 0, 0);
   update_settings();
   _.camera = get_game_camera();
-  if(_.settings.glow){
+  if(_.settings.glow_effect){
     let glow_layer = new BABYLON.GlowLayer("glow", scene);
     glow_layer.intensity = .5;
   }
