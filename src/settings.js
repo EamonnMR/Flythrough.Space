@@ -75,8 +75,8 @@ export class SettingsMenu extends BaseMenuView {
     return widgets;
   }
   exit(){
-    graphics_init();
     update_settings();
+    graphics_init();
     super.exit();
   }
 }

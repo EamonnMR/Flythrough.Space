@@ -26,6 +26,9 @@ let CAM_OFFSET_BIRDSEYE = new BABYLON.Vector3(0, 42, 0);
 export function graphics_init(){
   console.log("Graphics init");
   _.scene.clearColor = new BABYLON.Color3(0, 0, 0);
+  if(_.camera){
+    _.camera.dispose();
+  }
   _.camera = uni_game_camera();
 
   if(_.settings.glow_effect){
@@ -44,6 +47,7 @@ export function graphics_init(){
 }
 
 function cam_offset(){
+  debugger;
   if (is_cheat_enabled("3dverse", false)){
     return CAM_OFFSET_3DV;
   }
@@ -55,6 +59,7 @@ function cam_offset(){
 }
 
 export function camera_ready(){
+  console.log("Camera_ready");
   _.camera.position = cam_offset();
   _.camera.setTarget(new BABYLON.Vector3(0,0,0));
 }
