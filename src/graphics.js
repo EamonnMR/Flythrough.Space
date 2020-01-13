@@ -24,7 +24,6 @@ let CAM_OFFSET_PERSPECTIVE = new BABYLON.Vector3(0, 42, 30);
 let CAM_OFFSET_BIRDSEYE = new BABYLON.Vector3(0, 42, 0);
 
 export function graphics_init(){
-  console.log("Graphics init");
   _.scene.clearColor = new BABYLON.Color3(0, 0, 0);
   if(_.camera){
     _.camera.dispose();
@@ -47,7 +46,6 @@ export function graphics_init(){
 }
 
 function cam_offset(){
-  debugger;
   if (is_cheat_enabled("3dverse", false)){
     return CAM_OFFSET_3DV;
   }
@@ -59,7 +57,6 @@ function cam_offset(){
 }
 
 export function camera_ready(){
-  console.log("Camera_ready");
   _.camera.position = cam_offset();
   _.camera.setTarget(new BABYLON.Vector3(0,0,0));
 }
@@ -328,7 +325,6 @@ export function flashSystem(entMan){
     } else {
       ent.flash_light.intensity = ent.peak * 1 - ((ent.age - ent.attack) / (ent.max_age - ent.attack)); 
     }
-    console.log(ent.flash_light.intensity)
   }
 }
 
