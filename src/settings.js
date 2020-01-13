@@ -21,6 +21,8 @@ import {
   Widget
 } from "./menu.js";
 
+import { graphics_init } from "./graphics.js";
+
 
 export class SettingsMenu extends BaseMenuView {
   enter(){
@@ -73,6 +75,7 @@ export class SettingsMenu extends BaseMenuView {
     return widgets;
   }
   exit(){
+    graphics_init();
     update_settings();
     super.exit();
   }

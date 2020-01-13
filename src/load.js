@@ -1,6 +1,7 @@
 import { _ } from "./singletons.js";
 import { overridable_default, utils_unit_tests } from "./util.js";
 import { collision_unit_tests } from "./collision.js";
+import { material_from_skin } from "./graphics.js";
 
 /* The root of everything here is 'assets.json'.
  * It lists asset files/data for special assets - 
@@ -211,27 +212,6 @@ export class Data {
   } 
 }
 
-function material_from_skin(skin_data){
-  function path(texture_file){
-    return `/assets/textures/${texture_file}`;
-  }
-
-  let mat = new BABYLON.StandardMaterial(_.scene);
-  if(skin_data.diffuse){
-    mat.diffuseTexture = new BABYLON.Texture(
-      path(skin_data.diffuse),
-      _.scene,
-    );
-  }
-  if(skin_data.emissive){
-    mat.emissiveTexture = new BABYLON.Texture(
-      path(skin_data.emissive),
-      _.scene,
-    );
-  }
-  mat.emissiveColor = BABYLON.Color3.FromHexString("#FF0000");
-  return mat
-}
 function load_assets( source_json, scene, data, finish_callback ){
 
   let manager = new BABYLON.AssetsManager(scene);
@@ -246,7 +226,6 @@ function load_assets( source_json, scene, data, finish_callback ){
       let skins = {}
       for(let skin of Object.keys(meta_blob.skins)){
         // https://stackoverflow.com/a/16107725
-        console.log(key);
         skins[skin] = material_from_skin(meta_blob.skins[skin]);
       }
       data.materials[key] = skins;

@@ -1,5 +1,9 @@
 import { _ } from "./singletons.js";
-import { do_explo, flash_factory } from "./graphics.js";
+import {
+  do_explo,
+  flash_factory,
+  set_dark_texture
+} from "./graphics.js";
 
 const DISABLED_THRESHOLD = 0.15;
 
@@ -47,7 +51,7 @@ export function damage_handler(damager, damaged, entMan){
     if ("nonlethal" in damager){
       if(new_hp < disabled_thresh){
         damaged.hitpoints = disabled_thresh; 
-        damaged.disabled = true;
+        disabled(damaged, entMan);
       }
     } else {
 
@@ -55,7 +59,7 @@ export function damage_handler(damager, damaged, entMan){
 
       // If an entity's hitpoints are gone, destroy it
       if(new_hp < disabled_thresh){
-        damaged.disabled = true;
+        disabled(damaged, entMan);
       }
       if (new_hp <= 0){
         // TODO: More elaborite death sequence
@@ -73,4 +77,11 @@ function destroyed(entity, entMan){
   if( _.settings.light_effects ){ 
     entMan.insert( flash_factory( entity.position, 1, 300, 750));
   }
+}
+
+function disabled(entity, entMan){
+  // TODO: More explosions
+  // Maybe a sound effect?
+  entity.disabled = true;
+  set_dark_texture(entity);
 }

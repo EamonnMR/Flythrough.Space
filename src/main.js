@@ -12,7 +12,7 @@ import { UpgradeMenu } from "./upgrade_store.js";
 import { MissionsMenu } from "./missions_menu.js";
 import { MainMenu } from "./main_menu.js";
 import { SettingsMenu } from "./settings.js";
-import { get_game_camera } from "./graphics.js";
+import { graphics_init } from "./graphics.js";
 
 function init(game_canvas, scene, engine, data){
   /* Main entry point for the app (after loading). Binds events and such. */
@@ -21,15 +21,9 @@ function init(game_canvas, scene, engine, data){
   _.scene = scene;
   _.canvas = game_canvas;
 
-  scene.clearColor = new BABYLON.Color3(0, 0, 0);
-  update_settings();
-  _.camera = get_game_camera();
-  if(_.settings.glow_effect){
-    let glow_layer = new BABYLON.GlowLayer("glow", scene);
-    glow_layer.intensity = .5;
-  }
+  update_settings();  // start initial state
 
-  // start initial state
+  graphics_init();
   
   let player_data = new PlayerSave();
   _.player = player_data;

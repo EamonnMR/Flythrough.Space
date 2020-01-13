@@ -42,6 +42,7 @@ export class PlayerSave {
     this.current_spob = overridable_default("spob", "Alluvium Fleet Yards");
     this.initial_position = {x: 0, y: 0};
     this.ship_type = overridable_default("ship", "shuttle");
+    this.ship_skin = "pirate";  // TODO: Add skin menu
     this.ship_dat = Object.create(_.data.ships[this.ship_type]);
     this.upgrades = this.ship_dat.upgrades;
     this.fuel = this.ship_dat.max_fuel;
