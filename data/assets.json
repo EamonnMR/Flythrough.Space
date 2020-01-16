@@ -117,13 +117,13 @@
           "emissive": "falcon_emissive.png",
           "custom_emissive_color": [1,0.5,0.5,1]
         },
-        "baik_dark": {
+        "baik/dark": {
           "diffuse": "falcon_baik.png"
         },
-        "merch_dark": {
+        "merch/dark": {
           "diffuse": "falcon_merch.png"
         },
-        "pirate_dark": {
+        "pirate/dark": {
           "diffuse": "falcon_pirate.png"
         }
       }
