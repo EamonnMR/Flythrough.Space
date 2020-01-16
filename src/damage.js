@@ -77,6 +77,9 @@ function destroyed(entity, entMan){
   if( _.settings.light_effects ){ 
     entMan.insert( flash_factory( entity.position, 1, 300, 750));
   }
+  if(entMan.is_player_ent(entity)){
+    _.hud.show_alert("Ship Destroyed");
+  }
 }
 
 function disabled(entity, entMan){
@@ -84,4 +87,7 @@ function disabled(entity, entMan){
   // Maybe a sound effect?
   entity.disabled = true;
   set_dark_texture(entity);
+  if(entMan.is_player_ent(entity)){
+    _.hud.show_alert("Ship Disabled");
+  }
 }
