@@ -758,7 +758,7 @@
     "max_shields": 75
   },
   "goshawk":{
-    "mesh"        : "argosy",
+    "mesh"        : "goshawk",
     "short_name"  : "Goshawk",
     "long_name"   : "Baikonur Goshawk",
     "full_name"   : "Baikonur Goshawk rev 938",
