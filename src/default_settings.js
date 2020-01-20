@@ -15,6 +15,7 @@ export const DEFAULT_SETTINGS = {
   perspective: TRUE,
   star_stretching: TRUE,
   parallax_starfield: TRUE,
+  glow_effect: TRUE,
   // mobile_controls: FALSE,
 }
 

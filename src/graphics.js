@@ -23,6 +23,28 @@ let CAM_OFFSET_3DV = new BABYLON.Vector3(0, 0, 30);
 let CAM_OFFSET_PERSPECTIVE = new BABYLON.Vector3(0, 42, 30);
 let CAM_OFFSET_BIRDSEYE = new BABYLON.Vector3(0, 42, 0);
 
+export function graphics_init(){
+  _.scene.clearColor = new BABYLON.Color3(0, 0, 0);
+  if(_.camera){
+    _.camera.dispose();
+  }
+  _.camera = uni_game_camera();
+
+  if(_.settings.glow_effect){
+    _.glow_layer = new BABYLON.GlowLayer("glow", _.scene);
+    // glow_layer.intensity = 10; // .5
+    _.glow_layer.customEmissiveColorSelector = (
+      mesh, subMesh, material, result
+    ) => {
+      result.set(...(
+        material.custom_emissive_color || [0,0,0,0]
+      ))
+    }
+  } else {
+    _.glow_layer = null;
+  }
+}
+
 function cam_offset(){
   if (is_cheat_enabled("3dverse", false)){
     return CAM_OFFSET_3DV;
@@ -63,12 +85,10 @@ export function get_chase_camera(){
   return camera;
 };
 
-export function uni_game_camera(){
+function uni_game_camera(){
   let camera = new BABYLON.UniversalCamera("uni_cam", new BABYLON.Vector3(0,0,0), _.scene); 
   return camera;
 };
-
-export let get_game_camera = uni_game_camera;
 
 function mount_weapon_on_bone(weapon_model, parent_model, bone_index){
   // Translate to the bone's offset
@@ -124,6 +144,18 @@ function mount_turreted_weapons(model_meta, ship, weapon_index){
   }
 } 
 
+export function set_dark_texture(entity){
+  // Version of the ship's texture with the lights off
+  // Could also be used to show battle damage, etc
+  let material = _.data.get_material(
+    entity.mesh,
+    `${entity.skin}/dark`,
+  );
+  if(material){
+    entity.model.material = material;
+  }
+}
+
 export function create_composite_model(ship, govt){
   // Create a ship's model out of the base mesh of the ship
   // plus the meshes of any attached upgrades.
@@ -131,17 +163,31 @@ export function create_composite_model(ship, govt){
   // Hurray for justifying the creation of this entire game!
   ship.model = _.data.get_mesh(ship.mesh);
 
-  if(govt){
-    // TODO: This would be the place to add per-faction textures
-    let material = new BABYLON.StandardMaterial(_.scene);
-    material.alpha = 1;
-    material.diffuseColor = BABYLON.Color3.FromHexString(
-      // For now we just dye ships the color of their faction
-      _.data.govts[govt].color.substring(0,7)
-    );
-    ship.model.material = material;
-  }
   let model_meta = _.data.get_mesh_meta(ship.mesh);
+  if(govt){
+    let material = _.data.get_material(ship.mesh, govt);
+    if(material){
+      ship.skin = govt;
+    } else {
+      // Ships without textures just get a dye
+      material = new BABYLON.StandardMaterial(_.scene);
+      material.alpha = 1;
+      material.diffuseColor = BABYLON.Color3.FromHexString(
+         _.data.govts[govt].color.substring(0,7)
+      );
+    }
+    ship.model.material = material;
+  } else {
+    // TODO: Let player choose skin - cool!
+    let skin = _.player.ship_skin || model_meta.default_skin;
+    let material = _.data.get_material(ship.mesh, skin);
+    if(material){
+      ship.skin = skin;
+      ship.model.material = material;
+    }
+  }
+
+
 
   let weapon_index = 0;  // Note that this index is used for both loops, not reset
 
@@ -279,7 +325,6 @@ export function flashSystem(entMan){
     } else {
       ent.flash_light.intensity = ent.peak * 1 - ((ent.age - ent.attack) / (ent.max_age - ent.attack)); 
     }
-    console.log(ent.flash_light.intensity)
   }
 }
 
@@ -335,3 +380,31 @@ export function get_sprite_manager(sprite, layer=DEFAULT_LAYER){
 export function get_sprite(sprite, layer=DEFAULT_LAYER){
   return new BABYLON.Sprite(sprite, _.data.get_sprite_mgr(sprite, layer));
 }
+
+export function material_from_skin(skin_data, dark){
+  function path(texture_file){
+    return `/assets/textures/${texture_file}`;
+  }
+
+  let mat = new BABYLON.StandardMaterial(_.scene);
+  if(skin_data.diffuse){
+    mat.diffuseTexture = new BABYLON.Texture(
+      path(skin_data.diffuse),
+      _.scene,
+    );
+  }
+  if(skin_data.emissive){
+    mat.emissiveTexture = new BABYLON.Texture(
+      path(skin_data.emissive),
+      _.scene,
+    );
+  }
+
+  if(skin_data.custom_emissive_color){
+    // Used by the customEmissiveColorSelector
+    mat.custom_emissive_color = skin_data.custom_emissive_color;
+  }
+  return mat
+}
+
+

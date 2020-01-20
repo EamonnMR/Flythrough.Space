@@ -62,7 +62,111 @@
     "courier": {"file": "courier.babylon"},
     "plasma_cannon": {"file": "plasma_cannon.babylon"},
     "freehold_frigate": {"file": "freehold_frigate.babylon"},
-    "tercel": {"file": "tercel.babylon"},
+    "tercel": {
+      "file": "tercel.babylon",
+      "fixed": [
+          "weapon_1",
+          "weapon_2",
+          "weapon_3",
+          "weapon_4"
+      ],
+      "default_skin": "baik",
+      "skins": {
+        "baik": {
+          "diffuse": "tercel_baik.jpg",
+          "emissive": "tercel_baik_emissive.png",
+          "custom_emissive_color": [0.5,1,0.5,1]
+        },
+        "baik/dark": {
+          "diffuse": "tercel_baik.jpg"
+        },
+        "pirate": {
+          "diffuse": "tercel_pirate.jpg",
+          "emissive": "tercel_baik_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "tercel_pirate.jpg"
+        }
+      }
+    },
+    "falcon": {
+      "file": "falcon.babylon",
+      "fixed": [
+        "weapon_1",
+        "weapon_2",
+        "weapon_3",
+        "weapon_4",
+        "weapon_5",
+        "weapon_6"
+      ],
+      "default_skin": "merchant",
+      "skins": {
+        "baik": {
+          "diffuse": "falcon_baik.png",
+          "emissive": "falcon_emissive.png",
+          "custom_emissive_color": [0.5,1,0.5,1]
+        },
+        "merchant": {
+          "diffuse": "falcon_merch.png",
+          "custom_emissive_color": [1,1,1,1],
+          "emissive": "falcon_emissive.png"
+        },
+        "pirate": {
+          "diffuse": "falcon_pirate.png",
+          "emissive": "falcon_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "baik/dark": {
+          "diffuse": "falcon_baik.png"
+        },
+        "merchant/dark": {
+          "diffuse": "falcon_merch.png"
+        },
+        "pirate/dark": {
+          "diffuse": "falcon_pirate.png"
+        }
+      }
+    },
+    "goshawk": {
+      "file": "goshawk.babylon",
+      "fixed": [
+        "weapon_1",
+        "weapon_2",
+        "weapon_3",
+        "weapon_4",
+        "weapon_5",
+        "weapon_6"
+      ],
+      "default_skin": "merchant",
+      "skins": {
+        "baik": {
+          "diffuse": "goshawk_baik.png",
+          "emissive": "goshawk_emissive.png",
+          "custom_emissive_color": [0.5,1,0.5,1]
+        },
+        "merchant": {
+          "diffuse": "goshawk_merchant.png",
+          "custom_emissive_color": [1,1,1,1],
+          "emissive": "goshawk_emissive.png"
+        },
+        "pirate": {
+          "diffuse": "goshawk_pirate.png",
+          "emissive": "goshawk_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "baik/dark": {
+          "diffuse": "goshawk_baik.png"
+        },
+        "merchant/dark": {
+          "diffuse": "goshawk_merchant.png"
+        },
+        "pirate/dark": {
+          "diffuse": "goshawk_pirate.png"
+        }
+      }
+    },
+
     "prospector": {"file": "xic_prospector.babylon"},
     "drillship": {"file": "xic_drillship.babylon"}
   },

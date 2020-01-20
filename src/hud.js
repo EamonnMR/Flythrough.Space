@@ -64,6 +64,11 @@ export function color_for_entity(entity, player){
 //}
 
 export class HUD{
+  
+    show_alert(text, priority, sound){
+      // TODO: Show somewhere on screen, possibly play sound
+      console.log(`Alert: ${text}`);
+    }
   constructor(){
     this.adt = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 

@@ -1,6 +1,7 @@
 import { _ } from "./singletons.js";
 import { overridable_default, utils_unit_tests } from "./util.js";
 import { collision_unit_tests } from "./collision.js";
+import { material_from_skin } from "./graphics.js";
 
 /* The root of everything here is 'assets.json'.
  * It lists asset files/data for special assets - 
@@ -23,8 +24,9 @@ export class Data {
     this.model_metadata = {};
     this.images = {};
     this.textures = {};
-    this.sprites = {}
-    this.sprite_mgrs = {}
+    this.sprites = {};
+    this.sprite_mgrs = {};
+    this.materials = {};
   }
 
   get_mesh(name){
@@ -45,6 +47,19 @@ export class Data {
 
   get_mesh_meta(name){
     return this.models[name];
+  }
+
+  get_material(mesh, name){
+    if(!name){
+      name = this.get_mesh_meta(mesh).default_skin;
+    }
+    if (!(mesh in this.materials)){
+      return undefined;
+    }
+    if (!(name in this.materials[mesh])){
+      return undefined;
+    }
+    return this.materials[mesh][name];
   }
 
   get_sprite_mgr(name, layer=null){
@@ -197,7 +212,6 @@ export class Data {
   } 
 }
 
-
 function load_assets( source_json, scene, data, finish_callback ){
 
   let manager = new BABYLON.AssetsManager(scene);
@@ -207,6 +221,16 @@ function load_assets( source_json, scene, data, finish_callback ){
     let model_task = manager.addMeshTask(key + '_task',
         "", "assets/",  meta_blob.file);
     data.models[key] = meta_blob;
+
+    if(meta_blob.skins){
+      let skins = {}
+      for(let skin of Object.keys(meta_blob.skins)){
+        // https://stackoverflow.com/a/16107725
+        skins[skin] = material_from_skin(meta_blob.skins[skin]);
+      }
+      data.materials[key] = skins;
+    }
+
     model_task.onSuccess = (task) => {
       let mesh = task.loadedMeshes[0]; // TODO: Multimesh files
       mesh.visibility = 0; // Make the clone visible when you're ready for it

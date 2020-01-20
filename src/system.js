@@ -18,6 +18,7 @@ import {
 import { random_position } from "./util.js";
 
 export function setup_system(entMan, system){
+  
   camera_ready(); 
   let system_dat = _.data.systems[system];
 

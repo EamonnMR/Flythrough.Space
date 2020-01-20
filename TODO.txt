@@ -1,3 +1,13 @@
+Textures:
+https://doc.babylonjs.com/babylon101/materials#texture
+
+Add method to pull texture materials out of data
+
+Use default skin for player, govt skins for govts
+
+Make examples out of a few ships to make sure it works
+
+==================
 Shadows: https://doc.babylonjs.com/babylon101/shadows
 
 Whenever a light appears, add a shadow caster. Add all objects as shadow casters.
@@ -16,15 +26,6 @@ Draw as a particle system?
 
 How to keep track of the mesh between shots? (attach mesh to weapon rather than projectile?)
 (what to do about collider?)
-
-=================
-FTL Effects
-
-Figure out how to hand off control to the autopilot
-
-Autopilot player to right direction
-
-Change background color or add other effects (fullscreen shader?)
 
 ================
 Map Markers

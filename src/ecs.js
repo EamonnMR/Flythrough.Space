@@ -87,6 +87,10 @@ export class SinglePlayerEntityManager extends EntityManager{
     // TODO: Cache this, use better source of truth
     return this.get_with(['input'])[0];
   }
+
+  is_player_ent(entity){
+    return entity === this.get_player_ent();
+  }
 };
 
 export function deletionSystem (entMan) {
