@@ -139,7 +139,6 @@ export function bindInputFunctions(new_game_ctrl){
 // TODO: Make this a superclass that other gamectrls inherit from.
 let no_op_game_ctrl = {
   toggle_pause: no_op, 
-  reset_game: no_op,
   hyper_jump: no_op,
   try_land: no_op,
   select_closest: no_op,

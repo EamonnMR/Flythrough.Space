@@ -98,12 +98,6 @@ export class GamePlayState extends ViewState {
         this.parent.enter_state('map');
       },
 
-      /* I haven't actually used this for a while
-      reset_game: () => {
-        this.clear_world();
-        this.setup_world();  
-      },
-      */
       hyper_jump: () => {
 			  if ( _.player.current_system
             != _.player.selected_system
