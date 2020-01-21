@@ -208,15 +208,21 @@ function point_at(to, startangle, from, lead, to_vel=null, from_vel=null, proj_v
 function find_firing_solution(to, to_velocity, from, from_velocity, projectile_velocity){
   // TODO: This is a flawed algo and they AI looks stupid for constantly missing.
   // Maybe don't lead at all and just make shots go faster?
-  let velocity_difference = {x: to_velocity.x - from_velocity.x, y: to_velocity.y - from_velocity.y};
+  let velocity_difference = {};
+  if(_.settings.arcade_physics){
+    velocity_difference = to_velocity;
+  } else {
+    velocity_difference = {
+      x: to_velocity.x - from_velocity.x,
+      y: to_velocity.y - from_velocity.y
+    };
+  }
   let estimated_impact_time = distance(from, to) / projectile_velocity;
   return point_directly_at(from, {
     x: to.x + velocity_difference.x * estimated_impact_time,
     y: to.y + velocity_difference.y * estimated_impact_time,
   })
 }
-
-  
 
 function constrained_point(
   target,

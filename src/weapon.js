@@ -18,7 +18,12 @@ function bulletFactory(creator, position, sprite, direction, speed, initialVeloc
   sprite.angle = direction;
   sprite.y = -2;
   // TODO: Get the Y offset based on the depth of the bone
-  let velocity = {'x': initialVelocity.x, 'y': initialVelocity.y};
+  let velocity = {}
+  if(_.settings.arcade_physics){
+    velocity = {x: 0, y: 0}
+  } else {
+    velocity = {x: initialVelocity.x, y: initialVelocity.y};
+  }
   accelerate(velocity, direction, speed);
 
   let shot = Object.create(proto);
