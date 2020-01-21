@@ -107,14 +107,13 @@ export class GamePlayState extends ViewState {
             if(has_sufficient_distance(player_ent || is_cheat_enabled("jump_anywhere"))){
               player_ent.warping_out = true;
             } else {
-              // TODO: Add visible warnings for these so players aren't confused
-              console.log("Tried to hyperjump too close to a star");
+              _.hud.show_alert("Cannot Engage Drive - Too close to system center");
             }
           } else {
-            console.log("Tried to hyperjump with insufficient fuel");
+            _.hud.show_alert("Cannot Engage Drive - Insufficient Fuel");
           }
 			  } else {
-          console.log( "Tried to HJ to bad system");
+          _.hud.show_alert("Cannot Engage Drive - No Spacelane to selected system");
         }
       },
       /*
