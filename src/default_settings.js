@@ -7,8 +7,6 @@ const TRUE = "true"
 const FALSE = ""
 
 export const DEFAULT_SETTINGS = {
-  // starfield: TRUE,
-  // parallax_starfield: FALSE,
   light_effects: TRUE,
   // pervasive_particles: FALSE,
   ai_leading: TRUE,
@@ -16,6 +14,7 @@ export const DEFAULT_SETTINGS = {
   star_stretching: TRUE,
   parallax_starfield: TRUE,
   glow_effect: TRUE,
+  arcade_physics: FALSE,
   // mobile_controls: FALSE,
 }
 
