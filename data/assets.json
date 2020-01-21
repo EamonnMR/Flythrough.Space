@@ -167,7 +167,42 @@
       }
     },
 
-    "prospector": {"file": "xic_prospector.babylon"},
+    "prospector": {
+      "file": "xic_prospector.babylon",
+      "fixed": [
+        "weapon_1",
+        "weapon_2",
+        "weapon_3"
+      ],
+      "default_skin": "xic",
+      "skins": {
+        "xic": {
+          "diffuse": "prospector_xic.png",
+          "emissive": "prospector_emissive.png",
+          "custom_emissive_color": [1,1,1,1]
+        },
+        "merchant": {
+          "diffuse": "prospector_merchant.png",
+          "custom_emissive_color": [1,1,1,1],
+          "emissive": "prospector_emissive.png"
+        },
+        "pirate": {
+          "diffuse": "prospector_pirate.png",
+          "emissive": "prospector_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "baik/dark": {
+          "diffuse": "prospector_xic.png"
+        },
+        "merchant/dark": {
+          "diffuse": "prospector_merchant.png"
+        },
+        "pirate/dark": {
+          "diffuse": "prospector_pirate.png"
+        }
+      }
+
+    },
     "drillship": {"file": "xic_drillship.babylon"}
   },
   "sprites": {
