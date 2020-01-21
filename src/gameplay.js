@@ -250,6 +250,13 @@ export class GamePlayState extends ViewState {
     this.clear_world();
     _.player.fuel -= 1;
     this.setup_world();
+    _.hud.show_alert(
+      `Entering the ${_.player.current_system} system.`
+      + (!_.data.systems[_.player.current_system].spobs ?
+        " Sensors detect no Large Stellar Satellites"
+        : ""
+      )
+    );
   }
 
 }
