@@ -253,7 +253,7 @@ export class GamePlayState extends ViewState {
     _.hud.show_alert(
       `Entering the ${_.player.current_system} system.`
       + (!_.data.systems[_.player.current_system].spobs ?
-        " Sensors detect no Large Stellar Satellites"
+        "\n Sensors detect no Large Stellar Satellites"
         : ""
       )
     );

@@ -4,6 +4,8 @@ import { get_text } from "./util.js"
 const DEFAULT_GOVT_NAME = "Independant";
 const TARGET_PIP_SIZE = "10px";
 const TARGET_PIP_RADIUS = 30;
+const ALERT_DURATION = 7000;
+const BOX_SIZE = "200px";
 
 export function radarFollowSystem(entMan){
   // Makes radar pips follow entities.
@@ -63,12 +65,32 @@ export function color_for_entity(entity, player){
 //  }
 //}
 
+
 export class HUD{
-  
-    show_alert(text, priority, sound){
-      // TODO: Show somewhere on screen, possibly play sound
-      console.log(`Alert: ${text}`);
+  // TODO: Spin out into class. 
+  show_alert(text, priority=1, sound=null){
+    if(priority >= this.alert_priority){
+      // TODO: play sound
+      
+      this.alert_text.text = text;
+      this.alert_priority = priority;
+      this.alert_timer = ALERT_DURATION;
+      this.alert_box.alpha = .5
     }
+  }
+
+  update_alert(delta){
+    if(this.alert_timer >= 0){
+      this.alert_timer -= delta;
+      if(this.alert_timer < 0){
+        this.alert_text.text = " ";
+        this.alert_timer = 0;
+        this.alert_priority = 0;
+        this.alert_box.alpha = 0;
+      }
+    }
+  }
+
   constructor(){
     this.adt = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 
@@ -101,6 +123,24 @@ export class HUD{
     this.target_label = get_text();
     this.target_govt = get_text();
     this.target_subtitle = get_text();
+
+    this.alert_text = get_text()
+    this.alert_timer = 0;
+    this.alert_priority = 0;
+    
+
+    // TODO: Widget classes
+    this.alert_text.text = "";
+
+    this.alert_box = this.get_box_generic("1000px", "100px");
+
+    this.alert_box.addControl(this.alert_text);
+    this.adt.addControl(this.alert_box);
+    this.alert_box.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+    this.alert_box.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
+    this.alert_box.paddingLeft = BOX_SIZE; 
+    this.alert_box.paddingBottom = "5%";
+    this.alert_box.color = "black";
 
     // Target pips - attached to the overlay and drawn around the target.
     function get_target_pip(x, y){
@@ -250,6 +290,8 @@ export class HUD{
         this.spob_label.text = "";
       }
     }
+
+    this.update_alert(entMan.delta_time);
     if (player){
       // Gross: pipe this down to functions
       this.tmp_player = player
