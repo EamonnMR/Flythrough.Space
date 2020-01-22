@@ -65,30 +65,75 @@ export function color_for_entity(entity, player){
 //  }
 //}
 
+class HudWidget {
+  constructor(adt){
+    // Create widget, add it to the ADT, set its position
+  }
 
-export class HUD{
-  // TODO: Spin out into class. 
-  show_alert(text, priority=1, sound=null){
-    if(priority >= this.alert_priority){
+  update(entMan){
+    // Update the widget
+  }
+}
+
+class AlertBox extends HudWidget {
+  show(text, priority=1, sound=null){
+    if(priority >= this.priority){
       // TODO: play sound
+      console.log("alert: " + text);
       
-      this.alert_text.text = text;
-      this.alert_priority = priority;
-      this.alert_timer = ALERT_DURATION;
-      this.alert_box.alpha = .5
+      this.text.text = text;
+      this.priority = priority;
+      this.timer = ALERT_DURATION;
+      this.box.alpha = .5
     }
   }
 
-  update_alert(delta){
-    if(this.alert_timer >= 0){
-      this.alert_timer -= delta;
-      if(this.alert_timer < 0){
-        this.alert_text.text = " ";
-        this.alert_timer = 0;
-        this.alert_priority = 0;
-        this.alert_box.alpha = 0;
+  constructor(adt){
+    super(adt);
+    this.text = get_text()
+    this.timer = 0;
+    this.priority = 0;
+    
+
+    // TODO: Widget classes
+    this.text.text = "";
+
+    this.box = get_box_generic("1000px", "100px");
+
+    this.box.addControl(this.text);
+    this.box.paddingLeft = BOX_SIZE; 
+    this.box.paddingBottom = "5%";
+    this.box.color = "black";
+    this.box.alpha = .5;
+
+    adt.addControl(this.box);
+    this.box.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+    this.box.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
+
+  }
+
+  update(entMan){
+    if(this.timer >= 0){
+      this.timer -= entMan.delta_time;
+      if(this.timer < 0){
+        this.text.text = " ";
+        this.timer = 0;
+        this.priority = 0;
+        this.box.alpha = 0;
       }
     }
+  }
+}
+
+
+export class HUD{
+  // TODO: Spin out into class. 
+
+
+  update_widgets(entMan){
+    Object.values(this.widgets).forEach((widget) => {
+      // widget.update(entMan);
+    });
   }
 
   constructor(){
@@ -124,23 +169,10 @@ export class HUD{
     this.target_govt = get_text();
     this.target_subtitle = get_text();
 
-    this.alert_text = get_text()
-    this.alert_timer = 0;
-    this.alert_priority = 0;
-    
+    this.widgets = {
+      alert_box: new AlertBox(this.adt)
+    };
 
-    // TODO: Widget classes
-    this.alert_text.text = "";
-
-    this.alert_box = this.get_box_generic("1000px", "100px");
-
-    this.alert_box.addControl(this.alert_text);
-    this.adt.addControl(this.alert_box);
-    this.alert_box.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
-    this.alert_box.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
-    this.alert_box.paddingLeft = BOX_SIZE; 
-    this.alert_box.paddingBottom = "5%";
-    this.alert_box.color = "black";
 
     // Target pips - attached to the overlay and drawn around the target.
     function get_target_pip(x, y){
@@ -212,7 +244,7 @@ export class HUD{
   get_overlay_texture(entity){
     // Makes an overlay texture for the entity to draw target brackets,
     // health bars, etc.
-    let overlay = this.get_box_generic("140px", "140px");
+    let overlay = get_box_generic("140px", "140px");
     // https://forum.babylonjs.com/t/the-other-upgrade-issue-may-actually-be-a-3-2-or-3-3-change-not-4-0/5486/4
     overlay.background = "#0000";
     overlay.color = "#0000";
@@ -226,7 +258,7 @@ export class HUD{
   }
 
   get_nav_box(){
-    let box = this.get_box_generic("200px", "200px");
+    let box = get_box_generic("200px", "200px");
 
     box.addControl(this.nav_text);
     box.addControl(this.fuel_status);
@@ -247,7 +279,7 @@ export class HUD{
   }
 
   get_radar_box(){
-    let box = this.get_box_generic("200px", "200px");
+    let box = get_box_generic("200px", "200px");
 
     this.adt.addControl(box);
     box.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
@@ -256,7 +288,7 @@ export class HUD{
   }
 
   get_target_box(){
-    let box = this.get_box_generic("200px", "200px");
+    let box = get_box_generic("200px", "200px");
 
     box.addControl(this.target_label);
     box.addControl(this.target_govt);
@@ -291,7 +323,7 @@ export class HUD{
       }
     }
 
-    this.update_alert(entMan.delta_time);
+    this.update_widgets(entMan);
     if (player){
       // Gross: pipe this down to functions
       this.tmp_player = player
@@ -383,17 +415,17 @@ export class HUD{
 
     return box;
   }
-
-  get_box_generic(width, height){
-    /* Defines the style for HUD boxes */
-    let box = new BABYLON.GUI.Rectangle();
-    box.height = height;
-    box.width = width;
-    box.alpha = .5;
-    box.background = "Black";
-    box.color = "Gray";
-    // box.corner_radius = 5;
-
-    return box;
-  }
 };
+
+function get_box_generic(width, height){
+  /* Defines the style for HUD boxes */
+  let box = new BABYLON.GUI.Rectangle();
+  box.height = height;
+  box.width = width;
+  box.alpha = .5;
+  box.background = "Black";
+  box.color = "Gray";
+  // box.corner_radius = 5;
+
+  return box;
+}

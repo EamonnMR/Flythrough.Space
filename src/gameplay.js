@@ -107,13 +107,13 @@ export class GamePlayState extends ViewState {
             if(has_sufficient_distance(player_ent || is_cheat_enabled("jump_anywhere"))){
               player_ent.warping_out = true;
             } else {
-              _.hud.show_alert("Cannot Engage Drive - Too close to system center");
+              _.hud.widgets.alert_box.show("Cannot Engage Drive - Too close to system center");
             }
           } else {
-            _.hud.show_alert("Cannot Engage Drive - Insufficient Fuel");
+            _.hud.widgets.alert_box.show("Cannot Engage Drive - Insufficient Fuel");
           }
 			  } else {
-          _.hud.show_alert("Cannot Engage Drive - No Spacelane to selected system");
+          _.hud.widgets.alert_box.show("Cannot Engage Drive - No Spacelane to selected system");
         }
       },
       /*

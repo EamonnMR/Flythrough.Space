@@ -78,7 +78,7 @@ function destroyed(entity, entMan){
     entMan.insert( flash_factory( entity.position, 1, 300, 750));
   }
   if(entMan.is_player_ent(entity)){
-    _.hud.show_alert("Ship Destroyed");
+    _.hud.widgets.alert_box.show("Ship Destroyed");
   }
 }
 
@@ -88,6 +88,6 @@ function disabled(entity, entMan){
   entity.disabled = true;
   set_dark_texture(entity);
   if(entMan.is_player_ent(entity)){
-    _.hud.show_alert("Ship Disabled");
+    _.hud.widgets.alert_box.show("Ship Disabled");
   }
 }
