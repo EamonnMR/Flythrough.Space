@@ -165,13 +165,13 @@ export class PlayerSave {
   }
   
   explore_system(system_name){
-    if(!this.explored.includes(system_name)){
+    if(!this.system_explored(system_name)){
       this.explored.push(system_name);
     }
   }
 
   system_explored(system_name){
-    return system_name in this.explored;
+    return this.explored.includes(system_name);
   }
 
   // TODO: Clean this up. All govts should be initialized with a default

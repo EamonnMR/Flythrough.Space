@@ -295,7 +295,11 @@ export class HUD{
     this.tmp_player = null;
 
     if (_.player.selected_system){
-      jump_line += _.player.selected_system;
+      if(_.player.system_explored(_.player.selected_system)){
+        jump_line += _.player.selected_system;
+      } else {
+        jump_line += "Unexplored";
+      }
     }
     this.nav_text.text = [planet_line, jump_line, ""].join("\n")
   }
