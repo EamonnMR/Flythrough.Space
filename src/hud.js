@@ -12,24 +12,26 @@ export class HUD{
   constructor(){
     this.adt = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 
-    this.tmp_player = null; // Or: how I broke abstraction. This should only exist during update.
     this.fuel_status = this.get_status_bar(150, "10px", "green", () => {
-      if(this.tmp_player) {
-        return this.tmp_player.fuel / this.tmp_player.max_fuel
+      let player_ent = _.entities.get_player_ent();
+      if(player_ent) {
+        return player_ent.fuel / player_ent.max_fuel
       } else {
         return 0
       }
     })
     this.health_status = this.get_status_bar(150, "10px", "blue", () => {
-      if(this.tmp_player){
-        return this.tmp_player.shields / this.tmp_player.max_shields;
+      let player_ent = _.entities.get_player_ent();
+      if(player_ent){
+        return player_ent.shields / player_ent.max_shields;
       } else {
         return 0
       }
     })
     this.shield_status = this.get_status_bar(150, "10px", "red", () => {
-      if (this.tmp_player){
-        return this.tmp_player.hitpoints / this.tmp_player.max_hp
+      let player_ent = _.entities.get_player_ent();
+      if (player_ent){
+        return player_ent.hitpoints / player_ent.max_hp
       } else {
         return 0
       }

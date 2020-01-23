@@ -36,7 +36,7 @@ export class GamePlayState extends ViewState {
 
   constructor() {
     super();
-    this.entMan = new SinglePlayerEntityManager([
+    _.entities = new SinglePlayerEntityManager([
       npcSpawnerSystem,
       inputSystem,
       ai_system,
@@ -54,9 +54,11 @@ export class GamePlayState extends ViewState {
       radarFollowSystem,
       deletionSystem,
       hudUpdateSystem,
-      warpSystemFactory(this),
-      entMan => this.playerLifecycleSystem(),
+      warpSystemFactory(this), // TODO: Can we disentangle this?
+      entMan => this.playerLifecycleSystem(), // Ditto
     ]);
+    // TODO: Make this not a local var anymore
+    this.entMan = _.entities;
     this.empty = true;
     this.world_models = [];
     this.starfields = [];
