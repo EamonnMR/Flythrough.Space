@@ -7,135 +7,8 @@ const TARGET_PIP_RADIUS = 30;
 const ALERT_DURATION = 7000;
 const BOX_SIZE = "200px";
 
-export function radarFollowSystem(entMan){
-  // Makes radar pips follow entities.
-  // TODO: Color pips based on AI status towards player.
-  let scale_factor = 5;
-  let offset = {x: 100, y:100};
-  let player = entMan.get_player_ent();
-  if(player && player.position){
-    for (let entity of entMan.get_with(['position', 'radar_pip'])){
-      // Position, relative to the player, inverted
-      entity.radar_pip.left = (entity.position.x - player.position.x) / (-1 * scale_factor);
-      entity.radar_pip.top = (entity.position.y - player.position.y) / scale_factor;
-      entity.radar_pip.color = color_for_entity(entity, player);
-    }
-  }
-};
-
-export function hudUpdateSystem(entMan){
-  if(_.hud){
-    _.hud.update(entMan);
-  }
-}
-
-export function color_for_entity(entity, player){
-  // For targeting purposes, what color to show the target as
-  if('ai' in entity && entity.ai.target && entity.ai.target === player.id){
-    return 'red';
-  }
-
-  if(entity.disabled){
-    return 'gray';
-  }
-
-  if(entity.player_aligned){
-    return 'chartreuse';
-  }
-  
-  if('spob_name' in entity){
-    if('govt' in entity){
-      if( _.player.is_govt_hostile(entity.govt) ){
-        return 'red';
-      } else {
-        return 'yellow';
-      }
-    } else {
-      return 'gray'
-    }
-  }
-  return 'yellow';
-}
-
-// This is for drawing health bars over each entity. Not in the design atm.
-//export function healthBarSystem(entMan){
-//  for (let entity of entMan.get_with([ 'hitpoints', 'max_hp', 'gui_healthbar'])){
-//    // TODO: Hide health bar if health == max_hp 
-//    entity.gui_healthbar.update_func();
-//  }
-//}
-
-class HudWidget {
-  constructor(adt){
-    // Create widget, add it to the ADT, set its position
-  }
-
-  update(entMan){
-    // Update the widget
-  }
-}
-
-class AlertBox extends HudWidget {
-  show(text, priority=1, sound=null){
-    if(priority >= this.priority){
-      // TODO: play sound
-      console.log("alert: " + text);
-      
-      this.text.text = text;
-      this.priority = priority;
-      this.timer = ALERT_DURATION;
-      this.box.alpha = .5
-    }
-  }
-
-  constructor(adt){
-    super(adt);
-    this.text = get_text()
-    this.timer = 0;
-    this.priority = 0;
-    
-
-    // TODO: Widget classes
-    this.text.text = "";
-
-    this.box = get_box_generic("1000px", "100px");
-
-    this.box.addControl(this.text);
-    this.box.paddingLeft = BOX_SIZE; 
-    this.box.paddingBottom = "5%";
-    this.box.color = "black";
-    this.box.alpha = .5;
-
-    adt.addControl(this.box);
-    this.box.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
-    this.box.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
-
-  }
-
-  update(entMan){
-    if(this.timer >= 0){
-      this.timer -= entMan.delta_time;
-      if(this.timer < 0){
-        this.text.text = " ";
-        this.timer = 0;
-        this.priority = 0;
-        this.box.alpha = 0;
-      }
-    }
-  }
-}
-
 
 export class HUD{
-  // TODO: Spin out into class. 
-
-
-  update_widgets(entMan){
-    Object.values(this.widgets).forEach((widget) => {
-      widget.update(entMan);
-    });
-  }
-
   constructor(){
     this.adt = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 
@@ -162,7 +35,6 @@ export class HUD{
       }
     })
     this.nav_text = get_text();
-    this.radar_box = this.get_radar_box();
     this.nav_box = this.get_nav_box();
     this.spob_label = this.get_spob_label();
     this.target_label = get_text();
@@ -170,9 +42,9 @@ export class HUD{
     this.target_subtitle = get_text();
 
     this.widgets = {
-      alert_box: new AlertBox(this.adt)
+      alert_box: new AlertBox(this.adt),
+      radar_box: new RadarBox(this.adt),
     };
-
 
     // Target pips - attached to the overlay and drawn around the target.
     function get_target_pip(x, y){
@@ -227,19 +99,6 @@ export class HUD{
     return block;
  }
 
- get_radar_pip(size, color){
-    /* Defines the style for Radar Pips */
-    let pip = new BABYLON.GUI.Ellipse();
-    let str_size = size + "px";
-    pip.height = str_size;
-    pip.width = str_size;
-    pip.background = "Black";
-    pip.color = color;
-    pip.thickness = 2;
-    pip.zIndex = 1
-    this.radar_box.addControl(pip);
-    return pip;
-  }
 
   get_overlay_texture(entity){
     // Makes an overlay texture for the entity to draw target brackets,
@@ -276,15 +135,6 @@ export class HUD{
     box.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
     return box
 
-  }
-
-  get_radar_box(){
-    let box = get_box_generic("200px", "200px");
-
-    this.adt.addControl(box);
-    box.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
-    box.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
-    return box;
   }
 
   get_target_box(){
@@ -391,6 +241,13 @@ export class HUD{
     this.adt.dispose();
   }
 
+  update_widgets(entMan){
+    Object.values(this.widgets).forEach((widget) => {
+      widget.update(entMan);
+    });
+  }
+
+
   get_status_bar(max_width, height, color, update){
     // This gives you a status bar which will evaluate the function
     // given in update to get a percentage width.
@@ -417,6 +274,113 @@ export class HUD{
   }
 };
 
+
+export function hudUpdateSystem(entMan){
+  if(_.hud){
+    _.hud.update(entMan);
+  }
+}
+
+class HudWidget {
+  constructor(adt){
+    // Create widget, add it to the ADT, set its position
+  }
+
+  update(entMan){
+    // Update the widget
+  }
+}
+
+export function radarFollowSystem(entMan){
+  // Makes radar pips follow entities.
+  // TODO: Color pips based on AI status towards player.
+  let scale_factor = 5;
+  let offset = {x: 100, y:100};
+  let player = entMan.get_player_ent();
+  if(player && player.position){
+    for (let entity of entMan.get_with(['position', 'radar_pip'])){
+      // Position, relative to the player, inverted
+      entity.radar_pip.left = (entity.position.x - player.position.x) / (-1 * scale_factor);
+      entity.radar_pip.top = (entity.position.y - player.position.y) / scale_factor;
+      entity.radar_pip.color = color_for_entity(entity, player);
+    }
+  }
+};
+
+class RadarBox extends HudWidget{
+  constructor(adt){
+    super(adt);
+    this.box = get_box_generic(BOX_SIZE, BOX_SIZE);
+
+    adt.addControl(this.box);
+    this.box.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+    this.box.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
+  }
+
+  get_pip(size, color){
+    /* Defines the style for Radar Pips */
+    let pip = new BABYLON.GUI.Ellipse();
+    let str_size = size + "px";
+    pip.height = str_size;
+    pip.width = str_size;
+    pip.background = "Black";
+    pip.color = color;
+    pip.thickness = 2;
+    pip.zIndex = 1
+    this.box.addControl(pip);
+    return pip;
+  }
+}
+
+class AlertBox extends HudWidget {
+  show(text, priority=1, sound=null){
+    if(priority >= this.priority){
+      // TODO: play sound
+      console.log("alert: " + text);
+      
+      this.text.text = text;
+      this.priority = priority;
+      this.timer = ALERT_DURATION;
+      this.box.alpha = .5
+    }
+  }
+
+  constructor(adt){
+    super(adt);
+    this.text = get_text()
+    this.timer = 0;
+    this.priority = 0;
+
+    this.text.text = "";
+
+    this.box = get_box_generic("1000px", "100px");
+
+    this.box.addControl(this.text);
+    this.box.paddingLeft = BOX_SIZE; 
+    this.box.paddingBottom = "5%";
+    this.box.color = "black";
+    this.box.alpha = .5;
+
+    adt.addControl(this.box);
+    this.box.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+    this.box.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
+
+  }
+
+  update(entMan){
+    if(this.timer >= 0){
+      this.timer -= entMan.delta_time;
+      if(this.timer < 0){
+        this.text.text = " ";
+        this.timer = 0;
+        this.priority = 0;
+        this.box.alpha = 0;
+      }
+    }
+  }
+}
+
+
 function get_box_generic(width, height){
   /* Defines the style for HUD boxes */
   let box = new BABYLON.GUI.Rectangle();
@@ -429,3 +393,41 @@ function get_box_generic(width, height){
 
   return box;
 }
+
+export function color_for_entity(entity, player){
+  // For targeting purposes, what color to show the target as
+  if('ai' in entity && entity.ai.target && entity.ai.target === player.id){
+    return 'red';
+  }
+
+  if(entity.disabled){
+    return 'gray';
+  }
+
+  if(entity.player_aligned){
+    return 'chartreuse';
+  }
+  
+  if('spob_name' in entity){
+    if('govt' in entity){
+      if( _.player.is_govt_hostile(entity.govt) ){
+        return 'red';
+      } else {
+        return 'yellow';
+      }
+    } else {
+      return 'gray'
+    }
+  }
+  return 'yellow';
+}
+
+// This is for drawing health bars over each entity. Not in the design atm.
+//export function healthBarSystem(entMan){
+//  for (let entity of entMan.get_with([ 'hitpoints', 'max_hp', 'gui_healthbar'])){
+//    // TODO: Hide health bar if health == max_hp 
+//    entity.gui_healthbar.update_func();
+//  }
+//}
+
+
