@@ -12,7 +12,7 @@ export class HUD{
   constructor(){
     this.adt = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 
-    this.fuel_status = this.get_status_bar(150, "10px", "green", () => {
+    this.fuel_status = get_status_bar(150, "10px", "green", () => {
       let player_ent = _.entities.get_player_ent();
       if(player_ent) {
         return player_ent.fuel / player_ent.max_fuel
@@ -20,7 +20,7 @@ export class HUD{
         return 0
       }
     })
-    this.health_status = this.get_status_bar(150, "10px", "blue", () => {
+    this.health_status = get_status_bar(150, "10px", "blue", () => {
       let player_ent = _.entities.get_player_ent();
       if(player_ent){
         return player_ent.shields / player_ent.max_shields;
@@ -28,7 +28,7 @@ export class HUD{
         return 0
       }
     })
-    this.shield_status = this.get_status_bar(150, "10px", "red", () => {
+    this.shield_status = get_status_bar(150, "10px", "red", () => {
       let player_ent = _.entities.get_player_ent();
       if (player_ent){
         return player_ent.hitpoints / player_ent.max_hp
@@ -39,13 +39,10 @@ export class HUD{
     this.nav_text = get_text();
     this.nav_box = this.get_nav_box();
     this.spob_label = this.get_spob_label();
-    this.target_label = get_text();
-    this.target_govt = get_text();
-    this.target_subtitle = get_text();
-
     this.widgets = {
       alert_box: new AlertBox(this.adt),
       radar_box: new RadarBox(this.adt),
+      target_box: new TargetBox(this.adt),
     };
 
     // Target pips - attached to the overlay and drawn around the target.
@@ -71,17 +68,6 @@ export class HUD{
       //pip: get_target_pip(0,0)
     };
 
-    this.target_health_bar = this.get_status_bar(150, "10px", "red", () => {
-      if(this.target_ent){
-        return this.target_ent.hitpoints / this.target_ent.max_hp; 
-      }
-    });
-    this.target_shield_bar = this.get_status_bar(150, "10px", "blue", () => {
-      if(this.target_ent){
-        return this.target_ent.shields / this.target_ent.max_shields;
-      }
-    });
-    this.target_box = this.get_target_box();
   }
 
   deselect(entity){
@@ -112,7 +98,7 @@ export class HUD{
     this.adt.addControl(overlay);
     overlay.linkWithMesh(entity.model);
     //if ("hitpoints" in entity){
-    //  entity.gui_healthbar = this.get_status_bar(20, "10%", "Red", () => {
+    //  entity.gui_healthbar = get_status_bar(20, "10%", "Red", () => {
     //    return entity.hitpoints / entity.max_hp;
     //});
     return overlay;
@@ -139,24 +125,6 @@ export class HUD{
 
   }
 
-  get_target_box(){
-    let box = get_box_generic("200px", "200px");
-
-    box.addControl(this.target_label);
-    box.addControl(this.target_govt);
-    box.addControl(this.target_subtitle);
-    box.addControl(this.target_health_bar);
-    box.addControl(this.target_shield_bar);
-    this.target_label.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
-    this.target_health_bar.top = 20;
-    this.target_govt.top = 30;
-    this.target_subtitle.top = 40;
-    this.adt.addControl(box);
-    box.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-    box.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
-
-    return box;
-  }
 
   update(entMan){
     let player = entMan.get_player_ent();
@@ -179,38 +147,14 @@ export class HUD{
     if (player){
       // Gross: pipe this down to functions
       this.tmp_player = player
-
       if (player.target){
         let possible_target = entMan.get(player.target);
         if(possible_target){
-          this.target_ent = possible_target;
-          this.target_label.text = this.target_ent.short_name;
-          let pip_color = "yellow";
-          this.target_subtitle.text = "";
-
-          if(this.target_ent.disabled){
-            this.target_subtitle.text = "disabled" // TODO: Variants?
-          }
-
           this.update_target_pips(
-            this.target_ent,
-            color_for_entity(this.target_ent, player)
+            possible_target,
+            color_for_entity(possible_target, player)
           );
-           
-          if( "govt" in this.target_ent ){
-            this.target_govt.text = _.data.govts[this.target_ent.govt].short_name;
-          } else {
-            this.target_govt.text = DEFAULT_GOVT_NAME;
-          }
-        } else {
-          this.target_label.text = "<No Target>";
-          this.target_subtitle.text = " ";
-          this.target_govt.text = " ";
         }
-        this.target_health_bar.update_func();
-        this.target_shield_bar.update_func();
-        // Definitely don't keep a reference around. That would be bad.
-        delete this.possible_target;
       }
     }
 
@@ -234,7 +178,7 @@ export class HUD{
     for( let pip of Object.values(this.target_pips)){ 
 
       pip.background = color;
-      this.target_ent.overlay.addControl(pip);
+      target.overlay.addControl(pip);
     }
   }
 
@@ -250,30 +194,7 @@ export class HUD{
   }
 
 
-  get_status_bar(max_width, height, color, update){
-    // This gives you a status bar which will evaluate the function
-    // given in update to get a percentage width.
-    let box = new BABYLON.GUI.Rectangle();
-    box.height = height;
-    box.width = "10px";
-    box.max_width = max_width;
-    box.get_status = update;
-    box.alpha = 1;
-    box.background = color;
-    box.color = color;
-    box.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-    box.verticalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_TOP;
 
-    // Syntactically we want to use `function` because of how `this` behaves.
-    // (I think...)
-    function update_func(){
-      this.width = "" + (max_width * this.get_status()) + "px";
-    }
-
-    box.update_func = update_func;
-
-    return box;
-  }
 };
 
 
@@ -382,6 +303,72 @@ class AlertBox extends HudWidget {
   }
 }
 
+class TargetBox extends HudWidget{
+  constructor(adt){
+    super(adt);
+    this.box = get_box_generic(BOX_SIZE, BOX_SIZE);
+
+    this.label = get_text();
+    this.govt = get_text();
+    this.subtitle = get_text();
+
+    this.health_bar = get_status_bar(150, "10px", "red", (target) => {
+      if(target){
+        return target.hitpoints / target.max_hp; 
+      }
+    });
+    this.shield_bar = get_status_bar(150, "10px", "blue", (target) => {
+      if(target){
+        return target.shields / target.max_shields;
+      }
+    });
+
+    this.box.addControl(this.label);
+    this.box.addControl(this.govt);
+    this.box.addControl(this.subtitle);
+    this.box.addControl(this.health_bar);
+    this.box.addControl(this.shield_bar);
+    this.label.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+    this.health_bar.top = 20;
+    this.govt.top = 30;
+    this.subtitle.top = 40;
+    adt.addControl(this.box);
+    this.box.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+    this.box.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
+  }
+
+  update(entMan){
+    let player = _.entities.get_player_ent();
+    if (player.target){
+      let possible_target = entMan.get(player.target);
+      this.health_bar.update_func(possible_target);
+      this.shield_bar.update_func(possible_target);
+      if(possible_target){
+        let target = possible_target;
+        // Factor out into a call_if_target( (target) => {func
+        // maybe?
+        this.label.text = target.short_name;
+        this.subtitle.text = "";
+
+        if(target.disabled){
+          this.subtitle.text = "disabled" // TODO: Variants?
+        }
+        
+        if( "govt" in target ){
+          this.govt.text = _.data.govts[target.govt].short_name;
+        } else {
+          this.govt.text = DEFAULT_GOVT_NAME;
+        }
+      } else {
+        this.label.text = "<No Target>";
+        this.subtitle.text = " ";
+        this.govt.text = " ";
+      }
+
+    }
+  }
+}
+
 
 function get_box_generic(width, height){
   /* Defines the style for HUD boxes */
@@ -432,4 +419,29 @@ export function color_for_entity(entity, player){
 //  }
 //}
 
+function get_status_bar(max_width, height, color, update){
+  // This gives you a status bar which will evaluate the function
+  // given in update to get a percentage width.
+  //
+  // Sort of a class. Also sort of gross.
+  let box = new BABYLON.GUI.Rectangle();
+  box.height = height;
+  box.width = "10px";
+  box.max_width = max_width;
+  box.get_status = update;
+  box.alpha = 1;
+  box.background = color;
+  box.color = color;
+  box.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+  box.verticalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_TOP;
 
+  // Syntactically we want to use `function` because of how `this` behaves.
+  // (I think...)
+  function update_func(data){
+    this.width = "" + (max_width * this.get_status(data)) + "px";
+  }
+
+  box.update_func = update_func;
+
+  return box;
+}
