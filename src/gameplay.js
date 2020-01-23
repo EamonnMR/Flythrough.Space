@@ -1,8 +1,3 @@
-/* This is the nexus of the action portion of the game, so there will be
- * a lot of imports here. Anything ending with System gets run every
- * frame and will update some subset of entities.
- */
-
 
 import { _ } from "./singletons.js";
 import {
@@ -106,6 +101,7 @@ export class GamePlayState extends ViewState {
           if (has_sufficient_fuel(player_ent) || is_cheat_enabled("infinite_fuel")){ 
             if(has_sufficient_distance(player_ent || is_cheat_enabled("jump_anywhere"))){
               player_ent.warping_out = true;
+              _.hud.widgets.alert_box.show(`Leaving the ${_.player.current_system} system.`);
             } else {
               _.hud.widgets.alert_box.show("Cannot Engage Drive - Too close to system center");
             }
@@ -250,7 +246,7 @@ export class GamePlayState extends ViewState {
     this.clear_world();
     _.player.fuel -= 1;
     this.setup_world();
-    _.hud.show_alert(
+    _.hud.widgets.alert_box.show(
       `Entering the ${_.player.current_system} system.`
       + (!_.data.systems[_.player.current_system].spobs ?
         "\n Sensors detect no Large Stellar Satellites"

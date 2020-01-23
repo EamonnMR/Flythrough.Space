@@ -68,9 +68,6 @@ export function setup_system(entMan, system){
   return enter_system(entMan, planets, lights, ents);
 };
 
-
-
-
 function enter_system(entMan, planets, lights, ents) {
   let world_models = []
 

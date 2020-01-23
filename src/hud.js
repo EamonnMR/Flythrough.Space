@@ -132,7 +132,7 @@ export class HUD{
 
   update_widgets(entMan){
     Object.values(this.widgets).forEach((widget) => {
-      // widget.update(entMan);
+      widget.update(entMan);
     });
   }
 
