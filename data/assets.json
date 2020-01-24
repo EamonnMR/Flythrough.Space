@@ -203,7 +203,36 @@
       }
 
     },
-    "drillship": {"file": "xic_drillship.babylon"}
+    "drillship": {
+      "file": "xic_drillship.babylon",
+      "default_skin": "xic",
+      "skins": {
+        "xic": {
+          "diffuse": "drillship_xic.png",
+          "emissive": "drillship_emissive.png",
+          "custom_emissive_color": [1,1,1,1]
+        },
+        "merchant": {
+          "diffuse": "drillship_merchant.png",
+          "custom_emissive_color": [1,1,1,1],
+          "emissive": "drillship_emissive.png"
+        },
+        "pirate": {
+          "diffuse": "drillship_pirate.png",
+          "emissive": "drillship_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "baik/dark": {
+          "diffuse": "drillship_xic.png"
+        },
+        "merchant/dark": {
+          "diffuse": "drillship_merchant.png"
+        },
+        "pirate/dark": {
+          "diffuse": "drillship_pirate.png"
+        }
+      }
+    }
   },
   "sprites": {
     "plasma": {

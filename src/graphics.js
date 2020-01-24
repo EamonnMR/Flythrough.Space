@@ -6,7 +6,7 @@
 // y      --> Nothing
 // Z      --> Y
 import { _ } from "./singletons.js";
-import { to_radians, is_cheat_enabled } from "./util.js";
+import { to_radians, is_cheat_enabled, overridable_default } from "./util.js";
 
 const SHIP_Y = 0; // This might want to be imported from somewhere
 const PLANET_SCALE = 15;  // TODO: Noticing that differently sized planet sprites end up being the same screen-space size. Weird.
@@ -179,7 +179,7 @@ export function create_composite_model(ship, govt){
     ship.model.material = material;
   } else {
     // TODO: Let player choose skin - cool!
-    let skin = _.player.ship_skin || model_meta.default_skin;
+    let skin = overridable_default("skin", null) || _.player.ship_skin || model_meta.default_skin;
     let material = _.data.get_material(ship.mesh, skin);
     if(material){
       ship.skin = skin;
