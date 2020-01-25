@@ -11,38 +11,12 @@ const BOX_SIZE = "200px";
 export class HUD{
   constructor(){
     this.adt = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
-
-    this.fuel_status = get_status_bar(150, "10px", "green", () => {
-      let player_ent = _.entities.get_player_ent();
-      if(player_ent) {
-        return player_ent.fuel / player_ent.max_fuel
-      } else {
-        return 0
-      }
-    })
-    this.health_status = get_status_bar(150, "10px", "blue", () => {
-      let player_ent = _.entities.get_player_ent();
-      if(player_ent){
-        return player_ent.shields / player_ent.max_shields;
-      } else {
-        return 0
-      }
-    })
-    this.shield_status = get_status_bar(150, "10px", "red", () => {
-      let player_ent = _.entities.get_player_ent();
-      if (player_ent){
-        return player_ent.hitpoints / player_ent.max_hp
-      } else {
-        return 0
-      }
-    })
-    this.nav_text = get_text();
-    this.nav_box = this.get_nav_box();
     this.spob_label = this.get_spob_label();
     this.widgets = {
       alert_box: new AlertBox(this.adt),
       radar_box: new RadarBox(this.adt),
       target_box: new TargetBox(this.adt),
+      status_box: new StatusBox(this.adt),
     };
 
     // Target pips - attached to the overlay and drawn around the target.
@@ -85,7 +59,7 @@ export class HUD{
     // TODO: Brackets?
     block.linkOffsetY = 160;
     return block;
- }
+  }
 
 
   get_overlay_texture(entity){
@@ -104,35 +78,10 @@ export class HUD{
     return overlay;
   }
 
-  get_nav_box(){
-    let box = get_box_generic("200px", "200px");
-
-    box.addControl(this.nav_text);
-    box.addControl(this.fuel_status);
-    box.addControl(this.shield_status);
-    box.addControl(this.health_status);
-    
-    this.shield_status.top = 20
-    this.health_status.top = 40
-
-    this.nav_text.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT
-    
-    this.nav_text.top = 40
-    this.adt.addControl(box); 
-    box.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-    box.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
-    return box
-
-  }
-
-
-  update(entMan){
-    let player = entMan.get_player_ent();
-    let planet_line = "In-System: ";
-    let jump_line = "Galactic: ";
+  update(){
+    let player = _.entities.get_player_ent();
     if (_.player.selected_spob){
-      planet_line += _.player.selected_spob;
-      let possible_spobs = entMan.get_with_exact("spob_name", _.player.selected_spob)
+      let possible_spobs = _.entities.get_with_exact("spob_name", _.player.selected_spob)
       if(possible_spobs.length > 0){
         let spob = possible_spobs[0];
         spob.model.isDisposed = () => { return false }; // Hack
@@ -143,12 +92,11 @@ export class HUD{
       }
     }
 
-    this.update_widgets(entMan);
+    this.update_widgets();
+
     if (player){
-      // Gross: pipe this down to functions
-      this.tmp_player = player
       if (player.target){
-        let possible_target = entMan.get(player.target);
+        let possible_target = _.entities.get(player.target);
         if(possible_target){
           this.update_target_pips(
             possible_target,
@@ -157,25 +105,10 @@ export class HUD{
         }
       }
     }
-
-    this.fuel_status.update_func();
-    this.shield_status.update_func();
-    this.health_status.update_func();
-    
-    this.tmp_player = null;
-
-    if (_.player.selected_system){
-      if(_.player.system_explored(_.player.selected_system)){
-        jump_line += _.player.selected_system;
-      } else {
-        jump_line += "Unexplored";
-      }
-    }
-    this.nav_text.text = [planet_line, jump_line, ""].join("\n")
   }
 
   update_target_pips(target, color){
-    for( let pip of Object.values(this.target_pips)){ 
+    for(let pip of Object.values(this.target_pips)){ 
 
       pip.background = color;
       target.overlay.addControl(pip);
@@ -184,23 +117,23 @@ export class HUD{
 
   dispose(){
     // Make sure we dispose everything we made and clear globals
+    this.each_widget((widget) => {widget.dispose()})
     this.adt.dispose();
   }
-
-  update_widgets(entMan){
-    Object.values(this.widgets).forEach((widget) => {
-      widget.update(entMan);
-    });
+  
+  each_widget( func ){
+    Object.values(this.widgets).forEach(func);
   }
 
-
-
+  update_widgets(){
+    this.each_widget((widget) => {widget.update()});
+  }
 };
 
 
 export function hudUpdateSystem(entMan){
   if(_.hud){
-    _.hud.update(entMan);
+    _.hud.update();
   }
 }
 
@@ -209,8 +142,12 @@ class HudWidget {
     // Create widget, add it to the ADT, set its position
   }
 
-  update(entMan){
+  update(){
     // Update the widget
+  }
+
+  dispose(){
+    // If anything won't be disposed by disposing the adt, do it here
   }
 }
 
@@ -219,9 +156,9 @@ export function radarFollowSystem(entMan){
   // TODO: Color pips based on AI status towards player.
   let scale_factor = 5;
   let offset = {x: 100, y:100};
-  let player = entMan.get_player_ent();
+  let player = _.entities.get_player_ent();
   if(player && player.position){
-    for (let entity of entMan.get_with(['position', 'radar_pip'])){
+    for (let entity of _.entities.get_with(['position', 'radar_pip'])){
       // Position, relative to the player, inverted
       entity.radar_pip.left = (entity.position.x - player.position.x) / (-1 * scale_factor);
       entity.radar_pip.top = (entity.position.y - player.position.y) / scale_factor;
@@ -290,9 +227,9 @@ class AlertBox extends HudWidget {
 
   }
 
-  update(entMan){
+  update(){
     if(this.timer >= 0){
-      this.timer -= entMan.delta_time;
+      this.timer -= _.entities.delta_time;
       if(this.timer < 0){
         this.text.text = " ";
         this.timer = 0;
@@ -337,10 +274,10 @@ class TargetBox extends HudWidget{
     this.box.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
   }
 
-  update(entMan){
+  update(){
     let player = _.entities.get_player_ent();
     if (player.target){
-      let possible_target = entMan.get(player.target);
+      let possible_target = _.entities.get(player.target);
       this.health_bar.update_func(possible_target);
       this.shield_bar.update_func(possible_target);
       if(possible_target){
@@ -369,6 +306,72 @@ class TargetBox extends HudWidget{
   }
 }
 
+class StatusBox extends HudWidget{
+  constructor(adt){
+    super(adt);
+    this.fuel_status = get_status_bar(150, "10px", "green", () => {
+      let player_ent = _.entities.get_player_ent();
+      if(player_ent) {
+        return player_ent.fuel / player_ent.max_fuel
+      } else {
+        return 0
+      }
+    })
+    this.health_status = get_status_bar(150, "10px", "blue", () => {
+      let player_ent = _.entities.get_player_ent();
+      if(player_ent){
+        return player_ent.shields / player_ent.max_shields;
+      } else {
+        return 0
+      }
+    })
+    this.shield_status = get_status_bar(150, "10px", "red", () => {
+      let player_ent = _.entities.get_player_ent();
+      if (player_ent){
+        return player_ent.hitpoints / player_ent.max_hp
+      } else {
+        return 0
+      }
+    })
+    this.nav_text = get_text();
+    let box = get_box_generic(BOX_SIZE, BOX_SIZE);
+
+    box.addControl(this.nav_text);
+    box.addControl(this.fuel_status);
+    box.addControl(this.shield_status);
+    box.addControl(this.health_status);
+    
+    this.shield_status.top = 20
+    this.health_status.top = 40
+
+    this.nav_text.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT
+    
+    this.nav_text.top = 40
+    adt.addControl(box); 
+    box.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+    box.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+
+    this.box = box;
+
+  }
+  update(){
+    this.fuel_status.update_func();
+    this.shield_status.update_func();
+    this.health_status.update_func();
+
+    let jump_nav = ''
+
+    if (_.player.selected_system){
+      if(_.player.system_explored(_.player.selected_system)){
+        jump_nav += _.player.selected_system;
+      } else {
+        jump_nav += "Unexplored";
+      }
+    }
+    this.nav_text.text = (`Stellar: ${_.player.selected_spob || ''} \n` +
+                          `Galactic: ${jump_nav}`);
+  }
+}
 
 function get_box_generic(width, height){
   /* Defines the style for HUD boxes */
@@ -413,7 +416,7 @@ export function color_for_entity(entity, player){
 
 // This is for drawing health bars over each entity. Not in the design atm.
 //export function healthBarSystem(entMan){
-//  for (let entity of entMan.get_with([ 'hitpoints', 'max_hp', 'gui_healthbar'])){
+//  for (let entity of _.entities.get_with([ 'hitpoints', 'max_hp', 'gui_healthbar'])){
 //    // TODO: Hide health bar if health == max_hp 
 //    entity.gui_healthbar.update_func();
 //  }
