@@ -42,7 +42,7 @@ export class PlayerSave {
     this.current_spob = overridable_default("spob", "Alluvium Fleet Yards");
     this.initial_position = {x: 0, y: 0};
     this.ship_type = overridable_default("ship", "shuttle");
-    this.ship_skin = "pirate";  // TODO: Add skin menu
+    this.ship_skin = null // "pirate";  // TODO: Add skin menu
     this.ship_dat = Object.create(_.data.ships[this.ship_type]);
     this.upgrades = this.ship_dat.upgrades;
     this.fuel = this.ship_dat.max_fuel;
@@ -165,13 +165,13 @@ export class PlayerSave {
   }
   
   explore_system(system_name){
-    if(!this.explored.includes(system_name)){
+    if(!this.system_explored(system_name)){
       this.explored.push(system_name);
     }
   }
 
   system_explored(system_name){
-    return system_name in this.explored;
+    return this.explored.includes(system_name);
   }
 
   // TODO: Clean this up. All govts should be initialized with a default

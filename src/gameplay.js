@@ -1,8 +1,3 @@
-/* This is the nexus of the action portion of the game, so there will be
- * a lot of imports here. Anything ending with System gets run every
- * frame and will update some subset of entities.
- */
-
 
 import { _ } from "./singletons.js";
 import {
@@ -41,7 +36,7 @@ export class GamePlayState extends ViewState {
 
   constructor() {
     super();
-    this.entMan = new SinglePlayerEntityManager([
+    _.entities = new SinglePlayerEntityManager([
       npcSpawnerSystem,
       inputSystem,
       ai_system,
@@ -59,9 +54,11 @@ export class GamePlayState extends ViewState {
       radarFollowSystem,
       deletionSystem,
       hudUpdateSystem,
-      warpSystemFactory(this),
-      entMan => this.playerLifecycleSystem(),
+      warpSystemFactory(this), // TODO: Can we disentangle this?
+      entMan => this.playerLifecycleSystem(), // Ditto
     ]);
+    // TODO: Make this not a local var anymore
+    this.entMan = _.entities;
     this.empty = true;
     this.world_models = [];
     this.starfields = [];
@@ -98,12 +95,6 @@ export class GamePlayState extends ViewState {
         this.parent.enter_state('map');
       },
 
-      /* I haven't actually used this for a while
-      reset_game: () => {
-        this.clear_world();
-        this.setup_world();  
-      },
-      */
       hyper_jump: () => {
 			  if ( _.player.current_system
             != _.player.selected_system
@@ -112,15 +103,15 @@ export class GamePlayState extends ViewState {
           if (has_sufficient_fuel(player_ent) || is_cheat_enabled("infinite_fuel")){ 
             if(has_sufficient_distance(player_ent || is_cheat_enabled("jump_anywhere"))){
               player_ent.warping_out = true;
+              _.hud.widgets.alert_box.show(`Leaving the ${_.player.current_system} system.`);
             } else {
-              // TODO: Add visible warnings for these so players aren't confused
-              console.log("Tried to hyperjump too close to a star");
+              _.hud.widgets.alert_box.show("Cannot Engage Drive - Too close to system center");
             }
           } else {
-            console.log("Tried to hyperjump with insufficient fuel");
+            _.hud.widgets.alert_box.show("Cannot Engage Drive - Insufficient Fuel");
           }
 			  } else {
-          console.log( "Tried to HJ to bad system");
+          _.hud.widgets.alert_box.show("Cannot Engage Drive - No Spacelane to selected system");
         }
       },
       /*
@@ -257,6 +248,13 @@ export class GamePlayState extends ViewState {
     this.clear_world();
     _.player.fuel -= 1;
     this.setup_world();
+    _.hud.widgets.alert_box.show(
+      `Entering the ${_.player.current_system} system.`
+      + (!_.data.systems[_.player.current_system].spobs ?
+        "\n Sensors detect no Large Stellar Satellites"
+        : ""
+      )
+    );
   }
 
 }

@@ -1,11 +1,19 @@
-Textures:
-https://doc.babylonjs.com/babylon101/materials#texture
+==================
+Modeling And Texturing Tut: Write a how-to blog post to codify
+the knowledge of how to make ships.
 
-Add method to pull texture materials out of data
 
-Use default skin for player, govt skins for govts
+==================
+Alert Text: Why won't it display where it's supposed to?
 
-Make examples out of a few ships to make sure it works
+Try putting it into a box?
+
+Make a class for it?
+
+(make all of the HUD elements into classes?)
+
+(HUDWidget?)
+
 
 ==================
 Shadows: https://doc.babylonjs.com/babylon101/shadows

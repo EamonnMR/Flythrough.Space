@@ -9,7 +9,7 @@ import {
 export function npcShipFactory(type, position, ai, govt){
   let ship = shipFactory(type, position, govt);
   ship.ai = ai;
-  ship.radar_pip = _.hud.get_radar_pip(4, '#FF0000FF');
+  ship.radar_pip = _.hud.widgets.radar_box.get_pip(4, '#FF0000FF');
   ship.overlay = _.hud.get_overlay_texture(ship);
   return ship;
 }
@@ -29,7 +29,7 @@ export function playerShipFactory(type, position) {
   ship.accel = ship.accel  * 1.25;
   ship.max_speed = ship.max_speed * 1.25;
 
-  ship.radar_pip = _.hud.get_radar_pip(4, '#00FF00FF');
+  ship.radar_pip = _.hud.widgets.radar_box.get_pip(4, '#00FF00FF');
   ship.fuel = _.player.fuel;
   return ship;
 };
@@ -66,7 +66,7 @@ export function planetFactory (name, index){
   planet.model = create_planet_sprite(planet); 
   planet.spob_name = name;
   // TODO: Change pip color based on landability status
-  planet.radar_pip = _.hud.get_radar_pip(10, "Yellow");
+  planet.radar_pip = _.hud.widgets.radar_box.get_pip(10, "Yellow");
   
   // For number-key auto selection purposes
   planet.spob_index = index;
@@ -88,7 +88,7 @@ export function asteroidFactory (position, velocity, sprite) {
     'hitpoints': 10,
     'collider': {'radius': .5},
     'hittable': true,
-    'radar_pip': _.hud.get_radar_pip(5, '#FF00FFFF')
+    'radar_pip': _.hud.widgets.radar_box.get_pip(5, '#FF00FFFF')
   };
 };
 
