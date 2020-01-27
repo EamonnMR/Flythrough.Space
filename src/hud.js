@@ -276,7 +276,7 @@ class TargetBox extends HudWidget{
 
   update(){
     let player = _.entities.get_player_ent();
-    if (player.target){
+    if (player && player.target){
       let possible_target = _.entities.get(player.target);
       this.health_bar.update_func(possible_target);
       this.shield_bar.update_func(possible_target);
