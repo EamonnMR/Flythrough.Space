@@ -15,7 +15,35 @@
         "weapon_1",
         "weapon_2",
         "weapon_3"
-      ]
+      ],
+      "default_skin": "baik",
+      "skins": {
+        "merchant": {
+          "diffuse": "argosy_merchant.png",
+          "emissive": "argosy_emissive.png",
+          "custom_emissive_color": [0.5,1,0.5,1]
+        },
+        "merchant/dark": {
+          "diffuse": "argosy_merchant.png"
+        },
+        "pirate": {
+          "diffuse": "argosy_pirate.png",
+          "emissive": "argosy_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "argosy_pirate.jpg"
+        },
+        "galbank": {
+          "diffuse": "argosy_galbank.png",
+          "emissive": "argosy_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "galbank/dark": {
+          "diffuse": "argosy_pirate.jpg"
+        }
+      }
+
     },
 
     "milspec_argosy": {
