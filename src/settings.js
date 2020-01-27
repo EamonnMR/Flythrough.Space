@@ -40,9 +40,10 @@ export class SettingsMenu extends BaseMenuView {
     const INCR_V = 15;
     let top = -1 * INCR_V;
     let left = 15;
+    const TOP_MAX = 70;
     let widgets = Object.keys( DEFAULT_SETTINGS ).map( (key) => {
       top += INCR_V;
-      if( top >= 100 ){
+      if( top >= TOP_MAX ){
         top = 0 - INCR_V;
         left += INCR_H;
       }
