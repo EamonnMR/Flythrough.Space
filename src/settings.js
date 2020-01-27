@@ -6,7 +6,6 @@
  */
 
 import { _ } from "./singletons.js";
-import { simple_grid } from "./menu.js";
 import { DEFAULT_SETTINGS } from "./default_settings.js";
 import {LandingMenuBigButton} from "./landing.js";
 import {
@@ -19,7 +18,8 @@ import {
 
 import {
   BaseMenuView,
-  Widget
+  Widget,
+  simple_grid,
 } from "./menu.js";
 
 import { graphics_init } from "./graphics.js";

@@ -55,17 +55,15 @@ export class MainMenu extends BaseMenuView {
       );
     }
 
-    /*
     widgets.push(new LandingMenuBigButton(
       'Load',
       () => {
-        // TODO: Add option to load games
+        this.parent.enter_state('saves');
       },
       LEFT,
       BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,
       "0%","-10%")
     );
-    */
     widgets.push(new LandingMenuBigButton(
       'New Captain',
       () => {

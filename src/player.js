@@ -21,7 +21,11 @@ export function load_saves(){
 }
 
 export function resume(){
-  return load_save( localStorage.getItem( LAST_SAVE ));
+  return _.player = load_save( localStorage.getItem( LAST_SAVE ));
+}
+
+export function restore(key){
+  _.player = load_save(key);
 }
 
 export class PlayerSave {
