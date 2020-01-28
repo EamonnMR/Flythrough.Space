@@ -1,5 +1,5 @@
 import {_} from "./singletons.js";
-import {load_save, load_saves, resume} from "./player.js";
+import {resume} from "./player.js";
 import {LandingMenuBigButton} from "./landing.js";
 import {PlayerSave} from "./player.js";
 

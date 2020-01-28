@@ -6,7 +6,7 @@ import {
 } from "./menu.js";
 
 import {
-  load_saves,
+  list_saves,
   restore,
 } from "./player.js";
 
@@ -16,8 +16,6 @@ export class SavesMenu extends BaseMenuView {
     this.setup_menu(this.get_widgets());
   }
   get_widgets(){
-    console.log("Load Saves: ");
-    console.log(load_saves());
     let widgets = simple_grid(
       (key, left, top) => {
         return new LandingMenuBigButton(
@@ -33,7 +31,7 @@ export class SavesMenu extends BaseMenuView {
           top,
         );
       },
-      load_saves()
+      list_saves()
     );
     widgets.push( new LandingMenuBigButton(
       'Back',
