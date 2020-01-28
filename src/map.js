@@ -44,8 +44,9 @@ export class MapView extends ViewState{
                   //  y: position.y};
     this.scrollables = [];
 
-    this.selection = _.player.selected_system;
-    // Faction colors
+    this.selection = null;
+
+    // Pre-calculate faction colors
     this.govt_colors = {};
     this.govt_dark_colors = {};
     for (let name of Object.keys(_.data.govts)){
@@ -55,10 +56,9 @@ export class MapView extends ViewState{
   }
 
   enter(){
+    this.selection = _.player.selected_system;
     this.dragging = false;
     console.log("Entering map state")
-
-    let current = _.data.systems[this.selection];
 
     this.adt =  BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 

@@ -1,5 +1,4 @@
 import {_} from "./singletons.js";
-import {resume} from "./player.js";
 import {LandingMenuBigButton} from "./landing.js";
 import {PlayerSave} from "./player.js";
 
@@ -68,7 +67,6 @@ export class MainMenu extends BaseMenuView {
       'New Captain',
       () => {
         // TODO: Add player config options
-        // TODO: Do the right thing
         _.player = new PlayerSave();
         this.parent.enter_state('gameplay');
       },

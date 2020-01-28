@@ -26,8 +26,6 @@ function init(game_canvas, scene, engine, data){
 
   graphics_init();
   
-  let player_data = new PlayerSave();
-  _.player = player_data;
   let stateMgr = new StateManager({
     'gameplay': new GamePlayState(),
     'map': new MapView({x: 0, y: 0}),

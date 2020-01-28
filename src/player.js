@@ -21,12 +21,20 @@ export function list_saves(){
   return Object.keys( localStorage ).filter( (key) => { return key && key.startsWith(PREFIX)})
 }
 
-export function resume(){
-  return _.player = load_save( localStorage.getItem( LAST_SAVE ));
-}
+// export function resume(){
+//   return _.player = load_save( localStorage.getItem( LAST_SAVE ));
+//}
 
 export function restore(key){
-  _.player = load_save(key);
+  let player = Object.assign(
+    new PlayerSave(),
+    load_save(key),
+  );
+
+  player.ship_dat = Object.create(_.data.ships[player.ship_type]);
+  player.ship_dat.upgrades = player.upgrades;
+
+  return player;
 }
 
 export class PlayerSave {

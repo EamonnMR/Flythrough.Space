@@ -23,7 +23,7 @@ export class SavesMenu extends BaseMenuView {
           () => {
             console.log("restoring:");
             console.log(key);
-            restore(key);
+            _.player = restore(key);
           },
           BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
           BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
