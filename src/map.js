@@ -324,11 +324,10 @@ export class MapView extends ViewState{
     
     bindInputFunctions({
       toggle_pause: () => {
-        'exit map'
+        // TODO: Store previous state, letting us to back to msn
+        // screen
         this.parent.enter_state('gameplay');
       },
-      reset_game: () => {},
-      hyper_jump: () => {},
     });
     this.map_image.onPointerDownObservable.add( (event) => {
       console.log("mouse down");

@@ -11,10 +11,10 @@ import {
 
 const MENU_COPY = "Welcome to FLYTHROUGH.SPACE, the Space Captain game!\n" +
   "Arrow Keys to move. Be careful of inertia. L to select the nearest planet," +
-  "then press L again when you're close enough to land. Press [ESC] to " +
-  "open the map* and select an adjacent system to jump to. Close the " +
-  "map with [esc], fly away from the center of the system, and press " +
-  "J to jump. Press ` to select the closest target (to see its health " +
+  "then press L again when you're close enough to land. Press [M] to " +
+  "open the map* and select an adjacent system to jump to with your mouse." +
+  ". Close the map with [esc], fly away from the center of the system, "+ 
+  "and press [J] jump. Press [TAB] to select the closest target (to see its health " +
   "and press [LCTRL] to fire your weapon - but be careful, angry ships " +
   "will shoot back!\n";
 

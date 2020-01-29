@@ -73,8 +73,8 @@ export class GamePlayState extends ViewState {
       this.player_dead_timer -= this.entMan.delta_time;
       if(this.player_dead_timer < 0){
         this.clear_world();
+        _.player = null;
         this.parent.enter_state('main');
-        // TODO: del _.player;
       }
     }
   }
@@ -91,6 +91,11 @@ export class GamePlayState extends ViewState {
         // Note that different exits do different things to the state,
         // so we don't actually put the functionality into the exit() function,
         // we put it before the enter() call.
+        this.entMan.pause();
+        this.parent.enter_state('main');
+      },
+
+      open_map: () => {
         this.entMan.pause();
         this.parent.enter_state('map');
       },
