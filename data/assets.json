@@ -32,7 +32,7 @@
           "custom_emissive_color": [1,0.5,0.5,1]
         },
         "pirate/dark": {
-          "diffuse": "argosy_pirate.jpg"
+          "diffuse": "argosy_pirate.png"
         },
         "galbank": {
           "diffuse": "argosy_galbank.png",
@@ -40,7 +40,7 @@
           "custom_emissive_color": [1,0.5,0.5,1]
         },
         "galbank/dark": {
-          "diffuse": "argosy_pirate.jpg"
+          "diffuse": "argosy_galbank.png"
         }
       }
 
