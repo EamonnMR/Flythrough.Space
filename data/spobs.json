@@ -897,5 +897,12 @@
     "y": 0,
     "govt": "direc",
     "text": "Shorunmu University is the most famous biology and medical tech hub in the galaxy. If you ever need a limb regrown (or even just reattached) the doctors here would be only too happy to oblige. Cloning technology perfected here enabled the creation of 'germlines'- individuals so wealthy and powerful that they could afford to clone themselves to continue their dynasty. Some germlines date back to the creation of the Old Empire, and of course the current Clone Prince of the Loyal Suns is an example. In current Freehold society, it's considered a bit pretentious to say that you're a clone (or, worse, part of a famous germline) so most keep it to themselves."
+  },
+  "Dealer's End": {
+    "x": 0,
+    "y": 0,
+    "govt": "drone",
+    "text": "Kelly Dealer was a famous explorer in the 800s, and this colony is named in her honor. It commemorates the greatest western extent of her exploration, that much is known for sure. It is also said that when she arrived she found something here that told her that she was done and that nothing useful would be found further west. What that was appears to be lost to history."
   }
+    
 }
