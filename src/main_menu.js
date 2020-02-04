@@ -22,6 +22,20 @@ function pop_tab(url){
   window.open(url, '_blank').focus();
 }
 
+function get_pilot_copy(pilot){
+  if( pilot ){
+    return `
+      Captain: ${pilot.name}
+      Credcoins: ${pilot.money}
+      Active Missions: ${Object.keys(pilot.active_missions).join(', ')}
+      Ship: ${pilot.ship_dat.short_name}
+    `;
+  } else {
+    return '<No Captain Loaded>'
+  }
+}
+
+
 export class MainMenu extends BaseMenuView {
   enter(){
     this.setup_menu(this.get_widgets());
@@ -34,7 +48,7 @@ export class MainMenu extends BaseMenuView {
     const CENTER = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_CENTER;
 
     widgets.push(new HeroText(
-        MENU_COPY,
+        MENU_COPY + "\n" + get_pilot_copy(_.player),
         CENTER,
         BABYLON.GUI.Control.VERTICAL_ALIGNMENT_CENTER,
         0,0)
