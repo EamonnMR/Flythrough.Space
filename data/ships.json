@@ -18,6 +18,26 @@
     "max_shields": 25,
     "max_fuel"   : 3
   },
+  "passer":{
+    "mesh": "passer",
+    "short_name"  : "Passer",
+    "long_name"   : "Mod. Passer Fighter",
+    "full_name"   : "FuHao Type 1200 League Passer Starfighter",
+    "desc"       : "A light, nimble starfighter that is safest when flown by somebody else. It's got newer avionics and a nicer seat, but it's just not as survivable in a fight as a 950. But it is faster, if you're into that sort of thing. This variant (with the wings) is mostly used as an escort by merchant captains. It's also notable as the flagship starship of FuHao, a firm mostly known for its aircraft. Its atmospheric flight handling is second to none.",
+    "weapons"    : [],
+    "upgrades"    : {"autocannon": 2},
+    "rotation"  : 0.018,
+    "accel"      : 0.0004,
+    "max_speed"   : 0.075,
+    "space"      : 20,
+    "cargo"      : 10,
+    "price"      : 10000,
+    "tech"       : {"league_civ":1},
+    "max_fuel"   : 2,
+    "max_hp"     : 90,
+    "max_shields": 50
+  },
+
   "civ_heavy_fighter":{
     "mesh"       : "heavy_fi",
     "short_name"  : "Gunslinger",
@@ -31,7 +51,7 @@
     "space"      : 40,
     "cargo"      : 20,
     "price"      : 25001,
-    "tech"       : {"khanda":1},
+    "tech"       : {"league_civ":2},
     "max_fuel"   : 3,
     "max_hp"     : 250,
     "max_shields": 100
@@ -609,10 +629,10 @@
   },
 
   "caudron_passer":{
-    "mesh": "light_fi",
+    "mesh": "passer",
     "short_name"  : "Caudron Passer",
     "long_name"   : "Mod. Passer Fighter",
-    "full_name"   : "FuHao Type 1200 League Passer Starfighter",
+    "full_name"   : "FuHao Type 1200 Passer Starfighter",
     "desc"       : "Somehow the caudron cartel got a hold of the tooling to make Passers deep in the nebula, and the results are slick. While not tougher or faster, it's got an ace up its sleeve - it can become invisible to radar and tracking systems. This allows it, in the hands of a skilled flyer (and the family only recruits the best) to punch way above its tonnage.",
     "weapons"    : {},
     "upgrades"    : {},

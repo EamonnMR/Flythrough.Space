@@ -9,6 +9,47 @@
         "weapon_2"
       ]
     },
+    "passer": {
+      "file": "passer.babylon",
+      "fixed": [
+        "weapon_1",
+        "weapon_2"
+      ],
+      "skins": {
+        "merchant": {
+          "diffuse": "passer_merchant.png",
+          "emissive": "passer_emissive.png",
+          "custom_emissive_color": [1,1,1.5,1]
+        },
+        "merchant/dark": {
+          "diffuse": "passer_merchant.png"
+        },
+        "pirate": {
+          "diffuse": "passer_pirate.png",
+          "emissive": "passer_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "passer_pirate.png"
+        },
+        "galbank": {
+          "diffuse": "passer_galbank.png",
+          "emissive": "passer_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "galbank/dark": {
+          "diffuse": "passer_galbank.png"
+        },
+        "orasos": {
+          "diffuse": "passer_orasos.png",
+          "emissive": "passer_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "orasos/dark": {
+          "diffuse": "passer_orasos.png"
+        }
+      }
+    },
     "argosy": {
       "file": "argosy.babylon",
       "fixed": [
@@ -21,7 +62,7 @@
         "merchant": {
           "diffuse": "argosy_merchant.png",
           "emissive": "argosy_emissive.png",
-          "custom_emissive_color": [0.5,1,0.5,1]
+          "custom_emissive_color": [1,1,1.5,1]
         },
         "merchant/dark": {
           "diffuse": "argosy_merchant.png"

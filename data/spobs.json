@@ -23,7 +23,8 @@
 		"tech":{
 			"accra":4,
 			"generic":3,
-			"cas":4
+			"cas":4,
+      "league_civ": 2
 		},
     "shipyard": true,
     "custom": true
