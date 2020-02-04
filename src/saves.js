@@ -8,7 +8,7 @@ import {
 import {
   list_saves,
   restore,
-  // from_file,
+  restore_from_object,
 } from "./player.js";
 
 export class SavesMenu extends BaseMenuView {
@@ -25,6 +25,7 @@ export class SavesMenu extends BaseMenuView {
             console.log("restoring:");
             console.log(key);
             _.player = restore(key);
+            this.parent.enter_state('main');
           },
           BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
           BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
@@ -65,6 +66,16 @@ export class SavesMenu extends BaseMenuView {
 				}
         openFileDialog("text/javascript", (stuff) =>{
           console.log(stuff);
+          let file_reader = new FileReader();
+          file_reader.onload = (file) => {
+            _.player = restore_from_object(
+              JSON.parse(file.srcElement.result)
+            );
+            this.parent.enter_state('main');
+          }
+          for(let file of stuff.target.files){
+            file_reader.readAsText(file);
+          }
         });
       },
       BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT,
@@ -91,8 +102,6 @@ export class SavesMenu extends BaseMenuView {
       '75%',
       '0%',
     ));
-
-
 
     return widgets;
  

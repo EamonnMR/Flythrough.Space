@@ -26,9 +26,13 @@ export function list_saves(){
 //}
 
 export function restore(key){
+  return restore_from_object(load_save(key));
+}
+
+export function restore_from_object(object){
   let player = Object.assign(
     new PlayerSave(),
-    load_save(key),
+    object,
   );
 
   player.ship_dat = Object.create(_.data.ships[player.ship_type]);
