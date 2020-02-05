@@ -59,7 +59,7 @@ class Mission{
     }
 
     if(this.success_modal){
-      this.accept_modal = Object.create(this.success_modal);
+      this.success_modal = Object.create(this.success_modal);
       this.success_modal.text = this.interpolate_text(this.success_modal.text);
     }
 
