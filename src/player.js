@@ -17,6 +17,10 @@ export function load_save(save_name){
   return JSON.parse(localStorage.getItem( save_name ));
 }
 
+export function strip_savefile_prefix(savefile_name){
+  return savefile_name.replace(PREFIX, "");
+}
+
 export function list_saves(){
   return Object.keys( localStorage ).filter( (key) => { return key && key.startsWith(PREFIX)})
 }
@@ -26,6 +30,7 @@ export function list_saves(){
 //}
 
 export function restore(key){
+  console.log(`Restore from local storage: ${key}`);
   return restore_from_object(load_save(key));
 }
 
