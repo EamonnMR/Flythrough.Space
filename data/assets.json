@@ -15,6 +15,7 @@
         "weapon_1",
         "weapon_2"
       ],
+      "default_skin": "merchant",
       "skins": {
         "merchant": {
           "diffuse": "passer_merchant.png",
@@ -123,7 +124,45 @@
     "perigrine": {"file": "perigrine.babylon"},
     "hemlock": {"file": "hemlock.babylon"},
     "vera": {"file": "vera.babylon"},
-    "starhawk": {"file": "starhawk.babylon"},
+    "starhawk": {
+      "file": "corvette.babylon",
+      "default_skin": "merchant",
+      "skins": {
+        "merchant": {
+          "diffuse": "corvette_merchant.png",
+          "emissive": "corvette_emissive.png",
+          "custom_emissive_color": [1,1,1,1]
+        },
+        "merchant/dark": {
+          "diffuse": "corvette_merchant.png"
+        },
+        "pirate": {
+          "diffuse": "corvette_pirate.png",
+          "emissive": "corvette_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "corvette_pirate.png"
+        },
+        "hex": {
+          "diffuse": "corvette_hex.png",
+          "emissive": "corvette_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "hex/dark": {
+          "diffuse": "corvette_hex.png"
+        },
+        "orasos": {
+          "diffuse": "corvette_orasos.png",
+          "emissive": "corvette_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "orasos/dark": {
+          "diffuse": "passer_orasos.png"
+        }
+      }
+    },
+
     "cas_fighter": {"file": "casamance_fighter.babylon"},
     "cas_carrier": {"file": "casamance_carrier.babylon"},
     "cas_corv": {"file": "casamance_corv.babylon"},
