@@ -22,8 +22,6 @@ function init(game_canvas, scene, engine, data){
   _.scene = scene;
   _.canvas = game_canvas;
 
-  update_settings();  // start initial state
-
   graphics_init();
   
   let stateMgr = new StateManager({

@@ -1,5 +1,5 @@
 import { _ } from "./singletons.js";
-import { overridable_default, utils_unit_tests } from "./util.js";
+import { overridable_default, utils_unit_tests, update_settings } from "./util.js";
 import { collision_unit_tests } from "./collision.js";
 import { material_from_skin } from "./graphics.js";
 
@@ -100,15 +100,11 @@ export class Data {
 
 
   get_particle_system(type){
-    //particle_system = new BABYLON.ParticleSystem("particles", 2000, _.scene);
-    //proto = this.particles[type];
-    //for(let prop of Object.keys(proto)){
-    //  particle_system[prop] = proto[prop];
-    //}
-    return Object.assign(
-      new BABYLON.ParticleSystem("particles", 2000, _.scene),
-      this.particles[type],
-    );
+    let part_sys = new BABYLON.ParticleSystem("particles", 2000, _.scene);
+    Object.assign(part_sys, this.particles[type]);
+    // part_sys.started=false;
+    console.log(part_sys);
+    return part_sys;
   }
 
   preprocess(){
@@ -289,7 +285,8 @@ export function load_all(engine, scene, done){
     if (xhr.status == 200){
       load_assets(JSON.parse(xhr.responseText), scene, data_mgr, () => {
         data_mgr.preprocess();
-        if(overridable_default("test", false)){
+        update_settings(); 
+        if(_.settings.run_tests){
           data_mgr.validate();
           collision_unit_tests();
           utils_unit_tests();
