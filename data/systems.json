@@ -1119,7 +1119,8 @@
       "pirate_expedition",
       "trader_danger",
       "cas_patrol",
-      "cas_capital"
+      "cas_capital",
+      "bounty"
     ],
     "links":[
       "Minna",
@@ -1976,7 +1977,8 @@
       "trader_lowtech",
       "western_trader",
       "itaska",
-      "ls_raid"
+      "ls_raid",
+      "bounty"
     ],
 
     "links":[
@@ -3062,7 +3064,8 @@
     "npcs": [
       "western_trader",
       "trader_danger",
-      "pirate_raid"
+      "pirate_raid",
+      "bounty"
     ],
     "links":[
       "Amstrad",
@@ -3080,7 +3083,8 @@
       "western_trader",
       "cas_capital",
       "cas_patrol",
-      "pirate_expedition"
+      "pirate_expedition",
+      "bounty"
     ],
 
     "spobs": [
@@ -3236,7 +3240,8 @@
       "pirate_expedition",
       "trader_danger",
       "cas_patrol",
-      "cas_capital"
+      "cas_capital",
+      "bounty"
     ],
     "links":[
       "Illorin",
@@ -3308,7 +3313,9 @@
     "npcs": [
       "league_cap",
       "trader_danger",
-      "league_pt"
+      "league_pt",
+      "pirate_raid",
+      "bounty"
     ],
     "links":[
       ".310",

@@ -163,5 +163,18 @@
       "argosy",
       "civ_corvette"
     ]
+  },
+  "bounty": {
+    "govt": "bounty",
+    "ships": [
+      "argosy",
+      "civ_heavy_fighter",
+      "vera",
+      "civ_corvette",
+      "oe_frig",
+      "oe_cru",
+      "falcon",
+      "goshawk"
+    ]
   }
 }

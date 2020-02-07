@@ -53,6 +53,11 @@
     "short_name": "Merch",
     "color": "#C2B280FF"
   },
+ "bounty":{
+    "name": "Bounty Hunter",
+    "short_name": "Bounty",
+    "color": "#C2B280FF"
+  },
   "pirate": {
     "name": "Pirate",
     "short_name": "Pirate",
