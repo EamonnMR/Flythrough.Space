@@ -115,7 +115,38 @@
     },
 
     "oe_fi": {"file": "empfi.babylon"},
-    "heavy_fi": {"file": "khanda_heavy.babylon"},
+    "heavy_fi": {
+      "file": "khanda_heavy.babylon",
+      "default_skin": "merchant",
+      "skins": {
+        "merchant": {
+          "diffuse": "khanda_heavy_merchant.png",
+          "emissive": "khanda_heavy_emissive.png",
+          "custom_emissive_color": [1,1,1.5,1]
+        },
+        "merchant/dark": {
+          "diffuse": "khanda_heavy_merchant.png"
+        },
+        "pirate": {
+          "diffuse": "khanda_heavy_pirate.png",
+          "emissive": "khanda_heavy_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "khanda_heavy_pirate.png"
+        },
+        "hex": {
+          "diffuse": "khanda_heavy_hex.png",
+          "emissive": "khanda_heavy_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "hex/dark": {
+          "diffuse": "khanda_heavy_hex.png"
+        }
+      }
+
+    
+    },
     "light_fi": {"file": "light_fighter.babylon"},
     "it_clipper": {"file": "itaskan_corvette.babylon"},
     "nightshade": {"file": "nightshade.babylon"},
