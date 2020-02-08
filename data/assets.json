@@ -154,7 +154,36 @@
     "it_mask": {"file": "itaskan_something.babylon"},
     "perigrine": {"file": "perigrine.babylon"},
     "hemlock": {"file": "hemlock.babylon"},
-    "vera": {"file": "vera.babylon"},
+    "vera": {
+      "file": "vera.babylon",
+      "default_skin": "merchant",
+      "skins": {
+        "merchant": {
+          "diffuse": "vera_merchant.png",
+          "emissive": "vera_emissive.png",
+          "custom_emissive_color": [1,1,1,1]
+        },
+        "merchant/dark": {
+          "diffuse": "vera_merchant.png"
+        },
+        "pirate": {
+          "diffuse": "vera_pirate.png",
+          "emissive": "vera_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "vera_pirate.png"
+        },
+        "orasos": {
+          "diffuse": "vera_orasos.png",
+          "emissive": "vera_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "orasos/dark": {
+          "diffuse": "vera_orasos.png"
+        }
+      }
+    },
     "starhawk": {
       "file": "corvette.babylon",
       "default_skin": "merchant",
@@ -189,7 +218,7 @@
           "custom_emissive_color": [1,0.5,0.5,1]
         },
         "orasos/dark": {
-          "diffuse": "passer_orasos.png"
+          "diffuse": "corvette_orasos.png"
         }
       }
     },
