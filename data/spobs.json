@@ -23,7 +23,8 @@
 		"tech":{
 			"accra":4,
 			"generic":3,
-			"cas":4
+			"cas":4,
+      "league_civ": 2
 		},
     "shipyard": true,
     "custom": true
@@ -891,6 +892,18 @@
     "y": 0,
     "govt": "direc",
     "text": "When you buy or sell something on the open market, you don't barter your goods, you use credcoins. Mercs and pirates alike kill for Credcoin. And it's a cryptocurrency, so why are there large 'Galactic Bank' buildings dotting the landscape here? The reason is what's referred to as the 'sync problem.' If you spend some credcoin on Accra, how can you be sure that someone didn't spend the same coin on Kimathi? Trade moves faster than light in the galaxy, and the only thing that can move faster than light is a ship with a sidereal drive. Galactic Bank has carved a niche for itself updating these ledgers in all but the most war torn of systems, effectively centralizing something that was designed from the beginning to be uncontrollable."
+  },
+  "Shorunmu": {
+    "x": 0,
+    "y": 0,
+    "govt": "direc",
+    "text": "Shorunmu University is the most famous biology and medical tech hub in the galaxy. If you ever need a limb regrown (or even just reattached) the doctors here would be only too happy to oblige. Cloning technology perfected here enabled the creation of 'germlines'- individuals so wealthy and powerful that they could afford to clone themselves to continue their dynasty. Some germlines date back to the creation of the Old Empire, and of course the current Clone Prince of the Loyal Suns is an example. In current Freehold society, it's considered a bit pretentious to say that you're a clone (or, worse, part of a famous germline) so most keep it to themselves."
+  },
+  "Dealer's End": {
+    "x": 0,
+    "y": 0,
+    "govt": "drone",
+    "text": "Kelly Dealer was a famous explorer in the 800s, and this colony is named in her honor. It commemorates the greatest western extent of her exploration, that much is known for sure. It is also said that when she arrived she found something here that told her that she was done and that nothing useful would be found further west. What that was appears to be lost to history."
   }
-
+    
 }

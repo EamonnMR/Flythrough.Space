@@ -13,7 +13,9 @@ let game_ctrl = null;
 
 let debounce_esc = false;
 
-let no_op = () => {};
+let no_op = () => {
+  console.log("Not Implemented for state")
+};
 
 // TODO: GameCtrl should be a class.
 
@@ -91,13 +93,7 @@ function handleKeyUp ( event ){
       inputStates.shoot = false;
       break;
     case 27: // escape
-      if(!debounce_esc){
-        debounce_esc = true;
-        setTimeout(() => {
-          debounce_esc = false;
-        }, 3000);
-        game_ctrl.toggle_pause();
-      }
+      game_ctrl.toggle_pause();
       break;
     case 74: // 'j'
       game_ctrl.hyper_jump();
@@ -105,7 +101,15 @@ function handleKeyUp ( event ){
     case 76: // 'l'
       game_ctrl.try_land();
       break;
-    case 192: // ~
+    case 66: // b
+      game_ctrl.board();
+      break;
+    case 89: // y
+      game_ctrl.hail();
+      break;
+    case 77: // m
+      game_ctrl.open_map();
+    case 192: // `
       game_ctrl.select_closest();
       break;
     case 49: // keyboard 1, etc
@@ -143,6 +147,9 @@ let no_op_game_ctrl = {
   try_land: no_op,
   select_closest: no_op,
   select_spob: no_op,
+  open_map: no_op,
+  board: no_op,
+  hail: no_op,
 };
 
 export function unbindInputFunctions(){

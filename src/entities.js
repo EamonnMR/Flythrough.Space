@@ -16,7 +16,6 @@ export function npcShipFactory(type, position, ai, govt){
 
 export function playerShipFactory(type, position) {
 
-
   let ship = shipFactory(type, position);
 
   ship.camera = true;

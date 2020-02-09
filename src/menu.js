@@ -147,3 +147,19 @@ export class Image extends Widget{
   }
 };
 
+export function simple_grid(
+  item_callback, item_list,
+  incr_h=25, incr_v=15,
+  top_max=70, initial_left=15){
+  /* Item callback should take (key, left, top). */
+  let top = -1 * incr_v;
+  let left = initial_left;
+  return item_list.map( (key) => {
+    top += incr_v;
+    if( top >= top_max ){
+      top = 0 - incr_v;
+      left += incr_h;
+    }
+    return item_callback(key, "" + left + "%", "" + top + "%");
+  });
+}

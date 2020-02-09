@@ -15,6 +15,7 @@ export const DEFAULT_SETTINGS = {
   parallax_starfield: TRUE,
   glow_effect: TRUE,
   arcade_physics: FALSE,
+  run_tests: FALSE,
   // mobile_controls: FALSE,
 }
 

@@ -1,7 +1,6 @@
 import { _ } from "./singletons.js";
 import { missions_for_state, resolve_for_state } from "./missions.js";
 
-
 import {
   BaseMenuView,
   Image,
@@ -14,7 +13,8 @@ export class LandingMenu extends BaseMenuView {
     this.spob = _.data.spobs[_.player.current_spob];
     this.setup_menu(this.get_widgets_for_planet());
     // TODO: offer(missions_for_state("landing")
-    resolve_for_state("landing"); 
+    resolve_for_state("landing");
+    _.player.save();
   }
 
   get_widgets_for_planet(){

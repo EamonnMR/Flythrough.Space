@@ -7,21 +7,43 @@ import {
   apply_upgrades,
   is_cheat_enabled,
   overridable_default,
+  choose,
 } from "./util.js";
 
 const PREFIX = "savefile_"  // Prefix for player saves in local storage.
 const LAST_SAVE = "last_save"  // Stores the key for the last used save file
 
 export function load_save(save_name){
-  return JSON.parse(localStorage.getItem( key ));
+  return JSON.parse(localStorage.getItem( save_name ));
 }
 
-export function load_saves(){
-  return Object.keys( localStorage ).filter( (key) => key.startsWith(PREFIX)).map( load_save )
+export function strip_savefile_prefix(savefile_name){
+  return savefile_name.replace(PREFIX, "");
 }
 
-export function resume(){
-  return load_save( localStorage.getItem( LAST_SAVE ));
+export function list_saves(){
+  return Object.keys( localStorage ).filter( (key) => { return key && key.startsWith(PREFIX)})
+}
+
+// export function resume(){
+//   return _.player = load_save( localStorage.getItem( LAST_SAVE ));
+//}
+
+export function restore(key){
+  console.log(`Restore from local storage: ${key}`);
+  return restore_from_object(load_save(key));
+}
+
+export function restore_from_object(object){
+  let player = Object.assign(
+    new PlayerSave(),
+    object,
+  );
+
+  player.ship_dat = Object.create(_.data.ships[player.ship_type]);
+  player.ship_dat.upgrades = player.upgrades;
+
+  return player;
 }
 
 export class PlayerSave {
@@ -33,7 +55,12 @@ export class PlayerSave {
   }
 
   constructor() {
-    this.name = "Joe Bloggs"
+    this.name = choose([
+      "Drew Jason",
+      "Elinore",
+      "Brumpo Tungus",
+      "Synthia Drangles",
+    ]);
     this.money = is_cheat_enabled("money") ? 100000000 : 5000;
     this.map_pos = {x: 0, y: 0};
     this.selected_system = "Casamance";

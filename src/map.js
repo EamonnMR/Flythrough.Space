@@ -44,8 +44,9 @@ export class MapView extends ViewState{
                   //  y: position.y};
     this.scrollables = [];
 
-    this.selection = _.player.selected_system;
-    // Faction colors
+    this.selection = null;
+
+    // Pre-calculate faction colors
     this.govt_colors = {};
     this.govt_dark_colors = {};
     for (let name of Object.keys(_.data.govts)){
@@ -55,10 +56,8 @@ export class MapView extends ViewState{
   }
 
   enter(){
+    this.selection = _.player.selected_system;
     this.dragging = false;
-    console.log("Entering map state")
-
-    let current = _.data.systems[this.selection];
 
     this.adt =  BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 
@@ -88,7 +87,6 @@ export class MapView extends ViewState{
     this.move_spacelanes();
     this.move_scrollables();
 
-    console.log("Finished entering map");
 
   }
 
@@ -139,7 +137,6 @@ export class MapView extends ViewState{
 
   make_sys_circle(system_dat, explored){
     if (! system_dat){
-      console.log("Error: system does not exist")
       return;
     }
     let color = UNEXPLORED_COLOR;
@@ -168,7 +165,6 @@ export class MapView extends ViewState{
 
   update_selection( system_name ){
     this.selection = system_name;
-    console.log( "Selected: " + this.selection );
     let sel_system = _.data.systems[system_name];
     if(sel_system !== undefined){
       this.selection_circle.base_left = sel_system.x - (SELECTED_CIRCLE_SIZE / 2);
@@ -287,8 +283,6 @@ export class MapView extends ViewState{
     } else {
       this.explored_systems = _.player.explored;
     }
-    console.log("Explored: ");
-    console.log(this.explored_systems);
     this.unexplored_systems = [];
     for( let system of this.explored_systems ){
       for( let link of _.data.systems[system].links ){
@@ -298,7 +292,6 @@ export class MapView extends ViewState{
       }
     }
     this.visible_systems = this.explored_systems.concat(this.unexplored_systems);
-    console.log("Unexplored Systems: " + this.unexplored_systems);
   }
 
   move_spacelanes(){
@@ -324,20 +317,17 @@ export class MapView extends ViewState{
     
     bindInputFunctions({
       toggle_pause: () => {
-        'exit map'
+        // TODO: Store previous state, letting us to back to msn
+        // screen
         this.parent.enter_state('gameplay');
       },
-      reset_game: () => {},
-      hyper_jump: () => {},
     });
     this.map_image.onPointerDownObservable.add( (event) => {
-      console.log("mouse down");
       let coordinates = this.parse_event(event);  
       this.dragging = true;
       this.mouse_pos = coordinates;
     });
     this.map_image.onPointerUpObservable.add( (event) => {
-      console.log("mouse up");
       this.dragging = false;
       let coordinates = this.parse_event(event);  
       // Original map code
@@ -361,7 +351,6 @@ export class MapView extends ViewState{
       }
     });
     this.map_image.onPointerMoveObservable.add( (event) => {
-      console.log("dragging" + this.dragging);
       let coordinates = this.parse_event(event);  
       if ( this.dragging ) {
         this.offset.x +=  coordinates.x - this.mouse_pos.x;
@@ -370,7 +359,6 @@ export class MapView extends ViewState{
         this.mouse_pos.y = coordinates.y;
         this.move_spacelanes();
         this.move_scrollables();
-        console.log(this.offset);
       }
     });
 

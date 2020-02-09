@@ -1,5 +1,4 @@
 import {_} from "./singletons.js";
-import {load_save, load_saves, resume} from "./player.js";
 import {LandingMenuBigButton} from "./landing.js";
 import {PlayerSave} from "./player.js";
 
@@ -12,16 +11,30 @@ import {
 
 const MENU_COPY = "Welcome to FLYTHROUGH.SPACE, the Space Captain game!\n" +
   "Arrow Keys to move. Be careful of inertia. L to select the nearest planet," +
-  "then press L again when you're close enough to land. Press [ESC] to " +
-  "open the map* and select an adjacent system to jump to. Close the " +
-  "map with [esc], fly away from the center of the system, and press " +
-  "J to jump. Press ` to select the closest target (to see its health " +
+  "then press L again when you're close enough to land. Press [M] to " +
+  "open the map* and select an adjacent system to jump to with your mouse." +
+  ". Close the map with [esc], fly away from the center of the system, "+ 
+  "and press [J] jump. Press [TAB] to select the closest target (to see its health " +
   "and press [LCTRL] to fire your weapon - but be careful, angry ships " +
   "will shoot back!\n";
 
 function pop_tab(url){
   window.open(url, '_blank').focus();
 }
+
+function get_pilot_copy(pilot){
+  if( pilot ){
+    return `
+      Captain: ${pilot.name}
+      Credcoins: ${pilot.money}
+      Active Missions: ${Object.keys(pilot.active_missions).join(', ')}
+      Ship: ${pilot.ship_dat.short_name}
+    `;
+  } else {
+    return '<No Captain Loaded>'
+  }
+}
+
 
 export class MainMenu extends BaseMenuView {
   enter(){
@@ -35,7 +48,7 @@ export class MainMenu extends BaseMenuView {
     const CENTER = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_CENTER;
 
     widgets.push(new HeroText(
-        MENU_COPY,
+        MENU_COPY + "\n" + get_pilot_copy(_.player),
         CENTER,
         BABYLON.GUI.Control.VERTICAL_ALIGNMENT_CENTER,
         0,0)
@@ -55,22 +68,19 @@ export class MainMenu extends BaseMenuView {
       );
     }
 
-    /*
     widgets.push(new LandingMenuBigButton(
       'Load',
       () => {
-        // TODO: Add option to load games
+        this.parent.enter_state('saves');
       },
       LEFT,
       BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,
       "0%","-10%")
     );
-    */
     widgets.push(new LandingMenuBigButton(
       'New Captain',
       () => {
         // TODO: Add player config options
-        // TODO: Do the right thing
         _.player = new PlayerSave();
         this.parent.enter_state('gameplay');
       },

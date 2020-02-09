@@ -147,6 +147,7 @@
       {
         "position": [0, 1,-1],
         "intensity": 0.5
+      
       }
     ]
   },
@@ -393,6 +394,15 @@
     "x":978,
     "y":1201,
     "govt":"direc",
+    "spobs": [
+      "Shorunmu"
+    ],
+    "npc_average": 3,
+    "npcs": [
+      "trader_bulk",
+      "trader_lowtech",
+      "cas_patrol"
+    ],
     "links":[
       "Casamance",
       "Sipali",
@@ -1109,7 +1119,8 @@
       "pirate_expedition",
       "trader_danger",
       "cas_patrol",
-      "cas_capital"
+      "cas_capital",
+      "bounty"
     ],
     "links":[
       "Minna",
@@ -1608,7 +1619,7 @@
     "y":744,
     "links":[
       ".248",
-      ".259"
+      "Hawkshaw"
     ]
   },
   ".248":{
@@ -1757,10 +1768,26 @@
       "Lemuel"
     ]
   },
-  ".259":{
+  "Hawkshaw":{
     "x":457,
     "y":683,
     "govt":"drone",
+    "spobs": [
+      "Dealer's End"
+    ],
+    "npc_average": 2,
+    "npcs": [
+      "western_trader",
+      "ls_noncom",
+      "ls_pt"
+    ],
+    "lights": [
+      {
+        "position": [0, 2,0],
+        "intensity": 0.5,
+        "diffuse": [0.4,0.6,0.7]
+      }
+    ],
     "links":[
       "Androscoggin",
       "Cordova",
@@ -1773,7 +1800,7 @@
     "y":756,
     "govt":"drone",
     "links":[
-      ".259",
+      "Hawkshaw",
       "Lemuel"
     ]
   },
@@ -1929,7 +1956,7 @@
     "govt":"drone",
     "links":[
       ".258",
-      ".259",
+      "Hawkshaw",
       "Baikon",
       "Uluru"
     ]
@@ -1938,7 +1965,7 @@
     "x":363,
     "y":658,
     "links":[
-      ".259",
+      "Hawkshaw",
       ".278"
     ]
   },
@@ -1950,7 +1977,8 @@
       "trader_lowtech",
       "western_trader",
       "itaska",
-      "ls_raid"
+      "ls_raid",
+      "bounty"
     ],
 
     "links":[
@@ -3036,7 +3064,8 @@
     "npcs": [
       "western_trader",
       "trader_danger",
-      "pirate_raid"
+      "pirate_raid",
+      "bounty"
     ],
     "links":[
       "Amstrad",
@@ -3054,7 +3083,8 @@
       "western_trader",
       "cas_capital",
       "cas_patrol",
-      "pirate_expedition"
+      "pirate_expedition",
+      "bounty"
     ],
 
     "spobs": [
@@ -3210,7 +3240,8 @@
       "pirate_expedition",
       "trader_danger",
       "cas_patrol",
-      "cas_capital"
+      "cas_capital",
+      "bounty"
     ],
     "links":[
       "Illorin",
@@ -3282,7 +3313,9 @@
     "npcs": [
       "league_cap",
       "trader_danger",
-      "league_pt"
+      "league_pt",
+      "pirate_raid",
+      "bounty"
     ],
     "links":[
       ".310",

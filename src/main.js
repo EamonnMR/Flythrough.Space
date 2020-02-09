@@ -13,6 +13,7 @@ import { MissionsMenu } from "./missions_menu.js";
 import { MainMenu } from "./main_menu.js";
 import { SettingsMenu } from "./settings.js";
 import { graphics_init } from "./graphics.js";
+import { SavesMenu } from "./saves.js";
 
 function init(game_canvas, scene, engine, data){
   /* Main entry point for the app (after loading). Binds events and such. */
@@ -21,12 +22,8 @@ function init(game_canvas, scene, engine, data){
   _.scene = scene;
   _.canvas = game_canvas;
 
-  update_settings();  // start initial state
-
   graphics_init();
   
-  let player_data = new PlayerSave();
-  _.player = player_data;
   let stateMgr = new StateManager({
     'gameplay': new GamePlayState(),
     'map': new MapView({x: 0, y: 0}),
@@ -37,6 +34,7 @@ function init(game_canvas, scene, engine, data){
     'missions': new MissionsMenu(),
     'main'    : new MainMenu(),
     'settings': new SettingsMenu(),
+    'saves'   : new SavesMenu(),
   }, overridable_default("state", "main"));
 
   _.state_manager = stateMgr;

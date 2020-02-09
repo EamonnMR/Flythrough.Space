@@ -18,7 +18,8 @@ import {
 
 import {
   BaseMenuView,
-  Widget
+  Widget,
+  simple_grid,
 } from "./menu.js";
 
 import { graphics_init } from "./graphics.js";
@@ -35,19 +36,12 @@ export class SettingsMenu extends BaseMenuView {
   //}
 
   get_widgets(){
-    // TODO: There's no excuse for this, it's just a nasty hack
-    const INCR_H = 25;
-    const INCR_V = 15;
-    let top = -1 * INCR_V;
-    let left = 15;
-    let widgets = Object.keys( DEFAULT_SETTINGS ).map( (key) => {
-      top += INCR_V;
-      if( top >= 100 ){
-        top = 0 - INCR_V;
-        left += INCR_H;
-      }
-      return new BooleanSetting(key, "" + left + "%", "" + top + "%");
-    });
+    let widgets = simple_grid(
+      (key, left, top) => {
+        return new BooleanSetting(key, left, top)
+      },
+      Object.keys(DEFAULT_SETTINGS)
+    )
 
     widgets.push( new LandingMenuBigButton(
       'Back',
