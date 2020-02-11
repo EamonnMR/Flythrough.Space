@@ -29,7 +29,7 @@
     "dark_color":"#A32626FF",
     "attack_default": true
   },
-  "hex":{
+  "league":{
     "name":"League",
     "short_name": "League",
     "color":"#008000FF",

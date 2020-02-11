@@ -303,7 +303,7 @@
 	"Union 1":{
     "sprite": "oe_station", 
     "img": "assets/landing/oe_station_perspective.png",
-		"govt":"hex",
+		"govt":"league",
 		"x":45,
 		"y":-30,
 		"text":"Defending the League's northern border (and staking a permanent claim on Pyatigorsk), Union 1 is the first such station built, a symbol of cooperation between the subsidiary companies of the League. Its early construction, however, means it's amenities are a bit spartan compared to the more decadent stations of recent construction.",
@@ -345,7 +345,7 @@
 	},
 	"Tyne":{
 		"sType":"rwH00",
-		"govt":"hex",
+		"govt":"league",
 		"text":"Home of the Meklin Design Bureau, Tyne is a hub of equipment production for the League generally, and Meklin specifically. The Bureau is especially known for starships on its \"500\" platform, the Oxana and Vera, sold under the slogan \"The Best Money Alone can buy\".",
 		"tech":{
 			"melkin":3,
@@ -655,7 +655,7 @@
     "text": "This station marks not only the furthest \"southern\" extent of the old empire, but also the furthest habitation in this galactic direction. It was empty then, and it's empty now. No homeworlds have been found beyond it, and Broken Arrow was the only successful settlement in the region. The only people who go beyond are those who have nowhere else to go, desperate pirates, killers and outlaws."
   },
   "Veracruz": {
-    "govt": "hex",
+    "govt": "league",
     "text": "An ancient and expertly terraformed homeworld, Veracruz is best known as the seat of power of the Sinod of the Six - a popular but young regional faith that believes that the six hyperlanes that converge on the Kuluene system are a sign that the Great Being is going to be reincarnated somewhere on Veracruz-though as yet, no candidate messiah has passed the rigorous testing process. The Sinod is, interestingly enough, a full member of the League.",
     "trade": {
       "scriptures": "low",
@@ -699,7 +699,7 @@
   },
   "Traprain": {
     "sprite": "accra",
-    "govt": "hex",
+    "govt": "league",
     "text": "While an unremarkable, though habitable world in most respects, Traprain is notable as a sort of cradle of the League's way of life. It was this world which first had its debt (public and private) bought out by a consortium of megacorporations. While in theory they still had the option of paying down the debt, for all practical purposes they had become serfs to the League. This pattern was repeated across numerous worlds, often continents at a time."
   },
   "Prospero": {
@@ -720,18 +720,18 @@
     }
   },
   "Khadir": {
-    "govt": "hex",
+    "govt": "league",
     "text": "The thin atmosphere and lack of water on Khadir have left its surface largely untouched by erosion, so the edges are sharp and the craters are plentiful. These conditions are perfect for extreme land vehicle racing, and some of the most exciting overland championships take place in Doabka's low gravity environ."
   },
   "Jagran": {
-    "govt": "hex",
+    "govt": "league",
     "text": "With rich natural and human resources, the ancient homeworld of Jagran is a major player in League politics. Its best known export is probably mid-sized starships, prized for their build quality and attention to detail. The Khanda corporation, a major League partner company is responsible for this reputation. Khanda ships can be found for sale across the galaxy but the most sensitive parts are assembled right here on Jagran.",
     "tech": {
       "khanda": 3
     }
   },
   "Zhongshan": {
-    "govt": "hex",
+    "govt": "league",
     "text": "Perhaps unique among homeworlds, the surface of Zongshan is extremely harsh with corrosive gasses, crushing pressure, and an unbreathable atmosphere. Rather than attempt to terraform it, a decision must have been made to avoid the problem entirely. Major cities dot Zhongshan, but they employ a unique solution to the atmosphere problem-they float above the deadly clouds with lighter-than-air volumes. Rather than pouring a foundation, the construction of a new building on Zhongshan begins with 'floating' and inflating a new volume. Before the advent of interstellar trade and export, 'surface-divers' where an unfortunate necessity, and though the practice is largely gone there is still quite a bit of pride among those who can trace their ancestry back to those who braved the death-clouds at the surface.",
     "trade": {
       "alloy": "high",
@@ -756,7 +756,7 @@
   "Agra": {
     "x": -7,
     "y": 5,
-    "govt": "hex",
+    "govt": "league",
     "trade": {
       "food": "low"
     },
@@ -765,7 +765,7 @@
   "Reddy":{
     "x": 3,
     "y": -6,
-    "govt": "hex",
+    "govt": "league",
     "text": "Reddy is a small, low-gravity backwater world. Unable to trap an atmosphere, Reddy's cities are under brilliant domes which are lit different colors for various festivals and can be seen from the sky like little ornaments."
   },
   "Morcia": {
@@ -775,7 +775,7 @@
   "Petrov": {
     "x": 14,
     "y": 25,
-    "govt": "hex",
+    "govt": "league",
     "trade": {
       "ore": "low",
       "food": "high",
@@ -786,7 +786,7 @@
   "Prokhoro": {
     "x": 32,
     "y": -3,
-    "govt": "hex",
+    "govt": "league",
  		"tech":{
 			"lg_ship":3,
 			"khanda":1,
