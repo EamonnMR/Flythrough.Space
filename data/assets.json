@@ -1,4 +1,4 @@
-
+{
   "dir": "assets/",
   "base_particles_url": "assets/particle_sets",
   "meshes": {
@@ -226,7 +226,28 @@
     "cas_fighter": {"file": "casamance_fighter.babylon"},
     "cas_carrier": {"file": "casamance_carrier.babylon"},
     "cas_corv": {"file": "casamance_corv.babylon"},
-    "oxana": {"file": "oxana.babylon"},
+    "oxana": {
+      "file": "oxana.babylon",
+      "default_skin": "merchant",
+      "skins": {
+        "merchant": {
+          "diffuse": "oxana_merchant.png",
+          "emissive": "oxana_emissive.png",
+          "custom_emissive_color": [1,1,1,1]
+        },
+        "merchant/dark": {
+          "diffuse": "oxana_merchant.png"
+        },
+        "pirate": {
+          "diffuse": "oxana_pirate.png",
+          "emissive": "oxana_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "oxana_pirate.png"
+        }
+      }
+    },
     "courier": {"file": "courier.babylon"},
     "plasma_cannon": {"file": "plasma_cannon.babylon"},
     "freehold_frigate": {"file": "freehold_frigate.babylon"},
