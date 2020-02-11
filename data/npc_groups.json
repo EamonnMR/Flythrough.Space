@@ -65,16 +65,16 @@
   "free_patrol": {
     "govt": "free",
     "ships": [
-      "cas_corvette",
-      "cas_oe_fighter"
+      "free_corvette",
+      "free_fighter"
     ]
   },
   "free_capital": {
     "govt": "free",
     "ships": [
-      "cas_corvette",
-      "cas_frigate",
-      "cas_carrier"
+      "free_corvette",
+      "free_frigate",
+      "free_carrier"
     ]
   },
   "league_cap": {
