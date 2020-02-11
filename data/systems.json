@@ -212,7 +212,7 @@
   "Panfilov":{
     "x":753,
     "y":1022,
-    "govt":"pen",
+    "govt":"itaska",
     "spobs":[
       "Sintashta"
     ],
@@ -224,7 +224,7 @@
   "Hopmeadow":{
     "x":685,
     "y":933,
-    "govt":"pen",
+    "govt":"itaska",
     "npc_average": 4,
     "npcs": [
       "western_trader",
@@ -1379,7 +1379,7 @@
   "Locklear":{
     "x":545,
     "y":1148,
-    "govt":"pen",
+    "govt":"itaska",
     "links":[
       "Misiones",
       "Pace"
@@ -1470,7 +1470,7 @@
   "Millwright":{
     "x":528,
     "y":1066,
-    "govt":"pen",
+    "govt":"itaska",
     "npc_average": 3,
     "npcs": [
       "itaska",
@@ -1490,7 +1490,7 @@
   "Harbi":{
     "x":433,
     "y":1016,
-    "govt":"pen",
+    "govt":"itaska",
     "spobs":[
       "Kuzma"
     ],
@@ -1504,7 +1504,7 @@
   "Strugatsky":{
     "x":417,
     "y":1141,
-    "govt":"pen",
+    "govt":"itaska",
     "spobs":[
       "Chukchi",
       "Sinchenko"
@@ -1517,7 +1517,7 @@
   "Straylight":{
     "x":530,
     "y":953,
-    "govt":"pen",
+    "govt":"itaska",
     "npc_average": 4,
     "npcs": [
       "western_trader",
@@ -1532,7 +1532,7 @@
   "Istles":{
     "x":353,
     "y":909,
-    "govt":"pen",
+    "govt":"itaska",
     "spobs":[
       "Angeles"
     ],
@@ -1544,7 +1544,7 @@
   "Skovoroda":{
     "x":287,
     "y":966,
-    "govt":"pen",
+    "govt":"itaska",
     "spobs":[
       "Izumrudnoye",
       "Aralsk"
@@ -1559,7 +1559,7 @@
   "Albacore":{
     "x":216,
     "y":1012,
-    "govt":"pen",
+    "govt":"itaska",
     "spobs":[
       "Mariposa",
       "Merced",
@@ -1574,7 +1574,7 @@
   "Balish":{
     "x":296,
     "y":1087,
-    "govt":"pen",
+    "govt":"itaska",
     "spobs":[
       "Pajit"
     ],
@@ -1587,7 +1587,7 @@
   "McPherson":{
     "x":365,
     "y":1065,
-    "govt":"pen",
+    "govt":"itaska",
     "spobs":[
       "Itaskana",
       "Gillespie",
@@ -1603,7 +1603,7 @@
   "Burch":{
     "x":238,
     "y":905,
-    "govt":"pen",
+    "govt":"itaska",
     "spobs":[
       "Tamt",
       "MCB-1"
@@ -1710,7 +1710,7 @@
   "Pace":{
     "x":628,
     "y":1058,
-    "govt":"pen",
+    "govt":"itaska",
     "npc_average": 4,
     "npcs": [
       "itaska",
@@ -1933,7 +1933,7 @@
   "Kharkov":{
     "x":596,
     "y":941,
-    "govt":"pen",
+    "govt":"itaska",
     "npc_average": 4,
     "npcs": [
       "western_trader",

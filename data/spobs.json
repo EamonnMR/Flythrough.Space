@@ -133,7 +133,7 @@
     "sprite": "oe_station", 
     "img": "assets/landing/oe_station_perspective.png",
 		"sType":"oeStation",
-		"govt":"pen",
+		"govt":"itaska",
 		"text":"This was once a border station, then later the jumping off point for the invasion of Itaska, the final home base of the 7th fleet. Now it's a border post facing the other way, and it's the main friendly contact point between the Itaskans and the rest of the galaxy.",
 		"x":98,
 		"y":15,
@@ -150,7 +150,7 @@
 	},
 	"DI - Lyrell":{
 		"sType":"avJuno",
-		"govt":"pen",
+		"govt":"itaska",
 		"text" : "The 7th fleet's last line of defense. The guard here is largely ceremonial, generally to be found in stylish dress uniforms, as enemy ships have not been seen this deep into Itaskan territory for hundreds of years. Still, it is a sign of reassurance to the Itaksans that the 7th fleet is there for them.",
 		"x":139,
 		"y":78,
@@ -404,7 +404,7 @@
 	"Kuzma":{
 		"sType":"onyxDesertP",
 		"scape":"img/AVDezign/Igalilik.jpg",
-		"govt":"pen",
+		"govt":"itaska",
 		"tech":{
 			"generic":3
 		},
@@ -413,7 +413,7 @@
 	"Cobb":{
 		"sType":"gnPlanet11Maroon",
 		"scape":"img/AVDezign/Faivarongo.jpg",
-		"govt":"pen",
+		"govt":"itaska",
 		"text":"A lonely outpost on the border with the Loyal Suns, Cobb has many old bases but most navy activity takes place in orbit on the DIII. It is mostly a warehouse for parts, but even that function as waning as the realities of needing to launch and land large pieces of equipment sink in."
 	},
 	
@@ -421,7 +421,7 @@
 		"sType":"avWusquus",
 		"x":30,
 		"y":100,
-		"govt":"pen",
+		"govt":"itaska",
 		"text":"As far as Loyal Suns border posts go, this one is quiet. The Loyalists do not regularly skirmish in this system, and it is widely considered a backwater. Flotilla III, the flotilla based here, constantly emphasizes the feeling of dread that they experience, not knowing when the next attack will be.",
 		"tech":{
 			"generic":2,
@@ -432,7 +432,7 @@
 	"Mariposa":{
 		"sType":"onyxM5Earthlike",
 		"scape":"img/AVDezign/Aegir.jpg",
-		"govt":"pen",
+		"govt":"itaska",
 		"x":295,
 		"y":-125,
 		"text":"The population center of the Albacore system. Mariposa's small size (and large oceans) lead to its population density quickly overwhelming its resources early in its history, and lead to much movement off-world. In the years since, it has been a priority of the planet's government to repair the damage done to its environment before the introduction of clean energy.",
@@ -470,13 +470,13 @@
 	"Pajit":{
 		"sType":"onyxEarthlikeG",
 		"scape":"img/AVDezign/Fujin.jpg",
-		"govt":"pen",
+		"govt":"itaska",
 		"text":"Pajit is as aristocratic as you can really get in the peninsula, with high-tech and administrative activity during the day and lavish parties at stunning techno-villas at night. It helps that its nights last 36 hours."
 	},
 	"Tamt":{
 		"sType":"gnPlanet13Purple",
 		"scape":"img/AVDezign/Sogblen.jpg",
-		"govt":"pen",
+		"govt":"itaska",
 		"text":"The tech center of the Peninsula, this is the home of the Seventh Fleet Skunk Works. Far from the border, this highly classified planet is dotted with exotic laboratories where the laws of physics are treated more as guidelines.",
 		"tech":{
 			"generic":3,
@@ -486,7 +486,7 @@
 	},
 	"MCB-1":{
 		"sType":"avWusquus",
-		"govt":"pen",
+		"govt":"itaska",
 		"x":-100,
 		"y":-35,
 		"text":"MCB-1 is an isolated station used to test new weapons and technology that are too dangerous to use planetside."
@@ -494,7 +494,7 @@
 	"Angeles":{
 		"sType":"onyxLunarV",
 		"scape":"img/AVDezign/Camulos.jpg",
-		"govt":"pen",
+		"govt":"itaska",
 		"text":"With no biosphere, Angeles was an ideal testbed for airtight colony technology. It was a smashing success and its population now numbers in the tens of billions. Some of the best-smelling recycled air in the galaxy can be found in the tunnels and domes here, but most goods need to be brought from off-world.",
 		"trade":{
 			"water":"high",
@@ -512,7 +512,7 @@
 	"Izumrudnoye":{
     "sprite": "izumrudnoye",
 		"scape":"img/AVDezign/Ekchuah.jpg",
-		"govt":"pen",
+		"govt":"itaska",
 		"x":-10,
 		"y":20,
 		"text":"The methane atmosphere makes the planet unattractive except for gas mining operations. There's supposed to be enough carbon here for another trillion humans.",
@@ -526,7 +526,7 @@
 	"Aralsk":{
 		"sType":"gnPlanet6Rock",
 		"scape":"img/AVDezign/Balder.jpg",
-		"govt":"pen",
+		"govt":"itaska",
 		"x":-50,
 		"y":-300,
 		"text":"Aralsk was dealt a crippling environmental blow at some point in its history, and is now mostly occupied by scientists who study the dried out oceans and giant tectonic fissures, hoping to discover what dread fate befell the planet, if other similarly sized worlds are at risk, and how it could be averted."
@@ -534,13 +534,13 @@
 	"Itaskana":{
 		"sType":"gnPlanet11Maroon",
 		"scape":"img/AVDezign/Yamaduti.jpg",
-		"govt":"pen",
+		"govt":"itaska",
 		"text":"The center of Itaskan civilization, Itaskana is the namesake of the 'peninsula' of nebula-isolated stars that the Itaskans call home. Schoolchildren are shuttled here to see the famous parliament chambers the great stone treaties creating Itaska's government where signed, and the labs shield technology that enabled it matured. The ones that aren't irreparably irradiated anyway, because it is one of the few worlds in the peninsula so environmentally ruined that it is considered a lost cause, a victim of centuries of rapid technological progress and unchecked experiments."
 	},
 	"Gillespie":{
 		"sType":"onyxM7Desert",
 		"scape":"img/AVDezign/YumCimil.jpg",
-		"govt":"pen",
+		"govt":"itaska",
 		"x":-38,
 		"y":49,
 		"text":"Populated since at least 200, Gillespie was a very attractive target for off-world colonization, so the landscape is a patchwork of different visions of planetary utopia. Known as the 'Great Aunt of itaskan spaceflight' since if it wasn't so close to Itaskana, they might have never had a reason to develop launch. That's got to be backwards though, because however people arrived on all of these different planets, it was by spaceflight of some description.",
@@ -552,7 +552,7 @@
 	"Buttonwood":{
 		"sType":"rwI01",
 		"scape":"img/AVDezign/Zipakna.jpg",
-		"govt":"pen",
+		"govt":"itaska",
 		"x":300,
 		"y":-30,
 		"text":"Over the last five hundred years, inhabitants have been moving from Itaskana to Buttonwood, due to radiation in Itaskana's seriously ionized atmosphere. It was home to the \"Buttonwood Accords\" where bans on environmentally destructive practices where put into effect throughout Itaskan space, settling what is called the \"last generational feud\" in the 330s.",
@@ -567,13 +567,13 @@
 	"Chukchi":{
 		"sType":"sgSmall",
 		"scape":"img/AVDezign/Tin.jpg",
-		"govt":"pen",
+		"govt":"itaska",
 		"text":"Gas giants aren't usually habitable, but Chukchi is the exception. The 'pseudomoons' in orbit are held against friction by the planet's magnetic field, protected from erosion by Scrith and Darksteel deposits."
 	},
 	"Sinchenko":{
 		"sType":"rwP01",
 		"scape":"img/AVDezign/Usas.jpg",
-		"govt":"pen",
+		"govt":"itaska",
 		"x":300,
 		"y":450,
 		"text":"A middling planet in most respects, Sinchenko is the cultural heart of the peninsula, hosting epic concerts that draw crowds of millions on a regular basis. Entire flash-cities will show up and collectively experience the show through their Virtual Reality implants.",

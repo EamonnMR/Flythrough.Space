@@ -53,7 +53,7 @@
   "bounty_direc": {
     "short_name": "Wanted: Dead or Alive",
     "brief": "Reward: ${reward} credcoin. To be paid in full upon destruction of the pirate vessle \"${target.name}\". As usual, crew may surrender at any port for immediate sentencing. Last spotted near the ${dest.sys} system, raiding merchant vessels.",
-    "availability": "${govt_is('direc')}",
+    "availability": "${govt_is('free')}",
     "dest": "random_same_gov_spob()",
     "target": {
       "type": "${npc_group('pirate_raid')}",
@@ -81,7 +81,7 @@
     "short_name": "Terrorist Watch List: Wanted",
     "brief": "Seditious and unworthy insurgents are operating a ship called {{ target.name }} in and around the {{ dest.sys }} system. Any captain who can eliminate this ship will be richly rewarded.",
     "offer": {
-      "spob.govt": "drone"
+      "spob.govt": "loyal"
     },
     "target": {
       "type": "${npc_group(baik_insur_raid)}",
