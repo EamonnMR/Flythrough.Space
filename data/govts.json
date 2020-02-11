@@ -6,7 +6,7 @@
     "dark_color":"#101060FF",
     "foes": [
       "loyal",
-      "orasos",
+      "cartel",
       "pirate",
       "pen",
       "fifth"
@@ -19,10 +19,10 @@
     "dark_color":"#EAEA00FF",
     "foes": [
       "drone",
-      "orasos"
+      "cartel"
     ]
   },
-  "orasos":{
+  "cartel":{
     "name":"Caudron Pirate Cartell",
     "short_name": "Cartell",
     "color":"#CD5C5CFF",

@@ -1,4 +1,4 @@
-{
+
   "dir": "assets/",
   "base_particles_url": "assets/particle_sets",
   "meshes": {
@@ -41,12 +41,12 @@
         "galbank/dark": {
           "diffuse": "passer_galbank.png"
         },
-        "orasos": {
+        "cartel": {
           "diffuse": "passer_orasos.png",
           "emissive": "passer_emissive.png",
           "custom_emissive_color": [1,0.5,0.5,1]
         },
-        "orasos/dark": {
+        "cartel/dark": {
           "diffuse": "passer_orasos.png"
         }
       }
@@ -135,12 +135,12 @@
         "pirate/dark": {
           "diffuse": "khanda_heavy_pirate.png"
         },
-        "hex": {
+        "league": {
           "diffuse": "khanda_heavy_hex.png",
           "emissive": "khanda_heavy_emissive.png",
           "custom_emissive_color": [1,0.5,0.5,1]
         },
-        "hex/dark": {
+        "league/dark": {
           "diffuse": "khanda_heavy_hex.png"
         }
       }
@@ -174,12 +174,12 @@
         "pirate/dark": {
           "diffuse": "vera_pirate.png"
         },
-        "orasos": {
+        "cartel": {
           "diffuse": "vera_orasos.png",
           "emissive": "vera_emissive.png",
           "custom_emissive_color": [1,0.5,0.5,1]
         },
-        "orasos/dark": {
+        "cartel/dark": {
           "diffuse": "vera_orasos.png"
         }
       }
@@ -204,20 +204,20 @@
         "pirate/dark": {
           "diffuse": "corvette_pirate.png"
         },
-        "hex": {
+        "league": {
           "diffuse": "corvette_hex.png",
           "emissive": "corvette_emissive.png",
           "custom_emissive_color": [1,0.5,0.5,1]
         },
-        "hex/dark": {
+        "league/dark": {
           "diffuse": "corvette_hex.png"
         },
-        "orasos": {
+        "cartel": {
           "diffuse": "corvette_orasos.png",
           "emissive": "corvette_emissive.png",
           "custom_emissive_color": [1,0.5,0.5,1]
         },
-        "orasos/dark": {
+        "cartel/dark": {
           "diffuse": "corvette_orasos.png"
         }
       }
