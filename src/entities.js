@@ -56,6 +56,7 @@ export function shipFactory(type, position, govt=null){
 
 
 export function planetFactory (name, index){
+
   let planet = Object.create(_.data.spobs[name]);
   // Scale
   planet.x = planet.x / 3;

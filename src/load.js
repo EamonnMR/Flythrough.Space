@@ -2,6 +2,7 @@ import { _ } from "./singletons.js";
 import { overridable_default, utils_unit_tests, update_settings } from "./util.js";
 import { collision_unit_tests } from "./collision.js";
 import { material_from_skin } from "./graphics.js";
+import { multiInherit } from "./util.js"
 
 /* The root of everything here is 'assets.json'.
  * It lists asset files/data for special assets - 
@@ -16,6 +17,15 @@ const SHIP_CONSTRAINTS = {
   rotation: {max: 0.003, min: 0.001},
   accel: {max: 0.001, min: 0.00001},
   max_speed: {max: 0.04, min: 0.0001},
+}
+
+const PROTOTYPES = {
+  spobs: {
+    x: 0,
+    y: 0
+  },
+  ships: {
+  },
 }
 
 export class Data {
@@ -153,6 +163,28 @@ export class Data {
     }
   }
 
+  get_base_type(name, type){
+    let parent = this[type][name];
+    return Object.assign(
+      Object.create(
+        "extends" in parent
+        ? get_base_type(parent)
+        : PROTOTYPES[type]
+      ),
+      parent
+    );
+  }
+
+  resolve_proto_chain(){
+    // This implements the 'extends' feature, and allows
+    // default values to be set for game objects.
+    for(let type of Object.keys(PROTOTYPES)){
+      for(let item of Object.keys(this[type])){
+        this[type][item] = this.get_base_type(item, type)
+      }
+    }
+  }
+
   validate(){
     // Generally game logic should not live in the loader, but having
     // the data consistency checked at load time is a major QOL thing.
@@ -285,6 +317,7 @@ export function load_all(engine, scene, done){
     if (xhr.status == 200){
       load_assets(JSON.parse(xhr.responseText), scene, data_mgr, () => {
         data_mgr.preprocess();
+        data_mgr.resolve_proto_chain();
         update_settings(); 
         if(_.settings.run_tests){
           data_mgr.validate();

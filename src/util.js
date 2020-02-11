@@ -276,7 +276,6 @@ export function utils_unit_tests(){
   assert_true(get_setting("foo", "baz") === "bar",
     "Can save settings in local storage");
   clear_setting("foo");
-  debugger;
   assert_true(get_setting("foo", "baz") === "baz",
     "Can clear settings and get default values"
   );
