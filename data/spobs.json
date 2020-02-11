@@ -252,7 +252,7 @@
 	},
 	"Kosach":{
     "sprite": "kosach",
-		"govt":"drone",
+		"govt":"loyal",
 		"text":"An industrialized world with a large population and matching production output. Factories run around the clock, building everything from starships to Rotovators. They're so productive here that the Loyal Suns even let them keep a portion of the profits, which is a source of great pride.",
 		"tech":{
 			"generic":1
@@ -315,7 +315,7 @@
 	},
 	"Kalush":{
 		"sType":"gnPlanet5Red",
-		"govt":"drone",
+		"govt":"loyal",
 		"tech":{
 			"generic":3,
       "ls": 3
@@ -325,7 +325,7 @@
 	"Frontier Outpost V":{
     "sprite": "oe_station", 
     "img": "assets/landing/oe_station_perspective.png",
-		"govt":"drone",
+		"govt":"loyal",
 		"text":"An old outpost on the edge of Loyal Suns territory, it is nonetheless a critical jumping-off point for raids on the Lothian, Peenemunde, and Ingolsdat systems, so it's been kept very much up to date.",
 		"tech":{
 			"oe_wep":3
@@ -594,7 +594,7 @@
 		"text":"On the tense border between the Casamance Directorate and the Eastern League, coldwater's chilly landscape is listed as the most likely planet to be invaded in Casamance space. It's rumored that there are large fortresses cut into the glaciers, but the navy is quiet on the subject."
 	},
   "Baikonur":{
-    "govt": "drone",
+    "govt": "loyal",
     "trade":{
       "ethyl": "high",
       "water": "low",
@@ -612,7 +612,7 @@
     "text": "As with any tidally locked world, Nightside rotates very slowly in relation to its parent star-in this case less than once per million years. This means that only one side of the planet has a tolerable climate-leading to its name. Far from civilization and deep in a pirate infested nebula, Nightside is the place to be if you can't be anywhere else. You can get anything here for the right price, but nobody can pay as much as the Caudron family, so they're in charge."
   },
   "Horizon": {
-    "govt": "drone",
+    "govt": "loyal",
     "text": "Horizon is tidally locked such that a \"day\" lasts about a hundred years, most of which is in punishing cold and darkness or unbearable heat and light. This has pushed the civilization here to adopt a nomadic lifestyle, building elaborate (and enormous) land vehicles which can relocate as the terminator moves across the surface."
   },
   "Broken Hill": {
@@ -625,7 +625,7 @@
     "text": "The low gravity of this remote, small planet is the ideal condition for propulsion research. The world is more agglomeration of comets than terrestrial planet, though bitter winds powered by tidal forces from its dim star have long since erased evidence of the ancient impacts. Extensive ice tunnels and secret bases are supposedly just below the rough, spiky surface."
   },
   "Bukov":{
-    "govt": "drone",
+    "govt": "loyal",
     "x": 25,
     "y": 38,
     "text": "Bukov's spaceport is in the center of a blast-swept plane of green trinitite glass, surrounded by thick walls of nanocrete, and staffed by pitiless marines. This security is needed, of course, because the rest of the planet, including all of its major cities, is used as a prison by the Loyal Suns. It was discovered at some point that in some cases, such as radical Bikonour partisans (many of whom already lived on Bukov, it should be noted) it would be cheaper to cordon off an entire world than to build additional prison stations."
@@ -664,7 +664,7 @@
     }
   },
   "Quicksilver": {
-    "govt": "drone",
+    "govt": "loyal",
     "sprite": "quicksilver",
     "text": "Quicksilver is named for its brilliant mercury oceans. The winds and tides keep the surface fresh enough that it is never fully oxidized, even though its atmosphere and landmasses have a considerable amount of iron oxide. Metals are the name of the game here. It's not as if people would choose to live here for any other reason, though you must admit that the view of the glassy silver ocean is stunning.",
     "trade": {
@@ -672,7 +672,7 @@
     }
   },
   "Franconia": {
-    "govt": "drone",
+    "govt": "loyal",
     "sprite": "blue_atmo",
     "text": "Franconia's methane rich atmosphere makes it smell a bit off, but an excellent place to grow all manner of microbes. Fermented beverages are all the rage here, and you can find dozens of small vendors of beer, mead, and something called \"Komubcha\"",
     "trade": {
@@ -704,7 +704,7 @@
   },
   "Prospero": {
     "sprite": "accra",
-    "govt": "drone",
+    "govt": "loyal",
     "text": "A terrestrial world that may have been habitable before its parent star, Nemesis, went red-giant. Airtight stations look out over the scarred, red-bathed magma plains. What activity there is on the surface mostly work that is cheaper to do in a gravity well than in orbit, and mining the precious, heavier metals that are unusually rich on its stripped crust."
   },
   "Nemesis Orbital": {
@@ -712,7 +712,7 @@
     "img": "assets/landing/oe_station_perspective.png",
     "x": 30,
     "y": 10,
-    "govt": "drone",
+    "govt": "loyal",
     "text": "The capital of Loyalist space. Seat of the Clone Prince, though it's considered poor form for them to be outside of a starship when there's conquest to be done. The current Clone Prince of the Loyal Suns has chaffed at the idea of lasting peace and taken every opportunity to skirmish with pirates and freeholders, so while it is still the bureaucratic heart of the Loyal Suns, it's become passe to actually be seen here.",
     "tech": {
       "ls_sh": 3,
@@ -739,7 +739,7 @@
     }
   },
   "Hoosac":{
-    "govt": "drone",
+    "govt": "loyal",
     "text": "A geologically active world may not be dangerous for the obvious reasons. While earthquakes and eruptions certainly pose threats, the ash clouds that cover the sky and uneroded badlands that scar the surface are the real thorn in the side of Loyal Suns marines stationed here. Generations of guerilla warfare have hardened the hearts and hands of the people who still cling to independence here. It is widely considered to be ungovornable, as the long line of unfortunate planetary governors will tell you.",
     "trade": {
       "small_arms": "high"
@@ -750,7 +750,7 @@
     "img": "assets/landing/oe_station_perspective.png",
     "x": 10,
     "y": 3,
-    "govt": "drone",
+    "govt": "loyal",
     "text": "To say that Housatonic is considered a bad post is an understatement. The surface is so treacherous that to keep a foothold, they've constructed an entire station to support ground bases. Fat lot of good it does, however, when an eruption makes orbital drop and recovery impossible."
   },
   "Agra": {
@@ -769,7 +769,7 @@
     "text": "Reddy is a small, low-gravity backwater world. Unable to trap an atmosphere, Reddy's cities are under brilliant domes which are lit different colors for various festivals and can be seen from the sky like little ornaments."
   },
   "Morcia": {
-    "govt": "drone",
+    "govt": "loyal",
     "text": "There are two distinct civilizations on Morcia, frequently at each other's throats. One of them, the one you can land and trade at, has contact with the outside galaxy and is aligned with the Loyal Suns. The other, reclusive civilization has resisted direct dealings with spacefarers thus far."
   },
   "Petrov": {
@@ -803,7 +803,7 @@
     "text": "Shorunmu University is the most famous biology and medical tech hub in the galaxy. If you ever need a limb regrown (or even just reattached) the doctors here would be only too happy to oblige. Cloning technology perfected here enabled the creation of 'germlines'- individuals so wealthy and powerful that they could afford to clone themselves to continue their dynasty. Some germlines date back to the creation of the Old Empire, and of course the current Clone Prince of the Loyal Suns is an example. In current Freehold society, it's considered a bit pretentious to say that you're a clone (or, worse, part of a famous germline) so most keep it to themselves."
   },
   "Dealer's End": {
-    "govt": "drone",
+    "govt": "loyal",
     "text": "Kelly Dealer was a famous explorer in the 800s, and this colony is named in her honor. It commemorates the greatest western extent of her exploration, that much is known for sure. It is also said that when she arrived she found something here that told her that she was done and that nothing useful would be found further west. What that was appears to be lost to history."
   }
     

@@ -5,7 +5,7 @@
     "color":"#0000EDFF",
     "dark_color":"#101060FF",
     "foes": [
-      "drone",
+      "loyal",
       "orasos",
       "pirate",
       "pen",
@@ -35,7 +35,7 @@
     "color":"#008000FF",
     "dark_color":"#003500FF"
   },
-  "drone":{
+  "loyal":{
     "name":"Loyal Suns",
     "short_name": "Loyal.",
     "color":"#FF0000FF",

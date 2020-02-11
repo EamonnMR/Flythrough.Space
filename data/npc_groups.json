@@ -120,14 +120,14 @@
     ]
   },
   "ls_pt": {
-    "govt": "drone",
+    "govt": "loyal",
     "ships": [
       "ls_heavyfi",
       "ls_vette"
     ]
   },
   "ls_raid": {
-    "govt": "drone",
+    "govt": "loyal",
     "ships": [
       "ls_vette",
       "ls_retaliator",
@@ -135,14 +135,14 @@
     ]
   },
   "ls_boss": {
-    "govt": "drone",
+    "govt": "loyal",
     "ships": [
       "ls_retaliator",
       "ls_absolver"
     ]
   },
   "ls_noncom": {
-    "govt": "drone",
+    "govt": "loyal",
     "ships": [
       "ls_provider",
       "ls_runabout"

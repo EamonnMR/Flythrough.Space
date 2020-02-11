@@ -771,7 +771,7 @@
   ".181":{
     "x":973,
     "y":505,
-    "govt":"drone",
+    "govt":"loyal",
     "spobs": [
       "Quicksilver"
     ],
@@ -783,7 +783,7 @@
   "Contra Costa":{
     "x":1017,
     "y":588,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Rada",
       "Novosibirsk",
@@ -794,7 +794,7 @@
   "Novosibirsk":{
     "x":859,
     "y":534,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".181",
       "Contra Costa",
@@ -815,7 +815,7 @@
   "Shepard":{
     "x":1423,
     "y":557,
-    "govt":"drone",
+    "govt":"loyal",
     "spobs":[
       "Frontier Outpost V"
     ],
@@ -881,7 +881,7 @@
   ".191":{
     "x":897,
     "y":220,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Nemesis",
       "Zorax",
@@ -891,7 +891,7 @@
   "Nemesis":{
     "x":897,
     "y":320,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".191",
       "Intrepid",
@@ -922,7 +922,7 @@
   "Intrepid":{
     "x":912,
     "y":435,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".181",
       "Nemesis",
@@ -932,7 +932,7 @@
   "Resolute":{
     "x":1010,
     "y":334,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Nemesis",
       "Intrepid",
@@ -944,7 +944,7 @@
   ".195":{
     "x":999,
     "y":412,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Resolute"
     ]
@@ -952,7 +952,7 @@
   ".196":{
     "x":1085,
     "y":297,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Resolute",
       "Housatonic",
@@ -962,7 +962,7 @@
   ".197":{
     "x":1086,
     "y":437,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".195",
       "Housatonic",
@@ -972,7 +972,7 @@
   "Housatonic":{
     "x":1211,
     "y":365,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".196",
       ".197",
@@ -1024,7 +1024,7 @@
   "Kuchma":{
     "x":911,
     "y":623,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Contra Costa",
       "Khust"
@@ -1034,7 +1034,7 @@
   ".202":{
     "x":608,
     "y":386,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".*2",
       ".*11"
@@ -1043,7 +1043,7 @@
   "Unrelenting":{
     "x":808,
     "y":256,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Nemesis",
       ".250",
@@ -1053,7 +1053,7 @@
   "Victory":{
     "x":800,
     "y":344,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Nemesis",
       ".250"
@@ -1062,7 +1062,7 @@
   "Defiance":{
     "x":815,
     "y":423,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Nemesis",
       ".250",
@@ -1642,7 +1642,7 @@
   ".250":{
     "x":693,
     "y":313,
-    "govt":"drone",
+    "govt":"loyal",
     "spobs":[
       "Horizon"
     ],
@@ -1657,7 +1657,7 @@
   ".251":{
     "x":531,
     "y":315,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".202",
       ".262",
@@ -1679,7 +1679,7 @@
   ".253":{
     "x":676,
     "y":507,
-    "govt":"drone",
+    "govt":"loyal",
     "spobs": ["Morcia"],
     "links":[
       ".268",
@@ -1771,7 +1771,7 @@
   "Hawkshaw":{
     "x":457,
     "y":683,
-    "govt":"drone",
+    "govt":"loyal",
     "spobs": [
       "Dealer's End"
     ],
@@ -1798,7 +1798,7 @@
   "Cordova":{
     "x":501,
     "y":756,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Hawkshaw",
       "Lemuel"
@@ -1807,7 +1807,7 @@
   ".261":{
     "x":636,
     "y":235,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".250",
       ".262",
@@ -1818,7 +1818,7 @@
   ".262":{
     "x":607,
     "y":156,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".251",
       ".261",
@@ -1830,7 +1830,7 @@
   ".263":{
     "x":524,
     "y":181,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".251",
       ".292",
@@ -1853,7 +1853,7 @@
     "spobs": [
       "Krysto"
     ],
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".191",
       "Unrelenting",
@@ -1873,7 +1873,7 @@
   ".268":{
     "x":759,
     "y":588,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".253",
       ".270",
@@ -1884,7 +1884,7 @@
   "Baikon":{
     "x":637,
     "y":669,
-    "govt":"drone",
+    "govt":"loyal",
     "spobs": [
       "Baikonur",
       "Bukov"
@@ -1911,7 +1911,7 @@
   ".271":{
     "x":668,
     "y":721,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".254",
       ".255",
@@ -1921,7 +1921,7 @@
   "Pavlodar":{
     "x":586,
     "y":752,
-    "govt":"drone",
+    "govt":"loyal",
     "spobs":[
       "Kosach"
     ],
@@ -1953,7 +1953,7 @@
   ".274":{
     "x":532,
     "y":680,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".258",
       "Hawkshaw",
@@ -2009,7 +2009,7 @@
   "Uluru":{
     "x":458,
     "y":566,
-    "govt":"drone",
+    "govt":"loyal",
     "spobs": [
       "Broken Hill"
     ],
@@ -2023,7 +2023,7 @@
   "Woodstock":{
     "x":551,
     "y":562,
-    "govt":"drone",
+    "govt":"loyal",
     "spobs": [
       "Franconia"
     ],
@@ -2035,7 +2035,7 @@
   ".282":{
     "x":666,
     "y":616,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Baikon",
       ".268"
@@ -2121,7 +2121,7 @@
   ".292":{
     "x":448,
     "y":214,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".263",
       ".291",
@@ -2149,7 +2149,7 @@
   ".295":{
     "x":225,
     "y":149,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Komi",
       "Hastings",
@@ -2159,7 +2159,7 @@
   ".296":{
     "x":295,
     "y":160,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".291",
       ".292",
@@ -2170,7 +2170,7 @@
   ".297":{
     "x":271,
     "y":101,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".296",
       ".*6"
@@ -2978,7 +2978,7 @@
   ".*1":{
     "x":498,
     "y":498,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".252",
       ".253",
@@ -2990,7 +2990,7 @@
   ".*2":{
     "x":502,
     "y":404,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".202",
       ".252",
@@ -3107,7 +3107,7 @@
   ".*11":{
     "x":711,
     "y":445,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Novosibirsk",
       ".202",
@@ -3119,7 +3119,7 @@
   ".*12":{
     "x":749,
     "y":542,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Novosibirsk",
       ".268",
@@ -3129,7 +3129,7 @@
   "Khabarovsk":{
     "x":1106,
     "y":525,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Rybak",
       "Contra Costa",
@@ -3140,7 +3140,7 @@
   "Latyshev":{
     "x":1218,
     "y":447,
-    "govt":"drone",
+    "govt":"loyal",
     "spobs":[
       "Kalush"
     ],
