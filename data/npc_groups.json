@@ -62,15 +62,15 @@
       "xic_drillship"
     ]
   },
-  "cas_patrol": {
-    "govt": "direc",
+  "free_patrol": {
+    "govt": "free",
     "ships": [
       "cas_corvette",
       "cas_oe_fighter"
     ]
   },
-  "cas_capital": {
-    "govt": "direc",
+  "free_capital": {
+    "govt": "free",
     "ships": [
       "cas_corvette",
       "cas_frigate",

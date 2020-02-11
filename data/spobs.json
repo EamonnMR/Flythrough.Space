@@ -3,7 +3,7 @@
     "sprite": "accra",
 		"x"    : 250,
 		"y"    : 140,
-		"govt" : "direc",
+		"govt" : "free",
 		"text": "The birthplace of the modern FTL drive, and as a result the capital of the Old Empire, a galaxy-spanning civilization that collapsed a generation ago. It was these shipyards that built the first wave of ships that crossed the sector, and is still a hub for ship construction. After the empire's collapse, the spacefarer upper-class was driven out, forming the Loyal Suns to the north and leaving the terrestrials in charge. The inhabitants of Accra They ultimately formed Accra Stardrives, a shipbuilder that focuses on large vessels and an alliance of surrounding worlds called the Casamance Freehold.",
 		"trade":{
 			"alloy":"high",
@@ -17,7 +17,7 @@
     "img": "assets/landing/oe_station_perspective.png",
 		"x"    : -200,
 		"y"    : -400,
-		"govt" : "direc",
+		"govt" : "free",
 		"text": "Alluvium Fleet Yards is the flagship starship building site of Accra Stardrives. Every corridor you go down is bustling with activity - engineers in animated discussion about robotic assembly, mechanics lugging exotic tools, and even sales people who, occasionally, realize that you're a starship captain and try to make a sale.",
 		"tech":{
 			"accra":4,
@@ -38,7 +38,7 @@
 		"text" :"Although the Inverness system has been populated for all of recorded history, it was not on this planet, since its environment keeps all but the hardiest of settlers at bay. Though there are significant metal deposits here, it is deep in the crust so only the best veins are mined. So-called 'wildcat' prospectors can be found deep in the interiors of the tectonic cratons looking for the next big score. More often than not, they come up empty handed.",
 		"x":100,
 		"y":300,
-		"govt":"direc",
+		"govt":"free",
 		"trade":{
 			"roto":"high",
 			"dark":"high",
@@ -53,7 +53,7 @@
 		"text":"Population center of the Inverness system, the massive Skye orbital station is home to millions. Though it can generate its own power and once had its own food supply, it has long since replaced its agriculture segments with living space, favoring imports. As it happens, vat grown yeast slurry isn't a popular dish after the first few decades. As a result, merchants from across the Freehold make this their port of call.",
 		"x":-100,
 		"y":-348,
-		"govt":"direc",
+		"govt":"free",
 		"trade":{
 			"water":"high",
 			"grain":"high",
@@ -62,12 +62,12 @@
 		"tech":{
 			"generic":1,
 			"accra":1,
-			"direc":1
+			"free":1
 		}
 	},
 	"Inshes":{
 		"sType":"onyxM4Earthlike",
-		"govt":"direc",
+		"govt":"free",
 		"text":"Orbiting opposite from Carnarc's L3 Lagrangian Point, Inshes, a small world is jealously guarded by the Carnarc government as a premier vacation destination. Trips to it where largely kept secret from the public until 495 when the fact that the tiny dot visible in the sky was actually being landed on. It was the first step for the inhabitants of this system to the stars.",
 		"x":200,
 		"y":480
@@ -77,7 +77,7 @@
 		"text" : "Lanner's stark, reddish atmosphere is highly toxic due to its exotic composition of various heavy metals and deadly acids. However, beneath this harsh surface is a treasure trove of valuable minerals. Be sure to keep your shields up at all times, or the air will begin to corrode your hull.",
 		"x": 75,
 		"y": 150,
-		"govt":"direc",
+		"govt":"free",
 		"trade":{
 			"dark":"low",
 			"powerconv":"high"
@@ -87,14 +87,14 @@
     "sprite": "oe_station", 
     "img": "assets/landing/oe_station_perspective.png",
 		"sType": "aresSmallStation",
-		"govt":"direc",
+		"govt":"free",
 		"text" : "This station is jointly owned by the Freehold worlds, and administered by its navy. It supports the various mining interests on the inhospitable surface of Lanner from orbit. Vac-suit miners tend to be tough and solitary people, and this station has developed an equally tough reputation.",
 		"trade":{
 			"carbon":"high"
 		},
 		"tech":{
 			"generic":1,
-			"direc":1
+			"free":1
 		},
 		"x": -150,
 		"y": -75
@@ -105,7 +105,7 @@
 	},
 	"Thrace":{
 		"sType": "onyxRedU",
-		"govt":"direc",
+		"govt":"free",
 		"text": "A densely populated world. Ostensibly a major voting member of the Freehold (proportional representation and all), with representatives converging yearly to decide matters of interplanetary importance. However, the planet's wealth is not proportional to its population, as its climate and pollution levels is less than ideal, so most of its ruling class live off-world and only maintain addresses here for legal reasons.",
 		"x" :24,
 		"y" :-45,
@@ -113,7 +113,7 @@
 			"oe_wep":3,
 			"fu":1,
 			"generic":1,
-			"direc":1,
+			"free":1,
 			"kps":1
 		},
 		"trade":{
@@ -124,7 +124,7 @@
 	},
 	"Argive":{
 		"sType":"oneRingStation",
-		"govt":"direc",
+		"govt":"free",
 		"text":"Arguably the \"real\"; capital of Thrace, for this is where the wealthy of Thrace spend most of their time. It's been equipped with state of the art facilities and functions like a giant apartment building, or hotel. Many scandalous documentaries about wealth inequality have been recorded within these hallowed halls.",
 		"x":10,
 		"y":30
@@ -164,7 +164,7 @@
 		"text":"A terraforming success story, Trowel was abandoned in favor of more densely populated worlds around 450, and has since been sparsely populated, mostly by tourists. Handcrafted waterfalls and pristine minerally-altered waters as far as the eye can see."
 	},
 	"Kennerud":{
-    "govt": "direc",
+    "govt": "free",
 		"sType":"onyxEarthlikeB",
 		"text":"A major industrial hub, Kennerud has been slowly optimized over hundreds of years to turn out weapons and reactors, first for the Empire, and now, as a member of the Freehold, for competing continent-spanning companies on the surface. The most powerful of all is KPS (Kennerud Power Systems) chief supplier of both legacy and next-gen plasma cannons.",
 		"tech":{
@@ -172,7 +172,7 @@
 			"oe_wep":3,
 			"generic":3,
 			"kps":3,
-			"direc":3,
+			"free":3,
 			"oe_ship":3
 		},
 		"trade":{
@@ -216,13 +216,13 @@
 	"Bjarne":{
 		"sType":"onyxEarthlikeE",
     "sprite": "cloudy_blue",
-		"govt":"direc",
+		"govt":"free",
 		"text":"The surface of Bjarne is almost entirely covered with water, so most of its cities are mostly or entirely submerged, anchored to bedrock deep below the waves. Bjarne one of the most enterprise focused worlds in the Directorate. Its citizens have a reputation, perhaps deserved, of attention to technical detail. This reputation perhaps stems from dealing with the unrelenting sea for generations-many planets have unbreathable atmospheres, but the oceans of Bjarne will eat away at your fittings, rust away anything you throw at them, and somehow your best laid plans will leak.",
 		"tech":{
 			"khanda":2,
 			"oe_wep":2,
 			"oe_ship":1,
-			"direc":1
+			"free":1
 		},
 		"trade":{
 			"water":"low",
@@ -235,7 +235,7 @@
 	},
 	"Adriaan":{
 		"sType":"onyxEarthlikeC",
-		"govt":"direc",
+		"govt":"free",
 		"text":"A pleasant, if slightly cold climate. The inhabitants of this planet formed a culture centered around various forms of committees, using them to decide everything from what types of goods to produce to who to send to represent them on Thrace.",
 		"tech":{
 			"generic":1,
@@ -265,7 +265,7 @@
 	},
 	"Kimathi":{
 		"sType":"plutonic",
-		"govt":"direc",
+		"govt":"free",
 		"text":"This frigid ball of rock and ice was once a vital producer of starships and parts, but it has fallen on hard times and lacked the capital to re-tool its rusting factories. There's a grim determination among those who remain, though, all insisting that \"Kimathi will be good again, any time now\" but that remains to be seen.",
 		"tech":{
 			"oe_ship":3,
@@ -280,7 +280,7 @@
 	},
 	"Turkana":{
 		"sType":"onyxEarthlikeD",
-		"govt":"direc",
+		"govt":"free",
 		"text":"In a remote corner of the Casamance Freehold floats Turkana, an agricultural paradise. Praised as one of the best terraformed worlds in Casamance space, it is covered in farms and dotted with mills. Many of the powerful families here can trace back to imperial officers who chose this planet as a place of retirement.",
 		"x":0,
 		"y":0,
@@ -335,7 +335,7 @@
 		"sType":"rwA01",
 		"x":100,
 		"y":123,
-		"govt":"direc",
+		"govt":"free",
 		"text":"Despite its appearance, Ubuntu is actually a very habitable planet once you get used to the environment. It specializes in computer software and providing support. Because faster than light communication is impossible except by delivery (which residents deride as 'sneakernet'), support generally consists of flying an engineer out to the installation site.",
 		"trade":{
 			"compu":"low",
@@ -364,7 +364,7 @@
 	},
 	"Vatsa":{
 		"sType":"rwG00",
-		"govt":"direc",
+		"govt":"free",
 		"tech":{
 			"oe_wep":3,
 			"oe_ship":2,
@@ -585,7 +585,7 @@
 	},
 	"Coldwater":{
 		"sType":"onyxIceN",
-		"govt":"direc",
+		"govt":"free",
 		"trade":{
 			"water":"low",
 			"grain":"med",
@@ -631,15 +631,15 @@
     "text": "Bukov's spaceport is in the center of a blast-swept plane of green trinitite glass, surrounded by thick walls of nanocrete, and staffed by pitiless marines. This security is needed, of course, because the rest of the planet, including all of its major cities, is used as a prison by the Loyal Suns. It was discovered at some point that in some cases, such as radical Bikonour partisans (many of whom already lived on Bukov, it should be noted) it would be cheaper to cordon off an entire world than to build additional prison stations."
   },
   "Kejetia": {
-    "govt": "direc",
-    "text": "If there's a bright center to the casamance directorate, this is the point that it's furthest from. Pirate raids are a regular sight in the skies over Kejetia. Attempts to contact additional civilizations or find fertile planets beyond this point have proved fruitless."
+    "govt": "free",
+    "text": "If there's a bright center to the Casamance Freehold, this is the point that it's furthest from. Pirate raids are a regular sight in the skies over Kejetia. Attempts to contact additional civilizations or find fertile planets beyond this point have proved fruitless."
   },
   "Kufuor": {
-    "govt": "direc",
+    "govt": "free",
     "text": "Just far enough from Akosombo Nebula to avoid the worst effects, Kufuor is still a relatively harsh environment. It has earned its reputation as a waystation for ill fated explorers-no direct jump path has been discovered into the nebula from here. It is also a waystation for Casamance Navy ships hunting outlawed pirates into the frontier."
   },
   "Broken Arrow": {
-    "govt": "direc",
+    "govt": "free",
     "text": "Broken Arrow has a warm, dry climate, perfect for many types of hardy megafauna which they heard as livestock here. Giant mechanical suits are employed by the farmers to drive the enormous beasts around (and avoid being trampled under foot.)",
     "trade": {
       "alloy": "med",
@@ -651,7 +651,7 @@
   "Frontier Outpost III": {
     "sprite": "oe_station", 
     "img": "assets/landing/oe_station_perspective.png",
-    "govt": "direc",
+    "govt": "free",
     "text": "This station marks not only the furthest \"southern\" extent of the old empire, but also the furthest habitation in this galactic direction. It was empty then, and it's empty now. No homeworlds have been found beyond it, and Broken Arrow was the only successful settlement in the region. The only people who go beyond are those who have nowhere else to go, desperate pirates, killers and outlaws."
   },
   "Veracruz": {
@@ -684,7 +684,7 @@
   "Vasconcells": {
     "x": 15,
     "y": -15,
-    "govt": "direc",
+    "govt": "free",
     "text": "A newly settled world, most people on Vasconcells (or at least their parents) where born on Sinquara. The Vasconcells Concern, a company which has bought up most of the liveable surface, is offering relocation vouchers for residents to come mine valuable ore here.",
     "trade": {
       "ore": "low",
@@ -694,8 +694,8 @@
   "Arruda": {
     "x": -15,
     "y": 15,
-    "govt": "direc",
-    "text": "The directorate maintains a small presence here, but with plenty of other places to put its growing population, Arruda has remained, thus far, unappealing."
+    "govt": "free",
+    "text": "The Freehold maintains a small presence here, but with plenty of other places to put its growing population, Arruda has remained, thus far, unappealing."
   },
   "Traprain": {
     "sprite": "accra",
@@ -795,11 +795,11 @@
     "text": "A backwater station kept on its toes by the occasional Fifth Fleet raid trying to pass through. Probably a better place to refuel in-system since the planet surface is still pretty irradiated."
   },
   "Akindele": {
-    "govt": "direc",
+    "govt": "free",
     "text": "When you buy or sell something on the open market, you don't barter your goods, you use credcoins. Mercs and pirates alike kill for Credcoin. And it's a cryptocurrency, so why are there large 'Galactic Bank' buildings dotting the landscape here? The reason is what's referred to as the 'sync problem.' If you spend some credcoin on Accra, how can you be sure that someone didn't spend the same coin on Kimathi? Trade moves faster than light in the galaxy, and the only thing that can move faster than light is a ship with a sidereal drive. Galactic Bank has carved a niche for itself updating these ledgers in all but the most war torn of systems, effectively centralizing something that was designed from the beginning to be uncontrollable."
   },
   "Shorunmu": {
-    "govt": "direc",
+    "govt": "free",
     "text": "Shorunmu University is the most famous biology and medical tech hub in the galaxy. If you ever need a limb regrown (or even just reattached) the doctors here would be only too happy to oblige. Cloning technology perfected here enabled the creation of 'germlines'- individuals so wealthy and powerful that they could afford to clone themselves to continue their dynasty. Some germlines date back to the creation of the Old Empire, and of course the current Clone Prince of the Loyal Suns is an example. In current Freehold society, it's considered a bit pretentious to say that you're a clone (or, worse, part of a famous germline) so most keep it to themselves."
   },
   "Dealer's End": {

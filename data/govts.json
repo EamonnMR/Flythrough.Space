@@ -1,5 +1,5 @@
 {
-  "direc":{
+  "free":{
     "name":"Casamance Freehold",
     "short_name": "Freehold",
     "color":"#0000EDFF",
@@ -53,7 +53,7 @@
     "short_name": "Merch",
     "color": "#C2B280FF"
   },
- "bounty":{
+  "bounty":{
     "name": "Bounty Hunter",
     "short_name": "Bounty",
     "color": "#C2B280FF"

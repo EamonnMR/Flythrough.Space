@@ -83,13 +83,13 @@
   "Bluthgelt":{
     "x":841,
     "y":965,
-    "govt":"direc",
+    "govt":"free",
     "roidSet":"silicaFieldH",
     "npc_average": 5,
     "npcs": [
       "xic_presence",
       "trader_lowtech",
-      "cas_patrol"
+      "free_patrol"
     ],
     "spobs":[
       "Harcourt",
@@ -103,7 +103,7 @@
   "Stavros":{
     "x":955,
     "y":942,
-    "govt":"direc",
+    "govt":"free",
     "links":[
       "Rainsford",
       "Terisiare",
@@ -114,7 +114,7 @@
   "Fonseca":{
     "x":849,
     "y":1086,
-    "govt":"direc",
+    "govt":"free",
     "links":[
       "Casamance",
       "Akure"
@@ -123,14 +123,14 @@
   "Casamance":{
     "x":902,
     "y":1145,
-    "govt":"direc",
+    "govt":"free",
     "npc_average": 4,
     "npcs": [
       "trader_lowtech",
       "trader_bulk",
       "pirate_expedition",
-      "cas_capital",
-      "cas_patrol"
+      "free_capital",
+      "free_patrol"
     ],
     "spobs":[
       "Accra",
@@ -154,7 +154,7 @@
   "Carvajal":{
     "x":989,
     "y":1088,
-    "govt":"direc",
+    "govt":"free",
     "spobs":[
       "Kennerud"
     ],
@@ -168,7 +168,7 @@
   "Rimell":{
     "x":927,
     "y":1028,
-    "govt":"direc",
+    "govt":"free",
     "links":[
       "Stavros",
       "Carvajal"
@@ -184,12 +184,12 @@
   "Reese":{
     "x":885,
     "y":859,
-    "govt":"direc",
+    "govt":"free",
     "npc_average": 3,
     "npcs": [
       "xic_presence",
       "trader_lowtech",
-      "cas_patrol"
+      "free_patrol"
     ],
     "roidSet":"silicaFieldM",
     "spobs":[
@@ -252,7 +252,7 @@
   "Rainsford":{
     "x":953,
     "y":888,
-    "govt":"direc",
+    "govt":"free",
     "links":[
       "Stavros",
       "Wijngaarden"
@@ -261,7 +261,7 @@
   "Terisiare":{
     "x":1027,
     "y":963,
-    "govt":"direc",
+    "govt":"free",
     "spobs":[
       "Thrace",
       "Argive"
@@ -275,7 +275,7 @@
   "Rossum":{
     "x":1089,
     "y":1027,
-    "govt":"direc",
+    "govt":"free",
     "spobs":[
       "Coldwater"
     ],
@@ -289,7 +289,7 @@
   "Inverness":{
     "x":1049,
     "y":886,
-    "govt":"direc",
+    "govt":"free",
     "spobs":[
       "Skye Orbital",
       "Inshes",
@@ -304,7 +304,7 @@
   "Wijngaarden":{
     "x":1000,
     "y":840,
-    "govt":"direc",
+    "govt":"free",
     "spobs":[
       "Adriaan"
     ],
@@ -318,7 +318,7 @@
   "Steiner":{
     "x":938,
     "y":785,
-    "govt":"direc",
+    "govt":"free",
     "roidSet":"silicaFieldL",
     "links":[
       ".136",
@@ -328,8 +328,8 @@
     "npc_average": 5,
     "npcs": [
       "trader_bulk",
-      "cas_capital",
-      "cas_patrol",
+      "free_capital",
+      "free_patrol",
       "ls_raid",
       "ls_pr",
       "xic_presence"
@@ -377,13 +377,13 @@
   "Enyeama":{
     "x":860,
     "y":1211,
-    "govt":"direc",
+    "govt":"free",
     "npc_average": 4,
     "npcs": [
       "pirate_raid",
       "trader_bulk",
-      "cas_capital",
-      "cas_patrol"
+      "free_capital",
+      "free_patrol"
     ],
     "links":[
       "Casamance",
@@ -393,7 +393,7 @@
   "Yekini":{
     "x":978,
     "y":1201,
-    "govt":"direc",
+    "govt":"free",
     "spobs": [
       "Shorunmu"
     ],
@@ -401,7 +401,7 @@
     "npcs": [
       "trader_bulk",
       "trader_lowtech",
-      "cas_patrol"
+      "free_patrol"
     ],
     "links":[
       "Casamance",
@@ -452,7 +452,7 @@
   "Wirth":{
     "x":1128,
     "y":968,
-    "govt":"direc",
+    "govt":"free",
     "spobs": 
     [
         "Wieliczka"
@@ -466,7 +466,7 @@
   "Okocha":{
     "x":1143,
     "y":1080,
-    "govt":"direc",
+    "govt":"free",
     "links":[
       "Rossum",
       "Kanu"
@@ -475,7 +475,7 @@
   "Kanu":{
     "x":1179,
     "y":1160,
-    "govt":"direc",
+    "govt":"free",
     "links":[
       "Okocha",
       "Sipali"
@@ -484,7 +484,7 @@
   "Ubahu":{
     "x":1192,
     "y":1231,
-    "govt":"direc",
+    "govt":"free",
     "spobs":[
       "Ubuntu"
     ],
@@ -496,7 +496,7 @@
   "Brokop":{
     "x":1038,
     "y":1153,
-    "govt":"direc",
+    "govt":"free",
     "links":[
       "Sipali",
       "Carvajal"
@@ -505,7 +505,7 @@
   "Sipali":{
     "x":1061,
     "y":1229,
-    "govt":"direc",
+    "govt":"free",
     "spobs":[
       "Kimathi"
     ],
@@ -523,7 +523,7 @@
     "spobs": [
       "Kejetia"
     ],
-    "govt":"direc",
+    "govt":"free",
     "links":[
       "Sipali",
       "Ibadan",
@@ -533,7 +533,7 @@
   "Ibadan":{
     "x":954,
     "y":1284,
-    "govt":"direc",
+    "govt":"free",
     "spobs": [
       "Akindele"
     ],
@@ -542,7 +542,7 @@
       "bank", 
       "trader_bulk",
       "caudron_gang",
-      "cas_capital"
+      "free_capital"
     ],
     "links":[
       "Yekini",
@@ -554,14 +554,14 @@
   "Minna":{
     "x":954,
     "y":1393,
-    "govt":"direc",
+    "govt":"free",
     "npc_average": 2,
     "npcs": [
       "pirate_raid",
       "pirate_expedition",
       "trader_danger",
-      "cas_patrol",
-      "cas_capital"
+      "free_patrol",
+      "free_capital"
     ],
 
     "links":[
@@ -702,7 +702,7 @@
   "Stroustrup":{
     "x":1138,
     "y":877,
-    "govt":"direc",
+    "govt":"free",
     "spobs":[
       "Bjarne"
     ],
@@ -1010,8 +1010,8 @@
       "western_trader",
       "ls_pt",
       "ls_raid",
-      "cas_patrol",
-      "cas_capital"
+      "free_patrol",
+      "free_capital"
     ],
     "links":[
       "Kiriyenko",
@@ -1073,14 +1073,14 @@
   "Kilwa":{
     "x":829,
     "y":1363,
-    "govt":"direc",
+    "govt":"free",
     "spobs":[
       "Vatsa"
     ],
     "npc_average": 3,
     "npcs": [
-      "cas_capital",
-      "cas_patrol",
+      "free_capital",
+      "free_patrol",
       "trader_danger",
       "trader_bulk",
       "trader_lowtech"
@@ -1094,13 +1094,13 @@
   "Kagame":{
     "x":785,
     "y":1444,
-    "govt":"direc",
+    "govt":"free",
     "npc_average": 2,
     "npcs": [
       "trader_danger",
       "trader_lowtech",
       "pirate_raid",
-      "cas_patrol"
+      "free_patrol"
     ],
     "links":[
       "Nowra",
@@ -1111,15 +1111,15 @@
   "Mideska":{
     "x":955,
     "y":1496,
-    "govt":"direc",
+    "govt":"free",
     "npc_average": 2,
     "npcs": [
       "caudron_gang",
       "pirate_raid",
       "pirate_expedition",
       "trader_danger",
-      "cas_patrol",
-      "cas_capital",
+      "free_patrol",
+      "free_capital",
       "bounty"
     ],
     "links":[
@@ -1347,7 +1347,7 @@
   "Akure":{
     "x":775,
     "y":1159,
-    "govt":"direc",
+    "govt":"free",
     "spobs":[
       "Turkana"
     ],
@@ -1415,20 +1415,20 @@
   "Asuangate":{
     "x":588,
     "y":1383,
-    "govt":"direc",
+    "govt":"free",
     "npc_average": 5,
     "npcs": [
       "trader_bulk",
       "western_trader",
-      "cas_capital",
-      "cas_patrol"
+      "free_capital",
+      "free_patrol"
     ],
     "npc_average": 3,
     "npcs": [
       "trader_bulk",
       "western_trader",
-      "cas_capital",
-      "cas_patrol",
+      "free_capital",
+      "free_patrol",
       "pirate_raid"
     ],
 
@@ -1633,7 +1633,7 @@
   "Azuay":{
     "x":706,
     "y":1253,
-    "govt":"direc",
+    "govt":"free",
     "links":[
       "Sabara",
       "Jibril"
@@ -1730,15 +1730,15 @@
   "Nowra":{
     "x":663,
     "y":1504,
-    "govt":"direc",
+    "govt":"free",
     "spobs": [
       "Broken Arrow",
       "Frontier Outpost III"
     ],
     "npc_average": 2,
     "npcs": [
-      "cas_capital",
-      "cas_patrol",
+      "free_capital",
+      "free_patrol",
       "trader_danger",
       "trader_lowtech",
       "pirate_raid"
@@ -2967,8 +2967,8 @@
       "league_pt",
       "ls_pt",
       "ls_raid",
-      "cas_patrol",
-      "cas_capital"
+      "free_patrol",
+      "free_capital"
     ],
     "links":[
       ".335",
@@ -3076,13 +3076,13 @@
   "Pereira":{
     "x":540,
     "y":1492,
-    "govt":"direc",
+    "govt":"free",
     "npc_average": 4,
     "npcs": [
       "trader_bulk",
       "western_trader",
-      "cas_capital",
-      "cas_patrol",
+      "free_capital",
+      "free_patrol",
       "pirate_expedition",
       "bounty"
     ],
@@ -3095,7 +3095,7 @@
     "npcs": [
       "trader_lowtech",
       "pirate_expedition",
-      "cas_patrol"
+      "free_patrol"
     ],
 
     "links":[
@@ -3232,15 +3232,15 @@
     "spobs": [
       "Kejetia"
     ],
-    "govt":"direc",
+    "govt":"free",
     "npc_average": 3,
     "npcs": [
       "caudron_gang",
       "pirate_raid",
       "pirate_expedition",
       "trader_danger",
-      "cas_patrol",
-      "cas_capital",
+      "free_patrol",
+      "free_capital",
       "bounty"
     ],
     "links":[
@@ -3262,11 +3262,11 @@
   "Jibril":{
     "x":744,
     "y":1371,
-    "govt":"direc",
+    "govt":"free",
     "npc_average": 3,
     "npcs": [
-      "cas_capital",
-      "cas_patrol",
+      "free_capital",
+      "free_patrol",
       "trader_danger",
       "trader_bulk",
       "trader_lowtech"
@@ -3284,7 +3284,7 @@
     "npc_average": 1,
     "npcs": [
       "xic_presence",
-      "cas_patrol",
+      "free_patrol",
       "trader_danger",
       "pirate_expedition",
       "pirate_raid"
