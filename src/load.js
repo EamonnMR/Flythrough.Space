@@ -168,7 +168,7 @@ export class Data {
     return Object.assign(
       Object.create(
         "extends" in parent
-        ? get_base_type(parent)
+        ? this.get_base_type(parent["extends"], type)
         : PROTOTYPES[type]
       ),
       parent
