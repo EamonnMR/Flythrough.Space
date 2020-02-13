@@ -224,7 +224,36 @@
     },
 
     "cas_fighter": {"file": "casamance_fighter.babylon"},
-    "cas_carrier": {"file": "casamance_carrier.babylon"},
+    "free_carrier": {
+      "file": "free_carrier.babylon",
+      "default_skin": "free",
+      "skins": {
+        "merchant": {
+          "diffuse": "free_carrier_merchant.png",
+          "emissive": "free_carrier_emissive.png",
+          "custom_emissive_color": [1,1,1,1]
+        },
+        "merchant/dark": {
+          "diffuse": "free_carrier_merchant_dark.png"
+        },
+        "free": {
+          "diffuse": "free_carrier_free.png",
+          "emissive": "free_carrier_emissive.png",
+          "custom_emissive_color": [1,1,0.25,1]
+        },
+        "free/dark": {
+          "diffuse": "free_carrier_free_dark.png"
+        },
+        "pirate": {
+          "diffuse": "free_carrier_pirate.png",
+          "emissive": "free_carrier_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "free_carrier_pirate_dark.png"
+        }
+      }
+    },
     "cas_corv": {"file": "casamance_corv.babylon"},
     "oxana": {
       "file": "oxana.babylon",

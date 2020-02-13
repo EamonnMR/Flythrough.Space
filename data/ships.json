@@ -261,7 +261,7 @@
     "short_name"  : "Fr. Car",
     "long_name"   : "Freehold Carrier",
     "full_name"   : "Accra Starworks Type 1125 B Battleship",
-    "mesh": "cas_carrier",
+    "mesh": "free_carrier",
     "desc"       : "Accra produces one true warship, and this is it. Modeled after the Type 930, the 1125 is larger, slower, and able to carry more fighters into battle. Crews tend to be drawn from multiple planets, so there is often a riot of cultural sharing within the hulls of these vessels. They are legendary for the camaraderie of their fighter squadrons as well.",
     "upgrades"    : {"plasma200": 3},
     "rotation"  : 0.0001,
