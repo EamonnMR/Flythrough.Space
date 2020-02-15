@@ -6,6 +6,23 @@ import {
   get_engine_particle_systems,
 } from "./graphics.js";
 
+export function fighterFactory(type, mothership){
+  let ship = shipFactory(type);
+  ship.ai = {"state": passive};
+  ship.mothership = mothership.id;
+  ship.radar_pip = _.hud.widgets.radar_box.get_pip(4, mothership.player ?
+    "#00FF00FF" : "#FF0000FF"
+  );
+  ship.overlay = _.hud.get_overlay_texture(ship);
+  if(mothership.player_aligned){
+    ship.player_aligned = true;
+  }
+  ship.position = {
+    x: mothership.position.x,
+    y: mothership.position.y,
+  }
+}
+
 export function npcShipFactory(type, position, ai, govt){
   let ship = shipFactory(type, position, govt);
   ship.ai = ai;

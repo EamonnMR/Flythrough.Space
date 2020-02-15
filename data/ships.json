@@ -8,7 +8,7 @@
     "upgrades"    : {"autocannon":1, "autocannonammo": 20},
     "weapon_small": 2,
     "rotation"   : 0.002,
-    "accel"      : 0.00070,
+    "accel"      : 0.0001,
     "max_speed"   : 0.0175,
     "space"      : 10,
     "cargo"      : 10,
@@ -16,7 +16,10 @@
     "tech"       : {"accra":0},
     "max_hp"     : 50,
     "max_shields": 25,
-    "max_fuel"   : 3
+    "max_fuel"   : 3,
+    "as_carried": {
+      "fighter_space": -2
+    }
   },
   "passer":{
     "mesh": "passer",
@@ -24,7 +27,6 @@
     "long_name"   : "Passer Fighter",
     "full_name"   : "FuHao Type 1200 League Passer Starfighter",
     "desc"       : "A light, nimble starfighter that is safest when flown by somebody else. It's got newer avionics and a nicer seat, but it's just not as survivable in a fight as a 950. But it is faster, if you're into that sort of thing. This variant (with the wings) is mostly used as an escort by merchant captains. It's also notable as the flagship starship of FuHao, a firm mostly known for its aircraft. Its atmospheric flight handling is second to none.",
-    "weapons"    : [],
     "upgrades"    : {"autocannon": 2},
     "rotation"  : 0.004,
     "accel"      : 0.0002,
@@ -35,7 +37,8 @@
     "tech"       : {"league_civ":1},
     "max_fuel"   : 2,
     "max_hp"     : 90,
-    "max_shields": 50
+    "max_shields": 50,
+    "fighter_size": 1
   },
 
   "civ_heavy_fighter":{
@@ -54,7 +57,8 @@
     "tech"       : {"league_civ":2},
     "max_fuel"   : 3,
     "max_hp"     : 250,
-    "max_shields": 100
+    "max_shields": 100,
+    "fighter_size": 2
   },
   "courier"  :{
     "mesh"        : "courier",
@@ -62,7 +66,6 @@
     "long_name"   : "Accra Courier",
     "full_name"   : "Accra Starworks Courier",
     "desc"       : "This is actually the smallest vessel offered by Accra Starworks, and a very popular one for up and coming merchants. While it has ample cargo bays, it does not sacrifice too much performance, allowing captains to get out of trouble if need be.",
-    "weapons"    : [],
     "upgrades"    : {},
     "rotation"  : 0.008,
     "accel"      : 0.000013,
@@ -229,6 +232,7 @@
     "rotation"  : 0.01,
     "accel"      : 0.00005,
     "max_speed"   : 0.02,
+    "fighter_size": 1,
     "space"      : 20,
     "cargo"      : 10,
     "price"      : 5000,
@@ -263,7 +267,8 @@
     "full_name"   : "Accra Starworks Type 1125 B Battleship",
     "mesh": "free_carrier",
     "desc"       : "Accra produces one true warship, and this is it. Modeled after the Type 930, the 1125 is larger, slower, and able to carry more fighters into battle. Crews tend to be drawn from multiple planets, so there is often a riot of cultural sharing within the hulls of these vessels. They are legendary for the camaraderie of their fighter squadrons as well.",
-    "upgrades"    : {"plasma200": 3},
+    "upgrades"    : {"plasma200": 3, "__carried_free_fighter": 4},
+    "fighter_space": 6,
     "rotation"  : 0.0001,
     "accel"      : 0.0006,
     "max_speed"  : 0.0018,
@@ -273,8 +278,7 @@
     "tech"       : {"cas":5},
     "max_fuel"       : 5,
     "max_hp"     : 800,
-    "max_shields": 400,
-    "carried_fighters": { "cas_oe_fighter": 6}
+    "max_shields": 400
   },
 
   "oe_fighter"   :{
@@ -282,7 +286,6 @@
     "long_name"   : "Old Empire Fighter",
     "full_name"   : "Imperial Starfighter Type 950",
     "desc"       : "Nearly Identical to the ships that swarmed across the galaxy a generation ago, this is the starfighter version of the Imperial Fighter. The \"Starfighter\" designation is to make it clear that this ship is capable of FTL travel-not always the rule for ships its size. In its day, its linear aerospike engines (now a common sight) where a revelation. Its large wings offer a gentle landing for novice pilots, but don't be fooled-this no trainer. It's built to be as much an aircraft as it is a spacecraft. Ubiquitous, they are now manufactured (or repaired and resold) on most worlds.",
-    "weapons"    : {},
     "upgrades"    : {"ejectorrack":4, "plasma50":2, "dumbfiremissile": 4},
     "rotation"  : 0.01,
     "accel"      : 0.05,
@@ -320,7 +323,8 @@
     "full_name"   : "Imperial Heavy Battleship Type 930",
     "desc"       : "Once the most feared ship class in the galaxy, the Imperial Battlecruiser is still a sight to behold. It can carry an entire wing of Imperial Fighters, as well as its broadside battery of plasma weaponry. It was able to carry enough supplies to support extended voyages into enemy space. It was able to lay siege to entire star systems, owing to the fact that many of the star systems had only rudimentary spaceflight and no ability to shoot down orbital targets. Now, though, it is mostly suitable for merchants looking for something a little cheaper and with a little more punch.",
     "upgrades"    : {},
-    "carried_ships": {"oe_fighter": 2},
+    "fighters_carried": {"oe_fighter": 2},
+    "launch_cooldown": 1,
     "rotation"  : 0.008,
     "accel"      : 0.000008,
     "max_speed"   : 0.004,
@@ -340,7 +344,7 @@
     "full_name"   : "XIC Drillship Cruiser",
     "desc"       : "This ship goes on long missions for XIC, carrying wings of ships that manage the asteroid chunks as the drillship breaks asteroids up. It has through-and-through engines, essentially similar to those of an OE fighter but simpler with an eye towards power generation rather than speed. Its internal docking ring protects fighters from harsher bouts with microasteroids.",
     "upgrades"    : {"plasma200": 2, "mining_laser": 1},
-    "carried_ships": {"xic_prospector": 5},
+    "fighters_carried": {"xic_prospector": 5},
     "rotation"  : 0.0036,
     "accel"      : 0.0002,
     "max_speed"   : 0.006,
@@ -425,23 +429,12 @@
   },
 
   "league_passer":{
-    "mesh": "passer",
     "short_name"  : "League Fighter",
     "long_name"   : "Mod. Passer Fighter",
     "full_name"   : "FuHao Type 1200 League Passer Starfighter",
     "desc"       : "An economical, nimble, and aggressive fighter, upgunned for use by the League navy. It is the centerpiece of the league's 'swarm of small ships' doctrine-the league can field many of these small ships for every fighter the Loyal Suns can muster. It is the main contribution of the FuHao the League technology sharing agreement. The deal (especially next-of-kin benefits) that the cannon fodder piloting them get is pretty good, at least by League standards.",
-    "weapons"    : [],
     "upgrades"    : {"autocannon": 2, "plasma50": 1, "ejectorrack": 2},
-    "rotation"  : 0.004,
-    "accel"      : 0.0002,
-    "max_speed"   : 0.03,
-    "space"      : 30,
-    "cargo"      : 10,
-    "price"      : 200000,
-    "tech"       : {"league":1},
-    "max_fuel"   : 2,
-    "max_hp"     : 90,
-    "max_shields": 50
+    "tech"       : {"league":1}
   },
   "league_heavy_fighter":{
     "mesh": "heavy_fi",
@@ -523,7 +516,6 @@
     "long_name"   : "LS Tandem",
     "full_name"   : "Loyal Suns Heavy Starfighter Type 1153 rev C",
     "desc"       : "The Tandem is the legendary staple fighter of the Loyal Suns, known and feared across the sector. There is a direct and obvious line between the OE fighter and this ship, with similar intake ramscoops and essentially the same rocket engines, just scaled up. Many describe it as \"the OE fighter, perfected.\", but there are of course some tradeoffs. It isn't quite as nimble and it's quite a bit more expensive, and takes up more room on a flight deck, so they can't field as many. And there is certainly a smaller back-stock of parts",
-    "weapons"    : {},
     "upgrades"    : {"ne_beam": 2, "antigun":2},
     "rotation"  : 0.0125,
     "accel"      : 0.000125,
@@ -541,7 +533,6 @@
     "long_name"   : "LS Endurer Corvette",
     "full_name"   : "Loyal Suns Corvette Type 1160",
     "desc"       : "Designed to work in concert with the generally lighter and more agile (both tactically and strategically) fleets of the Northern Empire, the Endurer is a multi-role ship, making dangerous supply runs, bringing additional heat in firefights, and running back-water patrols. Endurer crews pride themselves on being able to serve many logistical roles that a frigate would with a smaller ship and a smaller crew by sacrificing the comforts of a larger ship.",
-    "weapons"    : {},
     "upgrades"    : {"ne_beam": 2, "antigun": 4, "ejectorrack": 2, "guidedmissile": 20},
     "rotation"  : 0.006,
     "accel"      : 0.00006,
@@ -559,7 +550,6 @@
     "long_name"   : "LS Retaliator",
     "full_name"   : "LS Battleship Type 1200 (\"Retaliator\")", 
     "desc"       : "This new and very modern warship is designed along the lines of a fighter rather than a frigate. There's something ideological here, the primacy of the starship pilot, of visceral combat, that gets at the heart of the Loyalist psyche. It's the largest ship in the galaxy where the captain's chair is also the pilot's seat. Its self sufficiency, another doctrinal holdover from conquering uncontacted planets, is key to its success; they can operate totally independently of the rest of the fleet, and support wings of deep-striking heavy fighters.",
-    "weapons"    : {},
     "upgrades"    : {"ne_beam": 2, "plasma200":2, "antigun": 2},
     "rotation"  : 0.01,
     "accel"      : 0.000075,
@@ -634,7 +624,6 @@
     "long_name"   : "Mod. Passer Fighter",
     "full_name"   : "FuHao Type 1200 Passer Starfighter",
     "desc"       : "Somehow the caudron cartel got a hold of the tooling to make Passers deep in the nebula, and the results are slick. While not tougher or faster, it's got an ace up its sleeve - it can become invisible to radar and tracking systems. This allows it, in the hands of a skilled flyer (and the family only recruits the best) to punch way above its tonnage.",
-    "weapons"    : {},
     "upgrades"    : {},
     "rotation"  : 0.004,
     "accel"      : 0.0002,
@@ -652,7 +641,6 @@
     "long_name"   : "Pirate Ahab",
     "full_name"   : "Accra Starworks Cetacea Freighter (Pirate \"Abah\" variant)",
     "desc"       : "One of these could probably cow many ships by size alone. A modified Cetacea chassis, the main thing it has in common with the ship that was originally launched is its enormousness. Pirates will try and upgun anything they can get their greasy hands on, but the Ahab probably takes the cake as far as \"most guns and armor stuffed onto a freighter.\" Unlike, say, the Sleeper, the Ahab build makes zero attempt to hide its true nature. And on a ship mounting so many dragnets, there is little need to.",
-    "weapons"    : {},
     "upgrades"    : {},
     "rotation"  : 0.004,
     "accel"      : 0.000005,
@@ -671,7 +659,6 @@
     "full_name"   : "Khanda Kalvari-type corvette (Caudron Upgrade)",
     "mesh":    "starhawk",
     "desc"       : "The cartel's (supposedly licensed) copy of the Kalvari is often the last thing seen by those who owe money to the Caudrons. And they'll only see it for about the time it takes to blink due to its stealth capabilities. Any space navy would kill for this capability, but its very existence is a closely guarded secret. The going theory, in fact, is that they've perfected jumping in and out of star systems. That is a very dangerous assumption to make, because it would imply that if you can't see a Caudron ship, it can't see you. Nothing could be further from the truth.",
-    "weapons"    : {},
     "upgrades"    : {},
     "rotation"  : 0.01,
     "accel"      : 0.0001,
@@ -685,23 +672,17 @@
     "max_shields": 200
   },
   "patsy" : {
-    "mesh"      : "shuttle",
+    "extends":    "shuttle",
     "short_name"  : "Patsy",
     "long_name"   : "Pirate Patsy",
     "full_name"   : "Jump capable shuttlecraft type 407 (Pirate \"Patsy\" upgrade)",
     "desc"       : "Just because you can fly around in an upgunned shuttlecraft does not mean it's a very good idea. For the pirate with more bravery than good sense. Life insurance not included.", 
-    "weapons"    : [],
     "upgrades"    : {"autocannon":3, "autocannonammo": 30},
-    "rotation"   : 0.005,
-    "accel"      : 0.00005,
-    "max_speed"   : 0.006,
+    "accel"      : 0.00015,
+    "max_speed"   : 0.0018,
     "space"      : 15,
     "cargo"      : 5,
-    "price"      : 1000,
-    "tech"       : {"pirate":1},
-    "max_hp"     : 50,
-    "max_shields": 25,
-    "max_fuel"   : 3
+    "tech"       : {"pirate":1}
   },
   "pirate_sleeper"  :{
     "short_name"  : "Sleeper",
@@ -745,7 +726,6 @@
     "long_name"   : "Baikonour Falcon",
     "full_name"   : "Baikonour Falcon, Rev 890",
     "desc"       : "Mid-sized mainstay of the defunct Baikonour navy, now mostly used by trader pilots on the western side of the galaxy, where they're cheaply available (and still carry the stigma-or pride-of the long defeated Baikonour federation)",
-    "weapons"    : [],
     "upgrades"    : {"autocannon": 4, "autocannonammo": 100},
     "rotation"  : 0.0002,
     "accel"      : 0.000013,
@@ -764,7 +744,6 @@
     "long_name"   : "Baikonur Tercel",
     "full_name"   : "Baikonur Tercel Rev 902",
     "desc"       : "A venerable starfighter, originally built by the now-conquered Baikonur Federation and now widely available as a second-line civilian defense ship, or the last resort of a desperate merchant captain who's sold everything else. Still favored by the occasional ace bounty hunter, who will invariably point out the unmatched visibility of the tercel's unique cockpit. Never mind that modern optics will let you (virtually) look straight through your ship, if that's how you like to fly.", 
-    "weapons"    : [],
     "upgrades"    : {"autocannon": 4},
     "rotation"   : 0.000028,
     "accel"      : 0.00008,

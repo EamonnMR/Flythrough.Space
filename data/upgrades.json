@@ -425,6 +425,14 @@
     "max_hull": 100,
     "tech": {"generic": 1},
     "desc": "Survival in space depends on keeping space on the outside and air on the inside. Sure, everyone drills for hull breach - reach for masks and gloves, don helmets, communicate by radio and hand sign. But at the end of the day, the ship that keeps its atmosphere usually wins the fight. Sometimes that means welding on additional pieces of armor over weak spots, even if the design does not call for them."
+  },
+  "fighter_bay_expansion": {
+    "name": "Fighter Bay Expansion",
+    "space": -50,
+    "price": 10000,
+    "tech": {"generic": 2},
+    "fighter_space": 10,
+    "desc": "Maintaining an entire fleet of fighters is hard enough on the ground, and it only gets more difficult in the vaccum of space. The enclosed area in this upgrade can not only house several fighters, but also the tooling and other support required to keep them spaceworthy."
   }
 }  
 

@@ -1,8 +1,9 @@
 import { _ } from "./singletons.js";
 import { overridable_default, utils_unit_tests, update_settings } from "./util.js";
 import { collision_unit_tests } from "./collision.js";
+import { fighters_unit_tests } from "./fighters.js";
 import { material_from_skin } from "./graphics.js";
-import { multiInherit } from "./util.js"
+import { multiInherit, CARRIED_PREFIX } from "./util.js"
 
 /* The root of everything here is 'assets.json'.
  * It lists asset files/data for special assets - 
@@ -25,6 +26,7 @@ const PROTOTYPES = {
     y: 0
   },
   ships: {
+    upgrades: {},
   },
 }
 
@@ -117,7 +119,7 @@ export class Data {
     return part_sys;
   }
 
-  preprocess(){
+  preprocess_particle_systems(){
     // Preprocess Particle systems
     // Deserialize BABYLON classes from json
     const COLOR_4_ATTRS = [
@@ -181,6 +183,16 @@ export class Data {
     for(let type of Object.keys(PROTOTYPES)){
       for(let item of Object.keys(this[type])){
         this[type][item] = this.get_base_type(item, type)
+      }
+    }
+  }
+
+  create_upgrades_for_carried_fighters(){
+    // We want to be able to track carried fighters as upgrades
+    for(let ship_id of Object.keys(this.ships)){
+      let ship = this.ships[ship_id]
+      if("as_carried" in ship){
+        this.upgrades[CARRIED_PREFIX + ship_id] = ship.as_carried;
       }
     }
   }
@@ -316,13 +328,15 @@ export function load_all(engine, scene, done){
   xhr.onload = () => {
     if (xhr.status == 200){
       load_assets(JSON.parse(xhr.responseText), scene, data_mgr, () => {
-        data_mgr.preprocess();
+        data_mgr.preprocess_particle_systems();
         data_mgr.resolve_proto_chain();
+        data_mgr.create_upgrades_for_carried_fighters();
         update_settings(); 
         if(_.settings.run_tests){
           data_mgr.validate();
           collision_unit_tests();
           utils_unit_tests();
+          fighters_unit_tests();
         }
         done(data_mgr);
       });

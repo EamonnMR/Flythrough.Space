@@ -7,6 +7,7 @@ import { DEFAULT_SETTINGS } from "./default_settings.js";
 
 const ARC = Math.PI * 2;
 const SETTING_PREFIX = "_setting:";
+export const CARRIED_PREFIX = "__carried_";
 
 let url_params = new URLSearchParams(window.location.search);
 
@@ -254,6 +255,16 @@ export function assert_false(value, desc){
   if (value){
     console.log(`TEST FAILURE: ${desc}`);
     console.log(`Expected false, got ${value}`);
+  }
+}
+
+export function assert_equal(lval, rval, desc){
+  if(!(JSON.stringify(lval) === JSON.stringify(rval))){
+    console.log(`Test Failure: ${desc}`);
+    console.log(`Expected`);
+    console.log(lval);
+    console.log(`To equal`);
+    console.log(rval);
   }
 }
 
