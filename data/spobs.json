@@ -805,6 +805,41 @@
   "Dealer's End": {
     "govt": "loyal",
     "text": "Kelly Dealer was a famous explorer in the 800s, and this colony is named in her honor. It commemorates the greatest western extent of her exploration, that much is known for sure. It is also said that when she arrived she found something here that told her that she was done and that nothing useful would be found further west. What that was appears to be lost to history."
+  },
+  "Courthope Reef": {
+    "govt": "league",
+    "sprite": "reef",
+    "text": "When league scouts first reached Courthope Reef, they assumed that they where about to make first contact with some far flung civilization. However, if it was a station, it was abandoned. And the jury is still out on if it's a station at all-some even theorize that it represents the empty shell of some enormous long-dead (or, worse, dormant or absent) organism.\n Regardless of its origin, the 'Reef' is now a hotly contested commodity because it is the only economical source of a very useful substance called Catalite. As the only known reserve of the substance, it's actually worth braving the journey back through pirate-infested space.",
+    "trade":{
+      "metal": "high",
+      "grain": "high",
+      "ore": "high",
+      "catalite": "low"
+    }
+  },
+  "Koungeul": {
+    "govt": "free",
+    "sprite": "koungeul",
+    "text": "Koungeul has emerged as the destination for Catalite traders, with many refineries on the planet benefitting from the boom. It's a tough business, of course, since it needs to be transported all the way from the Courthope Reef to here (and then turned into various products for sale throughout the Freehold.)",
+    "trade": {
+      "ore": "low",
+      "catalite": "high"
+    },
+    "shipyard": true,
+    "custom": true,
+    "tech":{
+			"accra":3,
+			"generic":2,
+			"cas":2
+    }
+  },
+  "Miranda": {
+    "govt": "league",
+    "sprite": "miranda",
+    "text": "The League's main port for Catalite. In the midst of an economic expansion due to the League's recent control of the Courthope Reef that has lead to several major promotions.",
+    "trade": {
+      "catalite": "high"
+    }
   }
-    
+
 }

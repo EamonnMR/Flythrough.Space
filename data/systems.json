@@ -555,6 +555,9 @@
     "x":954,
     "y":1393,
     "govt":"free",
+    "spobs": [
+      "Koungheul"
+    ],
     "npc_average": 2,
     "npcs": [
       "pirate_raid",
@@ -600,6 +603,18 @@
       "Arroyo",
       "Renbrook",
       ".167"
+    ],
+    "spobs": [
+      "Miranda"
+    ],
+    "npc_average": 4,
+    "npcs": [
+      "pirate_raid",
+      "pirate_expedition",
+      "trader_danger",
+      "league_cap",
+      "league_pt",
+      "bounty"
     ]
   },
   "Karmack":{
@@ -2908,24 +2923,35 @@
     "y":1900,
     "links":[
       ".373",
-      ".375",
+      "Cranbrook",
       ".377"
     ]
   },
-  ".375":{
+  "Cranbrook":{
     "x":967,
     "y":1932,
     "links":[
       ".374",
       ".376",
       ".377"
+    ],
+    "spobs": [
+      "Courthope Reef"
+    ],
+    "npc_average": 3,
+    "npcs": [
+      "trader_lowtech",
+      "trader_danger",
+      "pirate_raid",
+      "pirate_expedition",
+      "caudron_gang"
     ]
   },
   ".376":{
     "x":1079,
     "y":1966,
     "links":[
-      ".375",
+      "Cranbrook",
       ".377"
     ]
   },
@@ -2934,7 +2960,7 @@
     "y":1990,
     "links":[
       ".374",
-      ".375",
+      "Cranbrook",
       ".376"
     ]
   },

@@ -567,6 +567,16 @@
       "img": "assets/sprites/flare.png",
       "count": 10000,
       "size": 256
+    },
+    "reef": {
+      "img": "assets/planets/reef.png",
+      "count": 1,
+      "size": 900
+    },
+    "miranda": {
+      "img": "assets/planets/miranda.png",
+      "size": 500,
+      "count": 5
     }
   },
   "data": {

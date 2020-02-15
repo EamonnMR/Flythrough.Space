@@ -50,7 +50,7 @@
     ]
   },
   "caudron_gang": {
-    "govt": "orasos",
+    "govt": "cartel",
     "ships": [
       "caudron_corvette",
       "pertinax"
