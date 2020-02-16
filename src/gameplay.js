@@ -46,6 +46,7 @@ export class GamePlayState extends ViewState {
       ai_system,
       speedLimitSystem,
       spaceFrictionSystem,
+      fighterLaunchSystem,
       weaponSystem,
       velocitySystem,
       modelPositionSystem,

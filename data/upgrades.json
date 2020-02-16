@@ -433,6 +433,15 @@
     "tech": {"generic": 2},
     "fighter_space": 10,
     "desc": "Maintaining an entire fleet of fighters is hard enough on the ground, and it only gets more difficult in the vaccum of space. The enclosed area in this upgrade can not only house several fighters, but also the tooling and other support required to keep them spaceworthy."
+  },
+  "fighter_bay": {
+    "name": "Fighter Bay",
+    "space": -35,
+    "price": 30000,
+    "tech": {"generic": 3},
+    "fighter_space": 5,
+    "fighter_launch_per_second": 1,
+    "desc": "It's by no means a simple procedure, but with this upgrade a ship can be retrofitted to launch fighters even if your ship wasn't originally designed to carry them. You'll need to make room, of course, and your mess hall may not be equipped to deal with a ravenous space-jockey squadron, but many freigher captains are willing to make the trade for extra protection. Make sure you can also afford to purchase fighters-they're not included."
   }
 }  
 

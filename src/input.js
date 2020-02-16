@@ -44,22 +44,45 @@ export function inputSystem (entMan) {
         rotate(entity, -1 * angle );
         entity.direction_delta = angle;
       }
-//      else {
-//        entity.direction_delta = 0;
-//      }
     }
     if (inputStates.shoot) {
       entity.shoot_primary = true;
     }
+    if (inputStates.launch_fighters){
+      entity.launching_fighters = true;
+    } else {
+      delete entity.launching_fighters;
+    }
   }
 };
 
+// TODO: Use this to handle up and down
+const TOGGLED_INPUT_MAP = {
+  38: "forward",
+  37: "left",
+  39: "right",
+  17: "shoot",
+  81: "launch_fighters",  // q
+  82: "recall_fighters",  // r
+}
+
+// TODO: Use this to handle single presses
+const SINGLE_PRESS_INPUT_MAP = {
+}
+
 let inputStates = {
-  'forward': false,
-  'left': false,
-  'right': false,
-  'shoot': false
+  forward: false,
+  left: false,
+  right: false,
+  shoot: false,
+  launch_fighters: false,
 };
+
+/*
+for(let state of TOGGLED_INPUT_MAP){
+  inputStates[state] = false;
+}
+*/
 
 function handleKeyDown ( event ){
   switch(event.keyCode){
@@ -74,6 +97,12 @@ function handleKeyDown ( event ){
       break;
     case 17:
       inputStates.shoot = true;
+      break;
+    case 81: // q
+      inputStates.launch_fighters = true;
+      break;
+    case 82: // r
+      // TODO: Recall Fighters
       break;
   }
 };
@@ -92,6 +121,12 @@ function handleKeyUp ( event ){
     case 17:
       inputStates.shoot = false;
       break;
+    case 81: // q
+      inputStates.launch_fighters = false;
+      break;
+    case 82: // r
+      // TODO: Recall Fighters = false
+      break;
     case 27: // escape
       game_ctrl.toggle_pause();
       break;
@@ -109,6 +144,7 @@ function handleKeyUp ( event ){
       break;
     case 77: // m
       game_ctrl.open_map();
+
     case 192: // `
       game_ctrl.select_closest();
       break;

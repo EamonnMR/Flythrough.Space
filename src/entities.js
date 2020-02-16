@@ -7,8 +7,15 @@ import {
 } from "./graphics.js";
 
 export function fighterFactory(type, mothership){
-  let ship = shipFactory(type);
-  ship.ai = {"state": passive};
+  let ship = shipFactory(
+    type,
+    {
+      x: mothership.position.x,
+      y: mothership.position.y,
+    },
+    mothership.govt ? mothership.govt : null
+  );
+  ship.ai = {"state": "passive"};
   ship.mothership = mothership.id;
   ship.radar_pip = _.hud.widgets.radar_box.get_pip(4, mothership.player ?
     "#00FF00FF" : "#FF0000FF"
@@ -17,10 +24,7 @@ export function fighterFactory(type, mothership){
   if(mothership.player_aligned){
     ship.player_aligned = true;
   }
-  ship.position = {
-    x: mothership.position.x,
-    y: mothership.position.y,
-  }
+  return ship;
 }
 
 export function npcShipFactory(type, position, ai, govt){

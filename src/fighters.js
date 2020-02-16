@@ -12,19 +12,19 @@ import {
   assert_equal,
   CARRIED_PREFIX,
 } from "./util.js";
-
-
+import { _ } from "./singletons.js";
 
 export function fighterLaunchSystem(entMan){
   for(let entity of entMan.get_with(
-    ["launching_fighters", "entity.fighter_launch_cooldown"]
+    ["launching_fighters", "fighter_launch_cooldown_divisor"]
   )){
     if (entity.launching_fighters
-      && entity.carried_fighters 
       && ! entity.fighter_launch_timer
     ){
       if (launch_fighter(entity)){
-        entity.fighter_launch_timer = entity.fighter_launch_cooldown;
+        entity.fighter_launch_timer = get_cooldown(
+          entity.fighter_launch_per_second
+        );
       }
     } else {
       entity.fighter_launch_timer -= entMan.delta_time;
@@ -41,11 +41,17 @@ export function fighterDockSystem(){
 
 function launch_fighter(mothership){
   let type = pop_fighter(mothership.upgrades);
+  // TODO: Customization goes here
+  let ship_dat = _.data.ships[type];
   if(type){
-    _.entities.add(fighterFactory(type, mothership));
+    _.entities.insert(fighterFactory(ship_dat, mothership));
     return true;
   }
   return false;
+}
+
+function get_cooldown(divisor){
+  return 1000 / divisor
 }
 
 function pop_fighter(upgrades){

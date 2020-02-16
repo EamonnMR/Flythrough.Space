@@ -222,9 +222,11 @@
         }
       }
     },
-
-    "cas_fighter": {"file": "casamance_fighter.babylon"},
+    "mamba": {
+      "file": "mamba.babylon"
+    },
     "free_carrier": {
+
       "file": "free_carrier.babylon",
       "default_skin": "free",
       "skins": {
