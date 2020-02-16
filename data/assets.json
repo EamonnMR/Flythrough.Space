@@ -223,7 +223,34 @@
       }
     },
     "mamba": {
-      "file": "mamba.babylon"
+      "file": "mamba.babylon",
+      "default_skin": "free",
+      "skins": {
+        "merchant": {
+          "diffuse": "mamba_merchant.png",
+          "emissive": "mamba_emissive.png",
+          "custom_emissive_color": [1,1,1,1]
+        },
+        "merchant/dark":{
+          "diffuse": "mamba_merchant_dark.png"
+        },
+        "free": {
+          "diffuse": "mamba_free.png",
+          "emissive": "mamba_emissive.png",
+          "custom_emissive_color": [1,1,0.25,1]
+        },
+        "free/dark":{
+          "diffuse": "mamba_free_dark.png"
+        },
+        "pirate": {
+          "diffuse": "mamba_pirate.png",
+          "emissive": "mamba_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark":{
+          "diffuse": "mamba_pirate_dark.png"
+        }
+      }
     },
     "free_carrier": {
 
