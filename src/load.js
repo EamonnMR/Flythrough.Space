@@ -187,6 +187,17 @@ export class Data {
     }
   }
 
+  set_type_keys(){
+    const TYPES = ["ships"];
+    // This implements the 'extends' feature, and allows
+    // default values to be set for game objects.
+    for(let type of TYPES){
+      for(let item of Object.keys(this[type])){
+        this[type][item].type = item;
+      }
+    }
+  }
+
   create_upgrades_for_carried_fighters(){
     // We want to be able to track carried fighters as upgrades
     for(let ship_id of Object.keys(this.ships)){
@@ -336,6 +347,7 @@ export function load_all(engine, scene, done){
   xhr.onload = () => {
     if (xhr.status == 200){
       load_assets(JSON.parse(xhr.responseText), scene, data_mgr, () => {
+        data_mgr.set_type_keys();
         data_mgr.preprocess_particle_systems();
         data_mgr.resolve_proto_chain();
         data_mgr.create_upgrades_for_carried_fighters();
