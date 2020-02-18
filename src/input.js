@@ -53,6 +53,13 @@ export function inputSystem (entMan) {
     } else {
       delete entity.launching_fighters;
     }
+    if (input_states.fighters_attack){
+      entity.order = "attack_target";
+    } else if (input_states.recall_fighters){
+      entity.order = "recall";
+    } else {
+      delete entity.order;
+    }
   }
 };
 
@@ -64,6 +71,7 @@ const TOGGLED_INPUT_MAP = {
   17: "shoot",
   81: "launch_fighters",  // q
   82: "recall_fighters",  // r
+  70: "fighters_attack",  // f
 }
 
 // TODO: Use this to handle single presses
@@ -106,6 +114,7 @@ function handleKeyUp ( event ){
       break;
     case 77: // m
       game_ctrl.open_map();
+      break;
     case 192: // `
       game_ctrl.select_closest();
       break;
