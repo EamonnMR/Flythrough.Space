@@ -57,6 +57,7 @@ export class GamePlayState extends ViewState {
       flashSystem,
       collisionDetectionSystem,
       radarFollowSystem,
+      fighterDockSystem,
       deletionSystem,
       hudUpdateSystem,
       warpSystemFactory(this), // TODO: Can we disentangle this?

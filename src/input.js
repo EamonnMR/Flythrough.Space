@@ -60,6 +60,7 @@ export function inputSystem (entMan) {
     } else {
       delete entity.order;
     }
+    console.log(entity.order);
   }
 };
 

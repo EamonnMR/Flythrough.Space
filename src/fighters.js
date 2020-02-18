@@ -11,8 +11,11 @@ import {
   assert_false,
   assert_equal,
   CARRIED_PREFIX,
+  distance,
 } from "./util.js";
 import { _ } from "./singletons.js";
+
+const RECALL_DIST = 10;
 
 export function fighterLaunchSystem(entMan){
   for(let entity of entMan.get_with(
@@ -36,7 +39,24 @@ export function fighterLaunchSystem(entMan){
 }
 
 
-export function fighterDockSystem(){
+export function fighterDockSystem(entMan){
+  for(let entity of entMan.get_with(
+    ["mothership", "position"]
+  )){
+    let mothership = entMan.get(entity.mothership);
+    if(
+      mothership &&
+      mothership.order &&
+      mothership.order == "recall" &&
+      distance(entity.position, mothership.position) < RECALL_DIST){
+      dock(mothership, entity)
+    }
+  }
+}
+
+function dock(mothership, entity){
+  push_fighter(mothership.upgrades, entity.type);
+  entity.remove = true;
 }
 
 function launch_fighter(mothership){
@@ -74,6 +94,15 @@ function pop_fighter(upgrades){
     delete upgrades[key];
   }
   return type;
+}
+
+function push_fighter(upgrades, fighter_type){
+  let key = CARRIED_PREFIX + fighter_type;
+  if(key in upgrades){
+    upgrades[key] += 1;
+  } else {
+    upgrades[key] = 1;
+  }
 }
 
 function get_fighter_keys(upgrades){
