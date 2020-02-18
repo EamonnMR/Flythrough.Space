@@ -192,7 +192,15 @@ export class Data {
     for(let ship_id of Object.keys(this.ships)){
       let ship = this.ships[ship_id]
       if("as_carried" in ship){
-        this.upgrades[CARRIED_PREFIX + ship_id] = ship.as_carried;
+        this.upgrades[CARRIED_PREFIX + ship_id] = Object.assign(
+          {
+            name: ship.long_name,
+            tech: ship.tech,
+            price: ship.price * 0.75,
+            desc: ship.desc,
+          },
+          ship.as_carried
+        );
       }
     }
   }
