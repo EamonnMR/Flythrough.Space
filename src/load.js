@@ -168,6 +168,10 @@ export class Data {
 
   get_base_type(name, type){
     let parent = this[type][name];
+    if(parent === undefined){
+      console.log(`*** Parent not found: ${type}/${name}`);
+      return PROTOTYPES[type];
+    }
     return Object.assign(
       Object.create(
         "extends" in parent
