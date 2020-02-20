@@ -73,8 +73,8 @@
     "govt": "free",
     "ships": [
       "free_corvette",
-      "free_frigate",
-      "free_carrier"
+      "yoeman",
+      "taoiseach"
     ]
   },
   "league_cap": {

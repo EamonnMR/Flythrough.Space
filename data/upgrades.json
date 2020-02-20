@@ -442,6 +442,12 @@
     "fighter_space": 5,
     "fighter_launch_per_second": 1,
     "desc": "It's by no means a simple procedure, but with this upgrade a ship can be retrofitted to launch fighters even if your ship wasn't originally designed to carry them. You'll need to make room, of course, and your mess hall may not be equipped to deal with a ravenous space-jockey squadron, but many freigher captains are willing to make the trade for extra protection. Make sure you can also afford to purchase fighters-they're not included."
+  },
+  "cloak":{
+    "name": "Stealth Tech",
+    "tech": {"caudron": 3},
+    "cloak": true,
+    "desc": "Target acquisition relies on a few factors. Cameras using machine vision track a target in visual light, radar tracks a known target's position by bouncing radiation off of it, and IR scopes can see a target's drive signature against the cold of space. The feverish scientists on Nightside, however, have developed a treatment for a ship's hull that will eliminate almost all reflectivity, rendering the ship effectively invisible to both the naked eye and sensors. Sure, they might see you blocking the light of distant stars, but in the heat of battle, for all intents and purposes, you're invisible."
   }
 }  
 

@@ -253,7 +253,6 @@
       }
     },
     "free_carrier": {
-
       "file": "free_carrier.babylon",
       "default_skin": "free",
       "skins": {
@@ -283,6 +282,37 @@
         }
       }
     },
+    "yoeman": {
+      "file": "yoeman.babylon",
+      "default_skin": "free",
+      "skins": {
+        "merchant": {
+          "diffuse": "yoeman_merchant.png",
+          "emissive": "yoeman_emissive.png",
+          "custom_emissive_color": [1,1,1,1]
+        },
+        "merchant/dark":{
+          "diffuse": "yoeman_merchant_dark.png"
+        },
+        "free": {
+          "diffuse": "yoeman_free.png",
+          "emissive": "yoeman_emissive.png",
+          "custom_emissive_color": [1,1,0.25,1]
+        },
+        "free/dark":{
+          "diffuse": "yoeman_free_dark.png"
+        },
+        "pirate": {
+          "diffuse": "yoeman_pirate.png",
+          "emissive": "yoeman_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark":{
+          "diffuse": "yoeman_pirate_dark.png"
+        }
+      }
+    },
+
     "cas_corv": {"file": "casamance_corv.babylon"},
     "oxana": {
       "file": "oxana.babylon",
@@ -308,7 +338,6 @@
     },
     "courier": {"file": "courier.babylon"},
     "plasma_cannon": {"file": "plasma_cannon.babylon"},
-    "freehold_frigate": {"file": "freehold_frigate.babylon"},
     "tercel": {
       "file": "tercel.babylon",
       "fixed": [

@@ -245,26 +245,26 @@
     }
   },
 
-   "free_frigate"  :{
-    "mesh"        : "freehold_frigate",
-    "short_name"  : "Yeoman",
-    "long_name"   : "Freehold \"Yoeman\" Frigate",
-    "full_name"   : "Accrs Starworks Type 1123 R Frigate",
-    "desc"       :  "Workhorse of the Freehold's eclectic fleet. Its silhouette is often the first sign that relief is on its way. Crews of Yoeman tend to be drawn from a single world, and as such they tend towards local flavor, naming the ship after some local landmark in their home port.",
+   "yoeman"  :{
+    "mesh"        : "yoeman",
+    "short_name"  : "Fr. Yeoman",
+    "long_name"   : "Freehold Yoeman",
+    "full_name"   : "Accrs Starworks Type 1123 R \"Yoeman\" Frigate",
+    "desc"       :  "Workhorse of the Freehold's eclectic fleet. Its silhouette is often the first sign that relief is on its way. Crews of Yoeman tend to be drawn from a single world, and as such they tend towards local flavor, naming the ship after landmark in their home port.",
     "upgrades"    : {"plasma200":2},
-    "rotation"  : 0.006,
-    "accel"      : 0.000008,
-    "max_speed"   : 0.0021,
+    "rotation"  : 0.003,
+    "accel"      : 0.00015,
+    "max_speed"   : 0.005,
     "space"      : 80,
     "cargo"      : 40,
     "price"      : 500000,
-    "max_fuel"       : 3,
+    "max_fuel"   : 4,
     "tech"       : {"cas":3},
     "max_hp"     : 500,
     "max_shields": 250
   },
  
-  "free_carrier":{
+  "taoiseach":{
     "short_name"  : "Fr. Taoiseach",
     "long_name"   : "Freehold Taoiseach",
     "full_name"   : "Accra Starworks Type 1125 \"Taoiseach\" carrier",
@@ -459,22 +459,14 @@
     "max_shields": 100
   },
   "league_corvette":{
+    "extends"     : "civ_corvette",
     "short_name"  : "League Corvette",
     "long_name"   : "League Kalvari Corvette",
     "full_name"   : "Khanda Mod. Kalvari-type corvette (Leauge Variant)",
-    "mesh":    "starhawk",
     "desc"       : "This is the league upgrade of the Kalvari, a small but fast and powerful starship. It is flexible, used for both patrol missions, daring raids, and transporting executives in relative comfort. A favorite of the League's special services division, or so they say.",
     "upgrades"    : {"plasma0w": 4, "ejectorrack": 2, "dumbfiremissile": 20},
-    "rotation"   : 0.008,
-    "accel"      : 0.00008,
-    "max_speed"   : 0.02,
-    "space"      : 50,
-    "cargo"      : 30,
     "price"      : 800000,
-    "tech"       : {"league":3},
-    "max_fuel"   : 3,
-    "max_hp"     : 350,
-    "max_shields": 200
+    "tech"       : {"league":3}
   },
 
   "league_argosy":{
@@ -658,22 +650,14 @@
     "max_shields": 325
   },
   "caudron_corvette":{
+    "extends": "civ_corvette",
     "short_name"  : "Corvette",
     "long_name"   : "Caudron Corvette",
     "full_name"   : "Khanda Kalvari-type corvette (Caudron Upgrade)",
-    "mesh":    "starhawk",
     "desc"       : "The cartel's (supposedly licensed) copy of the Kalvari is often the last thing seen by those who owe money to the Caudrons. And they'll only see it for about the time it takes to blink due to its stealth capabilities. Any space navy would kill for this capability, but its very existence is a closely guarded secret. The going theory, in fact, is that they've perfected jumping in and out of star systems. That is a very dangerous assumption to make, because it would imply that if you can't see a Caudron ship, it can't see you. Nothing could be further from the truth.",
-    "upgrades"    : {},
-    "rotation"  : 0.01,
-    "accel"      : 0.0001,
-    "max_speed"   : 0.06,
-    "space"      : 70,
-    "cargo"      : 40,
+    "upgrades"    : {"cloak": 1},
     "price"      : 8000000,
-    "tech"       : {"caudron":3},
-    "max_fuel"   : 5,
-    "max_hp"     : 350,
-    "max_shields": 200
+    "tech"       : {"caudron":3}
   },
   "patsy" : {
     "extends":    "shuttle",
@@ -689,40 +673,33 @@
     "tech"       : {"pirate":1}
   },
   "pirate_sleeper"  :{
+    "extends"     : "courier",
     "short_name"  : "Sleeper",
-    "mesh": "courier", 
     "long_name"   : "Pirate Sleeper",
     "full_name"   : "Accra Starworks Courier (Pirate \"Sleeper\" variant)",
     "desc"       : "Faster than it looks, tougher than it looks, and of course deadlier than it looks. Many a captain has been lured in by the benign appearance of a courier only to be surprise-attacked by one of these.",
     "upgrades"    : {"autocannon": 2, "plasma50": 2},
-    "rotation"  : 0.008,
-    "accel"      : 0.000013,
-    "max_speed"   : 0.007,
-    "space"      : 14,
-    "cargo"      : 50,
+    "accel"      : 0.000016,
+    "max_speed"   : 0.008,
+    "space"      : 25,
+    "cargo"      : 30,
     "price"      : 20000,
-    "tech"       : {"pirate":2},
-    "max_fuel"   : 4,
-    "max_hp"     : 500,
-    "max_shields": 250
+    "tech"       : {"pirate":2}
   },
   "triggerman":{
-    "mesh"        : "argosy",
+    "extends"        : "argosy",
     "short_name"  : "Triggerman",
     "long_name"   : "Pirate Triggerman",
     "full_name"   : "Khanda Lothal-type Argosy (Pirate \"Triggerman\" upgrade)",
     "desc"       : "Of course pirates would use a ship designed to fight pirates. A cruel irony. A fine ship as well, though more of a sidegrade than an upgrade, this removes the pretense of a trading ship altogether, sacrificing cargo capacity for raw power.", 
     "upgrades"    : {"plasma50": 3},
-    "rotation"  : 0.0065,
-    "accel"      : 0.00001,
-    "max_speed"   : 0.009,
-    "space"      : 40,
-    "cargo"      : 100,
-    "price"      : 70000,
-    "tech"       : {"pirate":3},
-    "max_fuel"   : 4,
-    "max_hp"     : 600,
-    "max_shields": 400
+    "rotation"  : 0.0060,
+    "accel"      : 0.000009,
+    "max_speed"   : 0.008,
+    "space"      : 100,
+    "cargo"      : 40,
+    "price"      : 80000,
+    "tech"       : {"pirate":3}
   },
   "falcon"  :{
     "mesh"        : "falcon",
