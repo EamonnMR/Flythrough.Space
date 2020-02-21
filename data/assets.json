@@ -635,6 +635,11 @@
       "img": "assets/planets/miranda.png",
       "size": 500,
       "count": 5
+    },
+    "koungheul" {
+      "img": "assets/planets/kounghuel.png",
+      "count": 1,
+      "size": 325
     }
   },
   "data": {

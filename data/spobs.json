@@ -817,9 +817,9 @@
       "catalite": "low"
     }
   },
-  "Koungeul": {
+  "Koungheul": {
     "govt": "free",
-    "sprite": "koungeul",
+    "sprite": "koungheul",
     "text": "Koungeul has emerged as the destination for Catalite traders, with many refineries on the planet benefitting from the boom. It's a tough business, of course, since it needs to be transported all the way from the Courthope Reef to here (and then turned into various products for sale throughout the Freehold.)",
     "trade": {
       "ore": "low",

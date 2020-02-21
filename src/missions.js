@@ -194,6 +194,9 @@ function get_spob_same_govt(){
       && 'spobs' in system_dat){
       for( let spob of system_dat.spobs ){
         let spob_dat = _.data.spobs[spob];
+        if(spob_dat === undefined){
+          console.log(`!!! Missing data for ${spob}`);
+        }
         if(spob_dat.govt === same_govt){
           possibilities.push({
             "spob": spob,
