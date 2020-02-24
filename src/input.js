@@ -60,8 +60,7 @@ export function inputSystem (entMan) {
     } else {
       delete entity.order;
     }
-    console.log(entity.order);
-  }
+  }  
 };
 
 // TODO: Use this to handle up and down

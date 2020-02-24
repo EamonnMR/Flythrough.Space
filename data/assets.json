@@ -636,10 +636,15 @@
       "size": 500,
       "count": 5
     },
-    "koungheul" {
+    "koungheul": {
       "img": "assets/planets/kounghuel.png",
       "count": 1,
       "size": 325
+    },
+    "civ_station": {
+      "img": "assets/planets/civ_station.png",
+      "count": 10,
+      "size": 650
     }
   },
   "data": {

@@ -2,7 +2,10 @@ import { _ } from "./singletons.js";
 import { overridable_default, utils_unit_tests, update_settings } from "./util.js";
 import { collision_unit_tests } from "./collision.js";
 import { fighters_unit_tests } from "./fighters.js";
-import { test_every_item_available_somewhere } from "./tech.js";
+import { 
+  test_every_item_available_somewhere,
+  test_every_spob_with_tech_sells_things
+} from "./tech.js";
 import { material_from_skin } from "./graphics.js";
 import { multiInherit, CARRIED_PREFIX } from "./util.js"
 
@@ -360,6 +363,7 @@ export function load_all(engine, scene, done){
         if(_.settings.run_tests){
           data_mgr.validate();
           test_every_item_available_somewhere(data_mgr);
+          test_every_spob_with_tech_sells_things(data_mgr);
           collision_unit_tests();
           utils_unit_tests();
           fighters_unit_tests();
