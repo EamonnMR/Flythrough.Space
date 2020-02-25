@@ -407,4 +407,15 @@ export function material_from_skin(skin_data, dark){
   return mat
 }
 
+export function get_beam(beam_info){
+  // TODO: Settle on a way to draw a nice beam
+  return {
+    position: {
+      x: 0,
+      y: 0
+    },
+    rotate: () => {},
+  };
+}
+
 

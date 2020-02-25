@@ -3,7 +3,9 @@ import {
   distance,
   is_cheat_enabled,
   assert_true,
-  assert_false
+  assert_false,
+  vector_plus,
+  rect_from_polar,
 } from "./util.js";
 
 
@@ -13,7 +15,11 @@ export function collisionDetectionSystem(entMan){
     let current = colliders.pop();
     for (let other of colliders) {
       if ( is_colliding( current, other)){
+        // if('reflect' in current && other.id !== 1){
+        //   debugger;
+        // }
         if ( filter_collisions(current, other)){
+
           shot_handler(current, other, entMan);
         }
         if ( filter_collisions(other, current)){
@@ -28,9 +34,13 @@ function is_colliding(l, r){
   if('radius' in l.collider && 'radius' in r.collider){
     return circle_circle_collision(l, r);
   } else if ('radius' in l.collider && 'notunnel' in r.collider){
-    return circle_line_collision(l, [r.position, r.previous_position]);
+    return circle_line_collision(l, notunnel_line(r));
   } else if ('notunnel' in l.collider && 'radius' in r.collider){
-    return circle_line_collision(r, [l.position, l.previous_position]);
+    return circle_line_collision(r, notunnel_line(l));
+  } else if ('length' in l.collider && 'radius' in r.collider){
+    return circle_line_collision(r, beam_line(l));
+  } else if ('radius' in l.collider && 'length' in r.collider){
+    return circle_line_collision(l, beam_line(r));
   }
 }
 
@@ -101,7 +111,8 @@ if(is_cheat_enabled("noclip")){
 }
 
 function filter_collisions(shot, entity){
-  return ('shot' in shot
+  return (
+    'shot' in shot
     && 'hittable' in entity
     && !gov_test(shot, entity)
     && !player_agent_test(shot, entity)
@@ -110,6 +121,24 @@ function filter_collisions(shot, entity){
 
 function gov_test(shot, entity){
   return 'ignoregov' in shot && 'govt' in entity && shot.ignoregov === entity.govt;
+}
+
+function notunnel_line(entity){
+  /*
+   * To prevent point colliders from tunneling, get a line
+   * between their last position and their current position.
+   */
+  return [entity.position, entity.previous_position]
+}
+
+function beam_line(entity){
+  return [entity.position, vector_plus(
+    entity.position,
+    rect_from_polar(
+      entity.direction,
+      entity.collider.length
+    )
+  )]
 }
 
 /* Unit tests
