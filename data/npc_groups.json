@@ -50,7 +50,7 @@
     ]
   },
   "caudron_gang": {
-    "govt": "orasos",
+    "govt": "cartel",
     "ships": [
       "caudron_corvette",
       "pertinax"
@@ -62,19 +62,19 @@
       "xic_drillship"
     ]
   },
-  "cas_patrol": {
-    "govt": "direc",
+  "free_patrol": {
+    "govt": "free",
     "ships": [
-      "cas_corvette",
-      "cas_oe_fighter"
+      "anansi",
+      "free_fighter"
     ]
   },
-  "cas_capital": {
-    "govt": "direc",
+  "free_capital": {
+    "govt": "free",
     "ships": [
-      "cas_corvette",
-      "cas_frigate",
-      "cas_carrier"
+      "anansi",
+      "yoeman",
+      "taoiseach"
     ]
   },
   "league_cap": {
@@ -120,14 +120,14 @@
     ]
   },
   "ls_pt": {
-    "govt": "drone",
+    "govt": "loyal",
     "ships": [
       "ls_heavyfi",
       "ls_vette"
     ]
   },
   "ls_raid": {
-    "govt": "drone",
+    "govt": "loyal",
     "ships": [
       "ls_vette",
       "ls_retaliator",
@@ -135,21 +135,21 @@
     ]
   },
   "ls_boss": {
-    "govt": "drone",
+    "govt": "loyal",
     "ships": [
       "ls_retaliator",
       "ls_absolver"
     ]
   },
   "ls_noncom": {
-    "govt": "drone",
+    "govt": "loyal",
     "ships": [
       "ls_provider",
       "ls_runabout"
     ]
   },
   "itaska": {
-    "govt": "pen",
+    "govt": "itaska",
     "ships": [
       "itaska_deathcap",
       "itaska_hemlock",

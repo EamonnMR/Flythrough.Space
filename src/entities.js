@@ -6,6 +6,27 @@ import {
   get_engine_particle_systems,
 } from "./graphics.js";
 
+export function fighterFactory(type, mothership){
+  let ship = shipFactory(
+    type,
+    {
+      x: mothership.position.x,
+      y: mothership.position.y,
+    },
+    mothership.govt ? mothership.govt : null
+  );
+  ship.ai = {"state": "passive"};
+  ship.mothership = mothership.id;
+  ship.radar_pip = _.hud.widgets.radar_box.get_pip(4, mothership.player ?
+    "#00FF00FF" : "#FF0000FF"
+  );
+  ship.overlay = _.hud.get_overlay_texture(ship);
+  if(mothership.player_aligned){
+    ship.player_aligned = true;
+  }
+  return ship;
+}
+
 export function npcShipFactory(type, position, ai, govt){
   let ship = shipFactory(type, position, govt);
   ship.ai = ai;
@@ -56,6 +77,7 @@ export function shipFactory(type, position, govt=null){
 
 
 export function planetFactory (name, index){
+
   let planet = Object.create(_.data.spobs[name]);
   // Scale
   planet.x = planet.x / 3;

@@ -29,7 +29,11 @@ import {
   has_sufficient_distance,
   has_sufficient_fuel,
   warpSystemFactory,
-} from "./hyperspace.js"
+} from "./hyperspace.js";
+import {
+  fighterLaunchSystem,
+  fighterDockSystem,
+} from "./fighters.js";
 let MIN_LAND_DISTANCE = 50
 
 export class GamePlayState extends ViewState {
@@ -42,6 +46,7 @@ export class GamePlayState extends ViewState {
       ai_system,
       speedLimitSystem,
       spaceFrictionSystem,
+      fighterLaunchSystem,
       weaponSystem,
       velocitySystem,
       modelPositionSystem,
@@ -52,6 +57,7 @@ export class GamePlayState extends ViewState {
       flashSystem,
       collisionDetectionSystem,
       radarFollowSystem,
+      fighterDockSystem,
       deletionSystem,
       hudUpdateSystem,
       warpSystemFactory(this), // TODO: Can we disentangle this?

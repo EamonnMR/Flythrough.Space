@@ -1,12 +1,12 @@
 {
-  "direc":{
+  "free":{
     "name":"Casamance Freehold",
     "short_name": "Freehold",
     "color":"#0000EDFF",
     "dark_color":"#101060FF",
     "foes": [
-      "drone",
-      "orasos",
+      "loyal",
+      "cartel",
       "pirate",
       "pen",
       "fifth"
@@ -19,23 +19,23 @@
     "dark_color":"#EAEA00FF",
     "foes": [
       "drone",
-      "orasos"
+      "cartel"
     ]
   },
-  "orasos":{
+  "cartel":{
     "name":"Caudron Pirate Cartell",
     "short_name": "Cartell",
     "color":"#CD5C5CFF",
     "dark_color":"#A32626FF",
     "attack_default": true
   },
-  "hex":{
+  "league":{
     "name":"League",
     "short_name": "League",
     "color":"#008000FF",
     "dark_color":"#003500FF"
   },
-  "drone":{
+  "loyal":{
     "name":"Loyal Suns",
     "short_name": "Loyal.",
     "color":"#FF0000FF",
@@ -53,7 +53,7 @@
     "short_name": "Merch",
     "color": "#C2B280FF"
   },
- "bounty":{
+  "bounty":{
     "name": "Bounty Hunter",
     "short_name": "Bounty",
     "color": "#C2B280FF"

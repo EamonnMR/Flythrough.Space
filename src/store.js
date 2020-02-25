@@ -1,7 +1,8 @@
 import { _ } from "./singletons.js";
 import { BaseLandingMenuView } from "./landing.js";
 import { TextButton, TextBox, Image, Widget} from "./menu.js";
-import { tech_filter, is_cheat_enabled } from "./util.js";
+import { is_cheat_enabled } from "./util.js";
+import { tech_filter } from "./tech.js";
 
 const LIST_SPACING = 7;
 const QUALITY_BAR_SPACING = 5;

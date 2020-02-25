@@ -25,7 +25,7 @@ export function inputSystem (entMan) {
       continue;
     }
     if ('velocity' in entity) {
-      if (inputStates.forward) {
+      if (input_states.forward) {
         entity.thrust_this_frame = true;
         accelerate(entity.velocity,
                                   entity.direction,
@@ -36,62 +36,67 @@ export function inputSystem (entMan) {
     }
     if ('direction' in entity) {
       let angle = entity.rotation * entMan.delta_time;
-      if (inputStates.left) {
+      if (input_states.left) {
         rotate(entity, angle);
         entity.direction_delta = -1 * angle;
       }
-      else if (inputStates.right) {
+      else if (input_states.right) {
         rotate(entity, -1 * angle );
         entity.direction_delta = angle;
       }
-//      else {
-//        entity.direction_delta = 0;
-//      }
     }
-    if (inputStates.shoot) {
+    if (input_states.shoot) {
       entity.shoot_primary = true;
     }
-  }
+    if (input_states.launch_fighters){
+      entity.launching_fighters = true;
+    } else {
+      delete entity.launching_fighters;
+    }
+    if (input_states.fighters_attack){
+      entity.order = "attack_target";
+    } else if (input_states.recall_fighters){
+      entity.order = "recall";
+    } else {
+      delete entity.order;
+    }
+  }  
 };
 
-let inputStates = {
-  'forward': false,
-  'left': false,
-  'right': false,
-  'shoot': false
-};
+// TODO: Use this to handle up and down
+const TOGGLED_INPUT_MAP = {
+  38: "forward",
+  37: "left",
+  39: "right",
+  17: "shoot",
+  81: "launch_fighters",  // q
+  82: "recall_fighters",  // r
+  70: "fighters_attack",  // f
+}
+
+// TODO: Use this to handle single presses
+const SINGLE_PRESS_INPUT_MAP = {
+}
+
+let input_states = {};
+
+for(let state of Object.values(TOGGLED_INPUT_MAP)){
+  input_states[state] = false;
+}
 
 function handleKeyDown ( event ){
-  switch(event.keyCode){
-    case 38:
-      inputStates.forward = true;
-      break;
-    case 37:
-      inputStates.left = true;
-      break;
-    case 39:
-      inputStates.right = true;
-      break;
-    case 17:
-      inputStates.shoot = true;
-      break;
+  if(event.keyCode in TOGGLED_INPUT_MAP){
+    input_states[TOGGLED_INPUT_MAP[event.keyCode]] = true;
   }
 };
 
 function handleKeyUp ( event ){
+  if(event.keyCode in TOGGLED_INPUT_MAP){
+    input_states[TOGGLED_INPUT_MAP[event.keyCode]] = false;
+    return;
+  }
+  // One-shot keypresses
   switch(event.keyCode){
-    case 38:
-      inputStates.forward = false;
-      break;
-    case 37:
-      inputStates.left = false;
-      break;
-    case 39:
-      inputStates.right = false;
-      break;
-    case 17:
-      inputStates.shoot = false;
-      break;
     case 27: // escape
       game_ctrl.toggle_pause();
       break;
@@ -109,6 +114,7 @@ function handleKeyUp ( event ){
       break;
     case 77: // m
       game_ctrl.open_map();
+      break;
     case 192: // `
       game_ctrl.select_closest();
       break;
@@ -130,7 +136,6 @@ function handleKeyUp ( event ){
     case 54: // keyboard 6, etc
       game_ctrl.select_spob(5);
       break;
-
   }
 };
 

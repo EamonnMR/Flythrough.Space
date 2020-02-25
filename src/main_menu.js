@@ -9,14 +9,16 @@ import {
   TextButton
 } from "./menu.js"
 
-const MENU_COPY = "Welcome to FLYTHROUGH.SPACE, the Space Captain game!\n" +
-  "Arrow Keys to move. Be careful of inertia. L to select the nearest planet," +
-  "then press L again when you're close enough to land. Press [M] to " +
-  "open the map* and select an adjacent system to jump to with your mouse." +
-  ". Close the map with [esc], fly away from the center of the system, "+ 
-  "and press [J] jump. Press [TAB] to select the closest target (to see its health " +
-  "and press [LCTRL] to fire your weapon - but be careful, angry ships " +
-  "will shoot back!\n";
+const MENU_COPY = `Welcome to FLYTHROUGH.SPACE, the Space Captain game!
+  Arrow Keys to move. Be careful of inertia. L to select the nearest planet,
+  then press L again when you're close enough to land. Press [M] to
+  open the map* and select an adjacent system to jump to with your mouse.
+  . Close the map with [esc], fly away from the center of the system,
+  and press [J] jump. Press [TAB] to select the closest target (to see its health
+  and press [LCTRL] to fire your weapon - but be careful, angry ships
+  will shoot back!
+  If you manage to get some fighters, launch with Q and recall with E. F to command them to attack your target.
+  `;
 
 function pop_tab(url){
   window.open(url, '_blank').focus();

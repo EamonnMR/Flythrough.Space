@@ -52,6 +52,9 @@ export function ai_system(entMan){
       }
     } else if (ai.state == 'passive') {
       // This is sort of the hub behavior - select a new thing to do
+      if ('mothership' in entity){
+        obey_orders(entity);
+      }
       if ('aggro' in ai){
         // It's personal. Some ship has angered this specific ship.
         for( let possible_target_id of ai.aggro ){
@@ -103,6 +106,32 @@ export function ai_system(entMan){
     }
   }
 };
+
+function obey_orders(entity){
+  let ai = entity.ai;
+  let mothership = _.entities.get(entity.mothership);
+  if (mothership){
+    switch(mothership.order){
+      case "attack_target":
+        let possible_target = _.entities.get(mothership.target);
+        if(possible_target){
+          console.log("Ordered to attack target");
+          set_target(ai, possible_target);
+        } else {
+          console.log("ordered to attack but no target");
+          ai.destination = mothership.position;
+        }
+        break;
+      case "recall":
+        console.log("Ordered to return to mothership");
+        ai.destination = mothership.position;
+        break;
+    }
+  } else {
+    // Mothership is gone, now it's just a regular AI
+    delete entity.mothership;
+  }
+}
 
 function idle(entity, ai, delta_time){
   if("destination" in ai){
@@ -255,6 +284,8 @@ function constrained_point(
 }
 
 function engage(entity, target, delta_time, entMan){
+  // TODO: Be Smarter
+  entity.launching_fighters = true;
 	// Get the ideal facing, subtract out current angle
 	// If angle is outside a certain margin, rotate the ship to face the target
 	let final_turn = constrained_point(

@@ -83,13 +83,13 @@
   "Bluthgelt":{
     "x":841,
     "y":965,
-    "govt":"direc",
+    "govt":"free",
     "roidSet":"silicaFieldH",
     "npc_average": 5,
     "npcs": [
       "xic_presence",
       "trader_lowtech",
-      "cas_patrol"
+      "free_patrol"
     ],
     "spobs":[
       "Harcourt",
@@ -103,7 +103,7 @@
   "Stavros":{
     "x":955,
     "y":942,
-    "govt":"direc",
+    "govt":"free",
     "links":[
       "Rainsford",
       "Terisiare",
@@ -114,7 +114,7 @@
   "Fonseca":{
     "x":849,
     "y":1086,
-    "govt":"direc",
+    "govt":"free",
     "links":[
       "Casamance",
       "Akure"
@@ -123,14 +123,14 @@
   "Casamance":{
     "x":902,
     "y":1145,
-    "govt":"direc",
+    "govt":"free",
     "npc_average": 4,
     "npcs": [
       "trader_lowtech",
       "trader_bulk",
       "pirate_expedition",
-      "cas_capital",
-      "cas_patrol"
+      "free_capital",
+      "free_patrol"
     ],
     "spobs":[
       "Accra",
@@ -154,7 +154,7 @@
   "Carvajal":{
     "x":989,
     "y":1088,
-    "govt":"direc",
+    "govt":"free",
     "spobs":[
       "Kennerud"
     ],
@@ -168,7 +168,7 @@
   "Rimell":{
     "x":927,
     "y":1028,
-    "govt":"direc",
+    "govt":"free",
     "links":[
       "Stavros",
       "Carvajal"
@@ -184,12 +184,12 @@
   "Reese":{
     "x":885,
     "y":859,
-    "govt":"direc",
+    "govt":"free",
     "npc_average": 3,
     "npcs": [
       "xic_presence",
       "trader_lowtech",
-      "cas_patrol"
+      "free_patrol"
     ],
     "roidSet":"silicaFieldM",
     "spobs":[
@@ -212,7 +212,7 @@
   "Panfilov":{
     "x":753,
     "y":1022,
-    "govt":"pen",
+    "govt":"itaska",
     "spobs":[
       "Sintashta"
     ],
@@ -224,7 +224,7 @@
   "Hopmeadow":{
     "x":685,
     "y":933,
-    "govt":"pen",
+    "govt":"itaska",
     "npc_average": 4,
     "npcs": [
       "western_trader",
@@ -252,7 +252,7 @@
   "Rainsford":{
     "x":953,
     "y":888,
-    "govt":"direc",
+    "govt":"free",
     "links":[
       "Stavros",
       "Wijngaarden"
@@ -261,7 +261,7 @@
   "Terisiare":{
     "x":1027,
     "y":963,
-    "govt":"direc",
+    "govt":"free",
     "spobs":[
       "Thrace",
       "Argive"
@@ -275,7 +275,7 @@
   "Rossum":{
     "x":1089,
     "y":1027,
-    "govt":"direc",
+    "govt":"free",
     "spobs":[
       "Coldwater"
     ],
@@ -289,7 +289,7 @@
   "Inverness":{
     "x":1049,
     "y":886,
-    "govt":"direc",
+    "govt":"free",
     "spobs":[
       "Skye Orbital",
       "Inshes",
@@ -304,7 +304,7 @@
   "Wijngaarden":{
     "x":1000,
     "y":840,
-    "govt":"direc",
+    "govt":"free",
     "spobs":[
       "Adriaan"
     ],
@@ -318,7 +318,7 @@
   "Steiner":{
     "x":938,
     "y":785,
-    "govt":"direc",
+    "govt":"free",
     "roidSet":"silicaFieldL",
     "links":[
       ".136",
@@ -328,8 +328,8 @@
     "npc_average": 5,
     "npcs": [
       "trader_bulk",
-      "cas_capital",
-      "cas_patrol",
+      "free_capital",
+      "free_patrol",
       "ls_raid",
       "ls_pr",
       "xic_presence"
@@ -346,7 +346,7 @@
   "Uttar":{
     "x":1264,
     "y":903,
-    "govt":"hex",
+    "govt":"league",
     "spobs": [
       "Agra",
       "Reddy"
@@ -361,7 +361,7 @@
   "Kuluene":{
     "x":1330,
     "y":1070,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Holcomb",
       "Arroyo",
@@ -377,13 +377,13 @@
   "Enyeama":{
     "x":860,
     "y":1211,
-    "govt":"direc",
+    "govt":"free",
     "npc_average": 4,
     "npcs": [
       "pirate_raid",
       "trader_bulk",
-      "cas_capital",
-      "cas_patrol"
+      "free_capital",
+      "free_patrol"
     ],
     "links":[
       "Casamance",
@@ -393,7 +393,7 @@
   "Yekini":{
     "x":978,
     "y":1201,
-    "govt":"direc",
+    "govt":"free",
     "spobs": [
       "Shorunmu"
     ],
@@ -401,7 +401,7 @@
     "npcs": [
       "trader_bulk",
       "trader_lowtech",
-      "cas_patrol"
+      "free_patrol"
     ],
     "links":[
       "Casamance",
@@ -412,7 +412,7 @@
   "Holcomb":{
     "x":1276,
     "y":969,
-    "govt":"hex",
+    "govt":"league",
     "npc_average": 3,
     "npcs": [
       "trader_bulk",
@@ -430,7 +430,7 @@
   "Arroyo":{
     "x":1386,
     "y":1003,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Kuluene",
       "Holcomb",
@@ -441,7 +441,7 @@
   "Harper":{
     "x":1242,
     "y":1077,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Rossum",
       "Kuluene",
@@ -452,7 +452,7 @@
   "Wirth":{
     "x":1128,
     "y":968,
-    "govt":"direc",
+    "govt":"free",
     "spobs": 
     [
         "Wieliczka"
@@ -466,7 +466,7 @@
   "Okocha":{
     "x":1143,
     "y":1080,
-    "govt":"direc",
+    "govt":"free",
     "links":[
       "Rossum",
       "Kanu"
@@ -475,7 +475,7 @@
   "Kanu":{
     "x":1179,
     "y":1160,
-    "govt":"direc",
+    "govt":"free",
     "links":[
       "Okocha",
       "Sipali"
@@ -484,7 +484,7 @@
   "Ubahu":{
     "x":1192,
     "y":1231,
-    "govt":"direc",
+    "govt":"free",
     "spobs":[
       "Ubuntu"
     ],
@@ -496,7 +496,7 @@
   "Brokop":{
     "x":1038,
     "y":1153,
-    "govt":"direc",
+    "govt":"free",
     "links":[
       "Sipali",
       "Carvajal"
@@ -505,7 +505,7 @@
   "Sipali":{
     "x":1061,
     "y":1229,
-    "govt":"direc",
+    "govt":"free",
     "spobs":[
       "Kimathi"
     ],
@@ -523,7 +523,7 @@
     "spobs": [
       "Kejetia"
     ],
-    "govt":"direc",
+    "govt":"free",
     "links":[
       "Sipali",
       "Ibadan",
@@ -533,7 +533,7 @@
   "Ibadan":{
     "x":954,
     "y":1284,
-    "govt":"direc",
+    "govt":"free",
     "spobs": [
       "Akindele"
     ],
@@ -542,7 +542,7 @@
       "bank", 
       "trader_bulk",
       "caudron_gang",
-      "cas_capital"
+      "free_capital"
     ],
     "links":[
       "Yekini",
@@ -554,14 +554,17 @@
   "Minna":{
     "x":954,
     "y":1393,
-    "govt":"direc",
+    "govt":"free",
+    "spobs": [
+      "Koungheul"
+    ],
     "npc_average": 2,
     "npcs": [
       "pirate_raid",
       "pirate_expedition",
       "trader_danger",
-      "cas_patrol",
-      "cas_capital"
+      "free_patrol",
+      "free_capital"
     ],
 
     "links":[
@@ -573,7 +576,7 @@
   "Mantilla":{
     "x":1273,
     "y":1182,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Kuluene",
       "Harper",
@@ -584,7 +587,7 @@
   "Renbrook":{
     "x":1360,
     "y":1166,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Kuluene",
       "Mantilla",
@@ -594,18 +597,30 @@
   "Taylhardat":{
     "x":1397,
     "y":1069,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Kuluene",
       "Arroyo",
       "Renbrook",
       ".167"
+    ],
+    "spobs": [
+      "Miranda"
+    ],
+    "npc_average": 4,
+    "npcs": [
+      "pirate_raid",
+      "pirate_expedition",
+      "trader_danger",
+      "league_cap",
+      "league_pt",
+      "bounty"
     ]
   },
   "Karmack":{
     "x":1480,
     "y":987,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Arroyo",
       "Taylhardat",
@@ -616,7 +631,7 @@
   "Deng":{
     "x":1553,
     "y":1038,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Karmack",
       ".167",
@@ -636,7 +651,7 @@
   "Liu":{
     "x":1659,
     "y":1028,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Deng",
       "Anyuan",
@@ -646,7 +661,7 @@
   "Zhang":{
     "x":1621,
     "y":1114,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Deng",
       ".172",
@@ -682,7 +697,7 @@
   "Anyuan":{
     "x":1706,
     "y":1091,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Liu",
       "Zhang",
@@ -702,7 +717,7 @@
   "Stroustrup":{
     "x":1138,
     "y":877,
-    "govt":"direc",
+    "govt":"free",
     "spobs":[
       "Bjarne"
     ],
@@ -716,7 +731,7 @@
   "Pyatigorsk":{
     "x":1209,
     "y":790,
-    "govt":"hex",
+    "govt":"league",
     "spobs":[
       "Meklin",
       "Union 1"
@@ -771,7 +786,7 @@
   ".181":{
     "x":973,
     "y":505,
-    "govt":"drone",
+    "govt":"loyal",
     "spobs": [
       "Quicksilver"
     ],
@@ -783,7 +798,7 @@
   "Contra Costa":{
     "x":1017,
     "y":588,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Rada",
       "Novosibirsk",
@@ -794,7 +809,7 @@
   "Novosibirsk":{
     "x":859,
     "y":534,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".181",
       "Contra Costa",
@@ -805,7 +820,7 @@
   "Kazanlak":{
     "x":1365,
     "y":728,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Lothian",
       "Hector",
@@ -815,7 +830,7 @@
   "Shepard":{
     "x":1423,
     "y":557,
-    "govt":"drone",
+    "govt":"loyal",
     "spobs":[
       "Frontier Outpost V"
     ],
@@ -837,7 +852,7 @@
   "Ingolstadt":{
     "x":1475,
     "y":631,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       ".186",
       "Jhelum",
@@ -848,7 +863,7 @@
   "Jhelum":{
     "x":1493,
     "y":754,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Ingolstadt",
       "Peenemunde",
@@ -859,7 +874,7 @@
   "Ludhiana":{
     "x":1588,
     "y":850,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Lima",
       "Ravi",
@@ -870,7 +885,7 @@
   "Lima":{
     "x":1612,
     "y":958,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Deng",
       "Ludhiana",
@@ -881,7 +896,7 @@
   ".191":{
     "x":897,
     "y":220,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Nemesis",
       "Zorax",
@@ -891,7 +906,7 @@
   "Nemesis":{
     "x":897,
     "y":320,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".191",
       "Intrepid",
@@ -922,7 +937,7 @@
   "Intrepid":{
     "x":912,
     "y":435,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".181",
       "Nemesis",
@@ -932,7 +947,7 @@
   "Resolute":{
     "x":1010,
     "y":334,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Nemesis",
       "Intrepid",
@@ -944,7 +959,7 @@
   ".195":{
     "x":999,
     "y":412,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Resolute"
     ]
@@ -952,7 +967,7 @@
   ".196":{
     "x":1085,
     "y":297,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Resolute",
       "Housatonic",
@@ -962,7 +977,7 @@
   ".197":{
     "x":1086,
     "y":437,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".195",
       "Housatonic",
@@ -972,7 +987,7 @@
   "Housatonic":{
     "x":1211,
     "y":365,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".196",
       ".197",
@@ -1010,8 +1025,8 @@
       "western_trader",
       "ls_pt",
       "ls_raid",
-      "cas_patrol",
-      "cas_capital"
+      "free_patrol",
+      "free_capital"
     ],
     "links":[
       "Kiriyenko",
@@ -1024,7 +1039,7 @@
   "Kuchma":{
     "x":911,
     "y":623,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Contra Costa",
       "Khust"
@@ -1034,7 +1049,7 @@
   ".202":{
     "x":608,
     "y":386,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".*2",
       ".*11"
@@ -1043,7 +1058,7 @@
   "Unrelenting":{
     "x":808,
     "y":256,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Nemesis",
       ".250",
@@ -1053,7 +1068,7 @@
   "Victory":{
     "x":800,
     "y":344,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Nemesis",
       ".250"
@@ -1062,7 +1077,7 @@
   "Defiance":{
     "x":815,
     "y":423,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Nemesis",
       ".250",
@@ -1073,14 +1088,14 @@
   "Kilwa":{
     "x":829,
     "y":1363,
-    "govt":"direc",
+    "govt":"free",
     "spobs":[
       "Vatsa"
     ],
     "npc_average": 3,
     "npcs": [
-      "cas_capital",
-      "cas_patrol",
+      "free_capital",
+      "free_patrol",
       "trader_danger",
       "trader_bulk",
       "trader_lowtech"
@@ -1094,13 +1109,13 @@
   "Kagame":{
     "x":785,
     "y":1444,
-    "govt":"direc",
+    "govt":"free",
     "npc_average": 2,
     "npcs": [
       "trader_danger",
       "trader_lowtech",
       "pirate_raid",
-      "cas_patrol"
+      "free_patrol"
     ],
     "links":[
       "Nowra",
@@ -1111,15 +1126,15 @@
   "Mideska":{
     "x":955,
     "y":1496,
-    "govt":"direc",
+    "govt":"free",
     "npc_average": 2,
     "npcs": [
       "caudron_gang",
       "pirate_raid",
       "pirate_expedition",
       "trader_danger",
-      "cas_patrol",
-      "cas_capital",
+      "free_patrol",
+      "free_capital",
       "bounty"
     ],
     "links":[
@@ -1133,7 +1148,7 @@
   ".209":{
     "x":1367,
     "y":1323,
-    "govt":"orasos",
+    "govt":"cartel",
     "links":[
       "Renbrook",
       ".212",
@@ -1143,7 +1158,7 @@
   ".210":{
     "x":1472,
     "y":1336,
-    "govt":"orasos",
+    "govt":"cartel",
     "links":[
       ".174",
       ".213",
@@ -1153,7 +1168,7 @@
   ".211":{
     "x":1310,
     "y":1378,
-    "govt":"orasos",
+    "govt":"cartel",
     "links":[
       ".212",
       ".216",
@@ -1163,7 +1178,7 @@
   ".212":{
     "x":1396,
     "y":1409,
-    "govt":"orasos",
+    "govt":"cartel",
     "links":[
       ".209",
       ".211",
@@ -1174,7 +1189,7 @@
   ".213":{
     "x":1470,
     "y":1443,
-    "govt":"orasos",
+    "govt":"cartel",
     "links":[
       ".209",
       ".210",
@@ -1184,7 +1199,7 @@
   ".214":{
     "x":1238,
     "y":1403,
-    "govt":"orasos",
+    "govt":"cartel",
     "links":[
       ".215",
       ".218",
@@ -1194,7 +1209,7 @@
   ".215":{
     "x":1310,
     "y":1460,
-    "govt":"orasos",
+    "govt":"cartel",
     "links":[
       ".214",
       ".218",
@@ -1204,7 +1219,7 @@
   ".216":{
     "x":1384,
     "y":1474,
-    "govt":"orasos",
+    "govt":"cartel",
     "links":[
       ".211",
       ".221"
@@ -1213,7 +1228,7 @@
   ".217":{
     "x":1542,
     "y":1481,
-    "govt":"orasos",
+    "govt":"cartel",
     "links":[
       ".220",
       ".222"
@@ -1222,7 +1237,7 @@
   ".218":{
     "x":1209,
     "y":1500,
-    "govt":"orasos",
+    "govt":"cartel",
     "links":[
       ".214",
       ".215",
@@ -1233,7 +1248,7 @@
   ".219":{
     "x":1288,
     "y":1524,
-    "govt":"orasos",
+    "govt":"cartel",
     "links":[
       ".214",
       ".218",
@@ -1244,7 +1259,7 @@
   ".220":{
     "x":1390,
     "y":1545,
-    "govt":"orasos",
+    "govt":"cartel",
     "links":[
       ".213",
       ".215",
@@ -1255,7 +1270,7 @@
   ".221":{
     "x":1529,
     "y":1581,
-    "govt":"orasos",
+    "govt":"cartel",
     "npc_average": 5,
     "npcs": [
       "caudron_gang",
@@ -1272,7 +1287,7 @@
   ".222":{
     "x":1628,
     "y":1525,
-    "govt":"orasos",
+    "govt":"cartel",
     "links":[
       ".217",
       ".228",
@@ -1282,7 +1297,7 @@
   ".223":{
     "x":1203,
     "y":1594,
-    "govt":"orasos",
+    "govt":"cartel",
     "links":[
       ".211",
       ".339",
@@ -1292,7 +1307,7 @@
   ".224":{
     "x":1335,
     "y":1604,
-    "govt":"orasos",
+    "govt":"cartel",
     "links":[
       ".219",
       ".226"
@@ -1301,7 +1316,7 @@
   ".225":{
     "x":1469,
     "y":1629,
-    "govt":"orasos",
+    "govt":"cartel",
     "links":[
       ".212",
       ".227"
@@ -1310,7 +1325,7 @@
   ".226":{
     "x":1437,
     "y":1727,
-    "govt":"orasos",
+    "govt":"cartel",
     "links":[
       ".221",
       ".224",
@@ -1320,7 +1335,7 @@
   ".227":{
     "x":1526,
     "y":1685,
-    "govt":"orasos",
+    "govt":"cartel",
     "links":[
       ".225",
       ".228"
@@ -1329,7 +1344,7 @@
   ".228":{
     "x":1641,
     "y":1645,
-    "govt":"orasos",
+    "govt":"cartel",
     "links":[
       ".227",
       ".222",
@@ -1347,7 +1362,7 @@
   "Akure":{
     "x":775,
     "y":1159,
-    "govt":"direc",
+    "govt":"free",
     "spobs":[
       "Turkana"
     ],
@@ -1379,7 +1394,7 @@
   "Locklear":{
     "x":545,
     "y":1148,
-    "govt":"pen",
+    "govt":"itaska",
     "links":[
       "Misiones",
       "Pace"
@@ -1415,20 +1430,20 @@
   "Asuangate":{
     "x":588,
     "y":1383,
-    "govt":"direc",
+    "govt":"free",
     "npc_average": 5,
     "npcs": [
       "trader_bulk",
       "western_trader",
-      "cas_capital",
-      "cas_patrol"
+      "free_capital",
+      "free_patrol"
     ],
     "npc_average": 3,
     "npcs": [
       "trader_bulk",
       "western_trader",
-      "cas_capital",
-      "cas_patrol",
+      "free_capital",
+      "free_patrol",
       "pirate_raid"
     ],
 
@@ -1470,7 +1485,7 @@
   "Millwright":{
     "x":528,
     "y":1066,
-    "govt":"pen",
+    "govt":"itaska",
     "npc_average": 3,
     "npcs": [
       "itaska",
@@ -1490,7 +1505,7 @@
   "Harbi":{
     "x":433,
     "y":1016,
-    "govt":"pen",
+    "govt":"itaska",
     "spobs":[
       "Kuzma"
     ],
@@ -1504,7 +1519,7 @@
   "Strugatsky":{
     "x":417,
     "y":1141,
-    "govt":"pen",
+    "govt":"itaska",
     "spobs":[
       "Chukchi",
       "Sinchenko"
@@ -1517,7 +1532,7 @@
   "Straylight":{
     "x":530,
     "y":953,
-    "govt":"pen",
+    "govt":"itaska",
     "npc_average": 4,
     "npcs": [
       "western_trader",
@@ -1532,7 +1547,7 @@
   "Istles":{
     "x":353,
     "y":909,
-    "govt":"pen",
+    "govt":"itaska",
     "spobs":[
       "Angeles"
     ],
@@ -1544,7 +1559,7 @@
   "Skovoroda":{
     "x":287,
     "y":966,
-    "govt":"pen",
+    "govt":"itaska",
     "spobs":[
       "Izumrudnoye",
       "Aralsk"
@@ -1559,7 +1574,7 @@
   "Albacore":{
     "x":216,
     "y":1012,
-    "govt":"pen",
+    "govt":"itaska",
     "spobs":[
       "Mariposa",
       "Merced",
@@ -1574,7 +1589,7 @@
   "Balish":{
     "x":296,
     "y":1087,
-    "govt":"pen",
+    "govt":"itaska",
     "spobs":[
       "Pajit"
     ],
@@ -1587,7 +1602,7 @@
   "McPherson":{
     "x":365,
     "y":1065,
-    "govt":"pen",
+    "govt":"itaska",
     "spobs":[
       "Itaskana",
       "Gillespie",
@@ -1603,7 +1618,7 @@
   "Burch":{
     "x":238,
     "y":905,
-    "govt":"pen",
+    "govt":"itaska",
     "spobs":[
       "Tamt",
       "MCB-1"
@@ -1633,7 +1648,7 @@
   "Azuay":{
     "x":706,
     "y":1253,
-    "govt":"direc",
+    "govt":"free",
     "links":[
       "Sabara",
       "Jibril"
@@ -1642,7 +1657,7 @@
   ".250":{
     "x":693,
     "y":313,
-    "govt":"drone",
+    "govt":"loyal",
     "spobs":[
       "Horizon"
     ],
@@ -1657,7 +1672,7 @@
   ".251":{
     "x":531,
     "y":315,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".202",
       ".262",
@@ -1679,7 +1694,7 @@
   ".253":{
     "x":676,
     "y":507,
-    "govt":"drone",
+    "govt":"loyal",
     "spobs": ["Morcia"],
     "links":[
       ".268",
@@ -1710,7 +1725,7 @@
   "Pace":{
     "x":628,
     "y":1058,
-    "govt":"pen",
+    "govt":"itaska",
     "npc_average": 4,
     "npcs": [
       "itaska",
@@ -1730,15 +1745,15 @@
   "Nowra":{
     "x":663,
     "y":1504,
-    "govt":"direc",
+    "govt":"free",
     "spobs": [
       "Broken Arrow",
       "Frontier Outpost III"
     ],
     "npc_average": 2,
     "npcs": [
-      "cas_capital",
-      "cas_patrol",
+      "free_capital",
+      "free_patrol",
       "trader_danger",
       "trader_lowtech",
       "pirate_raid"
@@ -1771,7 +1786,7 @@
   "Hawkshaw":{
     "x":457,
     "y":683,
-    "govt":"drone",
+    "govt":"loyal",
     "spobs": [
       "Dealer's End"
     ],
@@ -1798,7 +1813,7 @@
   "Cordova":{
     "x":501,
     "y":756,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Hawkshaw",
       "Lemuel"
@@ -1807,7 +1822,7 @@
   ".261":{
     "x":636,
     "y":235,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".250",
       ".262",
@@ -1818,7 +1833,7 @@
   ".262":{
     "x":607,
     "y":156,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".251",
       ".261",
@@ -1830,7 +1845,7 @@
   ".263":{
     "x":524,
     "y":181,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".251",
       ".292",
@@ -1853,7 +1868,7 @@
     "spobs": [
       "Krysto"
     ],
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".191",
       "Unrelenting",
@@ -1873,7 +1888,7 @@
   ".268":{
     "x":759,
     "y":588,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".253",
       ".270",
@@ -1884,7 +1899,7 @@
   "Baikon":{
     "x":637,
     "y":669,
-    "govt":"drone",
+    "govt":"loyal",
     "spobs": [
       "Baikonur",
       "Bukov"
@@ -1911,7 +1926,7 @@
   ".271":{
     "x":668,
     "y":721,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".254",
       ".255",
@@ -1921,7 +1936,7 @@
   "Pavlodar":{
     "x":586,
     "y":752,
-    "govt":"drone",
+    "govt":"loyal",
     "spobs":[
       "Kosach"
     ],
@@ -1933,7 +1948,7 @@
   "Kharkov":{
     "x":596,
     "y":941,
-    "govt":"pen",
+    "govt":"itaska",
     "npc_average": 4,
     "npcs": [
       "western_trader",
@@ -1953,7 +1968,7 @@
   ".274":{
     "x":532,
     "y":680,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".258",
       "Hawkshaw",
@@ -2009,7 +2024,7 @@
   "Uluru":{
     "x":458,
     "y":566,
-    "govt":"drone",
+    "govt":"loyal",
     "spobs": [
       "Broken Hill"
     ],
@@ -2023,7 +2038,7 @@
   "Woodstock":{
     "x":551,
     "y":562,
-    "govt":"drone",
+    "govt":"loyal",
     "spobs": [
       "Franconia"
     ],
@@ -2035,7 +2050,7 @@
   ".282":{
     "x":666,
     "y":616,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Baikon",
       ".268"
@@ -2121,7 +2136,7 @@
   ".292":{
     "x":448,
     "y":214,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".263",
       ".291",
@@ -2149,7 +2164,7 @@
   ".295":{
     "x":225,
     "y":149,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Komi",
       "Hastings",
@@ -2159,7 +2174,7 @@
   ".296":{
     "x":295,
     "y":160,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".291",
       ".292",
@@ -2170,7 +2185,7 @@
   ".297":{
     "x":271,
     "y":101,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".296",
       ".*6"
@@ -2309,7 +2324,7 @@
   "Panaorios":{
     "x":1679,
     "y":705,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Peenemunde",
       "Covasna",
@@ -2320,7 +2335,7 @@
   "Peenemunde":{
     "x":1597,
     "y":664,
-    "govt":"hex",
+    "govt":"league",
     "spobs":[
       "Tyne"
     ],
@@ -2336,7 +2351,7 @@
   "Covasna":{
     "x":1665,
     "y":594,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Panaorios",
       "Peenemunde",
@@ -2366,7 +2381,7 @@
   "Guayas":{
     "x":1793,
     "y":735,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Stormgald",
       "Atlantico",
@@ -2378,7 +2393,7 @@
   "Correa":{
     "x":1969,
     "y":744,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Stormgald",
       "Atlantico"
@@ -2387,7 +2402,7 @@
   "Atlantico":{
     "x":1947,
     "y":805,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Guayas",
       "Correa",
@@ -2408,7 +2423,7 @@
   "Lothian":{
     "x":1395,
     "y":654,
-    "govt":"hex",
+    "govt":"league",
     "spobs": [
       "Traprain"
     ],
@@ -2433,7 +2448,7 @@
   "Madhya":{
     "x":1343,
     "y":842,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Uttar",
       "Doab"
@@ -2442,7 +2457,7 @@
   "Doab":{
     "x":1419,
     "y":818,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Kazanlak",
       "Madhya",
@@ -2455,7 +2470,7 @@
   "Ravi":{
     "x":1481,
     "y":806,
-    "govt":"hex",
+    "govt":"league",
     "spobs": [ "Jagran" ],
     "links":[
       "Jhelum",
@@ -2467,7 +2482,7 @@
   "Chenab":{
     "x":1575,
     "y":792,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Jhelum",
       "Ludhiana",
@@ -2479,7 +2494,7 @@
   "Solano":{
     "x":1715,
     "y":812,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Lima",
       "Guayas",
@@ -2490,7 +2505,7 @@
   "Dholavira":{
     "x":1427,
     "y":938,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Uttar",
       "Karmack",
@@ -2500,7 +2515,7 @@
   "Beas":{
     "x":1487,
     "y":880,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Ludhiana",
       "Doab",
@@ -2511,7 +2526,7 @@
   "Kirchner":{
     "x":1811,
     "y":847,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Guayas",
       "Solano",
@@ -2523,7 +2538,7 @@
   "Asuncion":{
     "x":1725,
     "y":905,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Lima",
       "Solano",
@@ -2545,7 +2560,7 @@
   "Feng":{
     "x":1811,
     "y":991,
-    "govt":"hex",
+    "govt":"league",
     "spobs": [ "Zhongshan" ],
     "links":[
       "Anyuan",
@@ -2908,24 +2923,35 @@
     "y":1900,
     "links":[
       ".373",
-      ".375",
+      "Cranbrook",
       ".377"
     ]
   },
-  ".375":{
+  "Cranbrook":{
     "x":967,
     "y":1932,
     "links":[
       ".374",
       ".376",
       ".377"
+    ],
+    "spobs": [
+      "Courthope Reef"
+    ],
+    "npc_average": 3,
+    "npcs": [
+      "trader_lowtech",
+      "trader_danger",
+      "pirate_raid",
+      "pirate_expedition",
+      "caudron_gang"
     ]
   },
   ".376":{
     "x":1079,
     "y":1966,
     "links":[
-      ".375",
+      "Cranbrook",
       ".377"
     ]
   },
@@ -2934,7 +2960,7 @@
     "y":1990,
     "links":[
       ".374",
-      ".375",
+      "Cranbrook",
       ".376"
     ]
   },
@@ -2967,8 +2993,8 @@
       "league_pt",
       "ls_pt",
       "ls_raid",
-      "cas_patrol",
-      "cas_capital"
+      "free_patrol",
+      "free_capital"
     ],
     "links":[
       ".335",
@@ -2978,7 +3004,7 @@
   ".*1":{
     "x":498,
     "y":498,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".252",
       ".253",
@@ -2990,7 +3016,7 @@
   ".*2":{
     "x":502,
     "y":404,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       ".202",
       ".252",
@@ -3076,13 +3102,13 @@
   "Pereira":{
     "x":540,
     "y":1492,
-    "govt":"direc",
+    "govt":"free",
     "npc_average": 4,
     "npcs": [
       "trader_bulk",
       "western_trader",
-      "cas_capital",
-      "cas_patrol",
+      "free_capital",
+      "free_patrol",
       "pirate_expedition",
       "bounty"
     ],
@@ -3095,7 +3121,7 @@
     "npcs": [
       "trader_lowtech",
       "pirate_expedition",
-      "cas_patrol"
+      "free_patrol"
     ],
 
     "links":[
@@ -3107,7 +3133,7 @@
   ".*11":{
     "x":711,
     "y":445,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Novosibirsk",
       ".202",
@@ -3119,7 +3145,7 @@
   ".*12":{
     "x":749,
     "y":542,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Novosibirsk",
       ".268",
@@ -3129,7 +3155,7 @@
   "Khabarovsk":{
     "x":1106,
     "y":525,
-    "govt":"drone",
+    "govt":"loyal",
     "links":[
       "Rybak",
       "Contra Costa",
@@ -3140,7 +3166,7 @@
   "Latyshev":{
     "x":1218,
     "y":447,
-    "govt":"drone",
+    "govt":"loyal",
     "spobs":[
       "Kalush"
     ],
@@ -3173,7 +3199,7 @@
   "Yevgraf":{
     "x":1785,
     "y":597,
-    "govt":"hex",
+    "govt":"league",
     "lights": [
       {
         "position": [0, -1,-1],
@@ -3232,15 +3258,15 @@
     "spobs": [
       "Kejetia"
     ],
-    "govt":"direc",
+    "govt":"free",
     "npc_average": 3,
     "npcs": [
       "caudron_gang",
       "pirate_raid",
       "pirate_expedition",
       "trader_danger",
-      "cas_patrol",
-      "cas_capital",
+      "free_patrol",
+      "free_capital",
       "bounty"
     ],
     "links":[
@@ -3262,11 +3288,11 @@
   "Jibril":{
     "x":744,
     "y":1371,
-    "govt":"direc",
+    "govt":"free",
     "npc_average": 3,
     "npcs": [
-      "cas_capital",
-      "cas_patrol",
+      "free_capital",
+      "free_patrol",
       "trader_danger",
       "trader_bulk",
       "trader_lowtech"
@@ -3284,7 +3310,7 @@
     "npc_average": 1,
     "npcs": [
       "xic_presence",
-      "cas_patrol",
+      "free_patrol",
       "trader_danger",
       "pirate_expedition",
       "pirate_raid"
@@ -3344,7 +3370,7 @@
   "Zipaquira":{
     "x":1905,
     "y":934,
-    "govt":"hex",
+    "govt":"league",
     "links":[
       "Atlantico",
       "Kirchner",

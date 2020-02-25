@@ -7,6 +7,7 @@ import { DEFAULT_SETTINGS } from "./default_settings.js";
 
 const ARC = Math.PI * 2;
 const SETTING_PREFIX = "_setting:";
+export const CARRIED_PREFIX = "__carried_";
 
 let url_params = new URLSearchParams(window.location.search);
 
@@ -140,25 +141,6 @@ export function to_radians(deg){
   return Math.PI * (deg / 180);
 }
 
-export function tech_filter(tech_had, tech_needed){
-  /* Basis for what gets shown where. I'm a bit foggy on how
-   * I'd like to implement tech 'levels' at the moment, esp. since
-   * I envision a few hub worlds where each major faction's tech
-   * is available.
-   */
-  
-  // Cleverly handles both empty tech_needed and tech_had
-  for (let key of Object.keys(tech_needed || [])){
-    if(!(key in (tech_had || {}))){
-      return false;
-    } else {
-      if(tech_had[key] < tech_needed[key]){
-        return false;
-      }
-    }
-  }
-  return true;
-}
 
 export function randint(min, max){
   return min + Math.floor(Math.random() * ((max + 1) - min));
@@ -230,7 +212,6 @@ function setting_key(key){
 }
 
 export function set_setting(key, value){
-  console.log("set_setting: " + key + "to: " + value);
   window.localStorage.setItem(setting_key(key), value);
 }
 
@@ -257,6 +238,16 @@ export function assert_false(value, desc){
   }
 }
 
+export function assert_equal(lval, rval, desc){
+  if(!(JSON.stringify(lval) === JSON.stringify(rval))){
+    console.log(`Test Failure: ${desc}`);
+    console.log(`Expected`);
+    console.log(lval);
+    console.log(`To equal`);
+    console.log(rval);
+  }
+}
+
 export function update_settings(){
   Object.keys(DEFAULT_SETTINGS).forEach( (key) => {
     _.settings[key] = get_setting(key, DEFAULT_SETTINGS[key]);
@@ -276,7 +267,6 @@ export function utils_unit_tests(){
   assert_true(get_setting("foo", "baz") === "bar",
     "Can save settings in local storage");
   clear_setting("foo");
-  debugger;
   assert_true(get_setting("foo", "baz") === "baz",
     "Can clear settings and get default values"
   );

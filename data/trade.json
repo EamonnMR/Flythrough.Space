@@ -94,5 +94,9 @@
   "kombucha":{
     "name": "Kombucha",
     "price": 125
+  },
+  "catalite":{
+    "name": "Catalite",
+    "price": 1000
   }
 }
