@@ -203,12 +203,12 @@
     "max_shields": 200
   },
   
-  "free_corvette":{
-    "short_name"  : "Cas. Ananse",
-    "long_name"   : "Freehold \"Ananse\" Corvette",
-    "mesh": "cas_corv",
-    "full_name"   : "Accra Starworks Type 991 Ausf. B Main Battle Starship",
-    "desc"       : "If there is an elite corps of the Freehold navy, it is the crews of these vessels. In a region beset by Pirates from within and enemies without, starved of resources, the Ananse is the Freehold's answer. It might not look like much on paper, but it's nimble and capable of pulling off feats that you wouldn't expect for a ship its size.",
+  "anansi":{
+    "short_name"  : "Cas. Anansi",
+    "long_name"   : "Freehold \"Anansi\" Corvette",
+    "mesh": "anansi",
+    "full_name"   : "Accra Starworks Type 991 Anansi Main Battle Starship",
+    "desc"       : "If there is an elite corps of the Freehold navy, it is the crews of these vessels. In a region beset by Pirates from within and enemies without, starved of resources, the Anansi is the Freehold's answer. It might not look like much on paper, but it's nimble and capable of pulling off feats that you wouldn't expect for a ship its size.",
     "upgrades"    : {"plasma50": 4, "ejectorrack": 2, "dumbfiremissile": 20, "cas_blink": 1},
     "rotation"  : 0.007,
     "accel"      : 0.000045,
@@ -216,7 +216,7 @@
     "space"      : 55,
     "cargo"      : 30,
     "price"      : 600000,
-    "tech"       : {"cas":4},
+    "tech"       : {"free":4},
     "max_fuel"       : 3,
     "max_hp"     : 400,
     "max_shields": 200
@@ -236,7 +236,7 @@
     "space"      : 20,
     "cargo"      : 10,
     "price"      : 5000,
-    "tech"       : {"cas":1},
+    "tech"       : {"free":1},
     "max_fuel"   : 3,
     "max_hp"     : 100,
     "max_shields": 50,
@@ -259,7 +259,7 @@
     "cargo"      : 40,
     "price"      : 500000,
     "max_fuel"   : 4,
-    "tech"       : {"cas":3},
+    "tech"       : {"free":3},
     "max_hp"     : 500,
     "max_shields": 250
   },
@@ -279,7 +279,7 @@
     "space"      : 100,
     "cargo"      : 60,
     "price"      : 80000000,
-    "tech"       : {"cas":5},
+    "tech"       : {"free":5},
     "max_fuel"       : 5,
     "max_hp"     : 800,
     "max_shields": 400
@@ -390,7 +390,7 @@
     "space"      : 200,
     "cargo"      : 50,
     "price"      : 5000000,
-    "tech"       : {"pen":5},
+    "tech"       : {"itaska":5},
     "max_fuel"   : 3,
     "max_hp"     : 500,
     "max_shields": 900
@@ -408,7 +408,7 @@
     "space"      : 10,
     "cargo"      : 5,
     "price"      : 10000,
-    "tech"       :  {"pen":3},
+    "tech"       :  {"itaska":3},
     "max_fuel"   : 4,
     "max_hp"     : 500,
     "max_shields": 500
@@ -426,7 +426,7 @@
     "space"      : 200,
     "cargo"      : 100,
     "price"      : 6000000,
-    "tech"       : {"pen":4},
+    "tech"       : {"itaska":3},
     "max_fuel"   : 6,
     "max_hp"     : 1500,
     "max_shields": 1500
@@ -482,7 +482,7 @@
     "space"      : 40,
     "cargo"      : 100,
     "price"      : 70000,
-    "tech"       : {"league":4},
+    "tech"       : {"league":3},
     "max_fuel"   : 3,
     "max_hp"     : 600,
     "max_shields": 400
@@ -501,7 +501,7 @@
     "space"      : 100,
     "cargo"      : 200,
     "price"      : 6000000,
-    "tech"       : {"league":5},
+    "tech"       : {"league":3},
     "max_fuel"   : 4,
     "max_hp"     : 900,
     "max_shields": 600
@@ -519,7 +519,7 @@
     "space"      : 40,
     "cargo"      : 15,
     "price"      : 10000,
-    "tech"       :  {"ne":2},
+    "tech"       :  {"loyal":2},
     "max_fuel"   : 3,
     "max_hp"     : 250,
     "max_shields": 125
@@ -536,7 +536,7 @@
     "space"      : 55,
     "cargo"      : 60,
     "price"      : 600000,
-    "tech"       :  {"ne":4},
+    "tech"       :  {"loyal":2},
     "max_fuel"   : 3,
     "max_hp"     : 375,
     "max_shields": 225
@@ -553,7 +553,7 @@
     "space"      : 40,
     "cargo"      : 15,
     "price"      : 10000,
-    "tech"       :  {"ne":3},
+    "tech"       :  {"loyal":3},
     "max_fuel"   : 4,
     "max_hp"     : 600,
     "max_shields": 400 
@@ -572,7 +572,7 @@
     "space"      : 300,
     "cargo"      : 100,
     "price"      : 90000000,
-    "tech"       : {"ne":5},
+    "tech"       : {"loyal":3},
     "max_fuel"   : 4,
     "max_hp"     : 850,
     "max_shields": 475
@@ -591,7 +591,7 @@
     "space"      : 15,
     "cargo"      : 10,
     "price"      : 1000,
-    "tech"       : {"ne":0},
+    "tech"       : {"loyal":0},
     "max_hp"     : 50,
     "max_shields": 25,
     "max_fuel"   : 5
@@ -608,7 +608,7 @@
     "space"      : 30,
     "cargo"      : 200,
     "price"      : 150000,
-    "tech"       : {"ne":2},
+    "tech"       : {"loyal":2},
     "max_fuel"   : 5,
     "max_hp"     : 800,
     "max_shields": 600

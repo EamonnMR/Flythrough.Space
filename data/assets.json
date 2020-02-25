@@ -312,8 +312,36 @@
         }
       }
     },
-
-    "cas_corv": {"file": "casamance_corv.babylon"},
+    "anansi": {
+      "file": "anansi.babylon",
+      "default_skin": "free",
+      "skins": {
+        "merchant": {
+          "diffuse": "anansi_merchant.png",
+          "emissive": "anansi_emissive.png",
+          "custom_emissive_color": [1,1,1,1]
+        },
+        "merchant/dark":{
+          "diffuse": "anansi_merchant_dark.png"
+        },
+        "free": {
+          "diffuse": "anansi_free.png",
+          "emissive": "anansi_emissive.png",
+          "custom_emissive_color": [1,1,0.25,1]
+        },
+        "free/dark":{
+          "diffuse": "anansi_free_dark.png"
+        },
+        "pirate": {
+          "diffuse": "anansi_pirate.png",
+          "emissive": "anansi_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark":{
+          "diffuse": "anansi_pirate_dark.png"
+        }
+      }
+    },
     "oxana": {
       "file": "oxana.babylon",
       "default_skin": "merchant",
