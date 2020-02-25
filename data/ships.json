@@ -126,7 +126,7 @@
     "space"      : 30,
     "cargo"      : 270,
     "price"      : 2000000,
-    "tech"       : {"melkin":3},
+    "tech"       : {"league_civ":3},
     "max_fuel"   : 4,
     "max_hp"     : 800,
     "max_shields": 500
@@ -144,7 +144,7 @@
     "space"      : 100,
     "cargo"      : 70,
     "price"      : 2000000,
-    "tech"       : {"melkin":4},
+    "tech"       : {"league_civ":3},
     "max_fuel"   : 4,
     "max_hp"     : 700,
     "max_shields": 500
@@ -162,7 +162,7 @@
     "space"      : 100,
     "cargo"      : 70,
     "price"      : 2000000,
-    "tech"       : {"caudron":5},
+    "tech"       : {"caudron":3},
     "max_fuel":      4,
     "max_hp"     : 700,
     "max_shields": 550
@@ -279,7 +279,7 @@
     "space"      : 100,
     "cargo"      : 60,
     "price"      : 80000000,
-    "tech"       : {"free":5},
+    "tech"       : {"free":3},
     "max_fuel"       : 5,
     "max_hp"     : 800,
     "max_shields": 400
@@ -347,15 +347,16 @@
     "long_name"   : "XIC Drillship",
     "full_name"   : "XIC Drillship Cruiser",
     "desc"       : "This ship goes on long missions for XIC, carrying wings of ships that manage the asteroid chunks as the drillship breaks asteroids up. It has through-and-through engines, essentially similar to those of an OE fighter but simpler with an eye towards power generation rather than speed. Its internal docking ring protects fighters from harsher bouts with microasteroids.",
-    "upgrades"    : {"plasma200": 2, "mining_laser": 1},
-    "fighters_carried": {"xic_prospector": 5},
+    "upgrades"    : {"__carried_xic_prospector": 4, "plasma200": 2, "mining_laser": 1},
+    "fighter_space": 10,
+    "fighter_launch_cooldown_divisor": 1,
     "rotation"  : 0.0036,
     "accel"      : 0.0002,
     "max_speed"   : 0.006,
     "space"      : 80,
     "cargo"      : 40,
     "price"      : 500000,
-    "tech"       : {"xic":4},
+    "tech"       : {"xic":3},
     "max_fuel"   : 5,
     "max_hp"     : 600,
     "max_shields": 350
@@ -376,7 +377,10 @@
     "tech"       : {"xic":2 },
     "max_fuel"   : 3,
     "max_hp"     : 300,
-    "max_shields": 175
+    "max_shields": 175,
+    "as_carried": {
+      "fighter_space": -3
+    }
   },
   "itaska_deathcap":{
     "short_name"  : "Deathcap",
@@ -390,7 +394,7 @@
     "space"      : 200,
     "cargo"      : 50,
     "price"      : 5000000,
-    "tech"       : {"itaska":5},
+    "tech"       : {"itaska":3},
     "max_fuel"   : 3,
     "max_hp"     : 500,
     "max_shields": 900
@@ -637,14 +641,13 @@
     "long_name"   : "Pirate Ahab",
     "full_name"   : "Accra Starworks Cetacea Freighter (Pirate \"Abah\" variant)",
     "desc"       : "One of these could probably cow many ships by size alone. A modified Cetacea chassis, the main thing it has in common with the ship that was originally launched is its enormousness. Pirates will try and upgun anything they can get their greasy hands on, but the Ahab probably takes the cake as far as \"most guns and armor stuffed onto a freighter.\" Unlike, say, the Sleeper, the Ahab build makes zero attempt to hide its true nature. And on a ship mounting so many dragnets, there is little need to.",
-    "upgrades"    : {},
     "rotation"  : 0.004,
     "accel"      : 0.000005,
     "max_speed"   : 0.005,
     "space"      : 80,
     "cargo"      : 600,
     "price"      : 8000000,
-    "tech"       : {"pirate":4},
+    "tech"       : {"pirate":3},
     "max_fuel"   : 5,
     "max_hp"     : 750,
     "max_shields": 325
@@ -714,7 +717,7 @@
     "space"      : 25,
     "cargo"      : 45,
     "price"      : 30000,
-    "tech"       : {"baiko_old":2},
+    "tech"       : {"baik":2},
     "max_fuel"   : 4,
     "max_hp"     : 400,
     "max_shields": 300
@@ -732,7 +735,7 @@
     "space"      : 20,
     "cargo"      : 20,
     "price"      : 200000,
-    "tech"       : {"biako_old":1},
+    "tech"       : {"baik":1},
     "max_fuel"   : 3,
     "max_hp"     : 100,
     "max_shields": 75
@@ -750,7 +753,7 @@
     "space"      : 35,
     "cargo"      : 85,
     "price"      : 60000,
-    "tech"       : {"biak":3},
+    "tech"       : {"baik":3},
     "max_fuel"   : 4,
     "max_hp"     : 700,
     "max_shields": 500

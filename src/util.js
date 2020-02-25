@@ -212,7 +212,6 @@ function setting_key(key){
 }
 
 export function set_setting(key, value){
-  console.log("set_setting: " + key + "to: " + value);
   window.localStorage.setItem(setting_key(key), value);
 }
 

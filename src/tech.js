@@ -23,7 +23,7 @@ export function tech_filter(tech_had, tech_needed){
 // a spob, but that spob has no shipyard.
 const STORE_KEYS = {
   'ships': 'shipyard',
-  'upgrades': 'customize',
+  'upgrades': 'custom',
 }
 
 export function test_every_spob_with_tech_sells_things(data){

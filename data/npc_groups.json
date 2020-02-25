@@ -65,14 +65,14 @@
   "free_patrol": {
     "govt": "free",
     "ships": [
-      "free_corvette",
+      "anansi",
       "free_fighter"
     ]
   },
   "free_capital": {
     "govt": "free",
     "ships": [
-      "free_corvette",
+      "anansi",
       "yoeman",
       "taoiseach"
     ]

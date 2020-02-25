@@ -119,7 +119,7 @@
 			"free":2,
       "league_civ": 2
 		},
-    "upgrades": true,
+    "custom": true,
 		"trade":{
 			"ethyl":"med",
 			"alloy":"low",
@@ -145,7 +145,7 @@
       "itaska": 1
 		},
     "shipyard": true,
-    "upgrades": true
+    "custom": true
 	},
 	"Sintashta":{
 		"sType":"onyxDesertK",
@@ -219,7 +219,7 @@
 		"x":14,
 		"y":-30,
     "shipyard": true,
-    "upgrades": true
+    "custom": true
 	},
 	
 	"Bjarne":{
@@ -233,7 +233,7 @@
 			"free":1
 		},
     "shipyard": true,
-    "upgrades": true,
+    "custom": true,
 		"trade":{
 			"water":"low",
 			"alloy":"med",
@@ -253,7 +253,7 @@
 			"oe_wep":2,
 			"oe_ship":1
 		},
-    "upgrades": true,
+    "custom": true,
     
 		"trade":{
 			"water":"low",
@@ -272,7 +272,7 @@
       "oe": 1
 		},
     "shipyard": true,
-    "upgrades": true,
+    "custom": true,
 		"trade":{
 			"ethyl":"med",
 			"plas":"low",
@@ -329,7 +329,7 @@
       "generic": 1
 		},
     "shipyard": true,
-    "upgrades": true
+    "custom": true
 	},
 	"Kalush":{
 		"sType":"gnPlanet5Red",
@@ -339,7 +339,7 @@
       "ls": 3
 		},
     "shipyard": true,
-    "upgrades": true,
+    "custom": true,
 		"text":"This remote, volcanic wasteland is where some of the greatest minds of the Loyal Suns strive to design ever deadlier weapons and starships. The sheer amount of antimatter here means that it is often incorrectly regarded as the \"most likely planet in the Loyal Suns to explode\". In fact, many other planets are much more likely to explode, but that's entirely due to risk incurred by their rebellious nature."
 	},
 	"Frontier Outpost V":{
@@ -352,7 +352,7 @@
       "generic": 1,
       "loyal": 1
 		},
-    "upgrades": true
+    "custom": true
 	},
 	"Ubuntu":{
 		"sType":"rwA01",
@@ -368,7 +368,7 @@
     "tech": {
       "generic": 2
     },
-    "upgrades": true
+    "custom": true
 	},
 	"Tyne":{
 		"sType":"rwH00",
@@ -381,7 +381,7 @@
 			"accra":2
 		},
     "shipyard": true,
-    "upgrades": true,
+    "custom": true,
 		"trade":{
 			"alloy":"high",
 			"dark":"high",
@@ -413,7 +413,7 @@
       "itaskan": 2
 		},
     "shipyard": true,
-    "upgrades": true,
+    "custom": true,
 		"text":"One of a few on the former Empire/Itaska border, this station is part of the Itaskan territory claimed by the Loyal Suns, so it suffers from the most violent incursions. Those stationed here are battle-hardened veterans, ready to leap into starships at a moment's notice."
 	},
 	"Sinaqara":{
@@ -423,7 +423,7 @@
 			"itaskan":3
 		},
     "shipyard": true,
-    "upgrades": true,
+    "custom": true,
 		"trade":{
 			"water":"high",
 			"grain":"high",
@@ -460,7 +460,7 @@
       "itaskan": 2
 		},
     "shipyard": true,
-    "upgrades": true
+    "custom": true
 	},
 	"Mariposa":{
 		"sType":"onyxM5Earthlike",
@@ -474,7 +474,7 @@
       "itaskan": 2
 		},
     "shipyard": true,
-    "upgrades": true,
+    "custom": true,
 		"trade":{
 			"water":"low",
 			"grain":"high",
@@ -517,7 +517,7 @@
       "itaskan": 3
 		},
     "shipyard": true,
-    "upgrades": true
+    "custom": true
 	},
 	"MCB-1":{
 		"sType":"avWusquus",
@@ -543,7 +543,7 @@
 			"generic":2,
       "itaskan": 2
 		},
-    "upgrades": true
+    "custom": true
 	},
 	"Izumrudnoye":{
     "sprite": "izumrudnoye",
@@ -643,7 +643,7 @@
       "loyal": 1
     },
     "shipyard": true,
-    "upgrades": true
+    "custom": true
   },
   "Nightside": {
     "govt": "cartel",
@@ -656,10 +656,10 @@
     "tech": {
       "generic": 3,
       "pirate": 3,
-      "cartel": 3
+      "caudron": 3
     },
     "shipyard": true,
-    "upgrades": true
+    "custom": true
   },
   "Horizon": {
     "govt": "loyal",
@@ -668,7 +668,7 @@
       "generic": 1,
       "loyal": 1
     },
-    "upgrades": true
+    "custom": true
   },
   "Broken Hill": {
     "text": "A warm, dry, dusty planet where you wouldn't expect too much wildlife. However, it's teeming with some of the deadliest creatures in the galaxy. An evolutionary arms race has lead to the development of increasingly deadly venoms and antivenoms, toxins and antidotes. It is advised that you take care while traveling here."
@@ -701,7 +701,7 @@
       "generic": 1,
       "free": 1
     },
-    "upgrades": true
+    "custom": true
   },
   "Broken Arrow": {
     "govt": "free",
@@ -722,7 +722,7 @@
       "oe": 1,
       "pirate": 2
     },
-    "upgrades": true,
+    "custom": true,
     "shipyard": true
   },
   "Veracruz": {
@@ -740,7 +740,7 @@
       "generic": 3
     },
     "shipyard": true,
-    "upgrades": true
+    "custom": true
   },
   "Quicksilver": {
     "govt": "loyal",
@@ -784,7 +784,7 @@
       "generic": 1,
       "league": 1
     },
-    "upgrades": true
+    "custom": true
   },
   "Prospero": {
     "sprite": "accra",
@@ -803,7 +803,7 @@
       "generic": 3
     },
     "shipyard": true,
-    "upgrades": true
+    "custom": true
   },
   "Khadir": {
     "govt": "league",
@@ -842,7 +842,7 @@
       "loyal": 1,
       "generic": 1
     },
-    "upgrades": true
+    "custom": true
   },
   "Agra": {
     "x": -7,
