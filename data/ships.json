@@ -300,7 +300,10 @@
     "tech"       : {"oe":1},
     "max_fuel"   : 2,
     "max_hp"     : 100,
-    "max_shields": 50 
+    "max_shields": 50,
+    "as_carried": {
+      "fighter_space": -1
+    }
   },
   
   "oe_frig"  :{
@@ -326,9 +329,9 @@
     "long_name"   : "Old Empire Battlecruiser",
     "full_name"   : "Imperial Heavy Battleship Type 930",
     "desc"       : "Once the most feared ship class in the galaxy, the Imperial Battlecruiser is still a sight to behold. It can carry an entire wing of Imperial Fighters, as well as its broadside battery of plasma weaponry. It was able to carry enough supplies to support extended voyages into enemy space. It was able to lay siege to entire star systems, owing to the fact that many of the star systems had only rudimentary spaceflight and no ability to shoot down orbital targets. Now, though, it is mostly suitable for merchants looking for something a little cheaper and with a little more punch.",
-    "upgrades"    : {},
-    "fighters_carried": {"oe_fighter": 2},
-    "launch_cooldown": 1,
+    "upgrades"    : {"__carried_oe_fighter": 6},
+    "fighter_space": 8,
+    "fighter_launch_cooldown_divisor": 1,
     "rotation"  : 0.008,
     "accel"      : 0.000008,
     "max_speed"   : 0.004,
@@ -470,7 +473,10 @@
     "desc"       : "This is the league upgrade of the Kalvari, a small but fast and powerful starship. It is flexible, used for both patrol missions, daring raids, and transporting executives in relative comfort. A favorite of the League's special services division, or so they say.",
     "upgrades"    : {"plasma0w": 4, "ejectorrack": 2, "dumbfiremissile": 20},
     "price"      : 800000,
-    "tech"       : {"league":3}
+    "tech"       : {"league":3},
+    "as_carried": {
+      "fighter_space": -4
+    }
   },
 
   "league_argosy":{
@@ -479,14 +485,17 @@
     "long_name"   : "League Argosy",
     "full_name"   : "Khanda Mod. Lothal-type Argosy",
     "desc"       : "Although built on the same platform and mostly parts-compatible this is closer to a battleship than a cargo ship. Call it a trim level. It's every bit the workhorse the merchant version is.",
-    "upgrades"    : {"plasma200": 2, "ejectorrack": 4, "dumbfiremissile": 10},
+    "upgrades"    : {"plasma200": 2, "ejectorrack": 4, "dumbfiremissile": 10, "__carried_league_passer": 4},
+
+    "fighter_space": 4,
+    "fighter_launch_cooldown_divisor": 1,
     "rotation"  : 0.0065,
     "accel"      : 0.00001,
     "max_speed"   : 0.008,
     "space"      : 40,
     "cargo"      : 100,
     "price"      : 70000,
-    "tech"       : {"league":3},
+    "tech"       : {"league":2},
     "max_fuel"   : 3,
     "max_hp"     : 600,
     "max_shields": 400
@@ -498,7 +507,9 @@
     "mesh": "oxana",
     "full_name"   : "Meklin Design Bureau Oxana class cargo ship (League Carrier Variant)",
     "desc"       : "A masterpiece of economy, the Oxana class is normally manufactured as a high-end cargo ship. However its enormous internal volume lends itself more so then other haulers of similar size to conversion into a carrier. This variant's cargo pods have been replaced by a stack of flight decks, and it is stocked with fighters and corvettes. Its armor has been thickened as well, to better deal with the punishing power of Loyalist antimatter weaponry. Also unlike the merchant version, it comes stocked with living amenities befitting an orbital hotel, as the command staff of these vessels have come to expect a certain level of comfort.",
-    "upgrades"    : {"plasma200": 4, "missile_turret": 4, "dumbfiremissile": 40},
+    "upgrades"    : {"plasma200": 4, "missile_turret": 4, "dumbfiremissile": 40, "__carried_league_heavy_fighter": 2, "__carried_league_passer": 8, "__carried_league_corvette": 1},
+    "fighter_space": 14,
+    "fighter_launch_cooldown_divisor": 2,
     "rotation"  : 0.008,
     "accel"      : 0.000008,
     "max_speed"   : 0.004,
@@ -526,7 +537,10 @@
     "tech"       :  {"loyal":2},
     "max_fuel"   : 3,
     "max_hp"     : 250,
-    "max_shields": 125
+    "max_shields": 125,
+    "as_carried": {
+      "fighter_space": -3
+    }
   },
   "ls_vette":{
     "short_name"  : "Endurer",
@@ -569,7 +583,9 @@
     "full_name"   : "Loyal Suns Type 1159 Heavy Battleship",
     "mesh"        : "absolver",
     "desc"       : "The enormous Loyal Suns battlecruiser was built to replace the aging fleet of type 930s, which where barely large enough to accommodate the new heavy fighters. Though heavy fighters and battleships can operate deep in enemy territory for extended periods, the value of having a home base and firebase has been long recognized. Unfortunately, the price tag on an Absolver has scaled up with the size, and very few have been launched, which has drawn criticism when it is compared to the widely deployed League carrier. The designers, however, maintain that this ship is in a tier of its own, and should not be compared to the vastly converted freighter. The Supreme Comissar of the Loyal Suns fleet herself commands one of these monsters, as does the current Clone-Prince.",
-    "upgrades"    : {"ne_beam": 4, "plasma200":2, "antigun": 2},
+    "upgrades"    : {"ne_beam": 4, "plasma200":2, "antigun": 2, "__carried_ls_heavyfi": 4},
+    "fighter_space": 12,
+    "fighter_launch_cooldown_divisor": 2,
     "rotation"  : 0.01,
     "accel"      : 0.0001,
     "max_speed"   : 0.006,

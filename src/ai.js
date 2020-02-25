@@ -284,6 +284,8 @@ function constrained_point(
 }
 
 function engage(entity, target, delta_time, entMan){
+  // TODO: Be Smarter
+  entity.launching_fighters = true;
 	// Get the ideal facing, subtract out current angle
 	// If angle is outside a certain margin, rotate the ship to face the target
 	let final_turn = constrained_point(
