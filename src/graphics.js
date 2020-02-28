@@ -240,7 +240,7 @@ export function modelPositionSystem (entMan) {
       entity.model.position.x = entity.position.x;
       entity.model.position.z = entity.position.y;
     }
-    if ('direction' in entity) {
+    if ('direction_delta' in entity) {
       entity.model.rotate(
           BABYLON.Axis.Y, entity.direction_delta, BABYLON.Space.LOCAL);
       entity.direction_delta = 0;
