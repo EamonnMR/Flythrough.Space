@@ -301,6 +301,9 @@
       "inaccuracy": 0.1,
       "period":0.001,
       "beam": {
+        "graphics": {
+          "type": "tube"
+        },
         "shield_damage":20,
         "damage":20,
         "length":45,

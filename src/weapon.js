@@ -25,8 +25,9 @@ function beamFactory(proto, creator, position, direction, govt, player_aligned){
     collider: {
       length: proto.length
     },
-    model: get_beam(proto.graphics),
-    max_age: 1000, // TODO: Find the right number.
+    model: get_beam(proto.graphics, proto.length),
+    max_age: 200, // TODO: Find the right number.
+    age: 0,
   });
   if(govt){
     beam.ignoregov = govt;
