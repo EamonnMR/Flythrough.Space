@@ -298,8 +298,7 @@
     "space"          : -6,
     "weapon"         : {
       "mesh":  "plasma_cannon",
-      "inaccuracy": 0.1,
-      "period":0.001,
+      "period":0.01,
       "beam": {
         "graphics": {
           "type": "tube"

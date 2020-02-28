@@ -21,13 +21,14 @@ function beamFactory(proto, creator, position, direction, govt, player_aligned){
     shot: true,
     position: position,
     direction: direction,
+    direction_delta: -1 * direction,
     creator: creator,
     collider: {
       length: proto.length
     },
     model: get_beam(proto.graphics, proto.length),
     max_age: 200, // TODO: Find the right number.
-    age: 0,
+    age: 0.0,
   });
   if(govt){
     beam.ignoregov = govt;

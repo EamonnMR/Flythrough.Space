@@ -1,4 +1,3 @@
-
 import { _ } from "./singletons.js";
 import {
   distance,
@@ -267,6 +266,5 @@ export class GamePlayState extends ViewState {
       )
     );
   }
-
 }
 
