@@ -435,10 +435,17 @@ export function get_beam(beam_info, length){
       "tube",
       {
         path: path,
-        radius: 1
+        radius: beam_info.radius || 1
       },
     );
 
+    let material = new BABYLON.StandardMaterial(_.scene);
+    material.alpha = 1;
+    material.diffuseColor = new BABYLON.Color3(
+      ...(beam_info.color || [1,1,1])
+    );
+    material.custom_emissive_color = beam_info.emissive_color;
+    beam.material = material;
     beam.renderingGroupId = DEFAULT_LAYER;
     return beam;
   }

@@ -146,7 +146,7 @@ function fire_weapon(weapon, entity, entMan) {
   if(weapon_can_fire(weapon, entity)){
     let direction = inaccuracy(
       entity.direction,
-      weapon.inaccuracy
+      weapon.inaccuracy || 0.0
     );
     let origin = entity.position;
     let depth = -2; // TODO: import SHIP_Z from graphics.js
