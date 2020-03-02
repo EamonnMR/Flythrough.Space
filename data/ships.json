@@ -307,6 +307,7 @@
   },
   
   "oe_frig"  :{
+    "mesh"        : "oe_frigate",
     "short_name"  : "OE Frigate",
     "long_name"   : "Old Empire Frigate",
     "full_name"   : "Imperial Frigate Type 925",

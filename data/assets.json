@@ -58,7 +58,7 @@
         "weapon_2",
         "weapon_3"
       ],
-      "default_skin": "baik",
+      "default_skin": "merchant",
       "skins": {
         "merchant": {
           "diffuse": "argosy_merchant.png",
@@ -536,7 +536,46 @@
           "diffuse": "drillship_pirate.png"
         }
       }
+    },
+    "oe_frigate": {
+      "file": "oe_frigate.babylon",
+      "default_skin": "merchant",
+      "skins": {
+        "free": {
+          "diffuse": "oe_frigate_free.png",
+          "emissive": "oe_frigate_emissive.png",
+          "custom_emissive_color": [0.5,1,0.5,1]
+        },
+        "loyal": {
+          "diffuse": "oe_frigate_loyal.png",
+          "emissive": "oe_frigate_emissive.png",
+          "custom_emissive_color": [0.5,1,0.25,1]
+        },
+        "merchant": {
+          "diffuse": "oe_frigate_merchant.png",
+          "emissive": "oe_frigate_emissive.png",
+          "custom_emissive_color": [1,1,1,1]
+        },
+        "pirate": {
+          "diffuse": "oe_frigate_pirate.png",
+          "emissive": "oe_frigate_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "free/dark": {
+          "diffuse": "oe_frigate_free.png"
+        },
+        "loyal/dark": {
+          "diffuse": "oe_frigate_loyal.png"
+        },
+        "merchant/dark": {
+          "diffuse": "oe_frigate_merchant.png"
+        },
+        "pirate/dark": {
+          "diffuse": "oe_frigate_pirate.png"
+        }
+      }
     }
+
   },
   "sprites": {
     "plasma": {
