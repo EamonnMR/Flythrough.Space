@@ -290,6 +290,7 @@ export function get_engine_particle_systems(entity){
 export function do_explo(position){
   // TODO: This could probably be part of CCM
   let particle_system = _.data.get_particle_system("explosion");
+  console.log(_.data.particles);
   particle_system.emitter = new BABYLON.TransformNode(_.scene);
   particle_system.emitter.position.x = position.x;
   particle_system.emitter.position.y = SHIP_Y;
