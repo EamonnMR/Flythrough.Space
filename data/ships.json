@@ -286,6 +286,7 @@
   },
 
   "oe_fighter"   :{
+    "mesh":       "oe_fi",
     "short_name"  : "OE Fighter",
     "long_name"   : "Old Empire Fighter",
     "full_name"   : "Imperial Starfighter Type 950",
@@ -357,7 +358,7 @@
     "fighter_space": 10,
     "fighter_launch_cooldown_divisor": 1,
     "rotation"  : 0.0036,
-    "accel"      : 0.0002,
+    "accel"      : 0.00005,
     "max_speed"   : 0.006,
     "space"      : 80,
     "cargo"      : 40,

@@ -15,6 +15,9 @@
         "weapon_1",
         "weapon_2"
       ],
+      "engines": [
+        "engine"
+      ],
       "default_skin": "merchant",
       "skins": {
         "merchant": {
@@ -114,7 +117,20 @@
       ]
     },
 
-    "oe_fi": {"file": "empfi.babylon"},
+    "oe_fi": {
+      "file": "empfi.babylon",
+      "fixed": [
+        "weapon_1",
+        "weapon_2",
+        "weapon_3",
+        "weapon_4",
+        "weapon_5"
+      ],
+      "engines": [
+        "engine_1",
+        "engine_2"
+      ]
+    },
     "heavy_fi": {
       "file": "khanda_heavy.babylon",
       "default_skin": "merchant",
