@@ -71,7 +71,7 @@ export function shipFactory(type, position, govt=null){
   ship.thrusting = false;
   apply_upgrades(ship, ship.upgrades);
   create_composite_model(ship, govt);
-  ship.engine_glows = get_engine_particle_systems(ship);
+  ship.engine_trails = get_engine_particle_systems(ship);
   return ship;
 };
 
