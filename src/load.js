@@ -300,14 +300,13 @@ function load_assets( source_json, scene, data, finish_callback ){
     }
 
     model_task.onSuccess = (task) => {
-      let mesh = get_main_mesh_from_model_load_task(task);
-
-      // TODO: Do the same for turret meshes, etc
-
       let meta_blob = data.models[key]; // This gets mutated!
-      meta_blob.mesh = mesh;
+      meta_blob.mesh = get_main_mesh_from_model_load_task(task);
 
-      meta_blob.attachpoint_map = map_mesh_children_names(mesh);
+      meta_blob.attachpoint_map = get_attach_points_from_model_load_task(task);
+
+      hide_all_meshes_for_task(task);
+
 
     }
 
@@ -383,17 +382,23 @@ export function load_all(engine, scene, done){
 function get_main_mesh_from_model_load_task(task){
   for(let possible_main_mesh of task.loadedMeshes){
     if(possible_main_mesh.name == "main"){
-      return mesh;
+      return possible_main_mesh;
     }
   }
   return task.loadedMeshes[0]; // Default: just look at 0
 }
 
-function map_mesh_children_names(mesh){
+function get_attach_points_from_model_load_task(task){
   let map = {};
-  mesh._children.forEach((child) => {
+  task.loadedMeshes.forEach((child) => {
     map[child.name] = child;
   })
   return map;
+}
+
+function hide_all_meshes_for_task(task){
+  task.loadedMeshes.forEach((mesh) => {
+    mesh.visibility = 0;
+  });
 }
 
