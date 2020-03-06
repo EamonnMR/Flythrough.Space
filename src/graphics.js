@@ -187,33 +187,31 @@ export function create_composite_model(ship, govt){
     }
   }
 
-  let weapon_index = 0;  // Note that this index is used for both loops, not reset
-
   // Eventually all models should have something for this, and we can 86 the test
   
-  if (model_meta){
-    // TODO: Use the new attachpoint system for this
-    /*
-    if("fixed" in model_meta && ship.model.skeleton){
-      for(let bone_name of model_meta.fixed){
-        if (weapon_index >= ship.weapons.length){
-          break;
-        }
-        let weapon = ship.weapons[weapon_index] 
-        weapon.model = _.data.get_mesh(weapon.mesh);
-        weapon.model.renderingGroupId = DEFAULT_LAYER;
-        mount_mesh_to_hardpoint(weapon.model, ship.model, model_meta.bone_map[bone_name]);
-        weapon.model.visibility = 1;
-        weapon_index ++;
-      }
-    }
+  mount_fixed_weapons_on_ship(model_meta, ship);
+// TODO: Turreted
+    // mount_turreted_weapons(model_meta, data, ship, weapon_index)
 
-    // TODO: Turreted
-    // mount_turreted_weapons(model_meta, data, ship, weapon_index) */
-  }
   ship.model.renderingGroupId = DEFAULT_LAYER;
   ship.model.visibility = 1;
 };
+
+function mount_fixed_weapons_on_ship(model_meta, ship){
+  /* Returns total number of weapons placed (so you know where
+   * to start in the weapons list for picking turreted weapons
+   */
+  let attachpoints = get_attachpoint_group(model_meta, "weapon");
+  let min = Math.min(attachpoints.length, ship.weapons.length);
+  for(let i = 0; i < min; i++){
+    let weapon = ship.weapons[i] 
+    weapon.model = _.data.get_mesh(weapon.mesh);
+    weapon.model.renderingGroupId = DEFAULT_LAYER;
+    mount_on_attachpoint(weapon.model, ship.model, attachpoints[i]);
+    weapon.model.visibility = 1;
+  }
+  return min;
+}
 
 export function chaseCameraFollowSystem (entMan) {
   for (let entity of entMan.get_with(['model', 'camera'])) {
