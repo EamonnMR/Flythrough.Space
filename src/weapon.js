@@ -1,6 +1,7 @@
 import { accelerate } from "./physics.js";
 import { _ } from "./singletons.js"; 
-import { get_sprite_manager, get_beam } from "./graphics.js";
+import { get_sprite_manager} from "./graphics.js";
+import { get_beam } from "./beam_graphics.js";
 import { angle_mod } from "./util.js";
 
 export function decaySystem (entMan) {
