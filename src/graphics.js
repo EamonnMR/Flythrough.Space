@@ -90,12 +90,10 @@ function uni_game_camera(){
   return camera;
 };
 
-function mount_on_attachpoint(child_model, parent_model, attachpoint){
-  // Note that the Y and Z are transposed here.
-  // Otherwise it comes out wrong. Something something rotation.
-  // TODO: Is this still true?
+function mount_on_attachpoint(child_model, parent_model, attachpoint, invert=false){
   let position = attachpoint.position;
-  child_model.translate(BABYLON.Axis.X, position.x, BABYLON.Space.LOCAL);
+  child_model.translate(BABYLON.Axis.X, (invert ? -1 : 1) * position.x, BABYLON.Space.LOCAL);
+  // child_model.translate(BABYLON.Axis.X, position.x, BABYLON.Space.LOCAL);
   child_model.translate(BABYLON.Axis.Y, position.y, BABYLON.Space.LOCAL);
   child_model.translate(BABYLON.Axis.Z, position.z, BABYLON.Space.LOCAL);
 
@@ -198,6 +196,11 @@ export function create_composite_model(ship, govt){
 };
 
 function mount_fixed_weapons_on_ship(model_meta, ship){
+  if(! model_meta){
+    console.log("No model meta for")
+    console.log(ship);
+    return;
+  }
   /* Returns total number of weapons placed (so you know where
    * to start in the weapons list for picking turreted weapons
    */
@@ -207,7 +210,7 @@ function mount_fixed_weapons_on_ship(model_meta, ship){
     let weapon = ship.weapons[i] 
     weapon.model = _.data.get_mesh(weapon.mesh);
     weapon.model.renderingGroupId = DEFAULT_LAYER;
-    mount_on_attachpoint(weapon.model, ship.model, attachpoints[i]);
+    mount_on_attachpoint(weapon.model, ship.model, attachpoints[i], true);
     weapon.model.visibility = 1;
   }
   return min;
@@ -283,7 +286,7 @@ export function get_engine_particle_systems(entity){
     let emitter_node = new BABYLON.TransformNode(_.scene);
     particle_system.emitter = emitter_node;
     particle_system.renderingGroupId = DEFAULT_LAYER;
-    mount_on_attachpoint(emitter_node, entity.model, attachpoint);
+    mount_on_attachpoint(emitter_node, entity.model, attachpoint, false);
     particle_systems.push(particle_system); 
   })
   return particle_systems;
