@@ -3,10 +3,7 @@
 "materials":[{"name":"Material","id":"Material","customType":"BABYLON.PBRMaterial","backFaceCulling":true,"checkReadyOnlyOnce":false,"maxSimultaneousLights":4,"environmentIntensity":1,"reflectivity":[0.5,0.5,0.5],"roughness":0.5,"alpha":1,"transparencyMode":0,"alphaCutOff":0.4,"metallic":0, 
 "albedoTexture":{"name":"passer_merchant.tga","level":1,"hasAlpha":true,"coordinatesMode":0,"uOffset":0,"vOffset":0,"uScale":1,"vScale":1,"uAng":0,"vAng":0,"wAng":0,"wrapU":1,"wrapV":1,"coordinatesIndex":0},"useAlphaFromAlbedoTexture":true}],
 "multiMaterials":[],
-"skeletons":[{"name":"Armature","id":0,"dimensionsAtRest":[0.7731,0.4272,0.6365],"bones":[
-{"name":"weapon_2","index":0,"matrix":[1,0,0,0,0,1,0,0,0,0,-1,0,0.2481,0.2044,0.3447,1],"rest":[1,0,0,0,0,1,0,0,0,0,-1,0,0.2481,0.2044,0.3447,1],"parentBoneIndex":-1,"length":0.3475},
-{"name":"weapon_1","index":1,"matrix":[1,0,0,0,0,1,0,0,0,0,-1,0,0.3059,0.2245,-0.2918,1],"rest":[1,0,0,0,0,1,0,0,0,0,-1,0,0.3059,0.2245,-0.2918,1],"parentBoneIndex":-1,"length":0.3475},
-{"name":"engine","index":2,"matrix":[1,0,0,0,0,1,0,0,0,0,-1,0,-0.4671,0.1449,0,1],"rest":[1,0,0,0,0,1,0,0,0,0,-1,0,-0.4671,0.1449,0,1],"parentBoneIndex":-1,"length":0.3475}]}],
+"skeletons":[],
 "meshes":[{"name":"Cube","id":"Cube","materialId":"Material","billboardMode":0,"position":[0,0,0],"rotation":[0,0,0],"scaling":[1,1,1],"isVisible":true,"freezeWorldMatrix":false,"isEnabled":true,"checkCollisions":false,"receiveShadows":false,"pickable":true,"tags":""
 ,"positions":[0.2552,0.0306,-0.6721,-0.2006,-0.099,-0.9948,0.2552,0.0123,-0.6525,-0.1169,0.1681,-0.36,-0.4818,0.0267,-0.6841,-0.2006,-0.0807,-1.0144,0.2552,0.0123,-0.6525,-0.4818,0.0084,-0.6644,-0.0032,0.1046,-0.2119,-0.2006,-0.099,-0.9948,-0.4818,0.0267,-0.6841,-0.4818,0.0084,-0.6644,0.6287,0.1681,-0.3448,0.2552,0.0306,-0.6721,1.3705,0.1299,-0.3665,1.3705,0.1587,-0.2339,0.2552,0.0123,-0.6525
 ,-0.0032,0.1046,-0.2119,1.3705,0.1299,-0.3665,0.2552,0.0123,-0.6525,1.3705,0.1116,-0.3469,1.3705,0.1587,-0.2339,1.3705,0.1299,-0.3665,1.3705,0.1116,-0.3469,0.7783,0.1681,-0.2119,1.3705,0.1771,-0.223,1.3705,0.1587,-0.2339,-0.4818,0.0084,-0.6644,-0.4818,0.0267,-0.6841,-0.1169,0.1681,-0.36,0.5681,0.2388,-0.2727,-0.0032,0.2388,-0.2119,0.0141,0.2388,-0.2827,0.0565,0.1681,-0.3531
@@ -267,7 +264,7 @@
 ,1399,1400,1401,756,1402,1403]
 ,"subMeshes":[{"materialIndex":0,"verticesStart":0,"verticesCount":1404,"indexStart":0,"indexCount":1656}]
 ,"instances":[]}
-],
+,{"name":"engine","id":"engine","position":[-0.4722,0.1263,0],"rotation":[0,0,0],"scaling":[1,1,1],"isVisible":false,"isEnabled":true,"checkCollisions":false,"billboardMode":0,"receiveShadows":false,"tags":""},{"name":"weapon","id":"weapon","position":[0,0.0869,0.6304],"rotation":[0.3514,0,0],"scaling":[1,1,1],"isVisible":false,"isEnabled":true,"checkCollisions":false,"billboardMode":0,"receiveShadows":false,"tags":""},{"name":"weapon.001","id":"weapon.001","position":[0,0.0869,-0.6304],"rotation":[-0.3514,0,0],"scaling":[1,1,1],"isVisible":false,"isEnabled":true,"checkCollisions":false,"billboardMode":0,"receiveShadows":false,"tags":""}],
 "morphTargetManagers":[],
 "cameras":[],
 "lights":[],
