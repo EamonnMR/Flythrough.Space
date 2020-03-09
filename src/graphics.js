@@ -292,18 +292,33 @@ export function get_engine_particle_systems(entity){
   return particle_systems;
 }
 
+export function get_thruster_lights(entity){
+  let thruster_lights = [];
+
+  if(! entity.mass){
+    return
+  }
+
+  for_each_special_attachpoint(entity, "thruster", () => {
+    console.log("Would add thruster light for: ");
+    console.log(entity);
+  })
+
+  return thruster_lights;
+}
+
 
 function for_each_engine(entity, callback){
   for_each_special_attachpoint(entity, "engine", callback);
 }
 
 
-function for_each_special_attachpoint(entity, special_bone_type, callback){
+function for_each_special_attachpoint(entity, attachpoint_type, callback){
   // TODO: Remove the requirement of specifying this in the meta
   let model_meta = _.data.get_mesh_meta(entity.mesh);
   if(model_meta && model_meta.attachpoint_map){
     for(let attachpoint of get_attachpoint_group(
-      model_meta, special_bone_type)
+      model_meta, attachpoint_type)
     ){
       callback(attachpoint);
     }

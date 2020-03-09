@@ -4,6 +4,7 @@ import {
   create_composite_model,
   create_planet_sprite,
   get_engine_particle_systems,
+  get_thruster_lights,
 } from "./graphics.js";
 
 export function fighterFactory(type, mothership){
@@ -72,6 +73,7 @@ export function shipFactory(type, position, govt=null){
   apply_upgrades(ship, ship.upgrades);
   create_composite_model(ship, govt);
   ship.engine_trails = get_engine_particle_systems(ship);
+  ship.engine_lights = get_thruster_lights(ship);
   return ship;
 };
 

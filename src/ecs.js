@@ -128,6 +128,12 @@ function delete_model (entity) {
     }
   }
 
+  if(entity.engine_lights){
+    entity.engine_lights.forEach((light) => {
+      light.dispose();
+    });
+  }
+
   const MODEL_ATTR = [
     'model',
     'radar_pip',
