@@ -2,7 +2,8 @@ import { _ } from "./singletons.js";
 import {
   do_explo,
   flash_factory,
-  set_dark_texture
+  set_dark_texture,
+  make_way_for_light,
 } from "./graphics.js";
 
 const DISABLED_THRESHOLD = 0.15;
@@ -72,8 +73,9 @@ function destroyed(entity){
   // TODO: Size-proportional explosions
   entity.remove = true;
   do_explo(entity.position);
-  if( _.settings.light_effects ){ 
-    _.entities.insert( flash_factory( entity.position, 1, 300, 750));
+  let intensity = entity.mass / 500;
+  if( _.settings.light_effects && make_way_for_light(intensity)){ 
+    _.entities.insert( flash_factory( entity.position, intensity, 300, 750));
   }
   if(_.entities.is_player_ent(entity)){
     _.hud.widgets.alert_box.show("Ship Destroyed");

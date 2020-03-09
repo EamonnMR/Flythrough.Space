@@ -22,19 +22,6 @@ export function setup_system(entMan, system){
   camera_ready(); 
   let system_dat = _.data.systems[system];
 
-  let lights = [
-    {
-      type: "hemi",
-      position: [0,1,0],
-      intensity: .5
-    }
-  ]
-  
-  if (system_dat.lights){
-    lights = system_dat.lights;
-  }
-
-
   let ents = [
     playerShipFactory(
         _.player.ship_dat, 
@@ -65,7 +52,7 @@ export function setup_system(entMan, system){
     }
   }
 
-  return enter_system(entMan, planets, lights, ents);
+  return enter_system(entMan, planets, system_dat.lights, ents);
 };
 
 function enter_system(entMan, planets, lights, ents) {

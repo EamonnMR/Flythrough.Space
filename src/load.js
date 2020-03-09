@@ -32,6 +32,15 @@ const PROTOTYPES = {
   ships: {
     upgrades: {},
   },
+  systems: {
+    lights: [
+      {
+        type: "hemi",
+        position: [0,1,0],
+        intensity: .3,
+      }
+    ] 
+  },
 }
 
 export class Data {

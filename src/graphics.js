@@ -17,6 +17,7 @@ const STAR_Y = 0;
 const BG_LAYER = 0
 const SPOB_LAYER = 1
 export const DEFAULT_LAYER = 2
+const MAX_LIGHTS = 3  // One is reserved for the system
 // const PLAYER_LAYER = 3
 
 let CAM_OFFSET_3DV = new BABYLON.Vector3(0, 0, 30);
@@ -372,6 +373,28 @@ export function flashSystem(entMan){
     } else {
       ent.flash_light.intensity = ent.peak * 1 - ((ent.age - ent.attack) / (ent.max_age - ent.attack)); 
     }
+  }
+}
+
+export function make_way_for_light(intensity){
+  /* We can only have a limited number of lights.
+   * This function checks to see if the lowest intensity
+   * light is lower than the new intensity and if so,
+   * removes it.
+   */
+  let lights = _.entities.get_with(["flash_light"]).sort((a, b) => {
+    return b.peak - a.peak;
+  })
+  if(lights.length >= MAX_LIGHTS){
+    if(lights[0].peak < intensity){
+      lights[0].flash_light.dispose();
+      lights[0].remove = true;
+      return true
+    } else {
+      return false
+    }
+  } else {
+    return true;
   }
 }
 
