@@ -299,9 +299,17 @@ export function get_thruster_lights(entity){
     return
   }
 
-  for_each_special_attachpoint(entity, "thruster", () => {
-    console.log("Would add thruster light for: ");
-    console.log(entity);
+  for_each_special_attachpoint(entity, "thruster", (attachpoint) => {
+    let light = new BABYLON.PointLight(
+      "engine",
+      new BABYLON.Vector3(0,0,0),
+      _.scene,
+    );
+    // TODO: Parameterize this
+    light.specular = new BABYLON.Color3(1,1,1);
+    light.diffuse = new BABYLON.Color3(1,1,1);
+    light.intensity = entity.mass / 1000;
+    mount_on_attachpoint(light, entity.model, attachpoint, false);
   })
 
   return thruster_lights;
