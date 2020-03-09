@@ -1,4 +1,4 @@
-{"producer":{"name":"Blender","version":"2.80 (sub 75)","exporter_version":"6.2.2","file":"corvette.babylon"},
+{"producer":{"name":"Blender","version":"2.80 (sub 75)","exporter_version":"6.2.2","file":"khanda_corv.babylon"},
 "autoClear":true,"clearColor":[0.0509,0.0509,0.0509],"gravity":[0,-9.81,0],
 "materials":[{"name":"Material","id":"Material","customType":"BABYLON.PBRMaterial","backFaceCulling":true,"checkReadyOnlyOnce":false,"maxSimultaneousLights":4,"environmentIntensity":1,"reflectivity":[0.5,0.5,0.5],"roughness":0.5,"alpha":1,"transparencyMode":0,"alphaCutOff":0.4,"metallic":0, 
 "albedoTexture":{"name":"corvette_merchant.png","level":1,"hasAlpha":true,"coordinatesMode":0,"uOffset":0,"vOffset":0,"uScale":1,"vScale":1,"uAng":0,"vAng":0,"wAng":0,"wrapU":1,"wrapV":1,"coordinatesIndex":0},"useAlphaFromAlbedoTexture":true}],
