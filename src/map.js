@@ -284,14 +284,27 @@ export class MapView extends ViewState{
       this.explored_systems = _.player.explored;
     }
     this.unexplored_systems = [];
+    this.mission_systems = {};
     for( let system of this.explored_systems ){
       for( let link of _.data.systems[system].links ){
-        if (!this.explored_systems.includes(link) && !this.unexplored_systems.includes(link)){
-          this.unexplored_systems.push( link );
-        }
+        this.push_unexplored_system(link);
       }
     }
+    for(let mission_name of Object.keys(_.player.active_missions)){
+      let mission = _.player.active_missions[mission_name];
+      if(mission.dest){
+        this.push_unexplored_system(mission.dest.sys);
+        this.mission_systems[mission.dest] = true;
+      }
+    }
+
     this.visible_systems = this.explored_systems.concat(this.unexplored_systems);
+  }
+
+  push_unexplored_system(system){
+    if (!this.explored_systems.includes(system) && !this.unexplored_systems.includes(system)){
+      this.unexplored_systems.push( system );
+    }
   }
 
   move_spacelanes(){
