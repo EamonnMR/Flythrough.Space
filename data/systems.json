@@ -2175,6 +2175,9 @@
     "x":295,
     "y":160,
     "govt":"loyal",
+    "spobs": [
+      "Loudon Reef"
+    ],
     "links":[
       ".291",
       ".292",

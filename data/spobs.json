@@ -931,6 +931,14 @@
     "trade": {
       "catalite": "high"
     }
+  },
+  "Loudon Reef": {
+    "govt": "loyal",
+    "sprite": "reef",
+    "text": "In the distant reaches, the Loyal Suns have their own cash-cow - they've assumed control of a cluster of systems and subjugated another once-proud civilization, all for the riches on this... well, they're called 'reefs' and it's not clear just who put them here.",
+    "trade": {
+      "catalite": "low"
+    }
   }
 }
 
