@@ -24,6 +24,7 @@ const IN_SYS_CIRCLE_SIZE = CIRCLE_SIZE_INT - 6;
 const IN_SYS_COLOR = "Blue";
 
 const SELECTION_COLOR = "#00FF00";
+const MISSION_COLOR = "Orange";
 const SELECTED_CIRCLE_SIZE = CIRCLE_SIZE_INT + 4;
 
 const SELECTED_SPACELANE_THICKNESS = 2;
@@ -72,6 +73,8 @@ export class MapView extends ViewState{
     this.calculate_visible_systems();
 
     this.create_spacelanes();
+
+    this.create_mission_circles();
     
     this.make_in_system_dot();
 
@@ -86,7 +89,6 @@ export class MapView extends ViewState{
     this.setup_dragging();
     this.move_spacelanes();
     this.move_scrollables();
-
 
   }
 
@@ -236,6 +238,21 @@ export class MapView extends ViewState{
     this.update_selection(this.selection);
   }
 
+  create_mission_circles(){
+    each_mission_system((system_name) => {
+      let system = _.data.systems[system_name];
+      this.map_image.addControl(
+        this.get_circle(
+         system.x, system.y,
+         SELECTED_CIRCLE_SIZE,
+         MISSION_COLOR,
+         CIRCLE_THICKNESS,
+         Z_SEL_CIRCLE,
+        )
+      )
+    });
+  }
+
   create_spacelanes(){
     let already_done = []; // Any system which already has its lines drawn should have no further lines drawn
     this.spacelanes = []; // These will be moved later, so we need a pointer to them
@@ -284,19 +301,15 @@ export class MapView extends ViewState{
       this.explored_systems = _.player.explored;
     }
     this.unexplored_systems = [];
-    this.mission_systems = {};
     for( let system of this.explored_systems ){
       for( let link of _.data.systems[system].links ){
         this.push_unexplored_system(link);
       }
     }
-    for(let mission_name of Object.keys(_.player.active_missions)){
-      let mission = _.player.active_missions[mission_name];
-      if(mission.dest){
-        this.push_unexplored_system(mission.dest.sys);
-        this.mission_systems[mission.dest] = true;
-      }
-    }
+
+    each_mission_system((mission_system) => {
+      this.push_unexplored_system(mission_system);
+    });
 
     this.visible_systems = this.explored_systems.concat(this.unexplored_systems);
   }
@@ -379,10 +392,6 @@ export class MapView extends ViewState{
 
   parse_event(event){
     return event
-    /*return {
-      x: event.pageX,
-      y: event.pageY,
-    }*/
   }
 
   exit(){
@@ -393,3 +402,14 @@ export class MapView extends ViewState{
   }
 
 };
+
+function each_mission_system(callback){
+  console.log("Missions:");
+  console.log(Object.keys(_.player.active_missions));
+  for(let mission_name of Object.keys(_.player.active_missions)){
+    let mission = _.player.active_missions[mission_name];
+    if(mission.dest && mission.dest.sys){
+      callback(mission.dest.sys);
+    }
+  }
+}
