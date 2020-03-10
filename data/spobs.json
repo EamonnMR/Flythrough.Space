@@ -209,15 +209,15 @@
 	},
 	
 	"XIC - Bluthgelt":{
-		"sType":"avJabru",
+    "sprite": "die_station",
 		"govt":"xic",
 		"text":"XIC makes a healthy profit from the asteroids in this system, due to its central location in the Reacher field. Being that this station is only one jump away from civilization, XIC employees consider it a fairly easy posting, and generally hope to be sent here, versus other stations.",
 		"tech":{
 			"xic":3,
 			"generic":2
 		},
-		"x":14,
-		"y":-30,
+		"x":28,
+		"y":-60,
     "shipyard": true,
     "custom": true
 	},
@@ -309,7 +309,7 @@
 	},
 	"Oromia":{
 		"sType":"rwH01",
-		"text":"The beautiful skies of Oromia are a result of the constant presence of silica particulates in the atmosphere, rendering it uninhabitable, because silica particulates are quite deadly."
+		"text":"The beautiful skies of Oromia are a result of the constant presence of silica particulates in the atmosphere refracting the haunting red glow of Ameru it's red giant star. Unfortunately this renders the planet uninhabitable, because silica particulates are quite deadly (and they just get absolutely everywhere.)"
 	},
 	"Meklin":{
 		"sType":"gnPlanet1Lunar",

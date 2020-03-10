@@ -717,6 +717,11 @@
       "img": "assets/planets/civ_station.png",
       "count": 10,
       "size": 650
+    },
+    "die_station": {
+      "img": "assets/planets/die_station.png",
+      "count": 5,
+      "size": 300
     }
   },
   "data": {
