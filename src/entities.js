@@ -17,6 +17,9 @@ export function fighterFactory(type, mothership){
     mothership.govt ? mothership.govt : null
   );
   ship.ai = {"state": "passive"};
+  if("aggro" in mothership.ai){
+    ship.ai.aggro = mothership.ai.aggro;
+  }
   ship.mothership = mothership.id;
   ship.radar_pip = _.hud.widgets.radar_box.get_pip(4, mothership.player ?
     "#00FF00FF" : "#FF0000FF"
