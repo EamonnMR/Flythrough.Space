@@ -32,6 +32,15 @@ const PROTOTYPES = {
   ships: {
     upgrades: {},
   },
+  systems: {
+    lights: [
+      {
+        type: "hemi",
+        position: [0,1,0],
+        intensity: .3,
+      }
+    ] 
+  },
 }
 
 export class Data {
@@ -52,9 +61,10 @@ export class Data {
     if (name in this.models){
       let model = this.models[name];
       clone = model.mesh.clone();
-      if(model.mesh.skeleton){
-        clone.skeleton = model.mesh.skeleton.clone("clone");
-      }
+      // TODO: Remove all references to skeleton
+      // if(model.mesh.skeleton){
+      //   clone.skeleton = model.mesh.skeleton.clone("clone");
+      // }
     } else { // Default for ships with no mesh
       clone = this.models["shuttle"].mesh.clone();
     }
@@ -116,7 +126,7 @@ export class Data {
 
 
   get_particle_system(type){
-    let part_sys = new BABYLON.ParticleSystem("particles", 2000, _.scene);
+    let part_sys = new BABYLON.ParticleSystem("particles" + Math.random(), 2000, _.scene);
     Object.assign(part_sys, this.particles[type]);
     // part_sys.started=false;
     console.log(part_sys);
@@ -299,17 +309,19 @@ function load_assets( source_json, scene, data, finish_callback ){
     }
 
     model_task.onSuccess = (task) => {
-      let mesh = task.loadedMeshes[0]; // TODO: Multimesh files
-      mesh.visibility = 0; // Make the clone visible when you're ready for it
-      let meta_blob = data.models[key];
-      meta_blob.mesh = mesh;
-      meta_blob.bone_map = {};
-      if(mesh.skeleton){
-        for(let i = 0; i < mesh.skeleton.bones.length; i++){
-          meta_blob.bone_map[mesh.skeleton.bones[i].name] = i
-        }
-      }
+      let meta_blob = data.models[key]; // This gets mutated!
+      meta_blob.mesh = get_main_mesh_from_model_load_task(task);
+
+      meta_blob.attachpoint_map = get_attach_points_from_model_load_task(task);
+
+      hide_all_meshes_for_task(task);
+
+
     }
+
+    // TODO: Do we need to get the offsets from ._children
+    // or can we simply parent stuff to the appropriate child
+    // somewhere down the line. Lots of experiments are needed.
 
     model_task.onError = (task) => {
       // TODO: Why is this getting called on successes too?
@@ -375,3 +387,27 @@ export function load_all(engine, scene, done){
 
   xhr.send();
 }
+
+function get_main_mesh_from_model_load_task(task){
+  for(let possible_main_mesh of task.loadedMeshes){
+    if(possible_main_mesh.name == "main"){
+      return possible_main_mesh;
+    }
+  }
+  return task.loadedMeshes[0]; // Default: just look at 0
+}
+
+function get_attach_points_from_model_load_task(task){
+  let map = {};
+  task.loadedMeshes.forEach((child) => {
+    map[child.name] = child;
+  })
+  return map;
+}
+
+function hide_all_meshes_for_task(task){
+  task.loadedMeshes.forEach((mesh) => {
+    mesh.visibility = 0;
+  });
+}
+

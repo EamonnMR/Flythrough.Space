@@ -28,6 +28,13 @@ export function rect_from_polar(angle, magnitude){
   };
 }
 
+export function vector_plus(lvec, rvec){
+  return {
+    x: lvec.x + rvec.x, 
+    y: lvec.y + rvec.y,
+  }
+}
+
 export function point_directly_at(to, from){
   /*
    * Calculate the turn (always clockwise) to point at a target

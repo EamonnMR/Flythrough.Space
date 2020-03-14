@@ -8,7 +8,7 @@
 import { _ } from "./singletons.js";
 import { to_radians, is_cheat_enabled, overridable_default } from "./util.js";
 
-const SHIP_Y = 0; // This might want to be imported from somewhere
+export const SHIP_Y = 0; // This might want to be imported from somewhere
 const PLANET_SCALE = 15;  // TODO: Noticing that differently sized planet sprites end up being the same screen-space size. Weird.
 const PLANET_Y = 0;  // TODO: Shots are still being drawn under planets for some reason
 
@@ -16,7 +16,8 @@ const STAR_Y = 0;
 
 const BG_LAYER = 0
 const SPOB_LAYER = 1
-const DEFAULT_LAYER = 2
+export const DEFAULT_LAYER = 2
+const MAX_LIGHTS = 3  // One is reserved for the system
 // const PLAYER_LAYER = 3
 
 let CAM_OFFSET_3DV = new BABYLON.Vector3(0, 0, 30);
@@ -61,17 +62,17 @@ export function camera_ready(){
   _.camera.setTarget(new BABYLON.Vector3(0,0,0));
 }
 
-export function get_bone_group(skeleton, prefix){
-  // Get a group of bones with the same prefix
-  let bone_group = [];
-  for(let i = 0; i < skeleton.bones.length; i++){
-    let bone = skeleton.bones[i];
-    if (bone.name.startsWith(prefix)){
-      bone_group.push({bone: bone, index: i});
+export function get_attachpoint_group(model_meta, prefix){
+  let attachpoints = [];
+  if(model_meta.attachpoint_map){
+    for(let key of Object.keys(model_meta.attachpoint_map)){
+      if (key.startsWith(prefix)){
+        attachpoints.push(model_meta.attachpoint_map[key]);
+      }
     }
   }
 
-  return bone_group;
+  return attachpoints;
 };
 
 export function get_chase_camera(){
@@ -90,17 +91,15 @@ function uni_game_camera(){
   return camera;
 };
 
-function mount_weapon_on_bone(weapon_model, parent_model, bone_index){
-  // Translate to the bone's offset
-  // Note that the Y and Z are transposed here.
-  // Otherwise it comes out wrong. Something something rotation.
-  let position = parent_model.skeleton.bones[bone_index].getPosition(); 
-  weapon_model.translate(BABYLON.Axis.X, - position.x, BABYLON.Space.LOCAL);
-  weapon_model.translate(BABYLON.Axis.Y, position.y, BABYLON.Space.LOCAL);
-  weapon_model.translate(BABYLON.Axis.Z, position.z, BABYLON.Space.LOCAL);
+function mount_on_attachpoint(child_model, parent_model, attachpoint, invert=false){
+  let position = attachpoint.position;
+  child_model.translate(BABYLON.Axis.X, (invert ? -1 : 1) * position.x, BABYLON.Space.LOCAL);
+  // child_model.translate(BABYLON.Axis.X, position.x, BABYLON.Space.LOCAL);
+  child_model.translate(BABYLON.Axis.Y, position.y, BABYLON.Space.LOCAL);
+  child_model.translate(BABYLON.Axis.Z, position.z, BABYLON.Space.LOCAL);
 
-  // Reparent to the mesh to follow
-  weapon_model.parent = parent_model;
+  // Follow the parent's position
+  child_model.parent = parent_model;
 }
 
 
@@ -119,7 +118,7 @@ function mount_turreted_weapons(model_meta, ship, weapon_index){
 
         let weapon = ship.weapons[weapon_index];
         weapon.model = _.data.get_mesh(weapon.mesh);
-        mount_weapon_on_bone(weapon.model, ship.model, model_meta.bone_map[bone_name]);
+        mount_mesh_on_bone(weapon.model, ship.model, model_meta.bone_map[bone_name]);
 
         weapon.model.attachToBone(bone, ship.model);
         weapon.model.visibility = 1;
@@ -187,35 +186,36 @@ export function create_composite_model(ship, govt){
     }
   }
 
-
-
-  let weapon_index = 0;  // Note that this index is used for both loops, not reset
-
   // Eventually all models should have something for this, and we can 86 the test
   
-  if (model_meta){
-
-    // Fixed
-    if("fixed" in model_meta && ship.model.skeleton){
-      for(let bone_name of model_meta.fixed){
-        if (weapon_index >= ship.weapons.length){
-          break;
-        }
-        let weapon = ship.weapons[weapon_index] 
-        weapon.model = _.data.get_mesh(weapon.mesh);
-        weapon.model.renderingGroupId = DEFAULT_LAYER;
-        mount_weapon_on_bone(weapon.model, ship.model, model_meta.bone_map[bone_name]);
-        weapon.model.visibility = 1;
-        weapon_index ++;
-      }
-    }
-
-    // TODO: Turreted
+  mount_fixed_weapons_on_ship(model_meta, ship);
+// TODO: Turreted
     // mount_turreted_weapons(model_meta, data, ship, weapon_index)
-  }
+
   ship.model.renderingGroupId = DEFAULT_LAYER;
   ship.model.visibility = 1;
 };
+
+function mount_fixed_weapons_on_ship(model_meta, ship){
+  if(! model_meta){
+    console.log("No model meta for")
+    console.log(ship);
+    return;
+  }
+  /* Returns total number of weapons placed (so you know where
+   * to start in the weapons list for picking turreted weapons
+   */
+  let attachpoints = get_attachpoint_group(model_meta, "weapon");
+  let min = Math.min(attachpoints.length, ship.weapons.length);
+  for(let i = 0; i < min; i++){
+    let weapon = ship.weapons[i] 
+    weapon.model = _.data.get_mesh(weapon.mesh);
+    weapon.model.renderingGroupId = DEFAULT_LAYER;
+    mount_on_attachpoint(weapon.model, ship.model, attachpoints[i], true);
+    weapon.model.visibility = 1;
+  }
+  return min;
+}
 
 export function chaseCameraFollowSystem (entMan) {
   for (let entity of entMan.get_with(['model', 'camera'])) {
@@ -240,7 +240,7 @@ export function modelPositionSystem (entMan) {
       entity.model.position.x = entity.position.x;
       entity.model.position.z = entity.position.y;
     }
-    if ('direction' in entity) {
+    if ('direction_delta' in entity) {
       entity.model.rotate(
           BABYLON.Axis.Y, entity.direction_delta, BABYLON.Space.LOCAL);
       entity.direction_delta = 0;
@@ -278,18 +278,66 @@ export function create_planet_sprite(planet){
 }
 
 export function get_engine_particle_systems(entity){
-  // TODO: This could probably be part of CCM
-  let particle_system = _.data.get_particle_system("conventional_engine");
-  let emitter_node = new BABYLON.TransformNode(_.scene);
-  particle_system.emitter = emitter_node;
-  particle_system.renderingGroupId = DEFAULT_LAYER;
-  emitter_node.parent = entity.model;
-  return [particle_system];
+
+
+  let particle_systems = []
+  for_each_engine(entity, (attachpoint) => {
+    // TODO: This could probably be part of CCM
+    let particle_system = _.data.get_particle_system("conventional_engine");
+    let emitter_node = new BABYLON.TransformNode(_.scene);
+    particle_system.emitter = emitter_node;
+    particle_system.renderingGroupId = DEFAULT_LAYER;
+    mount_on_attachpoint(emitter_node, entity.model, attachpoint, false);
+    particle_systems.push(particle_system); 
+  })
+  return particle_systems;
+}
+
+export function get_thruster_lights(entity){
+  let thruster_lights = [];
+
+  if(! entity.mass){
+    return
+  }
+
+  for_each_special_attachpoint(entity, "thruster", () => {
+    console.log("Would add thruster light for: ");
+    console.log(entity);
+  })
+
+  return thruster_lights;
+}
+
+
+function for_each_engine(entity, callback){
+  for_each_special_attachpoint(entity, "engine", callback);
+}
+
+
+function for_each_special_attachpoint(entity, attachpoint_type, callback){
+  // TODO: Remove the requirement of specifying this in the meta
+  let model_meta = _.data.get_mesh_meta(entity.mesh);
+  if(model_meta && model_meta.attachpoint_map){
+    for(let attachpoint of get_attachpoint_group(
+      model_meta, attachpoint_type)
+    ){
+      callback(attachpoint);
+    }
+  }
+}
+
+export function get_engine_glows(entity){
+  for_each_engine(entity, (attachpoint) => {
+    // TODO: Create a light proportional to the ship's mass
+    // TODO: Create a glowing sphere proportional to the
+    // ship's mass
+  });
 }
 
 export function do_explo(position){
   // TODO: This could probably be part of CCM
   let particle_system = _.data.get_particle_system("explosion");
+  console.log(_.data.particles);
   particle_system.emitter = new BABYLON.TransformNode(_.scene);
   particle_system.emitter.position.x = position.x;
   particle_system.emitter.position.y = SHIP_Y;
@@ -302,14 +350,14 @@ export function do_explo(position){
 
 export function shipAnimationSystem(entMan){
   for(let ent of entMan.get_with(['thrust_this_frame'])){
-    if(ent.engine_glows){
+    if(ent.engine_trails){
       if(!ent.thrusting && ent.thrust_this_frame){
-        for(let particle_system of Object.values(ent.engine_glows)){
+        for(let particle_system of Object.values(ent.engine_trails)){
           ent.thrusting = true;
           particle_system.start();
         }
       } else if (ent.thrusting && ! ent.thrust_this_frame){
-        for(let particle_system of Object.values(ent.engine_glows)){
+        for(let particle_system of Object.values(ent.engine_trails)){
           particle_system.stop();
           ent.thrusting = false;
         }
@@ -325,6 +373,28 @@ export function flashSystem(entMan){
     } else {
       ent.flash_light.intensity = ent.peak * 1 - ((ent.age - ent.attack) / (ent.max_age - ent.attack)); 
     }
+  }
+}
+
+export function make_way_for_light(intensity){
+  /* We can only have a limited number of lights.
+   * This function checks to see if the lowest intensity
+   * light is lower than the new intensity and if so,
+   * removes it.
+   */
+  let lights = _.entities.get_with(["flash_light"]).sort((a, b) => {
+    return b.peak - a.peak;
+  })
+  if(lights.length >= MAX_LIGHTS){
+    if(lights[0].peak < intensity){
+      lights[0].flash_light.dispose();
+      lights[0].remove = true;
+      return true
+    } else {
+      return false
+    }
+  } else {
+    return true;
   }
 }
 

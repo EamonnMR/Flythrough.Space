@@ -1,6 +1,8 @@
 import { accelerate } from "./physics.js";
 import { _ } from "./singletons.js"; 
-import { get_sprite_manager } from "./graphics.js";
+import { get_sprite_manager} from "./graphics.js";
+import { get_beam } from "./beam_graphics.js";
+import { angle_mod } from "./util.js";
 
 export function decaySystem (entMan) {
   /* A system for adding expiration times to entities.
@@ -13,6 +15,30 @@ export function decaySystem (entMan) {
     }
   }
 };
+
+function beamFactory(proto, creator, position, direction, govt, player_aligned){
+  let beam = Object.assign(Object.create(proto), {
+    damage_per_second: true,
+    shot: true,
+    position: position,
+    direction: direction,
+    direction_delta: -1 * direction,
+    creator: creator,
+    collider: {
+      length: proto.length
+    },
+    model: get_beam(proto.graphics, proto.length),
+    max_age: 200, // TODO: Find the right number.
+    age: 0.0,
+  });
+  if(govt){
+    beam.ignoregov = govt;
+  }
+  if(player_aligned){
+    beam.ignore_player = true;
+  }
+  return beam;
+}
 
 function bulletFactory(creator, position, sprite, direction, speed, initialVelocity, proto, ignore_gov, ignore_player) {
   sprite.angle = direction;
@@ -119,9 +145,14 @@ function weapon_can_fire(weapon, entity){
 
 function fire_weapon(weapon, entity, entMan) {
   if(weapon_can_fire(weapon, entity)){
-    let direction = entity.direction;
+    let direction = inaccuracy(
+      entity.direction,
+      weapon.inaccuracy || 0.0
+    );
     let origin = entity.position;
     let depth = -2; // TODO: import SHIP_Z from graphics.js
+    let govt = 'govt' in entity ? entity.govt : null;
+    let player_aligned = 'player_aligned' in entity;
     if(weapon.model){
       // direction = ((1 * Math.PI)    // Code to actually rotate the turret graphic should live in graphics.js
       // + entity.direction - entity.turrets[weapon.turret_index].bone.rotation.y) % (Math.PI  *2);
@@ -138,15 +169,24 @@ function fire_weapon(weapon, entity, entMan) {
                     entity.id,
                     origin,
                     new BABYLON.Sprite("bullet", weapon.sprite_mgr),
-                    (direction + weapon.inaccuracy * (Math.random() - 0.5)) % (Math.PI * 2),
+                    direction,
                     weapon.velocity,
                     entity.velocity || {'x': 0, 'y': 0},
                     weapon.proj,
-                    'govt' in entity ? entity.govt : null,
-                    'player_aligned' in entity
+                    govt,
+                    player_aligned,
       ));
     }
-    // TODO: Handle beams or any other type of weapon
+    if (weapon.beam){
+      entMan.insert(beamFactory(
+        weapon.beam,
+        entity.id,
+        origin,
+        direction,
+        govt,
+        player_aligned,
+      ));
+    }
   }
 }
 
@@ -169,4 +209,8 @@ export function weaponSystem (entMan) {
     }
   }
 };
+
+function inaccuracy(direction, inaccuracy){
+  return angle_mod(direction + inaccuracy * (Math.random() - 0.5));
+}
  

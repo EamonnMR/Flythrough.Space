@@ -3,18 +3,10 @@
   "base_particles_url": "assets/particle_sets",
   "meshes": {
     "shuttle": {
-      "file": "shuttle.babylon",
-      "fixed": [
-        "weapon_1",
-        "weapon_2"
-      ]
+      "file": "shuttle.babylon"
     },
     "passer": {
       "file": "passer.babylon",
-      "fixed": [
-        "weapon_1",
-        "weapon_2"
-      ],
       "default_skin": "merchant",
       "skins": {
         "merchant": {
@@ -53,12 +45,7 @@
     },
     "argosy": {
       "file": "argosy.babylon",
-      "fixed": [
-        "weapon_1",
-        "weapon_2",
-        "weapon_3"
-      ],
-      "default_skin": "baik",
+      "default_skin": "merchant",
       "skins": {
         "merchant": {
           "diffuse": "argosy_merchant.png",
@@ -93,28 +80,73 @@
     },
 
     "tandem": {
-      "file": "tandem.babylon",
-      "fixed": [
-        "weapon_1",
-        "weapon_2",
-        "weapon_3"
-      ]
+      "file": "tandem.babylon"
     },
-
     "absolver": {
-      "file": "absolver.babylon",
-      "fixed": [
-        "weapon_1",
-        "weapon_2",
-        "weapon_3",
-        "weapon_4",
-        "weapon_5",
-        "weapon_6",
-        "weapon_7"
-      ]
+      "file": "absolver.babylon"
     },
-
-    "oe_fi": {"file": "empfi.babylon"},
+    "oe_fi": {
+      "file": "empfi.babylon",
+      "default_skin": "merchant",
+      "skins": {
+        "merchant": {
+          "diffuse": "empfi_merchant.png",
+          "emissive": "empfi_emissive.png",
+          "custom_emissive_color": [1,1,1.5,1]
+        },
+        "merchant/dark": {
+          "diffuse": "empfi_merchant.png"
+        },
+        "pirate": {
+          "diffuse": "empfi_pirate.png",
+          "emissive": "empfi_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "empfi_pirate.png"
+        },
+        "free": {
+          "diffuse": "empfi_free.png",
+          "emissive": "empfi_emissive.png",
+          "custom_emissive_color": [1,1,0.25,1]
+        },
+        "free/dark":{
+          "diffuse": "empfi_free_dark.png"
+        },
+        "loyal": {
+          "diffuse": "empfi_loyal.png",
+          "emissive": "empfi_emissive.png",
+          "custom_emissive_color": [0.5,1,0.25,1]
+        },
+        "loyal/dark": {
+          "diffuse": "empfi_loyal_dark.png"
+        },
+        "itaska": {
+          "diffuse": "empfi_itaska.png",
+          "emissive": "empfi_emissive.png",
+          "custom_emissive_color": [1,0.7,0.8,1]
+        },
+        "loyal/dark": {
+          "diffuse": "empfi_itaska_dark.png"
+        },
+        "xic": {
+          "diffuse": "empfi_xic.png",
+          "emissive": "empfi_emissive.png",
+          "custom_emissive_color": [1,1,1,1]
+        },
+        "xic/dark": {
+          "diffuse": "empfi_xic_dark.png"
+        },
+        "league": {
+          "diffuse": "empfi_league.png",
+          "emissive": "empfi_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "league/dark": {
+          "diffuse": "empfi_league.png"
+        }
+      }
+    },
     "heavy_fi": {
       "file": "khanda_heavy.babylon",
       "default_skin": "merchant",
@@ -147,12 +179,56 @@
 
     
     },
-    "light_fi": {"file": "light_fighter.babylon"},
-    "it_clipper": {"file": "itaskan_corvette.babylon"},
     "nightshade": {"file": "nightshade.babylon"},
-    "oe_carrier": {"file": "oe_carrier.babylon"},
-    "it_mask": {"file": "itaskan_something.babylon"},
-    "perigrine": {"file": "perigrine.babylon"},
+    "oe_cruiser": {
+      "file": "oe_cruiser.babylon",
+      "default_skin": "merchant",
+      "skins": {
+        "merchant": {
+          "diffuse": "oe_cruiser_merchant.png",
+          "emissive": "oe_cruiser_emissive.png",
+          "custom_emissive_color": [1,1,1.5,1]
+        },
+        "merchant/dark": {
+          "diffuse": "oe_cruiser_merchant.png"
+        },
+        "pirate": {
+          "diffuse": "oe_cruiser_pirate.png",
+          "emissive": "oe_cruiser_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "oe_cruiser_pirate.png"
+        },
+        "free": {
+          "diffuse": "oe_cruiser_free.png",
+          "emissive": "oe_cruiser_emissive.png",
+          "custom_emissive_color": [1,1,0.25,1]
+        },
+        "free/dark":{
+          "diffuse": "oe_cruiser_free_dark.png"
+        },
+        "loyal": {
+          "diffuse": "oe_cruiser_loyal.png",
+          "emissive": "oe_cruiser_emissive.png",
+          "custom_emissive_color": [0.5,1,0.25,1]
+        },
+        "loyal/dark": {
+          "diffuse": "oe_cruiser_loyal_dark.png"
+        },
+        "loyal/dark": {
+          "diffuse": "oe_cruiser_itaska_dark.png"
+        },
+        "league": {
+          "diffuse": "oe_cruiser_league.png",
+          "emissive": "oe_cruiser_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "league/dark": {
+          "diffuse": "oe_cruiser_league.png"
+        }
+      }
+    },
     "hemlock": {"file": "hemlock.babylon"},
     "vera": {
       "file": "vera.babylon",
@@ -368,12 +444,6 @@
     "plasma_cannon": {"file": "plasma_cannon.babylon"},
     "tercel": {
       "file": "tercel.babylon",
-      "fixed": [
-          "weapon_1",
-          "weapon_2",
-          "weapon_3",
-          "weapon_4"
-      ],
       "default_skin": "baik",
       "skins": {
         "baik": {
@@ -396,14 +466,6 @@
     },
     "falcon": {
       "file": "falcon.babylon",
-      "fixed": [
-        "weapon_1",
-        "weapon_2",
-        "weapon_3",
-        "weapon_4",
-        "weapon_5",
-        "weapon_6"
-      ],
       "default_skin": "merchant",
       "skins": {
         "baik": {
@@ -434,14 +496,6 @@
     },
     "goshawk": {
       "file": "goshawk.babylon",
-      "fixed": [
-        "weapon_1",
-        "weapon_2",
-        "weapon_3",
-        "weapon_4",
-        "weapon_5",
-        "weapon_6"
-      ],
       "default_skin": "merchant",
       "skins": {
         "baik": {
@@ -473,11 +527,6 @@
 
     "prospector": {
       "file": "xic_prospector.babylon",
-      "fixed": [
-        "weapon_1",
-        "weapon_2",
-        "weapon_3"
-      ],
       "default_skin": "xic",
       "skins": {
         "xic": {
@@ -536,7 +585,46 @@
           "diffuse": "drillship_pirate.png"
         }
       }
+    },
+    "oe_frigate": {
+      "file": "oe_frigate.babylon",
+      "default_skin": "merchant",
+      "skins": {
+        "free": {
+          "diffuse": "oe_frigate_free.png",
+          "emissive": "oe_frigate_emissive.png",
+          "custom_emissive_color": [0.5,1,0.5,1]
+        },
+        "loyal": {
+          "diffuse": "oe_frigate_loyal.png",
+          "emissive": "oe_frigate_emissive.png",
+          "custom_emissive_color": [0.5,1,0.25,1]
+        },
+        "merchant": {
+          "diffuse": "oe_frigate_merchant.png",
+          "emissive": "oe_frigate_emissive.png",
+          "custom_emissive_color": [1,1,1,1]
+        },
+        "pirate": {
+          "diffuse": "oe_frigate_pirate.png",
+          "emissive": "oe_frigate_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "free/dark": {
+          "diffuse": "oe_frigate_free.png"
+        },
+        "loyal/dark": {
+          "diffuse": "oe_frigate_loyal.png"
+        },
+        "merchant/dark": {
+          "diffuse": "oe_frigate_merchant.png"
+        },
+        "pirate/dark": {
+          "diffuse": "oe_frigate_pirate.png"
+        }
+      }
     }
+
   },
   "sprites": {
     "plasma": {
@@ -673,6 +761,11 @@
       "img": "assets/planets/civ_station.png",
       "count": 10,
       "size": 650
+    },
+    "die_station": {
+      "img": "assets/planets/die_station.png",
+      "count": 5,
+      "size": 300
     }
   },
   "data": {

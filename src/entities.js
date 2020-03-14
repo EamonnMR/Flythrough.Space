@@ -4,6 +4,7 @@ import {
   create_composite_model,
   create_planet_sprite,
   get_engine_particle_systems,
+  get_thruster_lights,
 } from "./graphics.js";
 
 export function fighterFactory(type, mothership){
@@ -16,6 +17,9 @@ export function fighterFactory(type, mothership){
     mothership.govt ? mothership.govt : null
   );
   ship.ai = {"state": "passive"};
+  if(mothership.ai && "aggro" in mothership.ai){
+    ship.ai.aggro = mothership.ai.aggro;
+  }
   ship.mothership = mothership.id;
   ship.radar_pip = _.hud.widgets.radar_box.get_pip(4, mothership.player ?
     "#00FF00FF" : "#FF0000FF"
@@ -66,12 +70,13 @@ export function shipFactory(type, position, govt=null){
   ship.hittable = true;
   ship.hitpoints = ship.max_hp;
   ship.shields = ship.max_shields;
-  ship.collider = {radius: .5};
+  ship.collider = {radius: 2};
   ship.fuel = ship.max_fuel;
   ship.thrusting = false;
   apply_upgrades(ship, ship.upgrades);
   create_composite_model(ship, govt);
-  ship.engine_glows = get_engine_particle_systems(ship);
+  ship.engine_trails = get_engine_particle_systems(ship);
+  ship.engine_lights = get_thruster_lights(ship);
   return ship;
 };
 

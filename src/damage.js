@@ -2,14 +2,15 @@ import { _ } from "./singletons.js";
 import {
   do_explo,
   flash_factory,
-  set_dark_texture
+  set_dark_texture,
+  make_way_for_light,
 } from "./graphics.js";
 
 const DISABLED_THRESHOLD = 0.15;
 
-export function shot_handler(shot, object, entMan){
+export function shot_handler(shot, object){
   if ( 'damage' in shot ){
-    damage_handler(shot, object, entMan);
+    damage_handler(shot, object);
   }
 
   if ('remove_on_contact' in shot){
@@ -30,11 +31,10 @@ function draw_aggro(damager, damaged){
   }
 }
 
-export function damage_handler(damager, damaged, entMan){
+export function damage_handler(damager, damaged){
   draw_aggro(damager, damaged);
-  // A projectile or some such has hit something hittable
   if ('shield_damage' in damager && 'shields' in damaged){
-    damaged.shields -= damager.shield_damage;
+    damaged.shields -= dps(damager, damager.shield_damage);
     if ( damaged.shields >= 0){
       return; // Shields prevent hull damage
     } else if (damaged.shields <= 0){
@@ -43,15 +43,14 @@ export function damage_handler(damager, damaged, entMan){
   }
 
   if ('damage' in damager && 'hitpoints' in damaged){
-    // Remove hitpoints equal to the damage done
 
-    let new_hp = damaged.hitpoints - damager.damage;
+    let new_hp = damaged.hitpoints - dps(damager, damager.damage);
     let disabled_thresh = DISABLED_THRESHOLD * damaged.max_hp;  // TODO: Cache per ent
     
     if ("nonlethal" in damager){
       if(new_hp < disabled_thresh){
         damaged.hitpoints = disabled_thresh; 
-        disabled(damaged, entMan);
+        disabled(damaged);
       }
     } else {
 
@@ -59,35 +58,46 @@ export function damage_handler(damager, damaged, entMan){
 
       // If an entity's hitpoints are gone, destroy it
       if(new_hp < disabled_thresh){
-        disabled(damaged, entMan);
+        disabled(damaged, _.entities);
       }
       if (new_hp <= 0){
         // TODO: More elaborite death sequence
-        destroyed(damaged, entMan);
+        destroyed(damaged, _.entities);
       }
     }
   }
 }
 
-function destroyed(entity, entMan){
+function destroyed(entity){
   // TODO: Slow explosion filled demise
   // TODO: Size-proportional explosions
   entity.remove = true;
   do_explo(entity.position);
-  if( _.settings.light_effects ){ 
-    entMan.insert( flash_factory( entity.position, 1, 300, 750));
+  let intensity = entity.mass / 500;
+  if( _.settings.light_effects && make_way_for_light(intensity)){ 
+    _.entities.insert( flash_factory( entity.position, intensity, 300, 750));
   }
-  if(entMan.is_player_ent(entity)){
+  if(_.entities.is_player_ent(entity)){
     _.hud.widgets.alert_box.show("Ship Destroyed");
   }
 }
 
-function disabled(entity, entMan){
+function disabled(entity){
   // TODO: More explosions
   // Maybe a sound effect?
   entity.disabled = true;
   set_dark_texture(entity);
-  if(entMan.is_player_ent(entity)){
+  if(_.entities.is_player_ent(entity)){
     _.hud.widgets.alert_box.show("Ship Disabled");
   }
 }
+
+function dps(damager, quantity){
+  /* Handle the fact that some shots do damage per second
+   */
+  if ('damage_per_second' in damager){
+    return (quantity / 1000) * _.entities.delta_time;
+  }
+  return quantity;
+}
+

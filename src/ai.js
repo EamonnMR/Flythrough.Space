@@ -8,7 +8,6 @@ import {
   point_directly_at,
 } from "./util.js";
 import { rotate, accelerate, decelerate, linear_vel } from "./physics.js";
-import { get_bone_group } from "./graphics.js";
 
 const ARC = Math.PI * 2;  // I don't want to make a political statement by using TAU
 

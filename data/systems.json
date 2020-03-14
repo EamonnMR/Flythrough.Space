@@ -48,7 +48,7 @@
       "Dust",
       "Anhui",
       "Hapsburg",
-      ".295"
+      "Canton"
     ]
   },
   "Anhui"    : {
@@ -76,7 +76,7 @@
     "links":[
       "Scanlon",
       "Courci",
-      ".295"
+      "Canton"
     ]
   },
 
@@ -2161,33 +2161,36 @@
       ".293"
     ]
   },
-  ".295":{
+  "Canton":{
     "x":225,
     "y":149,
     "govt":"loyal",
     "links":[
       "Komi",
       "Hastings",
-      ".296"
+      "Scituate"
     ]
   },
-  ".296":{
+  "Scituate":{
     "x":295,
     "y":160,
     "govt":"loyal",
+    "spobs": [
+      "Loudon Reef"
+    ],
     "links":[
       ".291",
       ".292",
-      ".297",
+      "Cohasset",
       ".*8"
     ]
   },
-  ".297":{
+  "Cohasset":{
     "x":271,
     "y":101,
     "govt":"loyal",
     "links":[
-      ".296",
+      "Scituate",
       ".*6"
     ]
   },
@@ -3029,7 +3032,7 @@
     "y":-16,
     "links":[
       "Scanlon",
-      ".297",
+      "Cohasset",
       ".*4",
       ".*6"
     ]
@@ -3056,7 +3059,7 @@
     "x":394,
     "y":58,
     "links":[
-      ".297",
+      "Cohasset",
       ".*3",
       ".*4",
       ".*8"
@@ -3078,7 +3081,7 @@
     "y":141,
     "links":[
       ".292",
-      ".296",
+      "Scituate",
       ".*6",
       ".*7"
     ]

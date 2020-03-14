@@ -119,13 +119,19 @@ function delete_model (entity) {
     }
   }
 
-  if(entity.engine_glows){
-    for (let particle_system of entity.engine_glows){
+  if(entity.engine_trails){
+    for (let particle_system of entity.engine_trails){
       particle_system.disposeOnStop = true;
       particle_system.targetStopDuration = 5;
       particle_system.stop();
       particle_system.emitter.parent = null;
     }
+  }
+
+  if(entity.engine_lights){
+    entity.engine_lights.forEach((light) => {
+      light.dispose();
+    });
   }
 
   const MODEL_ATTR = [

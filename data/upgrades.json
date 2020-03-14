@@ -128,7 +128,7 @@
     "weapon"         : {
       "mesh":  "plasma_cannon",
       "inaccuracy":0,
-      "period":0.2,
+      "period":150,
       "beam": {
         "shield_damage":40,
         "damage":30,
@@ -293,14 +293,16 @@
   },
   "ne_beam":{
     "name"           : "Induction Beam",
-    "tech"           : {"league": 2},
+    "tech"           : {"loyal": 2},
     "price"          : 800,
     "space"          : -6,
     "weapon"         : {
       "mesh":  "plasma_cannon",
-      "inaccuracy": 0.1,
-      "period":0.001,
+      "period":0.5,
       "beam": {
+        "graphics": {
+          "type": "tube"
+        },
         "shield_damage":20,
         "damage":20,
         "length":45,
@@ -356,15 +358,44 @@
     "name"           : "Mining Laser, 50gw",
     "tech"           : {"xic": 2},
     "price"          : 50000,
+    "space"          : -6,
+    "weapon"         : {
+      "mesh":  "plasma_cannon",
+      "period":0.001,
+      "beam": {
+        "graphics": {
+          "type": "tube",
+          "radius": 0.2,
+          "color": [0.8, 1, 0.8],
+          "emissive_color": [0.5, 1, 0.5]
+        },
+        "shield_damage":15,
+        "damage":45,
+        "length":15
+      }
+    },
+    "desc"           : "Suitable for light mining duty, the mining laser is used to ablate, cut, and even vaporize asteroids into small enough chunks to scoop them up for sale. Be careful where you point it."
+  },
+  "heavy_mining_laser":{
+    "name"           : "Mining Laser, 200gw",
+    "tech"           : {"xic": 2},
+    "price"          : 50000,
     "space"          : -20,
     "weapon"         : {
       "mesh":  "plasma_cannon",
       "inaccuracy": 0,
       "period":0.001,
       "beam": {
-        "shield_damage":20,
-        "damage":60,
-        "length":8
+        "graphics": {
+          "type": "tube",
+          "radius": 0.3,
+          "color": [0.8, 1, 0.8],
+          "emissive_color": [0.5, 1, 0.5]
+        },
+        "length":30,
+        "shield_damage":60,
+        "damage":120,
+        "length":25
       }
     },
     "desc"           : "A core component of the XIC drillship is its powerful mining laser. It can be tuned specifically to maximize energy delivery to the target asteroid. As always, exercise caution while mining operations are being conducted. Eye protection suggested."
