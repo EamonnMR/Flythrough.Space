@@ -180,7 +180,55 @@
     
     },
     "nightshade": {"file": "nightshade.babylon"},
-    "oe_cruiser": {"file": "oe_cruiser.babylon"},
+    "oe_cruiser": {
+      "file": "oe_cruiser.babylon",
+      "default_skin": "merchant",
+      "skins": {
+        "merchant": {
+          "diffuse": "oe_cruiser_merchant.png",
+          "emissive": "oe_cruiser_emissive.png",
+          "custom_emissive_color": [1,1,1.5,1]
+        },
+        "merchant/dark": {
+          "diffuse": "oe_cruiser_merchant.png"
+        },
+        "pirate": {
+          "diffuse": "oe_cruiser_pirate.png",
+          "emissive": "oe_cruiser_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "oe_cruiser_pirate.png"
+        },
+        "free": {
+          "diffuse": "oe_cruiser_free.png",
+          "emissive": "oe_cruiser_emissive.png",
+          "custom_emissive_color": [1,1,0.25,1]
+        },
+        "free/dark":{
+          "diffuse": "oe_cruiser_free_dark.png"
+        },
+        "loyal": {
+          "diffuse": "oe_cruiser_loyal.png",
+          "emissive": "oe_cruiser_emissive.png",
+          "custom_emissive_color": [0.5,1,0.25,1]
+        },
+        "loyal/dark": {
+          "diffuse": "oe_cruiser_loyal_dark.png"
+        },
+        "loyal/dark": {
+          "diffuse": "oe_cruiser_itaska_dark.png"
+        },
+        "league": {
+          "diffuse": "oe_cruiser_league.png",
+          "emissive": "oe_cruiser_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "league/dark": {
+          "diffuse": "oe_cruiser_league.png"
+        }
+      }
+    },
     "hemlock": {"file": "hemlock.babylon"},
     "vera": {
       "file": "vera.babylon",

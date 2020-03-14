@@ -70,7 +70,7 @@ export function shipFactory(type, position, govt=null){
   ship.hittable = true;
   ship.hitpoints = ship.max_hp;
   ship.shields = ship.max_shields;
-  ship.collider = {radius: .5};
+  ship.collider = {radius: 2};
   ship.fuel = ship.max_fuel;
   ship.thrusting = false;
   apply_upgrades(ship, ship.upgrades);
