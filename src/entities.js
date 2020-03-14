@@ -17,7 +17,7 @@ export function fighterFactory(type, mothership){
     mothership.govt ? mothership.govt : null
   );
   ship.ai = {"state": "passive"};
-  if("aggro" in mothership.ai){
+  if(mothership.ai && "aggro" in mothership.ai){
     ship.ai.aggro = mothership.ai.aggro;
   }
   ship.mothership = mothership.id;

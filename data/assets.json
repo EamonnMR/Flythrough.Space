@@ -180,7 +180,7 @@
     
     },
     "nightshade": {"file": "nightshade.babylon"},
-    "oe_carrier": {"file": "oe_carrier.babylon"},
+    "oe_cruiser": {"file": "oe_cruiser.babylon"},
     "hemlock": {"file": "hemlock.babylon"},
     "vera": {
       "file": "vera.babylon",

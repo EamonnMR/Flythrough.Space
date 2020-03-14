@@ -339,15 +339,16 @@
   },
   
   "oe_cru"  :{
+    "mesh"        : "oe_cruiser",
     "short_name"  : "OE Battlecruiser",
     "long_name"   : "Old Empire Battlecruiser",
     "full_name"   : "Imperial Heavy Battleship Type 930",
-    "desc"       : "Once the most feared ship class in the galaxy, the Imperial Battlecruiser is still a sight to behold. It can carry an entire wing of Imperial Fighters, as well as its broadside battery of plasma weaponry. It was able to carry enough supplies to support extended voyages into enemy space. It was able to lay siege to entire star systems, owing to the fact that many of the star systems had only rudimentary spaceflight and no ability to shoot down orbital targets. Now, though, it is mostly suitable for merchants looking for something a little cheaper and with a little more punch.",
+    "desc"       : "Once the most feared ship class in the galaxy, the Imperial Battlecruiser is still a sight to behold. It can carry an entire wing of Imperial Fighters, as well as its broadside battery of plasma weaponry. It was able to carry enough supplies to support extended voyages into enemy space and lay siege to entire star systems, owing to the fact that many of the star systems had only rudimentary spaceflight and no ability to shoot down orbital targets. Now, though, it is mostly suitable for merchants looking for something a little cheaper and with a little more punch.",
     "upgrades"    : {"__carried_oe_fighter": 6},
     "mass"        : 2000,
     "fighter_space": 8,
     "fighter_launch_cooldown_divisor": 1,
-    "rotation"  : 0.008,
+    "rotation"  : 0.0004,
     "accel"      : 0.000008,
     "max_speed"   : 0.004,
     "space"      : 120,
