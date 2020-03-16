@@ -16,6 +16,7 @@ export const DEFAULT_SETTINGS = {
   glow_effect: TRUE,
   arcade_physics: FALSE,
   run_tests: FALSE,
+  // shadows: TRUE,
   // mobile_controls: FALSE,
 }
 

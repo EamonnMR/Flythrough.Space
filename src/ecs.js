@@ -134,12 +134,18 @@ function delete_model (entity) {
     });
   }
 
+  if(entity.flash_light){
+    if(entity.flash_light.shadow_caster){
+      entity.flash_light.shadow_caster.dispose();
+    }
+    entity.flash_light.dispose();
+  }
+
   const MODEL_ATTR = [
     'model',
     'radar_pip',
     'sprite',
     'overlay',
-    'flash_light',
   ];
 
   for(let attribute of MODEL_ATTR ){

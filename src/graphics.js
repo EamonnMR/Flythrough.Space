@@ -377,6 +377,9 @@ export function make_way_for_light(intensity){
    * light is lower than the new intensity and if so,
    * removes it.
    */
+  
+  return true;
+
   let lights = _.entities.get_with(["flash_light"]).sort((a, b) => {
     return b.peak - a.peak;
   })
@@ -414,27 +417,35 @@ export function flash_factory(position, peak_intensity, attack, decay){
 }
 
 export function add_light(light){
-  let shadow = new BABYLON.ShadowGenerator(1024, light);
-  _.entities.get_with(["model"]).forEach((ent) => {
-    // This is used to screen out anything that's actually
-    // a sprite (which crashes the game)
-    //
-    // See add_model
-    if( ent.model.receiveShadows ){
-      shadow.getShadowMap().renderList.push(ent.model);
-    }
-  })
-  _.shadows.push(shadow);
+  if(_.settings.shadows){
+    let shadow = new BABYLON.ShadowGenerator(1024, light);
+    _.entities.get_with(["model"]).forEach((ent) => {
+      // This is used to screen out anything that's actually
+      // a sprite (which crashes the game)
+      //
+      // See add_model
+      if( ent.model.receiveShadows ){
+        console.log("Added to shadowcaster: ");
+        console.log(ent.model);
+        shadow.getShadowMap().renderList.push(ent.model);
+      }
+    })
+    _.shadows.push(shadow);
+    // TODO: For later disposal;
+    light.shadow_caster = shadow;
+  }
 }
 
 export function add_model(model){
-  model.receiveShadows = true;
-  _.shadows.forEach((shadow) => {
-    let map = shadow.getShadowMap();
-    if(map){
-      map.renderList.push(model);
-    }
-  });
+  if( _.settings.shadows ){
+    model.receiveShadows = true;
+    _.shadows.forEach((shadow) => {
+      let map = shadow.getShadowMap();
+      if(map){
+        map.renderList.push(model);
+      }
+    });
+  }
 }
 
 export function create_starfield(){
