@@ -13,5 +13,6 @@ export var _ = {
   camera: null,
   settings: {},
   entities: null,
+  shadows: [],
 };
 

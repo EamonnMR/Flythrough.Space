@@ -7,7 +7,7 @@
  */
 
 import { _ } from "./singletons.js";
-import { create_starfield, camera_ready } from "./graphics.js"; 
+import { create_starfield, camera_ready, add_light } from "./graphics.js"; 
 
 import {
   playerShipFactory,
@@ -87,12 +87,17 @@ function lightFactory(data){
         new BABYLON.Vector3(...data.position),
         _.scene
     );
+    // Can't use hemispheric light with shadows!
+    // https://www.html5gamedevs.com/topic/29552-i-am-getting-a-strange-error-when-i-try-to-add-shadows/
   } else {
     light = new BABYLON.DirectionalLight(
       "",
       new BABYLON.Vector3(...data.position),
       _.scene
     ); 
+    
+    add_light(light);
+  
   }
 
   if(data.diffuse){
@@ -109,6 +114,5 @@ function lightFactory(data){
   }
 
   light.intensity = data.intensity;
-  
   return light;
 }

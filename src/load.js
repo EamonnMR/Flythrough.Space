@@ -35,7 +35,7 @@ const PROTOTYPES = {
   systems: {
     lights: [
       {
-        type: "hemi",
+        // type: "hemi",
         position: [0,1,0],
         intensity: .3,
       }

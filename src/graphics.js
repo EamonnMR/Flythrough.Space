@@ -186,6 +186,8 @@ export function create_composite_model(ship, govt){
     }
   }
 
+  add_model(ship.model);
+
   // Eventually all models should have something for this, and we can 86 the test
   
   mount_fixed_weapons_on_ship(model_meta, ship);
@@ -212,6 +214,7 @@ function mount_fixed_weapons_on_ship(model_meta, ship){
     weapon.model = _.data.get_mesh(weapon.mesh);
     weapon.model.renderingGroupId = DEFAULT_LAYER;
     mount_on_attachpoint(weapon.model, ship.model, attachpoints[i], true);
+    add_model(weapon.model);
     weapon.model.visibility = 1;
   }
   return min;
@@ -326,14 +329,6 @@ function for_each_special_attachpoint(entity, attachpoint_type, callback){
   }
 }
 
-export function get_engine_glows(entity){
-  for_each_engine(entity, (attachpoint) => {
-    // TODO: Create a light proportional to the ship's mass
-    // TODO: Create a glowing sphere proportional to the
-    // ship's mass
-  });
-}
-
 export function do_explo(position){
   // TODO: This could probably be part of CCM
   let particle_system = _.data.get_particle_system("explosion");
@@ -408,6 +403,7 @@ export function flash_factory(position, peak_intensity, attack, decay){
   // TODO: Parameterize this
   light.specular = new BABYLON.Color3(1,1,1);
   light.diffuse = new BABYLON.Color3(1,1,1);
+  add_light(light);
   return {
     "flash_light": light,
     "attack": attack,
@@ -415,6 +411,30 @@ export function flash_factory(position, peak_intensity, attack, decay){
     "peak": peak_intensity,
     "age": 0,
   }
+}
+
+export function add_light(light){
+  let shadow = new BABYLON.ShadowGenerator(1024, light);
+  _.entities.get_with(["model"]).forEach((ent) => {
+    // This is used to screen out anything that's actually
+    // a sprite (which crashes the game)
+    //
+    // See add_model
+    if( ent.model.receiveShadows ){
+      shadow.getShadowMap().renderList.push(ent.model);
+    }
+  })
+  _.shadows.push(shadow);
+}
+
+export function add_model(model){
+  model.receiveShadows = true;
+  _.shadows.forEach((shadow) => {
+    let map = shadow.getShadowMap();
+    if(map){
+      map.renderList.push(model);
+    }
+  });
 }
 
 export function create_starfield(){
