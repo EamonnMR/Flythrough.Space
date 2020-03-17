@@ -38,6 +38,7 @@ const PROTOTYPES = {
         // type: "hemi",
         position: [0,1,0],
         intensity: .3,
+        type: "point",
       }
     ] 
   },

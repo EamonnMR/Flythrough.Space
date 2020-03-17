@@ -419,6 +419,7 @@ export function flash_factory(position, peak_intensity, attack, decay){
 export function add_light(light){
   if(_.settings.shadows){
     let shadow = new BABYLON.ShadowGenerator(1024, light);
+    shadow.bias = 0.05;
     _.entities.get_with(["model"]).forEach((ent) => {
       // This is used to screen out anything that's actually
       // a sprite (which crashes the game)

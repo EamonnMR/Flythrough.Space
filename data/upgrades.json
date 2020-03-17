@@ -274,6 +274,12 @@
       "inaccuracy":0,
       "period":0.001,
       "beam": {
+        "graphics": {
+          "type": "tube",
+          "radius": 0.2,
+          "color": [1.5, 0.5, 0.8],
+          "emissive_color": [1.4, 0.4, 0.7]
+        },
         "shield_damage":50,
         "damage":0,
         "length":30,
