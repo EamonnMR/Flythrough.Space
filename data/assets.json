@@ -3,7 +3,26 @@
   "base_particles_url": "assets/particle_sets",
   "meshes": {
     "shuttle": {
-      "file": "shuttle.babylon"
+      "file": "shuttle.babylon",
+      "default_skin": "merchant",
+      "skins": {
+        "merchant": {
+          "diffuse": "shuttle_merchant.png",
+          "emissive": "shuttle_emissive.png",
+          "custom_emissive_color": [1,1,1.5,1]
+        },
+        "merchant/dark": {
+          "diffuse": "shuttle_merchant.png"
+        },
+        "pirate": {
+          "diffuse": "shuttle_pirate.png",
+          "emissive": "shuttle_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "shuttle_pirate.png"
+        }
+      }
     },
     "passer": {
       "file": "passer.babylon",
@@ -440,7 +459,36 @@
         }
       }
     },
-    "courier": {"file": "courier.babylon"},
+    "courier": {
+      "file": "courier.babylon",
+      "default_skin": "merchant",
+      "skins": {
+        "merchant": {
+          "diffuse": "courier_merchant.png",
+          "emissive": "courier_emissive.png",
+          "custom_emissive_color": [1,1,1,1]
+        },
+        "merchant/dark": {
+          "diffuse": "courier_merchant_dark.png"
+        },
+        "pirate": {
+          "diffuse": "courier_pirate.png",
+          "emissive": "courier_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "courier_pirate_dark.png"
+        },
+        "galbank": {
+          "diffuse": "courier_galbank.png",
+          "emissive": "courier_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "galbank/dark": {
+          "diffuse": "courier_emissive.png"
+        }
+      }
+    },
     "plasma_cannon": {"file": "plasma_cannon.babylon"},
     "tercel": {
       "file": "tercel.babylon",
