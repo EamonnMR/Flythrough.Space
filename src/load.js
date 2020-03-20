@@ -44,6 +44,10 @@ const PROTOTYPES = {
   },
 }
 
+const CLONE_ATTRS = [
+  "particleTexture",
+];
+
 export class Data {
   constructor (){
     this.models = {};
@@ -129,8 +133,11 @@ export class Data {
   get_particle_system(type){
     let part_sys = new BABYLON.ParticleSystem("particles" + Math.random(), 2000, _.scene);
     Object.assign(part_sys, this.particles[type]);
-    // part_sys.started=false;
-    console.log(part_sys);
+    for(let attr of CLONE_ATTRS){
+      // If we just assign the same texture, they get
+      // disposed, so we need to clone it.
+      part_sys[attr] = part_sys[attr].clone();
+    }
     return part_sys;
   }
 
@@ -314,7 +321,6 @@ function load_assets( source_json, scene, data, finish_callback ){
       meta_blob.mesh = get_main_mesh_from_model_load_task(task);
 
       meta_blob.attachpoint_map = get_attach_points_from_model_load_task(task);
-
       hide_all_meshes_for_task(task);
 
 
