@@ -12,7 +12,7 @@
           "custom_emissive_color": [1,1,1.5,1]
         },
         "merchant/dark": {
-          "diffuse": "shuttle_merchant.png"
+          "diffuse": "shuttle_merchant_dark.png"
         },
         "pirate": {
           "diffuse": "shuttle_pirate.png",
@@ -20,7 +20,29 @@
           "custom_emissive_color": [1,0.5,0.5,1]
         },
         "pirate/dark": {
-          "diffuse": "shuttle_pirate.png"
+          "diffuse": "shuttle_pirate_dark.png"
+        }
+      }
+    },
+    "bulk": {
+      "file": "bulk.babylon",
+      "default_skin": "merchant",
+      "skins": {
+        "merchant": {
+          "diffuse": "bulk_merchant.png",
+          "emissive": "bulk_emissive.png",
+          "custom_emissive_color": [1,1,1.5,1]
+        },
+        "merchant/dark": {
+          "diffuse": "bulk_merchant_dark.png"
+        },
+        "pirate": {
+          "diffuse": "bulk_pirate.png",
+          "emissive": "bulk_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "bulk_pirate_dark.png"
         }
       }
     },

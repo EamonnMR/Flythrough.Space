@@ -102,14 +102,15 @@
     "max_shields": 400
   },
   "bulk":{
+    "mesh"        : "bulk",
     "short_name"  : "Bulk Freighter",
     "long_name"   : "Bulk Freighter",
     "full_name"   : "Accra Starworks Bulk Freighter",
     "desc"       : "Designed for safe cargo routes, or to fly under escort, the Bulk Freighter is a gigantic cousin of the shuttle. Cited by world-weary merchant captains as a case of Accra selling out, it is the favorite of peaceful haulers who enjoy well policed routes, and of pirates who enjoy easy prey.",
     "upgrades"    : {"plasma200": 1},
-    "rotation"  : 0.004,
+    "rotation"  : 0.00009,
     "mass"      : 3000,
-    "accel"      : 0.0003,
+    "accel"      : 0.0002,
     "max_speed"   : 0.005,
     "space"      : 10,
     "cargo"      : 200,
