@@ -226,9 +226,10 @@ export function clear_setting(key){
   set_setting(key, ""); // We want it falsey
 }
 
-export function get_setting(key, optional_default=null){
+export function get_setting(key){
   // TODO: yes, this is ORing them. So yes, this is kinda broken.
-  return url_params.get(key) || window.localStorage.getItem(setting_key(key)) || optional_default;
+  
+  return url_params.get(key) || window.localStorage.getItem(setting_key(key));
 }
 
 export function assert_true(value, desc){
@@ -256,9 +257,11 @@ export function assert_equal(lval, rval, desc){
 }
 
 export function update_settings(){
+  console.log("update settings");
   Object.keys(DEFAULT_SETTINGS).forEach( (key) => {
-    _.settings[key] = get_setting(key, DEFAULT_SETTINGS[key]);
+    _.settings[key] = get_setting(key);
   })
+  console.log(_.settings);
 }
 
 export function restore_default_settings(){
@@ -271,11 +274,8 @@ export function restore_default_settings(){
 export function utils_unit_tests(){
   // Test local storage for settings
   set_setting("foo", "bar");
-  assert_true(get_setting("foo", "baz") === "bar",
+  assert_true(get_setting("foo") === "bar",
     "Can save settings in local storage");
   clear_setting("foo");
-  assert_true(get_setting("foo", "baz") === "baz",
-    "Can clear settings and get default values"
-  );
 }
 

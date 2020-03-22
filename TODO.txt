@@ -2,50 +2,6 @@
 Modeling And Texturing Tut: Write a how-to blog post to codify
 the knowledge of how to make ships.
 
-==================
-Disappearing Particle Systems:
-The Behavior:
-It appears that any time any particle system is disposed,
-they all quit working, including newly created ones.
-Things I've Tried:
-* Object.create(ParticleSystem) (before and after the Object.assign)
-* Giving each system a unique name
-* Manually doing Object.assign (ie iterating over stuff)
-Observations:
-They get init'd as started=true, stopped=true, but manually setting started=false
-seems to have no effect.
-Further Thoughts:
-I'd like a clean way to diff the objects before and after. JSON.stringify does
-not work, but maybe copy/pasting from the debugger, cleaning up the garbage,
-and alpha-sorting will allow a clean enough diff.
-If there's no difference that can be shown between the objects, I think it's
-time to make a forum post.
-
-==================
-Shadows: https://doc.babylonjs.com/babylon101/shadows
-
-Whenever a light appears, add a shadow caster. Add all objects as shadow casters.
-
-Whenever an object appears, add it to the shadow caster.
-
-How do I manage this?
-
-===================
-Beams:
-
-Draw as a line?
-https://doc.babylonjs.com/babylon101/parametric_shapes#lines
-
-Draw as a particle system?
-
-How to keep track of the mesh between shots? (attach mesh to weapon rather than projectile?)
-(what to do about collider?)
-
-================
-Map Markers
-
-Show systems that are mission destinations on the map somehow
-
 ===============
 AI/ Turrets
 

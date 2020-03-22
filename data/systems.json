@@ -145,9 +145,9 @@
     ],
     "lights": [
       {
-        "position": [0, 1,-1],
-        "intensity": 0.5
-      
+        "type": "point",
+        "position": [0, 10, 0],
+        "intensity": 1
       }
     ]
   },

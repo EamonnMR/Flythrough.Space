@@ -7,7 +7,7 @@
  */
 
 import { _ } from "./singletons.js";
-import { create_starfield, camera_ready } from "./graphics.js"; 
+import { create_starfield, camera_ready, add_light } from "./graphics.js"; 
 
 import {
   playerShipFactory,
@@ -79,21 +79,36 @@ function enter_system(entMan, planets, lights, ents) {
 
 function lightFactory(data){
   let light = null 
-  if(data.type = "hemi"){
-    // Useful nebula-adjacent systems where there's an ambient background
+  switch(data.type){
+    case "hemi":
+      // Useful nebula-adjacent systems where there's an ambient background
 
-    light = new BABYLON.HemisphericLight(
+      light = new BABYLON.HemisphericLight(
+          "",
+          new BABYLON.Vector3(...data.position),
+          _.scene
+      );
+      // Can't use hemispheric light with shadows!
+      // https://www.html5gamedevs.com/topic/29552-i-am-getting-a-strange-error-when-i-try-to-add-shadows/
+      break;
+    case "point":
+      light = new BABYLON.PointLight(
         "",
         new BABYLON.Vector3(...data.position),
         _.scene
-    );
-  } else {
-    light = new BABYLON.DirectionalLight(
-      "",
-      new BABYLON.Vector3(...data.position),
-      _.scene
-    ); 
+      )
+      break;
+  
+    default:
+      light = new BABYLON.DirectionalLight(
+        "",
+        new BABYLON.Vector3(...data.position),
+        _.scene
+      );
+      break;
   }
+    
+    add_light(light);
 
   if(data.diffuse){
     light.diffuse = new BABYLON.Color3(...data.diffuse);
@@ -109,6 +124,5 @@ function lightFactory(data){
   }
 
   light.intensity = data.intensity;
-  
   return light;
 }

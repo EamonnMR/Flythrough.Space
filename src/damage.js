@@ -73,7 +73,7 @@ function destroyed(entity){
   // TODO: Size-proportional explosions
   entity.remove = true;
   do_explo(entity.position);
-  let intensity = entity.mass / 500;
+  let intensity = entity.mass / 5;
   if( _.settings.light_effects && make_way_for_light(intensity)){ 
     _.entities.insert( flash_factory( entity.position, intensity, 300, 750));
   }

@@ -187,6 +187,10 @@ export class GamePlayState extends ViewState {
 
       this[model_group] = [];
     }
+    for(let shadow of _.shadows){
+      shadow.dispose();
+    }
+    _.shadows = [];
   }
 
   exit(){

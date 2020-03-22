@@ -112,7 +112,7 @@ class BooleanSetting extends Widget{
     this.checkbox.color = "red";
     this.checkbox.onIsCheckedChangedObservable.add((value) => {
       if (value) {
-        set_setting(this.setting, true);
+        set_setting(this.setting, "true");
       } else {
         clear_setting(this.setting);
       }
