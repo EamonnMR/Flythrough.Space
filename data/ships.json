@@ -173,6 +173,7 @@
   },
   "cetacea":{
     "short_name"  : "Cetacea",
+    "mesh"        : "cetacea",
     "long_name"   : "Accra Cetacea",
     "full_name"   : "Accra Starworks Cetacea Freighter",
     "desc"       : "The largest Freighter currently on the market, the Catacea is a daring feat engineering in its own right as an orbital structure, to say nothing of the fact that it can travel the stars. Several exotic metals and alloys are required to prevent it from being ripped apart not only when accelerating, but under its own gravity.",
