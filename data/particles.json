@@ -40,5 +40,14 @@
 	  "updateSpeed": 0.01,
     "preWarmCycles": 100,
     "preWarmStepOffset": 5
+  },
+  "plasma_impact_small": {
+    "extends": "explosion"
+  },
+  "plasma_impact": {
+    "extends": "explosion",
+    "color1": [1,0,0,1.0],
+    "color2": [0.5,0.2,0.2],
+    "colorDead": [0,0,0,0]
   }
 }

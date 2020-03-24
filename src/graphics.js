@@ -329,9 +329,9 @@ function for_each_special_attachpoint(entity, attachpoint_type, callback){
   }
 }
 
-export function do_explo(position){
+export function do_explo(position, type="explosion"){
   // TODO: This could probably be part of CCM
-  let particle_system = _.data.get_particle_system("explosion");
+  let particle_system = _.data.get_particle_system(type);
   console.log(_.data.particles);
   particle_system.emitter = new BABYLON.TransformNode(_.scene);
   particle_system.emitter.position.x = position.x;

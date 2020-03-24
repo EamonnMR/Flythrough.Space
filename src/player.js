@@ -60,6 +60,7 @@ export class PlayerSave {
       "Elinore",
       "Brumpo Tungus",
       "Synthia Drangles",
+      "Joe Bloggs",
     ]);
     this.money = is_cheat_enabled("money") ? 100000000 : 5000;
     this.map_pos = {x: 0, y: 0};

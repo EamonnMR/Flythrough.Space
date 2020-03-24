@@ -11,6 +11,7 @@
       "period": 500,
       "velocity": 0.04,
       "proj": {
+        "explosion": "plasma_impact_small",
         "damage": 10,
         "shield_damage": 20,
         "max_age": 5000,
@@ -31,6 +32,7 @@
       "period": 2000,
       "velocity":0.04,
       "proj": {
+        "explosion": "plasma_impact",
         "shield_damage": 60,
         "damage": 30,
         "max_age": 4000,

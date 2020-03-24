@@ -18,6 +18,10 @@ export function shot_handler(shot, object){
     shot.remove = true;
   }
 
+  if('explosion' in shot){
+    do_explo(shot.position, shot.explosion);
+  }
+
   // Add other special case shot interaction logic here
 }
 
@@ -72,7 +76,7 @@ function destroyed(entity){
   // TODO: Slow explosion filled demise
   // TODO: Size-proportional explosions
   entity.remove = true;
-  do_explo(entity.position);
+  do_explo(entity.position, entity.explosion);
   let intensity = entity.mass / 5;
   if( _.settings.light_effects && make_way_for_light(intensity)){ 
     _.entities.insert( flash_factory( entity.position, intensity, 300, 750));

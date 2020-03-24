@@ -30,6 +30,7 @@ const PROTOTYPES = {
     y: 0
   },
   ships: {
+    explosion: "explosion",
     upgrades: {},
   },
   systems: {
@@ -41,6 +42,12 @@ const PROTOTYPES = {
         type: "point",
       }
     ] 
+  },
+  particles: {
+    particleTexture: "flare.png",
+    blendMode: "BLENDMODE_ONEONE",
+    direction1: [1,1,1],
+    direction2: [-1,-1,-1],
   },
 }
 
@@ -162,6 +169,8 @@ export class Data {
       "particleTexture"
     ];
     for(let particle_system of Object.values(this.particles)){
+      console.log("particle system: ");
+      console.log(particle_system)
       for(let attr of COLOR_4_ATTRS){
         if (attr in particle_system){
           particle_system[attr] = new BABYLON.Color4(...particle_system[attr]);
@@ -187,28 +196,31 @@ export class Data {
     }
   }
 
-  get_base_type(name, type){
-    let parent = this[type][name];
-    if(parent === undefined){
-      console.log(`*** Parent not found: ${type}/${name}`);
-      return PROTOTYPES[type];
+  resolve_proto_chain(name, type){
+    if(name){ 
+      let parent = this[type][name];
+      if(parent === undefined){
+        console.log(`*** Parent not found: ${type}/${name}`);
+      } else {
+        let obj = Object.assign(
+          Object.assign(
+            {},  // Essentially a clone op
+            this.resolve_proto_chain(parent.extends, type),
+          ),
+          parent
+        );
+        return obj;
+      }
     }
-    return Object.assign(
-      Object.create(
-        "extends" in parent
-        ? this.get_base_type(parent["extends"], type)
-        : PROTOTYPES[type]
-      ),
-      parent
-    );
-  }
+    return PROTOTYPES[type] 
+  } 
 
-  resolve_proto_chain(){
+  resolve_proto_chains(){
     // This implements the 'extends' feature, and allows
     // default values to be set for game objects.
     for(let type of Object.keys(PROTOTYPES)){
       for(let item of Object.keys(this[type])){
-        this[type][item] = this.get_base_type(item, type)
+        this[type][item] = this.resolve_proto_chain(item, type)
       }
     }
   }
@@ -375,8 +387,8 @@ export function load_all(engine, scene, done){
     if (xhr.status == 200){
       load_assets(JSON.parse(xhr.responseText), scene, data_mgr, () => {
         data_mgr.set_type_keys();
+        data_mgr.resolve_proto_chains();
         data_mgr.preprocess_particle_systems();
-        data_mgr.resolve_proto_chain();
         data_mgr.create_upgrades_for_carried_fighters();
         update_settings(); 
         if(_.settings.run_tests){
