@@ -41,13 +41,39 @@
     "preWarmCycles": 100,
     "preWarmStepOffset": 5
   },
-  "plasma_impact_small": {
-    "extends": "explosion"
-  },
+
   "plasma_impact": {
     "extends": "explosion",
     "color1": [1,0,0,1.0],
     "color2": [0.5,0.2,0.2],
-    "colorDead": [0,0,0,0]
+    "colorDead": [0,0,0,0],
+    "emitRate": 500
+  },
+  "plasma_impact_small": {
+    "extends": "plasma_impact",
+    "emitRate": 125,
+    "minSize": 0.01,
+    "maxSize": 0.1
+  },
+  "mining_laser_impact": {
+    "extends": "explosion",
+    "color1": [0,1.0,0,1.0],
+    "color2": [0,0,0,0],
+    "minEmitPower": 1,
+    "maxEmitPower": 2,
+    "emitRate": 100
+  },
+  "mining_laser_impact_small": {
+    "extends": "mining_laser_impact",
+    "emitRate": 25,
+    "minSize": 0.01,
+    "maxSize": 0.1
+  },
+  "ac_impact": {
+	  "minSize": 0.01,
+	  "maxSize": 0.05,
+	  "minLifeTime": 0.02,
+	  "maxLifeTime": 0.06,
+	  "emitRate": 100
   }
 }
