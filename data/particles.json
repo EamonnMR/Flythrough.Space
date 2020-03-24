@@ -70,10 +70,11 @@
     "maxSize": 0.1
   },
   "ac_impact": {
-	  "minSize": 0.01,
-	  "maxSize": 0.05,
-	  "minLifeTime": 0.02,
-	  "maxLifeTime": 0.06,
-	  "emitRate": 100
+    "extends": "explosion",
+	  "emitRate": 75,
+    "minEmitPower": 1,
+    "maxEmitPower": 1.5,
+	  "minLifeTime": 0.3,
+	  "maxLifeTime": 0.7
   }
 }
