@@ -329,10 +329,16 @@ function for_each_special_attachpoint(entity, attachpoint_type, callback){
   }
 }
 
-export function do_explo(position, type="explosion"){
+export function do_explo(position, type="explosion", scale=1){
   // TODO: This could probably be part of CCM
   let particle_system = _.data.get_particle_system(type);
-  console.log(_.data.particles);
+  /*
+  if("mass_scale" in particle_system){
+    particle_system.mass_scale.forEach((key) => {
+      particle_system[key] = scale * particle_system[scale];
+    });
+  }
+  */
   particle_system.emitter = new BABYLON.TransformNode(_.scene);
   particle_system.emitter.position.x = position.x;
   particle_system.emitter.position.y = SHIP_Y;

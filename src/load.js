@@ -48,6 +48,8 @@ const PROTOTYPES = {
     blendMode: "BLENDMODE_ONEONE",
     direction1: [1,1,1],
     direction2: [-1,-1,-1],
+    minAngularSpeed: 0,
+    maxAngularSpeed: 3.14159,
   },
 }
 
