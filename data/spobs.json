@@ -29,7 +29,6 @@
     "custom": true
   },
 	"Wajir":{
-		"sType":"sgHighWinds",
     "sprite": "wajir",
 		"text":"Accra orbits this gas giant."
 	},
@@ -48,7 +47,7 @@
 		}
 	},
 	"Skye Orbital":{
-    "sprite": "oe_station", 
+    "sprite": "civ_station", 
     "img": "assets/landing/oe_station_perspective.png",
 		"text":"Population center of the Inverness system, the massive Skye orbital station is home to millions. Though it can generate its own power and once had its own food supply, it has long since replaced its agriculture segments with living space, favoring imports. As it happens, vat grown yeast slurry isn't a popular dish after the first few decades. As a result, merchants from across the Freehold make this their port of call.",
 		"x":-100,
@@ -68,14 +67,14 @@
     "customize": true
 	},
 	"Inshes":{
-		"sType":"onyxM4Earthlike",
+    "sprite": "inshes",
 		"govt":"free",
 		"text":"Orbiting opposite from Carnarc's L3 Lagrangian Point, Inshes, a small world is jealously guarded by the Carnarc government as a premier vacation destination. Trips to it where largely kept secret from the public until 495 when the fact that the tiny dot visible in the sky was actually being landed on. It was the first step for the inhabitants of this system to the stars.",
 		"x":200,
 		"y":480
 	},
 	"Lanner":{
-		"sType": "onyxRedQ",
+    "sprite": "lanner",
 		"text" : "Lanner's stark, reddish atmosphere is highly toxic due to its exotic composition of various heavy metals and deadly acids. However, beneath this harsh surface is a treasure trove of valuable minerals. Be sure to keep your shields up at all times, or the air will begin to corrode your hull.",
 		"x": 75,
 		"y": 150,
@@ -104,7 +103,7 @@
     "shipyard": true
 	},
 	"Encroachment Rein":{
-		"sType": "anonplan",
+    "sprite": "rein",
 		"text" : "Vast empty wasteland with a wispy xenon atmosphere and no apparent signs of inhabitance or reason to do so. There was once a colony here, but due to graft, mismanagement, and increasingly high costs, it was abandoned in disgust."
 	},
 	"Thrace":{
@@ -193,11 +192,11 @@
 		}
 	},
 	"Deimos":{
-		"sType":"Diemostype",
+    "sprite": "deimos",
 		"text":"It looks like somebody tried to turn this small moon into a colony ship, but judging by the state of the thing, they where unsuccessful in some way or other. You decide that it's probably best left alone, and return to your ship rather than proceeding down the unlit corridors that lead deeper into the battered moon."
 	},
 	"Phobos":{
-		"sType":"Phobostype",
+    "sprite": "phobos",
 		"text":"It looks like there might have been a colony on the surface of this planet at some point, but not recently. Scans would indicate that several entangled-matter accidents happened here. Additionally, judging by the scarring on the walls, somebody with a rocket launcher shot the place up pretty good. You decide not to go any deeper, in case they're still around.",
 		"trade":{
 			"uacbarrels":"low"

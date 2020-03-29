@@ -900,6 +900,31 @@
       "img": "assets/planets/die_station.png",
       "count": 5,
       "size": 300
+    },
+    "inshes": {
+      "img": "assets/planets/inshes.png",
+      "count": 5,
+      "size": 225
+    },
+    "lanner": {
+      "img": "assets/planets/lanner.png",
+      "count": 5,
+      "size": 150
+    },
+    "rein": {
+      "img": "assets/planets/rein.png",
+      "count": 5,
+      "size": 225
+    },
+    "deimos": {
+      "img": "assets/planets/deimos.png",
+      "count": 1,
+      "size": 155
+    },
+    "phobos": {
+      "img": "assets/planets/phobos.png",
+      "count": 1,
+      "size": 220
     }
   },
   "data": {
