@@ -153,6 +153,13 @@ export function set_dark_texture(entity){
   if(material){
     entity.model.material = material;
   }
+  if("weapons" in entity){
+    entity.weapons.forEach((weapon) => {
+      if(weapon.model){
+        let material = _.data.get_material(weapon.mesh, "dark");
+      }
+    });
+  }
 }
 
 export function create_composite_model(ship, govt){
@@ -199,11 +206,6 @@ export function create_composite_model(ship, govt){
 };
 
 function mount_fixed_weapons_on_ship(model_meta, ship){
-  if(! model_meta){
-    console.log("No model meta for")
-    console.log(ship);
-    return;
-  }
   /* Returns total number of weapons placed (so you know where
    * to start in the weapons list for picking turreted weapons
    */
@@ -212,6 +214,10 @@ function mount_fixed_weapons_on_ship(model_meta, ship){
   for(let i = 0; i < min; i++){
     let weapon = ship.weapons[i] 
     weapon.model = _.data.get_mesh(weapon.mesh);
+    let material = _.data.get_material(weapon.mesh);
+    if(material){
+      weapon.model.material = material;
+    }
     weapon.model.renderingGroupId = DEFAULT_LAYER;
     mount_on_attachpoint(weapon.model, ship.model, attachpoints[i], true);
     add_model(weapon.model);

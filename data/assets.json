@@ -575,7 +575,36 @@
         }
       }
     },
-    "plasma_cannon": {"file": "plasma_cannon.babylon"},
+    "plasma_cannon": {
+      "file": "plasma_cannon.babylon",
+      "default_skin": "plasma",
+      "skins": {
+        "plasma": {
+          "diffuse": "plasma_cannon.png",
+          "emissive": "plasma_cannon_emissive.png",
+          "custom_emissive_color": [1,0,0,1]
+        },
+        "plasma/dark": {
+          "diffuse": "plasma_cannon_dark.png"
+        }
+      }
+    },
+    "plasma_cannon_large": {
+      "scale": 4,
+      "file": "plasma_cannon.babylon",
+      "default_skin": "plasma",
+      "default_skin_dark": "plasma/dark",
+      "skins": {
+        "plasma": {
+          "diffuse": "plasma_cannon.png",
+          "emissive": "plasma_cannon_emissive.png",
+          "custom_emissive_color": [1,0,0,1]
+        },
+        "plasma/dark": {
+          "diffuse": "plasma_cannon_dark.png"
+        }
+      }
+    },
     "tercel": {
       "file": "tercel.babylon",
       "default_skin": "baik",
