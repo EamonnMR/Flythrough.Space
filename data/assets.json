@@ -925,7 +925,23 @@
       "img": "assets/planets/phobos.png",
       "count": 1,
       "size": 220
+    },
+    "tectonic": {
+      "img": "assets/planets/tectonic.png",
+      "count": 5,
+      "size": 360
+    },
+    "broken_hill":{
+      "img": "assets/planets/broken_hill.png",
+      "count": 5,
+      "size": 270
+    },
+    "wieliczka": {
+      "img": "assets/planets/wieliczka.png",
+      "count": 10,
+      "size": 400
     }
+
   },
   "data": {
     "systems": "systems.json",
