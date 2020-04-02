@@ -584,13 +584,13 @@
           "emissive": "plasma_cannon_emissive.png",
           "custom_emissive_color": [1,0,0,1]
         },
-        "plasma/dark": {
+        "dark": {
           "diffuse": "plasma_cannon_dark.png"
         }
       }
     },
     "plasma_cannon_large": {
-      "scale": 4,
+      "scale": 3,
       "file": "plasma_cannon.babylon",
       "default_skin": "plasma",
       "default_skin_dark": "plasma/dark",
@@ -600,7 +600,7 @@
           "emissive": "plasma_cannon_emissive.png",
           "custom_emissive_color": [1,0,0,1]
         },
-        "plasma/dark": {
+        "dark": {
           "diffuse": "plasma_cannon_dark.png"
         }
       }

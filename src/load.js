@@ -340,18 +340,16 @@ function load_assets( source_json, scene, data, finish_callback ){
       meta_blob.attachpoint_map = get_attach_points_from_model_load_task(task);
       hide_all_meshes_for_task(task);
       // Scaling does not work, why?
-      /*
       if("scale" in meta_blob){
         let mesh = meta_blob.mesh;
         mesh.scaling.x = meta_blob.scale;
         mesh.scaling.y = meta_blob.scale;
         mesh.scaling.z = meta_blob.scale;
         // Otherwise it'll get drawn in a weird place
-        mesh.bakeTransformIntoVertices(
+        mesh.bakeCurrentTransformIntoVertices(
           mesh.getWorldMatrix()
         );
       }
-      */
     }
 
     // TODO: Do we need to get the offsets from ._children
