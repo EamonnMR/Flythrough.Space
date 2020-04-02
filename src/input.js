@@ -75,7 +75,16 @@ const TOGGLED_INPUT_MAP = {
 }
 
 // TODO: Use this to handle single presses
-const SINGLE_PRESS_INPUT_MAP = {
+const ONESHOT_INPUT_MAP = {
+  27: 'toggle_pause', // Escape
+  61: 'zoom_in', // Keyboard plus
+  173: 'zoom_out', // Keyboard Minus
+  76: 'try_land', // 'l'
+  74: 'hyper_jump', // 'j'
+  66: 'board', // b
+  89: 'hail', // y
+  77: 'open_map', // m
+  192: 'select_closest', // ` (backtick)
 }
 
 let input_states = {};
@@ -91,33 +100,19 @@ function handleKeyDown ( event ){
 };
 
 function handleKeyUp ( event ){
+  console.log(event.keyCode);
   if(event.keyCode in TOGGLED_INPUT_MAP){
     input_states[TOGGLED_INPUT_MAP[event.keyCode]] = false;
     return;
   }
+  if(event.keyCode in ONESHOT_INPUT_MAP){
+    game_ctrl[ONESHOT_INPUT_MAP[event.keyCode]]();
+    return;
+  }
+
   // One-shot keypresses
   switch(event.keyCode){
-    case 27: // escape
-      game_ctrl.toggle_pause();
-      break;
-    case 74: // 'j'
-      game_ctrl.hyper_jump();
-      break;
-    case 76: // 'l'
-      game_ctrl.try_land();
-      break;
-    case 66: // b
-      game_ctrl.board();
-      break;
-    case 89: // y
-      game_ctrl.hail();
-      break;
-    case 77: // m
-      game_ctrl.open_map();
-      break;
-    case 192: // `
-      game_ctrl.select_closest();
-      break;
+
     case 49: // keyboard 1, etc
       game_ctrl.select_spob(0);
       break;
@@ -155,6 +150,8 @@ let no_op_game_ctrl = {
   open_map: no_op,
   board: no_op,
   hail: no_op,
+  zoom_in: no_op,
+  zoom_out: no_op,
 };
 
 export function unbindInputFunctions(){

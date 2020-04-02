@@ -47,14 +47,15 @@ export function graphics_init(){
 }
 
 function cam_offset(){
+  let offset = CAM_OFFSET_BIRDSEYE
   if (is_cheat_enabled("3dverse", false)){
-    return CAM_OFFSET_3DV;
+    offset = CAM_OFFSET_3DV;
   }
   if(_.settings.perspective){
-    return CAM_OFFSET_PERSPECTIVE;
-  } else {
-    return CAM_OFFSET_BIRDSEYE;
+    offset = CAM_OFFSET_PERSPECTIVE;
   }
+  return offset.scale(_.player.zoom / 4);
+
 }
 
 export function camera_ready(){
@@ -65,9 +66,11 @@ export function camera_ready(){
 export function get_attachpoint_group(model_meta, prefix){
   let attachpoints = [];
   if(model_meta.attachpoint_map){
+    console.log(`Attachpoints for ${prefix}`);
     for(let key of Object.keys(model_meta.attachpoint_map)){
       if (key.startsWith(prefix)){
         attachpoints.push(model_meta.attachpoint_map[key]);
+        console.log(key);
       }
     }
   }
@@ -91,10 +94,9 @@ function uni_game_camera(){
   return camera;
 };
 
-function mount_on_attachpoint(child_model, parent_model, attachpoint, invert=false){
+function mount_on_attachpoint(child_model, parent_model, attachpoint){
   let position = attachpoint.position;
-  child_model.translate(BABYLON.Axis.X, (invert ? -1 : 1) * position.x, BABYLON.Space.LOCAL);
-  // child_model.translate(BABYLON.Axis.X, position.x, BABYLON.Space.LOCAL);
+  child_model.translate(BABYLON.Axis.X, position.x, BABYLON.Space.LOCAL);
   child_model.translate(BABYLON.Axis.Y, position.y, BABYLON.Space.LOCAL);
   child_model.translate(BABYLON.Axis.Z, position.z, BABYLON.Space.LOCAL);
 
@@ -219,7 +221,7 @@ function mount_fixed_weapons_on_ship(model_meta, ship){
       weapon.model.material = material;
     }
     weapon.model.renderingGroupId = DEFAULT_LAYER;
-    mount_on_attachpoint(weapon.model, ship.model, attachpoints[i], true);
+    mount_on_attachpoint(weapon.model, ship.model, attachpoints[i]);
     add_model(weapon.model);
     weapon.model.visibility = 1;
   }
@@ -296,7 +298,7 @@ export function get_engine_particle_systems(entity){
     let emitter_node = new BABYLON.TransformNode(_.scene);
     particle_system.emitter = emitter_node;
     particle_system.renderingGroupId = DEFAULT_LAYER;
-    mount_on_attachpoint(emitter_node, entity.model, attachpoint, false);
+    mount_on_attachpoint(emitter_node, entity.model, attachpoint);
     particle_systems.push(particle_system); 
   })
   return particle_systems;
