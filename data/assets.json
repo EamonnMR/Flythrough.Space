@@ -335,33 +335,33 @@
       }
     },
     "hemlock": {"file": "hemlock.babylon"},
-    "vera": {
-      "file": "vera.babylon",
+    "equity": {
+      "file": "equity.babylon",
       "default_skin": "merchant",
       "skins": {
         "merchant": {
-          "diffuse": "vera_merchant.png",
-          "emissive": "vera_emissive.png",
+          "diffuse": "equity_merchant.png",
+          "emissive": "equity_emissive.png",
           "custom_emissive_color": [1,1,1,1]
         },
         "merchant/dark": {
-          "diffuse": "vera_merchant.png"
+          "diffuse": "equity_merchant.png"
         },
         "pirate": {
-          "diffuse": "vera_pirate.png",
-          "emissive": "vera_emissive.png",
+          "diffuse": "equity_pirate.png",
+          "emissive": "equity_emissive.png",
           "custom_emissive_color": [1,0.5,0.5,1]
         },
         "pirate/dark": {
-          "diffuse": "vera_pirate.png"
+          "diffuse": "equity_pirate.png"
         },
         "cartel": {
-          "diffuse": "vera_orasos.png",
-          "emissive": "vera_emissive.png",
+          "diffuse": "equity_cartel.png",
+          "emissive": "equity_emissive.png",
           "custom_emissive_color": [1,0.5,0.5,1]
         },
         "cartel/dark": {
-          "diffuse": "vera_orasos.png"
+          "diffuse": "equity_cartel.png"
         }
       }
     },
