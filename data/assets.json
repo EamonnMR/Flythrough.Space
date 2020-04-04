@@ -132,7 +132,7 @@
           "custom_emissive_color": [1,0.5,0.5,1]
         },
         "league/dark": {
-          "diffuse": "league_pirate.png"
+          "diffuse": "argosy_league.png"
         },
         "galbank": {
           "diffuse": "argosy_galbank.png",
@@ -144,7 +144,6 @@
         }
       }
     },
-
     "milspec_argosy": {
       "file": "milspec_argosy.babylon",
       "default_skin": "league",
@@ -172,14 +171,6 @@
         },
         "league/dark": {
           "diffuse": "league_pirate.png"
-        },
-        "galbank": {
-          "diffuse": "argosy_galbank.png",
-          "emissive": "argosy_emissive.png",
-          "custom_emissive_color": [1,0.5,0.5,1]
-        },
-        "galbank/dark": {
-          "diffuse": "argosy_galbank.png"
         }
       }
     },
@@ -520,6 +511,36 @@
         },
         "pirate/dark":{
           "diffuse": "anansi_pirate_dark.png"
+        }
+      }
+    },
+    "capital": {
+      "file": "milspec_oxana.babylon",
+      "default_skin": "league",
+      "skins": {
+        "merchant": {
+          "diffuse": "milspec_oxana_merchant.png",
+          "emissive": "milspec_oxana_emissive.png",
+          "custom_emissive_color": [1,1,1.5,1]
+        },
+        "merchant/dark": {
+          "diffuse": "milspec_oxana_merchant.png"
+        },
+        "pirate": {
+          "diffuse": "milspec_oxana_pirate.png",
+          "emissive": "milspec_oxana_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "milspec_oxana_pirate.png"
+        },
+        "league": {
+          "diffuse": "milspec_oxana_league.png",
+          "emissive": "milspec_oxana_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "league/dark": {
+          "diffuse": "milspec_oxana_pirate.png"
         }
       }
     },

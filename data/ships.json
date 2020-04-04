@@ -515,6 +515,7 @@
   },
 
   "league_capital":{
+    "mesh"        : "capital",
     "extends"     : "venture",
     "short_name"  : "League Capital",
     "long_name"   : "League Capital Class",
