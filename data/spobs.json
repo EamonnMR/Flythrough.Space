@@ -939,6 +939,23 @@
     "trade": {
       "catalite": "low"
     }
+  },
+  "Gagarin Station": {
+    "govt": "baik",
+    "sprite": "baik_station",
+    "text": "The last holdout of Baikonour rebels against the Loyal Suns. The location of this station is a closely guarded secret, as everyone you meet here is quick to tell you.",
+    "trade": {
+      "catalite": "high",
+      "water": "high",
+      "grain": "high",
+      "alloy": "high"
+    },
+    "tech": {
+      "generic": 1,
+      "baik": 3
+    },
+    "shipyard": true,
+    "custom": true
   }
 }
 

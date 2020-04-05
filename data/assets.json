@@ -990,6 +990,11 @@
       "img": "assets/planets/wieliczka.png",
       "count": 10,
       "size": 400
+    },
+    "baik_station": {
+      "img": "assets/planets/baik_station.png",
+      "count": 10,
+      "size": 520
     }
 
   },
