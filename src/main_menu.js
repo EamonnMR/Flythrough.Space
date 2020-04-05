@@ -136,17 +136,15 @@ export class MainMenu extends BaseMenuView {
       BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,
       "0%", "-20%")
     );
-    /* TODO: Never enough buttons
     widgets.push(new LandingMenuBigButton(
-      'Exciting New Option',
+      'Discord',
       () => {
-        //this.parent.enter_state('customize');
+        pop_tab("https://discord.gg/4a2G9G7", "_blank");
       },
       RIGHT,
       BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,
       "0%", "-30%")
     );
-    */
     return widgets;
   }
 };
