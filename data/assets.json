@@ -126,6 +126,14 @@
         "pirate/dark": {
           "diffuse": "argosy_pirate.png"
         },
+        "league": {
+          "diffuse": "argosy_league.png",
+          "emissive": "argosy_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "league/dark": {
+          "diffuse": "argosy_league.png"
+        },
         "galbank": {
           "diffuse": "argosy_galbank.png",
           "emissive": "argosy_emissive.png",
@@ -135,11 +143,36 @@
           "diffuse": "argosy_galbank.png"
         }
       }
-
     },
-
     "milspec_argosy": {
-      "file": "milspec_argosy.babylon"
+      "file": "milspec_argosy.babylon",
+      "default_skin": "league",
+      "skins": {
+        "merchant": {
+          "diffuse": "argosy_merchant.png",
+          "emissive": "argosy_emissive.png",
+          "custom_emissive_color": [1,1,1.5,1]
+        },
+        "merchant/dark": {
+          "diffuse": "argosy_merchant.png"
+        },
+        "pirate": {
+          "diffuse": "argosy_pirate.png",
+          "emissive": "argosy_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "argosy_pirate.png"
+        },
+        "league": {
+          "diffuse": "argosy_league.png",
+          "emissive": "argosy_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "league/dark": {
+          "diffuse": "league_pirate.png"
+        }
+      }
     },
 
     "tandem": {
@@ -293,33 +326,33 @@
       }
     },
     "hemlock": {"file": "hemlock.babylon"},
-    "vera": {
-      "file": "vera.babylon",
+    "equity": {
+      "file": "equity.babylon",
       "default_skin": "merchant",
       "skins": {
         "merchant": {
-          "diffuse": "vera_merchant.png",
-          "emissive": "vera_emissive.png",
+          "diffuse": "equity_merchant.png",
+          "emissive": "equity_emissive.png",
           "custom_emissive_color": [1,1,1,1]
         },
         "merchant/dark": {
-          "diffuse": "vera_merchant.png"
+          "diffuse": "equity_merchant.png"
         },
         "pirate": {
-          "diffuse": "vera_pirate.png",
-          "emissive": "vera_emissive.png",
+          "diffuse": "equity_pirate.png",
+          "emissive": "equity_emissive.png",
           "custom_emissive_color": [1,0.5,0.5,1]
         },
         "pirate/dark": {
-          "diffuse": "vera_pirate.png"
+          "diffuse": "equity_pirate.png"
         },
         "cartel": {
-          "diffuse": "vera_orasos.png",
-          "emissive": "vera_emissive.png",
+          "diffuse": "equity_cartel.png",
+          "emissive": "equity_emissive.png",
           "custom_emissive_color": [1,0.5,0.5,1]
         },
         "cartel/dark": {
-          "diffuse": "vera_orasos.png"
+          "diffuse": "equity_cartel.png"
         }
       }
     },
@@ -481,6 +514,36 @@
         }
       }
     },
+    "capital": {
+      "file": "milspec_oxana.babylon",
+      "default_skin": "league",
+      "skins": {
+        "merchant": {
+          "diffuse": "milspec_oxana_merchant.png",
+          "emissive": "milspec_oxana_emissive.png",
+          "custom_emissive_color": [1,1,1.5,1]
+        },
+        "merchant/dark": {
+          "diffuse": "milspec_oxana_merchant.png"
+        },
+        "pirate": {
+          "diffuse": "milspec_oxana_pirate.png",
+          "emissive": "milspec_oxana_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "milspec_oxana_pirate.png"
+        },
+        "league": {
+          "diffuse": "milspec_oxana_league.png",
+          "emissive": "milspec_oxana_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "league/dark": {
+          "diffuse": "milspec_oxana_pirate.png"
+        }
+      }
+    },
     "oxana": {
       "file": "oxana.babylon",
       "default_skin": "merchant",
@@ -533,7 +596,36 @@
         }
       }
     },
-    "plasma_cannon": {"file": "plasma_cannon.babylon"},
+    "plasma_cannon": {
+      "file": "plasma_cannon.babylon",
+      "default_skin": "plasma",
+      "skins": {
+        "plasma": {
+          "diffuse": "plasma_cannon.png",
+          "emissive": "plasma_cannon_emissive.png",
+          "custom_emissive_color": [1,0,0,1]
+        },
+        "dark": {
+          "diffuse": "plasma_cannon_dark.png"
+        }
+      }
+    },
+    "plasma_cannon_large": {
+      "scale": 3,
+      "file": "plasma_cannon.babylon",
+      "default_skin": "plasma",
+      "default_skin_dark": "plasma/dark",
+      "skins": {
+        "plasma": {
+          "diffuse": "plasma_cannon.png",
+          "emissive": "plasma_cannon_emissive.png",
+          "custom_emissive_color": [1,0,0,1]
+        },
+        "dark": {
+          "diffuse": "plasma_cannon_dark.png"
+        }
+      }
+    },
     "tercel": {
       "file": "tercel.babylon",
       "default_skin": "baik",
@@ -858,7 +950,48 @@
       "img": "assets/planets/die_station.png",
       "count": 5,
       "size": 300
+    },
+    "inshes": {
+      "img": "assets/planets/inshes.png",
+      "count": 5,
+      "size": 225
+    },
+    "lanner": {
+      "img": "assets/planets/lanner.png",
+      "count": 5,
+      "size": 150
+    },
+    "rein": {
+      "img": "assets/planets/rein.png",
+      "count": 5,
+      "size": 225
+    },
+    "deimos": {
+      "img": "assets/planets/deimos.png",
+      "count": 1,
+      "size": 155
+    },
+    "phobos": {
+      "img": "assets/planets/phobos.png",
+      "count": 1,
+      "size": 220
+    },
+    "tectonic": {
+      "img": "assets/planets/tectonic.png",
+      "count": 5,
+      "size": 360
+    },
+    "broken_hill":{
+      "img": "assets/planets/broken_hill.png",
+      "count": 5,
+      "size": 270
+    },
+    "wieliczka": {
+      "img": "assets/planets/wieliczka.png",
+      "count": 10,
+      "size": 400
     }
+
   },
   "data": {
     "systems": "systems.json",

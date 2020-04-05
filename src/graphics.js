@@ -47,14 +47,15 @@ export function graphics_init(){
 }
 
 function cam_offset(){
+  let offset = CAM_OFFSET_BIRDSEYE
   if (is_cheat_enabled("3dverse", false)){
-    return CAM_OFFSET_3DV;
+    offset = CAM_OFFSET_3DV;
   }
   if(_.settings.perspective){
-    return CAM_OFFSET_PERSPECTIVE;
-  } else {
-    return CAM_OFFSET_BIRDSEYE;
+    offset = CAM_OFFSET_PERSPECTIVE;
   }
+  return offset.scale(_.player.zoom / 4);
+
 }
 
 export function camera_ready(){
@@ -65,9 +66,11 @@ export function camera_ready(){
 export function get_attachpoint_group(model_meta, prefix){
   let attachpoints = [];
   if(model_meta.attachpoint_map){
+    console.log(`Attachpoints for ${prefix}`);
     for(let key of Object.keys(model_meta.attachpoint_map)){
       if (key.startsWith(prefix)){
         attachpoints.push(model_meta.attachpoint_map[key]);
+        console.log(key);
       }
     }
   }
@@ -91,10 +94,9 @@ function uni_game_camera(){
   return camera;
 };
 
-function mount_on_attachpoint(child_model, parent_model, attachpoint, invert=false){
+function mount_on_attachpoint(child_model, parent_model, attachpoint){
   let position = attachpoint.position;
-  child_model.translate(BABYLON.Axis.X, (invert ? -1 : 1) * position.x, BABYLON.Space.LOCAL);
-  // child_model.translate(BABYLON.Axis.X, position.x, BABYLON.Space.LOCAL);
+  child_model.translate(BABYLON.Axis.X, position.x, BABYLON.Space.LOCAL);
   child_model.translate(BABYLON.Axis.Y, position.y, BABYLON.Space.LOCAL);
   child_model.translate(BABYLON.Axis.Z, position.z, BABYLON.Space.LOCAL);
 
@@ -153,6 +155,13 @@ export function set_dark_texture(entity){
   if(material){
     entity.model.material = material;
   }
+  if("weapons" in entity){
+    entity.weapons.forEach((weapon) => {
+      if(weapon.model){
+        let material = _.data.get_material(weapon.mesh, "dark");
+      }
+    });
+  }
 }
 
 export function create_composite_model(ship, govt){
@@ -199,11 +208,6 @@ export function create_composite_model(ship, govt){
 };
 
 function mount_fixed_weapons_on_ship(model_meta, ship){
-  if(! model_meta){
-    console.log("No model meta for")
-    console.log(ship);
-    return;
-  }
   /* Returns total number of weapons placed (so you know where
    * to start in the weapons list for picking turreted weapons
    */
@@ -212,8 +216,12 @@ function mount_fixed_weapons_on_ship(model_meta, ship){
   for(let i = 0; i < min; i++){
     let weapon = ship.weapons[i] 
     weapon.model = _.data.get_mesh(weapon.mesh);
+    let material = _.data.get_material(weapon.mesh);
+    if(material){
+      weapon.model.material = material;
+    }
     weapon.model.renderingGroupId = DEFAULT_LAYER;
-    mount_on_attachpoint(weapon.model, ship.model, attachpoints[i], true);
+    mount_on_attachpoint(weapon.model, ship.model, attachpoints[i]);
     add_model(weapon.model);
     weapon.model.visibility = 1;
   }
@@ -290,7 +298,7 @@ export function get_engine_particle_systems(entity){
     let emitter_node = new BABYLON.TransformNode(_.scene);
     particle_system.emitter = emitter_node;
     particle_system.renderingGroupId = DEFAULT_LAYER;
-    mount_on_attachpoint(emitter_node, entity.model, attachpoint, false);
+    mount_on_attachpoint(emitter_node, entity.model, attachpoint);
     particle_systems.push(particle_system); 
   })
   return particle_systems;
@@ -329,10 +337,16 @@ function for_each_special_attachpoint(entity, attachpoint_type, callback){
   }
 }
 
-export function do_explo(position){
+export function do_explo(position, type="explosion", scale=1){
   // TODO: This could probably be part of CCM
-  let particle_system = _.data.get_particle_system("explosion");
-  console.log(_.data.particles);
+  let particle_system = _.data.get_particle_system(type);
+  /*
+  if("mass_scale" in particle_system){
+    particle_system.mass_scale.forEach((key) => {
+      particle_system[key] = scale * particle_system[scale];
+    });
+  }
+  */
   particle_system.emitter = new BABYLON.TransformNode(_.scene);
   particle_system.emitter.position.x = position.x;
   particle_system.emitter.position.y = SHIP_Y;

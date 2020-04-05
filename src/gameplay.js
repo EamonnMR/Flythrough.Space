@@ -169,6 +169,12 @@ export class GamePlayState extends ViewState {
           _.player.selected_spob = indexed_spob.spob_name;
         }
       },
+      zoom_in: () => {
+        _.player.zoom_in();
+      },
+      zoom_out: () => {
+        _.player.zoom_out();
+      },
     });
   }
 

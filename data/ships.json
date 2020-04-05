@@ -120,12 +120,12 @@
     "max_hp"     : 700,
     "max_shields": 300
   },
-  "oxana":{
-    "short_name"  : "Oxana",
-    "long_name"   : "Meklin Oxana",
+  "venture":{
+    "short_name"  : "Venture",
+    "long_name"   : "Meklin Venture",
     "mesh": "oxana",
-    "full_name"   : "Meklin Design Bureau Oxana class Freighter",
-    "desc"       : "One of the better cargo ships in the universe, it sports a battery of engines and a decent protection suite. It is Meklin's best selling offering, though rumors abound that it is sold at a loss to hide profits from the League. It has a huge cargo bay, but also enough room for some armament.",
+    "full_name"   : "Meklin Design Bureau Venture class Freighter",
+    "desc"       : "One of the better cargo ships in the universe, it sports a battery of engines and a decent protection suite. It is Meklin's best selling offering, though rumors abound that it is sold at a loss to hide profits from the League. It has a huge array of cargo pods, but also enough room for some armament.",
     "upgrades"    : {"plasma200": 3},
     "mass"        : 3600,
     "rotation"  : 0.0006,
@@ -139,12 +139,12 @@
     "max_hp"     : 800,
     "max_shields": 500
   },
-  "vera":{
-    "short_name"  : "Vera",
-    "long_name"   : "Meklin Vera",
-    "mesh":   "vera",
-    "full_name"   : "Meklin Design Bureau Vera class Escort Frigate",
-    "desc"       : "You could say that the Vera is a compromise between raw power and elegance, but that would be selling the Melkin design bearu short. One of the best ships on the civilian market, traders and mercenaries alike salivate over the prospect of flying one of these monsters.",
+  "equity":{
+    "short_name"  : "Equity",
+    "long_name"   : "Meklin Equity",
+    "mesh":   "equity",
+    "full_name"   : "Meklin Design Bureau Equity class Escort Frigate",
+    "desc"       : "You could say that the Equity is a compromise between raw power and elegance, but that would be selling the Melkin design bureau short. One of the most capable ships on the civilian market, traders and mercenaries alike salivate over the prospect of flying one of these monsters. It uses the same engine module as Melkin's larger offerings, but with a much lower overall mass it is able to put that enormous engine power to good use.",
     "upgrades"    : {"plasma200": 3, "ejectorrack": 4, "guidedmissile": 20},
     "mass"       : 2000,
     "rotation"  : 0.0014,
@@ -159,15 +159,12 @@
     "max_shields": 500
   },
   "pertinax":{
-    "extends"     : "vera",
+    "extends"     : "equity",
     "short_name"  : "Pertinax",
     "long_name"   : "Caudron Pertinax",
-    "mesh":   "vera",
     "full_name"   : "Caudron Custom Starships Pertinax Heavy Frigate",
-    "desc"       : "Built off of Melkin's famous Vera class, the Pertinax is specialized for piracy, packing dragnet turrets and ion cannons. Probably the most feared pirate ship in the galaxy. Being able to hide something this big from sensors is perhaps not surprisingly tricky, so the price to maintain these can't be cheap. But all piracy and protection rackets in the southeast of the galaxy go through the family, so they can afford to field a frightening number of them. How many is that? Enough that you can't be sure that you'll never see one I suppose.",
+    "desc"       : "Built off of Melkin's famous Equity class, the Pertinax is specialized for piracy, packing dragnet turrets and ion cannons. Probably the most feared pirate ship in the galaxy. Being able to hide something this big from sensors is perhaps not surprisingly tricky, so the price to maintain these can't be cheap. But all piracy and protection rackets in the southeast of the galaxy go through the family, so they can afford to field a frightening number of them. How many is that? Enough that you can't be sure that you'll never see one I suppose.",
     "upgrades"    : {"ion_cannon_200": 3, "dragnet": 2, "ejectorrack": 4, "guidedmissile":20},
-    "space"      : 100,
-    "cargo"      : 70,
     "price"      : 2000000,
     "tech"       : {"caudron":3}
   },
@@ -517,12 +514,13 @@
     "max_shields": 400
   },
 
-  "league_warship":{
-    "extends"     : "oxana",
-    "short_name"  : "League Carrier",
-    "long_name"   : "League Carrier",
-    "full_name"   : "Meklin Design Bureau Oxana class cargo ship (League Carrier Variant)",
-    "desc"       : "A masterpiece of economy, the Oxana class is normally manufactured as a high-end cargo ship. However its enormous internal volume lends itself more so then other haulers of similar size to conversion into a carrier. This variant's cargo pods have been replaced by a stack of flight decks, and it is stocked with fighters and corvettes. Its armor has been thickened as well, to better deal with the punishing power of Loyalist antimatter weaponry. Also unlike the merchant version, it comes stocked with living amenities befitting an orbital hotel, as the command staff of these vessels have come to expect a certain level of comfort.",
+  "league_capital":{
+    "mesh"        : "capital",
+    "extends"     : "venture",
+    "short_name"  : "League Capital",
+    "long_name"   : "League Capital Class",
+    "full_name"   : "Meklin Design Bureau Capital class carrier",
+    "desc"       : "Like the rest Melkin's offerings, the Capital is built around the same drive assembly used in the Equity and Venture. It most resembles the Venture, but this variant's cargo pods have been replaced by a stack of flight decks, and it is stocked with fighters and corvettes. Its armor has been thickened as well, to better deal with the punishing power of Loyalist antimatter weaponry. Also unlike the merchant version, it comes stocked with living amenities befitting an orbital hotel, as the command staff of these vessels have come to expect a certain level of comfort.",
     "upgrades"    : {"plasma200": 4, "missile_turret": 4, "dumbfiremissile": 40, "__carried_league_heavy_fighter": 2, "__carried_league_passer": 8, "__carried_league_corvette": 1},
     "fighter_space": 14,
     "fighter_launch_cooldown_divisor": 2,

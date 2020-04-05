@@ -19,7 +19,6 @@ export function collisionDetectionSystem(entMan){
         //   debugger;
         // }
         if ( filter_collisions(current, other)){
-
           shot_handler(current, other, entMan);
         }
         if ( filter_collisions(other, current)){

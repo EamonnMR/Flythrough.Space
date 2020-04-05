@@ -13,6 +13,8 @@ import {
 const PREFIX = "savefile_"  // Prefix for player saves in local storage.
 const LAST_SAVE = "last_save"  // Stores the key for the last used save file
 
+const ZOOM_MAX = 10;
+
 export function load_save(save_name){
   return JSON.parse(localStorage.getItem( save_name ));
 }
@@ -60,6 +62,7 @@ export class PlayerSave {
       "Elinore",
       "Brumpo Tungus",
       "Synthia Drangles",
+      "Joe Bloggs",
     ]);
     this.money = is_cheat_enabled("money") ? 100000000 : 5000;
     this.map_pos = {x: 0, y: 0};
@@ -82,6 +85,7 @@ export class PlayerSave {
       orasos: {reputation: -1}
     }
     this.explored = []
+    this.zoom = 4 // Player's zoom level
   }
 
   total_cargo(){
@@ -213,6 +217,28 @@ export class PlayerSave {
     } else {
       this.govts[govt_id].reputation = delta;
     }
+  }
+
+  zoom_in(){
+    console.log("zoom in");
+    console.log(this.zoom);
+    this.zoom -= 1;
+    if(this.zoom < 1){
+      console.log("min zoom");
+      this.zoom = 1;
+    }
+    console.log(this.zoom);
+  }
+
+  zoom_out(){
+    console.log("zoom out");
+    console.log(this.zoom);
+    this.zoom += 1;
+    if(this.zoom >= ZOOM_MAX){
+      console.log(this.zoom);
+      this.zoom = ZOOM_MAX;
+    }
+    console.log(this.zoom);
   }
 }
 

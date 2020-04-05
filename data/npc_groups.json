@@ -14,7 +14,7 @@
     "ships": [
       "courier",
       "oe_frig",
-      "oxana",
+      "venture",
       "bulk",
       "argosy",
       "cetacea",
@@ -27,7 +27,7 @@
       "argosy",
       "civ_heavy_fighter",
       "courier",
-      "vera",
+      "equity",
       "civ_corvette",
       "oe_cru",
       "oe_frig"
@@ -82,7 +82,7 @@
     "ships": [
       "league_corvette",
       "league_argosy",
-      "league_warship"
+      "league_capital"
     ]
   },
   "league_pt": {
@@ -169,7 +169,7 @@
     "ships": [
       "argosy",
       "civ_heavy_fighter",
-      "vera",
+      "equity",
       "civ_corvette",
       "oe_frig",
       "oe_cru",

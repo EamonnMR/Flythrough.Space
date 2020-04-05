@@ -11,6 +11,7 @@
       "period": 500,
       "velocity": 0.04,
       "proj": {
+        "explosion": "plasma_impact_small",
         "damage": 10,
         "shield_damage": 20,
         "max_age": 5000,
@@ -25,12 +26,13 @@
     "desc"           : "Approximately four times as powerful as the standard cannon, the type 400 200kj plasma turret is mounted on most larger civilian ships, as its military use has been eclipsed by more powerful and efficient cannons. Still, if you haven't got a navy at your back, it does not hurt to be packing a 200.",
     "price"          : 2500,
     "weapon"         : {
-      "mesh":  "plasma_cannon",
+      "mesh":  "plasma_cannon_large",
       "sprite": "plasma_large",
       "inaccuracy": 0.08,
       "period": 2000,
       "velocity":0.04,
       "proj": {
+        "explosion": "plasma_impact_small",
         "shield_damage": 60,
         "damage": 30,
         "max_age": 4000,
@@ -63,6 +65,7 @@
       "burst_period":1000,
       "ammo":"autocannonammo",
       "proj": {
+        "explosion": "ac_impact",
         "shield_damage":5,
         "damage":15,
         "max_age":1000,
