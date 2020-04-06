@@ -6,6 +6,8 @@ import {
   angle_mod,
   overridable_default,
   point_directly_at,
+  rect_from_polar,
+  vector_plus,
 } from "./util.js";
 import { rotate, accelerate, decelerate, linear_vel } from "./physics.js";
 
@@ -347,55 +349,65 @@ function engage(entity, target, delta_time, entMan){
 export function turretPointSystem (entMan) {
   // Code to actually rotate the turret graphic should live in graphics.js
   // Torn about where to keep the rotation state.
-  const TURRET_ROT_SPEED = Math.PI / 3100; // TODO: Make attribute of ship
   for(let entity of entMan.get_with(['model', 'turrets'])) {
-    if(entity.model.skeleton){
-      if(entity.target){
-        // In this case we want to track the target
-        let target = entMan.get(entity.target);
-        for(let turret of entity.turrets){
-          if(target){
-            let current_angle = angle_mod(entity.direction + turret.bone.rotation.y); 
-            let turn = constrained_point(
-              target.position,
-              current_angle,
-              {x: entity.position.x + turret.offset.x, y: entity.position.y + turret.offset.y},
-              TURRET_ROT_SPEED * entMan.delta_time, // TODO: turret.speed * delta_time
-              target.velocity,
-              entity.velocity,
-              0.01,
-            ); 
-            // Constrain turret to firing arc if applicable 
-            let current_rel_angle = angle_mod(turret.bone.rotation.y);
-            let new_angle = angle_mod(turret.bone.rotation.y - turn);
+    if(entity.target){
+      // In this case we want to track the target
+      let target = entMan.get(entity.target);
+      for(let turret of entity.turrets){
+        if(target){
+          let current_angle = angle_mod(entity.direction + turret.model.rotation.y); 
+          let turn = constrained_point(
+            target.position,
+            current_angle,
+            get_worldspace_position_of_turret(entity, turret),
+            entity.turret_rot_speed || turret.rot_speed * entMan.delta_time,
+            target.velocity,
+            entity.velocity,
+            0.01,
+          ); 
+          // Constrain turret to firing arc if applicable 
+          let current_rel_angle = angle_mod(turret.model.rotation.y);
+          let new_angle = angle_mod(turret.model.rotation.y - turn);
 
-            let do_turn = false;
-            if (turret.traverse){
-              if( in_firing_arc( new_angle, turret.facing, turret.traverse)){
-                do_turn = true;
-              } else {
-              }
-            } else {
+          /*
+          let do_turn = false;
+          if (turret.traverse){
+            if( in_firing_arc( new_angle, turret.facing, turret.traverse)){
               do_turn = true;
-            }
-
-            if(do_turn){
-              // turret.bone.rotation.y = angle_mod(turret.bone.rotation.y - turn); 
-              turret.bone.rotate(BABYLON.Axis.Y, -1 * turn, BABYLON.Space.LOCAL);
             } else {
-              turret.bone.rotate(BABYLON.Axis.Y, 0, BABYLON.Space.LOCAL)
             }
+          } else {
+            do_turn = true;
           }
-          else{
-            // Move zero to force attachment
-            // This is such a hack
-            // And isn't working anyway
-            console.log("No target");
-            turret.bone.rotation.y = turret.facing; // Return to rest position
+          */
+
+          let do_turn = true;
+          if(do_turn){
+            turret.model.rotate(BABYLON.Axis.Y, -1 * turn, BABYLON.Space.LOCAL);
+          } else {
+            turret.model.rotate(BABYLON.Axis.Y, 0, BABYLON.Space.LOCAL)
           }
         }
+        /*
+        else{
+          // Move zero to force attachment
+          // This is such a hack
+          // And isn't working anyway
+          console.log("No target");
+        }
+        */
       }
     }
   }
 };
+
+function get_worldspace_position_of_turret(ship, turret){
+  return vector_plus(
+    rect_from_polar(
+      ship.direction + turret.offset.angle,
+      turret.offset.magnitude
+    ),
+    ship.position,
+  );
+}
 

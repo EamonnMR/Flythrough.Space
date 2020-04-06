@@ -807,8 +807,16 @@
           "diffuse": "oe_frigate_pirate.png"
         }
       }
+    },
+    "_turret": {
+      "file": "turret.babylon",
+      "default_skin": "default",
+      "skins": {
+        "default": {
+          "diffuse": "turret.png"
+        }
+      }
     }
-
   },
   "sprites": {
     "plasma": {
