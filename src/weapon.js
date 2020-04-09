@@ -1,6 +1,11 @@
 import { accelerate } from "./physics.js";
 import { _ } from "./singletons.js"; 
-import { get_sprite_manager} from "./graphics.js";
+import {
+  get_sprite_manager,
+} from "./graphics.js";
+import {
+  world_position_from_model,
+} from "./graph_util.js";
 import { get_beam } from "./beam_graphics.js";
 import { angle_mod } from "./util.js";
 
@@ -145,25 +150,22 @@ function weapon_can_fire(weapon, entity){
 
 function fire_weapon(weapon, entity, entMan) {
   if(weapon_can_fire(weapon, entity)){
-    let direction = inaccuracy(
-      entity.direction,
-      weapon.inaccuracy || 0.0
-    );
+
     let origin = entity.position;
     let depth = -2; // TODO: import SHIP_Z from graphics.js
     let govt = 'govt' in entity ? entity.govt : null;
     let player_aligned = 'player_aligned' in entity;
+    let aim_direction = entity.direction;
     if(weapon.model){
-      // direction = ((1 * Math.PI)    // Code to actually rotate the turret graphic should live in graphics.js
-      // + entity.direction - entity.turrets[weapon.turret_index].bone.rotation.y) % (Math.PI  *2);
-      let identity = BABYLON.Quaternion.Identity()
-      let position = BABYLON.Vector3.Zero()
-      // http://www.html5gamedevs.com/topic/31288-get-absolute-rotation-of-child-mesh/ 
-      weapon.model.getWorldMatrix().decompose(BABYLON.Vector3.Zero(), identity, position)
-
-      origin = {x: position.x, y: position.z} 
-      depth = entity.model.position.y;
+      [origin, depth, aim_direction] = world_position_from_model(weapon.model);
+      if(weapon.turret_index){
+        //  debugger;
+      }
     }
+    let direction = inaccuracy(
+      aim_direction,
+      weapon.inaccuracy || 0.0
+    );
     if (weapon.proj){
       entMan.insert(bulletFactory(
                     entity.id,
@@ -191,7 +193,7 @@ function fire_weapon(weapon, entity, entMan) {
 }
 
 export function weaponSystem (entMan) {
-  for (let entity of entMan.get_with(['weapons'])) {
+  for (let entity of entMan.get_with(['weapons', "turrets"])) {
 
     let shoot_primary = 'shoot_primary' in entity;
     delete entity.shoot_primary;

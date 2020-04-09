@@ -71,11 +71,9 @@ export function camera_ready(){
 export function get_attachpoint_group(model_meta, prefix){
   let attachpoints = [];
   if(model_meta.attachpoint_map){
-    console.log(`Attachpoints for ${prefix}`);
     for(let key of Object.keys(model_meta.attachpoint_map)){
       if (key.startsWith(prefix)){
         attachpoints.push(model_meta.attachpoint_map[key]);
-        console.log(key);
       }
     }
   }
@@ -330,21 +328,6 @@ export function get_engine_particle_systems(entity){
     particle_systems.push(particle_system); 
   })
   return particle_systems;
-}
-
-export function get_thruster_lights(entity){
-  let thruster_lights = [];
-
-  if(! entity.mass){
-    return
-  }
-
-  for_each_special_attachpoint(entity, "thruster", () => {
-    console.log("Would add thruster light for: ");
-    console.log(entity);
-  })
-
-  return thruster_lights;
 }
 
 

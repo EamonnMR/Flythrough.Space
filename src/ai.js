@@ -9,6 +9,10 @@ import {
   rect_from_polar,
   vector_plus,
 } from "./util.js";
+import {
+  world_position_from_model
+} from "./graph_util.js";
+
 import { rotate, accelerate, decelerate, linear_vel } from "./physics.js";
 
 const ARC = Math.PI * 2;  // I don't want to make a political statement by using TAU
@@ -349,17 +353,20 @@ function engage(entity, target, delta_time, entMan){
 export function turretPointSystem (entMan) {
   // Code to actually rotate the turret graphic should live in graphics.js
   // Torn about where to keep the rotation state.
-  for(let entity of entMan.get_with(['model', 'turrets'])) {
+  for(let entity of entMan.get_with(['turrets'])) {
     if(entity.target){
       // In this case we want to track the target
       let target = entMan.get(entity.target);
       for(let turret of entity.turrets){
+        let [turret_origin, _turret_depth, turret_angle] = world_position_from_model(turret.model);
         if(target){
-          let current_angle = angle_mod(entity.direction + turret.model.rotation.y); 
+          let current_angle = angle_mod(entity.direction + turret.model.rotation.y - Math.PI / 2); 
+          // TODO: Seems like this does not get the actual rotation of the turret mesh,
+          // which is in turn preventing correct aiming.
           let turn = constrained_point(
             target.position,
-            current_angle,
-            get_worldspace_position_of_turret(entity, turret),
+            turret_angle,
+            turret_origin,
             entity.turret_rot_speed || turret.rot_speed * entMan.delta_time,
             target.velocity,
             entity.velocity,
@@ -400,14 +407,4 @@ export function turretPointSystem (entMan) {
     }
   }
 };
-
-function get_worldspace_position_of_turret(ship, turret){
-  return vector_plus(
-    rect_from_polar(
-      ship.direction + turret.offset.angle,
-      turret.offset.magnitude
-    ),
-    ship.position,
-  );
-}
 

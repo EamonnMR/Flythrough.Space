@@ -32,7 +32,7 @@ const PROTOTYPES = {
   ships: {
     explosion: "explosion",
     upgrades: {},
-    turret_rot_speed: Math.PI / 3100,
+    turret_rot_speed: Math.PI / 150,
   },
   systems: {
     lights: [
