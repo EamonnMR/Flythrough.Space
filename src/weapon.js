@@ -158,14 +158,12 @@ function fire_weapon(weapon, entity, entMan) {
     let aim_direction = entity.direction;
     if(weapon.model){
       [origin, depth, aim_direction] = world_position_from_model(weapon.model);
-      if(weapon.turret_index){
-        //  debugger;
-      }
     }
     let direction = inaccuracy(
       aim_direction,
       weapon.inaccuracy || 0.0
     );
+
     if (weapon.proj){
       entMan.insert(bulletFactory(
                     entity.id,

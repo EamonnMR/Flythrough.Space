@@ -233,13 +233,13 @@ export function create_composite_model(ship, govt){
   ship.model.visibility = 1;
 };
 
-function mount_fixed_weapons_on_ship(model_meta, ship){
+function mount_fixed_weapons_on_ship(model_meta, ship, weapon_index){
   /* Returns total number of weapons placed (so you know where
    * to start in the weapons list for picking turreted weapons
    */
   let attachpoints = get_attachpoint_group(model_meta, "weapon");
-  let min = Math.min(attachpoints.length, ship.weapons.length);
-  for(let i = 0; i < min; i++){
+  let min = Math.min(attachpoints.length, ship.weapons.length - weapon_index);
+  for(let i = weapon_index; i < min + weapon_index; i++){
     let weapon = ship.weapons[i] 
     weapon.model = _.data.get_mesh(weapon.mesh);
     let material = _.data.get_material(weapon.mesh);

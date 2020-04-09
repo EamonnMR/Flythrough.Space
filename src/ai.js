@@ -363,7 +363,7 @@ export function turretPointSystem (entMan) {
           let current_angle = angle_mod(entity.direction + turret.model.rotation.y - Math.PI / 2); 
           // TODO: Seems like this does not get the actual rotation of the turret mesh,
           // which is in turn preventing correct aiming.
-          let turn = constrained_point(
+          let turn = -1 * constrained_point(
             target.position,
             turret_angle,
             turret_origin,
