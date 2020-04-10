@@ -354,9 +354,13 @@ export function turretPointSystem (entMan) {
   // Code to actually rotate the turret graphic should live in graphics.js
   // Torn about where to keep the rotation state.
   for(let entity of entMan.get_with(['turrets'])) {
-    if(entity.target){
+    let target_id = entity.target;
+    if('ai' in entity){
+      target_id = entity.ai.target;
+    }
+    if(target_id){
       // In this case we want to track the target
-      let target = entMan.get(entity.target);
+      let target = entMan.get(target_id);
       for(let turret of entity.turrets){
         let [turret_origin, _turret_depth, turret_angle] = world_position_from_model(turret.model);
         if(target){
