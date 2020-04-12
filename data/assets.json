@@ -176,7 +176,42 @@
     },
 
     "tandem": {
-      "file": "tandem.babylon"
+      "file": "tandem.babylon",
+      "default_skin": "loyal",
+      "skins": {
+        "merchant": {
+          "diffuse": "tandem_merchant.png",
+          "emissive": "tandem_emissive.png",
+          "custom_emissive_color": [1,1,1.5,1]
+        },
+        "merchant/dark": {
+          "diffuse": "tandem_merchant.png"
+        },
+        "pirate": {
+          "diffuse": "tandem_pirate.png",
+          "emissive": "tandem_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "tandem_pirate.png"
+        },
+        "loyal": {
+          "diffuse": "tandem_loyal.png",
+          "emissive": "tandem_emissive.png",
+          "custom_emissive_color": [0.5,1,0.25,1]
+        },
+        "loyal/dark": {
+          "diffuse": "tandem_loyal_dark.png"
+        },
+        "itaska": {
+          "diffuse": "tandem_itaska.png",
+          "emissive": "tandem_emissive.png",
+          "custom_emissive_color": [1,0.7,0.8,1]
+        },
+        "itaska/dark": {
+          "diffuse": "tandem_itaska_dark.png"
+        }
+      }
     },
     "absolver": {
       "file": "absolver.babylon"
@@ -222,7 +257,7 @@
           "emissive": "empfi_emissive.png",
           "custom_emissive_color": [1,0.7,0.8,1]
         },
-        "loyal/dark": {
+        "itaska/dark": {
           "diffuse": "empfi_itaska_dark.png"
         },
         "xic": {
