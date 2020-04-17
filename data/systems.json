@@ -178,7 +178,7 @@
     "x":781,
     "y":885,
     "links":[
-      ".136"
+      "Humboldt"
     ]
   },
   "Reese":{
@@ -200,7 +200,7 @@
       "Bluthgelt"
     ]
   },
-  ".136":{
+  "Humboldt":{
     "x":845,
     "y":774,
     "links":[
@@ -209,7 +209,7 @@
       ".270"
     ]
   },
-  "Panfilov":{
+  "Alston":{
     "x":753,
     "y":1022,
     "govt":"itaska",
@@ -217,11 +217,11 @@
       "Sintashta"
     ],
     "links":[
-      "Hopmeadow",
+      "Rusk",
       "Pace"
     ]
   },
-  "Hopmeadow":{
+  "Rusk":{
     "x":685,
     "y":933,
     "govt":"itaska",
@@ -237,7 +237,7 @@
       "DIII - Loneozner"
     ],
     "links":[
-      "Panfilov",
+      "Alston",
       ".139"
     ]
   },
@@ -245,7 +245,7 @@
     "x":768,
     "y":800,
     "links":[
-      "Hopmeadow",
+      "Rusk",
       ".254"
     ]
   },
@@ -321,7 +321,7 @@
     "govt":"free",
     "roidSet":"silicaFieldL",
     "links":[
-      ".136",
+      "Humboldt",
       "Wijngaarden",
       "Khust"
     ],
@@ -703,7 +703,7 @@
       "Zhang",
       ".172",
       "Feng",
-      "Liu*"
+      "Tianming"
     ]
   },
   ".174":{
@@ -837,16 +837,16 @@
     "links":[
       ".199",
       "Kjeldor",
-      ".316"
+      "VerSteeg"
     ]
   },
-  ".186":{
+  "Thrun":{
     "x":1585,
     "y":558,
     "links":[
       "Ingolstadt",
       "Peenemunde",
-      ".*19"
+      "Fornwall"
     ]
   },
   "Ingolstadt":{
@@ -854,7 +854,7 @@
     "y":631,
     "govt":"league",
     "links":[
-      ".186",
+      "Thrun",
       "Jhelum",
       "Peenemunde",
       "Lothian"
@@ -1511,12 +1511,12 @@
     ],
     "links":[
       "Millwright",
-      "Strugatsky",
+      "Washington",
       "Istles",
-      "Skovoroda"
+      "Culver"
     ]
   },
-  "Strugatsky":{
+  "Washington":{
     "x":417,
     "y":1141,
     "govt":"itaska",
@@ -1556,7 +1556,7 @@
       "McPherson"
     ]
   },
-  "Skovoroda":{
+  "Culver":{
     "x":287,
     "y":966,
     "govt":"itaska",
@@ -1568,7 +1568,7 @@
       "Harbi",
       "Albacore",
       "Burch",
-      ".367"
+      "Shivji"
     ]
   },
   "Albacore":{
@@ -1582,7 +1582,7 @@
       "Yosemite"
     ],
     "links":[
-      "Skovoroda",
+      "Culver",
       "Balish"
     ]
   },
@@ -1609,7 +1609,7 @@
       "Buttonwood"
     ],
     "links":[
-      "Strugatsky",
+      "Washington",
       "Istles",
       "Balishkova",
       ".364"
@@ -1624,7 +1624,7 @@
       "MCB-1"
     ],
     "links":[
-      "Skovoroda",
+      "Culver",
       ".370",
       ".372"
     ]
@@ -1736,7 +1736,7 @@
       "Frontier Outpost IV"
     ],
     "links":[
-      "Panfilov",
+      "Alston",
       "Locklear",
       "Millwright",
       "Kharkov"
@@ -2295,7 +2295,7 @@
     "x":1491,
     "y":372,
     "links":[
-      ".316",
+      "VerSteeg",
       ".*26"
     ]
   },
@@ -2316,7 +2316,7 @@
       "Marauder",
       ".309",
       "Stormgald",
-      ".*18",
+      "Flim",
       "Argonne"
     ]
   },
@@ -2356,7 +2356,7 @@
       "Tyne"
     ],
     "links":[
-      ".186",
+      "Thrun",
       "Ingolstadt",
       "Jhelum",
       "Panaorios",
@@ -2374,14 +2374,14 @@
       "Yevgraf"
     ]
   },
-  ".316":{
+  "VerSteeg":{
     "x":1471,
     "y":466,
     "links":[
       "Shepard",
       ".308",
       ".*16",
-      ".*19"
+      "Fornwall"
     ]
   },
   "Stormgald":{
@@ -2391,7 +2391,7 @@
       ".310",
       "Guayas",
       "Correa",
-      ".*18"
+      "Flim"
     ]
   },
   "Guayas":{
@@ -2569,7 +2569,7 @@
     ],
     "links":[
       "Atlantico",
-      ".335",
+      "Cixin",
       "Zipaquira"
     ]
   },
@@ -2581,11 +2581,11 @@
     "links":[
       "Anyuan",
       "Kirchner",
-      ".335",
+      "Cixin",
       "Zipaquira"
     ]
   },
-  ".335":{
+  "Cixin":{
     "x":1891,
     "y":1090,
     "links":[
@@ -2856,25 +2856,25 @@
     "links":[
       "Balishkova",
       "McPherson",
-      ".367"
+      "Shivji"
     ]
   },
   ".365":{
     "x":225,
     "y":1162,
     "links":[
-      ".367"
+      "Shivji"
     ]
   },
   ".366":{
     "x":125,
     "y":1140,
     "links":[
-      ".367",
+      "Shivji",
       ".368"
     ]
   },
-  ".367":{
+  "Shivji":{
     "x":207,
     "y":1090,
     "links":[
@@ -2890,11 +2890,11 @@
     "y":1034,
     "links":[
       ".366",
-      ".367",
-      ".369"
+      "Shivji",
+      "Tramel"
     ]
   },
-  ".369":{
+  "Tramel":{
     "x":101,
     "y":974,
     "links":[
@@ -2991,7 +2991,7 @@
       "Jes"
     ]
   },
-  "Liu*":{
+  "Tianming":{
     "x":1781,
     "y":1076,
     "links":[
@@ -3000,7 +3000,7 @@
       "Anyuan*"
     ]
   },
-  "Kiriyenko*":{
+  "Wenji":{
     "x":1835,
     "y":1138,
     "npc_average": 3,
@@ -3013,8 +3013,8 @@
       "free_capital"
     ],
     "links":[
-      ".335",
-      "Liu*"
+      "Cixin",
+      "Tianming"
     ]
   },
   ".*1":{
@@ -3208,7 +3208,7 @@
     "y":373,
     "links":[
       ".199",
-      ".316",
+      "VerSteeg",
       ".*20"
     ]
   },
@@ -3235,7 +3235,7 @@
       "Prokhoro"
     ]
   },
-  ".*18":{
+  "Flim":{
     "x":2013,
     "y":594,
     "links":[
@@ -3243,12 +3243,12 @@
       "Stormgald"
     ]
   },
-  ".*19":{
+  "Fornwall":{
     "x":1596,
     "y":493,
     "links":[
-      ".186",
-      ".316"
+      "Thrun",
+      "VerSteeg"
     ]
   },
   ".*20":{
@@ -3380,7 +3380,7 @@
     "y":1239,
     "links":[
       ".172",
-      "Kiriyenko*"
+      "Wenji"
     ]
   },
   "Zipaquira":{
@@ -3402,36 +3402,36 @@
       ".196"
     ]
   },
-  ".*32":{
+  "Lackland":{
     "x":767,
     "y":931,
     "links":[
       ".134",
-      "Hopmeadow"
+      "Rusk"
     ]
   },
-  ".*33":{
+  "Briscoe":{
     "x":822,
     "y":997,
     "links":[
-      "Panfilov",
-      ".*32",
-      ".*34"
+      "Alston",
+      "Lackland",
+      "Beacon"
     ]
   },
-  ".*34":{
+  "Beacon":{
     "x":807,
     "y":1099,
     "links":[
-      ".*33",
-      ".*35"
+      "Briscoe",
+      "Horr"
     ]
   },
-  ".*35":{
+  "Horr":{
     "x":705,
     "y":1093,
     "links":[
-      ".*34",
+      "Beacon",
       "Pace"
     ]
   }
