@@ -312,7 +312,7 @@
       "Rainsford",
       "Inverness",
       "Steiner",
-      "Kiriyenko"
+      "Kiriyen"
     ]
   },
   "Steiner":{
@@ -750,10 +750,10 @@
     "links":[
       "Stroustrup",
       "Pyatigorsk",
-      "Kiriyenko"
+      "Kiriyen"
     ]
   },
-  "Kiriyenko":{
+  "Kiriyen":{
     "x":1023,
     "y":740,
     "links":[
@@ -767,7 +767,7 @@
     "x":1076,
     "y":658,
     "links":[
-      "Kiriyenko",
+      "Kiriyen",
       "Rybak",
       "Contra Costa"
     ]
@@ -813,7 +813,7 @@
     "links":[
       ".181",
       "Contra Costa",
-      ".*11",
+      "Ikeda",
       ".*12"
     ]
   },
@@ -1029,7 +1029,7 @@
       "free_capital"
     ],
     "links":[
-      "Kiriyenko",
+      "Kiriyen",
       "Steiner",
       "Kuchma",
       ".270"
@@ -1046,13 +1046,33 @@
     ]
   },
 
-  ".202":{
+  "Tomohiro":{
     "x":608,
     "y":386,
     "govt":"loyal",
+    "npc_average": 3,
+    "npcs": [
+      "ls_raid",
+      "ls_pt",
+      "ls_noncom",
+      "trader_lowtech",
+      "trader_danger"
+    ],
+    "spobs": [
+      "Tetsuo",
+      "Tomohiro Station"
+    ],
+    "lights": [
+      {
+        "position": [0, -5, 1],
+        "intensity": 1,
+        "diffuse": [0.7,0.7,1],
+        "specular": [0.7,0.7,1]
+      }
+    ],
     "links":[
-      ".*2",
-      ".*11"
+      "Shinya",
+      "Ikeda"
     ]
   },
   "Unrelenting":{
@@ -1061,7 +1081,7 @@
     "govt":"loyal",
     "links":[
       "Nemesis",
-      ".250",
+      "Fusajiro",
       "Zorax"
     ]
   },
@@ -1071,7 +1091,7 @@
     "govt":"loyal",
     "links":[
       "Nemesis",
-      ".250"
+      "Fusajiro"
     ]
   },
   "Defiance":{
@@ -1080,8 +1100,8 @@
     "govt":"loyal",
     "links":[
       "Nemesis",
-      ".250",
-      ".*11"
+      "Fusajiro",
+      "Ikeda"
     ]
   },
 
@@ -1634,7 +1654,7 @@
     "y":744,
     "links":[
       ".248",
-      "Hawkshaw"
+      "Hakshaw"
     ]
   },
   ".248":{
@@ -1654,7 +1674,7 @@
       "Jibril"
     ]
   },
-  ".250":{
+  "Fusajiro":{
     "x":693,
     "y":313,
     "govt":"loyal",
@@ -1662,19 +1682,19 @@
       "Horizon"
     ],
     "links":[
-      ".202",
+      "Tomohiro",
       "Unrelenting",
       "Victory",
       "Defiance",
       ".261"
     ]
   },
-  ".251":{
+  "Iwatani":{
     "x":531,
     "y":315,
     "govt":"loyal",
     "links":[
-      ".202",
+      "Tomohiro",
       ".262",
       ".263",
       ".264"
@@ -1687,20 +1707,20 @@
       ".264",
       ".267",
       "Uluru",
-      ".*1",
-      ".*2"
+      "Nishikado",
+      "Shinya"
     ]
   },
-  ".253":{
+  "Shirow":{
     "x":676,
     "y":507,
     "govt":"loyal",
     "spobs": ["Morcia"],
     "links":[
-      ".268",
-      ".*1",
-      ".*2",
-      ".*11"
+      "Kusanagi",
+      "Nishikado",
+      "Shinya",
+      "Ikeda"
     ]
   },
   ".254":{
@@ -1779,11 +1799,11 @@
       "Straylight",
       ".255",
       "Kharkov",
-      ".274",
+      "Damnatia",
       "Lemuel"
     ]
   },
-  "Hawkshaw":{
+  "Hakshaw":{
     "x":457,
     "y":683,
     "govt":"loyal",
@@ -1806,7 +1826,7 @@
     "links":[
       "Androscoggin",
       "Cordova",
-      ".274",
+      "Damnatia",
       ".275"
     ]
   },
@@ -1815,7 +1835,7 @@
     "y":756,
     "govt":"loyal",
     "links":[
-      "Hawkshaw",
+      "Hakshaw",
       "Lemuel"
     ]
   },
@@ -1824,7 +1844,7 @@
     "y":235,
     "govt":"loyal",
     "links":[
-      ".250",
+      "Fusajiro",
       ".262",
       "Zorax",
       ".277*"
@@ -1835,7 +1855,7 @@
     "y":156,
     "govt":"loyal",
     "links":[
-      ".251",
+      "Iwatani",
       ".261",
       ".277*",
       ".*5",
@@ -1847,7 +1867,7 @@
     "y":181,
     "govt":"loyal",
     "links":[
-      ".251",
+      "Iwatani",
       ".292",
       ".*7"
     ]
@@ -1856,10 +1876,10 @@
     "x":394,
     "y":361,
     "links":[
-      ".251",
+      "Iwatani",
       ".252",
       ".290",
-      ".*2"
+      "Shinya"
     ]
   },
   "Zorax":{
@@ -1885,12 +1905,12 @@
       ".283"
     ]
   },
-  ".268":{
+  "Kusanagi":{
     "x":759,
     "y":588,
     "govt":"loyal",
     "links":[
-      ".253",
+      "Shirow",
       ".270",
       ".282",
       ".*12"
@@ -1908,7 +1928,7 @@
       ".270",
       ".271",
       "Pavlodar",
-      ".274",
+      "Damnatia",
       "Woodstock",
       ".282"
     ]
@@ -1919,7 +1939,7 @@
     "links":[
       "Khust",
       ".254",
-      ".268",
+      "Kusanagi",
       "Baikon"
     ]
   },
@@ -1965,13 +1985,13 @@
       ".258"
     ]
   },
-  ".274":{
+  "Damnatia":{
     "x":532,
     "y":680,
     "govt":"loyal",
     "links":[
       ".258",
-      "Hawkshaw",
+      "Hakshaw",
       "Baikon",
       "Uluru"
     ]
@@ -1980,7 +2000,7 @@
     "x":363,
     "y":658,
     "links":[
-      "Hawkshaw",
+      "Hakshaw",
       ".278"
     ]
   },
@@ -2030,9 +2050,9 @@
     ],
     "links":[
       ".252",
-      ".274",
+      "Damnatia",
       ".278",
-      ".*1"
+      "Nishikado"
     ]
   },
   "Woodstock":{
@@ -2044,7 +2064,7 @@
     ],
     "links":[
       "Baikon",
-      ".*1"
+      "Nishikado"
     ]
   },
   ".282":{
@@ -2053,7 +2073,7 @@
     "govt":"loyal",
     "links":[
       "Baikon",
-      ".268"
+      "Kusanagi"
     ]
   },
   ".283":{
@@ -3017,27 +3037,27 @@
       "Tianming"
     ]
   },
-  ".*1":{
+  "Nishikado":{
     "x":498,
     "y":498,
     "govt":"loyal",
     "links":[
       ".252",
-      ".253",
+      "Shirow",
       "Uluru",
       "Woodstock",
-      ".*2"
+      "Shinya"
     ]
   },
-  ".*2":{
+  "Shinya":{
     "x":502,
     "y":404,
     "govt":"loyal",
     "links":[
-      ".202",
+      "Tomohiro",
       ".252",
       ".264",
-      ".*1"
+      "Nishikado"
     ]
   },
   ".*3":{
@@ -3146,15 +3166,15 @@
       ".359"
     ]
   },
-  ".*11":{
+  "Ikeda":{
     "x":711,
     "y":445,
     "govt":"loyal",
     "links":[
       "Novosibirsk",
-      ".202",
+      "Tomohiro",
       "Defiance",
-      ".253",
+      "Shirow",
       ".*12"
     ]
   },
@@ -3164,8 +3184,8 @@
     "govt":"loyal",
     "links":[
       "Novosibirsk",
-      ".268",
-      ".*11"
+      "Kusanagi",
+      "Ikeda"
     ]
   },
   "Khabarovsk":{

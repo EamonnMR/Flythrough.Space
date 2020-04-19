@@ -1,5 +1,6 @@
 {
 	"Accra":{
+    "homeworld": true,
     "sprite": "accra",
 		"x"    : 250,
 		"y"    : 140,
@@ -628,6 +629,7 @@
 		"text":"On the tense border between the Casamance Directorate and the Eastern League, coldwater's chilly landscape is listed as the most likely planet to be invaded in Casamance space. It's rumored that there are large fortresses cut into the glaciers, but the navy is quiet on the subject."
 	},
   "Baikonur":{
+    "homeworld": true,
     "govt": "loyal",
     "trade":{
       "ethyl": "high",
@@ -644,6 +646,7 @@
     "custom": true
   },
   "Nightside": {
+    "homeworld": true,
     "govt": "cartel",
     "trade": {
       "ethyl": "high",
@@ -726,6 +729,7 @@
     "shipyard": true
   },
   "Veracruz": {
+    "homeworld": true,
     "govt": "league",
     "text": "An ancient and expertly terraformed homeworld, Veracruz is best known as the seat of power of the Sinod of the Six - a popular but young regional faith that believes that the six hyperlanes that converge on the Kuluene system are a sign that the Great Being is going to be reincarnated somewhere on Veracruz-though as yet, no candidate messiah has passed the rigorous testing process. The Sinod is, interestingly enough, a full member of the League.",
     "trade": {
@@ -956,6 +960,30 @@
     },
     "shipyard": true,
     "custom": true
+  },
+  "Tetsuo": {
+    "homeworld": true,
+    "govt": "loyal",
+    "sprite": "tetsuo",
+    "text": "The center of the Tomohiran civilization. The Tetsuans have managed to flourish in spite of the iron-fisted rule of the Loyal Suns (who watch from above in the station they built to quell further rebellion.) Tetsuo is a bastion of art and culture in otherwise Austere Loyalist space. Tetsuans believe that as long as they keep laying golden eggs they're a goose that won't end up as dinner.",
+    "trade": {
+      "water": "high",
+      "alloy": "high",
+      "grain": "high"
+    }
+  },
+  "Tomohiro Station": {
+    "govt": "loyal",
+    "sprite": "oe_station",
+    "shipyard": true,
+    "custom": true,
+    "x": 100,
+    "y": -20,
+    "tech": {
+      "generic": 2,
+      "loyal": 2
+    },
+    "text": "The presence of this station is meant to both represent and enforce the Loyalist's grip on Tomohiran space. But it's definitely acquired some local flavor in the process. The shipyards here are adorned with the colors of Tetsuo's Zorgball team, for example, and you find nutrient paste is available in many unique local flavors."
   }
 }
 

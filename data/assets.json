@@ -1038,8 +1038,12 @@
       "img": "assets/planets/baik_station.png",
       "count": 10,
       "size": 520
+    },
+    "tetsuo": {
+      "img": "assets/planets/tetsuo.png",
+      "count": 10,
+      "size": 370
     }
-
   },
   "data": {
     "systems": "systems.json",
