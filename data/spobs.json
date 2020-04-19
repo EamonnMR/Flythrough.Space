@@ -171,8 +171,9 @@
 		"text":"A terraforming success story, Trowel was abandoned in favor of more densely populated worlds around 450, and has since been sparsely populated, mostly by tourists. Handcrafted waterfalls and pristine minerally-altered waters as far as the eye can see."
 	},
 	"Kennerud":{
+    "homeworld": true,
     "govt": "free",
-		"sType":"onyxEarthlikeB",
+    "sprite": "kennerud",
 		"text":"A major industrial hub, Kennerud has been slowly optimized over hundreds of years to turn out weapons and reactors, first for the Empire, and now, as a member of the Freehold, for competing continent-spanning companies on the surface. The most powerful of all is KPS (Kennerud Power Systems) chief supplier of both legacy and next-gen plasma cannons.",
 		"tech":{
 			"accra":1,

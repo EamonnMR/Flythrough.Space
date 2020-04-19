@@ -1043,6 +1043,11 @@
       "img": "assets/planets/tetsuo.png",
       "count": 10,
       "size": 370
+    },
+    "kennerud": {
+      "img": "assets/planets/kennerud.png",
+      "count": 10,
+      "size": 570
     }
   },
   "data": {
