@@ -139,6 +139,7 @@ export function npcSpawnerSystem(entMan) {
                                 {state: 'passive'},
                                 group.govt
       );
+      npc.spawn_system_created = true;
       entMan.insert(npc);
 		}
   }
@@ -154,7 +155,7 @@ function count_npcs(entMan){
 	// To account for player fleets, etc might not be crazy to have a
   // 'native' flag that indicates that a ship was made by a spawner
   // and isn't part of a mission, etc
-  return entMan.get_with(['ai']).length;
+  return entMan.get_with(['ai', 'spawn_system_created']).length;
 }
 
 function random_type(npcs){
