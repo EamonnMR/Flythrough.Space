@@ -140,6 +140,10 @@ export function npcSpawnerSystem(entMan) {
                                 group.govt
       );
       npc.spawn_system_created = true;
+      npc.money = Math.round(npc.value / 10);
+      if("money" in group){
+        npc.money = group.money;
+      }
       entMan.insert(npc);
 		}
   }

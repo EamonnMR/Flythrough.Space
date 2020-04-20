@@ -37,6 +37,8 @@ const PROTOTYPES = {
     max_boarding_distance: 25,
     max_landing_distance: 50,
     min_hyperjump_distance: 100,
+    cargo: {},
+    money: 0,
   },
   systems: {
     lights: [

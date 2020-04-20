@@ -161,8 +161,11 @@ export class GamePlayState extends ViewState {
             if(target.disabled){
               if(this.matched_speed(player, target)){
                 if(this.close_enough_to_board(player, target)){
+                  this.entMan.pause();
+                  _.player.current_docked_ship = target;
+                  this.parent.enter_state("plunder");
                   _.hud.widgets.alert_box.show(
-                    `Boarded ${target.name}`
+                    `Boarded ${target.short_name}`
                   );
                 } else {
                   _.hud.widgets.alert_box.show(

@@ -70,6 +70,7 @@ export class PlayerSave {
     this.selected_spob = null;
     this.current_system = overridable_default("system", "Casamance");
     this.current_spob = overridable_default("spob", "Alluvium Fleet Yards");
+    this.current_docked_ship = null;
     this.initial_position = {x: 0, y: 0};
     this.ship_type = overridable_default("ship", "shuttle");
     this.ship_skin = null // "pirate";  // TODO: Add skin menu
@@ -79,6 +80,7 @@ export class PlayerSave {
     this.bulk_cargo = {};
     this.mission_cargo = {};
     this.active_missions = {};
+    this.fleet = [];
 
     this.govts = {
       // TODO: Default rep?
@@ -120,7 +122,18 @@ export class PlayerSave {
   }
 
   can_add_cargo(amount){
-    return this.max_cargo() >= this.total_cargo() + amount;
+    return this.free_cargo() >= amount;
+  }
+
+  free_cargo(){
+    return this.max_cargo() - this.total_cargo();
+  }
+
+  fill_cargo(type, max_amount){
+    let amount = Math.max(max_amount, this.free_cargo())
+    if(amount){
+      this.add_bulk_cargo(type, amount);
+    }
   }
 
   can_sell_cargo(type, amount){
@@ -151,12 +164,29 @@ export class PlayerSave {
     }
   }
 
+  add_bulk_cargo(type, amount){
+    if (type in this.mission_cargo) {
+      this.bulk_cargo[type] += amount;
+    } else {
+      this.bulk_cargo[type] = amount;
+    }
+  }
+
   remove_mission_cargo(type, amount){
     this.mission_cargo[type] -= amount;
     if(this.mission_cargo[type] === 0){
       delete this.mission_cargo[type];
     }
   }
+
+  remove_bulk_cargo(type, amount){
+    this.bulk_cargo[type] -= amount;
+    if(this.bulk_cargo[type] === 0){
+      delete this.bulk_cargo[type];
+    }
+  }
+
+
 
   buy_ship(type, new_ship){
     this.money += this.ship_value();

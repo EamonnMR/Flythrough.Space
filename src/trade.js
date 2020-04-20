@@ -37,11 +37,7 @@ export class TradeMenu extends BaseLandingMenuView {
     if(_.player.can_add_cargo(amount) &&
         _.player.can_spend_money(money)){
       _.player.money -= money;
-      if (item in _.player.bulk_cargo){
-        _.player.bulk_cargo[item] += amount;
-      } else {
-        _.player.bulk_cargo[item] = amount;
-      }
+      _.player.add_bulk_cargo(item, amount);
       this.update_widgets();
     }
   }
@@ -49,7 +45,7 @@ export class TradeMenu extends BaseLandingMenuView {
   sell(item, amount){
     if(_.player.can_sell_cargo(item, amount)){
       _.player.money += this.get_local_price(item) * amount;
-      _.player.bulk_cargo[item] -= amount;
+      _.player.remove_bulk_cargo(item, amount);
       this.update_widgets();
     }
   }
