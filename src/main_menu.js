@@ -18,6 +18,7 @@ const MENU_COPY = `Welcome to FLYTHROUGH.SPACE, the Space Captain game!
   and press [LCTRL] to fire your weapon - but be careful, angry ships
   will shoot back!
   If you manage to get some fighters, launch with Q and recall with E. F to command them to attack your target.
+  Disabled ships (lights off) can be boarded with B for loot
   `;
 
 function pop_tab(url){

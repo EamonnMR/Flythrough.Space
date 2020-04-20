@@ -32,7 +32,11 @@ const PROTOTYPES = {
   ships: {
     explosion: "explosion",
     upgrades: {},
-    turret_rot_speed: Math.PI / 150,
+    turret_rot_speed: Math.PI / 50,
+    max_boarding_velocity_diff: 10,
+    max_boarding_distance: 25,
+    max_landing_distance: 50,
+    min_hyperjump_distance: 100,
   },
   systems: {
     lights: [

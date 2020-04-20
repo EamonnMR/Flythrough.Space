@@ -3,7 +3,6 @@ import { distance, get_direction, rect_from_polar, point_directly_at } from "./u
 import { rotate } from "./physics.js";
 
 const HYPERJUMP_COST = 1.0;
-const HYPERJUMP_DISTANCE = 100;
 const WARP_IN_DIST_FACTOR = 2;
 // TODO: Cool special effects function? (or in graphics.js?)
 
@@ -14,7 +13,7 @@ export function has_sufficient_fuel(entity){
 export function has_sufficient_distance(entity){
   // TODO: Add an attribute to entities that allows you to change distance
   // TODO: Check system for massive objects?
-  return distance({x:0, y:0}, entity.position) > HYPERJUMP_DISTANCE;
+  return distance({x:0, y:0}, entity.position) > entity.min_hyperjump_distance;
 }
 
 export function warpSystemFactory(gameplay){

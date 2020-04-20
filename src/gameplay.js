@@ -33,7 +33,6 @@ import {
   fighterLaunchSystem,
   fighterDockSystem,
 } from "./fighters.js";
-let MIN_LAND_DISTANCE = 50
 
 export class GamePlayState extends ViewState {
 
@@ -154,6 +153,45 @@ export class GamePlayState extends ViewState {
           }
         }
       },
+      board: () => {
+        let player = this.entMan.get_player_ent();
+        if( player.target ){
+          let target = _.entities.get( player.target )
+          if( target ){
+            if(target.disabled){
+              if(this.matched_speed(player, target)){
+                if(this.close_enough_to_board(player, target)){
+                  _.hud.widgets.alert_box.show(
+                    `Boarded ${target.name}`
+                  );
+                } else {
+                  _.hud.widgets.alert_box.show(
+                    `Cannot Board - get closer to target`
+                  );
+                }
+
+              } else {
+                _.hud.widgets.alert_box.show(
+                  "Cannot Board: - match target speed"
+                );
+              }
+                _
+            } else {
+              _.hud.widgets.alert_box.show(
+                "Cannot Board: - disable target first"
+              );
+            }
+          } else {
+            _.hud.widgets.alert_box.show(
+              "Cannot Board: Ship is gone"
+            );
+          }
+        } else {
+          _.hud.widgets.alert_box.show(
+            "Cannot Board: No ship selected"
+          );
+        }
+      },
       select_closest: () => {
         let player = this.entMan.get_player_ent();
         let target = this.find_closest_target(player);
@@ -199,6 +237,14 @@ export class GamePlayState extends ViewState {
     _.shadows = [];
   }
 
+  matched_speed(lent, rent){
+   return distance(lent.velocity, rent.velocity) < lent.max_boarding_velocity_diff;
+  }
+
+  close_enough_to_board(lent, rent){
+    return distance(lent.position, rent.position) < lent.max_boarding_distance;
+  }
+
   exit(){
     unbindInputFunctions();
     console.log("Unbound input");
@@ -234,7 +280,7 @@ export class GamePlayState extends ViewState {
     return (
       spob && (
         ( 
-          (distance(player.position, spob.position) < MIN_LAND_DISTANCE)
+          (distance(player.position, spob.position) < player.max_landing_distance)
           && ! _.player.is_govt_hostile(spob.govt)
         ) 
         || is_cheat_enabled('land_anywhere')
