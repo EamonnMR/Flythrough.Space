@@ -310,12 +310,15 @@
       "period":0.5,
       "beam": {
         "graphics": {
-          "type": "tube"
+          "type": "tube",
+          "radius": 0.1,
+          "color": [0.8, 0.8, 1],
+          "emissive_color": [0.5, 0.5, 1]
         },
-        "shield_damage":20,
-        "damage":20,
-        "length":45,
-        "reflect": true
+        "length":30,
+        "shield_damage":120,
+        "damage":25,
+        "length":25
       }
     },
     "desc"           : "Your standard electrostatic discharge which overwhelms shields by cooking the generator. Simple, right? Wrong-a happy accident, it turns out that it can essentially turn the target's shields into a projector for the same sort of beam. With careful tuning, this lead to the capability of bouncing the beam off the initial target and on to further targets. This acts as a force multiplier, allowing a smaller number of fighters to face down more numerous foes-exactly how Loyal Suns pilots like it."

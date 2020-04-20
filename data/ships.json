@@ -577,6 +577,7 @@
   },
   "ls_retaliator"      :{
     "short_name"  : "Retaliator",
+    "mesh"        : "retaliator",
     "long_name"   : "LS Retaliator",
     "full_name"   : "LS Battleship Type 1200 (\"Retaliator\")", 
     "desc"       : "This new and very modern warship is designed along the lines of a fighter rather than a frigate. There's something ideological here, the primacy of the starship pilot, of visceral combat, that gets at the heart of the Loyalist psyche. It's the largest ship in the galaxy where the captain's chair is also the pilot's seat. Its self sufficiency, another doctrinal holdover from conquering uncontacted planets, is key to its success; they can operate totally independently of the rest of the fleet, and support wings of deep-striking heavy fighters.",
@@ -638,7 +639,7 @@
   "ls_provider":{
     "short_name"  : "Provider",
     "long_name"   : "Loyal Suns Provider",
-    "full_name"   : "Accra Starworks Bulk Freighter",
+    "full_name"   : "Loyal Suns Type 1129 \"provider\" cargo hauler",
     "desc"       : "After the thrill of conquest was over and the time came to govern what was left of their empire, the Loyal Suns logistics corps determined that shipping cargo around in a fleet of aging frigates wasn't worth it anymore. The Provider is used well behind Loyalist lines to ferry vital cargo to stations and make sure ruled populations have at least enough food that they won't think of making a move on their local marine garrisons any time soon.",
     "upgrades"    : {"antigun": 1, "antigun_ammo": 10},
     "rotation"  : 0.004,

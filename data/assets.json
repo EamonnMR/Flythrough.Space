@@ -213,9 +213,6 @@
         }
       }
     },
-    "absolver": {
-      "file": "absolver.babylon"
-    },
     "oe_fi": {
       "file": "empfi.babylon",
       "default_skin": "merchant",
@@ -843,6 +840,67 @@
         }
       }
     },
+    "retaliator": {
+      "file": "retaliator.babylon",
+      "default_skin": "loyal",
+      "skins": {
+        "merchant": {
+          "diffuse": "retaliator_merchant.png",
+          "emissive": "retaliator_emissive.png",
+          "custom_emissive_color": [1,1,1.5,1]
+        },
+        "merchant/dark": {
+          "diffuse": "retaliator_merchant.png"
+        },
+        "pirate": {
+          "diffuse": "retaliator_pirate.png",
+          "emissive": "retaliator_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "retaliator_pirate_dark.png"
+        },
+        "loyal": {
+          "diffuse": "retaliator_loyal.png",
+          "emissive": "retaliator_emissive.png",
+          "custom_emissive_color": [0.5,1,0.25,1]
+        },
+        "loyal/dark": {
+          "diffuse": "retaliator_loyal_dark.png"
+        }
+      }
+    },
+    "absolver": {
+      "file": "absolver.babylon",
+      "default_skin": "loyal",
+      "skins": {
+        "merchant": {
+          "diffuse": "absolver_merchant.png",
+          "emissive": "absolver_emissive.png",
+          "custom_emissive_color": [1,1,1.5,1]
+        },
+        "merchant/dark": {
+          "diffuse": "absolver_merchant.png"
+        },
+        "pirate": {
+          "diffuse": "absolver_pirate.png",
+          "emissive": "absolver_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "absolver_pirate_dark.png"
+        },
+        "loyal": {
+          "diffuse": "absolver_loyal.png",
+          "emissive": "absolver_emissive.png",
+          "custom_emissive_color": [0.5,1,0.25,1]
+        },
+        "loyal/dark": {
+          "diffuse": "absolver_loyal_dark.png"
+        }
+      }
+    },
+
     "_turret": {
       "file": "turret.babylon",
       "default_skin": "default",
