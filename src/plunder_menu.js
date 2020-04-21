@@ -11,25 +11,10 @@ export class PlunderMenu extends BaseMenuView {
   get_widgets(){
     let widgets = [];
 
-    /* LEFT WIDGETS */
     const LEFT = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
     let ship = _.player.current_docked_ship;
-    let cargo_type = Object.keys(ship.cargo)[0];
-    let cargo_amount = ship.cargo[cargo_type];
-
-    widgets.push(new TextBox(
-      ` Boarded ${ship.short_name}
-      Faction: ${_.data.govts[ship.govt].name}
-      Capture Odds: 0%
-      Carrying: ${cargo_amount} tons of ${cargo_type}
-      Cash: ${ship.money} Credcoin
-      `,
-      BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT,
-      BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
-      "0%",
-      "0%",
-    ));
-
+    let cargo_type = Object.keys(ship.cargo_carried)[0];
+    let cargo_amount = ship.cargo_carried[cargo_type];
 
     widgets.push(new LandingMenuBigButton(
       'Undock',
@@ -39,13 +24,14 @@ export class PlunderMenu extends BaseMenuView {
       },
       LEFT,
       BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,
-      "0%", "0%")
-    );
+      "0%", "0%"
+    ));
 
     if(ship.money){
       widgets.push(new LandingMenuBigButton(
         'Steal Credcoins',
         () => {
+          _.hud.widgets.alert_box.show(`Stole ${_.player.current_docked_ship.money} Credcoin`);
           _.player.money += _.player.current_docked_ship.money;
           _.player.current_docked_ship.money = 0;
         },
@@ -59,11 +45,16 @@ export class PlunderMenu extends BaseMenuView {
       widgets.push(new LandingMenuBigButton(
         'Steal Cargo',
         () => {
-          _.player.fill_cargo(cargo_type, cargo_amount);
+          let cargo_stolen =_.player.fill_cargo(cargo_type, cargo_amount);
+          if(cargo_stolen){
+            _.hud.widgets.alert_box.show(`Stole ${cargo_stolen} tons of ${cargo_type}`);
+          } else {
+            _.hud.widgets.alert_box.show("Cargo full");
+          }
           cargo_amount = 0;
           ship.cargo = {};
         },
-        RIGHT,
+        LEFT,
         BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,
         "0%", "-20%")
       );

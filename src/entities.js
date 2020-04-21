@@ -140,9 +140,12 @@ export function npcSpawnerSystem(entMan) {
                                 group.govt
       );
       npc.spawn_system_created = true;
-      npc.money = Math.round(npc.value / 10);
+      npc.money = Math.round(npc.price / 10);
       if("money" in group){
         npc.money = group.money;
+      }
+      if("cargo" in group){
+        npc.cargo_carried[choose(group.cargo)] = Math.round(Math.random() * npc.cargo);
       }
       entMan.insert(npc);
 		}

@@ -165,7 +165,7 @@ export class GamePlayState extends ViewState {
                   _.player.current_docked_ship = target;
                   this.parent.enter_state("plunder");
                   _.hud.widgets.alert_box.show(
-                    `Boarded ${target.short_name}`
+                    `Boarded ${_.data.govts[target.govt].name} ${target.short_name}`
                   );
                 } else {
                   _.hud.widgets.alert_box.show(

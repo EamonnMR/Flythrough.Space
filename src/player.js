@@ -134,6 +134,7 @@ export class PlayerSave {
     if(amount){
       this.add_bulk_cargo(type, amount);
     }
+    return amount;
   }
 
   can_sell_cargo(type, amount){

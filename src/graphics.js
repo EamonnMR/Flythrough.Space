@@ -98,6 +98,10 @@ function uni_game_camera(){
 };
 
 function mount_on_attachpoint(child_model, parent_model, attachpoint){
+  if(! attachpoint){
+    return;
+  }
+
   let position = attachpoint.position;
   child_model.translate(BABYLON.Axis.X, position.x, BABYLON.Space.LOCAL);
   child_model.translate(BABYLON.Axis.Y, position.y, BABYLON.Space.LOCAL);
