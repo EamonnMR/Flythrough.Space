@@ -558,10 +558,11 @@
     }
   },
   "ls_vette":{
+    "mesh"        : "endurer",
     "short_name"  : "Endurer",
     "long_name"   : "LS Endurer Corvette",
     "full_name"   : "Loyal Suns Corvette Type 1160",
-    "desc"       : "Designed to work in concert with the generally lighter and more agile (both tactically and strategically) fleets of the Northern Empire, the Endurer is a multi-role ship, making dangerous supply runs, bringing additional heat in firefights, and running back-water patrols. Endurer crews pride themselves on being able to serve many logistical roles that a frigate would with a smaller ship and a smaller crew by sacrificing the comforts of a larger ship.",
+    "desc"       : "Designed to work in concert with the generally lighter and more agile (both tactically and strategically) fleets of the Northern Empire, the Endurer is a multi-role ship, making dangerous supply runs, bringing additional heat in firefights, and running back-water patrols. Endurer crews pride themselves on being able to serve the logistical roles that a frigate would with a smaller ship and a smaller crew by sacrificing the comforts of a larger ship.",
     "upgrades"    : {"ne_beam": 2, "antigun": 4, "ejectorrack": 2, "guidedmissile": 20},
     "mass"        : 225,
     "rotation"  : 0.006,
