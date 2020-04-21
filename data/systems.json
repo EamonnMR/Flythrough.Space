@@ -174,7 +174,7 @@
       "Carvajal"
     ]
   },
-  ".134":{
+  "Shamir":{
     "x":781,
     "y":885,
     "links":[
@@ -204,7 +204,7 @@
     "x":845,
     "y":774,
     "links":[
-      ".134",
+      "Shamir",
       "Steiner",
       ".270"
     ]
@@ -238,10 +238,10 @@
     ],
     "links":[
       "Alston",
-      ".139"
+      "Hurston"
     ]
   },
-  ".139":{
+  "Hurston":{
     "x":768,
     "y":800,
     "links":[
@@ -1561,7 +1561,7 @@
     ],
     "links":[
       "Millwright",
-      ".258"
+      "Traverse"
     ]
   },
   "Istles":{
@@ -1653,11 +1653,11 @@
     "x":347,
     "y":744,
     "links":[
-      ".248",
+      "Malvern",
       "Hakshaw"
     ]
   },
-  ".248":{
+  "Malvern":{
     "x":425,
     "y":782,
     "links":[
@@ -1727,19 +1727,19 @@
     "x":780,
     "y":730,
     "links":[
-      ".139",
+      "Hurston",
       ".270",
       ".271"
     ]
   },
-  ".255":{
+  "Covanta":{
     "x":646,
     "y":831,
     "links":[
-      ".139",
+      "Hurston",
       ".271",
       "Pavlodar",
-      ".258"
+      "Traverse"
     ]
   },
   "Pace":{
@@ -1784,7 +1784,7 @@
       "Pereira"
     ]
   },
-  ".258":{
+  "Traverse":{
     "x":557,
     "y":821,
     "npc_average": 4,
@@ -1797,7 +1797,7 @@
 
     "links":[
       "Straylight",
-      ".255",
+      "Covanta",
       "Kharkov",
       "Damnatia",
       "Lemuel"
@@ -1949,7 +1949,7 @@
     "govt":"loyal",
     "links":[
       ".254",
-      ".255",
+      "Covanta",
       "Baikon"
     ]
   },
@@ -1961,7 +1961,7 @@
       "Kosach"
     ],
     "links":[
-      ".255",
+      "Covanta",
       "Baikon"
     ]
   },
@@ -1982,7 +1982,7 @@
     ],
     "links":[
       "Pace",
-      ".258"
+      "Traverse"
     ]
   },
   "Damnatia":{
@@ -1990,7 +1990,7 @@
     "y":680,
     "govt":"loyal",
     "links":[
-      ".258",
+      "Traverse",
       "Hakshaw",
       "Baikon",
       "Uluru"
@@ -2017,8 +2017,8 @@
     ],
 
     "links":[
-      ".248",
-      ".258",
+      "Malvern",
+      "Traverse",
       "Cordova"
     ]
   },
@@ -3426,7 +3426,7 @@
     "x":767,
     "y":931,
     "links":[
-      ".134",
+      "Shamir",
       "Rusk"
     ]
   },
