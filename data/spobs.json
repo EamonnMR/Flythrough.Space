@@ -985,6 +985,29 @@
       "loyal": 2
     },
     "text": "The presence of this station is meant to both represent and enforce the Loyalist's grip on Tomohiran space. But it's definitely acquired some local flavor in the process. The shipyards here are adorned with the colors of Tetsuo's Zorgball team, for example, and you find nutrient paste is available in many unique local flavors."
+  },
+  "Kazachen": {
+    "govt": "loyal",
+    "sprite": "kazachen",
+    "trade": {
+      "water": "high",
+      "grain": "low"
+    },
+    "text": "Entirely too close to its parent star, Gorkov, Kazachen's climate ranges from hot to 'oh don't worry it's a dry heat'. There is also very little water on the surface. However the plants here are adapted to the excessive sunlight and are all too happy to overproduce when given more water then they could have possibly dreamed of."
+  },
+  "Tosche Station": {
+    "sprite": "baik_station",
+    "govt": "loyal",
+    "text": "The curious design of this station dates back to before the Empire (and later Loyal Suns) had conquered this system. It's solidly built, so it's been refitted to service the Loyal Suns fleet.",
+    "shipyard": true,
+    "custom": true,
+    "x": 100,
+    "y": -20,
+    "tech": {
+      "generic": 1,
+      "loyal": 2,
+      "baik": 3
+    }
   }
 }
 

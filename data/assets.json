@@ -1168,7 +1168,13 @@
       "img": "assets/planets/kennerud.png",
       "count": 10,
       "size": 570
+    },
+    "kazachen": {
+      "img": "assets/planets/kazachen.png",
+      "count": 10,
+      "size": 540
     }
+
   },
   "data": {
     "systems": "systems.json",

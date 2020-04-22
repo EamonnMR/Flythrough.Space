@@ -1912,7 +1912,7 @@
     "links":[
       "Shirow",
       ".270",
-      ".282",
+      "Gorkov",
       ".*12"
     ]
   },
@@ -1930,7 +1930,7 @@
       "Pavlodar",
       "Damnatia",
       "Woodstock",
-      ".282"
+      "Gorkov"
     ]
   },
   ".270":{
@@ -2067,13 +2067,32 @@
       "Nishikado"
     ]
   },
-  ".282":{
+  "Gorkov":{
     "x":666,
     "y":616,
     "govt":"loyal",
+    "spobs": [
+      "Tosche Station",
+      "Kazachen"
+    ],
     "links":[
       "Baikon",
       "Kusanagi"
+    ],
+    "npc_average": 3,
+    "npcs": [
+      "baik_insur_raid",
+      "ls_pt",
+      "ls_raid",
+      "ls_noncom",
+      "western_trader_small"
+    ],
+    "lights": [
+      {
+        "type": "point",
+        "position": [0, 15, 0],
+        "intensity": 1.5
+      }
     ]
   },
   ".283":{
