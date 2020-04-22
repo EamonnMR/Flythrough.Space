@@ -877,7 +877,7 @@
         "merchant": {
           "diffuse": "absolver_merchant.png",
           "emissive": "absolver_emissive.png",
-          "custom_emissive_color": [1,1,1.5,1]
+          "custom_emissive_color": [1,1,1,1]
         },
         "merchant/dark": {
           "diffuse": "absolver_merchant.png"
@@ -907,7 +907,7 @@
         "merchant": {
           "diffuse": "endurer_merchant.png",
           "emissive": "endurer_emissive.png",
-          "custom_emissive_color": [1,1,1.5,1]
+          "custom_emissive_color": [1,1,1,1]
         },
         "merchant/dark": {
           "diffuse": "endurer_merchant.png"
@@ -929,8 +929,39 @@
           "diffuse": "endurer_loyal_dark.png"
         }
       }
-
     },
+    "provider": {
+      "file": "provider.babylon",
+      "default_skin": "loyal",
+      "skins": {
+        "merchant": {
+          "diffuse": "provider_merchant.png",
+          "emissive": "provider_emissive.png",
+          "custom_emissive_color": [1,1,1,1]
+        },
+        "merchant/dark": {
+          "diffuse": "provider_merchant.png"
+        },
+        "pirate": {
+          "diffuse": "provider_pirate.png",
+          "emissive": "provider_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "provider_pirate_dark.png"
+        },
+        "loyal": {
+          "diffuse": "provider_loyal.png",
+          "emissive": "provider_emissive.png",
+          "custom_emissive_color": [0.5,1,0.25,1]
+        },
+        "loyal/dark": {
+          "diffuse": "provider_loyal_dark.png"
+        }
+      }
+    },
+
+
 
     "_turret": {
       "file": "turret.babylon",

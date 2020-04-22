@@ -638,11 +638,12 @@
     "max_fuel"   : 5
   },
   "ls_provider":{
+    "mesh"        : "provider",
     "short_name"  : "Provider",
     "long_name"   : "Loyal Suns Provider",
     "full_name"   : "Loyal Suns Type 1129 \"provider\" cargo hauler",
     "desc"       : "After the thrill of conquest was over and the time came to govern what was left of their empire, the Loyal Suns logistics corps determined that shipping cargo around in a fleet of aging frigates wasn't worth it anymore. The Provider is used well behind Loyalist lines to ferry vital cargo to stations and make sure ruled populations have at least enough food that they won't think of making a move on their local marine garrisons any time soon.",
-    "upgrades"    : {"antigun": 1, "antigun_ammo": 10},
+    "upgrades"    : {"plasma200": 1},
     "rotation"  : 0.004,
     "mass"       : 777,
     "accel"      : 0.00035,
@@ -703,9 +704,7 @@
     "long_name"   : "Pirate Patsy",
     "full_name"   : "Jump capable shuttlecraft type 407 (Pirate \"Patsy\" upgrade)",
     "desc"       : "Just because you can fly around in an upgunned shuttlecraft does not mean it's a very good idea. For the pirate with more bravery than good sense. Life insurance not included.", 
-    "upgrades"    : {"autocannon":3, "autocannonammo": 30},
-    "accel"      : 0.00015,
-    "max_speed"   : 0.0018,
+    "upgrades"    : {"autocannon":2, "autocannonammo": 30},
     "space"      : 15,
     "cargo"      : 5,
     "tech"       : {"pirate":1}
