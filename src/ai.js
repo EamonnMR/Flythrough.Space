@@ -300,7 +300,7 @@ function engage(entity, target, delta_time, entMan){
     entity.rotation * delta_time,
     target.velocity,
     entity.velocity,
-    0.01,
+    0.04, // TODO: Derive this from actual weapons on ship
     _.settings.ai_leading ? "basic" : "none",
   );
 
@@ -358,7 +358,7 @@ export function turretPointSystem (entMan) {
     if('ai' in entity){
       target_id = entity.ai.target;
     }
-    if(target_id){
+    if(target_id && ! entity.disabled){
       // In this case we want to track the target
       let target = entMan.get(target_id);
       for(let turret of entity.turrets){
