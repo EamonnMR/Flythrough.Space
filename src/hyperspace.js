@@ -109,7 +109,7 @@ function get_warp_in_position_and_vel(entity, origin, dest){
   return [
     rect_from_polar(
       dir,
-      WARP_IN_DIST_FACTOR * HYPERJUMP_DISTANCE,
+      WARP_IN_DIST_FACTOR * entity.min_hyperjump_distance,
     ),
     rect_from_polar(
       (dir + Math.PI) % (Math.PI * 2),
