@@ -304,8 +304,6 @@
           "diffuse": "khanda_heavy_hex.png"
         }
       }
-
-    
     },
     "nightshade": {"file": "nightshade.babylon"},
     "oe_cruiser": {
@@ -960,9 +958,44 @@
         }
       }
     },
-
-
-
+    "runabout": {
+      "file": "runabout.babylon",
+      "default_skin": "loyal",
+      "skins": {
+        "merchant": {
+          "diffuse": "runabout_merchant.png",
+          "emissive": "runabout_emissive.png",
+          "custom_emissive_color": [1,1,1,1]
+        },
+        "merchant/dark": {
+          "diffuse": "runabout_merchant.png"
+        },
+        "pirate": {
+          "diffuse": "runabout_pirate.png",
+          "emissive": "runabout_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "runabout_pirate_dark.png"
+        },
+        "loyal": {
+          "diffuse": "runabout_loyal.png",
+          "emissive": "runabout_emissive.png",
+          "custom_emissive_color": [0.5,1,0.25,1]
+        },
+        "loyal/dark": {
+          "diffuse": "runabout_loyal_dark.png"
+        },
+        "baik": {
+          "diffuse": "runabout_baik.png",
+          "emissive": "runabout_emissive.png",
+          "custom_emissive_color": [0.5,1,0.25,1]
+        },
+        "baik/dark": {
+          "diffuse": "runabout_baik_dark.png"
+        }
+      }
+    },
     "_turret": {
       "file": "turret.babylon",
       "default_skin": "default",
