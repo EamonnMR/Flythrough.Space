@@ -5,7 +5,7 @@ import { DEFAULT_SETTINGS } from "./default_settings.js";
 /* Use a library, or you'll end up cobbling together your own.
  */
 
-const ARC = Math.PI * 2;
+export const ARC = Math.PI * 2;
 const SETTING_PREFIX = "_setting:";
 export const CARRIED_PREFIX = "__carried_";
 
@@ -21,11 +21,11 @@ export function distance(l_pos, r_pos){
   );
 };
 
-export function rect_from_polar(angle, magnitude){
+
+export function polar_from_rect(coord){
   return {
-    x: Math.cos(angle) * magnitude,
-    y: Math.sin(angle) * magnitude,
-  };
+    angle: angle_mod(Math.atan2(coord.y, coord.x) - Math.PI),
+    magnitude: Math.sqrt( coord.y * coord.y + coord.x * coord.x),  }
 }
 
 export function vector_plus(lvec, rvec){
@@ -129,6 +129,15 @@ export function angle_mod(angle){
   //     /
   //
   return (angle + ARC) % ARC;
+}
+
+
+export function rect_from_polar(angle, magnitude){
+  angle = angle_mod(angle);
+  return {
+    x: Math.cos(angle) * magnitude,
+    y: Math.sin(angle) * magnitude,
+  };
 }
 
 export function in_firing_arc(angle, centerline, width){
@@ -236,6 +245,8 @@ export function assert_true(value, desc){
   if (!value){
     console.log(`TEST FAILURE: ${desc}`);
     console.log(`Expected true, got ${value}`);
+  } else {
+    console.log(`Test Passed: ${desc}`);
   }
 }
 
@@ -243,6 +254,8 @@ export function assert_false(value, desc){
   if (value){
     console.log(`TEST FAILURE: ${desc}`);
     console.log(`Expected false, got ${value}`);
+  } else {
+    console.log(`Test Passed: ${desc}`);
   }
 }
 
@@ -253,6 +266,8 @@ export function assert_equal(lval, rval, desc){
     console.log(lval);
     console.log(`To equal`);
     console.log(rval);
+  } else {
+    console.log(`Test Passed: ${desc}`);
   }
 }
 
@@ -277,5 +292,14 @@ export function utils_unit_tests(){
   assert_true(get_setting("foo") === "bar",
     "Can save settings in local storage");
   clear_setting("foo");
+
+  assert_equal(
+    polar_from_rect({x: 1, y: 1}),
+    {
+      angle: Math.PI * 1.25,
+      magnitude: Math.sqrt(2),
+    },
+    "polar from rect works properly",
+  );
 }
 

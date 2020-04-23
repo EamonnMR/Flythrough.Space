@@ -174,11 +174,11 @@
       "Carvajal"
     ]
   },
-  ".134":{
+  "Shamir":{
     "x":781,
     "y":885,
     "links":[
-      ".136"
+      "Humboldt"
     ]
   },
   "Reese":{
@@ -200,16 +200,16 @@
       "Bluthgelt"
     ]
   },
-  ".136":{
+  "Humboldt":{
     "x":845,
     "y":774,
     "links":[
-      ".134",
+      "Shamir",
       "Steiner",
       ".270"
     ]
   },
-  "Panfilov":{
+  "Alston":{
     "x":753,
     "y":1022,
     "govt":"itaska",
@@ -217,11 +217,11 @@
       "Sintashta"
     ],
     "links":[
-      "Hopmeadow",
+      "Rusk",
       "Pace"
     ]
   },
-  "Hopmeadow":{
+  "Rusk":{
     "x":685,
     "y":933,
     "govt":"itaska",
@@ -237,15 +237,15 @@
       "DIII - Loneozner"
     ],
     "links":[
-      "Panfilov",
-      ".139"
+      "Alston",
+      "Hurston"
     ]
   },
-  ".139":{
+  "Hurston":{
     "x":768,
     "y":800,
     "links":[
-      "Hopmeadow",
+      "Rusk",
       ".254"
     ]
   },
@@ -312,7 +312,7 @@
       "Rainsford",
       "Inverness",
       "Steiner",
-      "Kiriyenko"
+      "Kiriyen"
     ]
   },
   "Steiner":{
@@ -321,7 +321,7 @@
     "govt":"free",
     "roidSet":"silicaFieldL",
     "links":[
-      ".136",
+      "Humboldt",
       "Wijngaarden",
       "Khust"
     ],
@@ -703,7 +703,7 @@
       "Zhang",
       ".172",
       "Feng",
-      "Liu*"
+      "Tianming"
     ]
   },
   ".174":{
@@ -750,10 +750,10 @@
     "links":[
       "Stroustrup",
       "Pyatigorsk",
-      "Kiriyenko"
+      "Kiriyen"
     ]
   },
-  "Kiriyenko":{
+  "Kiriyen":{
     "x":1023,
     "y":740,
     "links":[
@@ -767,7 +767,7 @@
     "x":1076,
     "y":658,
     "links":[
-      "Kiriyenko",
+      "Kiriyen",
       "Rybak",
       "Contra Costa"
     ]
@@ -813,7 +813,7 @@
     "links":[
       ".181",
       "Contra Costa",
-      ".*11",
+      "Ikeda",
       ".*12"
     ]
   },
@@ -837,16 +837,16 @@
     "links":[
       ".199",
       "Kjeldor",
-      ".316"
+      "VerSteeg"
     ]
   },
-  ".186":{
+  "Thrun":{
     "x":1585,
     "y":558,
     "links":[
       "Ingolstadt",
       "Peenemunde",
-      ".*19"
+      "Fornwall"
     ]
   },
   "Ingolstadt":{
@@ -854,7 +854,7 @@
     "y":631,
     "govt":"league",
     "links":[
-      ".186",
+      "Thrun",
       "Jhelum",
       "Peenemunde",
       "Lothian"
@@ -1029,7 +1029,7 @@
       "free_capital"
     ],
     "links":[
-      "Kiriyenko",
+      "Kiriyen",
       "Steiner",
       "Kuchma",
       ".270"
@@ -1046,13 +1046,33 @@
     ]
   },
 
-  ".202":{
+  "Tomohiro":{
     "x":608,
     "y":386,
     "govt":"loyal",
+    "npc_average": 3,
+    "npcs": [
+      "ls_raid",
+      "ls_pt",
+      "ls_noncom",
+      "trader_lowtech",
+      "trader_danger"
+    ],
+    "spobs": [
+      "Tetsuo",
+      "Tomohiro Station"
+    ],
+    "lights": [
+      {
+        "position": [0, -5, 1],
+        "intensity": 1,
+        "diffuse": [0.7,0.7,1],
+        "specular": [0.7,0.7,1]
+      }
+    ],
     "links":[
-      ".*2",
-      ".*11"
+      "Shinya",
+      "Ikeda"
     ]
   },
   "Unrelenting":{
@@ -1061,7 +1081,7 @@
     "govt":"loyal",
     "links":[
       "Nemesis",
-      ".250",
+      "Fusajiro",
       "Zorax"
     ]
   },
@@ -1071,7 +1091,7 @@
     "govt":"loyal",
     "links":[
       "Nemesis",
-      ".250"
+      "Fusajiro"
     ]
   },
   "Defiance":{
@@ -1080,8 +1100,8 @@
     "govt":"loyal",
     "links":[
       "Nemesis",
-      ".250",
-      ".*11"
+      "Fusajiro",
+      "Ikeda"
     ]
   },
 
@@ -1511,12 +1531,12 @@
     ],
     "links":[
       "Millwright",
-      "Strugatsky",
+      "Washington",
       "Istles",
-      "Skovoroda"
+      "Culver"
     ]
   },
-  "Strugatsky":{
+  "Washington":{
     "x":417,
     "y":1141,
     "govt":"itaska",
@@ -1541,7 +1561,7 @@
     ],
     "links":[
       "Millwright",
-      ".258"
+      "Traverse"
     ]
   },
   "Istles":{
@@ -1556,7 +1576,7 @@
       "McPherson"
     ]
   },
-  "Skovoroda":{
+  "Culver":{
     "x":287,
     "y":966,
     "govt":"itaska",
@@ -1568,7 +1588,7 @@
       "Harbi",
       "Albacore",
       "Burch",
-      ".367"
+      "Shivji"
     ]
   },
   "Albacore":{
@@ -1582,7 +1602,7 @@
       "Yosemite"
     ],
     "links":[
-      "Skovoroda",
+      "Culver",
       "Balish"
     ]
   },
@@ -1609,7 +1629,7 @@
       "Buttonwood"
     ],
     "links":[
-      "Strugatsky",
+      "Washington",
       "Istles",
       "Balishkova",
       ".364"
@@ -1624,7 +1644,7 @@
       "MCB-1"
     ],
     "links":[
-      "Skovoroda",
+      "Culver",
       ".370",
       ".372"
     ]
@@ -1633,11 +1653,11 @@
     "x":347,
     "y":744,
     "links":[
-      ".248",
-      "Hawkshaw"
+      "Malvern",
+      "Hakshaw"
     ]
   },
-  ".248":{
+  "Malvern":{
     "x":425,
     "y":782,
     "links":[
@@ -1654,7 +1674,7 @@
       "Jibril"
     ]
   },
-  ".250":{
+  "Fusajiro":{
     "x":693,
     "y":313,
     "govt":"loyal",
@@ -1662,19 +1682,19 @@
       "Horizon"
     ],
     "links":[
-      ".202",
+      "Tomohiro",
       "Unrelenting",
       "Victory",
       "Defiance",
       ".261"
     ]
   },
-  ".251":{
+  "Iwatani":{
     "x":531,
     "y":315,
     "govt":"loyal",
     "links":[
-      ".202",
+      "Tomohiro",
       ".262",
       ".263",
       ".264"
@@ -1687,39 +1707,39 @@
       ".264",
       ".267",
       "Uluru",
-      ".*1",
-      ".*2"
+      "Nishikado",
+      "Shinya"
     ]
   },
-  ".253":{
+  "Shirow":{
     "x":676,
     "y":507,
     "govt":"loyal",
     "spobs": ["Morcia"],
     "links":[
-      ".268",
-      ".*1",
-      ".*2",
-      ".*11"
+      "Kusanagi",
+      "Nishikado",
+      "Shinya",
+      "Ikeda"
     ]
   },
   ".254":{
     "x":780,
     "y":730,
     "links":[
-      ".139",
+      "Hurston",
       ".270",
       ".271"
     ]
   },
-  ".255":{
+  "Covanta":{
     "x":646,
     "y":831,
     "links":[
-      ".139",
+      "Hurston",
       ".271",
       "Pavlodar",
-      ".258"
+      "Traverse"
     ]
   },
   "Pace":{
@@ -1736,7 +1756,7 @@
       "Frontier Outpost IV"
     ],
     "links":[
-      "Panfilov",
+      "Alston",
       "Locklear",
       "Millwright",
       "Kharkov"
@@ -1764,7 +1784,7 @@
       "Pereira"
     ]
   },
-  ".258":{
+  "Traverse":{
     "x":557,
     "y":821,
     "npc_average": 4,
@@ -1777,13 +1797,13 @@
 
     "links":[
       "Straylight",
-      ".255",
+      "Covanta",
       "Kharkov",
-      ".274",
+      "Damnatia",
       "Lemuel"
     ]
   },
-  "Hawkshaw":{
+  "Hakshaw":{
     "x":457,
     "y":683,
     "govt":"loyal",
@@ -1806,7 +1826,7 @@
     "links":[
       "Androscoggin",
       "Cordova",
-      ".274",
+      "Damnatia",
       ".275"
     ]
   },
@@ -1815,7 +1835,7 @@
     "y":756,
     "govt":"loyal",
     "links":[
-      "Hawkshaw",
+      "Hakshaw",
       "Lemuel"
     ]
   },
@@ -1824,7 +1844,7 @@
     "y":235,
     "govt":"loyal",
     "links":[
-      ".250",
+      "Fusajiro",
       ".262",
       "Zorax",
       ".277*"
@@ -1835,7 +1855,7 @@
     "y":156,
     "govt":"loyal",
     "links":[
-      ".251",
+      "Iwatani",
       ".261",
       ".277*",
       ".*5",
@@ -1847,7 +1867,7 @@
     "y":181,
     "govt":"loyal",
     "links":[
-      ".251",
+      "Iwatani",
       ".292",
       ".*7"
     ]
@@ -1856,10 +1876,10 @@
     "x":394,
     "y":361,
     "links":[
-      ".251",
+      "Iwatani",
       ".252",
       ".290",
-      ".*2"
+      "Shinya"
     ]
   },
   "Zorax":{
@@ -1885,14 +1905,14 @@
       ".283"
     ]
   },
-  ".268":{
+  "Kusanagi":{
     "x":759,
     "y":588,
     "govt":"loyal",
     "links":[
-      ".253",
+      "Shirow",
       ".270",
-      ".282",
+      "Gorkov",
       ".*12"
     ]
   },
@@ -1908,9 +1928,9 @@
       ".270",
       ".271",
       "Pavlodar",
-      ".274",
+      "Damnatia",
       "Woodstock",
-      ".282"
+      "Gorkov"
     ]
   },
   ".270":{
@@ -1919,7 +1939,7 @@
     "links":[
       "Khust",
       ".254",
-      ".268",
+      "Kusanagi",
       "Baikon"
     ]
   },
@@ -1929,7 +1949,7 @@
     "govt":"loyal",
     "links":[
       ".254",
-      ".255",
+      "Covanta",
       "Baikon"
     ]
   },
@@ -1941,7 +1961,7 @@
       "Kosach"
     ],
     "links":[
-      ".255",
+      "Covanta",
       "Baikon"
     ]
   },
@@ -1962,16 +1982,16 @@
     ],
     "links":[
       "Pace",
-      ".258"
+      "Traverse"
     ]
   },
-  ".274":{
+  "Damnatia":{
     "x":532,
     "y":680,
     "govt":"loyal",
     "links":[
-      ".258",
-      "Hawkshaw",
+      "Traverse",
+      "Hakshaw",
       "Baikon",
       "Uluru"
     ]
@@ -1980,7 +2000,7 @@
     "x":363,
     "y":658,
     "links":[
-      "Hawkshaw",
+      "Hakshaw",
       ".278"
     ]
   },
@@ -1997,8 +2017,8 @@
     ],
 
     "links":[
-      ".248",
-      ".258",
+      "Malvern",
+      "Traverse",
       "Cordova"
     ]
   },
@@ -2030,9 +2050,9 @@
     ],
     "links":[
       ".252",
-      ".274",
+      "Damnatia",
       ".278",
-      ".*1"
+      "Nishikado"
     ]
   },
   "Woodstock":{
@@ -2044,16 +2064,35 @@
     ],
     "links":[
       "Baikon",
-      ".*1"
+      "Nishikado"
     ]
   },
-  ".282":{
+  "Gorkov":{
     "x":666,
     "y":616,
     "govt":"loyal",
+    "spobs": [
+      "Tosche Station",
+      "Kazachen"
+    ],
     "links":[
       "Baikon",
-      ".268"
+      "Kusanagi"
+    ],
+    "npc_average": 3,
+    "npcs": [
+      "baik_insur_raid",
+      "ls_pt",
+      "ls_raid",
+      "ls_noncom",
+      "western_trader_small"
+    ],
+    "lights": [
+      {
+        "type": "point",
+        "position": [0, 15, 0],
+        "intensity": 1.5
+      }
     ]
   },
   ".283":{
@@ -2078,7 +2117,7 @@
     "y":399,
     "links":[
       ".284",
-      ".288"
+      "Novgor"
     ]
   },
   ".286":{
@@ -2086,7 +2125,7 @@
     "y":455,
     "links":[
       ".287",
-      ".288"
+      "Novgor"
     ]
   },
   ".287":{
@@ -2097,13 +2136,26 @@
       ".294"
     ]
   },
-  ".288":{
+  "Novgor":{
+    "npcs": [
+      "baik_insur_raid"
+    ],
+    "govt": "baik",
     "x":143,
     "y":356,
     "links":[
       ".285",
       ".286",
       ".293"
+    ],
+    "spobs": ["Gagarin Station"],
+    "lights": [
+      {
+        "position": [0, -1,-1],
+        "intensity": 1,
+        "diffuse": [0.5,0.5,0.2],
+        "specular": [0.5,0.5,0.2]
+      }
     ]
   },
   ".289":{
@@ -2149,7 +2201,7 @@
     "y":254,
     "links":[
       ".294",
-      ".288"
+      "Novgor"
     ]
   },
   ".294":{
@@ -2282,7 +2334,7 @@
     "x":1491,
     "y":372,
     "links":[
-      ".316",
+      "VerSteeg",
       ".*26"
     ]
   },
@@ -2303,7 +2355,7 @@
       "Marauder",
       ".309",
       "Stormgald",
-      ".*18",
+      "Flim",
       "Argonne"
     ]
   },
@@ -2343,7 +2395,7 @@
       "Tyne"
     ],
     "links":[
-      ".186",
+      "Thrun",
       "Ingolstadt",
       "Jhelum",
       "Panaorios",
@@ -2361,14 +2413,14 @@
       "Yevgraf"
     ]
   },
-  ".316":{
+  "VerSteeg":{
     "x":1471,
     "y":466,
     "links":[
       "Shepard",
       ".308",
       ".*16",
-      ".*19"
+      "Fornwall"
     ]
   },
   "Stormgald":{
@@ -2378,7 +2430,7 @@
       ".310",
       "Guayas",
       "Correa",
-      ".*18"
+      "Flim"
     ]
   },
   "Guayas":{
@@ -2556,7 +2608,7 @@
     ],
     "links":[
       "Atlantico",
-      ".335",
+      "Cixin",
       "Zipaquira"
     ]
   },
@@ -2568,11 +2620,11 @@
     "links":[
       "Anyuan",
       "Kirchner",
-      ".335",
+      "Cixin",
       "Zipaquira"
     ]
   },
-  ".335":{
+  "Cixin":{
     "x":1891,
     "y":1090,
     "links":[
@@ -2843,25 +2895,25 @@
     "links":[
       "Balishkova",
       "McPherson",
-      ".367"
+      "Shivji"
     ]
   },
   ".365":{
     "x":225,
     "y":1162,
     "links":[
-      ".367"
+      "Shivji"
     ]
   },
   ".366":{
     "x":125,
     "y":1140,
     "links":[
-      ".367",
+      "Shivji",
       ".368"
     ]
   },
-  ".367":{
+  "Shivji":{
     "x":207,
     "y":1090,
     "links":[
@@ -2877,11 +2929,11 @@
     "y":1034,
     "links":[
       ".366",
-      ".367",
-      ".369"
+      "Shivji",
+      "Tramel"
     ]
   },
-  ".369":{
+  "Tramel":{
     "x":101,
     "y":974,
     "links":[
@@ -2978,7 +3030,7 @@
       "Jes"
     ]
   },
-  "Liu*":{
+  "Tianming":{
     "x":1781,
     "y":1076,
     "links":[
@@ -2987,7 +3039,7 @@
       "Anyuan*"
     ]
   },
-  "Kiriyenko*":{
+  "Wenji":{
     "x":1835,
     "y":1138,
     "npc_average": 3,
@@ -3000,31 +3052,31 @@
       "free_capital"
     ],
     "links":[
-      ".335",
-      "Liu*"
+      "Cixin",
+      "Tianming"
     ]
   },
-  ".*1":{
+  "Nishikado":{
     "x":498,
     "y":498,
     "govt":"loyal",
     "links":[
       ".252",
-      ".253",
+      "Shirow",
       "Uluru",
       "Woodstock",
-      ".*2"
+      "Shinya"
     ]
   },
-  ".*2":{
+  "Shinya":{
     "x":502,
     "y":404,
     "govt":"loyal",
     "links":[
-      ".202",
+      "Tomohiro",
       ".252",
       ".264",
-      ".*1"
+      "Nishikado"
     ]
   },
   ".*3":{
@@ -3133,15 +3185,15 @@
       ".359"
     ]
   },
-  ".*11":{
+  "Ikeda":{
     "x":711,
     "y":445,
     "govt":"loyal",
     "links":[
       "Novosibirsk",
-      ".202",
+      "Tomohiro",
       "Defiance",
-      ".253",
+      "Shirow",
       ".*12"
     ]
   },
@@ -3151,8 +3203,8 @@
     "govt":"loyal",
     "links":[
       "Novosibirsk",
-      ".268",
-      ".*11"
+      "Kusanagi",
+      "Ikeda"
     ]
   },
   "Khabarovsk":{
@@ -3195,7 +3247,7 @@
     "y":373,
     "links":[
       ".199",
-      ".316",
+      "VerSteeg",
       ".*20"
     ]
   },
@@ -3222,7 +3274,7 @@
       "Prokhoro"
     ]
   },
-  ".*18":{
+  "Flim":{
     "x":2013,
     "y":594,
     "links":[
@@ -3230,12 +3282,12 @@
       "Stormgald"
     ]
   },
-  ".*19":{
+  "Fornwall":{
     "x":1596,
     "y":493,
     "links":[
-      ".186",
-      ".316"
+      "Thrun",
+      "VerSteeg"
     ]
   },
   ".*20":{
@@ -3367,7 +3419,7 @@
     "y":1239,
     "links":[
       ".172",
-      "Kiriyenko*"
+      "Wenji"
     ]
   },
   "Zipaquira":{
@@ -3389,36 +3441,36 @@
       ".196"
     ]
   },
-  ".*32":{
+  "Lackland":{
     "x":767,
     "y":931,
     "links":[
-      ".134",
-      "Hopmeadow"
+      "Shamir",
+      "Rusk"
     ]
   },
-  ".*33":{
+  "Briscoe":{
     "x":822,
     "y":997,
     "links":[
-      "Panfilov",
-      ".*32",
-      ".*34"
+      "Alston",
+      "Lackland",
+      "Beacon"
     ]
   },
-  ".*34":{
+  "Beacon":{
     "x":807,
     "y":1099,
     "links":[
-      ".*33",
-      ".*35"
+      "Briscoe",
+      "Horr"
     ]
   },
-  ".*35":{
+  "Horr":{
     "x":705,
     "y":1093,
     "links":[
-      ".*34",
+      "Beacon",
       "Pace"
     ]
   }

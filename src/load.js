@@ -32,6 +32,13 @@ const PROTOTYPES = {
   ships: {
     explosion: "explosion",
     upgrades: {},
+    turret_rot_speed: Math.PI / 50,
+    max_boarding_velocity_diff: 10,
+    max_boarding_distance: 25,
+    max_landing_distance: 50,
+    min_hyperjump_distance: 100,
+    cargo_carried: {},
+    money: 0,
   },
   systems: {
     lights: [
@@ -174,8 +181,6 @@ export class Data {
       "particleTexture"
     ];
     for(let particle_system of Object.values(this.particles)){
-      console.log("particle system: ");
-      console.log(particle_system)
       for(let attr of COLOR_4_ATTRS){
         if (attr in particle_system){
           particle_system[attr] = new BABYLON.Color4(...particle_system[attr]);

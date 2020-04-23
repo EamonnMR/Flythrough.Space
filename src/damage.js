@@ -6,9 +6,20 @@ import {
   make_way_for_light,
 } from "./graphics.js";
 
+import { polar_from_rect } from "./util.js";
+
+import { accelerate } from "./physics.js";
+
 const DISABLED_THRESHOLD = 0.15;
 
 export function shot_handler(shot, object){
+
+
+  if ('force' in shot && 'mass' in object){
+    let shot_vel_polar = polar_from_rect(shot.velocity);
+    accelerate(object.velocity, shot_vel_polar.angle, -1 * shot.force);
+  }
+
   if ( 'damage' in shot ){
     damage_handler(shot, object);
   }
@@ -45,6 +56,7 @@ export function damage_handler(damager, damaged){
       damaged.shields = 0;
     }
   }
+
 
   if ('damage' in damager && 'hitpoints' in damaged){
 

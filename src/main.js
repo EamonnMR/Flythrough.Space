@@ -14,6 +14,7 @@ import { MainMenu } from "./main_menu.js";
 import { SettingsMenu } from "./settings.js";
 import { graphics_init } from "./graphics.js";
 import { SavesMenu } from "./saves.js";
+import { PlunderMenu } from "./plunder_menu.js";
 
 function init(game_canvas, scene, engine, data){
   /* Main entry point for the app (after loading). Binds events and such. */
@@ -35,6 +36,7 @@ function init(game_canvas, scene, engine, data){
     'main'    : new MainMenu(),
     'settings': new SettingsMenu(),
     'saves'   : new SavesMenu(),
+    'plunder' : new PlunderMenu(),
   }, overridable_default("state", "main"));
 
   _.state_manager = stateMgr;

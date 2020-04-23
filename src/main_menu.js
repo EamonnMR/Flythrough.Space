@@ -18,6 +18,7 @@ const MENU_COPY = `Welcome to FLYTHROUGH.SPACE, the Space Captain game!
   and press [LCTRL] to fire your weapon - but be careful, angry ships
   will shoot back!
   If you manage to get some fighters, launch with Q and recall with E. F to command them to attack your target.
+  Disabled ships (lights off) can be boarded with B for loot
   `;
 
 function pop_tab(url){
@@ -136,17 +137,15 @@ export class MainMenu extends BaseMenuView {
       BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,
       "0%", "-20%")
     );
-    /* TODO: Never enough buttons
     widgets.push(new LandingMenuBigButton(
-      'Exciting New Option',
+      'Discord',
       () => {
-        //this.parent.enter_state('customize');
+        pop_tab("https://discord.gg/4a2G9G7", "_blank");
       },
       RIGHT,
       BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,
       "0%", "-30%")
     );
-    */
     return widgets;
   }
 };

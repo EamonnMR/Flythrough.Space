@@ -119,6 +119,7 @@ export class TextBox extends Widget{
   }
 
   setup(){
+    
     let control = get_text();
     control.text = this.text;
     this.setup_control(control);

@@ -176,10 +176,42 @@
     },
 
     "tandem": {
-      "file": "tandem.babylon"
-    },
-    "absolver": {
-      "file": "absolver.babylon"
+      "file": "tandem.babylon",
+      "default_skin": "loyal",
+      "skins": {
+        "merchant": {
+          "diffuse": "tandem_merchant.png",
+          "emissive": "tandem_emissive.png",
+          "custom_emissive_color": [1,1,1.5,1]
+        },
+        "merchant/dark": {
+          "diffuse": "tandem_merchant.png"
+        },
+        "pirate": {
+          "diffuse": "tandem_pirate.png",
+          "emissive": "tandem_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "tandem_pirate.png"
+        },
+        "loyal": {
+          "diffuse": "tandem_loyal.png",
+          "emissive": "tandem_emissive.png",
+          "custom_emissive_color": [0.5,1,0.25,1]
+        },
+        "loyal/dark": {
+          "diffuse": "tandem_loyal_dark.png"
+        },
+        "itaska": {
+          "diffuse": "tandem_itaska.png",
+          "emissive": "tandem_emissive.png",
+          "custom_emissive_color": [1,0.7,0.8,1]
+        },
+        "itaska/dark": {
+          "diffuse": "tandem_itaska_dark.png"
+        }
+      }
     },
     "oe_fi": {
       "file": "empfi.babylon",
@@ -222,7 +254,7 @@
           "emissive": "empfi_emissive.png",
           "custom_emissive_color": [1,0.7,0.8,1]
         },
-        "loyal/dark": {
+        "itaska/dark": {
           "diffuse": "empfi_itaska_dark.png"
         },
         "xic": {
@@ -272,8 +304,6 @@
           "diffuse": "khanda_heavy_hex.png"
         }
       }
-
-    
     },
     "nightshade": {"file": "nightshade.babylon"},
     "oe_cruiser": {
@@ -807,8 +837,174 @@
           "diffuse": "oe_frigate_pirate.png"
         }
       }
+    },
+    "retaliator": {
+      "file": "retaliator.babylon",
+      "default_skin": "loyal",
+      "skins": {
+        "merchant": {
+          "diffuse": "retaliator_merchant.png",
+          "emissive": "retaliator_emissive.png",
+          "custom_emissive_color": [1,1,1.5,1]
+        },
+        "merchant/dark": {
+          "diffuse": "retaliator_merchant.png"
+        },
+        "pirate": {
+          "diffuse": "retaliator_pirate.png",
+          "emissive": "retaliator_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "retaliator_pirate_dark.png"
+        },
+        "loyal": {
+          "diffuse": "retaliator_loyal.png",
+          "emissive": "retaliator_emissive.png",
+          "custom_emissive_color": [0.5,1,0.25,1]
+        },
+        "loyal/dark": {
+          "diffuse": "retaliator_loyal_dark.png"
+        }
+      }
+    },
+    "absolver": {
+      "file": "absolver.babylon",
+      "default_skin": "loyal",
+      "skins": {
+        "merchant": {
+          "diffuse": "absolver_merchant.png",
+          "emissive": "absolver_emissive.png",
+          "custom_emissive_color": [1,1,1,1]
+        },
+        "merchant/dark": {
+          "diffuse": "absolver_merchant.png"
+        },
+        "pirate": {
+          "diffuse": "absolver_pirate.png",
+          "emissive": "absolver_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "absolver_pirate_dark.png"
+        },
+        "loyal": {
+          "diffuse": "absolver_loyal.png",
+          "emissive": "absolver_emissive.png",
+          "custom_emissive_color": [0.5,1,0.25,1]
+        },
+        "loyal/dark": {
+          "diffuse": "absolver_loyal_dark.png"
+        }
+      }
+    },
+    "endurer": {
+      "file": "endurer.babylon",
+      "default_skin": "loyal",
+      "skins": {
+        "merchant": {
+          "diffuse": "endurer_merchant.png",
+          "emissive": "endurer_emissive.png",
+          "custom_emissive_color": [1,1,1,1]
+        },
+        "merchant/dark": {
+          "diffuse": "endurer_merchant.png"
+        },
+        "pirate": {
+          "diffuse": "endurer_pirate.png",
+          "emissive": "endurer_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "endurer_pirate_dark.png"
+        },
+        "loyal": {
+          "diffuse": "endurer_loyal.png",
+          "emissive": "endurer_emissive.png",
+          "custom_emissive_color": [0.5,1,0.25,1]
+        },
+        "loyal/dark": {
+          "diffuse": "endurer_loyal_dark.png"
+        }
+      }
+    },
+    "provider": {
+      "file": "provider.babylon",
+      "default_skin": "loyal",
+      "skins": {
+        "merchant": {
+          "diffuse": "provider_merchant.png",
+          "emissive": "provider_emissive.png",
+          "custom_emissive_color": [1,1,1,1]
+        },
+        "merchant/dark": {
+          "diffuse": "provider_merchant.png"
+        },
+        "pirate": {
+          "diffuse": "provider_pirate.png",
+          "emissive": "provider_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "provider_pirate_dark.png"
+        },
+        "loyal": {
+          "diffuse": "provider_loyal.png",
+          "emissive": "provider_emissive.png",
+          "custom_emissive_color": [0.5,1,0.25,1]
+        },
+        "loyal/dark": {
+          "diffuse": "provider_loyal_dark.png"
+        }
+      }
+    },
+    "runabout": {
+      "file": "runabout.babylon",
+      "default_skin": "loyal",
+      "skins": {
+        "merchant": {
+          "diffuse": "runabout_merchant.png",
+          "emissive": "runabout_emissive.png",
+          "custom_emissive_color": [1,1,1,1]
+        },
+        "merchant/dark": {
+          "diffuse": "runabout_merchant.png"
+        },
+        "pirate": {
+          "diffuse": "runabout_pirate.png",
+          "emissive": "runabout_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "runabout_pirate_dark.png"
+        },
+        "loyal": {
+          "diffuse": "runabout_loyal.png",
+          "emissive": "runabout_emissive.png",
+          "custom_emissive_color": [0.5,1,0.25,1]
+        },
+        "loyal/dark": {
+          "diffuse": "runabout_loyal_dark.png"
+        },
+        "baik": {
+          "diffuse": "runabout_baik.png",
+          "emissive": "runabout_emissive.png",
+          "custom_emissive_color": [0.5,1,0.25,1]
+        },
+        "baik/dark": {
+          "diffuse": "runabout_baik_dark.png"
+        }
+      }
+    },
+    "_turret": {
+      "file": "turret.babylon",
+      "default_skin": "default",
+      "skins": {
+        "default": {
+          "diffuse": "turret.png"
+        }
+      }
     }
-
   },
   "sprites": {
     "plasma": {
@@ -990,6 +1186,26 @@
       "img": "assets/planets/wieliczka.png",
       "count": 10,
       "size": 400
+    },
+    "baik_station": {
+      "img": "assets/planets/baik_station.png",
+      "count": 10,
+      "size": 520
+    },
+    "tetsuo": {
+      "img": "assets/planets/tetsuo.png",
+      "count": 10,
+      "size": 370
+    },
+    "kennerud": {
+      "img": "assets/planets/kennerud.png",
+      "count": 10,
+      "size": 570
+    },
+    "kazachen": {
+      "img": "assets/planets/kazachen.png",
+      "count": 10,
+      "size": 540
     }
 
   },

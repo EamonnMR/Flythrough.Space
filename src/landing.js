@@ -169,7 +169,6 @@ class HeroText extends TextBox {
 };
 
 export class LandingMenuBigButton extends TextButton {
-
   setup(){
     let control = super.setup();
     control.color = "White";

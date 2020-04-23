@@ -1,6 +1,12 @@
 {
   "trader_lowtech": {
     "govt": "merchant",
+    "cargo": [
+      "water",
+      "grain",
+      "agra",
+      "metal"
+    ],
     "ships": [
       "shuttle",
       "courier",
@@ -11,6 +17,12 @@
   },
   "trader_bulk": {
     "govt": "merchant",
+    "cargo": [
+      "pure",
+      "alloy",
+      "ore",
+      "metal"
+    ],
     "ships": [
       "courier",
       "oe_frig",
@@ -23,6 +35,13 @@
   },
   "trader_danger": {
     "govt": "merchant",
+    "cargo": [
+      "catalite",
+      "metal",
+      "alloy",
+      "pure",
+      "grain"
+    ],
     "ships": [
       "argosy",
       "civ_heavy_fighter",
@@ -35,6 +54,13 @@
   },
   "pirate_expedition": {
     "govt": "pirate",
+     "cargo": [
+      "catalite",
+      "metal",
+      "alloy",
+      "pure",
+      "grain"
+    ],     
     "ships": [
       "patsy",
       "pirate_sleeper",
@@ -43,6 +69,13 @@
   },
   "pirate_raid": {
     "govt": "pirate",
+    "cargo": [
+      "catalite",
+      "metal",
+      "alloy",
+      "pure",
+      "grain"
+    ],
     "ships": [
       "pirate_sleeper",
       "triggerman",
@@ -58,6 +91,10 @@
   },
   "xic_presence": {
     "govt": "xic",
+    "cargo": [
+      "metal",
+      "ore"
+    ],
     "ships": [
       "xic_drillship"
     ]
@@ -79,6 +116,13 @@
   },
   "league_cap": {
     "govt": "league",
+    "cargo": [
+      "catalite",
+      "metal",
+      "alloy",
+      "pure",
+      "grain"
+    ],
     "ships": [
       "league_corvette",
       "league_argosy",
@@ -96,6 +140,13 @@
   },
   "western_trader": {
     "govt": "merchant",
+    "cargo": [
+      "catalite",
+      "metal",
+      "alloy",
+      "pure",
+      "grain"
+    ],
     "ships":[
       "goshawk",
       "courier",
@@ -105,6 +156,12 @@
   },
   "western_trader_small": {
     "govt": "merchant",
+    "cargo": [
+      "metal",
+      "alloy",
+      "pure",
+      "grain"
+    ], 
     "ships":[
       "oe_fighter",
       "tercel",
@@ -143,6 +200,13 @@
   },
   "ls_noncom": {
     "govt": "loyal",
+    "cargo": [
+      "catalite",
+      "metal",
+      "alloy",
+      "pure",
+      "grain"
+    ],
     "ships": [
       "ls_provider",
       "ls_runabout"
@@ -158,6 +222,7 @@
   },
   "bank": {
     "govt": "galbank",
+    "money": 100000,
     "ships": [
       "courier",
       "argosy",

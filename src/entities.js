@@ -4,7 +4,6 @@ import {
   create_composite_model,
   create_planet_sprite,
   get_engine_particle_systems,
-  get_thruster_lights,
 } from "./graphics.js";
 
 export function fighterFactory(type, mothership){
@@ -76,7 +75,6 @@ export function shipFactory(type, position, govt=null){
   apply_upgrades(ship, ship.upgrades);
   create_composite_model(ship, govt);
   ship.engine_trails = get_engine_particle_systems(ship);
-  ship.engine_lights = get_thruster_lights(ship);
   return ship;
 };
 
@@ -141,6 +139,14 @@ export function npcSpawnerSystem(entMan) {
                                 {state: 'passive'},
                                 group.govt
       );
+      npc.spawn_system_created = true;
+      npc.money = Math.round(npc.price / 10);
+      if("money" in group){
+        npc.money = group.money;
+      }
+      if("cargo" in group){
+        npc.cargo_carried[choose(group.cargo)] = Math.round(Math.random() * npc.cargo);
+      }
       entMan.insert(npc);
 		}
   }
@@ -156,7 +162,7 @@ function count_npcs(entMan){
 	// To account for player fleets, etc might not be crazy to have a
   // 'native' flag that indicates that a ship was made by a spawner
   // and isn't part of a mission, etc
-  return entMan.get_with(['ai']).length;
+  return entMan.get_with(['ai', 'spawn_system_created']).length;
 }
 
 function random_type(npcs){

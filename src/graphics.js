@@ -6,7 +6,12 @@
 // y      --> Nothing
 // Z      --> Y
 import { _ } from "./singletons.js";
-import { to_radians, is_cheat_enabled, overridable_default } from "./util.js";
+import {
+  to_radians,
+  is_cheat_enabled,
+  overridable_default,
+  polar_from_rect,
+} from "./util.js";
 
 export const SHIP_Y = 0; // This might want to be imported from somewhere
 const PLANET_SCALE = 15;  // TODO: Noticing that differently sized planet sprites end up being the same screen-space size. Weird.
@@ -66,11 +71,9 @@ export function camera_ready(){
 export function get_attachpoint_group(model_meta, prefix){
   let attachpoints = [];
   if(model_meta.attachpoint_map){
-    console.log(`Attachpoints for ${prefix}`);
     for(let key of Object.keys(model_meta.attachpoint_map)){
       if (key.startsWith(prefix)){
         attachpoints.push(model_meta.attachpoint_map[key]);
-        console.log(key);
       }
     }
   }
@@ -95,6 +98,10 @@ function uni_game_camera(){
 };
 
 function mount_on_attachpoint(child_model, parent_model, attachpoint){
+  if(! attachpoint){
+    return;
+  }
+
   let position = attachpoint.position;
   child_model.translate(BABYLON.Axis.X, position.x, BABYLON.Space.LOCAL);
   child_model.translate(BABYLON.Axis.Y, position.y, BABYLON.Space.LOCAL);
@@ -106,43 +113,56 @@ function mount_on_attachpoint(child_model, parent_model, attachpoint){
 
 
 function mount_turreted_weapons(model_meta, ship, weapon_index){
-  if("turrets" in model_meta){
-    ship.turrets = []
-    let turret_index = 0;
+  ship.turrets = []
+  let attachpoints = get_attachpoint_group(model_meta, "turret");
+  let turret_index = 0;
 
-    for(let turret of model_meta.turrets){
-      let associated_weapons = []
-      let bone = ship.model.skeleton.bones[model_meta.bone_map[turret.bone]]
-      for(let bone_name of turret.mounts){
-        if(weapon_index >= ship.weapons.length){
-          return;
-        }
-
-        let weapon = ship.weapons[weapon_index];
-        weapon.model = _.data.get_mesh(weapon.mesh);
-        mount_mesh_on_bone(weapon.model, ship.model, model_meta.bone_map[bone_name]);
-
-        weapon.model.attachToBone(bone, ship.model);
-        weapon.model.visibility = 1;
-        weapon.model.renderingGroupId = DEFAULT_LAYER;
-        associated_weapons.push(weapon_index);
-        weapon.turret_index = turret_index;
-        weapon_index ++;
-      }
-      let position = bone.getPosition();
-      // TODO: bone.rotate(turret.facing)
-      ship.turrets.push({
-        "bone": bone,
-        "offset": {x: position.x, y: position.z}, 
-        "mounted_weapons": associated_weapons,
-        "facing": to_radians( turret.facing_deg ), 
-        "traverse": to_radians( turret.traverse_deg ),
-        "speed": to_radians( turret.speed_deg ),
-        "direction": 0,
-      });
-      turret_index ++;
+  for(let attachpoint of attachpoints){
+    if(weapon_index >= ship.weapons.length){
+      return;
     }
+    // TODO: Per-ship turrets
+    let turret_model = _.data.get_mesh("_turret")
+    let turret_material = _.data.get_material("_turret");  // TODO: Faction code this
+    if(turret_material){
+      turret_model.material = turret_material;
+    }
+    let turret_meta = _.data.get_mesh_meta("_turret");
+
+    let weapon = ship.weapons[weapon_index];
+    weapon.model = _.data.get_mesh(weapon.mesh);
+    let weapon_material = _.data.get_material(weapon.mesh);
+    if(weapon_material){
+      weapon.model.material = weapon_material;
+    }
+    mount_on_attachpoint(weapon.model, turret_model, get_attachpoint_group(turret_meta, "weapon")[0])
+    mount_on_attachpoint(turret_model, ship.model, attachpoint);
+
+    for(let model of [weapon.model, turret_model]){
+      model.visibility = 1;
+      model.renderingGroupId = DEFAULT_LAYER;
+    }
+    weapon.turret_index = turret_index;
+    // TODO: bone.rotate(turret.facing)
+    ship.turrets.push({
+      "model": turret_model,
+      "offset": polar_from_rect({
+        x: attachpoint.position.x,
+        y: attachpoint.position.z,
+      }), 
+      // TODO: Multi-weapon turrets
+      "mounted_weapons": [weapon],
+      /*
+      "facing": to_radians( turret.facing_deg ), 
+      "traverse": to_radians( turret.traverse_deg ),
+      "speed": to_radians( turret.speed_deg ),
+      */
+      "direction": 0,
+    });
+    weapon_index ++;
+    turret_index ++;
   }
+  return weapon_index;
 } 
 
 export function set_dark_texture(entity){
@@ -160,6 +180,16 @@ export function set_dark_texture(entity){
       if(weapon.model){
         let material = _.data.get_material(weapon.mesh, "dark");
       }
+    });
+  }
+  if("turrets" in entity){
+    entity.turrets.forEach((turret) => {
+      // TODO: Will turrets need dark textures ever?
+      turret.mounted_weapons.forEach(( weapon ) => {
+        if(weapon.model){
+          let material = _.data.get_material(weapon.mesh, "dark");
+        }
+      });
     });
   }
 }
@@ -199,21 +229,21 @@ export function create_composite_model(ship, govt){
 
   // Eventually all models should have something for this, and we can 86 the test
   
-  mount_fixed_weapons_on_ship(model_meta, ship);
-// TODO: Turreted
-    // mount_turreted_weapons(model_meta, data, ship, weapon_index)
+  // Use turrets preferentially 
+  let weapon_index = mount_turreted_weapons(model_meta, ship, 0);
+  mount_fixed_weapons_on_ship(model_meta, ship, weapon_index);
 
   ship.model.renderingGroupId = DEFAULT_LAYER;
   ship.model.visibility = 1;
 };
 
-function mount_fixed_weapons_on_ship(model_meta, ship){
+function mount_fixed_weapons_on_ship(model_meta, ship, weapon_index){
   /* Returns total number of weapons placed (so you know where
    * to start in the weapons list for picking turreted weapons
    */
   let attachpoints = get_attachpoint_group(model_meta, "weapon");
-  let min = Math.min(attachpoints.length, ship.weapons.length);
-  for(let i = 0; i < min; i++){
+  let min = Math.min(attachpoints.length, ship.weapons.length - weapon_index);
+  for(let i = weapon_index; i < min + weapon_index; i++){
     let weapon = ship.weapons[i] 
     weapon.model = _.data.get_mesh(weapon.mesh);
     let material = _.data.get_material(weapon.mesh);
@@ -302,21 +332,6 @@ export function get_engine_particle_systems(entity){
     particle_systems.push(particle_system); 
   })
   return particle_systems;
-}
-
-export function get_thruster_lights(entity){
-  let thruster_lights = [];
-
-  if(! entity.mass){
-    return
-  }
-
-  for_each_special_attachpoint(entity, "thruster", () => {
-    console.log("Would add thruster light for: ");
-    console.log(entity);
-  })
-
-  return thruster_lights;
 }
 
 

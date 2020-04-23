@@ -1,5 +1,6 @@
 {
 	"Accra":{
+    "homeworld": true,
     "sprite": "accra",
 		"x"    : 250,
 		"y"    : 140,
@@ -170,8 +171,9 @@
 		"text":"A terraforming success story, Trowel was abandoned in favor of more densely populated worlds around 450, and has since been sparsely populated, mostly by tourists. Handcrafted waterfalls and pristine minerally-altered waters as far as the eye can see."
 	},
 	"Kennerud":{
+    "homeworld": true,
     "govt": "free",
-		"sType":"onyxEarthlikeB",
+    "sprite": "kennerud",
 		"text":"A major industrial hub, Kennerud has been slowly optimized over hundreds of years to turn out weapons and reactors, first for the Empire, and now, as a member of the Freehold, for competing continent-spanning companies on the surface. The most powerful of all is KPS (Kennerud Power Systems) chief supplier of both legacy and next-gen plasma cannons.",
 		"tech":{
 			"accra":1,
@@ -628,6 +630,7 @@
 		"text":"On the tense border between the Casamance Directorate and the Eastern League, coldwater's chilly landscape is listed as the most likely planet to be invaded in Casamance space. It's rumored that there are large fortresses cut into the glaciers, but the navy is quiet on the subject."
 	},
   "Baikonur":{
+    "homeworld": true,
     "govt": "loyal",
     "trade":{
       "ethyl": "high",
@@ -644,6 +647,7 @@
     "custom": true
   },
   "Nightside": {
+    "homeworld": true,
     "govt": "cartel",
     "trade": {
       "ethyl": "high",
@@ -726,6 +730,7 @@
     "shipyard": true
   },
   "Veracruz": {
+    "homeworld": true,
     "govt": "league",
     "text": "An ancient and expertly terraformed homeworld, Veracruz is best known as the seat of power of the Sinod of the Six - a popular but young regional faith that believes that the six hyperlanes that converge on the Kuluene system are a sign that the Great Being is going to be reincarnated somewhere on Veracruz-though as yet, no candidate messiah has passed the rigorous testing process. The Sinod is, interestingly enough, a full member of the League.",
     "trade": {
@@ -938,6 +943,70 @@
     "text": "In the distant reaches, the Loyal Suns have their own cash-cow - they've assumed control of a cluster of systems and subjugated another once-proud civilization, all for the riches on this... well, they're called 'reefs' and it's not clear just who put them here.",
     "trade": {
       "catalite": "low"
+    }
+  },
+  "Gagarin Station": {
+    "govt": "baik",
+    "sprite": "baik_station",
+    "text": "The last holdout of Baikonour rebels against the Loyal Suns. The location of this station is a closely guarded secret, as everyone you meet here is quick to tell you.",
+    "trade": {
+      "catalite": "high",
+      "water": "high",
+      "grain": "high",
+      "alloy": "high"
+    },
+    "tech": {
+      "generic": 1,
+      "baik": 3
+    },
+    "shipyard": true,
+    "custom": true
+  },
+  "Tetsuo": {
+    "homeworld": true,
+    "govt": "loyal",
+    "sprite": "tetsuo",
+    "text": "The center of the Tomohiran civilization. The Tetsuans have managed to flourish in spite of the iron-fisted rule of the Loyal Suns (who watch from above in the station they built to quell further rebellion.) Tetsuo is a bastion of art and culture in otherwise Austere Loyalist space. Tetsuans believe that as long as they keep laying golden eggs they're a goose that won't end up as dinner.",
+    "trade": {
+      "water": "high",
+      "alloy": "high",
+      "grain": "high"
+    }
+  },
+  "Tomohiro Station": {
+    "govt": "loyal",
+    "sprite": "oe_station",
+    "shipyard": true,
+    "custom": true,
+    "x": 100,
+    "y": -20,
+    "tech": {
+      "generic": 2,
+      "loyal": 2
+    },
+    "text": "The presence of this station is meant to both represent and enforce the Loyalist's grip on Tomohiran space. But it's definitely acquired some local flavor in the process. The shipyards here are adorned with the colors of Tetsuo's Zorgball team, for example, and you find nutrient paste is available in many unique local flavors."
+  },
+  "Kazachen": {
+    "govt": "loyal",
+    "sprite": "kazachen",
+    "trade": {
+      "water": "high",
+      "grain": "low"
+    },
+    "text": "Entirely too close to its parent star, Gorkov, Kazachen's climate ranges from hot to 'oh don't worry it's a dry heat'. There is also very little water on the surface. However the plants here are adapted to the excessive sunlight and are all too happy to overproduce when given more water then they could have possibly dreamed of."
+  },
+  "Tosche Station": {
+    "sprite": "baik_station",
+    "govt": "loyal",
+    "text": "The curious design of this station dates back to before the Empire (and later Loyal Suns) had conquered this system. It's solidly built, so it's been refitted to service the Loyal Suns fleet.",
+    "shipyard": true,
+    "custom": true,
+    "x": 100,
+    "y": -20,
+    "tech": {
+      "generic": 1,
+      "loyal": 2,
+      "baik": 3
     }
   }
 }
