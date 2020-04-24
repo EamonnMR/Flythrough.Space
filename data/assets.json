@@ -355,7 +355,36 @@
         }
       }
     },
-    "hemlock": {"file": "hemlock.babylon"},
+    "hemlock": {
+      "file": "hemlock.babylon",
+      "default_skin": "itaska",
+      "skins": {
+        "merchant": {
+          "diffuse": "hemlock_merchant.png",
+          "emissive": "hemlock_emissive.png",
+          "custom_emissive_color": [1,1,1.5,1]
+        },
+        "merchant/dark": {
+          "diffuse": "hemlock_merchant.png"
+        },
+        "pirate": {
+          "diffuse": "hemlock_pirate.png",
+          "emissive": "hemlock_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "hemlock_pirate.png"
+        },
+        "itaska": {
+          "diffuse": "hemlock_itaska.png",
+          "emissive": "hemlock_emissive.png",
+          "custom_emissive_color": [1,0.7,0.8,1]
+        },
+        "itaska/dark": {
+          "diffuse": "hemlock_itaska_dark.png"
+        }
+      }
+    },
     "equity": {
       "file": "equity.babylon",
       "default_skin": "merchant",
