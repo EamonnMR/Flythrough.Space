@@ -30,6 +30,27 @@ const IDLE_ARRIVAL_THRESH = 50;
 const AI_DWELL_MAX = 1000;         // How long to wait around
 const AI_IDLE_COAST = 0.01;
 
+export function missile_guidance_system(entMan){
+  for (let entity of entMan.get_with(["guided_target"])){
+    let target = entMan.get(entity.guided_target);
+    if(! target){
+      delete entity.guided_target;
+    } else {
+      let turn = constrained_point(
+        target.position,
+        entity.direction,
+        entity.position,
+        entity.rotation * entMan.delta_time,
+      );
+
+      rotate(entity, -1 * turn );
+
+      accelerate(entity.velocity, entity.direction, entity.accel * entMan.delta_time); 
+    entity.thrust_this_frame = true;
+    }
+  }
+}
+
 export function ai_system(entMan){
   for (let entity of entMan.get_with(['ai'])) {
     entity.thrust_this_frame = false;

@@ -16,8 +16,12 @@ export function shot_handler(shot, object){
 
 
   if ('force' in shot && 'mass' in object){
-    let shot_vel_polar = polar_from_rect(shot.velocity);
-    accelerate(object.velocity, shot_vel_polar.angle, -1 * shot.force);
+    if(shot.velocity){
+      let shot_vel_polar = polar_from_rect(shot.velocity);
+      accelerate(object.velocity, shot_vel_polar.angle, -1 * shot.force);
+    }  // TODO: Handle force-per-second calculation for beams
+    // Also use beam.direction rather than calculating from
+    // velocity, since beams have no velocity
   }
 
   if ( 'damage' in shot ){
@@ -113,6 +117,11 @@ function dps(damager, quantity){
    */
   if ('damage_per_second' in damager){
     return (quantity / 1000) * _.entities.delta_time;
+  }
+  if ('scale_damage_with_velocity'){
+
+    let shot_vel_polar = polar_from_rect(damager.velocity);
+    return quantity * 100 * shot_vel_polar.magnitude;
   }
   return quantity;
 }

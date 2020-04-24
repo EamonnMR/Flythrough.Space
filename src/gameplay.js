@@ -23,7 +23,11 @@ import { collisionDetectionSystem } from "./collision.js";
 import { setup_system } from "./system.js";
 import { ViewState } from "./view_state.js";
 import { radarFollowSystem, hudUpdateSystem, HUD } from  "./hud.js";
-import { ai_system, turretPointSystem  } from "./ai.js";
+import {
+  ai_system,
+  turretPointSystem,
+  missile_guidance_system
+} from "./ai.js";
 import {
   has_sufficient_distance,
   has_sufficient_fuel,
@@ -42,6 +46,7 @@ export class GamePlayState extends ViewState {
       npcSpawnerSystem,
       inputSystem,
       ai_system,
+      missile_guidance_system,
       speedLimitSystem,
       spaceFrictionSystem,
       fighterLaunchSystem,
