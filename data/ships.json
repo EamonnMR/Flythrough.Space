@@ -663,6 +663,7 @@
   },
   "pirate_ahab":{
     "extends"    : "cetacea",
+    "mesh"       : "ahab",
     "short_name"  : "Ahab",
     "long_name"   : "Pirate Ahab",
     "full_name"   : "Accra Starworks Cetacea Freighter (Pirate \"Abah\" variant)",
