@@ -251,7 +251,7 @@ function mount_fixed_weapons_on_ship(model_meta, ship, weapon_index){
       weapon.model.material = material;
     }
     weapon.model.renderingGroupId = DEFAULT_LAYER;
-    mount_on_attachpoint(weapon.model, ship.model, attachpoints[i]);
+    mount_on_attachpoint(weapon.model, ship.model, attachpoints[i - weapon_index]);
     add_model(weapon.model);
     weapon.model.visibility = 1;
   }
@@ -324,7 +324,7 @@ export function get_engine_particle_systems(entity){
   let particle_systems = []
   for_each_engine(entity, (attachpoint) => {
     // TODO: This could probably be part of CCM
-    let particle_system = _.data.get_particle_system("conventional_engine");
+    let particle_system = _.data.get_particle_system(entity.engine_particle_sys_name);
     let emitter_node = new BABYLON.TransformNode(_.scene);
     particle_system.emitter = emitter_node;
     particle_system.renderingGroupId = DEFAULT_LAYER;

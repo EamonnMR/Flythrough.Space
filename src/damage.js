@@ -24,8 +24,14 @@ export function shot_handler(shot, object){
     // velocity, since beams have no velocity
   }
 
+  let shield_damage_done = 0;
+
   if ( 'damage' in shot ){
-    damage_handler(shot, object);
+    let shield_damage_done = damage_handler(shot, object);
+  }
+
+  if("recharge_parent_shields"){
+    recharge_parent_shields(shield_damage_done, shot.creator);
   }
 
   if ('remove_on_contact' in shot){
@@ -52,10 +58,12 @@ function draw_aggro(damager, damaged){
 
 export function damage_handler(damager, damaged){
   draw_aggro(damager, damaged);
+  let shield_damage = 0;
   if ('shield_damage' in damager && 'shields' in damaged){
-    damaged.shields -= dps(damager, damager.shield_damage);
+    shield_damage = dps(damager, damager.shield_damage);
+    damaged.shields -= shield_damage;
     if ( damaged.shields >= 0){
-      return; // Shields prevent hull damage
+      return shield_damage;
     } else if (damaged.shields <= 0){
       damaged.shields = 0;
     }
@@ -124,5 +132,30 @@ function dps(damager, quantity){
     return quantity * 100 * shot_vel_polar.magnitude;
   }
   return quantity;
+}
+
+function recharge_parent_shields(amount, entity_id){
+  let entity = _.entities.get(entity_id);
+  if(entity){
+    entity.shields += amount;
+    if(entity.shields >= entity.max_shields){
+      entity.shields = entity.max_shields;
+    }
+  }
+}
+
+export function regenSystem(entMan){
+  for(let aspect of ["hp", "shields", "fuel"]){
+    for(let entity of entMan.get_with([
+      aspect,
+      `max_{aspect}`, 
+      `aspect{_regen}`
+    ])){
+      entity[aspect] += entity[aspect + "_regen"];
+      if(entity[aspect] > entity["max_" + aspect]){
+        entity[aspect] = entity["max_" + aspect];
+      }
+    }
+  }
 }
 

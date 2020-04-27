@@ -17,6 +17,11 @@
     "maxEmitPower": 24,
     "updateSpeed": 0.01
   },
+  "isomer_engine": {
+    "extends": "conventional_engine",
+    "color1": [0.3, 0.3, 1.0, 1.0],
+    "color2": [0.1, 0.1, 0.5, 0.5]
+  },
   "explosion": {
 	  "color1": [1.0, 0.7, 0.7, 1.0],
 	  "color2": [0.6, 0.1, 0.1, 0.5],

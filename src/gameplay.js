@@ -37,6 +37,9 @@ import {
   fighterLaunchSystem,
   fighterDockSystem,
 } from "./fighters.js";
+import {
+  regenSystem
+} from "./damage.js";
 
 export class GamePlayState extends ViewState {
 
@@ -48,6 +51,7 @@ export class GamePlayState extends ViewState {
       ai_system,
       missile_guidance_system,
       speedLimitSystem,
+      regenSystem,
       spaceFrictionSystem,
       fighterLaunchSystem,
       weaponSystem,
