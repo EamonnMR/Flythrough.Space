@@ -305,7 +305,37 @@
         }
       }
     },
-    "nightshade": {"file": "nightshade.babylon"},
+    "nightshade": {
+      "file": "nightshade.babylon",
+      "default_skin": "itaska",
+      "skins": {
+        "merchant": {
+          "diffuse": "nightshade_merchant.png",
+          "emissive": "nightshade_emissive.png",
+          "custom_emissive_color": [1,1,1.5,1]
+        },
+        "merchant/dark": {
+          "diffuse": "nightshade_merchant_dark.png"
+        },
+        "pirate": {
+          "diffuse": "nightshade_pirate.png",
+          "emissive": "nightshade_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "nightshade_pirate_dark.png"
+        },
+        "itaska": {
+          "diffuse": "nightshade_itaska.png",
+          "emissive": "nightshade_emissive.png",
+          "custom_emissive_color": [1,0.7,0.8,1]
+        },
+        "itaska/dark": {
+          "diffuse": "nightshade_itaska_dark.png"
+        }
+      }
+
+    },
     "oe_cruiser": {
       "file": "oe_cruiser.babylon",
       "default_skin": "merchant",
@@ -355,7 +385,36 @@
         }
       }
     },
-    "hemlock": {"file": "hemlock.babylon"},
+    "hemlock": {
+      "file": "hemlock.babylon",
+      "default_skin": "itaska",
+      "skins": {
+        "merchant": {
+          "diffuse": "hemlock_merchant.png",
+          "emissive": "hemlock_emissive.png",
+          "custom_emissive_color": [1,1,1.5,1]
+        },
+        "merchant/dark": {
+          "diffuse": "hemlock_merchant.png"
+        },
+        "pirate": {
+          "diffuse": "hemlock_pirate.png",
+          "emissive": "hemlock_emissive.png",
+          "custom_emissive_color": [1,0.5,0.5,1]
+        },
+        "pirate/dark": {
+          "diffuse": "hemlock_pirate.png"
+        },
+        "itaska": {
+          "diffuse": "hemlock_itaska.png",
+          "emissive": "hemlock_emissive.png",
+          "custom_emissive_color": [1,0.7,0.8,1]
+        },
+        "itaska/dark": {
+          "diffuse": "hemlock_itaska_dark.png"
+        }
+      }
+    },
     "equity": {
       "file": "equity.babylon",
       "default_skin": "merchant",

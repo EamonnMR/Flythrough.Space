@@ -45,7 +45,7 @@ function beamFactory(proto, creator, position, direction, govt, player_aligned){
   return beam;
 }
 
-function bulletFactory(creator, position, sprite, direction, speed, initialVelocity, proto, ignore_gov, ignore_player) {
+function bulletFactory(creator, position, sprite, direction, speed, initialVelocity, proto, ignore_gov, ignore_player, target) {
   sprite.angle = direction;
   sprite.y = -2;
   // TODO: Get the Y offset based on the depth of the bone
@@ -66,11 +66,17 @@ function bulletFactory(creator, position, sprite, direction, speed, initialVeloc
   shot.model = sprite;
   shot.velocity = velocity;
   shot.age = 0.0;
+  shot.direction = direction;
   
+  if( 'guided' in shot && target){
+    shot.guided_target = target;
+  }
+
   // Lag prevention measure.
   if(! 'max_age' in shot){
     shot.max_age = 1000;
   }
+
 
   // These are effectively default fields... could object.proto somehow
   // add defaults?
@@ -175,6 +181,7 @@ function fire_weapon(weapon, entity, entMan) {
                     weapon.proj,
                     govt,
                     player_aligned,
+                    entity.target,
       ));
     }
     if (weapon.beam){

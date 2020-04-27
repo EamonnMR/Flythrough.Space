@@ -39,6 +39,7 @@ const PROTOTYPES = {
     min_hyperjump_distance: 100,
     cargo_carried: {},
     money: 0,
+    engine_particle_sys_name: "conventional_engine",
   },
   systems: {
     lights: [

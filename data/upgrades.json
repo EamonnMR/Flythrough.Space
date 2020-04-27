@@ -239,13 +239,14 @@
       "sprite":"degenerate_matter",
       "velocity":0.035,
       "inaccuracy":0.3,
-      "period":25,
-      "burstsize":20,
+      "period": 125,
+      "burstsize":5,
       "burstperiod":1000,
       "proj": {
-        "force": 15,
+        "explosion": "ac_impact",
+        "force": 20,
         "max_age":700,
-        "shield_damage":10,
+        "shield_damage":8,
         "damage":25,
         "collider": {"notunnel": true}
       }
@@ -264,14 +265,16 @@
       "inaccuracy": 0.05,
       "period": 1500,
       "velocity":0.001,
-      "guidance": true,
       "proj": {
-        "force": 100,
+        "guided": true,
+        "force": -100,
         "rotation": 0.01,
-        "accel": 0.01,
-        "shield_damage": 60,
-        "damage": 30,
+        "accel": 0.00006,
+        "shield_damage": 30,
+        "damage": 10,
         "max_age":8000,
+        "max_speed": 0.08,
+        "scale_damage_with_velocity": true,
         "collider": {"notunnel":true}
       }
     }
@@ -279,7 +282,7 @@
 
   "vampgun":{
     "name": "Wave Siphon",
-    "tech"          : {"league": 2},
+    "tech"          : {"itaska": 2},
     "weapon"         : {
       "mesh":  "plasma_cannon",
       "inaccuracy":0,
@@ -432,14 +435,21 @@
     "exclass"        : "autocannon",
     "weapon"      : {
       "mesh":  "plasma_cannon",
+      "period": 0.01,
       "inaccuracy":0,
       "period":1000,
-      "ammo":"howitzer_ammo",
+      "ammo":"casuba_howitzer_ammo",
       "beam": {
         "force": 700,
         "shield_damage":1000,
         "damage":1000,
-        "length":300
+        "length":300,
+        "graphics": {
+          "type": "tube",
+          "radius": 1,
+          "color": [0.9, 0.9, 0],
+          "emissive_color": [0.9, 0.9, 0]
+        }
       }
     },
     "tech"           : {"league":3}

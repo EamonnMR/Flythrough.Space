@@ -16,12 +16,20 @@ export function shot_handler(shot, object){
 
 
   if ('force' in shot && 'mass' in object){
-    let shot_vel_polar = polar_from_rect(shot.velocity);
-    accelerate(object.velocity, shot_vel_polar.angle, -1 * shot.force);
+    force_handler(shot, object);
   }
 
+  let shield_damage_done = 0;
+
   if ( 'damage' in shot ){
-    damage_handler(shot, object);
+    shield_damage_done = damage_handler(shot, object);
+  }
+
+  if("recharge_parent_shields" in shot && shield_damage_done ){
+    recharge_parent_shields(
+      shield_damage_done,
+      shot.creator
+    );
   }
 
   if ('remove_on_contact' in shot){
@@ -48,10 +56,12 @@ function draw_aggro(damager, damaged){
 
 export function damage_handler(damager, damaged){
   draw_aggro(damager, damaged);
+  let shield_damage = 0;
   if ('shield_damage' in damager && 'shields' in damaged){
-    damaged.shields -= dps(damager, damager.shield_damage);
+    shield_damage = dps(damager, damager.shield_damage);
+    damaged.shields -= shield_damage;
     if ( damaged.shields >= 0){
-      return; // Shields prevent hull damage
+      return shield_damage;
     } else if (damaged.shields <= 0){
       damaged.shields = 0;
     }
@@ -74,17 +84,17 @@ export function damage_handler(damager, damaged){
 
       // If an entity's hitpoints are gone, destroy it
       if(new_hp < disabled_thresh){
-        disabled(damaged, _.entities);
+        disabled(damaged);
       }
       if (new_hp <= 0){
         // TODO: More elaborite death sequence
-        destroyed(damaged, _.entities);
+        destroyed(damaged, damager);
       }
     }
   }
 }
 
-function destroyed(entity){
+function destroyed(entity, killshot){
   // TODO: Slow explosion filled demise
   // TODO: Size-proportional explosions
   entity.remove = true;
@@ -96,6 +106,29 @@ function destroyed(entity){
   if(_.entities.is_player_ent(entity)){
     _.hud.widgets.alert_box.show("Ship Destroyed");
   }
+  let creator = _.entities.get(killshot.creator);
+  if(creator.player_aligned){
+    if(entity.price){
+      _.player.total_accumulated_damage += entity.price;
+    }
+    if(entity.govt){
+      _.player.destroyed_ship_of_govt(entity.govt);
+    }
+  }
+}
+
+function force_handler(shot, object){
+  if(shot.velocity){
+    let shot_vel_polar = polar_from_rect(shot.velocity);
+    accelerate(object.velocity, shot_vel_polar.angle, -1 * (shot.force / object.mass));
+  } else if (shot.direction){
+    accelerate(object.velocity, shot.direction, ((shot.force / object.mass) / 1000) * _.entities.delta_time);
+
+    let parent = _.entities.get(shot.creator);
+    if(parent){
+      accelerate(parent.velocity, shot.direction, ((shot.force / parent.mass) / -1000) * _.entities.delta_time);
+    }
+  }
 }
 
 function disabled(entity){
@@ -106,6 +139,7 @@ function disabled(entity){
   if(_.entities.is_player_ent(entity)){
     _.hud.widgets.alert_box.show("Ship Disabled");
   }
+
 }
 
 function dps(damager, quantity){
@@ -114,6 +148,36 @@ function dps(damager, quantity){
   if ('damage_per_second' in damager){
     return (quantity / 1000) * _.entities.delta_time;
   }
+  if ('scale_damage_with_velocity'){
+
+    let shot_vel_polar = polar_from_rect(damager.velocity);
+    return quantity * 100 * shot_vel_polar.magnitude;
+  }
   return quantity;
+}
+
+function recharge_parent_shields(amount, entity_id){
+  let entity = _.entities.get(entity_id);
+  if(entity){
+    entity.shields += amount;
+    if(entity.shields >= entity.max_shields){
+      entity.shields = entity.max_shields;
+    }
+  }
+}
+
+export function regenSystem(entMan){
+  for(let aspect of ["hp", "shields", "fuel"]){
+    for(let entity of entMan.get_with([
+      aspect,
+      `max_{aspect}`, 
+      `aspect{_regen}`
+    ])){
+      entity[aspect] += entity[aspect + "_regen"];
+      if(entity[aspect] > entity["max_" + aspect]){
+        entity[aspect] = entity["max_" + aspect];
+      }
+    }
+  }
 }
 

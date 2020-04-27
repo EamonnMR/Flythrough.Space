@@ -14,6 +14,7 @@ const PREFIX = "savefile_"  // Prefix for player saves in local storage.
 const LAST_SAVE = "last_save"  // Stores the key for the last used save file
 
 const ZOOM_MAX = 10;
+const KILL_PENALTY = -100;
 
 export function load_save(save_name){
   return JSON.parse(localStorage.getItem( save_name ));
@@ -81,11 +82,9 @@ export class PlayerSave {
     this.mission_cargo = {};
     this.active_missions = {};
     this.fleet = [];
+    this.total_accumulated_damage = 0;
 
-    this.govts = {
-      // TODO: Default rep?
-      orasos: {reputation: -1}
-    }
+    this.govts = this.init_govts();
     this.explored = []
     this.zoom = 4 // Player's zoom level
   }
@@ -270,6 +269,20 @@ export class PlayerSave {
       this.zoom = ZOOM_MAX;
     }
     console.log(this.zoom);
+  }
+
+  destroyed_ship_of_govt(govt){
+    this.change_govt_reputation(govt, -1 * KILL_PENALTY);
+  }
+
+  init_govts(){
+    let govts = {};
+    for(let key of Object.keys(_.data.govts)){
+      govts[key] = {
+        reputation: _.data.govts[key].default_rep,
+      }
+    }
+    return govts;
   }
 }
 

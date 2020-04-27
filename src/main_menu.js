@@ -29,9 +29,12 @@ function get_pilot_copy(pilot){
   if( pilot ){
     return `
       Captain: ${pilot.name}
-      Credcoins: ${pilot.money}
-      Active Missions: ${Object.keys(pilot.active_missions).join(', ')}
+      Credcoin: ${pilot.money}
       Ship: ${pilot.ship_dat.short_name}
+      System: ${pilot.current_system}
+      Total damage done (in credcoins): ${pilot.total_accumulated_damage}
+
+      Active Missions: ${Object.keys(pilot.active_missions).join(', ')}
     `;
   } else {
     return '<No Captain Loaded>'
