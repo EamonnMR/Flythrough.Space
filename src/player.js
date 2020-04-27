@@ -82,7 +82,7 @@ export class PlayerSave {
     this.mission_cargo = {};
     this.active_missions = {};
     this.fleet = [];
-    this.total_accumulated_damage;
+    this.total_accumulated_damage = 0;
 
     this.govts = this.init_govts();
     this.explored = []
