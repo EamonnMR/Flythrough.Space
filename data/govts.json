@@ -27,7 +27,8 @@
     "short_name": "Cartell",
     "color":"#CD5C5CFF",
     "dark_color":"#A32626FF",
-    "attack_default": true
+    "attack_default": true,
+    "default_rep": -1
   },
   "league":{
     "name":"League",

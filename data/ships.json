@@ -527,10 +527,10 @@
   },
    "ls_heavyfi"      :{
     "mesh":         "tandem",
-    "short_name"  : "Tandem",
-    "long_name"   : "LS Tandem",
+    "short_name"  : "Cobra",
+    "long_name"   : "LS Cobra",
     "full_name"   : "Loyal Suns Heavy Starfighter Type 1153 rev C",
-    "desc"       : "The Tandem is the legendary staple fighter of the Loyal Suns, known and feared across the sector. There is a direct and obvious line between the OE fighter and this ship, with similar intake ramscoops and essentially the same rocket engines, just scaled up. Many describe it as \"the OE fighter, perfected.\", but there are of course some tradeoffs. It isn't quite as nimble and it's quite a bit more expensive, and takes up more room on a flight deck, so they can't field as many. And there is certainly a smaller back-stock of parts",
+    "desc"       : "The Cobra is the legendary staple fighter of the Loyal Suns, known and feared across the sector. There is a direct and obvious line between the OE fighter and this ship, with similar intake ramscoops and essentially the same rocket engines, just scaled up. Many describe it as \"the OE fighter, perfected.\", but there are of course some tradeoffs. It isn't quite as nimble and it's quite a bit more expensive, and takes up more room on a flight deck, so they can't field as many. And there is certainly a smaller back-stock of parts",
     "upgrades"    : {"ne_beam": 2},
     "mass"        : 75,
     "rotation"  : 0.0125,

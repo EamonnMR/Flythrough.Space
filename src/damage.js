@@ -16,22 +16,20 @@ export function shot_handler(shot, object){
 
 
   if ('force' in shot && 'mass' in object){
-    if(shot.velocity){
-      let shot_vel_polar = polar_from_rect(shot.velocity);
-      accelerate(object.velocity, shot_vel_polar.angle, -1 * shot.force);
-    }  // TODO: Handle force-per-second calculation for beams
-    // Also use beam.direction rather than calculating from
-    // velocity, since beams have no velocity
+    force_handler(shot, object);
   }
 
   let shield_damage_done = 0;
 
   if ( 'damage' in shot ){
-    let shield_damage_done = damage_handler(shot, object);
+    shield_damage_done = damage_handler(shot, object);
   }
 
-  if("recharge_parent_shields"){
-    recharge_parent_shields(shield_damage_done, shot.creator);
+  if("recharge_parent_shields" in shot && shield_damage_done ){
+    recharge_parent_shields(
+      shield_damage_done,
+      shot.creator
+    );
   }
 
   if ('remove_on_contact' in shot){
@@ -86,17 +84,17 @@ export function damage_handler(damager, damaged){
 
       // If an entity's hitpoints are gone, destroy it
       if(new_hp < disabled_thresh){
-        disabled(damaged, _.entities);
+        disabled(damaged);
       }
       if (new_hp <= 0){
         // TODO: More elaborite death sequence
-        destroyed(damaged, _.entities);
+        destroyed(damaged, damager);
       }
     }
   }
 }
 
-function destroyed(entity){
+function destroyed(entity, killshot){
   // TODO: Slow explosion filled demise
   // TODO: Size-proportional explosions
   entity.remove = true;
@@ -108,6 +106,29 @@ function destroyed(entity){
   if(_.entities.is_player_ent(entity)){
     _.hud.widgets.alert_box.show("Ship Destroyed");
   }
+  let creator = _.entities.get(killshot.creator);
+  if(creator.player_aligned){
+    if(entity.price){
+      _.player.total_accumulated_damage += entity.price;
+    }
+    if(entity.govt){
+      _.player.destroyed_ship_of_govt(entity.govt);
+    }
+  }
+}
+
+function force_handler(shot, object){
+  if(shot.velocity){
+    let shot_vel_polar = polar_from_rect(shot.velocity);
+    accelerate(object.velocity, shot_vel_polar.angle, -1 * (shot.force / object.mass));
+  } else if (shot.direction){
+    accelerate(object.velocity, shot.direction, ((shot.force / object.mass) / 1000) * _.entities.delta_time);
+
+    let parent = _.entities.get(shot.creator);
+    if(parent){
+      accelerate(parent.velocity, shot.direction, ((shot.force / parent.mass) / -1000) * _.entities.delta_time);
+    }
+  }
 }
 
 function disabled(entity){
@@ -118,6 +139,7 @@ function disabled(entity){
   if(_.entities.is_player_ent(entity)){
     _.hud.widgets.alert_box.show("Ship Disabled");
   }
+
 }
 
 function dps(damager, quantity){

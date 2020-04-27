@@ -88,5 +88,12 @@
     "maxEmitPower": 5,
 	  "minLifeTime": 0.3,
 	  "maxLifeTime": 0.7
+  },
+  "degen_impact": {
+    "extends": "ac_impact",
+	  "minLifeTime": 0.6,
+	  "maxLifeTime": 0.14,
+    "color1": [0.3, 0.3, 1.0, 1.0],
+    "color2": [0.1, 0.1, 0.5, 0.5]
   }
 }

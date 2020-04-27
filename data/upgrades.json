@@ -239,13 +239,14 @@
       "sprite":"degenerate_matter",
       "velocity":0.035,
       "inaccuracy":0.3,
-      "period":25,
-      "burstsize":20,
+      "period": 125,
+      "burstsize":5,
       "burstperiod":1000,
       "proj": {
-        "force": 15,
+        "explosion": "ac_impact",
+        "force": 20,
         "max_age":700,
-        "shield_damage":10,
+        "shield_damage":8,
         "damage":25,
         "collider": {"notunnel": true}
       }
