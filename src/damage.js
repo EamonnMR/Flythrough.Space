@@ -148,7 +148,7 @@ function dps(damager, quantity){
   if ('damage_per_second' in damager){
     return (quantity / 1000) * _.entities.delta_time;
   }
-  if ('scale_damage_with_velocity'){
+  if ('scale_damage_with_velocity' in damager){
 
     let shot_vel_polar = polar_from_rect(damager.velocity);
     return quantity * 100 * shot_vel_polar.magnitude;
