@@ -435,14 +435,21 @@
     "exclass"        : "autocannon",
     "weapon"      : {
       "mesh":  "plasma_cannon",
+      "period": 0.01,
       "inaccuracy":0,
       "period":1000,
-      "ammo":"howitzer_ammo",
+      "ammo":"casuba_howitzer_ammo",
       "beam": {
         "force": 700,
         "shield_damage":1000,
         "damage":1000,
-        "length":300
+        "length":300,
+        "graphics": {
+          "type": "tube",
+          "radius": 1,
+          "color": [0.9, 0.9, 0],
+          "emissive_color": [0.9, 0.9, 0]
+        }
       }
     },
     "tech"           : {"league":3}

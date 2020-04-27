@@ -511,7 +511,7 @@
     "long_name"   : "League Capital Class",
     "full_name"   : "Meklin Design Bureau Capital class carrier",
     "desc"       : "Like the rest Melkin's offerings, the Capital is built around the same drive assembly used in the Equity and Venture. It most resembles the Venture, but this variant's cargo pods have been replaced by a stack of flight decks, and it is stocked with fighters and corvettes. Its armor has been thickened as well, to better deal with the punishing power of Loyalist antimatter weaponry. Also unlike the merchant version, it comes stocked with living amenities befitting an orbital hotel, as the command staff of these vessels have come to expect a certain level of comfort.",
-    "upgrades"    : {"plasma200": 4, "missile_turret": 4, "dumbfiremissile": 40, "__carried_league_heavy_fighter": 2, "__carried_league_passer": 8, "__carried_league_corvette": 1},
+    "upgrades"    : {"plasma200": 4, "casuba_howitzer": 1, "casuba_howitzer_ammo": 10, "__carried_league_heavy_fighter": 2, "__carried_league_passer": 8, "__carried_league_corvette": 1},
     "fighter_space": 14,
     "fighter_launch_cooldown_divisor": 2,
     "rotation"  : 0.008,
