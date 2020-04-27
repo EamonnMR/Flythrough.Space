@@ -135,13 +135,19 @@
     "weapon"         : {
       "mesh":  "plasma_cannon",
       "inaccuracy":0,
-      "period":150,
+      "period":0.001,
       "beam": {
+        "graphics": {
+          "type": "tube",
+          "radius": 0.2,
+          "color": [0.4, 0.7, 0.4],
+          "emissive_color": [0.1, 0.1, 0.7]
+        },
         "force": -50,
         "shield_damage":40,
         "damage":30,
         "disabler" : true,
-        "length":40
+        "length":20
       }
     },
     "tech"           : {"pirate":3}
