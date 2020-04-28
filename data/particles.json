@@ -67,6 +67,16 @@
     "minSize": 0.05,
     "maxSize": 0.25
   },
+  "ion_impact": {
+    "extends": "plasma_impact",
+    "color1": [0.3, 0.3, 1.0, 1.0],
+    "color2": [0.1, 0.1, 0.5, 0.5]
+  },
+  "ion_impact_small": {
+    "extends": "plasma_impact_small",
+    "color1": [0.3, 0.3, 1.0, 1.0],
+    "color2": [0.1, 0.1, 0.5, 0.5]
+  },
   "mining_laser_impact": {
     "extends": "plasma_impact_small",
     "color1": [0,1.0,0,1.0],

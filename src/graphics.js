@@ -15,7 +15,7 @@ import {
 
 export const SHIP_Y = 0; // This might want to be imported from somewhere
 const PLANET_SCALE = 15;  // TODO: Noticing that differently sized planet sprites end up being the same screen-space size. Weird.
-const PLANET_Y = 0;  // TODO: Shots are still being drawn under planets for some reason
+const PLANET_Y = 0;
 
 const STAR_Y = 0;
 
@@ -131,7 +131,7 @@ function mount_turreted_weapons(model_meta, ship, weapon_index){
 
     let weapon = ship.weapons[weapon_index];
     weapon.model = _.data.get_mesh(weapon.mesh);
-    let weapon_material = _.data.get_material(weapon.mesh);
+    let weapon_material = _.data.get_material(weapon.mesh, weapon.skin);
     if(weapon_material){
       weapon.model.material = weapon_material;
     }
@@ -178,7 +178,7 @@ export function set_dark_texture(entity){
   if("weapons" in entity){
     entity.weapons.forEach((weapon) => {
       if(weapon.model){
-        let material = _.data.get_material(weapon.mesh, "dark");
+        let material = _.data.get_material(weapon.mesh, weapon.skin ? weapon.skin + "/dark" : "dark");
       }
     });
   }
@@ -187,7 +187,7 @@ export function set_dark_texture(entity){
       // TODO: Will turrets need dark textures ever?
       turret.mounted_weapons.forEach(( weapon ) => {
         if(weapon.model){
-          let material = _.data.get_material(weapon.mesh, "dark");
+          let material = _.data.get_material(weapon.mesh, weapon.skin ? weapon.skin + "/dark" : "dark");
         }
       });
     });
@@ -246,7 +246,7 @@ function mount_fixed_weapons_on_ship(model_meta, ship, weapon_index){
   for(let i = weapon_index; i < min + weapon_index; i++){
     let weapon = ship.weapons[i] 
     weapon.model = _.data.get_mesh(weapon.mesh);
-    let material = _.data.get_material(weapon.mesh);
+    let material = _.data.get_material(weapon.mesh, weapon.skin);
     if(material){
       weapon.model.material = material;
     }

@@ -694,8 +694,16 @@
           "emissive": "plasma_cannon_emissive.png",
           "custom_emissive_color": [1,0,0,1]
         },
-        "dark": {
+        "plasma/dark": {
           "diffuse": "plasma_cannon_dark.png"
+        },
+        "ion": {
+          "diffuse": "plasma_cannon_ion.png",
+          "emissive": "plasma_cannon_emissive.png",
+          "custom_emissive_color": [0,0,1,1]
+        },
+        "ion/dark": {
+          "diffuse": "plasma_cannon_ion_dark.png"
         }
       }
     },
@@ -710,8 +718,16 @@
           "emissive": "plasma_cannon_emissive.png",
           "custom_emissive_color": [1,0,0,1]
         },
-        "dark": {
+        "plasma/dark": {
           "diffuse": "plasma_cannon_dark.png"
+        },
+        "ion": {
+          "diffuse": "plasma_cannon_ion.png",
+          "emissive": "plasma_cannon_emissive.png",
+          "custom_emissive_color": [0,0,1,1]
+        },
+        "ion/dark": {
+          "diffuse": "plasma_cannon_ion_dark.png"
         }
       }
     },

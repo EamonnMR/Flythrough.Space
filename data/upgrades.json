@@ -6,6 +6,7 @@
     "price"          : 500,
     "weapon"      : {
       "mesh":  "plasma_cannon",
+      "skin":  "plasma",
       "sprite": "plasma",
       "inaccuracy": 0.09,
       "period": 500,
@@ -28,13 +29,14 @@
     "price"          : 2500,
     "weapon"         : {
       "mesh":  "plasma_cannon_large",
+      "skin":  "plasma",
       "sprite": "plasma_large",
       "inaccuracy": 0.08,
       "period": 2000,
       "velocity":0.04,
       "proj": {
         "force": 100,
-        "explosion": "plasma_impact_small",
+        "explosion": "plasma_impact",
         "shield_damage": 60,
         "damage": 30,
         "max_age": 4000,
@@ -134,6 +136,7 @@
     "price"          : 25000,
     "weapon"         : {
       "mesh":  "plasma_cannon",
+      "skin": "ion",
       "inaccuracy":0,
       "period":0.001,
       "beam": {
@@ -143,6 +146,7 @@
           "color": [0.4, 0.7, 0.4],
           "emissive_color": [0.1, 0.1, 0.7]
         },
+        "explosion": "ion_impact_small",
         "force": -50,
         "shield_damage":40,
         "damage":30,
@@ -349,17 +353,20 @@
     "space"          : -5,
     "weapon"      : {
       "mesh":  "plasma_cannon",
+      "skin":  "ion",
       "sprite": "ion",
       "inaccuracy": 0.1,
       "period": 500,
-      "velocity": 0.001,
+      "velocity": 0.04,
       "proj": {
+        "explosion": "ion_impact_small",
         "force": 3,
-        "damage": 1,
-        "shield_damage": 2,
+        "damage": 8,
+        "shield_damage": 25,
         "max_age": 5000,
         "collider": {"notunnel": true},
-        "ionize": 1
+        "ionize": 1,
+        "disabler": true
       }
     },
 
@@ -372,16 +379,20 @@
     "space"          : -22,
     "weapon"         : {
       "mesh":  "plasma_cannon",
+      "skin":  "ion",
       "sprite": "ion_large",
-      "inaccuracy": 0.05,
-      "period": 1500,
-      "velocity":0.001,
+      "inaccuracy": 0.09,
+      "period": 2000,
+      "velocity":0.04,
       "proj": {
+        "explosion": "ion_impact",
         "force": 70,
-        "shield_damage": 60,
+        "shield_damage": 75,
         "damage": 30,
-        "max_age":8000,
-        "collider": {"notunnel": true}
+        "max_age": 4000,
+        "collider": {"notunnel": true},
+        "ionize": 10,
+        "disabler": true
       }
     },
 
