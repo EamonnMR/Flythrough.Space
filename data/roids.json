@@ -3,17 +3,35 @@
     "small-carbon": {
       "mesh": "asteroid_small",
       "skin": "carbon",
-      "scale": 1,
       "hitpoints": 50,
-      "explo": "explosion",
-      "mass": 100,
-      "max_speed": 0.015
+      "mass": 100
+    },
+    "medium-carbon": {
+      "extends": "small-carbon",
+      "mesh": "asteroid_medium",
+      "hitpoints": 100,
+      "mass": 200,
+      "drops": {
+        "small-carbon": 3
+      }
+    },
+    "large-carbon": {
+      "extends": "small-carbon",
+      "mesh": "asteroid_large",
+      "hitpoints": 400,
+      "mass": 400,
+      "drops": {
+        "small-carbon": 3,
+        "medium-carbon": 2
+      }
     }
   },
   
   "sets": {
     "basic": [
-      "small-carbon"
+      "small-carbon",
+      "medium-carbon",
+      "large-carbon"
     ]
   }
 }

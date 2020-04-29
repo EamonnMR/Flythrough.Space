@@ -107,6 +107,7 @@ export function asteroidFactory (type, position, velocity) {
   asteroid.hittable = true,
   asteroid.position = {x: position.x, y: position.y};
   asteroid.velocity = {x: velocity.x, y: velocity.y};
+  asteroid.max_speed = 0.015;
   asteroid.radar_pip = _.hud.widgets.radar_box.get_pip(3, 'brown');
   create_asteroid_model(asteroid);
   return asteroid;

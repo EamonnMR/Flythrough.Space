@@ -1125,8 +1125,81 @@
           "diffuse": "asteroid_rare.png"
         }
       }
+    },
+    "asteroid_medium": {
+      "scale": 2,
+      "file": "asteroid.babylon",
+      "default_skin": "carbon",
+      "skins": {
+        "carbon": {
+          "diffuse": "asteroid_carbon.png"
+        },
+        "isomer": {
+          "diffuse": "asteroid_isomer.png",
+          "emissive": "asteroid_isomer_emissive.png",
+          "custom_emissive_color": [0, 0, 1, 1]
+        },
+        "water": {
+          "diffuse": "asteroid_water.png"
+        },
+        "metal": {
+          "diffuse": "asteroid_metal.png"
+        },
+        "rare": {
+          "diffuse": "asteroid_rare.png"
+        }
+      }
+    },
+    "asteroid_large": {
+      "scale": 4,
+      "file": "asteroid.babylon",
+      "default_skin": "carbon",
+      "skins": {
+        "carbon": {
+          "diffuse": "asteroid_carbon.png"
+        },
+        "isomer": {
+          "diffuse": "asteroid_isomer.png",
+          "emissive": "asteroid_isomer_emissive.png",
+          "custom_emissive_color": [0, 0, 1, 1]
+        },
+        "water": {
+          "diffuse": "asteroid_water.png"
+        },
+        "metal": {
+          "diffuse": "asteroid_metal.png"
+        },
+        "rare": {
+          "diffuse": "asteroid_rare.png"
+        }
+      }
+    },
+    "asteroid_tiny": {
+      "scale": 0.25,
+      "file": "asteroid.babylon",
+      "default_skin": "carbon",
+      "skins": {
+        "carbon": {
+          "diffuse": "asteroid_carbon.png"
+        },
+        "isomer": {
+          "diffuse": "asteroid_isomer.png",
+          "emissive": "asteroid_isomer_emissive.png",
+          "custom_emissive_color": [0, 0, 1, 1]
+        },
+        "water": {
+          "diffuse": "asteroid_water.png"
+        },
+        "metal": {
+          "diffuse": "asteroid_metal.png"
+        },
+        "rare": {
+          "diffuse": "asteroid_rare.png"
+        }
+      }
     }
   },
+
   "sprites": {
     "plasma": {
       "img": "assets/sprites/plasma.png",

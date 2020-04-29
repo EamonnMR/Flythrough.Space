@@ -29,6 +29,9 @@ const PROTOTYPES = {
     x: 0,
     y: 0
   },
+  asteroids: {
+    explosion: "asteroid_breakup",
+  },
   ships: {
     explosion: "explosion",
     upgrades: {},
@@ -412,7 +415,7 @@ export function load_all(engine, scene, done){
   xhr.onload = () => {
     if (xhr.status == 200){
       load_assets(JSON.parse(xhr.responseText), scene, data_mgr, () => {
-        data_mgr.set_type_keys();
+        // data_mgr.set_type_keys();  // TODO: Redundant?
         data_mgr.resolve_proto_chains();
         data_mgr.preprocess_particle_systems();
         data_mgr.create_upgrades_for_carried_fighters();

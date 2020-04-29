@@ -45,7 +45,12 @@
       "maxSize"
     ]
   },
-
+  "asteroid_breakup": {
+    "extends": "explosion",
+    "color1": [0.5, 0.5, 0.5, 1.0],
+	  "color2": [0.1, 0.1, 0.1, 0.5],
+	  "colorDead": [0.3, 0.2, 0.2, 0.0]
+  },
   "plasma_impact": {
     "extends": "explosion",
     "color1": [1,0,0,1.0],
