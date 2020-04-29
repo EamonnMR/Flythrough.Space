@@ -49,7 +49,13 @@ const PROTOTYPES = {
         intensity: .3,
         type: "point",
       }
-    ] 
+    ],
+    roids: {
+      set: "basic",
+      count: 25,
+      radius: 600,
+      velocity: 0.01
+    },
   },
   particles: {
     particleTexture: "flare.png",

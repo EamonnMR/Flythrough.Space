@@ -3,6 +3,7 @@ import { apply_upgrades, random_position, choose } from "./util.js";
 import {
   create_composite_model,
   create_planet_sprite,
+  create_asteroid_model,
   get_engine_particle_systems,
 } from "./graphics.js";
 
@@ -99,21 +100,16 @@ export function planetFactory (name, index){
 };
 
 
-export function asteroidFactory (position, velocity, sprite) {
-  // TODO: Asteroids should have some sort of data
-  sprite.position.x = position.x;
-  sprite.position.y = position.y;
-  sprite.position.z = position.z;
-  return {
-    'team-asteroids': true,
-    'position': {'x': position.x, 'y': position.y },
-    'velocity': velocity,
-    'model': sprite,
-    'hitpoints': 10,
-    'collider': {'radius': .5},
-    'hittable': true,
-    'radar_pip': _.hud.widgets.radar_box.get_pip(5, '#FF00FFFF')
-  };
+export function asteroidFactory (type, position, velocity) {
+  let asteroid = Object.create(_.data.asteroids.types[type])
+  asteroid["team-asteroids"] = true;
+  asteroid.collider = {'radius': 1};
+  asteroid.hittable = true,
+  asteroid.position = {x: position.x, y: position.y};
+  asteroid.velocity = {x: velocity.x, y: velocity.y};
+  asteroid.radar_pip = _.hud.widgets.radar_box.get_pip(3, 'brown');
+  create_asteroid_model(asteroid);
+  return asteroid;
 };
 
 export function npcSpawnerFactory(system) {

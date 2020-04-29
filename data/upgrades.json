@@ -12,7 +12,7 @@
       "period": 500,
       "velocity": 0.04,
       "proj": {
-        "force": 5,
+        "force": 0.5,
         "explosion": "plasma_impact_small",
         "damage": 10,
         "shield_damage": 20,
@@ -35,7 +35,7 @@
       "period": 2000,
       "velocity":0.04,
       "proj": {
-        "force": 100,
+        "force": 25,
         "explosion": "plasma_impact",
         "shield_damage": 60,
         "damage": 30,
@@ -69,7 +69,7 @@
       "burst_period":1000,
       "ammo":"autocannonammo",
       "proj": {
-        "force": 10,
+        "force": 0.1,
         "explosion": "ac_impact",
         "shield_damage":5,
         "damage":15,
@@ -96,12 +96,12 @@
     "weapon"      : {
       "mesh":  "plasma_cannon",
       "sprite":"missile",
-      "velocity":0.0035,
+      "velocity":0.035,
       "inaccuracy":0.01,
       "period": 500,
       "ammo":"dumbfiremissile",
       "proj": {
-        "force": 200,
+        "force": 10,
         "shield_damage":30,
         "damage":50,
         "max_age":4000,
@@ -147,7 +147,7 @@
           "emissive_color": [0.1, 0.1, 0.7]
         },
         "explosion": "ion_impact_small",
-        "force": -50,
+        "force": -10,
         "shield_damage":40,
         "damage":30,
         "disabler" : true,
@@ -204,7 +204,7 @@
       "burstsize":20,
       "burstperiod":10000,
       "proj":{
-        "force": 25,
+        "force": 5,
         "shield_damage":0,
         "damage":25,
         "max_age":100000,
@@ -254,7 +254,7 @@
       "burstperiod":1000,
       "proj": {
         "explosion": "ac_impact",
-        "force": 20,
+        "force": 10,
         "max_age":700,
         "shield_damage":8,
         "damage":25,
@@ -277,7 +277,7 @@
       "velocity":0.001,
       "proj": {
         "guided": true,
-        "force": -100,
+        "force": -20,
         "rotation": 0.01,
         "accel": 0.00006,
         "shield_damage": 30,
@@ -298,7 +298,7 @@
       "inaccuracy":0,
       "period":0.001,
       "beam": {
-        "force": -10,
+        "force": -1,
         "graphics": {
           "type": "tube",
           "radius": 0.2,
@@ -331,7 +331,7 @@
       "mesh":  "plasma_cannon",
       "period":0.5,
       "beam": {
-        "force": 10,
+        "force": 1,
         "graphics": {
           "type": "tube",
           "radius": 0.1,
@@ -360,7 +360,7 @@
       "velocity": 0.04,
       "proj": {
         "explosion": "ion_impact_small",
-        "force": 3,
+        "force": 0.01,
         "damage": 8,
         "shield_damage": 25,
         "max_age": 5000,
@@ -386,7 +386,7 @@
       "velocity":0.04,
       "proj": {
         "explosion": "ion_impact",
-        "force": 70,
+        "force": 10,
         "shield_damage": 75,
         "damage": 30,
         "max_age": 4000,
@@ -413,8 +413,9 @@
           "color": [0.8, 1, 0.8],
           "emissive_color": [0.5, 1, 0.5]
         },
+        "force": 10,
         "shield_damage":15,
-        "damage":45,
+        "damage":25,
         "length":15
       }
     },
@@ -431,6 +432,7 @@
       "period":0.001,
       "beam": {
         "graphics": {
+          "force": 20,
           "type": "tube",
           "radius": 0.3,
           "color": [0.8, 1, 0.8],
@@ -457,7 +459,7 @@
       "period":1000,
       "ammo":"casuba_howitzer_ammo",
       "beam": {
-        "force": 700,
+        "force": 100,
         "shield_damage":1000,
         "damage":1000,
         "length":300,

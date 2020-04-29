@@ -194,6 +194,15 @@ export function set_dark_texture(entity){
   }
 }
 
+export function create_asteroid_model(asteroid){
+  asteroid.model = _.data.get_mesh(asteroid.mesh);
+  let material = _.data.get_material(asteroid.mesh, asteroid.skin);
+  asteroid.model.material = material;
+  add_model(asteroid.model);
+  asteroid.model.visibility = 1;
+  asteroid.model.renderingGroupId = DEFAULT_LAYER;
+}
+
 export function create_composite_model(ship, govt){
   // Create a ship's model out of the base mesh of the ship
   // plus the meshes of any attached upgrades.

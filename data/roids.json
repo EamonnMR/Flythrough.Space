@@ -1,0 +1,19 @@
+{
+  "types": {
+    "small-carbon": {
+      "mesh": "asteroid_small",
+      "skin": "carbon",
+      "scale": 1,
+      "hitpoints": 50,
+      "explo": "explosion",
+      "mass": 100,
+      "max_speed": 0.015
+    }
+  },
+  
+  "sets": {
+    "basic": [
+      "small-carbon"
+    ]
+  }
+}

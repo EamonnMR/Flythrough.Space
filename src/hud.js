@@ -411,6 +411,9 @@ export function color_for_entity(entity, player){
       return 'gray'
     }
   }
+  if('team-asteroids' in entity){
+    return 'brown'
+  }
   return 'yellow';
 }
 

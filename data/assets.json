@@ -1102,6 +1102,29 @@
           "diffuse": "turret.png"
         }
       }
+    },
+    "asteroid_small": {
+      "file": "asteroid.babylon",
+      "default_skin": "carbon",
+      "skins": {
+        "carbon": {
+          "diffuse": "asteroid_carbon.png"
+        },
+        "isomer": {
+          "diffuse": "asteroid_isomer.png",
+          "emissive": "asteroid_isomer_emissive.png",
+          "custom_emissive_color": [0, 0, 1, 1]
+        },
+        "water": {
+          "diffuse": "asteroid_water.png"
+        },
+        "metal": {
+          "diffuse": "asteroid_metal.png"
+        },
+        "rare": {
+          "diffuse": "asteroid_rare.png"
+        }
+      }
     }
   },
   "sprites": {
@@ -1317,6 +1340,7 @@
     "trade": "trade.json",
     "npc_groups": "npc_groups.json",
     "missions": "missions.json",
-    "particles": "particles.json"
+    "particles": "particles.json",
+    "asteroids": "roids.json"
   }
 }
