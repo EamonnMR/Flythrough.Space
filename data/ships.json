@@ -386,7 +386,7 @@
     "long_name"   : "XIC Asteroid Prospector",
     "full_name"   : "XIC Asteroid Prospector",
     "desc"       : "These ships fly out to mine asteroids, and ostensibly aren't meant for combat. However, those who try to make a play for mining rights to a rock that XIC has its eye on may meet with an unfortunate industrial accident.",
-    "upgrades"    : {"mining_laser": 1, "autocannon": 2},
+    "upgrades"    : {"mining_laser": 1, "autocannon": 2, "autocannonammo": 30},
     "mass":       56,
     "rotation"  : 0.0016,
     "accel"      : 0.0001,

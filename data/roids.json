@@ -22,13 +22,54 @@
       "mass": 400,
       "drops": {
         "small-carbon": 3,
-        "medium-carbon": 2
+        "medium-carbon": 2,
+        "small-metal": 2
       }
+    },
+    "small-metal": {
+      "mesh": "asteroid_small",
+      "skin": "metal",
+      "hitpoints": 50,
+      "mass": 100,
+      "drops": {
+        "tiny-metal": 3
+      }
+    },
+    "medium-metal": {
+      "extends": "small-metal",
+      "mesh": "asteroid_medium",
+      "hitpoints": 100,
+      "mass": 200,
+      "drops": {
+        "small-metal": 3,
+        "tiny-metal": 4
+      }
+    },
+    "large-metal": {
+      "extends": "small-carbon",
+      "mesh": "asteroid_large",
+      "hitpoints": 400,
+      "mass": 400,
+      "drops": {
+        "small-metal": 3,
+        "medium-metal": 2,
+        "tiny-metal": 7
+      }
+    },
+    "tiny-metal": {
+      "mesh": "asteroid_tiny",
+      "skin": "metal",
+      "pickup_cargo": {
+        "metal": 5
+      },
+      "max_age": 100
     }
   },
   
   "sets": {
     "basic": [
+      "small-metal",
+      "medium-metal",
       "small-carbon",
       "medium-carbon",
       "large-carbon"

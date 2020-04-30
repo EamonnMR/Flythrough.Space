@@ -12,7 +12,10 @@ import {
   deletionSystem
 } from "./ecs.js";
 import { inputSystem, bindInputFunctions, unbindInputFunctions} from "./input.js";
-import { npcSpawnerSystem } from "./entities.js";
+import {
+  npcSpawnerSystem,
+  pickupSystem,
+} from "./entities.js";
 import {
   modelPositionSystem,
   cameraFollowSystem,
@@ -46,6 +49,7 @@ export class GamePlayState extends ViewState {
   constructor() {
     super();
     _.entities = new SinglePlayerEntityManager([
+      pickupSystem,
       npcSpawnerSystem,
       inputSystem,
       ai_system,

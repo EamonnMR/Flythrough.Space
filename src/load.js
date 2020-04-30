@@ -43,6 +43,7 @@ const PROTOTYPES = {
     cargo_carried: {},
     money: 0,
     engine_particle_sys_name: "conventional_engine",
+    can_pickup: true,
   },
   systems: {
     lights: [
@@ -246,9 +247,8 @@ export class Data {
   }
 
   set_type_keys(){
-    const TYPES = ["ships"];
-    // This implements the 'extends' feature, and allows
-    // default values to be set for game objects.
+    // In case you need to ask an entity what its type is
+    const TYPES = ["ships", "asteroids"];
     for(let type of TYPES){
       for(let item of Object.keys(this[type])){
         this[type][item].type = item;

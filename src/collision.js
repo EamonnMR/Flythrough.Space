@@ -29,7 +29,7 @@ export function collisionDetectionSystem(entMan){
   }
 };
 
-function is_colliding(l, r){
+export function is_colliding(l, r){
   if('radius' in l.collider && 'radius' in r.collider){
     return circle_circle_collision(l, r);
   } else if ('radius' in l.collider && 'notunnel' in r.collider){

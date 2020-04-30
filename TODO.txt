@@ -2,7 +2,31 @@
 Modeling And Texturing Tut: Write a how-to blog post to codify
 the knowledge of how to make ships.
 
-===============
-AI/ Turrets
-
+=================
+AI
 Add unit tests, figure out just how wrong the math is
+
+=================
+
+Colliders
+
+Colliders need not be all the same size. Would be best if they could be visualized on-screen
+
+=================
+
+Escorts:
+
+* Store customization of multiple ships
+
+* Select desired ship (escort or your ship) to upgrade in upgrade menu
+
+* Select where to assign ship in a modal in the buy menu
+
+* Select how to use ship when capturing 
+
+* Make sure escorts and fighters persist between hyperjumps
+
+* make sure escorts and fighters persist through saves
+
+
+
