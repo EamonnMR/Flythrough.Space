@@ -694,8 +694,16 @@
           "emissive": "plasma_cannon_emissive.png",
           "custom_emissive_color": [1,0,0,1]
         },
-        "dark": {
+        "plasma/dark": {
           "diffuse": "plasma_cannon_dark.png"
+        },
+        "ion": {
+          "diffuse": "plasma_cannon_ion.png",
+          "emissive": "plasma_cannon_emissive.png",
+          "custom_emissive_color": [0,0,1,1]
+        },
+        "ion/dark": {
+          "diffuse": "plasma_cannon_ion_dark.png"
         }
       }
     },
@@ -710,8 +718,16 @@
           "emissive": "plasma_cannon_emissive.png",
           "custom_emissive_color": [1,0,0,1]
         },
-        "dark": {
+        "plasma/dark": {
           "diffuse": "plasma_cannon_dark.png"
+        },
+        "ion": {
+          "diffuse": "plasma_cannon_ion.png",
+          "emissive": "plasma_cannon_emissive.png",
+          "custom_emissive_color": [0,0,1,1]
+        },
+        "ion/dark": {
+          "diffuse": "plasma_cannon_ion_dark.png"
         }
       }
     },
@@ -1086,8 +1102,104 @@
           "diffuse": "turret.png"
         }
       }
+    },
+    "asteroid_small": {
+      "file": "asteroid.babylon",
+      "default_skin": "carbon",
+      "skins": {
+        "carbon": {
+          "diffuse": "asteroid_carbon.png"
+        },
+        "isomer": {
+          "diffuse": "asteroid_isomer.png",
+          "emissive": "asteroid_isomer_emissive.png",
+          "custom_emissive_color": [0, 0, 1, 1]
+        },
+        "water": {
+          "diffuse": "asteroid_water.png"
+        },
+        "metal": {
+          "diffuse": "asteroid_metal.png"
+        },
+        "rare": {
+          "diffuse": "asteroid_rare.png"
+        }
+      }
+    },
+    "asteroid_medium": {
+      "scale": 2,
+      "file": "asteroid.babylon",
+      "default_skin": "carbon",
+      "skins": {
+        "carbon": {
+          "diffuse": "asteroid_carbon.png"
+        },
+        "isomer": {
+          "diffuse": "asteroid_isomer.png",
+          "emissive": "asteroid_isomer_emissive.png",
+          "custom_emissive_color": [0, 0, 1, 1]
+        },
+        "water": {
+          "diffuse": "asteroid_water.png"
+        },
+        "metal": {
+          "diffuse": "asteroid_metal.png"
+        },
+        "rare": {
+          "diffuse": "asteroid_rare.png"
+        }
+      }
+    },
+    "asteroid_large": {
+      "scale": 4,
+      "file": "asteroid.babylon",
+      "default_skin": "carbon",
+      "skins": {
+        "carbon": {
+          "diffuse": "asteroid_carbon.png"
+        },
+        "isomer": {
+          "diffuse": "asteroid_isomer.png",
+          "emissive": "asteroid_isomer_emissive.png",
+          "custom_emissive_color": [0, 0, 1, 1]
+        },
+        "water": {
+          "diffuse": "asteroid_water.png"
+        },
+        "metal": {
+          "diffuse": "asteroid_metal.png"
+        },
+        "rare": {
+          "diffuse": "asteroid_rare.png"
+        }
+      }
+    },
+    "asteroid_tiny": {
+      "scale": 0.25,
+      "file": "asteroid.babylon",
+      "default_skin": "carbon",
+      "skins": {
+        "carbon": {
+          "diffuse": "asteroid_carbon.png"
+        },
+        "isomer": {
+          "diffuse": "asteroid_isomer.png",
+          "emissive": "asteroid_isomer_emissive.png",
+          "custom_emissive_color": [0, 0, 1, 1]
+        },
+        "water": {
+          "diffuse": "asteroid_water.png"
+        },
+        "metal": {
+          "diffuse": "asteroid_metal.png"
+        },
+        "rare": {
+          "diffuse": "asteroid_rare.png"
+        }
+      }
     }
   },
+
   "sprites": {
     "plasma": {
       "img": "assets/sprites/plasma.png",
@@ -1301,6 +1413,7 @@
     "trade": "trade.json",
     "npc_groups": "npc_groups.json",
     "missions": "missions.json",
-    "particles": "particles.json"
+    "particles": "particles.json",
+    "asteroids": "roids.json"
   }
 }

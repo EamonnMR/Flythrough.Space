@@ -29,6 +29,9 @@ const PROTOTYPES = {
     x: 0,
     y: 0
   },
+  asteroids: {
+    explosion: "asteroid_breakup",
+  },
   ships: {
     explosion: "explosion",
     upgrades: {},
@@ -40,6 +43,7 @@ const PROTOTYPES = {
     cargo_carried: {},
     money: 0,
     engine_particle_sys_name: "conventional_engine",
+    can_pickup: true,
   },
   systems: {
     lights: [
@@ -49,7 +53,13 @@ const PROTOTYPES = {
         intensity: .3,
         type: "point",
       }
-    ] 
+    ],
+    roids: {
+      set: "basic",
+      count: 25,
+      radius: 600,
+      velocity: 0.01
+    },
   },
   particles: {
     particleTexture: "flare.png",
@@ -237,9 +247,8 @@ export class Data {
   }
 
   set_type_keys(){
-    const TYPES = ["ships"];
-    // This implements the 'extends' feature, and allows
-    // default values to be set for game objects.
+    // In case you need to ask an entity what its type is
+    const TYPES = ["ships", "asteroids"];
     for(let type of TYPES){
       for(let item of Object.keys(this[type])){
         this[type][item].type = item;
@@ -406,7 +415,7 @@ export function load_all(engine, scene, done){
   xhr.onload = () => {
     if (xhr.status == 200){
       load_assets(JSON.parse(xhr.responseText), scene, data_mgr, () => {
-        data_mgr.set_type_keys();
+        // data_mgr.set_type_keys();  // TODO: Redundant?
         data_mgr.resolve_proto_chains();
         data_mgr.preprocess_particle_systems();
         data_mgr.create_upgrades_for_carried_fighters();

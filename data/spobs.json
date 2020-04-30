@@ -10,7 +10,8 @@
 			"alloy":"high",
 			"grain":"high",
 			"dut":"high",
-			"uacbarrels":"high"
+			"uacbarrels":"high",
+      "metal": "high"
 		}
 	},
 	"Alluvium Fleet Yards":{

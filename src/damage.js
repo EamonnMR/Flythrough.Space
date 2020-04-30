@@ -6,6 +6,15 @@ import {
   make_way_for_light,
 } from "./graphics.js";
 
+import {
+  asteroidFactory
+} from "./entities.js";
+
+import {
+  vector_plus,
+  random_position
+} from "./util.js";
+
 import { polar_from_rect } from "./util.js";
 
 import { accelerate } from "./physics.js";
@@ -96,13 +105,31 @@ export function damage_handler(damager, damaged){
 
 function destroyed(entity, killshot){
   // TODO: Slow explosion filled demise
-  // TODO: Size-proportional explosions
   entity.remove = true;
   do_explo(entity.position, entity.explosion, entity.mass);
+  // TODO: Once AOE exists, do AOE things
   let intensity = entity.mass / 5;
   if( _.settings.light_effects && make_way_for_light(intensity)){ 
     _.entities.insert( flash_factory( entity.position, intensity, 300, 750));
   }
+  
+  if("drops" in entity){
+    for(let type of Object.keys(entity.drops)){
+      for(let _i = 0; _i < entity.drops[type]; _i++){
+        _.entities.insert(
+          asteroidFactory(
+            type,
+            entity.position,
+            vector_plus(
+              entity.velocity,
+              random_position(0.01),
+            )
+          )
+        )
+      }
+    }
+  }
+
   if(_.entities.is_player_ent(entity)){
     _.hud.widgets.alert_box.show("Ship Destroyed");
   }

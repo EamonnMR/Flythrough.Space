@@ -129,10 +129,14 @@ export class PlayerSave {
   }
 
   fill_cargo(type, max_amount){
-    let amount = Math.max(max_amount, this.free_cargo())
+    console.log(`fill_cargo: ${max_amount} into ${this.free_cargo()}`);
+    let amount = Math.min(max_amount, this.free_cargo())
+    console.log(`Decided to take ${amount}`);
+    console.log(this.bulk_cargo);
     if(amount){
       this.add_bulk_cargo(type, amount);
     }
+    console.log(this.bulk_cargo);
     return amount;
   }
 
@@ -165,7 +169,7 @@ export class PlayerSave {
   }
 
   add_bulk_cargo(type, amount){
-    if (type in this.mission_cargo) {
+    if (type in this.bulk_cargo) {
       this.bulk_cargo[type] += amount;
     } else {
       this.bulk_cargo[type] = amount;

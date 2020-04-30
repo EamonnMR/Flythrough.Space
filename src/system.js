@@ -12,10 +12,14 @@ import { create_starfield, camera_ready, add_light } from "./graphics.js";
 import {
   playerShipFactory,
   npcSpawnerFactory,
-  planetFactory
+  planetFactory,
+  asteroidFactory
 } from "./entities.js"; 
 
-import { random_position } from "./util.js";
+import {
+  random_position,
+  choose,
+} from "./util.js";
 
 export function setup_system(entMan, system){
   
@@ -49,6 +53,18 @@ export function setup_system(entMan, system){
       let planet = planetFactory(spob_name, index)
       planets.push( planet );
       index++
+    }
+  }
+
+  if ('roids' in system_dat && system_dat.roids){
+    let set = _.data.asteroids.sets[system_dat.roids.set]
+    for(let i = 0; i < system_dat.roids.count; i++){
+      ents.push(
+        asteroidFactory(choose(set),
+          random_position(system_dat.roids.radius),
+          random_position(system_dat.roids.velocity),
+        )
+      );
     }
   }
 
