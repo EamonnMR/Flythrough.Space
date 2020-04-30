@@ -404,7 +404,7 @@
     "price"          : 50000,
     "space"          : -6,
     "weapon"         : {
-      "mesh":  "plasma_cannon",
+      "mesh":  "mining_laser",
       "period":0.001,
       "beam": {
         "graphics": {
@@ -427,7 +427,7 @@
     "price"          : 50000,
     "space"          : -20,
     "weapon"         : {
-      "mesh":  "plasma_cannon",
+      "mesh":  "mining_laser_large",
       "inaccuracy": 0,
       "period":0.001,
       "beam": {

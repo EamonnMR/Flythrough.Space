@@ -1094,6 +1094,36 @@
       }
     },
 
+    "mining_laser": {
+      "file": "mining_laser.babylon",
+      "default_skin": "green",
+      "skins": {
+        "green": {
+          "diffuse": "mining_laser.png",
+          "emissive": "mining_laser_emissive.png",
+          "custom_emissive_color": [0,1,0,1]
+        },
+        "green/dark": {
+          "diffuse": "mining_laser_dark.png"
+        }
+      }
+    },
+    "mining_laser_large": {
+      "file": "mining_laser.babylon",
+      "scale": 2,
+      "default_skin": "green",
+      "skins": {
+        "green": {
+          "diffuse": "mining_laser.png",
+          "emissive": "mining_laser_emissive.png",
+          "custom_emissive_color": [0,1,0,1]
+        },
+        "green/dark": {
+          "diffuse": "mining_laser_dark.png"
+        }
+      }
+    },
+
     "_turret": {
       "file": "turret.babylon",
       "default_skin": "default",

@@ -21,7 +21,7 @@ export function decaySystem (entMan) {
   }
 };
 
-function beamFactory(proto, creator, position, direction, govt, player_aligned){
+function beamFactory(proto, creator, position, direction, govt, player_aligned, vel){
   let beam = Object.assign(Object.create(proto), {
     damage_per_second: true,
     shot: true,
@@ -35,6 +35,7 @@ function beamFactory(proto, creator, position, direction, govt, player_aligned){
     model: get_beam(proto.graphics, proto.length),
     max_age: 200, // TODO: Find the right number.
     age: 0.0,
+    velocity: {x: vel.x, y: vel.y},
   });
   if(govt){
     beam.ignoregov = govt;
@@ -192,6 +193,7 @@ function fire_weapon(weapon, entity, entMan) {
         direction,
         govt,
         player_aligned,
+        entity.velocity || {'x': 0, 'y': 0},
       ));
     }
   }
