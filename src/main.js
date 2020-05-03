@@ -16,10 +16,9 @@ import { graphics_init } from "./graphics.js";
 import { SavesMenu } from "./saves.js";
 import { PlunderMenu } from "./plunder_menu.js";
 
-function init(game_canvas, scene, engine, data){
+function init(game_canvas, scene, engine){
   /* Main entry point for the app (after loading). Binds events and such. */
   
-  _.data = data;
   _.scene = scene;
   _.canvas = game_canvas;
 
@@ -61,7 +60,7 @@ window.addEventListener('load', () => {
   let engine = new BABYLON.Engine( game_canvas, true);
   let scene = new BABYLON.Scene(engine);
 
-  load_all(engine, scene, (data) => {
-    init(game_canvas, scene, engine, data);
+  load_all(engine, scene, () => {
+    init(game_canvas, scene, engine);
   });
 });

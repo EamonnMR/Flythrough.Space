@@ -8,6 +8,11 @@ import {
   is_cheat_enabled,
   overridable_default,
   choose,
+  dict_add,
+  dict_subtract,
+  assert_true,
+  assert_false,
+  assert_equal,
 } from "./util.js";
 
 const PREFIX = "savefile_"  // Prefix for player saves in local storage.
@@ -42,15 +47,35 @@ export function restore_from_object(object){
     new PlayerSave(),
     object,
   );
+  
+  flagship = Object.assign(
+    new ShipSave(player.flagship.type),
+    object,
+  )
 
-  player.ship_dat = Object.create(_.data.ships[player.ship_type]);
-  player.ship_dat.upgrades = player.upgrades;
-
+  for(i = 0; i < player.fleet.length; i++){
+    player.fleet[i] = Object.assign(
+      new ShipSave(player.fleet[i].type),
+      player.fleet[i],
+    );
+  }
   return player;
 }
 
-export class PlayerSave {
+export class ShipSave {
+  // Interchangeable player/escort ship data
+  constructor(type){
+    this.type = type;
+    this.skin = null // TODO: Add skin menu
+    this.dat = Object.create(_.data.ships[this.type]);
+    this.upgrades = this.dat.upgrades;
+    this.fuel = this.dat.max_fuel;
+    this.bulk_cargo = {};
+    this.mission_cargo = {};
+  }
+}
 
+export class PlayerSave {
   save(){
     let key = PREFIX + this.name;
     localStorage.setItem( key, JSON.stringify( this ) );
@@ -73,15 +98,10 @@ export class PlayerSave {
     this.current_spob = overridable_default("spob", "Alluvium Fleet Yards");
     this.current_docked_ship = null;
     this.initial_position = {x: 0, y: 0};
-    this.ship_type = overridable_default("ship", "shuttle");
-    this.ship_skin = null // "pirate";  // TODO: Add skin menu
-    this.ship_dat = Object.create(_.data.ships[this.ship_type]);
-    this.upgrades = this.ship_dat.upgrades;
-    this.fuel = this.ship_dat.max_fuel;
-    this.bulk_cargo = {};
-    this.mission_cargo = {};
     this.active_missions = {};
+    this.flagship = new ShipSave(overridable_default("ship", "shuttle"));
     this.fleet = [];
+
     this.total_accumulated_damage = 0;
 
     this.govts = this.init_govts();
@@ -92,32 +112,45 @@ export class PlayerSave {
   total_cargo(){
     // Total cargo space used up on the player's ship
     let total = 0;
-    [this.bulk_cargo, this.mission_cargo].forEach( (cargo_type) =>{
-      Object.keys(cargo_type).forEach( (key) => {
-        total += cargo_type[key];
-      })
+      this.all_ships().forEach( (ship) => {
+      [ship.bulk_cargo, ship.mission_cargo].forEach( (cargo_dict) =>{
+        Object.keys(cargo_dict).forEach( (key) => {
+          total += cargo_dict[key];
+        })
+      });
     });
     return total;
   }
 
+  all_ships(){
+    return this.fleet.concat([this.flagship])
+  }
+
   bulk_cargo_of_type(type){
-    if(type in this.bulk_cargo){
-      return this.bulk_cargo[type];
-    } else {
-      return 0;
-    }
+    return this.all_ships().reduce(
+      (accumulator, ship) => {
+        if(type in ship.bulk_cargo){
+          return accumulator += ship.bulk_cargo[type];
+        }
+        return accumulator;
+      },
+      0,
+    );
   }
 
   max_cargo(){
-    return this.ship_dat.cargo;
+    return this.all_ships().reduce(
+      (accumulator, ship) => accumulator + ship.dat.cargo,
+      0,
+    );
   }
 
   max_fuel(){
-    return this.ship_dat.max_fuel;
+    return this.flagship.dat.max_fuel;
   }
 
   can_refuel(){
-    return this.fuel < this.max_fuel();
+    return this.flagship.fuel < this.max_fuel();
   }
 
   can_add_cargo(amount){
@@ -128,15 +161,25 @@ export class PlayerSave {
     return this.max_cargo() - this.total_cargo();
   }
 
+  fleet_bulk_cargo(){
+    let fleet_bulk_cargo = {};
+    this.all_ships().forEach( (ship) => {
+      for( let key of Object.keys(ship.bulk_cargo)){
+        dict_add(fleet_bulk_cargo, key, ship.bulk_cargo[key]);
+      }
+    });
+    return fleet_bulk_cargo;
+  }
+
   fill_cargo(type, max_amount){
-    console.log(`fill_cargo: ${max_amount} into ${this.free_cargo()}`);
+    // console.log(`fill_cargo: ${max_amount} into ${this.free_cargo()}`);
     let amount = Math.min(max_amount, this.free_cargo())
-    console.log(`Decided to take ${amount}`);
-    console.log(this.bulk_cargo);
+    // console.log(`Decided to take ${amount}`);
+    // console.log(this.fleet_bulk_cargo());
     if(amount){
       this.add_bulk_cargo(type, amount);
     }
-    console.log(this.bulk_cargo);
+    // console.log(this.bulk_cargo);
     return amount;
   }
 
@@ -153,55 +196,47 @@ export class PlayerSave {
   }
 
   ship_value(){
-    return this.ship_dat.price;
+    return this.dat.price;
   }
 
   can_buy_new_ship(price){
     return price <= this.money + this.ship_value();
   }
 
+  can_buy_new_ship_outright(price){
+    return price <= this.money;
+  }
+
   add_mission_cargo(type, amount){
-    if (type in this.mission_cargo) {
-      this.mission_cargo[type] += amount;
-    } else {
-      this.mission_cargo[type] = amount;
-    }
+    // TODO: Handle Fleets
+    dict_add(this.flagship.mission_cargo, type, amount);
   }
 
   add_bulk_cargo(type, amount){
-    if (type in this.bulk_cargo) {
-      this.bulk_cargo[type] += amount;
-    } else {
-      this.bulk_cargo[type] = amount;
-    }
+    // TODO: Handle Fleets
+    dict_add(this.flagship.bulk_cargo, type, amount);
   }
 
   remove_mission_cargo(type, amount){
-    this.mission_cargo[type] -= amount;
-    if(this.mission_cargo[type] === 0){
-      delete this.mission_cargo[type];
-    }
+    // TODO: Handle Fleets
+    dict_subtract(this.flagship.mission_cargo, type, amount);
   }
 
   remove_bulk_cargo(type, amount){
-    this.bulk_cargo[type] -= amount;
-    if(this.bulk_cargo[type] === 0){
-      delete this.bulk_cargo[type];
-    }
+    // TODO: Handle Fleets
+    dict_subtract(this.flagship.bulk_cargo, type, amount);
   }
 
-
-
-  buy_ship(type, new_ship){
-    this.money += this.ship_value();
-    this.ship_type = type;
-    this.ship_dat = Object.create(new_ship);
-    this.money -= new_ship.price;
-    this.upgrades = this.ship_dat.upgrades;
+  buy_ship(type, new_ship){  // TODO: rename buy_flagship
+    this.money += this.ship_value("flagship");
+    let new_flagship = ShipSave(type);
+    this.money -= new_flagship.dat.price;
+    // TODO: Transfer cargo
+    this.flagship = new_flagship;
   }
 
-  can_buy_upgrade(price, upgrade, quantity){
-    let ship_if_bought = Object.create(this.ship_dat);
+  can_buy_upgrade(price, upgrade, quantity, ship="flagship"){
+    let ship_if_bought = Object.create(this.flagship.dat);
     apply_upgrades(ship_if_bought, this.upgrades);
     
     for(let i = 0; i < quantity; i++){
@@ -217,15 +252,15 @@ export class PlayerSave {
 
   buy_upgrade(type, upgrade, quantity){
     if(type in this.upgrades){
-      this.upgrades[type] += quantity;
-      if(this.upgrades[type] == 0){
-        delete this.upgrades[type];
+      this.flagship.upgrades[type] += quantity;
+      if(this.flagship.upgrades[type] == 0){
+        delete this.flagship.upgrades[type];
       }
     } else {
-      this.upgrades[type] = quantity;
+      this.flagship.upgrades[type] = quantity;
     }
 
-    this.ship_dat.upgrades = this.upgrades;
+    this.flagship.dat.upgrades = this.upgrades;
     this.money -= upgrade.price * quantity;
   }
   
@@ -246,6 +281,7 @@ export class PlayerSave {
   }
 
   change_govt_reputation(govt_id, delta){
+    // TODO: Could dict_add be bent to this use?
     if(govt_id in this.govts){
       this.govts[govt_id].reputation += delta;
     } else {
@@ -290,3 +326,112 @@ export class PlayerSave {
   }
 }
 
+function test_fill_cargo(){
+  let plr = new PlayerSave();
+  plr.fill_cargo("metal", 11)
+
+  assert_equal(
+    plr.flagship.bulk_cargo,
+    {metal: 10},
+    "fill cargo fills bulk cargo",
+  );
+}
+
+function test_fleet_bulk_cargo(){
+  let plr = new PlayerSave();
+  plr.fill_cargo("metal", 11)
+
+  assert_equal(
+    plr.fleet_bulk_cargo(),
+    {metal: 10},
+    "Fleet bulk cargo is calculated correctly",
+  );
+}
+
+function test_total_cargo(){
+  let plr = new PlayerSave();
+  plr.fill_cargo("metal", 11)
+  assert_equal(
+    plr.total_cargo(),
+    10,
+    "Total Cargo is calculated correctly",
+  );
+}
+
+function test_max_cargo(){
+  let plr = new PlayerSave();
+  assert_equal(
+    plr.max_cargo(),
+    10, // Capacity of default ship
+    "max cargo is calculated correctly",
+  );
+}
+
+function test_all_ships(){
+  let plr = new PlayerSave();
+  assert_equal(
+    plr.all_ships(),
+    [plr.flagship],
+    "all_ships returns only the flagship",
+  );
+}
+
+function test_add_bulk_cargo(){
+  const AMT = 5;
+  let plr = new PlayerSave();
+  plr.add_bulk_cargo("metal", AMT);
+  assert_equal(
+    plr.total_cargo(),
+    AMT,
+    "can add_bulk_cargo",
+  );
+}
+
+
+function test_add_mission_cargo(){
+  const AMT = 5;
+  let plr = new PlayerSave();
+  plr.add_mission_cargo("metal", AMT);
+  assert_equal(
+    plr.total_cargo(),
+    AMT,
+    "can add mission cargo",
+  );
+}
+
+function test_remove_bulk_cargo(){
+  const AMT = 5;
+  let plr = new PlayerSave();
+  plr.add_bulk_cargo("metal", AMT);
+  plr.remove_bulk_cargo("metal", AMT);
+  assert_equal(
+    plr.total_cargo(),
+    0,
+    "can remove_bulk_cargo",
+  );
+}
+
+
+function test_remove_mission_cargo(){
+  const AMT = 5;
+  let plr = new PlayerSave();
+  plr.add_mission_cargo("metal", AMT);
+  plr.remove_mission_cargo("metal", AMT);
+  assert_equal(
+    plr.total_cargo(),
+    0,
+    "can remove_mission_cargo",
+  );
+}
+
+export function player_unit_tests(){
+  test_add_bulk_cargo();
+  test_add_mission_cargo();
+  test_remove_bulk_cargo();
+  test_remove_mission_cargo();
+  test_max_cargo();
+  test_all_ships();
+  test_fill_cargo();
+  test_total_cargo();
+  test_fleet_bulk_cargo();
+}

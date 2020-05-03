@@ -30,7 +30,7 @@ function get_pilot_copy(pilot){
     return `
       Captain: ${pilot.name}
       Credcoin: ${pilot.money}
-      Ship: ${pilot.ship_dat.short_name}
+      Ship: ${pilot.flagship.dat.short_name}
       System: ${pilot.current_system}
       Total damage done (in credcoins): ${pilot.total_accumulated_damage}
 

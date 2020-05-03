@@ -7,7 +7,8 @@ import {
   test_every_spob_with_tech_sells_things
 } from "./tech.js";
 import { material_from_skin } from "./graphics.js";
-import { multiInherit, CARRIED_PREFIX } from "./util.js"
+import { multiInherit, CARRIED_PREFIX } from "./util.js";
+import { player_unit_tests } from "./player.js";
 
 /* The root of everything here is 'assets.json'.
  * It lists asset files/data for special assets - 
@@ -420,6 +421,7 @@ export function load_all(engine, scene, done){
         data_mgr.preprocess_particle_systems();
         data_mgr.create_upgrades_for_carried_fighters();
         update_settings(); 
+        _.data = data_mgr;
         if(_.settings.run_tests){
           data_mgr.validate();
           test_every_item_available_somewhere(data_mgr);
@@ -427,8 +429,9 @@ export function load_all(engine, scene, done){
           collision_unit_tests();
           utils_unit_tests();
           fighters_unit_tests();
+          player_unit_tests();
         }
-        done(data_mgr);
+        done();
       });
     }
   };

@@ -241,9 +241,14 @@ export function get_setting(key){
   return url_params.get(key) || window.localStorage.getItem(setting_key(key));
 }
 
+export function loud_failure(string){
+  // https://stackoverflow.com/a/10769621/1048464
+  console.log(`%c${string}`, `color:red;font-weight:bold;`);
+}
+
 export function assert_true(value, desc){
   if (!value){
-    console.log(`TEST FAILURE: ${desc}`);
+    loud_failure(`TEST FAILURE: ${desc}`);
     console.log(`Expected true, got ${value}`);
   } else {
     console.log(`Test Passed: ${desc}`);
@@ -252,7 +257,7 @@ export function assert_true(value, desc){
 
 export function assert_false(value, desc){
   if (value){
-    console.log(`TEST FAILURE: ${desc}`);
+    loud_failure(`TEST FAILURE: ${desc}`);
     console.log(`Expected false, got ${value}`);
   } else {
     console.log(`Test Passed: ${desc}`);
@@ -261,7 +266,7 @@ export function assert_false(value, desc){
 
 export function assert_equal(lval, rval, desc){
   if(!(JSON.stringify(lval) === JSON.stringify(rval))){
-    console.log(`Test Failure: ${desc}`);
+    loud_failure(`Test Failure: ${desc}`);
     console.log(`Expected`);
     console.log(lval);
     console.log(`To equal`);
@@ -286,6 +291,33 @@ export function restore_default_settings(){
   })
 }
 
+export function dict_add(dict, type, amount){
+  /* Got tired of rewriting this code.
+   * Useful for cargo, etc.
+   */
+  if(type in dict){
+    dict[type] += amount;
+  } else {
+    dict[type] = amount;
+  }
+}
+
+export function dict_subtract(dict, type, amount){
+  /* Similar to dict add.
+   * TODO: Raise an exception if result < 0?
+   */
+  if(type in dict){
+    dict[type] -= amount;
+  } else {
+    console.log(`Dict subtract tried to take ${type} away but none existed`);
+  }
+  if(dict[type] === 0){
+    delete dict[type];
+  } else if (dict[type] < 0){
+    console.log(`Dict subtract went below zero: ${type} === ${amount}`);
+  }
+}
+
 export function utils_unit_tests(){
   // Test local storage for settings
   set_setting("foo", "bar");
@@ -301,5 +333,11 @@ export function utils_unit_tests(){
     },
     "polar from rect works properly",
   );
+  
+  let dict = {};
+  dict_add(dict, "foo", 1);
+  assert_equal(dict, {"foo": 1}, "dict add creates a new key");
+  dict_add(dict, "foo", 1);
+  assert_equal(dict, {"foo": 2}, "dict_add adds to existing key");
 }
 

@@ -28,7 +28,7 @@ export function setup_system(entMan, system){
 
   let ents = [
     playerShipFactory(
-        _.player.ship_dat, 
+        _.player.flagship.dat, 
         {
           x: _.player.initial_position.x,
           y: _.player.initial_position.y
