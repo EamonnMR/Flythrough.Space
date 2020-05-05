@@ -73,6 +73,45 @@ export class ShipSave {
     this.bulk_cargo = {};
     this.mission_cargo = {};
   }
+
+  can_buy_upgrade(price, upgrade, quantity){
+    let ship_if_bought = Object.create(this.dat);
+    apply_upgrades(ship_if_bought, this.upgrades);
+    
+    for(let i = 0; i < quantity; i++){
+      apply_upgrade(ship_if_bought, upgrade);
+    }
+    return this.validate_ship( ship_if_bought ) && _.player.can_spend_money(upgrade.price * quantity);
+  }
+
+  buy_upgrade(type, quantity){
+    dict_add(this.upgrades, type, quantity);
+
+    this.dat.upgrades = this.upgrades;
+    _.player.money -= _.data.upgrades[type].price * quantity;
+  }
+
+  sell_upgrade(type, quantity){
+    dict_subtract(this.upgrades, type, quantity);
+
+    this.dat.upgrades = this.upgrades;
+    _.player.money += _.data.upgrades[type].price * quantity;
+  }
+
+  cargo_carried(){
+    let total = 0;
+    // TODO: Reduce
+    [this.bulk_cargo, this.mission_cargo].forEach( (cargo_dict) =>{
+      Object.keys(cargo_dict).forEach( (key) => {
+        total += cargo_dict[key];
+      })
+    })
+    return total;
+  }
+
+  validate_ship( ship ){
+    return ship.space >= 0 && ship.cargo >= 0 && ship.cargo >= this.cargo_carried();
+  }
 }
 
 export class PlayerSave {
@@ -110,16 +149,12 @@ export class PlayerSave {
   }
 
   total_cargo(){
-    // Total cargo space used up on the player's ship
-    let total = 0;
-      this.all_ships().forEach( (ship) => {
-      [ship.bulk_cargo, ship.mission_cargo].forEach( (cargo_dict) =>{
-        Object.keys(cargo_dict).forEach( (key) => {
-          total += cargo_dict[key];
-        })
-      });
-    });
-    return total;
+    return this.all_ships().reduce(
+      (accumulator, ship) => {
+        return accumulator + ship.cargo_carried();
+      },
+      0,
+    );
   }
 
   all_ships(){
@@ -235,35 +270,7 @@ export class PlayerSave {
     this.flagship = new_flagship;
   }
 
-  can_buy_upgrade(price, upgrade, quantity, ship="flagship"){
-    let ship_if_bought = Object.create(this.flagship.dat);
-    apply_upgrades(ship_if_bought, this.upgrades);
-    
-    for(let i = 0; i < quantity; i++){
-      apply_upgrade(ship_if_bought, upgrade);
-    }
-    return this.can_spend_money(upgrade.price * quantity)
-      && this.validate_ship( ship_if_bought );
-  }
-  
-  validate_ship( ship ){
-    return ship.space >= 0 && ship.cargo >= this.total_cargo();
-  }
-
-  buy_upgrade(type, upgrade, quantity){
-    if(type in this.upgrades){
-      this.flagship.upgrades[type] += quantity;
-      if(this.flagship.upgrades[type] == 0){
-        delete this.flagship.upgrades[type];
-      }
-    } else {
-      this.flagship.upgrades[type] = quantity;
-    }
-
-    this.flagship.dat.upgrades = this.upgrades;
-    this.money -= upgrade.price * quantity;
-  }
-  
+ 
   explore_system(system_name){
     if(!this.system_explored(system_name)){
       this.explored.push(system_name);

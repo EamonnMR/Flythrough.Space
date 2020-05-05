@@ -55,7 +55,7 @@ export function playerShipFactory(type, position) {
   ship.max_speed = ship.max_speed * 1.25;
 
   ship.radar_pip = _.hud.widgets.radar_box.get_pip(4, '#00FF00FF');
-  ship.fuel = _.player.fuel;
+  ship.fuel = _.player.flagship.fuel;
   return ship;
 };
 

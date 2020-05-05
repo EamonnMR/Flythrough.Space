@@ -9,16 +9,33 @@ export class UpgradeMenu extends StoreMenu {
     super();
     this.items = _.data.upgrades;
   }
+
+  enter(){
+    this.spob = _.data.spobs[_.player.current_spob];
+    this.ship = _.player.flagship;
+    this.setup_widgets();
+  }
   
   do_buy(){
     let item = this.current_item();
     if (this.can_purchase_item(item)){
-      _.player.buy_upgrade(this.selected, item, 1);
+      this.ship.buy_upgrade(this.selected, 1);
+    }
+  }
+
+  do_sell(){
+    let item = this.current_item();
+    if (this.can_sell_item(item)){
+      this.ship.sell_upgrade(this.selected, item.type, 1);
     }
   }
 
   can_purchase_item(item){
-    return _.player.can_buy_upgrade(item.price, item, 1)
+    return this.ship.can_buy_upgrade(item.price, item, 1)
+  }
+
+  can_sell_item(item){
+    return this.ship.can_sell_upgrade(item.price, item, 1)
   }
 
   get_selection_tab_widget(key, item, offset){
@@ -74,6 +91,13 @@ class UpgradeTab extends TextButton {
     this.control.top = "" + (this.offset + parent.scroll_offset) + "%";
   }
 
+  get_count(parent){
+    if(parent !== null && parent.ship.upgrades[this.item]){
+      return `(${parent.ship.upgrades[this.item]})`
+    }
+    return ``
+  }
+
   format_name(parent){
     let too_expensive = null;
     let current_selection = null;
@@ -81,12 +105,7 @@ class UpgradeTab extends TextButton {
       //too_expensive = parent.player_data.can_buy_new_ship(this.price);
       current_selection = parent.selection == this.item; 
     }
-
-    if (current_selection){
-      return "*" + this.name + " - " + this.price + "*";
-    } else {
-      return this.name + " - " + this.price;
-    }
+    return `${current_selection ? "*" : " "}${this.name} - ${this.price} ${this.get_count(parent)}`
   }
 };
 
