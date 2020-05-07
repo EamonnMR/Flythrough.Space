@@ -305,17 +305,22 @@ export function dict_add(dict, type, amount){
 export function dict_subtract(dict, type, amount){
   /* Similar to dict add.
    * TODO: Raise an exception if result < 0?
+   * Returns false on a subtract that would go below zero
    */
   if(type in dict){
     dict[type] -= amount;
   } else {
     console.log(`Dict subtract tried to take ${type} away but none existed`);
+    return false;
   }
   if(dict[type] === 0){
     delete dict[type];
   } else if (dict[type] < 0){
     console.log(`Dict subtract went below zero: ${type} === ${amount}`);
+    return false;
   }
+
+  return true;
 }
 
 export function utils_unit_tests(){

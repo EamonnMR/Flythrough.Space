@@ -26,7 +26,7 @@ export class UpgradeMenu extends StoreMenu {
   do_sell(){
     let item = this.current_item();
     if (this.can_sell_item(item)){
-      this.ship.sell_upgrade(this.selected, item.type, 1);
+      this.ship.sell_upgrade(item.type, 1);
     }
   }
 

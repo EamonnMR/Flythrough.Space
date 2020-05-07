@@ -75,13 +75,27 @@ export class ShipSave {
   }
 
   can_buy_upgrade(price, upgrade, quantity){
+    let upgrades_if_bought = {};
+    Object.assign(upgrades_if_bought, this.upgrades);
     let ship_if_bought = Object.create(this.dat);
-    apply_upgrades(ship_if_bought, this.upgrades);
+
+    dict_add(upgrades_if_bought, upgrade.type, quantity);
+
+    apply_upgrades(ship_if_bought, upgrades_if_bought);
     
-    for(let i = 0; i < quantity; i++){
-      apply_upgrade(ship_if_bought, upgrade);
-    }
-    return this.validate_ship( ship_if_bought ) && _.player.can_spend_money(upgrade.price * quantity);
+    return this.validate_ship( ship_if_bought )&& _.player.can_spend_money(upgrade.price * quantity);
+
+  }
+
+  can_sell_upgrade(price, upgrade, quantity){
+    let upgrades_if_sold = {};
+    Object.assign(upgrades_if_sold, this.upgrades);
+    let ship_if_sold = Object.create(this.dat);
+    let valid_subtract = dict_subtract(upgrades_if_sold, upgrade.type, quantity);
+
+    apply_upgrades(ship_if_sold, upgrades_if_sold);
+    
+    return valid_subtract && this.validate_ship( ship_if_sold );
   }
 
   buy_upgrade(type, quantity){
@@ -92,6 +106,7 @@ export class ShipSave {
   }
 
   sell_upgrade(type, quantity){
+    console.log(quantity);
     dict_subtract(this.upgrades, type, quantity);
 
     this.dat.upgrades = this.upgrades;

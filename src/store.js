@@ -109,7 +109,8 @@ export class StoreMenu extends BaseLandingMenuView {
     let detail_widgets = [
       new StoreitemName(),
       new StoreitemDesc(),
-      new BuyButton( () => { this.do_buy() }, this.buy_button_copy() )
+      new BuyButton( () => { this.do_buy() }, this.buy_button_copy() ),
+      new SellButton( () => { this.do_sell() }, this.sell_button_copy() ),
     ]
     let quality_offset = QUALITY_BAR_FIRST;
 
@@ -146,6 +147,9 @@ export class StoreMenu extends BaseLandingMenuView {
 
   buy_button_copy(){
     return "buy";
+  }
+  sell_button_copy(){
+    return "sell";
   }
 }
 
@@ -239,15 +243,19 @@ export class StoreitemDesc extends TextBox {
   }
 };
 
-
-export class BuyButton extends TextButton {
-  constructor(callback, copy){
+export class TransactionButton extends TextButton{
+  constructor(callback, copy, left, top){
+    // super(copy, callback,
     super(copy, callback,
       BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT,
       BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
-      "-30%",
-      "5%",
+      left,
+      top, 
     )
+  }
+
+  can_do(parent, item){
+    /* ie can purchase / can sell */
   }
 
   setup(){
@@ -261,10 +269,30 @@ export class BuyButton extends TextButton {
   update(parent){
     let color = "Gray";
     let current_item = parent.current_item();
-    if(current_item && parent.can_purchase_item(current_item)){
+    if(current_item && this.can_do(parent, current_item)){
       color = "Green";
     }
     this.control.color = color;
+  }
+}
+
+export class BuyButton extends TransactionButton {
+  constructor(callback, copy){
+    super(callback, copy, "-30%", "7%");
+  }
+
+  can_do(parent, item){
+    return parent.can_purchase_item(item)
+  }
+}
+
+export class SellButton extends TransactionButton {
+  constructor(callback, copy){
+    super(callback, copy, "-43%", "7%");
+  }
+
+  can_do(parent, item){
+    return parent.can_sell_item(item)
   }
 }
 
