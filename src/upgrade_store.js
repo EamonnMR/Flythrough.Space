@@ -21,6 +21,7 @@ export class UpgradeMenu extends StoreMenu {
     if (this.can_purchase_item(item)){
       this.ship.buy_upgrade(this.selected, 1);
     }
+    this.update_widgets();
   }
 
   do_sell(){
@@ -28,6 +29,7 @@ export class UpgradeMenu extends StoreMenu {
     if (this.can_sell_item(item)){
       this.ship.sell_upgrade(item.type, 1);
     }
+    this.update_widgets();
   }
 
   can_purchase_item(item){
@@ -82,18 +84,20 @@ class UpgradeTab extends TextButton {
     control.height = "6%";
     control.cornerRadius = 1;
     control.width = "40%";
-    control.text = this.format_name(null);
+    // control.text = this.format_name(null);
     return control;
   }
 
   update(parent){
-    this.control.text = this.format_name(parent); 
+    this.set_text(this.format_name(parent)); 
     this.control.top = "" + (this.offset + parent.scroll_offset) + "%";
   }
 
   get_count(parent){
-    if(parent !== null && parent.ship.upgrades[this.item]){
-      return `(${parent.ship.upgrades[this.item]})`
+    // console.log(`Get count for ${this.item.type}: ${parent !== null && parent.ship.upgrades[this.item.type]}: ${parent} && ${parent ? parent.ship.upgrades[this.item.type] : "---"}`);
+    if(parent && parent.ship.upgrades[this.item.type]){
+      console.log(`Should have a text thing: ${this.item.type}: ${parent.ship.upgrades[this.item.type]}`)
+      return `(${parent.ship.upgrades[this.item.type]})`
     }
     return ``
   }

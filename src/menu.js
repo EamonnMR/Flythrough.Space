@@ -100,6 +100,12 @@ export class TextButton extends Widget{
     control.onPointerUpObservable.add(this.callback);
     return control;
   }
+
+  set_text(new_text){
+    console.log(new_text);
+    this.text = new_text;
+    this.control.textBlock.text = new_text;
+  }
 }
 
 export class TextBox extends Widget{
