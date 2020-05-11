@@ -48,12 +48,12 @@ export function restore_from_object(object){
     object,
   );
   
-  flagship = Object.assign(
+  player.flagship = Object.assign(
     new ShipSave(player.flagship.type),
     object,
   )
 
-  for(i = 0; i < player.fleet.length; i++){
+  for(let i = 0; i < player.fleet.length; i++){
     player.fleet[i] = Object.assign(
       new ShipSave(player.fleet[i].type),
       player.fleet[i],

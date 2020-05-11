@@ -1123,6 +1123,36 @@
         }
       }
     },
+    "missile_pod": {
+      "file": "missile_pod.babylon",
+      "default_skin": "guided",
+      "skins": {
+        "dumb": {
+          "diffuse": "missile_pod.png",
+          "emissive": "missile_pod_emissive.png",
+          "custom_emissive_color": [1,1,0,1]
+        },
+        "dumb/dark": {
+          "diffuse": "missile_pod_dumb_dark.png"
+        },
+        "guided": {
+          "diffuse": "missile_pod_guided.png",
+          "emissive": "missile_pod_emissive.png",
+          "custom_emissive_color": [1,0,0,1]
+        },
+        "guided/dark": {
+          "diffuse": "missile_pod_guided_dark.png"
+        },
+        "antimatter": {
+          "diffuse": "missile_pod_antimatter.png",
+          "emissive": "missile_pod_emissive.png",
+          "custom_emissive_color": [0,1,1,1]
+        },
+        "antimatter/dark": {
+          "diffuse": "missile_pod_antimatter_dark.png"
+        }
+      }
+    },
 
     "_turret": {
       "file": "turret.babylon",

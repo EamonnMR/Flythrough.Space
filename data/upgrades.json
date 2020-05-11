@@ -50,7 +50,7 @@
     "space"          : -1,
     "desc"           : "Arguably the most advanced armor available, it is used extensively by the 7th fleet, as evidenced by the gleaming gold color of their hulls. Though not the absolute most protection pound-for-pound, it is unique in its ability to self-repair damage over time.",
     "price"          : 6000,
-    "hullRegen"      : 10,
+    "hull_regen"      : 10,
     "tech"           : {"itaska":2}
   },
   "autocannon":{
@@ -87,14 +87,14 @@
     "require"        : "autocannon",
     "tech"           : {"oe":1}
   },
-  "ejectorrack":{
-    "name"           : "Missile Ejector Rack",
+  "missile_pod_dumb":{
+    "name"           : "Missile Pod",
     "space"          : -0.1,
-    "desc"           : "Ejector rack and pylon for basic missiles, various types of which are sold throughout the sector, mounted standard on Starfighters as far back as the year 400. The mount is simple enough to have changed little in the intervening years, though the missiles themselves have become more powerful and sophisticated.",
+    "desc"           : "An ancient technology, this rocket launcher is configured for the most basic 'dumb-fire' missiles. Make sure you point it in the right direction before you fire it. Missiles not included.",
     "price"          : 1000,
-    "exclass"        : "ejectorrack",
     "weapon"      : {
-      "mesh":  "plasma_cannon",
+      "mesh":  "missile_pod",
+      "skin":  "dumb",
       "sprite":"missile",
       "velocity":0.035,
       "inaccuracy":0.01,
@@ -108,23 +108,47 @@
         "collider": {"notunnel": true}
       }
     },
-    "tech"           : {"oe":2}
+    "tech"           : {"oe":1}
   },
   "dumbfiremissile":{
     "name"           : "Dumb fire missile",
     "space"          : -1,
-    "desc"           : "Attaches to a standard ejector rack, and totally unguided. A simple missile design used to give small ships the ability to punch up, and hit (slow) targets at long range.",
+    "desc"           : "Totally unguided. A simple missile design used to give small ships the ability to punch up, and hit (slow) targets at long range. Technically an Old Empire design but similar devices can be found in back yards across the galaxy, albeit with perhaps a less explosive payload",
     "price"          : 100,
-    "require"        : "ejectorrack",
     "tech"           : {"generic": 1}
   },
+  "missile_pod_guided":{
+    "name"           : "Guided Missile Pod",
+    "space"          : -0.1,
+    "desc"           : "A big old missile full of explosives is no good if it misses the target. Enter the guided missile pod: it links up with a ship's sensors. If the parent ship is locked on to a target when the missile is launched, the launcher will download the target's radar cross section to the missile and the missile will do its darnedest to drop itself right on it.",
+    "price"          : 1000,
+    "weapon"      : {
+      "mesh":  "missile_pod",
+      "skin":  "guided",
+      "sprite":"missile",
+      "velocity":0.035,
+      "inaccuracy":0.01,
+      "period": 500,
+      "ammo":"guidedmissile",
+      "proj": {
+        "guided": true,
+        "rotation": 0.01,
+        "accel": 0.00006,
+        "force": 10,
+        "shield_damage":30,
+        "damage":50,
+        "max_age":4000,
+        "collider": {"notunnel": true}
+      }
+    },
+    "tech"           : {"oe":2}
+  },
+
   "guidedmissile":{
     "name"           : "Guided missile",
     "space"          : 1,
-    "desc"           : "Similar to more common dumb fire missiles, but slightly more complex to produce. It locks onto a target with its own internal instruments, and needs no input from the ship once fired. However, due to space constraints, it has less damage potential then the dumb fire version.",
+    "desc"           : "Similar to more common dumb fire missiles, but slightly more complex to produce. It locks onto a target with its own internal instruments, and needs no input from the ship once fired.",
     "price"          : 200,
-    "require"        : "ejectorrack",
-    "ammotype"       : "erguided",
     "tech"           : {
       "generic": 1 
     }
@@ -535,6 +559,42 @@
     "tech": {"caudron": 3},
     "cloak": true,
     "desc": "Target acquisition relies on a few factors. Cameras using machine vision track a target in visual light, radar tracks a known target's position by bouncing radiation off of it, and IR scopes can see a target's drive signature against the cold of space. The feverish scientists on Nightside, however, have developed a treatment for a ship's hull that will eliminate almost all reflectivity, rendering the ship effectively invisible to both the naked eye and sensors. Sure, they might see you blocking the light of distant stars, but in the heat of battle, for all intents and purposes, you're invisible."
+  },
+  "missile_pod_antimatter":{
+    "name"           : "Antimatter Missile Pod",
+    "space"          : -0.1,
+    "desc"           : "A very small payload dwarfed by a guidance system to ensure correct targeting. That small payload is antimatter, though, so it's sure to do substantial damage to anything unlucky enough to be near it when it goes off.",
+    "price"          : 1000,
+    "weapon"      : {
+      "mesh":  "missile_pod",
+      "skin":  "antimatter",
+      "sprite":"missile",
+      "velocity":0.035,
+      "inaccuracy":0.01,
+      "period": 500,
+      "ammo":"antimattermissile",
+      "proj": {
+        "guided": true,
+        "rotation": 0.01,
+        "accel": 0.00006,
+        "force": 10,
+        "shield_damage":100,
+        "damage":100,
+        "max_age":4000,
+        "collider": {"notunnel": true}
+      }
+    },
+    "tech"           : {"ls":2}
+  },
+
+  "antimattermissile":{
+    "name"           : "Antimatter missile",
+    "space"          : 1,
+    "desc"           : "The entire missile isn't made of antimatter, of course. Just a small chunk inside the warhead. The reaction happens when the missile detonates and results in a very nasty gamma burst. This makes it effective against shields where other antimatter weapons fall flat.",
+    "price"          : 200,
+    "tech"           : {
+      "ls": 1 
+    }
   }
 }  
 
