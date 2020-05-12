@@ -32,17 +32,17 @@ export function fighterFactory(type, mothership){
   return ship;
 }
 
-export function npcShipFactory(type, position, ai, govt){
-  let ship = shipFactory(type, position, govt);
+export function npcShipFactory(prototype, position, ai, govt){
+  let ship = shipFactory(prototype, position, govt);
   ship.ai = ai;
   ship.radar_pip = _.hud.widgets.radar_box.get_pip(4, '#FF0000FF');
   ship.overlay = _.hud.get_overlay_texture(ship);
   return ship;
 }
 
-export function playerShipFactory(type, position) {
+export function playerShipFactory(prototype, position) {
 
-  let ship = shipFactory(type, position);
+  let ship = shipFactory(prototype, position);
 
   ship.camera = true;
   ship.input = true;
@@ -59,8 +59,8 @@ export function playerShipFactory(type, position) {
   return ship;
 };
 
-export function shipFactory(type, position, govt=null){
-  let ship = Object.create(type);
+export function shipFactory(prototype, position, govt=null){
+  let ship = Object.create(prototype);
   if(govt){
     ship.govt = govt;
   }

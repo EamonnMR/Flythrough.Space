@@ -22,6 +22,7 @@ const ZOOM_MAX = 10;
 const KILL_PENALTY = -100;
 
 export function load_save(save_name){
+  console.log(localStorage.getItem( save_name ));
   return JSON.parse(localStorage.getItem( save_name ));
 }
 
@@ -42,23 +43,27 @@ export function restore(key){
   return restore_from_object(load_save(key));
 }
 
+function restore_shipsave_from_object(object){
+  /* Warning: side effects on the given object */
+  delete object.dat;
+  let ship = Object.assign(
+    new ShipSave(object.type),
+    object,
+  );
+  ship.apply_to_dat();
+  return ship;
+}
+
 export function restore_from_object(object){
+
   let player = Object.assign(
     new PlayerSave(),
     object,
   );
   
-  player.flagship = Object.assign(
-    new ShipSave(player.flagship.type),
-    object,
-  )
+  player.flagship = restore_shipsave_from_object(player.flagship);
 
-  for(let i = 0; i < player.fleet.length; i++){
-    player.fleet[i] = Object.assign(
-      new ShipSave(player.fleet[i].type),
-      player.fleet[i],
-    );
-  }
+  player.fleet = player.fleet.map( restore_shipsave_from_object);
   return player;
 }
 
@@ -72,6 +77,10 @@ export class ShipSave {
     this.fuel = this.dat.max_fuel;
     this.bulk_cargo = {};
     this.mission_cargo = {};
+  }
+
+  apply_to_dat(){ 
+    this.dat.upgrades = this.upgrades;
   }
 
   can_buy_upgrade(price, upgrade, quantity){
@@ -100,16 +109,15 @@ export class ShipSave {
 
   buy_upgrade(type, quantity){
     dict_add(this.upgrades, type, quantity);
+    this.apply_to_dat();
 
-    this.dat.upgrades = this.upgrades;
     _.player.money -= _.data.upgrades[type].price * quantity;
   }
 
   sell_upgrade(type, quantity){
-    console.log(quantity);
     dict_subtract(this.upgrades, type, quantity);
+    this.apply_to_dat();
 
-    this.dat.upgrades = this.upgrades;
     _.player.money += _.data.upgrades[type].price * quantity;
   }
 
@@ -133,6 +141,8 @@ export class PlayerSave {
   save(){
     let key = PREFIX + this.name;
     localStorage.setItem( key, JSON.stringify( this ) );
+    console.log(key);
+    console.log(JSON.stringify( this ))
     localStorage.setItem( LAST_SAVE, key );
   }
 
