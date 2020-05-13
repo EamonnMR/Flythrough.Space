@@ -154,8 +154,28 @@
     "x":989,
     "y":1088,
     "govt":"free",
+    "roids": {
+      "set": "basic",
+      "count": 10,
+      "radius": 400,
+      "velocity": 0.001
+    },
+    "npc_average": 5,
+    "npcs": [
+      "trader_lowtech",
+      "trader_bulk",
+      "free_capital",
+      "free_patrol"
+    ],
     "spobs":[
       "Kennerud"
+    ],
+    "lights": [
+      {
+        "type": "point",
+        "position": [0, 5, 0],
+        "intensity": 0.8
+      }
     ],
     "links":[
       "Casamance",
@@ -322,7 +342,7 @@
     "links":[
       "Humboldt",
       "Wijngaarden",
-      "Khust"
+      "Narula"
     ],
     "npc_average": 5,
     "npcs": [
@@ -601,7 +621,7 @@
       "Kuluene",
       "Arroyo",
       "Renbrook",
-      ".167"
+      "Bohai"
     ],
     "spobs": [
       "Miranda"
@@ -633,12 +653,12 @@
     "govt":"league",
     "links":[
       "Karmack",
-      ".167",
+      "Bohai",
       "Liu",
       "Lima"
     ]
   },
-  ".167":{
+  "Bohai":{
     "x":1538,
     "y":1135,
     "links":[
@@ -671,12 +691,12 @@
     "x":1570,
     "y":1268,
     "links":[
-      ".167",
+      "Bohai",
       ".*21",
       ".*28"
     ]
   },
-  ".171":{
+  "Nanshan":{
     "x":1624,
     "y":1240,
     "links":[
@@ -705,11 +725,11 @@
       "Tianming"
     ]
   },
-  ".174":{
+  "Chanterelle":{
     "x":1442,
     "y":1205,
     "links":[
-      ".167",
+      "Bohai",
       ".210"
     ]
   },
@@ -759,7 +779,7 @@
       "Wijngaarden",
       "Ishayev",
       "Rada",
-      "Khust"
+      "Narula"
     ]
   },
   "Rada":{
@@ -779,7 +799,7 @@
       "Rada",
       "Hector",
       "Khabarovsk",
-      "Khloponin"
+      "Loponin"
     ]
   },
   ".181":{
@@ -844,7 +864,7 @@
     "y":558,
     "links":[
       "Ingolstadt",
-      "Peenemunde",
+      "Nemunde",
       "Fornwall"
     ]
   },
@@ -855,7 +875,7 @@
     "links":[
       "Thrun",
       "Jhelum",
-      "Peenemunde",
+      "Nemunde",
       "Lothian"
     ]
   },
@@ -865,7 +885,7 @@
     "govt":"league",
     "links":[
       "Ingolstadt",
-      "Peenemunde",
+      "Nemunde",
       "Ravi",
       "Chenab"
     ]
@@ -899,7 +919,7 @@
     "links":[
       "Nemesis",
       "Zorax",
-      ".*31"
+      "Tambor"
     ]
   },
   "Nemesis":{
@@ -951,7 +971,7 @@
       "Nemesis",
       "Intrepid",
       ".195",
-      ".196",
+      "Nisker",
       ".197"
     ]
   },
@@ -963,14 +983,14 @@
       "Resolute"
     ]
   },
-  ".196":{
+  "Nisker":{
     "x":1085,
     "y":297,
     "govt":"loyal",
     "links":[
       "Resolute",
       "Housatonic",
-      ".*31"
+      "Tambor"
     ]
   },
   ".197":{
@@ -988,10 +1008,10 @@
     "y":365,
     "govt":"loyal",
     "links":[
-      ".196",
+      "Nisker",
       ".197",
       "Latyshev",
-      ".*20"
+      "Jandakot"
     ],
     "spobs":[
       "Hoosac",
@@ -1004,11 +1024,11 @@
     "links":[
       "Shepard",
       "Latyshev",
-      "Khloponin",
+      "Loponin",
       ".*16"
     ]
   },
-  "Khust":{
+  "Narula":{
     "x":914,
     "y":696,
     "lights": [
@@ -1041,7 +1061,7 @@
     "govt":"loyal",
     "links":[
       "Contra Costa",
-      "Khust"
+      "Narula"
     ]
   },
 
@@ -1179,7 +1199,7 @@
     "y":1336,
     "govt":"cartel",
     "links":[
-      ".174",
+      "Chanterelle",
       ".213",
       ".*21"
     ]
@@ -1387,10 +1407,10 @@
     ],
     "links":[
       "Fonseca",
-      "Ameru"
+      "Volta"
     ]
   },
-  "Ameru":{
+  "Volta":{
     "x":682,
     "y":1185,
     "spobs":[
@@ -1936,7 +1956,7 @@
     "x":780,
     "y":678,
     "links":[
-      "Khust",
+      "Narula",
       ".254",
       "Kusanagi",
       "Baikon"
@@ -2325,7 +2345,7 @@
     "x":1433,
     "y":248,
     "links":[
-      ".*20",
+      "Jandakot",
       ".*26"
     ]
   },
@@ -2380,13 +2400,13 @@
     "y":705,
     "govt":"league",
     "links":[
-      "Peenemunde",
+      "Nemunde",
       "Covasna",
       "Chenab",
       "Yevgraf"
     ]
   },
-  "Peenemunde":{
+  "Nemunde":{
     "x":1597,
     "y":664,
     "govt":"league",
@@ -2408,7 +2428,7 @@
     "govt":"league",
     "links":[
       "Panaorios",
-      "Peenemunde",
+      "Nemunde",
       "Yevgraf"
     ]
   },
@@ -2471,7 +2491,7 @@
       ".805",
       "Lothian",
       "Hector",
-      "Khloponin"
+      "Loponin"
     ]
   },
   "Lothian":{
@@ -3228,10 +3248,10 @@
       "Housatonic",
       ".199",
       "Khabarovsk",
-      "Khloponin"
+      "Loponin"
     ]
   },
-  "Khloponin":{
+  "Loponin":{
     "x":1247,
     "y":551,
     "links":[
@@ -3247,7 +3267,7 @@
     "links":[
       ".199",
       "VerSteeg",
-      ".*20"
+      "Jandakot"
     ]
   },
   "Yevgraf":{
@@ -3289,7 +3309,7 @@
       "VerSteeg"
     ]
   },
-  ".*20":{
+  "Jandakot":{
     "x":1292,
     "y":309,
     "links":[
@@ -3409,7 +3429,7 @@
     "y":1300,
     "links":[
       ".170",
-      ".171",
+      "Nanshan",
       ".172"
     ]
   },
@@ -3432,12 +3452,12 @@
       "Feng"
     ]
   },
-  ".*31":{
+  "Tambor":{
     "x":996,
     "y":254,
     "links":[
       ".191",
-      ".196"
+      "Nisker"
     ]
   },
   "Lackland":{
