@@ -67,7 +67,7 @@ export function apply_upgrade(ship, upgrade){
     if(key === "weapon"){
       let weapon = upgrade.weapon;
       ship.weapons.push( weapon_factory(weapon, _.data));
-    } else if (key === "price" || key === "tech" || key === "desc" || key === "name"){
+    } else if (key === "price" || key === "tech" || key === "desc" || key === "name" || key === "type"){
       // TODO: Should ships auto-include the price of upgrades?
       // Would that make life easier or harder?
       continue;
@@ -89,16 +89,14 @@ export function apply_upgrade(ship, upgrade){
 
 export function apply_upgrades(ship, upgrades){
   ship.weapons = [];
-  for(let key of Object.keys(upgrades)){
-    for(let i = 0; i < upgrades[key]; i++){
-      let upgrade = _.data.upgrades[key];
-      if(upgrade === undefined){
-        console.log("Invalid Upgrade: " + key);
-      } else {
-        apply_upgrade(ship, _.data.upgrades[key]);
-      }
+  dict_foreach(upgrades, ( type ) => {
+    let upgrade = _.data.upgrades[type];
+    if(upgrade === undefined){
+      console.log("Invalid Upgrade: " + type);
+    } else {
+      apply_upgrade(ship, upgrade);
     }
-  }
+  });
 }
 
 export function get_text(){
@@ -241,9 +239,14 @@ export function get_setting(key){
   return url_params.get(key) || window.localStorage.getItem(setting_key(key));
 }
 
+export function loud_failure(string){
+  // https://stackoverflow.com/a/10769621/1048464
+  console.log(`%c${string}`, `color:red;font-weight:bold;`);
+}
+
 export function assert_true(value, desc){
   if (!value){
-    console.log(`TEST FAILURE: ${desc}`);
+    loud_failure(`TEST FAILURE: ${desc}`);
     console.log(`Expected true, got ${value}`);
   } else {
     console.log(`Test Passed: ${desc}`);
@@ -252,7 +255,7 @@ export function assert_true(value, desc){
 
 export function assert_false(value, desc){
   if (value){
-    console.log(`TEST FAILURE: ${desc}`);
+    loud_failure(`TEST FAILURE: ${desc}`);
     console.log(`Expected false, got ${value}`);
   } else {
     console.log(`Test Passed: ${desc}`);
@@ -261,7 +264,7 @@ export function assert_false(value, desc){
 
 export function assert_equal(lval, rval, desc){
   if(!(JSON.stringify(lval) === JSON.stringify(rval))){
-    console.log(`Test Failure: ${desc}`);
+    loud_failure(`Test Failure: ${desc}`);
     console.log(`Expected`);
     console.log(lval);
     console.log(`To equal`);
@@ -286,6 +289,46 @@ export function restore_default_settings(){
   })
 }
 
+export function dict_foreach(dict, callback){
+  Object.keys(dict).forEach( (key) => {
+    for(let i = 0; i < dict[key]; i ++){
+      callback(key);
+    }
+  });
+}
+
+export function dict_add(dict, type, amount){
+  /* Got tired of rewriting this code.
+   * Useful for cargo, etc.
+   */
+  if(type in dict){
+    dict[type] += amount;
+  } else {
+    dict[type] = amount;
+  }
+}
+
+export function dict_subtract(dict, type, amount){
+  /* Similar to dict add.
+   * TODO: Raise an exception if result < 0?
+   * Returns false on a subtract that would go below zero
+   */
+  if(type in dict){
+    dict[type] -= amount;
+  } else {
+    console.log(`Dict subtract tried to take ${type} away but none existed`);
+    return false;
+  }
+  if(dict[type] === 0){
+    delete dict[type];
+  } else if (dict[type] < 0){
+    console.log(`Dict subtract went below zero: ${type} === ${amount}`);
+    return false;
+  }
+
+  return true;
+}
+
 export function utils_unit_tests(){
   // Test local storage for settings
   set_setting("foo", "bar");
@@ -301,5 +344,11 @@ export function utils_unit_tests(){
     },
     "polar from rect works properly",
   );
+  
+  let dict = {};
+  dict_add(dict, "foo", 1);
+  assert_equal(dict, {"foo": 1}, "dict add creates a new key");
+  dict_add(dict, "foo", 1);
+  assert_equal(dict, {"foo": 2}, "dict_add adds to existing key");
 }
 

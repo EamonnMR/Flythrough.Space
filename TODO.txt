@@ -1,4 +1,3 @@
-==================
 Modeling And Texturing Tut: Write a how-to blog post to codify
 the knowledge of how to make ships.
 
@@ -15,6 +14,8 @@ Colliders need not be all the same size. Would be best if they could be visualiz
 =================
 
 Escorts:
+
+* Fix store, make selling work
 
 * Store customization of multiple ships
 

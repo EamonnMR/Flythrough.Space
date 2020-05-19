@@ -2,8 +2,6 @@
 	"Accra":{
     "homeworld": true,
     "sprite": "accra",
-		"x"    : 250,
-		"y"    : 140,
 		"govt" : "free",
 		"text": "The birthplace of the modern FTL drive, and as a result the capital of the Old Empire, a galaxy-spanning civilization that collapsed a generation ago. It was these shipyards that built the first wave of ships that crossed the sector, and is still a hub for ship construction. After the empire's collapse, the spacefarer upper-class was driven out, forming the Loyal Suns to the north and leaving the terrestrials in charge. The inhabitants of Accra They ultimately formed Accra Stardrives, a shipbuilder that focuses on large vessels and an alliance of surrounding worlds called the Casamance Freehold.",
 		"trade":{
@@ -17,8 +15,8 @@
 	"Alluvium Fleet Yards":{
     "sprite": "oe_station", 
     "img": "assets/landing/oe_station_perspective.png",
-		"x"    : -200,
-		"y"    : -400,
+		"x"    : -80,
+		"y"    : -160,
 		"govt" : "free",
 		"text": "Alluvium Fleet Yards is the flagship starship building site of Accra Stardrives. Every corridor you go down is bustling with activity - engineers in animated discussion about robotic assembly, mechanics lugging exotic tools, and even sales people who, occasionally, realize that you're a starship captain and try to make a sale.",
 		"tech":{
@@ -178,11 +176,10 @@
 		"text":"A major industrial hub, Kennerud has been slowly optimized over hundreds of years to turn out weapons and reactors, first for the Empire, and now, as a member of the Freehold, for competing continent-spanning companies on the surface. The most powerful of all is KPS (Kennerud Power Systems) chief supplier of both legacy and next-gen plasma cannons.",
 		"tech":{
 			"accra":1,
-			"oe_wep":3,
+			"oe":3,
 			"generic":3,
 			"kps":3,
-			"free":3,
-			"oe_ship":3
+			"free":3
 		},
 		"trade":{
 			"grain":"med",
@@ -192,7 +189,8 @@
 			"pure":"high",
 			"powerconv":"med",
 			"uacbarrels":"high"
-		}
+		},
+    "custom": true
 	},
 	"Deimos":{
     "sprite": "deimos",
@@ -252,8 +250,7 @@
 		"tech":{
 			"generic":1,
       "league_civ": 2,
-			"oe_wep":2,
-			"oe_ship":1
+      "oe": 2
 		},
     "custom": true,
     

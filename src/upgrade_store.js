@@ -9,16 +9,35 @@ export class UpgradeMenu extends StoreMenu {
     super();
     this.items = _.data.upgrades;
   }
+
+  enter(){
+    this.spob = _.data.spobs[_.player.current_spob];
+    this.ship = _.player.flagship;
+    this.setup_widgets();
+  }
   
   do_buy(){
     let item = this.current_item();
     if (this.can_purchase_item(item)){
-      _.player.buy_upgrade(this.selected, item, 1);
+      this.ship.buy_upgrade(this.selected, 1);
     }
+    this.update_widgets();
+  }
+
+  do_sell(){
+    let item = this.current_item();
+    if (this.can_sell_item(item)){
+      this.ship.sell_upgrade(item.type, 1);
+    }
+    this.update_widgets();
   }
 
   can_purchase_item(item){
-    return _.player.can_buy_upgrade(item.price, item, 1)
+    return this.ship.can_buy_upgrade(item.price, item, 1)
+  }
+
+  can_sell_item(item){
+    return this.ship.can_sell_upgrade(item.price, item, 1)
   }
 
   get_selection_tab_widget(key, item, offset){
@@ -65,13 +84,22 @@ class UpgradeTab extends TextButton {
     control.height = "6%";
     control.cornerRadius = 1;
     control.width = "40%";
-    control.text = this.format_name(null);
+    // control.text = this.format_name(null);
     return control;
   }
 
   update(parent){
-    this.control.text = this.format_name(parent); 
+    this.set_text(this.format_name(parent)); 
     this.control.top = "" + (this.offset + parent.scroll_offset) + "%";
+  }
+
+  get_count(parent){
+    // console.log(`Get count for ${this.item.type}: ${parent !== null && parent.ship.upgrades[this.item.type]}: ${parent} && ${parent ? parent.ship.upgrades[this.item.type] : "---"}`);
+    if(parent && parent.ship.upgrades[this.item.type]){
+      console.log(`Should have a text thing: ${this.item.type}: ${parent.ship.upgrades[this.item.type]}`)
+      return `(${parent.ship.upgrades[this.item.type]})`
+    }
+    return ``
   }
 
   format_name(parent){
@@ -81,12 +109,7 @@ class UpgradeTab extends TextButton {
       //too_expensive = parent.player_data.can_buy_new_ship(this.price);
       current_selection = parent.selection == this.item; 
     }
-
-    if (current_selection){
-      return "*" + this.name + " - " + this.price + "*";
-    } else {
-      return this.name + " - " + this.price;
-    }
+    return `${current_selection ? "*" : " "}${this.name} - ${this.price} ${this.get_count(parent)}`
   }
 };
 

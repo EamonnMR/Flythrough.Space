@@ -26,10 +26,11 @@ export class LandingMenu extends BaseMenuView {
     if( "img" in this.spob ){
       image = this.spob.img;
     }
-    widgets.push(new HeroImage(image,
+    /* widgets.push(new HeroImage(image,
           CENTER,
           BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP,
         0,0));
+    */
 
     if (this.spob.text){
       widgets.push(new HeroText(
@@ -47,6 +48,8 @@ export class LandingMenu extends BaseMenuView {
       () => {
         // TODO: This is an 8 on the hacky scale
         // Reach into the missions state and clear the items.
+        //
+        _.player.save();
         this.parent.states.missions.items = null;
         this.parent.enter_state('gameplay');
       },
@@ -98,7 +101,6 @@ export class LandingMenu extends BaseMenuView {
         'Refuel',
         () => {
           _.player.refuel() // TODO: Get player ship type!
-          console.log("refuel")
           refuel_button.hide(this);
         },
         RIGHT,

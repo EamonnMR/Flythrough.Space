@@ -30,15 +30,23 @@ function get_pilot_copy(pilot){
     return `
       Captain: ${pilot.name}
       Credcoin: ${pilot.money}
-      Ship: ${pilot.ship_dat.short_name}
+      Ship: ${pilot.flagship.dat.short_name}
       System: ${pilot.current_system}
       Total damage done (in credcoins): ${pilot.total_accumulated_damage}
-
+      Upgrades: ${format_upgrades(pilot.flagship)}
       Active Missions: ${Object.keys(pilot.active_missions).join(', ')}
     `;
   } else {
     return '<No Captain Loaded>'
   }
+}
+
+function format_upgrades(ship){
+  return Object.keys(ship.upgrades).map( (key) => {
+    let upgrade = _.data.upgrades[key];
+    let count = ship.upgrades[key];
+    return `${count} x ${upgrade.name}`;
+  }).join(", ");
 }
 
 
@@ -168,7 +176,7 @@ class HeroText extends TextBox {
     control.textWrapping = true;
     control.color = "White";
     control.width = "60%";
-    control.height = "60%";
+    control.height = "80%";
     control.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
     return control;
   }

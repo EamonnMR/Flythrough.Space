@@ -48,6 +48,9 @@ export function inputSystem (entMan) {
     if (input_states.shoot) {
       entity.shoot_primary = true;
     }
+    if (input_states.shoot_secondary) {
+      entity.shoot_secondary = true;
+    }
     if (input_states.launch_fighters){
       entity.launching_fighters = true;
     } else {
@@ -68,7 +71,9 @@ const TOGGLED_INPUT_MAP = {
   38: "forward",
   37: "left",
   39: "right",
-  17: "shoot",
+  32: "shoot", // Spacebar
+  88: "cycle_secondary",  // x
+  90: "shoot_secondary",  // z
   81: "launch_fighters",  // q
   82: "recall_fighters",  // r
   70: "fighters_attack",  // f
@@ -77,8 +82,8 @@ const TOGGLED_INPUT_MAP = {
 // TODO: Use this to handle single presses
 const ONESHOT_INPUT_MAP = {
   27: 'toggle_pause', // Escape
-  61: 'zoom_in', // Keyboard plus
-  173: 'zoom_out', // Keyboard Minus
+  221: 'zoom_in', // Keyboard [
+  219: 'zoom_out', // Keyboard ]
   76: 'try_land', // 'l'
   74: 'hyper_jump', // 'j'
   66: 'board', // b
@@ -94,12 +99,14 @@ for(let state of Object.values(TOGGLED_INPUT_MAP)){
 }
 
 function handleKeyDown ( event ){
+  console.log(event.keyCode);
   if(event.keyCode in TOGGLED_INPUT_MAP){
     input_states[TOGGLED_INPUT_MAP[event.keyCode]] = true;
   }
 };
 
 function handleKeyUp ( event ){
+  console.log(event.keyCode);
   if(event.keyCode in TOGGLED_INPUT_MAP){
     input_states[TOGGLED_INPUT_MAP[event.keyCode]] = false;
     return;

@@ -1,6 +1,11 @@
 import { _ } from "./singletons.js";
 import { is_colliding } from "./collision.js"
-import { apply_upgrades, random_position, choose } from "./util.js";
+import {
+  apply_upgrades,
+  random_position,
+  choose,
+  dict_foreach,
+} from "./util.js";
 import {
   create_composite_model,
   create_planet_sprite,
@@ -8,9 +13,9 @@ import {
   get_engine_particle_systems,
 } from "./graphics.js";
 
-export function fighterFactory(type, mothership){
+export function fighterFactory(prototype, mothership){
   let ship = shipFactory(
-    type,
+    prototype,
     {
       x: mothership.position.x,
       y: mothership.position.y,
@@ -22,7 +27,7 @@ export function fighterFactory(type, mothership){
     ship.ai.aggro = mothership.ai.aggro;
   }
   ship.mothership = mothership.id;
-  ship.radar_pip = _.hud.widgets.radar_box.get_pip(4, mothership.player ?
+  ship.radar_pip = _.hud.widgets.radar_box.get_pip(4, mothership.player_aligned ?
     "#00FF00FF" : "#FF0000FF"
   );
   ship.overlay = _.hud.get_overlay_texture(ship);
@@ -32,35 +37,45 @@ export function fighterFactory(type, mothership){
   return ship;
 }
 
-export function npcShipFactory(type, position, ai, govt){
-  let ship = shipFactory(type, position, govt);
+export function fighters_for_shipsave(shipsave, mothership){
+  let fighters = [];
+  dict_foreach(shipsave.deployed_fighters, (type) => {
+    console.log("creating fighter");
+    fighters.push(fighterFactory(_.data.ships[type], mothership));
+  })
+  return fighters;
+}
+
+export function npcShipFactory(prototype, position, ai, govt, warping_in=false){
+  let ship = shipFactory(prototype, position, govt);
   ship.ai = ai;
   ship.radar_pip = _.hud.widgets.radar_box.get_pip(4, '#FF0000FF');
   ship.overlay = _.hud.get_overlay_texture(ship);
   return ship;
 }
 
-export function playerShipFactory(type, position) {
+export function playerShipFactory(prototype, position) {
 
-  let ship = shipFactory(type, position);
+  let ship = shipFactory(prototype, position);
 
   ship.camera = true;
   ship.input = true;
   ship.player = true; // Is this a hack?
   ship.player_aligned = true; // Fake gov for player and minions
+  ship.player_flagship = true;
 
-  // TODO: Gate this behind a difficulty mode of some kind
-
-  ship.accel = ship.accel  * 1.25;
-  ship.max_speed = ship.max_speed * 1.25;
+  if(_.settings.player_bonus){
+    ship.accel = ship.accel  * 1.25;
+    ship.max_speed = ship.max_speed * 1.25;
+  }
 
   ship.radar_pip = _.hud.widgets.radar_box.get_pip(4, '#00FF00FF');
-  ship.fuel = _.player.fuel;
+  ship.fuel = _.player.flagship.fuel;
   return ship;
 };
 
-export function shipFactory(type, position, govt=null){
-  let ship = Object.create(type);
+export function shipFactory(prototype, position, govt=null){
+  let ship = Object.create(prototype);
   if(govt){
     ship.govt = govt;
   }

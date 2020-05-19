@@ -12,6 +12,8 @@ import {
   assert_equal,
   CARRIED_PREFIX,
   distance,
+  dict_subtract,
+  dict_add,
 } from "./util.js";
 import { _ } from "./singletons.js";
 
@@ -55,6 +57,12 @@ export function fighterDockSystem(entMan){
 }
 
 function dock(mothership, entity){
+  if(mothership.player_flagship){
+    _.player.flagship.remove_deployed_fighter(entity.type);
+  }/* else if (mothership.player_fleet_id){
+    _.player.fleet[mothership.player_fleet_id].remove_deployed_fighter(entity.type);
+  }*/
+  
   push_fighter(mothership.upgrades, entity.type);
   entity.remove = true;
 }
@@ -64,6 +72,12 @@ function launch_fighter(mothership){
   // TODO: Customization goes here
   let ship_dat = _.data.ships[type];
   if(type){
+    if(mothership.player_flagship){
+      _.player.flagship.add_deployed_fighter(type)
+    }
+    // TODO: If mothership.player_fleet_id:
+    // _.player.fleet[mothership.player_fleet_id].add_deployed_fighter(type);
+
     _.entities.insert(fighterFactory(ship_dat, mothership));
     return true;
   }
@@ -89,20 +103,13 @@ function pop_fighter(upgrades){
   let key = keys[0];
   let type = key.replace(CARRIED_PREFIX, "");
 
-  upgrades[key] -= 1;
-  if (upgrades[key] <= 0){
-    delete upgrades[key];
-  }
+  dict_subtract(upgrades, key, 1);
   return type;
 }
 
-function push_fighter(upgrades, fighter_type){
+export function push_fighter(upgrades, fighter_type){
   let key = CARRIED_PREFIX + fighter_type;
-  if(key in upgrades){
-    upgrades[key] += 1;
-  } else {
-    upgrades[key] = 1;
-  }
+  dict_add(upgrades, key, 1); 
 }
 
 function get_fighter_keys(upgrades){
