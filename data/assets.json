@@ -731,6 +731,59 @@
         }
       }
     },
+    "autocannon": {
+      "file": "autocannon.babylon",
+      "default_skin": "shell",
+      "skins": {
+        "shell": {
+          "diffuse": "autocannon.png",
+          "emissive": "autocannon_emissive.png",
+          "custom_emissive_color": [1,1,0,1]
+        },
+        "degen": {
+          "diffuse": "autocannon_degen.png",
+          "emissive": "autocannon_emissive.png",
+          "custom_emissive_color": [0.5,0.5,1,1]
+        },
+        "anti": {
+          "diffuse": "autocannon_anti.png",
+          "emissive": "autocannon_emissive.png",
+          "custom_emissive_color": [1,0,1,1]
+        },
+        "flak": {
+          "diffuse": "autocannon_flak.png",
+          "emissive": "autocannon_emissive.png",
+          "custom_emissive_color": [1,0.5,0,1]
+        }
+      }
+    },
+    "autocannon_large": {
+      "scale": 3,
+      "file": "autocannon.babylon",
+      "default_skin": "shell",
+      "skins": {
+        "shell": {
+          "diffuse": "autocannon.png",
+          "emissive": "autocannon_emissive.png",
+          "custom_emissive_color": [1,1,0,1]
+        },
+        "degen": {
+          "diffuse": "autocannon_degen.png",
+          "emissive": "autocannon_emissive.png",
+          "custom_emissive_color": [0.5,0.5,1,1]
+        },
+        "anti": {
+          "diffuse": "autocannon_anti.png",
+          "emissive": "autocannon_emissive.png",
+          "custom_emissive_color": [1,0,1,1]
+        },
+        "flak": {
+          "diffuse": "autocannon_flak.png",
+          "emissive": "autocannon_emissive.png",
+          "custom_emissive_color": [1,0.5,0,1]
+        }
+      }
+    },
     "tercel": {
       "file": "tercel.babylon",
       "default_skin": "baik",

@@ -60,7 +60,7 @@
     "price"          : 500,
     "exclass"        : "autocannon",
     "weapon"      : {
-      "mesh":  "plasma_cannon",
+      "mesh":  "autocannon",
       "sprite":"autocannon",
       "velocity":0.035,
       "inaccuracy":0.3,
@@ -218,7 +218,8 @@
     "desc"           : "This deadly variation on the autocannon concept fires minute globs of antimatter, the inverse-charged counterpart to the matter that makes up most of the galaxy. When the projectiles strike a ship's hull (as goes any matter/antimatter contact), they annihilate, carving a hole and melting the surrounding plating with intense radiation. Unfortunately, the weapon is ineffective against shielded targets-in fact, a shield is used inside the barrel to prevent any contact between the weapon and the ammunition.",
     "price"          : 100000,
     "weapon"         : {
-      "mesh":  "plasma_cannon",
+      "mesh":  "autocannon",
+      "skin": "anti",
       "inaccuracy":0.07,
       "ammo":"antigunammo", 
       "sprite":"antimatter",
@@ -269,7 +270,8 @@
     "desc"           : "Sort of the ideal blend of plasma cannon and autocannon. The projectile is held together by a self-sustained field, (like a plasma weapon) but is itself solid and prone explode on impact (like an autocannon.) The field holding it together is so tight that the only thing keeping it from getting smaller is 'degeneracy pressure' - the inability of identical particles to occupy the same space at the same time. An edge case in the universe, some might say.",
     "price"          : 100000,
     "weapon"         : {
-      "mesh":  "plasma_cannon",
+      "mesh":  "autocannon",
+      "skin": "degen",
       "sprite":"degenerate_matter",
       "velocity":0.035,
       "inaccuracy":0.3,
