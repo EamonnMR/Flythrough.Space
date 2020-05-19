@@ -99,12 +99,14 @@ for(let state of Object.values(TOGGLED_INPUT_MAP)){
 }
 
 function handleKeyDown ( event ){
+  console.log(event.keyCode);
   if(event.keyCode in TOGGLED_INPUT_MAP){
     input_states[TOGGLED_INPUT_MAP[event.keyCode]] = true;
   }
 };
 
 function handleKeyUp ( event ){
+  console.log(event.keyCode);
   if(event.keyCode in TOGGLED_INPUT_MAP){
     input_states[TOGGLED_INPUT_MAP[event.keyCode]] = false;
     return;

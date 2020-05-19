@@ -11,6 +11,7 @@ import { create_starfield, camera_ready, add_light } from "./graphics.js";
 
 import {
   playerShipFactory,
+  fighters_for_shipsave,
   npcSpawnerFactory,
   planetFactory,
   asteroidFactory
@@ -26,20 +27,23 @@ export function setup_system(entMan, system){
   camera_ready(); 
   let system_dat = _.data.systems[system];
 
-  let ents = [
-    playerShipFactory(
-        _.player.flagship.dat, 
-        {
-          x: _.player.initial_position.x,
-          y: _.player.initial_position.y
-        },
-    ),
-  ];
+  let player_ship = playerShipFactory(
+      _.player.flagship.dat, 
+      {
+        x: _.player.initial_position.x,
+        y: _.player.initial_position.y
+      },
+  );
+
+  let ents = [player_ship]; 
+
   if( system_dat.npcs ){
     ents.push(
       npcSpawnerFactory(system_dat)
     );
   }
+
+  ents = ents.concat(fighters_for_shipsave(_.player.flagship, player_ship));
 
   // TODO: NPCs should actually be made by an NPC Spawner entity that jumps NPC ships in at random times.
 

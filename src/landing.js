@@ -101,7 +101,6 @@ export class LandingMenu extends BaseMenuView {
         'Refuel',
         () => {
           _.player.refuel() // TODO: Get player ship type!
-          console.log("refuel")
           refuel_button.hide(this);
         },
         RIGHT,

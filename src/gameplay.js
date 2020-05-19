@@ -329,6 +329,7 @@ export class GamePlayState extends ViewState {
     _.player.selected_spob = null;  // Can't have people landing on spobs out of the system
     this.clear_world();
     _.player.flagship.fuel -= 1;
+    console.log(_.player);
     this.setup_world();
     _.hud.widgets.alert_box.show(
       `Entering the ${_.player.current_system} system.`

@@ -106,30 +106,43 @@ export function damage_handler(damager, damaged){
 function destroyed(entity, killshot){
   // TODO: Slow explosion filled demise
   entity.remove = true;
+
   do_explo(entity.position, entity.explosion, entity.mass);
-  // TODO: Once AOE exists, do AOE things
+  
+  // TODO: 
+  // do_aoe_damage_from_entity(entity)
+
   let intensity = entity.mass / 5;
   if( _.settings.light_effects && make_way_for_light(intensity)){ 
     _.entities.insert( flash_factory( entity.position, intensity, 300, 750));
   }
   
   if("drops" in entity){
-    for(let type of Object.keys(entity.drops)){
-      for(let _i = 0; _i < entity.drops[type]; _i++){
-        _.entities.insert(
-          asteroidFactory(
-            type,
-            entity.position,
-            vector_plus(
-              entity.velocity,
-              random_position(0.01),
-            )
-          )
-        )
-      }
-    }
+    drop_asteroids(entity);
   }
 
+  // Consequences
+  handle_consequences(entity, killshot);
+}
+
+function drop_asteroids(entity){
+  for(let type of Object.keys(entity.drops)){
+    for(let _i = 0; _i < entity.drops[type]; _i++){
+      _.entities.insert(
+        asteroidFactory(
+          type,
+          entity.position,
+          vector_plus(
+            entity.velocity,
+            random_position(0.01),
+          )
+        )
+      )
+    }
+  }
+}
+
+function handle_consequences(entity, killshot){
   if(_.entities.is_player_ent(entity)){
     _.hud.widgets.alert_box.show("Ship Destroyed");
   }
@@ -141,6 +154,26 @@ function destroyed(entity, killshot){
     if(entity.govt){
       _.player.destroyed_ship_of_govt(entity.govt);
     }
+  }
+  // TODO: Fleets
+  if("mothership" in entity){
+    handle_fighter_consequences(entity, killshot)
+  }
+}
+
+function handle_fighter_consequences(entity, killshot){
+  let mothership = _.entities.get(entity.mothership);
+  if(mothership){
+    if(mothership.player_flagship){
+      _.player.flagship.remove_deployed_fighter(entity.type);
+      _.hud.widgets.alert_box.show(`Fighter lost: ${entity.short_name}`);
+    }
+    /*
+    } else if (mothership.player_fleet_id){
+      _.player.fleet[mothership.player_fleet_id].remove_deployed_fighter(entity.type);
+
+    }
+    */
   }
 }
 

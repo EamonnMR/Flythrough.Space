@@ -67,7 +67,7 @@ export function apply_upgrade(ship, upgrade){
     if(key === "weapon"){
       let weapon = upgrade.weapon;
       ship.weapons.push( weapon_factory(weapon, _.data));
-    } else if (key === "price" || key === "tech" || key === "desc" || key === "name"){
+    } else if (key === "price" || key === "tech" || key === "desc" || key === "name" || key === "type"){
       // TODO: Should ships auto-include the price of upgrades?
       // Would that make life easier or harder?
       continue;
@@ -89,16 +89,14 @@ export function apply_upgrade(ship, upgrade){
 
 export function apply_upgrades(ship, upgrades){
   ship.weapons = [];
-  for(let key of Object.keys(upgrades)){
-    for(let i = 0; i < upgrades[key]; i++){
-      let upgrade = _.data.upgrades[key];
-      if(upgrade === undefined){
-        console.log("Invalid Upgrade: " + key);
-      } else {
-        apply_upgrade(ship, _.data.upgrades[key]);
-      }
+  dict_foreach(upgrades, ( type ) => {
+    let upgrade = _.data.upgrades[type];
+    if(upgrade === undefined){
+      console.log("Invalid Upgrade: " + type);
+    } else {
+      apply_upgrade(ship, upgrade);
     }
-  }
+  });
 }
 
 export function get_text(){
@@ -289,6 +287,14 @@ export function restore_default_settings(){
   Object.keys(DEFAULT_SETTINGS).forEach( (key) => {
     set_setting(key, DEFAULT_SETTINGS[key]);
   })
+}
+
+export function dict_foreach(dict, callback){
+  Object.keys(dict).forEach( (key) => {
+    for(let i = 0; i < dict[key]; i ++){
+      callback(key);
+    }
+  });
 }
 
 export function dict_add(dict, type, amount){

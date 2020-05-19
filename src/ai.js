@@ -141,18 +141,23 @@ function obey_orders(entity){
       case "attack_target":
         let possible_target = _.entities.get(mothership.target);
         if(possible_target){
-          console.log("Ordered to attack target");
+          _.hud.widgets.alert_box.show(`Ordered to attack ${possible_target.short_name}`);
           set_target(ai, possible_target);
         } else {
-          console.log("ordered to attack but no target");
+          _.hud.widgets.alert_box.show("Fighters cannot attack - No target (press ~ to select)");
           ai.destination = mothership.position;
         }
         break;
       case "recall":
-        console.log("Ordered to return to mothership");
+        _.hud.widgets.alert_box.show("Ordered to return to mothership");
         ai.destination = mothership.position;
         break;
     }
+/*
+    if(mothership.order){
+      debugger;
+    }
+*/
   } else {
     // Mothership is gone, now it's just a regular AI
     delete entity.mothership;
@@ -357,7 +362,7 @@ function engage(entity, target, delta_time, entMan){
   entity.direction_delta = final_turn;
 
   // Acclerate
-  if(dist > ACCEL_DISTANCE){
+  if(_.settings.ai_always_accel || dist > ACCEL_DISTANCE ){
     accelerate(entity.velocity, entity.direction,
        entity.accel * delta_time); 
     entity.thrust_this_frame = true;

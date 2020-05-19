@@ -233,7 +233,7 @@
     "mesh": "mamba",
     "full_name"   : "Freehold \"Mamba\" Starfighter",
     "desc"       : "While this shares many parts and design elements with the classic 950, the Mamba is a very different spaceframe.",
-    "upgrades"    : {"missile_pod_dumb":4, "plasma50":2, "dumbfiremissile": 4},
+    "upgrades"    : {"plasma50":2},
     "mass": 20,
     "rotation"  : 0.01,
     "accel"      : 0.00005,
@@ -298,7 +298,7 @@
     "long_name"   : "Old Empire Fighter",
     "full_name"   : "Imperial Starfighter Type 950",
     "desc"       : "Nearly Identical to the ships that swarmed across the galaxy a generation ago, this is the starfighter version of the Imperial Fighter. The \"Starfighter\" designation is to make it clear that this ship is capable of FTL travel-not always the rule for ships its size. In its day, its linear aerospike engines (now a common sight) where a revelation. Its large wings offer a gentle landing for novice pilots, but don't be fooled-this no trainer. It's built to be as much an aircraft as it is a spacecraft. Ubiquitous, they are now manufactured (or repaired and resold) on most worlds.",
-    "upgrades"    : {"missile_pod_dumb":4, "plasma50":2, "dumbfiremissile": 4},
+    "upgrades"    : {"plasma50":2},
     "mass": 20,
     "rotation"  : 0.01,
     "accel"      : 0.00005,
@@ -455,7 +455,7 @@
     "long_name"   : "Mod. Passer Fighter",
     "full_name"   : "FuHao Type 1200 League Passer Starfighter",
     "desc"       : "An economical, nimble, and aggressive fighter, upgunned for use by the League navy. It is the centerpiece of the league's 'swarm of small ships' doctrine-the league can field many of these small ships for every fighter the Loyal Suns can muster. It is the main contribution of the FuHao the League technology sharing agreement. The deal (especially next-of-kin benefits) that the cannon fodder piloting them get is pretty good, at least by League standards.",
-    "upgrades"    : {"autocannon": 2, "plasma50": 1, "missile_pod_dumb": 2},
+    "upgrades"    : {"autocannon": 2},
     "tech"       : {"league":1}
   },
   "league_heavy_fighter":{
@@ -736,8 +736,10 @@
     "long_name"   : "Baikonour Falcon",
     "full_name"   : "Baikonour Falcon, Rev 890",
     "desc"       : "Mid-sized mainstay of the defunct Baikonour navy, now mostly used by trader pilots on the western side of the galaxy, where they're cheaply available (and still carry the stigma-or pride-of the long defeated Baikonour federation)",
-    "upgrades"    : {"autocannon": 4, "autocannonammo": 100},
+    "upgrades"    : {"autocannon": 4, "autocannonammo": 100, "__carried_tercel": 2},
     "mass"        : 800,
+    "fighter_space": 3,
+    "fighter_launch_cooldown_divisor": 1,
     "rotation"  : 0.0002,
     "accel"      : 0.000013,
     "max_speed"   : 0.004,
@@ -766,7 +768,10 @@
     "tech"       : {"baik":1},
     "max_fuel"   : 3,
     "max_hp"     : 100,
-    "max_shields": 75
+    "max_shields": 75,
+    "as_carried": {
+      "fighter_space": -1
+    }
   },
   "goshawk":{
     "mesh"        : "goshawk",

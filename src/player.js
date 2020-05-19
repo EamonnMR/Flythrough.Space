@@ -8,6 +8,7 @@ import {
   is_cheat_enabled,
   overridable_default,
   choose,
+  dict_foreach,
   dict_add,
   dict_subtract,
   assert_true,
@@ -77,6 +78,7 @@ export class ShipSave {
     this.fuel = this.dat.max_fuel;
     this.bulk_cargo = {};
     this.mission_cargo = {};
+    this.deployed_fighters = {};
   }
 
   apply_to_dat(){ 
@@ -132,7 +134,20 @@ export class ShipSave {
     return total;
   }
 
+  add_deployed_fighter(type){
+    dict_add(this.deployed_fighters, type, 1);
+  }
+
+  remove_deployed_fighter(type){
+    dict_subtract(this.deployed_fighters, type, 1);
+  }
+
   validate_ship( ship ){
+    // Count space from deployed_fighters
+    dict_foreach(this.deployed_fighters, (type) => {
+      push_fighter(ship.upgrades, type)
+    })
+
     return ship.space >= 0 && ship.cargo >= 0 && ship.cargo >= this.cargo_carried();
   }
 }
@@ -359,7 +374,7 @@ export class PlayerSave {
 }
 
 function test_fill_cargo(){
-  let plr = new PlayerSave();
+  let plr = new PlayerSave("shuttle");
   plr.fill_cargo("metal", 11)
 
   assert_equal(
@@ -370,7 +385,7 @@ function test_fill_cargo(){
 }
 
 function test_fleet_bulk_cargo(){
-  let plr = new PlayerSave();
+  let plr = new PlayerSave("shuttle");
   plr.fill_cargo("metal", 11)
 
   assert_equal(
@@ -381,7 +396,7 @@ function test_fleet_bulk_cargo(){
 }
 
 function test_total_cargo(){
-  let plr = new PlayerSave();
+  let plr = new PlayerSave("shuttle");
   plr.fill_cargo("metal", 11)
   assert_equal(
     plr.total_cargo(),
@@ -391,7 +406,7 @@ function test_total_cargo(){
 }
 
 function test_max_cargo(){
-  let plr = new PlayerSave();
+  let plr = new PlayerSave("shuttle");
   assert_equal(
     plr.max_cargo(),
     10, // Capacity of default ship
@@ -400,7 +415,7 @@ function test_max_cargo(){
 }
 
 function test_all_ships(){
-  let plr = new PlayerSave();
+  let plr = new PlayerSave("shuttle");
   assert_equal(
     plr.all_ships(),
     [plr.flagship],
@@ -410,7 +425,7 @@ function test_all_ships(){
 
 function test_add_bulk_cargo(){
   const AMT = 5;
-  let plr = new PlayerSave();
+  let plr = new PlayerSave("shuttle");
   plr.add_bulk_cargo("metal", AMT);
   assert_equal(
     plr.total_cargo(),
@@ -422,7 +437,7 @@ function test_add_bulk_cargo(){
 
 function test_add_mission_cargo(){
   const AMT = 5;
-  let plr = new PlayerSave();
+  let plr = new PlayerSave("shuttle");
   plr.add_mission_cargo("metal", AMT);
   assert_equal(
     plr.total_cargo(),
@@ -433,7 +448,7 @@ function test_add_mission_cargo(){
 
 function test_remove_bulk_cargo(){
   const AMT = 5;
-  let plr = new PlayerSave();
+  let plr = new PlayerSave("shuttle");
   plr.add_bulk_cargo("metal", AMT);
   plr.remove_bulk_cargo("metal", AMT);
   assert_equal(
@@ -446,7 +461,7 @@ function test_remove_bulk_cargo(){
 
 function test_remove_mission_cargo(){
   const AMT = 5;
-  let plr = new PlayerSave();
+  let plr = new PlayerSave("shuttle");
   plr.add_mission_cargo("metal", AMT);
   plr.remove_mission_cargo("metal", AMT);
   assert_equal(
