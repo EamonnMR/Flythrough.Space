@@ -1,6 +1,7 @@
 import {_} from "./singletons.js";
 import {LandingMenuBigButton} from "./landing.js";
 import {PlayerSave} from "./player.js";
+import { overridable_default } from "./util.js";
 
 import {
   BaseMenuView,
@@ -95,7 +96,7 @@ export class MainMenu extends BaseMenuView {
       'New Captain',
       () => {
         // TODO: Add player config options
-        _.player = new PlayerSave();
+        _.player = new PlayerSave(overridable_default("ship", "shuttle"));
         this.parent.enter_state('gameplay');
       },
       LEFT,

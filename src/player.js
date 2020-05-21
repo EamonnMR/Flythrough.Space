@@ -58,7 +58,7 @@ function restore_shipsave_from_object(object){
 export function restore_from_object(object){
 
   let player = Object.assign(
-    new PlayerSave(),
+    new PlayerSave("shuttle"),
     object,
   );
   
@@ -85,6 +85,16 @@ export class ShipSave {
     this.dat.upgrades = this.upgrades;
   }
 
+  impose_dat(dat){
+    // For when the player acquires a ship from a system
+    this.upgrades = dat.upgrades;
+    this.dat = Object.create(_.data.ships[dat.type]);
+    if(this.dat.cargo_carried){
+      this.bulk_cargo = dat.cargo_carried;
+    }
+    this.apply_to_dat();
+  }
+
   can_buy_upgrade(price, upgrade, quantity){
     let upgrades_if_bought = {};
     Object.assign(upgrades_if_bought, this.upgrades);
@@ -95,7 +105,6 @@ export class ShipSave {
     apply_upgrades(ship_if_bought, upgrades_if_bought);
     
     return this.validate_ship( ship_if_bought )&& _.player.can_spend_money(upgrade.price * quantity);
-
   }
 
   can_sell_upgrade(price, upgrade, quantity){
@@ -142,6 +151,12 @@ export class ShipSave {
     dict_subtract(this.deployed_fighters, type, 1);
   }
 
+  money_value(){
+    return this.dat.price + Object.keys(this.upgrades).map( (key) => {
+      return this.upgrades[key] * _.data.upgrades[key].price
+    }).reduce( (accu, item) => accu + item, 0);
+  }
+
   validate_ship( ship ){
     // Count space from deployed_fighters
     dict_foreach(this.deployed_fighters, (type) => {
@@ -149,6 +164,15 @@ export class ShipSave {
     })
 
     return ship.space >= 0 && ship.cargo >= 0 && ship.cargo >= this.cargo_carried();
+  }
+}
+
+export class MissionShip extends ShipSave {
+  constructor(){
+    super();
+    this.specifics = {}; // Override values on spawned ship
+    this.associated_mission = {};
+    this.spawn_on = "" // Expression to evaluate to check if ship should spawn
   }
 }
 
@@ -161,7 +185,7 @@ export class PlayerSave {
     localStorage.setItem( LAST_SAVE, key );
   }
 
-  constructor() {
+  constructor(ship) {
     this.name = choose([
       "Drew Jason",
       "Elinore",
@@ -178,14 +202,16 @@ export class PlayerSave {
     this.current_docked_ship = null;
     this.initial_position = {x: 0, y: 0};
     this.active_missions = {};
-    this.flagship = new ShipSave(overridable_default("ship", "shuttle"));
-    this.fleet = [];
+    this.flagship = new ShipSave(ship);
+    this.fleet = {};
+    this.mission_ships = {};
 
     this.total_accumulated_damage = 0;
 
     this.govts = this.init_govts();
     this.explored = []
     this.zoom = 4 // Player's zoom level
+    this.fleet_name_counter = 127
   }
 
   total_cargo(){
@@ -198,7 +224,7 @@ export class PlayerSave {
   }
 
   all_ships(){
-    return this.fleet.concat([this.flagship])
+    return Object.values(this.fleet).concat([this.flagship])
   }
 
   bulk_cargo_of_type(type){
@@ -270,12 +296,8 @@ export class PlayerSave {
     this.fuel = this.max_fuel();
   }
 
-  ship_value(){
-    return this.dat.price;
-  }
-
   can_buy_new_ship(price){
-    return price <= this.money + this.ship_value();
+    return price <= this.money + this.flagship.money_value();
   }
 
   can_buy_new_ship_outright(price){
@@ -288,8 +310,15 @@ export class PlayerSave {
   }
 
   add_bulk_cargo(type, amount){
-    // TODO: Handle Fleets
-    dict_add(this.flagship.bulk_cargo, type, amount);
+    for(let ship of this.all_ships()){
+      let amount_fits_in_ship = ship.dat.cargo - ship.cargo_carried();
+      let amount_to_add = Math.max(amount_fits_in_ship, amount);
+      dict_add(ship.bulk_cargo, type, amount_to_add);
+      amount -= amount_to_add;
+      if(amount == 0){
+        break;
+      }
+    }
   }
 
   remove_mission_cargo(type, amount){
@@ -371,6 +400,17 @@ export class PlayerSave {
     }
     return govts;
   }
+
+  add_fleet_ship(dat){
+    let key = `${dat.long_name} ${this.fleet_name_counter ++}`;
+    let save = new ShipSave(dat.type);
+    save.impose_dat(dat);
+    this.fleet[key] = save;
+  }
+
+  remove_fleet_ship(fleet_id){
+    delete this.fleet[key];
+  }
 }
 
 function test_fill_cargo(){
@@ -397,7 +437,7 @@ function test_fleet_bulk_cargo(){
 
 function test_total_cargo(){
   let plr = new PlayerSave("shuttle");
-  plr.fill_cargo("metal", 11)
+  plr.fill_cargo("metal", 11);
   assert_equal(
     plr.total_cargo(),
     10,
@@ -414,12 +454,41 @@ function test_max_cargo(){
   );
 }
 
-function test_all_ships(){
+function test_all_ships_flagship(){
   let plr = new PlayerSave("shuttle");
   assert_equal(
     plr.all_ships(),
     [plr.flagship],
-    "all_ships returns only the flagship",
+    "all_ships returns just the flagship when only a flagship is present",
+  );
+}
+
+function test_all_ships(){
+  let plr = new PlayerSave("shuttle");
+  plr.add_fleet_ship(Object.create(_.data.ships["shuttle"]));
+
+  assert_equal(
+    plr.all_ships(),
+    [Object.values(plr.fleet)[0], plr.flagship],
+    "all_ships returns fleet and flagship",
+  );
+}
+
+function test_add_ship(){
+  let plr = new PlayerSave("shuttle");
+  plr.add_fleet_ship(Object.create(_.data.ships["shuttle"]));
+  plr.add_fleet_ship(Object.create(_.data.ships["shuttle"]));
+  let fleet = Object.values(plr.fleet);
+
+  assert_true(
+    fleet[0] && fleet[1] && fleet[0] != fleet[1],
+    "Adding ships adds distinct ships",
+  );
+
+  assert_equal(
+    Object.keys(fleet).length,
+    2,
+    "Adding ships increases fleet key count",
   );
 }
 
@@ -471,6 +540,29 @@ function test_remove_mission_cargo(){
   );
 }
 
+function test_fleet_bulk_cargo_with_fleet(){
+  let plr = new PlayerSave("shuttle");
+  plr.add_fleet_ship(Object.create(_.data.ships["shuttle"]))
+  plr.fill_cargo("metal", 11)
+
+  assert_equal(
+    plr.fleet_bulk_cargo(),
+    {metal: 11},
+    "Fleet bulk cargo is calculated correctly with a fleet",
+  );
+}
+
+function test_total_cargo_with_fleet(){
+  let plr = new PlayerSave("shuttle");
+  plr.add_fleet_ship(Object.create(_.data.ships["shuttle"]));
+  plr.fill_cargo("metal", 11);
+  assert_equal(
+    plr.total_cargo(),
+    11,
+    "Total Cargo is calculated correctly with a fleet",
+  );
+}
+
 export function player_unit_tests(){
   test_add_bulk_cargo();
   test_add_mission_cargo();
@@ -481,4 +573,6 @@ export function player_unit_tests(){
   test_fill_cargo();
   test_total_cargo();
   test_fleet_bulk_cargo();
+  test_total_cargo_with_fleet();
+  test_fleet_bulk_cargo_with_fleet();
 }

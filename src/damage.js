@@ -159,6 +159,14 @@ function handle_consequences(entity, killshot){
   if("mothership" in entity){
     handle_fighter_consequences(entity, killshot)
   }
+  if("player_fleet_id" in entity){
+    handle_fleet_consequences(entity, killshot);
+  }
+}
+
+function handle_fleet_consequences(entity, killshot){
+  _.player.remove_fleet_ship(entity.player_fleet_id);
+  _.hud_widgets.alert_box.show(`Escort Lost: ${entity.player_fleet_id}`);
 }
 
 function handle_fighter_consequences(entity, killshot){
@@ -167,13 +175,10 @@ function handle_fighter_consequences(entity, killshot){
     if(mothership.player_flagship){
       _.player.flagship.remove_deployed_fighter(entity.type);
       _.hud.widgets.alert_box.show(`Fighter lost: ${entity.short_name}`);
-    }
-    /*
     } else if (mothership.player_fleet_id){
       _.player.fleet[mothership.player_fleet_id].remove_deployed_fighter(entity.type);
-
+      // TODO: Add to respawn list?
     }
-    */
   }
 }
 

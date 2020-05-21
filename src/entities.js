@@ -13,6 +13,21 @@ import {
   get_engine_particle_systems,
 } from "./graphics.js";
 
+export function playerFleetShipFactory(prototype, leader, player_fleet_id){
+  let ship = shipFactory(
+    prototype,
+    {
+      x: leader.position.x,
+      y: leader.position.y,
+    },
+    mothership.govt ? mothership.govt : null
+  );
+  ship.ai = {state: "passive"};
+  ship.leader = leader.id;
+  ship.player_aligned = true;
+  ship.player_fleet_id = player_fleet_id;
+}
+
 export function fighterFactory(prototype, mothership){
   let ship = shipFactory(
     prototype,

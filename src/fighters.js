@@ -59,10 +59,9 @@ export function fighterDockSystem(entMan){
 function dock(mothership, entity){
   if(mothership.player_flagship){
     _.player.flagship.remove_deployed_fighter(entity.type);
-  }/* else if (mothership.player_fleet_id){
+  } else if (mothership.player_fleet_id){
     _.player.fleet[mothership.player_fleet_id].remove_deployed_fighter(entity.type);
-  }*/
-  
+  }
   push_fighter(mothership.upgrades, entity.type);
   entity.remove = true;
 }
@@ -74,10 +73,9 @@ function launch_fighter(mothership){
   if(type){
     if(mothership.player_flagship){
       _.player.flagship.add_deployed_fighter(type)
+    } else if (mothership.player_fleet_id) {
+      _.player.fleet[mothership.player_fleet_id].add_deployed_fighter(type);
     }
-    // TODO: If mothership.player_fleet_id:
-    // _.player.fleet[mothership.player_fleet_id].add_deployed_fighter(type);
-
     _.entities.insert(fighterFactory(ship_dat, mothership));
     return true;
   }

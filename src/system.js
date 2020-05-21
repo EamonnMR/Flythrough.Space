@@ -45,6 +45,14 @@ export function setup_system(entMan, system){
 
   ents = ents.concat(fighters_for_shipsave(_.player.flagship, player_ship));
 
+  for (let key of Object.keys(_.player.fleet)){
+    let fleet_ship_save = _.player.fleet[key];
+    let ship = playerFleetShipFactory(fleet_ship_save.dat, player_ship, key);
+
+    ents.push(fleet_ship_save);
+    ents = ents.concat(fighters_for_shipsave(fleet_ship_save, ship));
+  }
+
   // TODO: NPCs should actually be made by an NPC Spawner entity that jumps NPC ships in at random times.
 
 
