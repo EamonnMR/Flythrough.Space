@@ -13,6 +13,10 @@ import {
   polar_from_rect,
 } from "./util.js";
 
+import {
+  attach_sound
+} from "./weapon.js";
+
 export const SHIP_Y = 0; // This might want to be imported from somewhere
 const PLANET_SCALE = 15;  // TODO: Noticing that differently sized planet sprites end up being the same screen-space size. Weird.
 const PLANET_Y = 0;
@@ -131,6 +135,7 @@ function mount_turreted_weapons(model_meta, ship, weapon_index){
 
     let weapon = ship.weapons[weapon_index];
     weapon.model = _.data.get_mesh(weapon.mesh);
+    attach_sound(weapon);
     let weapon_material = _.data.get_material(weapon.mesh, weapon.skin);
     if(weapon_material){
       weapon.model.material = weapon_material;
@@ -255,6 +260,7 @@ function mount_fixed_weapons_on_ship(model_meta, ship, weapon_index){
   for(let i = weapon_index; i < min + weapon_index; i++){
     let weapon = ship.weapons[i] 
     weapon.model = _.data.get_mesh(weapon.mesh);
+    attach_sound(weapon);
     let material = _.data.get_material(weapon.mesh, weapon.skin);
     if(material){
       weapon.model.material = material;
@@ -275,12 +281,18 @@ export function chaseCameraFollowSystem (entMan) {
 };
 
 export function uniCameraFollowSystem(entMan){
+  let audio_position = new BABYLON.Vector3(0, 0, 0);
   for (let entity of entMan.get_with(['model', 'camera'])) {
+	  audio_position = entity.model.absolutePosition;
     _.camera.position = entity.model.position.add(cam_offset());
   }
+  _.scene.audioListenerPositionProvider = () => {
+    return audio_position;
+  };
 };
 
 export let cameraFollowSystem = uniCameraFollowSystem;
+
 
 export function modelPositionSystem (entMan) {
   for (let entity of entMan.get_with(['model'])) {

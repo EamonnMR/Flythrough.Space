@@ -85,7 +85,22 @@ export class Data {
     this.sprites = {};
     this.sprite_mgrs = {};
     this.materials = {};
+    this.sounds = {};
   }
+
+  get_sound(name, parent_mesh){
+    let sound= new BABYLON.Sound(name, this.sounds[name], _.scene, null, {
+      loop: false,
+      autoplay: true,
+      spatialSound: true,
+      distanceModel: "exponential",
+      rolloffFactor: 0.1,
+    });
+    sound.attachToMesh(parent_mesh);
+
+    return sound;
+  }
+
 
   get_mesh(name){
     // Remember, these will come in at 0 visibility. Make sure
@@ -403,6 +418,8 @@ function load_assets( source_json, scene, data, finish_callback ){
       scene
     );
   }
+
+  data.sounds = source_json.sounds;
   
   manager.onFinish = finish_callback;
   manager.load();
