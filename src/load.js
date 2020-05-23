@@ -101,6 +101,18 @@ export class Data {
     return sound;
   }
 
+  play_sound_at_position(name, position){
+    let sound= new BABYLON.Sound(name, this.sounds[name], _.scene, null, {
+      loop: false,
+      autoplay: true,
+      spatialSound: true,
+      distanceModel: "exponential",
+      rolloffFactor: 0.1,
+    })
+    sound.setPosition(position);
+    sound.play();
+  }
+
 
   get_mesh(name){
     // Remember, these will come in at 0 visibility. Make sure

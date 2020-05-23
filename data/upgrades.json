@@ -5,6 +5,7 @@
     "desc"           : "This energy weapon dates back to at least before the sector was settled, and perhaps even earlier. Versions of it have been seen on many worlds, but it was standardized and mass produced by the Empire. It propels a high-energy shaped plasma burst at the target, maximizing damage and using very little energy. However it quickly dissipates and its damage potential diminishes over time. It is best used at close range.",
     "price"          : 500,
     "weapon"      : {
+      "sfx": "plasma",
       "mesh":  "plasma_cannon",
       "skin":  "plasma",
       "sprite": "plasma",
@@ -28,6 +29,7 @@
     "desc"           : "Approximately four times as powerful as the standard cannon, the type 400 200kj plasma turret is mounted on most larger civilian ships, as its military use has been eclipsed by more powerful and efficient cannons. Still, if you haven't got a navy at your back, it does not hurt to be packing a 200.",
     "price"          : 2500,
     "weapon"         : {
+      "sfx": "plasma",
       "mesh":  "plasma_cannon_large",
       "skin":  "plasma",
       "sprite": "plasma_large",
@@ -60,6 +62,7 @@
     "price"          : 500,
     "exclass"        : "autocannon",
     "weapon"      : {
+      "sfx": "cannon",
       "mesh":  "autocannon",
       "sprite":"autocannon",
       "velocity":0.035,
@@ -93,6 +96,7 @@
     "desc"           : "An ancient technology, this rocket launcher is configured for the most basic 'dumb-fire' missiles. Make sure you point it in the right direction before you fire it. Missiles not included.",
     "price"          : 1000,
     "weapon"      : {
+      "sfx": "missile",
       "mesh":  "missile_pod",
       "skin":  "dumb",
       "sprite":"missile",
@@ -123,6 +127,7 @@
     "desc"           : "A big old missile full of explosives is no good if it misses the target. Enter the guided missile pod: it links up with a ship's sensors. If the parent ship is locked on to a target when the missile is launched, the launcher will download the target's radar cross section to the missile and the missile will do its darnedest to drop itself right on it.",
     "price"          : 1000,
     "weapon"      : {
+      "sfx": "missile",
       "mesh":  "missile_pod",
       "skin":  "guided",
       "sprite":"missile",
@@ -218,6 +223,7 @@
     "desc"           : "This deadly variation on the autocannon concept fires minute globs of antimatter, the inverse-charged counterpart to the matter that makes up most of the galaxy. When the projectiles strike a ship's hull (as goes any matter/antimatter contact), they annihilate, carving a hole and melting the surrounding plating with intense radiation. Unfortunately, the weapon is ineffective against shielded targets-in fact, a shield is used inside the barrel to prevent any contact between the weapon and the ammunition.",
     "price"          : 100000,
     "weapon"         : {
+      "sfx": "cannon",
       "mesh":  "autocannon",
       "skin": "anti",
       "inaccuracy":0.07,
@@ -270,6 +276,7 @@
     "desc"           : "Sort of the ideal blend of plasma cannon and autocannon. The projectile is held together by a self-sustained field, (like a plasma weapon) but is itself solid and prone explode on impact (like an autocannon.) The field holding it together is so tight that the only thing keeping it from getting smaller is 'degeneracy pressure' - the inability of identical particles to occupy the same space at the same time. An edge case in the universe, some might say.",
     "price"          : 100000,
     "weapon"         : {
+      "sfx": "cannon",
       "mesh":  "autocannon",
       "skin": "degen",
       "sprite":"degenerate_matter",
@@ -296,6 +303,7 @@
     "tech"          : {"itaska": 1},
     "desc"          : "Using a stabilized payload of like-colored quarks, the projectile from this weapon is attached to the target by gluons, which slingshot it with devastating force. If it manages to make contact with a target's hull, the now free quarks will play havoc with its atomic structure, causing unpredictable (but always devastating) damage. A curious side effect of the strong-force \"guidance\" is that the further away the target is when the projectile is launched, the more damage it will do on impact.",
     "weapon"        : {
+      "sfx": "plasma",
       "mesh":  "plasma_cannon",
       "sprite": "gluon",
       "inaccuracy": 0.05,
@@ -378,6 +386,7 @@
     "price"          : 1200,
     "space"          : -5,
     "weapon"      : {
+      "sfx": "plasma",
       "mesh":  "plasma_cannon",
       "skin":  "ion",
       "sprite": "ion",
@@ -404,6 +413,7 @@
     "price"          : 4800,
     "space"          : -22,
     "weapon"         : {
+      "sfx": "plasma",
       "mesh":  "plasma_cannon",
       "skin":  "ion",
       "sprite": "ion_large",
@@ -479,6 +489,7 @@
     "price"          : 500,
     "exclass"        : "autocannon",
     "weapon"      : {
+      "sfx": "explosion",
       "mesh":  "plasma_cannon",
       "period": 0.01,
       "inaccuracy":0,
@@ -568,6 +579,7 @@
     "desc"           : "A very small payload dwarfed by a guidance system to ensure correct targeting. That small payload is antimatter, though, so it's sure to do substantial damage to anything unlucky enough to be near it when it goes off.",
     "price"          : 1000,
     "weapon"      : {
+      "sfx": "missile",
       "mesh":  "missile_pod",
       "skin":  "antimatter",
       "sprite":"missile",

@@ -373,7 +373,7 @@ function for_each_special_attachpoint(entity, attachpoint_type, callback){
   }
 }
 
-export function do_explo(position, type="explosion", scale=1){
+export function do_explo(position, type="explosion", scale=1, sfx=null){
   // TODO: This could probably be part of CCM
   let particle_system = _.data.get_particle_system(type);
   /*
@@ -389,6 +389,9 @@ export function do_explo(position, type="explosion", scale=1){
   particle_system.emitter.position.z = position.y;
   particle_system.disposeOnStop = true;
   particle_system.renderingGroupId = DEFAULT_LAYER;
+  if(sfx){
+    _.data.play_sound_at_position(sfx, particle_system.emitter.position);
+  }
   particle_system.start();
   particle_system.stop();
 }
