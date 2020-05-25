@@ -1520,6 +1520,12 @@
       "size": 500
     }
   },
+  "sounds": {
+    "explosion": "assets/sound/explosion.wav",
+    "cannon": "assets/sound/pow.wav",
+    "plasma": "assets/sound/laser2.mp3",
+    "missile": "assets/sound/launch1.wav"
+  },
   "data": {
     "systems": "systems.json",
     "spobs": "spobs.json",

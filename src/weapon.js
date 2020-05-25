@@ -107,6 +107,11 @@ export function weapon_factory(proto) {
   return weapon;
 }
 
+export function attach_sound(weapon){
+  if("sfx" in weapon){
+    weapon.sound = _.data.get_sound(weapon.sfx, weapon.model);
+  }
+}
 
 function consume_ammo(weapon, entity){
   if("ammo" in weapon){
@@ -165,6 +170,9 @@ function fire_weapon(weapon, entity, entMan) {
     let aim_direction = entity.direction;
     if(weapon.model){
       [origin, depth, aim_direction] = world_position_from_model(weapon.model);
+    }
+    if(weapon.sound){
+      weapon.sound.play();
     }
     let direction = inaccuracy(
       aim_direction,

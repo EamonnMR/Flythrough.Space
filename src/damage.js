@@ -47,7 +47,7 @@ export function shot_handler(shot, object){
   }
 
   if('explosion' in shot){
-    do_explo(shot.position, shot.explosion);
+    do_explo(shot.position, shot.explosion, 1, shot.sfx);
   }
 
   // Add other special case shot interaction logic here
@@ -107,7 +107,7 @@ function destroyed(entity, killshot){
   // TODO: Slow explosion filled demise
   entity.remove = true;
 
-  do_explo(entity.position, entity.explosion, entity.mass);
+  do_explo(entity.position, entity.explosion, entity.mass, "explosion");
   
   // TODO: 
   // do_aoe_damage_from_entity(entity)
