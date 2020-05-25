@@ -18,7 +18,7 @@
     "color":"#F5F500FF",
     "dark_color":"#EAEA00FF",
     "foes": [
-      "drone",
+      "league",
       "cartel"
     ]
   },
@@ -40,7 +40,12 @@
     "name":"Loyal Suns",
     "short_name": "Loyal.",
     "color":"#FF0000FF",
-    "dark_color":"#DD1010FF"
+    "dark_color":"#BB0909FF",
+    "foes": [
+      "free",
+      "itaska",
+      "league"
+    ]
   },
   "xic":{
     "name":"XIC Mining",
