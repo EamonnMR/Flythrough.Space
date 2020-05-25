@@ -2270,8 +2270,8 @@
     "y":356,
     "links":[
       "Kirrahe",
-      ".302",
-      ".303",
+      "Lewa",
+      "Gali",
       "Marauder"
     ]
   },
@@ -2284,33 +2284,33 @@
       ".*26"
     ]
   },
-  ".301":{
+  "Pohatu":{
     "x":1605,
     "y":228,
     "links":[
       "Ulam",
-      ".306",
+      "Tahu",
       ".*26"
     ]
   },
-  ".302":{
+  "Lewa":{
     "x":1803,
     "y":234,
     "links":[
       "Ulam",
-      ".303",
-      ".306",
-      ".309"
+      "Gali",
+      "Tahu",
+      "Makuta"
     ]
   },
-  ".303":{
+  "Gali":{
     "x":1845,
     "y":302,
     "links":[
       "Ulam",
-      ".302",
+      "Lewa",
       "Marauder",
-      ".309"
+      "Makuta"
     ]
   },
   "Marauder":{
@@ -2318,10 +2318,10 @@
     "y":368,
     "links":[
       "Ulam",
-      ".303",
+      "Gali",
       "Normanz",
-      ".310",
-      ".312"
+      "Takua",
+      "Lanca"
     ]
   },
   "Normanz":{
@@ -2330,18 +2330,18 @@
     "links":[
       "Kirrahe",
       "Marauder",
-      ".311"
+      "Howar"
     ]
   },
-  ".306":{
+  "Tahu":{
     "x":1717,
     "y":218,
     "links":[
-      ".301",
-      ".302"
+      "Pohatu",
+      "Lewa"
     ]
   },
-  ".307":{
+  "Onua":{
     "x":1433,
     "y":248,
     "links":[
@@ -2357,41 +2357,41 @@
       ".*26"
     ]
   },
-  ".309":{
+  "Makuta":{
     "x":2063,
     "y":286,
     "links":[
-      ".302",
-      ".303",
+      "Lewa",
+      "Gali",
       "Marauder",
-      ".310"
+      "Takua"
     ]
   },
-  ".310":{
+  "Takua":{
     "x":2007,
     "y":483,
     "links":[
       "Marauder",
-      ".309",
+      "Makuta",
       "Stormgald",
       "Flim",
       "Argonne"
     ]
   },
-  ".311":{
+  "Howar":{
     "x":1708,
     "y":517,
     "links":[
       "Normanz",
-      ".312"
+      "Lanca"
     ]
   },
-  ".312":{
+  "Lanca":{
     "x":1827,
     "y":490,
     "links":[
       "Marauder",
-      ".311",
+      "Howar",
       "Argonne"
     ]
   },
@@ -2446,7 +2446,7 @@
     "x":1909,
     "y":652,
     "links":[
-      ".310",
+      "Takua",
       "Guayas",
       "Correa",
       "Flim"
@@ -3297,7 +3297,7 @@
     "x":2013,
     "y":594,
     "links":[
-      ".310",
+      "Takua",
       "Stormgald"
     ]
   },
@@ -3314,7 +3314,7 @@
     "y":309,
     "links":[
       "Housatonic",
-      ".307",
+      "Onua",
       ".*16"
     ]
   },
@@ -3401,8 +3401,8 @@
     "y":305,
     "links":[
       "Kirrahe",
-      ".301",
-      ".307",
+      "Pohatu",
+      "Onua",
       ".308"
     ]
   },
@@ -3418,10 +3418,9 @@
       "bounty"
     ],
     "links":[
-      ".310",
       "Stormgald",
       "Yevgraf",
-      ".310"
+      "Takua"
     ]
   },
   ".*28":{
