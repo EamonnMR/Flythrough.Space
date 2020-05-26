@@ -128,7 +128,6 @@
     "npcs": [
       "trader_lowtech",
       "trader_bulk",
-      "pirate_expedition",
       "free_capital",
       "free_patrol"
     ],
@@ -460,6 +459,13 @@
   "Harper":{
     "x":1242,
     "y":1077,
+    "npc_average": 4,
+    "npcs": [
+      "sinod",
+      "trader_bulk",
+      "trader_danger",
+      "league_cap"
+    ],
     "govt":"league",
     "links":[
       "Rossum",
@@ -595,6 +601,13 @@
   "Mantilla":{
     "x":1273,
     "y":1182,
+    "npc_average": 4,
+    "npcs": [
+      "bounty",
+      "trader_bulk",
+      "trader_danger",
+      "league_cap"
+    ],
     "govt":"league",
     "links":[
       "Kuluene",
@@ -692,8 +705,7 @@
     "y":1268,
     "links":[
       "Bohai",
-      ".*21",
-      ".*28"
+      ".*21"
     ]
   },
   "Nanshan":{
@@ -701,7 +713,7 @@
     "y":1240,
     "links":[
       "Zhang",
-      ".*28"
+      "Yingli"
     ]
   },
   "Kaoya":{
@@ -709,8 +721,8 @@
     "y":1202,
     "links":[
       "Zhang",
-      ".*28",
-      ".*29"
+      "Yingli",
+      "Tuch"
     ]
   },
   "Anyuan":{
@@ -1178,7 +1190,7 @@
     ],
     "links":[
       "Minna",
-      ".343",
+      "Durandal",
       "Jes",
       "Braisted"
     ]
@@ -1413,6 +1425,10 @@
   "Volta":{
     "x":682,
     "y":1185,
+    "npc_average": 1,
+    "npcs": [
+      "trader_lowtech"
+    ],
     "spobs":[
       "Oromia"
     ],
@@ -1442,6 +1458,11 @@
   "Sabara":{
     "x":591,
     "y":1268,
+    "npc_average": 1,
+    "npcs": [
+      "trader_lowtech",
+      "western_trader_small"
+    ],
     "links":[
       "Asuangate",
       "Azuay"
@@ -1511,7 +1532,7 @@
     "x":479,
     "y":1229,
     "npc_average": 1,
-    "nocs": [
+    "npcs": [
       "trader_lowtech",
       "western_trader_small",
       "itaska"
@@ -2708,16 +2729,27 @@
   "Umbert":{
     "x":989,
     "y":1756,
+    "npc_average": 3,
+    "npcs": [
+      "pirate_expedition",
+      "pirate_raid",
+      "trader_bulk",
+      "trader_lowtech",
+      "free_patrol",
+      "league_pt"
+    ],
     "links":[
       "Lalande",
       "Thraxton",
       "Ryssdal"
     ]
   },
-  ".343":{
+  "Durandal":{
     "x":981,
     "y":1592,
+    "npc_average": 2,
     "npcs": [
+      "trader_lowtech",
       "pirate_expedition"
     ],
     "links":[
@@ -2729,9 +2761,17 @@
   "Lalande":{
     "x":883,
     "y":1658,
+    "npc_average": 3,
+    "npcs": [
+      "pirate_expedition",
+      "pirate_raid",
+      "trader_bulk",
+      "trader_lowtech",
+      "free_patrol"
+    ],
     "links":[
-      ".343",
-      ".343",
+      "Durandal",
+      "Durandal",
       ".345",
       ".346"
     ]
@@ -2987,6 +3027,15 @@
   "Thraxton":{
     "x":909,
     "y":1847,
+    "npc_average": 3,
+    "npcs": [
+      "pirate_expedition",
+      "pirate_raid",
+      "trader_bulk",
+      "trader_lowtech",
+      "free_patrol",
+      "league_pt"
+    ],
     "links":[
       "Umbert",
       "Havill"
@@ -3041,11 +3090,21 @@
   "Ryssdal":{
     "x":1075,
     "y":1609,
+    "npc_average": 3,
+    "npcs": [
+      "bounty",
+      "pirate_expedition",
+      "pirate_raid",
+      "trader_bulk",
+      "trader_lowtech",
+      "free_patrol",
+      "league_pt"
+    ],
     "links":[
       ".218",
       ".340",
       "Umbert",
-      ".343",
+      "Durandal",
       "Jes"
     ]
   },
@@ -3353,6 +3412,14 @@
   "Braisted":{
     "x":822,
     "y":1517,
+    "npc_average": 3,
+    "npcs": [
+      "pirate_expedition",
+      "pirate_raid",
+      "trader_bulk",
+      "trader_lowtech",
+      "free_patrol"
+    ],
     "links":[
       "Kagame",
       "Mideska",
@@ -3423,21 +3490,22 @@
       "Takua"
     ]
   },
-  ".*28":{
+  "Yingli":{
     "x":1686,
     "y":1300,
     "links":[
-      ".170",
       "Nanshan",
-      "Kaoya"
+      "Kaoya",
+      "Tuch"
     ]
   },
-  ".*29":{
+  "Tuch":{
     "x":1840,
     "y":1239,
     "links":[
       "Kaoya",
-      "Wenji"
+      "Wenji",
+      "Yingli"
     ]
   },
   "Zipaquira":{
