@@ -1513,6 +1513,11 @@
       "img": "assets/planets/kazachen.png",
       "count": 10,
       "size": 540
+    },
+    "loyal_station": {
+      "img": "assets/planets/loyal_station.png",
+      "count": 2,
+      "size": 500
     }
   },
   "sounds": {

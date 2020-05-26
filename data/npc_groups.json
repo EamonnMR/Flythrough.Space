@@ -241,5 +241,15 @@
       "falcon",
       "goshawk"
     ]
+  },
+  "sinod": {
+    "govt": "sinod",
+    "ships": [
+      "argosy",
+      "civ_corvette",
+      "oe_cru",
+      "oe_frig",
+      "passer"
+    ]
   }
 }

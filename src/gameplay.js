@@ -43,6 +43,9 @@ import {
 import {
   regenSystem
 } from "./damage.js";
+import {
+  comm_quote
+} from "./comms.js";
 
 export class GamePlayState extends ViewState {
 
@@ -115,6 +118,15 @@ export class GamePlayState extends ViewState {
       open_map: () => {
         this.entMan.pause();
         this.parent.enter_state('map');
+      },
+
+      hail: () => {
+        let player = this.entMan.get_player_ent();
+        let target = this.entMan.get(player.target);
+        _.hud.widgets.alert_box.show(
+          comm_quote( target )
+        );
+        
       },
 
       hyper_jump: () => {

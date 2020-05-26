@@ -91,7 +91,7 @@ export class Data {
   get_sound(name, parent_mesh){
     let sound= new BABYLON.Sound(name, this.sounds[name], _.scene, null, {
       loop: false,
-      autoplay: true,
+      autoplay: false,
       spatialSound: true,
       distanceModel: "exponential",
       rolloffFactor: 0.1,

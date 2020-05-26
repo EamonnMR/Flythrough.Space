@@ -405,7 +405,7 @@
 		"text":"Kopatchy was a moderately populous world before the empire burned off its atmosphere in 934 in the last, desperate years of its conflict with the Itaskan Peninsula. Since then the spoiled globe has stood as a memorial to the conflict which many Itaskans consider unfinished."
 	},
 	"DVI - Strelok":{
-		"sType":"avGaruda",
+    "sprite": "oe_station", 
 		"x":75,
 		"y":-143,
 		"tech":{
@@ -519,6 +519,7 @@
     "custom": true
 	},
 	"MCB-1":{
+    "sprite": "die_station",
 		"sType":"avWusquus",
 		"govt":"itaska",
 		"x":-100,
@@ -795,7 +796,7 @@
     "text": "A terrestrial world that may have been habitable before its parent star, Nemesis, went red-giant. Airtight stations look out over the scarred, red-bathed magma plains. What activity there is on the surface mostly work that is cheaper to do in a gravity well than in orbit, and mining the precious, heavier metals that are unusually rich on its stripped crust."
   },
   "Nemesis Orbital": {
-    "sprite": "oe_station", 
+    "sprite": "loyal_station", 
     "img": "assets/landing/oe_station_perspective.png",
     "x": 30,
     "y": 10,
@@ -835,7 +836,7 @@
     }
   },
   "Hoosac Orbital":{
-    "sprite": "oe_station", 
+    "sprite": "loyal_station", 
     "img": "assets/landing/oe_station_perspective.png",
     "x": 10,
     "y": 3,
@@ -973,7 +974,7 @@
   },
   "Tomohiro Station": {
     "govt": "loyal",
-    "sprite": "oe_station",
+    "sprite": "loyal_station",
     "shipyard": true,
     "custom": true,
     "x": 100,

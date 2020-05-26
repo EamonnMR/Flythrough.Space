@@ -1,5 +1,11 @@
 {
   "free":{
+    "hail_quotes": [
+      "Support the freehold - we fly for the people!",
+      "A steady Catalite supply is vital to national security",
+      "We can't let the league buy our planets - they'll buy our freedom too!",
+      "We can't let the Loyal Suns conquer our planets - they rule with an iron fist!"
+    ],
     "name":"Casamance Freehold",
     "short_name": "Freehold",
     "color":"#0000EDFF",
@@ -18,11 +24,17 @@
     "color":"#F5F500FF",
     "dark_color":"#EAEA00FF",
     "foes": [
-      "drone",
+      "league",
       "cartel"
     ]
   },
   "cartel":{
+    "hail_quotes": [
+      "The Family is watching",
+      "Unfortunately, you'll need to surrender your cargo",
+      "Catalite fetches a good price but good luck finding it",
+      "Nothing keeps pirates in line like a little discipline"
+    ],
     "name":"Caudron Pirate Cartell",
     "short_name": "Cartell",
     "color":"#CD5C5CFF",
@@ -31,6 +43,13 @@
     "default_rep": -1
   },
   "league":{
+    "hail_quotes": [
+      "Everyone has a price",
+      "There's no 'we' in team",
+      "One day I'll have enough cash to buy a moon",
+      "Do you have a minute to talk about refinancing?"
+    ],
+    "gives_trade_advice": true,
     "name":"League",
     "short_name": "League",
     "color":"#008000FF",
@@ -40,9 +59,20 @@
     "name":"Loyal Suns",
     "short_name": "Loyal.",
     "color":"#FF0000FF",
-    "dark_color":"#DD1010FF"
+    "dark_color":"#BB0909FF",
+    "foes": [
+      "free",
+      "itaska",
+      "league"
+    ]
   },
   "xic":{
+    "hail_quotes": [
+      "rock and stone!",
+      "Please do not look directly at mining lasers",
+      "These rocks are ours, go find your own"
+    ],
+    "gives_mining_advice": true,
     "name":"XIC Mining",
     "short_name": "XIC",
     "color":"#008F9B",
@@ -50,31 +80,70 @@
     "attack_asteroids": true
   },
   "merchant":{
+    "hail_quotes": [
+      "Don't buy trade goods unless the price is right",
+      "Pirates are a hassle",
+      "Never fly with an empty hold"
+    ],
+    "gives_trade_advice": true,
     "name": "Merchants",
     "short_name": "Merch",
     "color": "#C2B280FF"
   },
   "bounty":{
+    "hail_quotes": [
+      "Piracy is the scourge of unincorporated space",
+      "Be careful out there",
+      "Pirates tend to run heavier in systems with no government"
+    ],
     "name": "Bounty Hunter",
     "short_name": "Bounty",
     "color": "#C2B280FF"
   },
   "pirate": {
+    "hail_quotes": [
+      "I regret to inform you that tonight it's your money and your life",
+      "Hold still",
+      "If you don't like getting blown up, don't enter orbit"
+    ],
     "name": "Pirate",
     "short_name": "Pirate",
     "color": "#51534AFF",
     "attack_default": true
   },
   "baik": {
+    "hail_quotes": [
+      "Down with the loyal suns!",
+      "Our ships may be old, but they're ours dammit!",
+      "The war isn't over! The war was never over!"
+    ],
     "name": "Baikonour Insurgents",
     "color": "#51534AFF",
     "short_name": "Insur",
     "attack_default": true
   },
   "galbank": {
+    "hail_quotes": [
+      "Someone has to keep credcoins flowing",
+      "If we don't deliver updated blocks, transactions won't go through.",
+      "We put the 'central' in 'decentralized'"
+    ],
+    "gives_trade_advice": true,
     "name": "Galactic Bank",
     "color": "#AA00AAFF",
     "dark_color": "#AA00AAFF",
     "short_name": "Bank"
+  },
+  "sinod": {
+    "hail_quotes": [
+      "We await the great being's reincarnation",
+      "The great being will join us in the Kuluene System",
+      "Have you taken the reincarnation test yet? You never know!"
+    ],
+    "gives_trade_advice": true,
+    "name": "Sinod Of The Six",
+    "short_name": "Sinod",
+    "color":"#008000FF",
+    "dark_color":"#003500FF"
   }
 }

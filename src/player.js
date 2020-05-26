@@ -271,7 +271,7 @@ export class PlayerSave {
   }
 
   ship_value(){
-    return this.dat.price;
+    return this.flagship.dat.price;
   }
 
   can_buy_new_ship(price){
@@ -304,7 +304,7 @@ export class PlayerSave {
 
   buy_ship(type, new_ship){  // TODO: rename buy_flagship
     this.money += this.ship_value("flagship");
-    let new_flagship = ShipSave(type);
+    let new_flagship = new ShipSave(type);
     this.money -= new_flagship.dat.price;
     // TODO: Transfer cargo
     this.flagship = new_flagship;
