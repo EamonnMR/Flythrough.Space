@@ -114,6 +114,12 @@
   "Fonseca":{
     "x":849,
     "y":1086,
+    "npc_average": 3,
+    "npcs": [
+      "trader_bulk",
+      "free_capital",
+      "free_patrol"
+    ],
     "govt":"free",
     "links":[
       "Casamance",
@@ -186,6 +192,14 @@
   "Rimell":{
     "x":927,
     "y":1028,
+    "npc_average": 4,
+    "npcs": [
+      "galbank",
+      "trader_lowtech",
+      "trader_bulk",
+      "free_capital",
+      "free_patrol"
+    ],
     "govt":"free",
     "links":[
       "Stavros",
@@ -221,6 +235,13 @@
   "Humboldt":{
     "x":845,
     "y":774,
+    "npc_average": 2,
+    "npcs": [
+      "western_trader",
+      "free_patrol",
+      "western_trader_small",
+      "ls_pt"
+    ],
     "links":[
       "Shamir",
       "Steiner",
@@ -296,6 +317,12 @@
     "govt":"free",
     "spobs":[
       "Coldwater"
+    ],
+    "npc_average": 4,
+    "npcs": [
+      "trader_bulk",
+      "free_capital",
+      "free_patrol"
     ],
     "links":[
       "Carvajal",
@@ -379,6 +406,13 @@
   "Kuluene":{
     "x":1330,
     "y":1070,
+    "npc_average": 6,
+    "npcs": [
+      "sinod",
+      "league_cap",
+      "trader_bulk",
+      "trader_danger"
+    ],
     "govt":"league",
     "links":[
       "Holcomb",
@@ -433,6 +467,7 @@
     "govt":"league",
     "npc_average": 3,
     "npcs": [
+      "sinod",
       "trader_bulk",
       "trader_danger",
       "league_pt"
@@ -448,6 +483,13 @@
   "Arroyo":{
     "x":1386,
     "y":1003,
+    "npc_average": 3,
+    "npcs": [
+      "sinod",
+      "league_cap",
+      "trader_bulk",
+      "trader_danger"
+    ],
     "govt":"league",
     "links":[
       "Kuluene",
@@ -509,6 +551,13 @@
   "Ubahu":{
     "x":1192,
     "y":1231,
+    "npc_average": 3,
+    "npcs": [
+      "xic_presence",
+      "trader_lowtech",
+      "free_patrol",
+      "free_capital"
+    ],
     "govt":"free",
     "spobs":[
       "Ubuntu"
@@ -521,6 +570,12 @@
   "Brokop":{
     "x":1038,
     "y":1153,
+    "npc_average": 3,
+    "npcs": [
+      "trader_bulk",
+      "free_patrol",
+      "free_capital"
+    ],
     "govt":"free",
     "links":[
       "Sipali",
@@ -530,6 +585,14 @@
   "Sipali":{
     "x":1061,
     "y":1229,
+    "npc_average": 4,
+    "npcs": [
+      "trader_bulk",
+      "trader_danger",
+      "free_patrol",
+      "free_capital",
+      "galbank"
+    ],
     "govt":"free",
     "spobs":[
       "Kimathi"
@@ -547,6 +610,13 @@
     "y":1356,
     "spobs": [
       "Kejetia"
+    ],
+    "npc_average": 2,
+    "npcs": [
+      "bounty",
+      "xic_presence",
+      "trader_lowtech",
+      "free_patrol"
     ],
     "govt":"free",
     "links":[
@@ -603,6 +673,7 @@
     "y":1182,
     "npc_average": 4,
     "npcs": [
+      "sinod",
       "bounty",
       "trader_bulk",
       "trader_danger",
@@ -619,6 +690,14 @@
   "Renbrook":{
     "x":1360,
     "y":1166,
+    "npc_average": 4,
+    "npcs": [
+      "sinod",
+      "league_cap",
+      "league_pt",
+      "trader_bulk",
+      "trader_danger"
+    ],
     "govt":"league",
     "links":[
       "Kuluene",
@@ -778,6 +857,13 @@
   "Ishayev":{
     "x":1083,
     "y":733,
+    "npc_average": 3,
+    "npcs": [
+      "league_pt",
+      "western_trader_small",
+      "ls_pt",
+      "trader_danger"
+    ],
     "links":[
       "Stroustrup",
       "Pyatigorsk",
@@ -787,6 +873,13 @@
   "Kiriyen":{
     "x":1023,
     "y":740,
+    "npc_average": 3,
+    "npcs": [
+      "free_patrol",
+      "western_trader_small",
+      "ls_pt",
+      "trader_danger"
+    ],
     "links":[
       "Wijngaarden",
       "Ishayev",
@@ -1414,6 +1507,12 @@
     "x":775,
     "y":1159,
     "govt":"free",
+    "npc_average": 3,
+    "npcs": [
+      "trader_lowtech",
+      "trader_bulk",
+      "free_patrol"
+    ],
     "spobs":[
       "Turkana"
     ],
@@ -1708,6 +1807,14 @@
   "Azuay":{
     "x":706,
     "y":1253,
+    "npc_average": 4,
+    "npcs": [
+      "trader_danger",
+      "trader_bulk",
+      "western_trader",
+      "free_capital",
+      "free_patrol"
+    ],
     "govt":"free",
     "links":[
       "Sabara",
