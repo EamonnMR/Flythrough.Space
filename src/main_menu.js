@@ -133,7 +133,7 @@ export class MainMenu extends BaseMenuView {
     widgets.push(new LandingMenuBigButton(
       'About',
       () => {
-        pop_tab("http://blog.eamonnmr.com/2019/10/flythrough-space-alpha-release/", "_blank");
+        pop_tab("http://blog.eamonnmr.com/2020/05/flythrough-space-beta/", "_blank");
       },
       RIGHT,
       BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM,
