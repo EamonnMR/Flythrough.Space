@@ -145,5 +145,29 @@
     "short_name": "Sinod",
     "color":"#008000FF",
     "dark_color":"#003500FF"
+  },
+  "khanda": {
+    "hail_quotes": [
+      "Live Dangerously",
+      "We build them, you fly them",
+      "Don't ask what the league can do for you, ask if you get what you paid for!"
+    ],
+    "gives_trade_advice": true,
+    "name": "Khanda",
+    "short_name": "Khanda",
+    "color":"#008000FF",
+    "dark_color":"#003500FF"
+  },
+  "melkin": {
+    "hail_quotes": [
+      "If you want something done right, do it heavy",
+      "We've got big plans for this",
+      "Sometimes what you need is a bigger hammer"
+    ],
+    "gives_trade_advice": true,
+    "name": "Melkin",
+    "short_name": "Melkin",
+    "color":"#008000FF",
+    "dark_color":"#003500FF"
   }
 }

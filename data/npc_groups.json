@@ -251,5 +251,20 @@
       "oe_frig",
       "passer"
     ]
+  },
+  "khanda": {
+    "govt": "khanda",
+    "ships": [
+      "argosy",
+      "civ_corvette",
+      "civ_heavy_fighter"
+    ]
+  },
+  "melkin": {
+    "govt": "melkin",
+    "ships": [
+      "equity",
+      "venture"
+    ]
   }
 }

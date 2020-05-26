@@ -391,6 +391,14 @@
   "Uttar":{
     "x":1264,
     "y":903,
+    "npc_average": 3,
+    "npcs": [
+      "league_pt",
+      "trader_bulk",
+      "trader_danger",
+      "khanda",
+      "league_cap"
+    ],
     "govt":"league",
     "spobs": [
       "Agra",
@@ -467,6 +475,7 @@
     "govt":"league",
     "npc_average": 3,
     "npcs": [
+      "khanda",
       "sinod",
       "trader_bulk",
       "trader_danger",
@@ -945,6 +954,14 @@
     "x":1365,
     "y":728,
     "govt":"league",
+    "npc_average": 4,
+    "npcs": [
+      "pirate_raid",
+      "ls_pt",
+      "trader_bulk",
+      "khanda",
+      "league_cap"
+    ],
     "links":[
       "Lothian",
       "Hector",
@@ -955,6 +972,13 @@
     "x":1423,
     "y":557,
     "govt":"loyal",
+    "npc_average": 3,
+    "npcs": [
+      "league_pt",
+      "league_cap",
+      "ls_pt",
+      "ls_raid"
+    ],
     "spobs":[
       "Frontier Outpost V"
     ],
@@ -987,6 +1011,14 @@
   "Jhelum":{
     "x":1493,
     "y":754,
+    "npc_average": 4,
+    "npcs": [
+      "trader_bulk",
+      "melkin",
+      "khanda",
+      "league_cap",
+      "league_pt"
+    ],
     "govt":"league",
     "links":[
       "Ingolstadt",
@@ -2615,6 +2647,13 @@
   "Kjeldor":{
     "x":1347,
     "y":608,
+    "npc_average": 2,
+    "npcs": [
+      "league_cap",
+      "league_pt",
+      "ls_raid",
+      "ls_pt"
+    ],
     "links":[
       ".805",
       "Lothian",
@@ -2640,6 +2679,13 @@
   "Hector":{
     "x":1279,
     "y":664,
+    "npc_average": 2,
+    "npcs": [
+      "league_cap",
+      "league_pt",
+      "ls_raid",
+      "pirate_raid"
+    ],
     "links":[
       "Pyatigorsk",
       "Rybak",
@@ -2659,6 +2705,13 @@
   "Doab":{
     "x":1419,
     "y":818,
+    "npc_average": 4,
+    "npcs": [
+      "trader_bulk",
+      "khanda",
+      "league_cap",
+      "league_pt"
+    ],
     "govt":"league",
     "links":[
       "Kazanlak",
@@ -2672,6 +2725,13 @@
   "Ravi":{
     "x":1481,
     "y":806,
+    "npc_average": 5,
+    "npcs": [
+      "trader_bulk",
+      "khanda",
+      "league_cap",
+      "league_pt"
+    ],
     "govt":"league",
     "spobs": [ "Jagran" ],
     "links":[
@@ -2684,6 +2744,14 @@
   "Chenab":{
     "x":1575,
     "y":792,
+    "npc_average": 4,
+    "npcs": [
+      "trader_bulk",
+      "melkin",
+      "khanda",
+      "league_cap",
+      "league_pt"
+    ],
     "govt":"league",
     "links":[
       "Jhelum",
@@ -2708,6 +2776,12 @@
     "x":1427,
     "y":938,
     "govt":"league",
+    "npc_average": 4,
+    "npcs": [
+      "trader_bulk",
+      "khanda",
+      "league_cap"
+    ],
     "links":[
       "Uttar",
       "Karmack",
