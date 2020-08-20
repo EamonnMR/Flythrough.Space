@@ -22,7 +22,7 @@ function init(game_canvas, scene, engine){
   _.scene = scene;
   _.canvas = game_canvas;
 
-  graphics_init();
+  graphics_init(engine);
   
   let stateMgr = new StateManager({
     'gameplay': new GamePlayState(),

@@ -33,7 +33,12 @@ let CAM_OFFSET_3DV = new BABYLON.Vector3(0, 0, 30);
 let CAM_OFFSET_PERSPECTIVE = new BABYLON.Vector3(0, 42, 30);
 let CAM_OFFSET_BIRDSEYE = new BABYLON.Vector3(0, 42, 0);
 
-export function graphics_init(){
+export function graphics_init(engine){
+  
+  // Draw entire mesh at a time
+  engine.setDepthFunction(engine._gl.ALWAYS);
+  console.log("GL ALWAYS")
+
   _.scene.clearColor = new BABYLON.Color3(0, 0, 0);
   if(_.camera){
     _.camera.dispose();
