@@ -1,4 +1,8 @@
-import { overridable_default, update_settings } from "./util.js";
+import {
+  overridable_default,
+  update_settings,
+  RENDERING_GROUPS,
+} from "./util.js";
 import { _ } from "./singletons.js";
 import { GamePlayState } from "./gameplay.js";
 import { PlayerSave } from  "./player.js";
@@ -22,7 +26,7 @@ function init(game_canvas, scene, engine){
   _.scene = scene;
   _.canvas = game_canvas;
 
-  graphics_init();
+  graphics_init(engine);
   
   let stateMgr = new StateManager({
     'gameplay': new GamePlayState(),
@@ -54,6 +58,7 @@ function init(game_canvas, scene, engine){
 };
 
 window.addEventListener('load', () => {
+  BABYLON.RenderingManager.MAX_RENDERINGGROUPS = 256
   console.log("Welcome to flythrough.space");
   let systems, spobs, models, images;
   let game_canvas = document.getElementById("gameCanvas"); 

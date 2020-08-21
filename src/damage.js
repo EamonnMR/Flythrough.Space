@@ -4,6 +4,8 @@ import {
   flash_factory,
   set_dark_texture,
   make_way_for_light,
+  PLAYER_LAYER,
+  DEFAULT_LAYER,
 } from "./graphics.js";
 
 import {
@@ -47,7 +49,13 @@ export function shot_handler(shot, object){
   }
 
   if('explosion' in shot){
-    do_explo(shot.position, shot.explosion, 1, shot.sfx);
+    // Clip explosions into the things they impact for coolness
+    var layer = DEFAULT_LAYER;
+    if("model" in object){
+      layer = object.model.renderingGroupId;
+    }
+    do_explo(shot.position, shot.explosion, 1, shot.sfx, layer);
+
   }
 
   // Add other special case shot interaction logic here
@@ -107,7 +115,7 @@ function destroyed(entity, killshot){
   // TODO: Slow explosion filled demise
   entity.remove = true;
 
-  do_explo(entity.position, entity.explosion, entity.mass, "explosion");
+  do_explo(entity.position, entity.explosion, entity.mass, "explosion", PLAYER_LAYER);
   
   // TODO: 
   // do_aoe_damage_from_entity(entity)

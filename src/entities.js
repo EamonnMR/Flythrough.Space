@@ -56,7 +56,7 @@ export function npcShipFactory(prototype, position, ai, govt, warping_in=false){
 
 export function playerShipFactory(prototype, position) {
 
-  let ship = shipFactory(prototype, position);
+  let ship = shipFactory(prototype, position, null, true);
 
   ship.camera = true;
   ship.input = true;
@@ -74,7 +74,7 @@ export function playerShipFactory(prototype, position) {
   return ship;
 };
 
-export function shipFactory(prototype, position, govt=null){
+export function shipFactory(prototype, position, govt=null, is_player=false){
   let ship = Object.create(prototype);
   if(govt){
     ship.govt = govt;
@@ -90,7 +90,7 @@ export function shipFactory(prototype, position, govt=null){
   ship.fuel = ship.max_fuel;
   ship.thrusting = false;
   apply_upgrades(ship, ship.upgrades);
-  create_composite_model(ship, govt);
+  create_composite_model(ship, govt, is_player);
   ship.engine_trails = get_engine_particle_systems(ship);
   return ship;
 };
