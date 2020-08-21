@@ -11,6 +11,7 @@ import {
   is_cheat_enabled,
   overridable_default,
   polar_from_rect,
+  RENDERING_GROUPS,
 } from "./util.js";
 
 import {
@@ -25,20 +26,17 @@ const STAR_Y = 0;
 
 const BG_LAYER = 0
 const SPOB_LAYER = 1
+const ASTEROID_LAYER = 2
 export const DEFAULT_LAYER = 2
 const MAX_LIGHTS = 3  // One is reserved for the system
-// const PLAYER_LAYER = 3
+export var PLAYER_LAYER = 255 // RENDERING_GROUPS - 1; can't work
+
 
 let CAM_OFFSET_3DV = new BABYLON.Vector3(0, 0, 30);
 let CAM_OFFSET_PERSPECTIVE = new BABYLON.Vector3(0, 42, 30);
 let CAM_OFFSET_BIRDSEYE = new BABYLON.Vector3(0, 42, 0);
 
 export function graphics_init(engine){
-  
-  // Draw entire mesh at a time
-  engine.setDepthFunction(engine._gl.ALWAYS);
-  console.log("GL ALWAYS")
-
   _.scene.clearColor = new BABYLON.Color3(0, 0, 0);
   if(_.camera){
     _.camera.dispose();
@@ -150,7 +148,7 @@ function mount_turreted_weapons(model_meta, ship, weapon_index){
 
     for(let model of [weapon.model, turret_model]){
       model.visibility = 1;
-      model.renderingGroupId = DEFAULT_LAYER;
+      model.renderingGroupId = ship.model.renderingGroupId;
     }
     weapon.turret_index = turret_index;
     // TODO: bone.rotate(turret.facing)
@@ -210,10 +208,20 @@ export function create_asteroid_model(asteroid){
   asteroid.model.material = material;
   add_model(asteroid.model);
   asteroid.model.visibility = 1;
-  asteroid.model.renderingGroupId = DEFAULT_LAYER;
+  asteroid.model.renderingGroupId = ASTEROID_LAYER;
 }
 
-export function create_composite_model(ship, govt){
+var layer_counter = ASTEROID_LAYER;
+
+function get_layer(){
+  layer_counter += 1;
+  if(layer_counter == PLAYER_LAYER){
+    layer_counter = ASTEROID_LAYER + 1;
+  }
+  return layer_counter;
+}
+
+export function create_composite_model(ship, govt, is_player){
   // Create a ship's model out of the base mesh of the ship
   // plus the meshes of any attached upgrades.
   //
@@ -221,6 +229,13 @@ export function create_composite_model(ship, govt){
   ship.model = _.data.get_mesh(ship.mesh);
 
   let model_meta = _.data.get_mesh_meta(ship.mesh);
+  if(is_player){
+    ship.model.renderingGroupId = PLAYER_LAYER;
+  } else {
+    ship.model.renderingGroupId = get_layer();
+    // According to the birthday problem, this should lead to a
+    // 23% chance of two ships out of a dozen sharing a layer
+  }
   if(govt){
     let material = _.data.get_material(ship.mesh, govt);
     if(material){
@@ -252,7 +267,6 @@ export function create_composite_model(ship, govt){
   let weapon_index = mount_turreted_weapons(model_meta, ship, 0);
   mount_fixed_weapons_on_ship(model_meta, ship, weapon_index);
 
-  ship.model.renderingGroupId = DEFAULT_LAYER;
   ship.model.visibility = 1;
 };
 
@@ -270,7 +284,7 @@ function mount_fixed_weapons_on_ship(model_meta, ship, weapon_index){
     if(material){
       weapon.model.material = material;
     }
-    weapon.model.renderingGroupId = DEFAULT_LAYER;
+    weapon.model.renderingGroupId = ship.model.renderingGroupId;
     mount_on_attachpoint(weapon.model, ship.model, attachpoints[i - weapon_index]);
     add_model(weapon.model);
     weapon.model.visibility = 1;
@@ -353,7 +367,7 @@ export function get_engine_particle_systems(entity){
     let particle_system = _.data.get_particle_system(entity.engine_particle_sys_name);
     let emitter_node = new BABYLON.TransformNode(_.scene);
     particle_system.emitter = emitter_node;
-    particle_system.renderingGroupId = DEFAULT_LAYER;
+    particle_system.renderingGroupId = entity.model.renderingGroupId;
     mount_on_attachpoint(emitter_node, entity.model, attachpoint);
     particle_systems.push(particle_system); 
   })
@@ -378,7 +392,7 @@ function for_each_special_attachpoint(entity, attachpoint_type, callback){
   }
 }
 
-export function do_explo(position, type="explosion", scale=1, sfx=null){
+export function do_explo(position, type="explosion", scale=1, sfx=null, layer=ASTEROID_LAYER){
   // TODO: This could probably be part of CCM
   let particle_system = _.data.get_particle_system(type);
   /*
@@ -393,7 +407,7 @@ export function do_explo(position, type="explosion", scale=1, sfx=null){
   particle_system.emitter.position.y = SHIP_Y;
   particle_system.emitter.position.z = position.y;
   particle_system.disposeOnStop = true;
-  particle_system.renderingGroupId = DEFAULT_LAYER;
+  particle_system.renderingGroupId = layer;
   if(sfx){
     _.data.play_sound_at_position(sfx, particle_system.emitter.position);
   }

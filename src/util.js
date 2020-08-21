@@ -8,6 +8,7 @@ import { DEFAULT_SETTINGS } from "./default_settings.js";
 export const ARC = Math.PI * 2;
 const SETTING_PREFIX = "_setting:";
 export const CARRIED_PREFIX = "__carried_";
+export const RENDERING_GROUPS = 256;
 
 let url_params = new URLSearchParams(window.location.search);
 
